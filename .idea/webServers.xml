@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="7f9e04f5-1637-4f43-98e0-27609551d4c3" name="iap" url="http://iapchiapasenlinea.mx">
-        <fileTransfer host="iapchiapasenlinea.mx" port="21" username="iapchiap">
+        <fileTransfer host="iapchiapasenlinea.mx" port="21" password="dfc5dfeedfdbdfe1df9adff2dffadffcdfe9dfc8df93dfd8" username="iapchiap">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
