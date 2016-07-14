@@ -1,7 +1,7 @@
 <form method="post" action="">
 <input type="hidden" name="modality" id="modality" value="Por Equipo" />
 
-<table width="100%" class="tblGral">
+<table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 <thead>      
    {include file="{$DOC_ROOT}/templates/items/score-team-header.tpl"}
 </thead>
