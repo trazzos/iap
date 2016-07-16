@@ -19,14 +19,14 @@
         </li>
         <!-- END SIDEBAR TOGGLER BUTTON -->
         <li class="nav-item start ">
-            <a href="{$WEB_ROOT}" class="nav-link nav-toggle">
+            <a href="{$WEB_ROOT}" class="nav-link">
                 <i class="icon-home"></i>
                 <span class="title">Inicio</span>
             </a>
 
         </li>
         <li class="nav-item  ">
-            <a href="{$WEB_ROOT}/major" class="nav-link nav-toggle">
+            <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-diamond"></i>
                 <span class="title">Catálogos</span>
                 <span class="arrow"></span>
@@ -70,7 +70,7 @@
             </ul>
         </li>
         <li class="nav-item  ">
-            <a href="{$WEB_ROOT}/invoices" class="nav-link nav-toggle">
+            <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-puzzle"></i>
                 <span class="title">Cobranza</span>
                 <span class="arrow"></span>
@@ -89,7 +89,7 @@
             </ul>
         </li>
         <li class="nav-item  ">
-            <a href="{$WEB_ROOT}/subject" class="nav-link nav-toggle">
+            <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-settings"></i>
                 <span class="title">Currícula</span>
                 <span class="arrow"></span>
@@ -108,7 +108,7 @@
             </ul>
         </li>
         <li class="nav-item  ">
-            <a href="{$WEB_ROOT}/tv" class="nav-link nav-toggle">
+            <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-bulb"></i>
                 <span class="title">Videoconferencias</span>
                 <span class="arrow"></span>
@@ -127,25 +127,18 @@
             </ul>
         </li>
         <li class="nav-item  ">
-            <a href="{$WEB_ROOT}/reporte-general" class="nav-link nav-toggle">
+            <a href="{$WEB_ROOT}/reporte-general" class="nav-link">
                 <i class="icon-briefcase"></i>
                 <span class="title">Reportes</span>
                 <span class="arrow"></span>
             </a>
         </li>
         <li class="nav-item  ">
-            <a href="{$WEB_ROOT}/institution" class="nav-link nav-toggle">
+            <a href="{$WEB_ROOT}/institution" class="nav-link ">
                 <i class="icon-wallet"></i>
                 <span class="title">Configuración</span>
                 <span class="arrow"></span>
             </a>
-            <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="{$WEB_ROOT}/institution" class="nav-link ">
-                        <span class="title">Datos de la escuela</span>
-                    </a>
-                </li>
-            </ul>
         </li>
     </ul>
     <!-- END SIDEBAR MENU -->
