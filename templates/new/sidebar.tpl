@@ -19,7 +19,7 @@
         </li>
         <!-- END SIDEBAR TOGGLER BUTTON -->
         <li class="nav-item start ">
-            <a href="javascript:;" class="nav-link nav-toggle">
+            <a href="{$WEB_ROOT}" class="nav-link">
                 <i class="icon-home"></i>
                 <span class="title">Inicio</span>
             </a>
@@ -28,48 +28,43 @@
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-diamond"></i>
-                <span class="title">Catalogos</span>
+                <span class="title">Catálogos</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/major" class="nav-link ">
-                        <span class="title">Programas Academicos</span>
+                        <span class="title">Programas Académicos</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="ui_general.html" class="nav-link ">
+                    <a href="{$WEB_ROOT}/personal" class="nav-link ">
                         <span class="title">Personal</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="ui_buttons.html" class="nav-link ">
+                    <a href="{$WEB_ROOT}/student" class="nav-link ">
                         <span class="title">Alumnos</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="ui_buttons_spinner.html" class="nav-link ">
+                    <a href="{$WEB_ROOT}/position" class="nav-link ">
                         <span class="title">Puestos</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="ui_confirmations.html" class="nav-link ">
+                    <a href="{$WEB_ROOT}/role" class="nav-link ">
                         <span class="title">Roles</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="ui_icons.html" class="nav-link ">
+                    <a href="{$WEB_ROOT}/profesion" class="nav-link ">
                         <span class="title">Profesiones</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="ui_socicons.html" class="nav-link ">
+                    <a href="{$WEB_ROOT}/recording" class="nav-link ">
                         <span class="title">Videoconferencias</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="ui_typography.html" class="nav-link ">
-                        <span class="title">Salones</span>
                     </a>
                 </li>
             </ul>
@@ -82,23 +77,13 @@
             </a>
             <ul class="sub-menu">
                 <li class="nav-item  ">
-                    <a href="components_date_time_pickers.html" class="nav-link ">
+                    <a href="{$WEB_ROOT}/invoices" class="nav-link ">
                         <span class="title">Recibos</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="components_color_pickers.html" class="nav-link ">
+                    <a href="{$WEB_ROOT}/consultar-facturas" class="nav-link ">
                         <span class="title">Consultar Facturas</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="components_select2.html" class="nav-link ">
-                        <span class="title">Lista de Folios</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="components_bootstrap_select.html" class="nav-link ">
-                        <span class="title">Actualizar Certificado</span>
                     </a>
                 </li>
             </ul>
@@ -106,18 +91,18 @@
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-settings"></i>
-                <span class="title">Curricula</span>
+                <span class="title">Currícula</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item  ">
-                    <a href="form_controls.html" class="nav-link ">
-                                            <span class="title">Curricula</span>
+                    <a href="{$WEB_ROOT}/subject" class="nav-link ">
+                        <span class="title">Currícula</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="form_controls_md.html" class="nav-link ">
-                                            <span class="title">Historial</span>
+                    <a href="{$WEB_ROOT}/history-subject" class="nav-link ">
+                        <span class="title">Historial</span>
                     </a>
                 </li>
             </ul>
@@ -125,41 +110,35 @@
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-bulb"></i>
-                <span class="title">TV</span>
+                <span class="title">Videoconferencias</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item  ">
-                    <a href="elements_steps.html" class="nav-link ">
-                        <span class="title">Videoconferencias</span>
+                    <a href="{$WEB_ROOT}/tv" class="nav-link ">
+                        <span class="title">Videoconferencias en vivo</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="elements_lists.html" class="nav-link ">
-                        <span class="title">Grabacioes</span>
+                    <a href="{$WEB_ROOT}/recorded" class="nav-link ">
+                        <span class="title">Grabaciones</span>
                     </a>
                 </li>
             </ul>
         </li>
         <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
+            <a href="{$WEB_ROOT}/reporte-general" class="nav-link">
                 <i class="icon-briefcase"></i>
-                <span class="title">Reporte</span>
+                <span class="title">Reportes</span>
+                <span class="arrow"></span>
             </a>
         </li>
         <li class="nav-item  ">
-            <a href="?p=" class="nav-link nav-toggle">
+            <a href="{$WEB_ROOT}/institution" class="nav-link ">
                 <i class="icon-wallet"></i>
-                <span class="title">Configuracion</span>
+                <span class="title">Configuración</span>
                 <span class="arrow"></span>
             </a>
-            <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="portlet_boxed.html" class="nav-link ">
-                        <span class="title">Datos de la escuela</span>
-                    </a>
-                </li>
-            </ul>
         </li>
     </ul>
     <!-- END SIDEBAR MENU -->
