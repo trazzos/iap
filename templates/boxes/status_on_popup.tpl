@@ -7,7 +7,7 @@
 	       		<img src="{$WEB_ROOT}/images/error.png" style="cursor:pointer" />
     			{/if}  
        	</h3>
-        <div style="position:relative;top:-20px;left:50px; font-size:14px">
+        <div style="position:relative;top:-20px;left:50px; font-size:14px" class="errorStatusBox">
         {foreach from=$errors.value item="error" key="key"}
     			<b>{$error}.
     			{if $errors.field.$key}
