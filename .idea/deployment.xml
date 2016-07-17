@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="iap">
+  <component name="PublishConfigData" serverName="iapchiapas">
     <serverData>
-      <paths name="iap">
+      <paths name="ILOS-VM">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="iapchiapas">
         <serverdata>
           <mappings>
             <mapping deploy="/public_html" local="$PROJECT_DIR$" web="/" />

@@ -30,6 +30,7 @@
 	<link href="{$WEB_ROOT}/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
 	<!-- END THEME LAYOUT STYLES -->
 	<link rel="shortcut icon" href="favicon.ico" />
+{*
 	<link href="{$WEB_ROOT}/GreyBox/greybox/gb_styles.css" rel="stylesheet" type="text/css" />
 
 	<link href="{$WEB_ROOT}/css/style_new.css" rel="stylesheet" type="text/css"  />
@@ -39,7 +40,9 @@
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/AJS.js"></script>
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/AJS_fx.js"></script>
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/gb_scripts.js"></script>
+*}
 
+{*
 	<script type="text/javascript" src="{$WEB_ROOT}/javascript/prototype.js?{$timestamp}"></script>
 	<script src="{$WEB_ROOT}/javascript/datetimepicker.js?{$timestamp}" type="text/javascript"></script>
 	<script src="{$WEB_ROOT}/javascript/scoluos/src/scriptaculous.js?{$timestamp}" type="text/javascript"></script>
@@ -49,6 +52,8 @@
 
 	<link type="text/css" href="{$WEB_ROOT}/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
 	<script type="text/javascript" src="{$WEB_ROOT}/cometchat/cometchatjs.php" charset="utf-8"></script>
+*}
+
 </head>
 <!-- END HEAD -->
 
@@ -76,14 +81,12 @@
 <script src="../assets/global/plugins/excanvas.min.js"></script>
 <![endif]-->
 <!-- BEGIN CORE PLUGINS -->
-{*
 <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
 <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-*}
 <!-- END CORE PLUGINS -->
 
 <script>
@@ -92,12 +95,17 @@
 </script>
 
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
-{*
 <script src="../assets/global/scripts/app.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="../assets/layouts/layout/scripts/layout.js" type="text/javascript"></script>
-*}
+
+<script src="{$WEB_ROOT}/javascript/new/functions.js?{$timestamp}" type="text/javascript"></script>
+
+<script src="{$WEB_ROOT}/assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+<script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-growl/jquery.bootstrap-growl.min.js" type="text/javascript"></script>
+<script src="{$WEB_ROOT}/javascript/new/{$page}.js?{$timestamp}" type="text/javascript"></script>
+
 {*
 <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
 <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
