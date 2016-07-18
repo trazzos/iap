@@ -4,7 +4,7 @@ $( document ).ready(function() {
         AddPersonalDiv();
     });
 
-    $(document).on("click",".spanDelete",function() {
+/*    $(document).on("click",".spanDelete",function() {
         var $id = $(this).attr('id');
         DeletePersonalPopup($id);
     });
@@ -12,10 +12,11 @@ $( document ).ready(function() {
     $(document).on("click",".spanEdit",function() {
         var $id = $(this).attr('id');
         EditPersonalPopup($id);
-    });
+    });*/
 });
 
 
+/*
 function EditPersonalPopup(id)
 {
     $.ajax({
@@ -149,7 +150,7 @@ function getCurp()
         });
 }
 
-
+*/
 function AddPersonalDiv()
 {
     $.ajax({
@@ -169,7 +170,7 @@ function AddPersonalDiv()
         }
     });
 }
-    
+/*
 function MoveRole(From, To){
     var LOptions = new Array();
     var j=0;
@@ -195,4 +196,4 @@ function SendRolesData(listFrom, fieldTo){
         ResultLine+= OptionsHandlerSrc[i].value + ",";
     }//for
     fieldTo.value = ResultLine;
-}//SendRolesData
+}//SendRolesData*/

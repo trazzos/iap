@@ -19,7 +19,7 @@ switch($_POST["type"])
         $smarty->assign("roles",$roles);
         $smarty->assign("positions",$positions);
         $smarty->assign("DOC_ROOT", DOC_ROOT);
-        $smarty->display(DOC_ROOT.'/templates/boxes/add-personal.tpl');
+        $smarty->display(DOC_ROOT.'/templates/forms/new/add-personal.tpl');
 
         break;
 
