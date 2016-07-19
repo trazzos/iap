@@ -4,7 +4,7 @@ $( document ).ready(function() {
         AddPersonalDiv();
     });
 
-/*    $(document).on("click",".spanDelete",function() {
+   $(document).on("click",".spanDelete",function() {
         var $id = $(this).attr('id');
         DeletePersonalPopup($id);
     });
@@ -12,11 +12,11 @@ $( document ).ready(function() {
     $(document).on("click",".spanEdit",function() {
         var $id = $(this).attr('id');
         EditPersonalPopup($id);
-    });*/
+    });
 });
 
 
-/*
+
 function EditPersonalPopup(id)
 {
     $.ajax({
@@ -39,32 +39,35 @@ function EditPersonalPopup(id)
 
 function EditPersonal()
 {
-    new Ajax.Request(WEB_ROOT+'/ajax/personal.php',
+    $.ajax({
+        url : WEB_ROOT+'/ajax/new/personal.php',
+        type: "POST",
+        data :  $('#editPersonalForm').serialize(),
+        success: function(data)
         {
-            method:'post',
-            parameters: $('editPersonalForm').serialize(true),
-            onSuccess: function(transport){
-                var response = transport.responseText || "no response text";
+            var splitResponse = data.split("[#]");
 
-                var splitResponse = response.split("[#]");
-                if(splitResponse[0] == "fail")
-                {
-                    ShowStatusPopUp(splitResponse[1])
-                }
-                else
-                {
-                    ShowStatus(splitResponse[1])
-                    $('tblContent').innerHTML = splitResponse[2];
-                    CloseFview();
-                }
+            if(splitResponse[0] == "fail")
+            {
+                ShowStatusPopUp($(splitResponse[1]));
+            }
+            else
+            {
+                ShowStatus($(splitResponse[1]));
+                $('#tblContent').html(splitResponse[2]);
+                CloseFview();
+            }
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexión a internet');
+        }
+    });
+}
 
-            },
-            onFailure: function(){ alert('Something went wrong...') }
-        });
-
-function deletePersonalPopup(id)
+function DeletePersonalPopup(id)
 {
-    var $message = "¿Está seguro de eliminar esta usuario? Toma en cuenta que podrian perdese muchas asociaciones (Horarios, materias, etc)";
+    var $message = "¿Está seguro de eliminar este usuario? Toma en cuenta que podrían perdese muchas asociaciones (Horarios, materias, etc)";
     bootbox.confirm($message, function(result) {
         if(result == false)
         {
@@ -72,7 +75,7 @@ function deletePersonalPopup(id)
         }
 
         $.ajax({
-            url : WEB_ROOT+'/ajax/personal.php',
+            url : WEB_ROOT+'/ajax/new/personal.php',
             type: "POST",
             data : {type: "deletePersonal", id: id},
             success: function(data, textStatus, jqXHR)
@@ -93,9 +96,9 @@ function deletePersonalPopup(id)
 function AddPersonal()
 {
     $.ajax({
-        url : WEB_ROOT+'/ajax/new/major.php',
+        url : WEB_ROOT+'/ajax/new/personal.php',
         type: "POST",
-        data :  $('#addMajorForm').serialize(),
+        data :  $('#addPersonalForm').serialize(),
         success: function(data)
         {
             var splitResponse = data.split("[#]");
@@ -117,7 +120,7 @@ function AddPersonal()
         }
     });
 }
-
+/*
 function getCurp()
 {
 
@@ -170,7 +173,7 @@ function AddPersonalDiv()
         }
     });
 }
-/*
+
 function MoveRole(From, To){
     var LOptions = new Array();
     var j=0;
@@ -188,7 +191,7 @@ function MoveRole(From, To){
         }//if
     }//for
 }//MoveOptions
-
+/*
 function SendRolesData(listFrom, fieldTo){
     var ResultLine = "";
     OptionsHandlerSrc = listFrom.options;

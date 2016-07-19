@@ -48,7 +48,7 @@ switch($_POST["type"])
         $smarty->assign("positions",$positions);
         $smarty->assign("info", $info);
         $smarty->assign("DOC_ROOT", DOC_ROOT);
-        $smarty->display(DOC_ROOT.'/templates/boxes/edit-personal.tpl');
+        $smarty->display(DOC_ROOT.'/templates/forms/new/edit-personal.tpl');
 
         break;
 
@@ -77,7 +77,7 @@ switch($_POST["type"])
         if(!$personal->Save())
         {
             echo "fail[#]";
-            $smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
+            $smarty->display(DOC_ROOT.'/templates/boxes/status_on_popup.tpl');
         }
         else
         {

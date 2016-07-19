@@ -113,7 +113,7 @@ function AddMajor()
 
 function DeleteMajorPopup(id)
 {
-    var $message = "Esta seguro de eliminar esta carrera? Toma en cuenta que podrian perdese muchas asociaciones (Horarios, maestros, etc)";
+    var $message = "¿Esta seguro de eliminar esta carrera? Toma en cuenta que podrían perdese muchas asociaciones (Horarios, maestros, etc)";
     bootbox.confirm($message, function(result) {
         if(result == false)
         {
@@ -121,7 +121,7 @@ function DeleteMajorPopup(id)
         }
 
         $.ajax({
-            url : WEB_ROOT+'/ajax/major.php',
+            url : WEB_ROOT+'/ajax/new/major.php',
             type: "POST",
             data : {type: "deleteMajor", id: id},
             success: function(data, textStatus, jqXHR)
