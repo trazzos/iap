@@ -1,5 +1,6 @@
 <form class="form-horizontal" id="editPositionForm" name="editPositionForm" method="post">
     <input type="hidden" id="type" name="type" value="saveEditPosition"/>
+    <input type="hidden" id="positionId" name="positionId" value="{$post.profesionId}"/>
     <div class="form-body">
         <div class="form-group">
             <label class="col-md-3 control-label">Nombre:</label>
