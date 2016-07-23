@@ -3,8 +3,8 @@
         <td align="center" class="id">{$position.profesionId}</td>
         <td>&nbsp;{$position.profesionName|truncate:50:"..."}</td>
         <td align="center">
-            <img src="images/icons/16/delete.png" class="spanDelete" i id="d-{$position.profesionId}" name="d-{$position.profesionName}" title="Eliminar" />&nbsp;
-          	<img src="images/icons/16/pencil.png" class="spanEdit" id="e-{$position.profesionId}" name="e-{$position.profesionName}" title="Editar" />
+            <img src="images/icons/16/delete.png" class="spanDelete" i id="{$position.profesionId}" name="{$position.profesionName}" title="Eliminar" />&nbsp;
+          	<img src="images/icons/16/pencil.png" class="spanEdit" id="{$position.profesionId}" name="{$position.profesionName}" title="Editar" />
         </td>
     </tr>
 {foreachelse}
