@@ -1,6 +1,6 @@
 <form name="frmReport" id="frmReport" action="" method="post">
     <input type="hidden" name="accion" value="export" />
-	<table width="800px" border="0" cellpadding="0" cellspacing="0" style="border:1px solid #000000; font-size:12px">
+	<table width="800px" border="0" cellpadding="0" cellspacing="0" style="border:1px solid #000000; font-size:12px" class="tblGral table table-bordered table-striped table-condensed flip-content">
     <tr>
     	<td colspan="2" bgcolor="#CCCCCC" height="35" align="center"><b>Opciones</b></td>
     </tr>
@@ -18,7 +18,7 @@
 	    <tr>
     	<td height="30" align="left">&nbsp;Tipo de Alumnos:</td>
         <td align="left">
-        	<select id="modality" name="modality" class="frmSelect" style="width:100%">            
+        	<select id="modality" name="modality" class="frmSelect" style="width:100%" >
             <option value="0">Todos</option>
             <option value="1">En linea</option>
 			<option value="2">Presenciales</option>
