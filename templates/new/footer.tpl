@@ -8,6 +8,17 @@
 </div>
 <!-- END FOOTER -->
 
+<div class="modal fade" id="ajax" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="../assets/global/img/loading-spinner-grey.gif" alt="" class="loading">
+                <span> &nbsp;&nbsp;Loading... </span>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="fview" style="display:none;">
     <input type="hidden" id="inputs_changed" value="0" />
     <div id="fviewload" style="display:block" align="center">

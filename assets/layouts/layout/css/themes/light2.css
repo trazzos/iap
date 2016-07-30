@@ -4,7 +4,7 @@
     ***********/
 /* Header search bar, toggler button & top menu */
 .page-header.navbar {
-  background-color: #E1E1E1;
+  background-color: #73b760;
   /* Top notification menu/bar */
   /* Header seaech box */
   /* Toggler button for sidebar expand/collapse and responsive sidebar menu */ }
@@ -591,9 +591,9 @@
   .page-header.navbar {
     /* Top menu */ }
     .page-header.navbar .top-menu {
-      background-color: #F6F6F6; }
+      background-color: #73b760; }
       .page-header-fixed-mobile .page-header.navbar .top-menu {
-        background-color: #E1E1E1; }
+        background-color: #73b760; }
       .page-header.navbar .top-menu .navbar-nav > li.dropdown-user .dropdown-toggle {
         background-color: #f0f0f0; }
         .page-header-fixed-mobile .page-header.navbar .top-menu .navbar-nav > li.dropdown-user .dropdown-toggle {

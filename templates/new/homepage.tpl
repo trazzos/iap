@@ -6,7 +6,7 @@
 <!-- END PAGE TITLE-->
 
 <!-- BEGIN Portlet PORTLET-->
-<div class="portlet box blue-hoki">
+<div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">
             {if $User.type == "student"}

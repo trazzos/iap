@@ -251,7 +251,7 @@
 
 			// Verificar que este definido el metodo CountTotalRows en esta clase
 			//$totalTableRows...total de registros que hay en la tabla, usado para calcular el numero de paginas
-			$totalTableRows = $this->CountTotalRows();
+			$totalTableRows = $this->EnumerateCount();
 
 			//***calculamos el numero total de paginas, si hay fracciones es porque los ultimos 
 			//		registros no completan la pagina ($rowsPerPage) pero se calculan como una pagina mas con ceil()

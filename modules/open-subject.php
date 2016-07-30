@@ -23,6 +23,9 @@
 		$course->setScholarCicle($_POST["scholarCicle"]);
 		
 		$course->Open();
+
+		//TODO add heeder location when we finish the template change
+
 	}
 
 	$cursos = $subject->Enumerate();
@@ -34,5 +37,6 @@
 	$subject->setSubjectId($_GET['id']);
 	$smarty->assign('post', $subject->Info());
 	$smarty->assign('mnuMain','cursos');
-	
+
+
 ?>
