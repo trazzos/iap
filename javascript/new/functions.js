@@ -9,6 +9,13 @@ $( document ).ready(function() {
         bootbox.hideAll();
     });
 
+    $(document).on("focus", ".date-picker", function () {
+        $( ".date-picker" ).datepicker( {
+            format: 'dd-mm-yyyy',
+            autoclose: true
+        } );
+    });
+
 });
 function showModal(title, data)
 {

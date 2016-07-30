@@ -12,9 +12,9 @@
 
 <form id="addSubjectForm" name="addSubjectForm" method="post">
 <ul id="sort-box" class="sorts">
-  <li>              
+  <li>
     <div class="content-in-popup">
-      
+
       <div class="content-settings-row">
             <label for="f1"><span class="reqField">*</span> Tipo:</label>
             <select name="tipo" id="tipo">
@@ -23,30 +23,30 @@
               {/foreach}
             </select>
       </div>
-      
+
       <div class="content-settings-row">
             <label for="f1"><span class="reqField">*</span> Nombre:</label>
-            <input type="text" name="frmName" id="frmName" value="" />                      
+            <input type="text" name="frmName" id="frmName" value="" />
       </div>
-      
+
       <div class="content-settings-row">
             <label for="f1"><span class="reqField"></span> Clave:</label>
-            <input type="text" name="frmClave" id="frmClave" value="" />                      
+            <input type="text" name="frmClave" id="frmClave" value="" />
       </div>
 
       <div class="content-settings-row">
             <label for="f1"><span class="reqField"></span> RVOE:</label>
-            <input type="text" name="rvoe" id="rvoe" value="{$post.rvoe}" />                      
+            <input type="text" name="rvoe" id="rvoe" value="{$post.rvoe}" />
       </div>
 
       <div class="content-settings-row">
             <label for="f1"><span class="reqField">*</span> Costo Mensual:</label>
-            <input type="text" name="cost" id="cost" value="" />                      
+            <input type="text" name="cost" id="cost" value="" />
       </div>
 
       <div class="content-settings-row">
             <label for="f1"><span class="reqField">*</span> Numero de Pagos Totales:</label>
-            <input type="text" name="payments" id="payments" value="1" />                      
+            <input type="text" name="payments" id="payments" value="1" />
       </div>
 
       <div class="content-settings-row">
@@ -81,12 +81,12 @@
 
 
       <div style="float:left"><span class="reqField">*</span> Campo requerido</div>
-      <div style="padding-right:60px">                 
+      <div style="padding-right:60px">
       <input type="button" class="btnCancel" style="margin-left:10px;" id="btnCancel" />
-      <input type="submit" class="btn-70-l" id="saveAddSubject" name="saveAddSubject" value="." />                  
+      <input type="submit" class="btn-70-l" id="saveAddSubject" name="saveAddSubject" value="." />
       </div>
-      
+
     </div>
-   </li>                              
- </ul>    
+   </li>
+ </ul>
 </form>
