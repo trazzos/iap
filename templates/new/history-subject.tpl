@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="portlet-body">
-        <div id="tblContent">{include file="lists/courses.tpl"}</div>
+        <div id="tblContent">{include file="lists/new/courses.tpl"}</div>
         <br />
         {if $coursesCount}
             <div id="pagination" class="lnkPages">

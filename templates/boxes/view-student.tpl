@@ -1,3 +1,4 @@
+{*TODO quitar box solo dejar lista*}
 <!-- Esta pantalla se muestra en   Cirricula -> Historial-> Alumnos A/I --><div class="popupheader" style="z-index:70">
       
       <div class="ftitl">

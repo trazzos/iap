@@ -1,6 +1,6 @@
 <?php 
 
-ini_set("display_errors", "ON"); 
+ini_set("display_errors", "OFF");
 error_reporting(E_ALL ^ E_NOTICE);
 
 date_default_timezone_set('America/Los_Angeles');

@@ -25,6 +25,11 @@
 		
 	}
 
+	if(!is_array($marks))
+	{
+		$marks = [];
+	}
+
 	foreach($marks as $keyMark => $mark)
 	{
 		$realMark = array_sum($mark["marks"]) / count($mark["marks"]);
