@@ -26,5 +26,4 @@
 	$smarty->assign('date', $date);
 	$smarty->assign('invoiceId', $_GET["id"]);
 	$smarty->assign('subjects', $addedModules);
-
 ?>
