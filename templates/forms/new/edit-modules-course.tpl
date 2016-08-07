@@ -32,7 +32,8 @@
                     <div class="col-md-8">
                         <b>{$myModule.name}</b>
                         || <a href="{$WEB_ROOT}/edit-module/id/{$myModule.subjectModuleId}/course/{$myModule.courseModuleId}" title="Editar Modulo" style="color:#000" >Editar Detalle</a>
-                        {if !$docente}|| <a href="{$WEB_ROOT}/view-modules-course/id/{$myModule.courseId}" title="Ver Modulos de Curso" onclick="return parent.GB_show('Ver Modulos', this.href,650,700) " style="color:#000" >Ver Otros Modulos</a>
+                        {if !$docente}||
+                            <a href="{$WEB_ROOT}/graybox.php?page=view-modules-course&id={$myModule.courseId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" style="color:#000" >Ver Otros Modulos></a>
                         {/if}
                     </div>
                 </div>
