@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="portlet-body">
-        <div id="tblContent">{include file="{$DOC_ROOT}/templates/lists/modules.tpl"}</div>
+        <div id="tblContent">{include file="{$DOC_ROOT}/templates/lists/new/modules.tpl"}</div>
     </div>
 
 </div>
