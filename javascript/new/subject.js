@@ -8,15 +8,12 @@ $(document).ready(function() {
         DeleteSubjectPopUp($id);
     });
 
-    $(document).on("click",".spanView",function() {
+    $(document).on("click",".spanViewModule",function() {
         var $id = $(this).attr('id');
         ViewModulePopUp($id);
     });
 
-    $(document).on("click",".spanEdit",function() {
-        var $id = $(this).attr('id');
-        editSubjectPopup($id);
-    });
+
 });
 
 
@@ -103,7 +100,7 @@ function ViewModulePopUp(id)
 {
 
     $.ajax({
-        url : WEB_ROOT+'/ajax/new/module.php',
+        url : WEB_ROOT+'/ajax/new/subject.php',
         type: "POST",
         data : {type: "viewModules", id: id},
         success: function(data)

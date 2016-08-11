@@ -390,7 +390,7 @@ public function Enumerate_p(){
 			$this->Util()->DB()->setQuery('
 				SELECT *, major.name AS majorName, subject.name AS name FROM subject 
 				LEFT JOIN major ON major.majorId = subject.tipo
-				ORDER BY  semesterId ASC, subject.name ASC');
+				ORDER BY  subject.subjectId ASC');
 			$result = $this->Util()->DB()->GetResult();
 			
 			foreach($result as $key => $res)
@@ -1272,7 +1272,7 @@ public function Enumerate_p(){
 			//buscamos el periodo segun el valor de periodoId proporcionado...
 			$GLOBALS['periodo']->setPeriodoId($periodoId);
 			$result = $GLOBALS['periodo']->Info();
-			//recuperamos el mes y el año de la fecha representada por el campo 'starts' de la tabla periodo
+			//recuperamos el mes y el aï¿½o de la fecha representada por el campo 'starts' de la tabla periodo
 			$month_start = date('n', strtotime($result['starts']));
 			$year_start  = date('Y', strtotime($result['starts']));
 			//buscamos el semestre segun el valor de semesterId proporcionado...

@@ -1,5 +1,3 @@
-
-
 <form class="form-horizontal" id="addSubjectForm" name="addSubjectForm" method="post" action="{$WEB_ROOT}/new-subject">
     <div class="form-body">
         <div class="form-group">
@@ -7,7 +5,7 @@
             <div class="col-md-8">
                 <select name="tipo" id="tipo" class="form-control">
                     {foreach from=$major item=item}
-                        <option value="{$item.majorId}" {if $info.tipo == $item.majorid} selected="selected"{/if}>{$item.name}</option>
+                        <option value="{$item.majorId}" >{$item.name}</option>
                     {/foreach}
                 </select>
             </div>
@@ -39,31 +37,31 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Numero de Pagos Totales:</label>
             <div class="col-md-8">
-                <input type="text" name="payments" id="payments" value="1"  class="form-control" />
+                <input type="text" name="payments" id="payments" value=""  class="form-control" />
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Texto de Bienvenida:</label>
             <div class="col-md-8">
-                <textarea id="welcomeText" name="welcomeText" rows="15" cols="80" style="width: 50%"  class="form-control"></textarea>
+                <textarea id="welcomeText" name="welcomeText" rows="15" cols="80" style=""  class="form-control"></textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Introduccion:</label>
             <div class="col-md-8">
-                <textarea id="introduction" name="introduction" rows="15" cols="80" style="width: 50%"  class="form-control"></textarea>
+                <textarea id="introduction" name="introduction" rows="15" cols="80" style=""  class="form-control"></textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Intenciones:</label>
             <div class="col-md-8">
-                <textarea id="intentions" name="intentions" rows="15" cols="80" style="width: 50%"  class="form-control"></textarea>
+                <textarea id="intentions" name="intentions" rows="15" cols="80" style=""  class="form-control"></textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Objetivos:</label>
             <div class="col-md-8">
-                <textarea id="objectives" name="objectives" rows="15" cols="80" style="width: 50%"  class="form-control"></textarea>
+                <textarea id="objectives" name="objectives" rows="15" cols="80" style=""  class="form-control"></textarea>
             </div>
         </div>
         <div class="form-group">
@@ -75,7 +73,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Politicas:</label>
             <div class="col-md-8">
-                <textarea id="politics" name="politics" rows="15" style="" aclass="form-control"></textarea>
+                <textarea id="politics" name="politics" rows="15" cols="80" style="" aclass="form-control"></textarea>
             </div>
         </div>
 

@@ -1,17 +1,4 @@
-<!-- TinyMCE -->
-<script type="text/javascript">
-
-    $(document).ready(function() {
-        tinyMCE.init({
-            mode : "textareas",
-            theme : "advanced",
-            skin : "o2k7"
-
-        });
-    });
-</script>
-<!-- /TinyMCE -->
-<form class="form-horizontal" id="editSubjectForm" name="editSubjectForm" method="post" action="{$WEB_ROOT}/edit-subject/id/{$post.courseId}">
+<form class="form-horizontal" id="editSubjectForm" name="editSubjectForm" method="post" action="{$WEB_ROOT}/edit-subject/id/{$post.subjectId}">
     <input type="hidden" id="subjectId" name="subjectId" value="{$post.subjectId}"/>
 
     <div class="form-body">
@@ -20,7 +7,7 @@
             <div class="col-md-8">
                 <select name="tipo" id="tipo" class="form-control">
                     {foreach from=$major item=item}
-                        <option value="{$item.majorId}" {if $post.tipo == $item.majorid} selected="selected"{/if}>{$item.name}</option>
+                        <option value="{$item.majorId}" {if $post.tipo == $item.majorId} selected="selected"{/if}>{$item.name}</option>
                     {/foreach}
                 </select>
             </div>
@@ -60,25 +47,25 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Texto de Bienvenida:</label>
             <div class="col-md-8">
-                <textarea id="welcomeText" name="welcomeText" rows="15" cols="80" style="width: 50%"  class="form-control">{$post.welcomeText}</textarea>
+                <textarea id="welcomeText" name="welcomeText" rows="15" cols="80" style=""  class="form-control">{$post.welcomeText}</textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Introduccion:</label>
             <div class="col-md-8">
-                <textarea id="introduction" name="introduction" rows="15" cols="80" style="width: 50%"  class="form-control">{$post.introduction}</textarea>
+                <textarea id="introduction" name="introduction" rows="15" cols="80" style=""  class="form-control">{$post.introduction}</textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Intenciones:</label>
             <div class="col-md-8">
-                <textarea id="intentions" name="intentions" rows="15" cols="80" style="width: 50%"  class="form-control">{$post.intentions}</textarea>
+                <textarea id="intentions" name="intentions" rows="15" cols="80" style=""  class="form-control">{$post.intentions}</textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Objetivos:</label>
             <div class="col-md-8">
-                <textarea id="objectives" name="objectives" rows="15" cols="80" style="width: 50%"  class="form-control">{$post.objectives}</textarea>
+                <textarea id="objectives" name="objectives" rows="15" cols="80" style=""  class="form-control">{$post.objectives}</textarea>
             </div>
         </div>
         <div class="form-group">
@@ -90,7 +77,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Politicas:</label>
             <div class="col-md-8">
-                <textarea id="politics" name="politics" rows="15" style="" aclass="form-control">{$post.politics}</textarea>
+                <textarea id="politics" name="politics" rows="15" cols="80" style="" aclass="form-control">{$post.politics}</textarea>
             </div>
         </div>
 
@@ -104,4 +91,4 @@
             </div>
         </div>
     </div>
-/form>
+</form>

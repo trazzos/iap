@@ -162,32 +162,31 @@ switch($_POST["type"])
 
         if($subject->Delete())
         {
-            echo 'Ok|';
-            $smarty->display(DOC_ROOT . '/templates/boxes/status.tpl');
-            echo '|';
-            $smarty->assign('specialities', $specialities);
-            $smarty->assign('semesters', $semesters);
-
-            // -------------------------------------------------------------------------------------------------
-            $arrPage = array();		// ---- arreglo donde guarda los resultados de la paginacion...para usarse en footer-pages-links.tpl
-            $viewPage = 1;			// ---- por default se toma la primera pagina, por si aun no esta definidala en la variable GET
-            $rowsPerPage = 15;		//<<--- se podria tomar este valor de una variable o constante global, o especificarla para un caso particular
-            $pageVar = 'viewPage';	// ---- el nombre de la variable en GET que trae la pagina a mostrar, en este caso se usa viewPage para pasar la pagina a visualizar
-            if(isset($_POST["$pageVar"]))
-                $viewPage = $_POST["$pageVar"];	//si ya esta definida la variable GET['viewPage'] tomar el valor de esta
-            //$smarty->assign('subjects', $util->EncodeResult($subject->EnumerateByPage($viewPage, $rowsPerPage, $pageVar, WEB_ROOT.'/subject', $arrPage)));
-            $smarty->assign('subjects', $util->EncodeResult($subject->Enumerate()));
-            $smarty->assign('arrPage', $arrPage);
-
-            $smarty->display(DOC_ROOT . '/templates/lists/new/subject.tpl');
+            echo "ok[#]";
+            $smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
+            echo "[#]";
+            $result = $subject->Enumerate();
+            $subjects = $util->EncodeResult($result);
+            $smarty->assign("subjects", $subjects);
+            $smarty->assign("DOC_ROOT", DOC_ROOT);
+            $smarty->display(DOC_ROOT.'/templates/lists/new/subject.tpl');
         }
         else
         {
-            echo 'Fail|';
-            $smarty->display(DOC_ROOT . '/templates/boxes/status.tpl');
+            echo "fail[#]";
+            $smarty->display(DOC_ROOT.'/templates/boxes/status_on_popup.tpl');
         }
 
         break;
 
+    case 'viewModules':
+
+        $subjects = $module->EnumerateById($_POST['id']);
+
+        $smarty->assign("id", $_POST['id']);
+        $smarty->assign("subjects", $subjects);
+        $smarty->display(DOC_ROOT . '/templates/boxes/new/view-modules-popup.tpl');
+
+        break;
 }
 ?>
