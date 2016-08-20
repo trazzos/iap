@@ -8,7 +8,7 @@
     </div>
         {include file="boxes/status_no_ajax.tpl"}
 				<div style="text-align:center">                                             
-				<img src="{$WEB_ROOT}/calendario/calendario_{$id}.jpg" width="1024" height="960" />            
+				<img src="{$WEB_ROOT}/calendario/calendario_{$id}.jpg" width="1024" height="960" />
 				</div>
    </li>                                                              
  </ul>
