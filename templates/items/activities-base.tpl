@@ -24,7 +24,7 @@
         	N/A
         {/if}</td>
         <td align="center">
-            <img src="{$WEB_ROOT}/images/icons/16/delete.png" class="spanDelete" id="d-{$subject.activityId}" name="d-{$subject.name}" title="Eliminar" />&nbsp;
+            <img src="{$WEB_ROOT}/images/icons/16/delete.png" class="spanDelete" data-id="{$subject.activityId}" id="d-{$subject.activityId}" name="d-{$subject.name}" title="Eliminar" />&nbsp;
 					 <a href="{$WEB_ROOT}/edit-activity/id/{$subject.activityId}" onclick="return parent.GB_show('Editar Actividad', this.href,650,700) "><img src="{$WEB_ROOT}/images/icons/16/pencil.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Editar" /></a>
            {if $subject.score > 0}            
            <a href="{$WEB_ROOT}/score-activity/id/{$subject.activityId}" onclick="return parent.GB_show('Calificar Actividad', this.href,650,700) "><img src="{$WEB_ROOT}/images/icons/16/score.gif" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Calificar" /></a>
