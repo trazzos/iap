@@ -8,7 +8,7 @@
 		$module->setSubjectModuleId($_GET["delete"]);
 		$module->Delete();
 	}
-	
+
 	$smarty->assign('specialities', $speciality->Enumerate());
 	$smarty->assign('semesters', $semester->Enumerate());
 
@@ -25,7 +25,7 @@
 	$smarty->assign('subjects', $subject->Enumerate());
 	$smarty->assign('arrPage', $arrPage);
 	// -------------------------------------------------------------------------------------------------
-	
+
 	$smarty->assign('mnuMain','cursos');
 	$smarty->assign('mnuSubmain','curricula');
 ?>

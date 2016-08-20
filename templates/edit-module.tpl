@@ -3,7 +3,7 @@
     <div class="content-header">
         <div class="content-header-left-wide" style="width:960px">
           <img src="{$WEB_ROOT}/images/new/catalogos.png" alt="" /></a>
-            <h2>Editar Modulo para {$subject.name} 
+            <h2>Editar Módulo para {$subject.name}
             {if $docente}
             	| <a href="{$WEB_ROOT}/edit-modules-course/id/{$courseId}" style="color:#000000">Regresar</a>
             {else}

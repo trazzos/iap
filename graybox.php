@@ -46,7 +46,6 @@ $pages = array(
     'group',
     'group-subject',
     'semester',
-    'subject',
     'assign',
     'institution',
     'role',
@@ -90,6 +89,7 @@ $pages = array(
 
     "edit-course",
     "activities-course",
+    'subject',
 
     //alumn
     "curricula",
