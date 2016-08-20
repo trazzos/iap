@@ -37,6 +37,7 @@
 {*
 	<link href="{$WEB_ROOT}/css/style_new.css" rel="stylesheet" type="text/css"  />
 *}
+	<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
 	<script type="text/javascript">
 		var GB_ROOT_DIR = "{$WEB_ROOT}/GreyBox/greybox/";
 	</script>
@@ -113,7 +114,6 @@
 
 <script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" type="text/javascript"></script>
-<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-growl/jquery.bootstrap-growl.min.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/javascript/new/{$page}.js?{$timestamp}" type="text/javascript"></script>

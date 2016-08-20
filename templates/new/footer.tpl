@@ -16,7 +16,7 @@
                 <span> &nbsp;&nbsp;Loading... </span>
             </div>
         </div>
-    </div>
+    </div>in
 </div>
 
 <div id="fview" style="display:none;">
