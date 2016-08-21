@@ -1,4 +1,4 @@
-<form method="post" action="">
+<form method="post" action="{$WEB_ROOT}/config-teams/id/{$id}">
 <table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 <thead>      
    {include file="{$DOC_ROOT}/templates/items/no-team-header.tpl"}

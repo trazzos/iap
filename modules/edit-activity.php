@@ -23,6 +23,7 @@
 	$smarty->assign('date', $date);
 
 	$activity->setActivityId($_GET["id"]);
+	$smarty->assign('id', $_GET["id"]);
 	$actividad = $activity->Info();
 	$smarty->assign('actividad', $actividad);
 	
