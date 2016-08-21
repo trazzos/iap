@@ -5,6 +5,11 @@ $( document ).ready(function() {
         DeleteActivity($id);
     });
 
+    $(document).on("click",".spanDeleteResource",function() {
+        var $id = $(this).data('id');
+        DeleteResource($id);
+    });
+
 });
 
 
@@ -36,36 +41,30 @@ function DeleteActivity(id)
     });
 }
 
-/*
-function DeleteActivity(id)
+function DeleteResource(id)
 {
-    var cSubject = '';
-    cSubject = $(id).readAttribute('name').substring(2, $(id).readAttribute('name').length);
-    id = id.substring(2, id.length);
-    if(!confirm('Esta seguro de eliminar esta actividad?'))
-    {
-        return;
-    }
-
-    new Ajax.Request(WEB_ROOT + '/ajax/activity.php',
+    var $message = "¿Está seguro de eliminar este recurso?";
+    bootbox.confirm($message, function(result) {
+        if(result == false)
         {
-            method : 'post',
-            parameters : 'type=deleteActivity&activityId=' + id,
-            onSuccess : function(transporta)
+            return;
+        }
+
+        $.ajax({
+            url : WEB_ROOT+'/ajax/new/resource.php',
+            type: "POST",
+            data : {type: "deleteResource", resourceId: id},
+            success: function(data, textStatus, jqXHR)
             {
-                var respuesta = transporta.responseText;
-                var divRespuesta = respuesta.split('[#]');
-                if(divRespuesta[0] == 'ok'){
-                    ShowStatus(divRespuesta[1]);
-                    $('tblContent-activities').innerHTML = divRespuesta[2];
-                    CloseFview();
-                }else{
-                    ShowStatus(divRespuesta[1]);
-                }
+                var splitResponse = data.split("[#]");
+                ShowStatus(splitResponse[1]);
+                $('#tblContentResources').html(splitResponse[2]);
             },
-            onFailure : function()
+            error: function (jqXHR, textStatus, errorThrown)
             {
-                alert('Se detecto un problema con el servidor');
+                alert('Algo salio mal, compruebe su conexión a internet');
             }
         });
-}*/
+
+    });
+}

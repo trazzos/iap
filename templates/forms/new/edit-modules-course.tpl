@@ -253,11 +253,15 @@
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Recursos de Apoyo ::.
         </div>
+        <div class="actions">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-resource&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
+                &raquo; Agregar Recurso de Apoyo
+            </a>
+        </div>
+
     </div>
     <div class="portlet-body">
-        <a href="{$WEB_ROOT}/add-resource/id/{$myModule.courseModuleId}" onclick="return parent.GB_show('Agregar Recurso', this.href,250,700) "><div class="btnAdd" id="btnAddSubject"></div></a>
-
-        <div id="tblContentResources">{include file="lists/resources.tpl"}</div>
+        <div id="tblContentResources">{include file="lists/new/resources.tpl"}</div>
     </div>
 </div>
 
@@ -266,11 +270,14 @@
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Avisos ::.
         </div>
+        <div class="actions">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-noticia&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
+                &raquo; Agregar Aviso
+            </a>
+        </div>
     </div>
     <div class="portlet-body">
-        <a href="{$WEB_ROOT}/add-noticia/id/{$myModule.courseModuleId}" onclick="return parent.GB_show('Agregar Noticia', this.href,350,700) "><div class="btnAdd" id="btnAddSubject"></div></a>
-
-        <div id="tblContentResources" style="text-align:left">{include file="lists/module-announcements.tpl"}</div>
+        <div id="tblContentNoticias">{include file="lists/new/module-announcements.tpl"}</div>
     </div>
 </div>
 

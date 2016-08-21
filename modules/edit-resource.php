@@ -11,6 +11,8 @@
 		$resource->Edit();
 	}
 
+	$smarty->assign('id', $_GET["id"]);
+
 	$resource->setResourceId($_GET["id"]);
 	$resource = $resource->Info();
 	$smarty->assign('resource', $resource);
