@@ -10,6 +10,8 @@
 		$resource->setDescription($_POST["description"]);
 		$resource->Save();
 	}
+$smarty->assign('id', $_GET["id"]);
+
 
 	$date = date("d-m-Y");
 	$smarty->assign('date', $date);

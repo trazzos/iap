@@ -81,6 +81,7 @@ $pages = array(
     'recuperacion',
 	
 	//new
+		"add-comment",
 	"new-subject",
 	"edit-subject",
 	"open-subject",

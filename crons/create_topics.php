@@ -18,7 +18,7 @@ if (!isset($_SESSION))
 	foreach($result as $key => $val)
 	{
 		//si no hay foros insertar
-		$db->setQuery("SELECT COUNT(*) FROM topic WHERE courseId = '".$val["courseId"]."'");
+		$db->setQuery("SELECT COUNT(*) FROM topic WHERE courseId > 52 AND courseId = '".$val["courseId"]."'");
 		echo $count = $db->GetSingle();
 		
 		if($count == 0)
