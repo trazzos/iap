@@ -11,17 +11,23 @@
                 <div class="portlet box red">
             {/if}
             {if $timestamp > $item.finalDateTimestamp}
-                    <div class="portlet box blue">
+                    <div class="portlet box red-mint">
             {/if}
             {if $timestamp < $item.initialDateTimestamp}
-                        <div class="portlet box green">
+                        <div class="portlet box red-mint">
             {/if}
-
-
                 <div class="portlet-title">
                     <!-- TODO Poner al centro el título-->
                     <div class="caption" >
+                        <!-- TODO Ver Descripción ponerlo en blanco y subrayado-->
                         <b>Actividad  {$item.count} - </b> {$item.resumen}
+                    </div>
+                    <div class="actions">
+                        <a href="{$WEB_ROOT}/graybox.php?page=view-description-activity&id={$item.activityId};" class="btn btn-default btn-sm" data-target="#ajax" data-toggle="modal" >
+
+                            <i class="fa fa-plus"></i> Ver Descripción </a>
+
+
                     </div>
                 </div>
                 <div class="portlet-body">

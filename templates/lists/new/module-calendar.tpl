@@ -1,8 +1,5 @@
 <div class="portlet-body">
-    <b>Fecha Inicial:</b> {$item.initialDate|date_format:"%d-%m-%Y"}
-    <br />
-    <b>Fecha Final:  </b> {$item.finalDate|date_format:"%d-%m-%Y %H:%M:%S"}
-    <br />
+
     {if $timestamp > $item.initialDateTimestamp && $timestamp < $item.finalDateTimestamp}
         <span style="color:#0C0">Esta actividad se encuentra disponible</span>
     {/if}
@@ -13,8 +10,12 @@
         <span style="color:#C00">Esta actividad aun no ha iniciado</span>
     {/if}
     <br />
-    <a href="{$WEB_ROOT}/view-description-activity/id/{$item.activityId}" onclick="return parent.GB_show('Ver Actividad', this.href,700,800)">Ver Descripci&oacute;n</a>
+
     <br />
+    <b>Fecha Inicial:</b> {$item.initialDate|date_format:"%d-%m-%Y"}
+    <br />
+    <b>Fecha Final:  </b> {$item.finalDate|date_format:"%d-%m-%Y %H:%M:%S"}
+    <br /><br />
     <b>Modalidad: </b>{$item.modality}
 
     <br />
