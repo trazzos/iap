@@ -572,12 +572,14 @@
 		
 		public function EnumerateActive()
 		{
-			
+			//TODO porque tenia IN(0) no logro recordar
+//				WHERE course.active = 'si' AND courseId IN (0)
+
 			$this->Util()->DB()->setQuery("
 				SELECT *, major.name AS majorName, subject.name AS name FROM course
 				LEFT JOIN subject ON course.subjectId = subject.subjectId 
 				LEFT JOIN major ON major.majorId = subject.tipo
-				WHERE course.active = 'si' AND courseId IN (0)
+				WHERE course.active = 'si'
 				ORDER BY subject.tipo");
 				//echo $this->Util()->DB()->query;
 			$result = $this->Util()->DB()->GetResult();

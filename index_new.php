@@ -139,6 +139,7 @@ $pages = array(
 	"make-test",
 	"student-curricula",	
 	"ver-sabana-course",
+		"add-comment",
 
 	"add-noticia",
 	"tv",

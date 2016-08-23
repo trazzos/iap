@@ -1,1 +1,1 @@
-	{include file="{$DOC_ROOT}/templates/forms/edit-activity.tpl"}
+{include file="{$DOC_ROOT}/templates/forms/edit-activity.tpl"}

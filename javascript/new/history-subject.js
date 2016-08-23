@@ -47,7 +47,7 @@ function VerGrupoInactivo(id){
         data : {type: "StudentInactivo", id:id},
         success: function(data)
         {
-            showModal("Ver Grupo Inacivos", data);
+            showModal("Ver Grupo Inactivo", data);
         },
         error: function ()
         {

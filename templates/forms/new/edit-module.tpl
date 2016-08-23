@@ -1,119 +1,103 @@
-<!-- TinyMCE -->
-{*
-<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
-*}
-<script type="text/javascript">
-    tinyMCE.init({
-        mode : "textareas",
-        theme : "advanced",
-        skin : "o2k7"
-    });
-</script>
-<!-- /TinyMCE -->
-<form id="editSubjectForm" name="editSubjectForm" method="post" class="form-horizontal">
+<form class="form-horizontal" id="editSubjectForm" name="editSubjectForm" method="post" action="{$WEB_ROOT}/edit-module/id/{$post.subjectModuleId}">
     <input type="hidden" id="subjectModuleId" name="subjectModuleId" value="{$post.subjectModuleId}"/>
     <input type="hidden" id="subjectId" name="subjectId" value="{$post.subjectId}"/>
-
     <div class="form-body">
-
         <div class="form-group">
             <label class="col-md-3 control-label">Nombre:</label>
             <div class="col-md-8">
-                <input type="text" name="frmName" id="frmName" value="{$post.name}" {if $docente} readonly="readonly"{/if} class="form-control"/>
+                <input type="text" name="frmName" id="frmName" class="form-control" value="{$post.name}" {if $docente} readonly="readonly"{/if} />
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-3 control-label">Clave:</label>
             <div class="col-md-8">
-                <input type="text" name="frmClave" id="frmClave" value="{$post.clave}" {if $docente} readonly="readonly"{/if} class="form-control"/>
+                <input type="text" name="frmClave" id="frmClave" class="form-control"  value="{$post.clave}" {if $docente} readonly="readonly"{/if} />
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-3 control-label">Perteneciente al Cuatrimestre Numero?:</label>
+            <label class="col-md-3 control-label">Cuatrimestre/Semestre:</label>
             <div class="col-md-8">
-                <input type="text" name="semesterId" id="semesterId" value="{$post.semesterId}" maxlength="2" class="form-control"/>
+                <input type="text" name="semesterId" id="semesterId" class="form-control" value="{$post.semesterId}" {if $docente} readonly="readonly"{/if} />
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-3 control-label">Texto de Bienvenida:</label>
             <div class="col-md-8">
-                <textarea id="welcomeText" name="welcomeText" rows="15" cols="" style="width: 100%">{$post.welcomeText}</textarea>
+                <textarea id="welcomeText" name="welcomeText" rows="15" cols="80" style=""  >{$post.welcomeText}</textarea>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-3 control-label">Introduccion:</label>
+            <label class="col-md-3 control-label">Introducción:</label>
             <div class="col-md-8">
-                <textarea id="introduction" name="introduction" rows="15" cols="" style="width: 100%">{$post.introduction}</textarea>
+                <textarea id="introduction" name="introduction" rows="15" cols="80" style=""  >{$post.introduction}</textarea>
             </div>
         </div>
-
         <div class="form-group">
             <label class="col-md-3 control-label">Intenciones:</label>
             <div class="col-md-8">
-                <textarea id="intentions" name="intentions" rows="15" cols="" style="width: 100%">{$post.intentions}</textarea>
+                <textarea id="intentions" name="intentions" rows="15" cols="80" style=""  >{$post.intentions}</textarea>
             </div>
         </div>
-
         <div class="form-group">
             <label class="col-md-3 control-label">Objetivos:</label>
             <div class="col-md-8">
-                <textarea id="objectives" name="objectives" rows="15" cols="" style="width: 100%"">{$post.objectives}</textarea>
+                <textarea id="objectives" name="objectives" rows="15" cols="80" style=""  >{$post.objectives}</textarea>
             </div>
         </div>
-
         <div class="form-group">
             <label class="col-md-3 control-label">Temario:</label>
             <div class="col-md-8">
-                <textarea id="objectives" name="objectives" rows="15" cols="" style="width: 100%">{$post.objectives}</textarea>
+                <textarea id="themes" name="themes" rows="15" cols="80" style=""  >{$post.themes}</textarea>
             </div>
         </div>
-
         <div class="form-group">
             <label class="col-md-3 control-label">Esquema:</label>
             <div class="col-md-8">
-                <textarea id="scheme" name="scheme" rows="15" cols="" style="width: 100%">{$post.scheme}</textarea>
+                <textarea id="scheme" name="scheme" rows="15" cols="80" style="" >{$post.scheme}</textarea>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-3 control-label">Metodologia:</label>
+            <label class="col-md-3 control-label">Metodología:</label>
             <div class="col-md-8">
-                <textarea id="methodology" name="methodology" rows="15"cols="" style="width: 100%"">{$post.methodology}</textarea>
+                <textarea id="methodology" name="methodology" rows="15" cols="80" style="" >{$post.methodology}</textarea>
             </div>
         </div>
-
         <div class="form-group">
-            <label class="col-md-3 control-label">Politicas:</label>
+            <label class="col-md-3 control-label">Políticas:</label>
             <div class="col-md-8">
-                <textarea id="politics" name="politics" rows="15" cols="" style="width: 100%">{$post.politics}</textarea>
+                <textarea id="politics" name="politics" rows="15" cols="80" style="" >{$post.politics}</textarea>
             </div>
         </div>
-
         <div class="form-group">
-            <label class="col-md-3 control-label">Evaluacion:</label>
+            <label class="col-md-3 control-label">Evaluación:</label>
             <div class="col-md-8">
-                <textarea id="evaluation" name="evaluation" rows="15" cols="" style="width: 100%">{$post.evaluation}</textarea>
+                <textarea id="evaluation" name="evaluation" rows="15" cols="80" style="" >{$post.evaluation}</textarea>
             </div>
         </div>
-
         <div class="form-group">
-            <label class="col-md-3 control-label">Bibliografia:</label>
+            <label class="col-md-3 control-label">Bibliografía:</label>
             <div class="col-md-8">
-                <textarea id="bibliography" name="bibliography" rows="15" cols="" style="width: 100%">{$post.bibliography}</textarea>
+                <textarea id="bibliography" name="bibliography" rows="15" cols="80" style="" >{$post.bibliography}</textarea>
             </div>
         </div>
-     </div>
 
-    <div class="form-actions">
-        <div class="row">
-            <div class="col-md-offset-3 col-md-9">
-                <button type="submit" class="btn green submitForm btn-70-l" id="saveEditSubject" name="saveEditSubject">Guardar</button>
+
+        <div class="form-actions">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="submit" class="btn green submitForm">Guardar</button>
+                    <button type="button" class="btn default closeModal">Cancelar</button>
+                </div>
             </div>
         </div>
+
+
+
+
     </div>
-
 </form>

@@ -270,14 +270,39 @@
 				SELECT * FROM reply
 				LEFT JOIN user ON user.userId = reply.userId
 				LEFT JOIN personal ON personal.personalId = reply.personalId
-				WHERE topicId = ".$this->topicsubId." 
+				WHERE topicId = ".$this->topicsubId." AND son = 0
 				ORDER BY replyDate DESC");
 			$result = $this->Util()->DB()->GetResult();
 			
 			foreach($result as $key => $res)
 			{
 				$result[$key]["content"] = $this->Util()->DecodeTiny($result[$key]["content"]);
+
+				$this->Util()->DB()->setQuery("
+				SELECT * FROM reply
+				LEFT JOIN user ON user.userId = reply.userId
+				LEFT JOIN personal ON personal.personalId = reply.personalId
+				WHERE son = '".$res["replyId"]."'
+				ORDER BY replyDate DESC");
+
+				$result[$key]["replies"] = $this->Util()->DB()->GetResult();
+				foreach($result[$key]["replies"] as $keyReply => $reply)
+				{
+					$result[$key]["replies"][$keyReply]["content"] = $this->Util()->DecodeTiny($reply["content"]);
+				}
+
 			}
+			return $result;
+		}
+
+		public function ReplyInfo()
+		{
+			$this->Util()->DB()->setQuery("
+				SELECT * FROM reply
+				LEFT JOIN topic ON topic.topicId = reply.topicId
+				WHERE replyId = '".$this->replyId."'");
+			$result = $this->Util()->DB()->GetRow();
+
 			return $result;
 		}
 		
@@ -363,13 +388,13 @@ public function TopicsubInfo()
 			}
 
 			if($this->subject=="Dudas para el Docente")
-				$this->reply=utf8_encode("En este foro podrán realizar preguntas referentes al contenido del curso y el docente asignado se las responderá.");
+				$this->reply=utf8_encode("En este foro podrï¿½n realizar preguntas referentes al contenido del curso y el docente asignado se las responderï¿½.");
 			if($this->subject=="Asesoria Academica")
-				$this->reply=utf8_encode("En este foro podrás incluir dudas referentes al curso y nuestro personal académico los resolverá.");
+				$this->reply=utf8_encode("En este foro podrï¿½s incluir dudas referentes al curso y nuestro personal acadï¿½mico los resolverï¿½.");
 			if($this->subject=="Presentacion Personal")
-				$this->reply=utf8_encode("Este foro les permitirá conocer a los demás alumnos del curso, dando una breve descripción personal, que puede incluir su nombre completo, estudios, información laboral, pasatiempos, etc.");
+				$this->reply=utf8_encode("Este foro les permitirï¿½ conocer a los demï¿½s alumnos del curso, dando una breve descripciï¿½n personal, que puede incluir su nombre completo, estudios, informaciï¿½n laboral, pasatiempos, etc.");
 			if($this->subject=="Foro de Discusion")
-				$this->reply= utf8_encode("Foro dedicado a expresar opiniones acerca de algún tema que el profesor o tutor haya creado.");
+				$this->reply= utf8_encode("Foro dedicado a expresar opiniones acerca de algï¿½n tema que el profesor o tutor haya creado.");
 			
 			$sql = "INSERT INTO
 						topic
@@ -583,7 +608,7 @@ public function TopicsubInfo()
 			 
             	$sql = "INSERT INTO
 						reply
-						( content, replyDate, topicId, userId, personalId, notificado, path, mime )
+						( content, replyDate, topicId, userId, personalId, notificado, path, mime, son )
                         VALUES (
 							'" . $this->reply . "', 
 							'" . date("Y-m-d H:i:s"). "',
@@ -592,7 +617,8 @@ public function TopicsubInfo()
 							'" . $this->personalId . "',
 							'".$_SESSION['User']['userId']."',
 							'" . $relative_path ."',
-                            '" . $file["type"] ."'
+                            '" . $file["type"] ."',
+                            '" . $this->replyId ."'
                             )";
 
 				//$target_path =""; 

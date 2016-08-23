@@ -44,7 +44,11 @@
                         {if $docente}
                             {$myModule.initialDate}
                         {else}
+                            <input type="text" name="initialDate" id="initialDate" size="10" class="form-control date-picker " value="{$myModule.initialDate}" required/>
+
+{*
                             <input type="text" name="initialDate" id="initialDate" value="{$myModule.initialDate}" class="form-control"/><a href="javascript:NewCal('initialDate','ddmmyyyy')"><img src="{$WEB_ROOT}/images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+*}
                         {/if}
                     </div>
                 </div>
@@ -55,7 +59,11 @@
                         {if $docente}
                             {$myModule.finalDate}
                         {else}
+                            <input type="text" name="finalDate" id="finalDate" size="10" class="form-control date-picker " value="{$myModule.finalDate}" required/>
+
+{*
                             <input type="text" name="finalDate" id="finalDate" value="{$myModule.finalDate}"  class="form-control" /><a href="javascript:NewCal('finalDate','ddmmyyyy')"><img src="{$WEB_ROOT}/images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+*}
                         {/if}
                     </div>
                 </div>
@@ -205,7 +213,8 @@
             <i class="fa fa-gift"></i>.:: Grupo ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/config-teams/id/{$myModule.courseModuleId}" onclick="return parent.GB_show('Configurar Equipos', this.href,650,700) " style="color:#000000">&raquo; Configurar Equipos
+            <a href="{$WEB_ROOT}/graybox.php?page=config-teams&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
+                &raquo; Configurar Equipos
             </a>
         </div>
     </div>
@@ -219,6 +228,11 @@
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Actividades ::.
         </div>
+        <div class="actions">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-activity&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
+                &raquo; Agregar actividad
+            </a>
+        </div>
     </div>
     <div class="portlet-body">
         <div style="text-align:left">Ponderaci&oacute;n Total del Modulo: <b>{$totalPonderation}%</b>
@@ -230,7 +244,7 @@
             {/if}        </div>
         <a href="{$WEB_ROOT}/add-activity/id/{$myModule.courseModuleId}" onclick="return parent.GB_show('Agregar Actividad', this.href,650,700) "><div class="btnAdd" id="btnAddSubject"></div></a>
 
-        <div id="tblContent-activities">{include file="lists/activities.tpl"}</div>
+        <div id="tblContent-activities">{include file="lists/new/activities.tpl"}</div>
     </div>
 </div>
 
@@ -239,11 +253,15 @@
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Recursos de Apoyo ::.
         </div>
+        <div class="actions">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-resource&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
+                &raquo; Agregar Recurso de Apoyo
+            </a>
+        </div>
+
     </div>
     <div class="portlet-body">
-        <a href="{$WEB_ROOT}/add-resource/id/{$myModule.courseModuleId}" onclick="return parent.GB_show('Agregar Recurso', this.href,250,700) "><div class="btnAdd" id="btnAddSubject"></div></a>
-
-        <div id="tblContentResources">{include file="lists/resources.tpl"}</div>
+        <div id="tblContentResources">{include file="lists/new/resources.tpl"}</div>
     </div>
 </div>
 
@@ -252,11 +270,14 @@
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Avisos ::.
         </div>
+        <div class="actions">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-noticia&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
+                &raquo; Agregar Aviso
+            </a>
+        </div>
     </div>
     <div class="portlet-body">
-        <a href="{$WEB_ROOT}/add-noticia/id/{$myModule.courseModuleId}" onclick="return parent.GB_show('Agregar Noticia', this.href,350,700) "><div class="btnAdd" id="btnAddSubject"></div></a>
-
-        <div id="tblContentResources" style="text-align:left">{include file="lists/module-announcements.tpl"}</div>
+        <div id="tblContentNoticias">{include file="lists/new/module-announcements.tpl"}</div>
     </div>
 </div>
 

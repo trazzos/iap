@@ -18,7 +18,8 @@
 	$activity->setActivityId($_GET["id"]);
 	$actividad = $activity->Info();
 	$smarty->assign('actividad', $actividad);
-	
+$smarty->assign('id', $_GET["id"]);
+
 	$module->setCourseModuleId($actividad["courseModuleId"]);
 	$info = $module->InfoCourseModule();
 

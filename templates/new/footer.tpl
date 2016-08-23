@@ -1,6 +1,6 @@
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> 2016 &copy; Insituto de Administracion Publica de Chiapas
+    <div class="page-footer-inner"> 2016 &copy; Instituto de Administraci&oacute;n P&uacute;blica del Estado de Chiapas, A.C.
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
