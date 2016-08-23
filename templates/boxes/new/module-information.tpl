@@ -22,9 +22,9 @@
         <div class="portlet-body">
             {$myModule.introductionDecoded}
         </div>
-        {/if}
-{if $myModule.intentionsDecoded != ""}
     </div>
+{/if}
+{if $myModule.intentionsDecoded != ""}
     <div class="portlet box red">
         <div class="portlet-title">
             <!-- TODO Poner al centro el título-->
