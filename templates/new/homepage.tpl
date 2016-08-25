@@ -12,7 +12,7 @@
             {if $User.type == "student"}
                 {$infoStudent.foto}
             {/if}
-            <i class="fa fa-gift"></i>Bienvenido(a) {$User.username}</div>
+            Bienvenido(a) {$User.username}</div>
     </div>
     <div class="portlet-body">
         <div class="scroller" style="" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">

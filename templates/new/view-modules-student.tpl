@@ -2,7 +2,7 @@
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-bullhorm"></i><b>Anuncios</b> {$myModule.name|truncate:45:"..."} &raquo;
-            {if $vistaPrevia==0}<a href="{$WEB_ROOT}/curricula" style="color:#000">Regresar</a>{/if}
+            {if $vistaPrevia==0}<a href="{$WEB_ROOT}" style="color:#000">Regresar</a>{/if}
         </div>
         <div class="actions">
 

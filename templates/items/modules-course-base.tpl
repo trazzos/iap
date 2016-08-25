@@ -1,13 +1,9 @@
 {foreach from=$subjects item=subject}
     <tr>
-        <td align="center" class="id">{$subject.courseModuleId}</td>
-        <td align="center">{$subject.clave}</td>
         <td align="center">{$subject.semesterId}</td>
         <td align="left">{$subject.name}</td>
         <td align="left">{$subject.initialDate|date_format:"%d-%m-%Y"}</td>
         <td align="left">{$subject.finalDate|date_format:"%d-%m-%Y"}</td>
-        <td align="left">{$subject.daysToFinish}</td>
-        <td align="left">{$subject.active}</td>
         {if $User.type == "student"}
 			    <td>{$subject.totalScore} <br/>
 				<a href="#" onclick="CalificacionesAct({$subject.courseModuleId});"> Actividades</a>
@@ -27,11 +23,11 @@
           	{elseif $subject.finalDateStamp <= 0 AND $initialDateStamp < $subject.daysToFinishStamp AND $timestamp > $subject.daysToFinishStamp}  
             	Finalizado
 	        	{else}
-							<a href="{$WEB_ROOT}/view-modules-student/id/{$subject.courseModuleId}" title="Ver Modulo de Curso"  style="color:#000" target="_top" ><img src="{$WEB_ROOT}/images/arrow.png" title="Ver Modulo del Curso" /></a>          	
+							<a href="{$WEB_ROOT}/view-modules-student&id={$subject.courseModuleId}" title="Ingresar"  style="color:#000" target="_top" ><img src="{$WEB_ROOT}/images/arrow.png" title="Ingresar" /></a>
           	{/if}		
           {/if}
         {else}
-        <a href="{$WEB_ROOT}/edit-modules-course/id/{$subject.courseModuleId}" title="Ver Modulos de Curso"  style="color:#000" target="_top" ><img src="{$WEB_ROOT}/images/arrow.png" title="Configurar Modulo" /></a>
+        <a href="{$WEB_ROOT}/graybox.php?page=edit-modules-course&id={$subject.courseModuleId}" title="Ingresar"  style="color:#000" target="_top" ><img src="{$WEB_ROOT}/images/arrow.png" title="Configurar Módulo" /></a>
         {/if}
         </td>
 		
