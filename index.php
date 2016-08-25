@@ -81,7 +81,6 @@ $pages = array(
     'recuperacion',
 	
 	//new
-		"add-comment",
 	"new-subject",
 	"edit-subject",
 	"open-subject",
@@ -140,6 +139,7 @@ $pages = array(
 	"make-test",
 	"student-curricula",	
 	"ver-sabana-course",
+		"add-comment",
 
 	"add-noticia",
 	"tv",
@@ -204,7 +204,7 @@ if($includedTpl == 'login')
 	$smarty->display(DOC_ROOT.'/templates/login.tpl');
 else
 {
-	$smarty->display(DOC_ROOT.'/templates/index.tpl');
+	$smarty->display(DOC_ROOT.'/templates/index_new.tpl');
 }
 
 

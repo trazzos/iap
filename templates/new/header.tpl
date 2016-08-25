@@ -4,8 +4,8 @@
     <div class="page-header-inner ">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="index.html">
-                <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+            <a href="{$WEB_ROOT}">
+                <img src="{$WEB_ROOT}/images/logos/iapcompleto.png" style="position:relative; top:-10px" alt="logo" class="logo-default" height="38" /> </a>
             <div class="menu-toggler sidebar-toggler">
                 <span></span>
             </div>
@@ -23,12 +23,12 @@
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                 <li class="dropdown dropdown-user">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <span class="username username-hide-on-mobile"> Nick </span>
+                        <span class="username username-hide-on-mobile"> {if $User.username}Bienvenido {$User.username} :: {/if}{$fechaHoy} </span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
                         <li>
-                            <a href="page_user_login_1.html">
+                            <a href="{$WEB_ROOT}/logout">
                                 <i class="icon-key"></i> Log Out </a>
                         </li>
                     </ul>
