@@ -25,6 +25,19 @@
             </a>
 
         </li>
+
+        {if $AccessMod[32] == 1 || $AccessMod[33] == 1}
+        <li class="nav-item start ">
+            <a href="{$WEB_ROOT}/alumn-services" class="nav-link">
+                <i class="icon-home"></i>
+                <span class="title">Mis Datos</span>
+            </a>
+        </li>
+        {/if}
+
+
+        {if $User.positionId == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
+
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-diamond"></i>
@@ -69,6 +82,10 @@
                 </li>
             </ul>
         </li>
+        {/if}
+
+        {if $AccessMod[34] == 1 || $User.positionId == 1}
+
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-puzzle"></i>
@@ -88,6 +105,9 @@
                 </li>
             </ul>
         </li>
+        {/if}
+
+        {if $AccessMod[11] == 1 || $User.positionId == 1 || $AccessMod[31] == 1 || $AccessMod[8] == 1}
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-settings"></i>
@@ -100,13 +120,18 @@
                         <span class="title">Currícula</span>
                     </a>
                 </li>
+                {if !$docente}
                 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/history-subject" class="nav-link ">
                         <span class="title">Historial</span>
                     </a>
                 </li>
+                {/if}
             </ul>
         </li>
+        {/if}
+
+
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-bulb"></i>
@@ -126,6 +151,9 @@
                 </li>
             </ul>
         </li>
+
+        {if $User.positionId == 1 || $AccessMod[13] == 1 || $AccessMod[14] == 1  || $AccessMod[15] == 1 || $AccessMod[16] == 1}
+
         <li class="nav-item  ">
             <a href="{$WEB_ROOT}/reporte-general" class="nav-link">
                 <i class="icon-briefcase"></i>
@@ -140,6 +168,8 @@
                 <span class="arrow"></span>
             </a>
         </li>
+        {/if}
+
     </ul>
     <!-- END SIDEBAR MENU -->
     <!-- END SIDEBAR MENU -->

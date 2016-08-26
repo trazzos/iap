@@ -39,15 +39,17 @@ function growl(message, type)
 
 function ShowStatusPopUp(html)
 {
-    var $div = $(html);
-    var $error = $div.find(".errorStatusBox").html();
+//    var $div = $(html);
+    //var $error = $div.find(".errorStatusBox").html();
+    var $error = html;
     growl($error, "danger");
 }
 
 function ShowStatus(html)
 {
-    var $div = $(html);
-    var $error = $div.find(".successStatusBox").html();
+//    var $div = $(html);
+//    var $error = $div.find(".successStatusBox").html();
+    var $error = html;
     growl($error, "success");
 }
 
