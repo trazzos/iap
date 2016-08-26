@@ -1,9 +1,3 @@
-<!-- BEGIN PAGE TITLE-->
-<h1 class="page-title">
-    <img src="{$WEB_ROOT}/images/icons/22/display.png" alt="" />
-    Inicio
-</h1>
-<!-- END PAGE TITLE-->
 
 <!-- BEGIN Portlet PORTLET-->
 <div class="portlet box red">

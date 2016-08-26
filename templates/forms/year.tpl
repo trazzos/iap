@@ -1,4 +1,4 @@
-<select name="{$name}" id="{$name}">
+<select name="{$name}" id="{$name}" class="form-control"  style="width:100px">
     <option value="1950" {if $selected == 1950} selected="selected" {/if}>1940</option>
     <option value="1950" {if $selected == 1950} selected="selected" {/if}>1941</option>
     <option value="1950" {if $selected == 1950} selected="selected" {/if}>1942</option>

@@ -1,4 +1,4 @@
-  <select name='maritalStatus' id="maritalStatus">
+  <select name='maritalStatus' id="maritalStatus" class="form-control">
                     <option value="Soltero(a)" {$selected = 'Soltero(a)'}>Soltero(a)</option>
                     <option value="Casado(a)" {$selected = 'Casado(a)'}>Casado(a)</option>
                     <option value="Divorciado(a)"  {$selected = 'Divorciado(a)'}>Divorciado(a)</option>
