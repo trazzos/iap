@@ -200,8 +200,9 @@ $smarty->assign('timestamp', time());
 ini_set("display_errors", "ON"); 
 $showErrors = "E_ALL";
 error_reporting($showErrors);
-if($includedTpl == 'login')
-	$smarty->display(DOC_ROOT.'/templates/login.tpl');
+if($includedTpl == 'login'){
+	$smarty->display(DOC_ROOT.'/templates/login_new.tpl');
+}
 else
 {
 	$smarty->display(DOC_ROOT.'/templates/index_new.tpl');
