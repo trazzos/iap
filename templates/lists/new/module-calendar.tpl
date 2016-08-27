@@ -47,6 +47,7 @@
                 El Docente lo presentara localmente
             {else}
                 {if $vistaPrevia==0}
+                <a id="presentarExamen" style="display: none" class=" btn yellow btn-outline sbold" href="{$WEB_ROOT}/graybox.php?page=make-test&id={$item.activityId}" data-target="#ajax" data-toggle="modal"> Presentar examen </a>
                 <a style="cursor:pointer; color:#000" onclick="DoTest({$item.activityId})">Presentar Ex&aacute;men.</a>
                 {else}  Presentar Ex&aacute;men.
                 {/if}

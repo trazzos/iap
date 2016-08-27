@@ -54,6 +54,8 @@ $notificaciones=$this->Util()->DB()->GetResult();
 
 //print_r($notificaciones); exit;
 			foreach($notificaciones as $key=>$result){
+
+				$notificaciones[$key]["actividad"] = str_replace('<label style="color:#ff0000;font-size:200%"><strong>&raquo;</strong></label', "", $notificaciones[$key]["actividad"]);
 			
 //***************************OBTENIENDO PERMISOS DE IMPRESION EN AREA DE NOTIFICACIONES****************************///
 			$vista = explode(",", $result["vista"]);
@@ -86,6 +88,7 @@ $notificaciones=$this->Util()->DB()->GetResult();
 		
 		
 		 }
+
 
 //print_r($notificaciones); exit;
 
