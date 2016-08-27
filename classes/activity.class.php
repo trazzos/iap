@@ -340,8 +340,9 @@
 			//ejecutamos la consulta y obtenemos el resultado
 			$result = $this->Util()->DB()->GetRow();
 
-			$result["initialDate"] = $this->Util()->FormatDateBack($result["initialDate"]);			
-			$result["finalDate"] = $this->Util()->FormatDateBack($result["finalDate"]);			
+			$result["initialDate"] = $this->Util()->FormatDateBack($result["initialDate"]);
+			$result["finalDateNoFormat"] = $result["finalDate"];
+			$result["finalDate"] = $this->Util()->FormatDateBack($result["finalDate"]);
 			if($result)
 				$result = $this->Util->EncodeRow($result);
 

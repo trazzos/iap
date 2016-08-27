@@ -5,7 +5,7 @@
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="{$WEB_ROOT}">
-                <img src="{$WEB_ROOT}/images/logos/iapcompleto.png" style="position:relative; top:-10px" alt="logo" class="logo-default" height="38" /> </a>
+                <img src="{$WEB_ROOT}/images/logos/Logo_3.png" style="position:relative; top:-15px" alt="logo" class="logo-default" height="45" /> </a>
             <div class="menu-toggler sidebar-toggler">
                 <span></span>
             </div>
@@ -23,6 +23,7 @@
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                 <li class="dropdown dropdown-user">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <img alt="" class="img-circle" src="{$infoStudent.imagen}">
                         <span class="username username-hide-on-mobile"> {if $User.username}Bienvenido {$User.username} :: {/if}{$fechaHoy} </span>
                         <i class="fa fa-angle-down"></i>
                     </a>

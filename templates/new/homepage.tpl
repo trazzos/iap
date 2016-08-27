@@ -1,3 +1,8 @@
+{if $User.type == 'student'}
+    {include file='templates/new/student_profile.tpl'}
+{else}
+
+
 <!-- BEGIN PAGE TITLE-->
 <h1 class="page-title">
     <img src="{$WEB_ROOT}/images/icons/22/display.png" alt="" />
@@ -5,14 +10,17 @@
 </h1>
 <!-- END PAGE TITLE-->
 
+
 <!-- BEGIN Portlet PORTLET-->
 <div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">
             {if $User.type == "student"}
-                {$infoStudent.foto}
+                <img alt="" width="32px" class="img-circle" src="{$infoStudent.imagen}">
+            {else}
+                <i class="fa fa-gift"></i>
             {/if}
-            <i class="fa fa-gift"></i>Bienvenido(a) {$User.username}</div>
+            Bienvenido(a) {$User.username}</div>
     </div>
     <div class="portlet-body">
         <div class="scroller" style="" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
@@ -111,4 +119,5 @@
         </div>
     </div>
     <input type="hidden" value="0" id="recarga" name="recarga">
+{/if}
 {/if}
