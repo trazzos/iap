@@ -39,7 +39,7 @@
 
 
         {if $User.positionId == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
-
+        {if !$docente}
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-diamond"></i>
@@ -85,6 +85,7 @@
             </ul>
         </li>
         {/if}
+        {/if}
 
         {if $AccessMod[34] == 1 || $User.positionId == 1}
 
@@ -110,27 +111,35 @@
         {/if}
 
         {if $AccessMod[11] == 1 || $User.positionId == 1 || $AccessMod[31] == 1 || $AccessMod[8] == 1}
-        <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-settings"></i>
-                <span class="title">Currícula</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
+            {if !$docente}
                 <li class="nav-item  ">
-                    <a href="{$WEB_ROOT}/subject" class="nav-link ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-settings"></i>
+                        <span class="title">Currícula</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="{$WEB_ROOT}/subject" class="nav-link ">
+                                <span class="title">Currícula</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="{$WEB_ROOT}/history-subject" class="nav-link ">
+                                <span class="title">Historial</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {else}
+                <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/history-subject" class="nav-link nav-toggle">
+                        <i class="icon-settings"></i>
                         <span class="title">Currícula</span>
                     </a>
                 </li>
-                {if !$docente}
-                <li class="nav-item  ">
-                    <a href="{$WEB_ROOT}/history-subject" class="nav-link ">
-                        <span class="title">Historial</span>
-                    </a>
-                </li>
-                {/if}
-            </ul>
-        </li>
+            {/if}
+
         {/if}
 
 
