@@ -25,7 +25,7 @@
 	<link href="{$WEB_ROOT}/assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
 	<!-- END THEME GLOBAL STYLES -->
 
-	{if $page == 'homepage' && $User.type == 'student'}
+	{if ($page == 'homepage' && $User.type == 'student') || $page == 'docente'}
 		<link href="{$WEB_ROOT}/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
 	{/if}
 

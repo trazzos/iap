@@ -158,7 +158,7 @@ class Personal extends Main
 	
 	public function setDescription($value)
 	{
-		$this->Util()->ValidateString($value, $max_chars=300, $minChars = 0, "Descripcion");
+		$this->Util()->ValidateString($value, $max_chars=1000000, $minChars = 0, "Descripcion");
 		$this->description = $value;
 	}
 	
@@ -445,8 +445,8 @@ class Personal extends Main
 		if($this->Util()->PrintErrors()){ 
 			return false; 
 		}
-		
-		$sql = "UPDATE 
+
+		$sql = "UPDATE
 					personal SET positionId = ".$this->positionId.",
 				 	name =  '".$this->name."',
 					lastname_paterno = '".$this->lastnamePaterno."',
@@ -463,17 +463,26 @@ class Personal extends Main
 					fecha_dgta = '".$this->fechaDgta."',
 					claves_presupuestales = '".$this->clavesPresupuestales."',
 					categoria = '".$this->categoria."',
-					foto = '".$this->foto."',
 					correo = '".$this->correo."',
 					celular = '".$this->celular."',
 					semblanza = '".$this->semblanza."',
 					perfil = '".$this->perfil."'
 				WHERE 
 					personalId = ".$this->personalId;
-							
 		$this->Util()->DB()->setQuery($sql);
 		$this->Util()->DB()->ExecuteQuery();
-		
+
+		if($this->foto != "")
+		{
+			$sql = "UPDATE personal SET
+					foto = '".$this->foto."'
+				WHERE
+					personalId = ".$this->personalId;
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->ExecuteQuery();
+		}
+
+
 		$listRoles = explode(',',$this->rolesId);
 		
 		if($listRoles){

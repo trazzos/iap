@@ -1,16 +1,6 @@
-<!-- TinyMCE -->
-<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
-<script type="text/javascript">
-    tinyMCE.init({
-        mode : "textareas",
-        theme : "advanced",
-        skin : "o2k7"
 
-    });
-</script>
-<!-- /TinyMCE -->
 
-<form class="form-horizontal" id="editPersonalForm" name="editPersonalForm" method="post" action="{$WEB_ROOT}/personal_foto" enctype="multipart/form-data">
+<form class="form-horizontal" id="editPersonalForm" name="editPersonalForm" method="post" action="{$WEB_ROOT}/personal" enctype="multipart/form-data">
     <input type="hidden" id="type" name="type" value="saveEditPersonal"/>
     <input type="hidden" id="id" name="id" value="{$info.personalId}" />
     <input type="hidden" id="list_roles" name="list_roles" value="" />
@@ -101,7 +91,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Descripción:</label>
             <div class="col-md-8">
-                <textarea name="description" id="description" cols="50" rows="6" class="form-control" >{$info.description}</textarea>
+                <textarea name="description" id="description" class="form-control" >{$info.description}</textarea>
             </div>
         </div>
 
@@ -150,9 +140,21 @@
 
 </form>
 
+<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
+
 <script>
     $( document ).ready(function() {
         $('#role_from').multiSelect();
+
+        console.log("here");
+        window.tinymce.dom.Event.domLoaded = true;
+        tinyMCE.init({
+            mode : "textareas",
+            theme : "advanced",
+            skin : "o2k7"
+
+        });
+        console.log("here");
+
     });
 </script>
-

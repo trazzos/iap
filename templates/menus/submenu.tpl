@@ -8,7 +8,7 @@
       <td class="tbMnu" align="center" width="10">|</td>
       {/if}
       {if $AccessMod[3] == 1 || $User.positionId == 1}
-      <td class="tbMnu" align="center"><a href="{$WEB_ROOT}/personal_foto">Personal</a></td>
+      <td class="tbMnu" align="center"><a href="{$WEB_ROOT}/personal">Personal</a></td>
       <td class="tbMnu" align="center" width="10">|</td>
       {/if}
       {if $AccessMod[4] == 1 || $User.positionId == 1}
