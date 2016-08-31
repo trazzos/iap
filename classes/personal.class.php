@@ -22,7 +22,35 @@ class Personal extends Main
 	private $lastnamePaterno;
 	private $lastnameMaterno;
 	private $stateId;
-	
+	private $foto;
+	private $correo;
+	private $celular;
+	private $semblanza;
+
+	public function setFoto($value)
+	{
+		$this->Util()->ValidateString($value, $max_chars=60, $minChars = 0, "Foto");
+		$this->foto = $value;
+	}
+
+	public function setCorreo($value)
+	{
+		$this->Util()->ValidateString($value, $max_chars=60, $minChars = 0, "Correo");
+		$this->correo = $value;
+	}
+
+	public function setCelular($value)
+	{
+		$this->Util()->ValidateString($value, $max_chars=60, $minChars = 0, "Celular");
+		$this->celular = $value;
+	}
+
+	public function setSemblanza($value)
+	{
+		$this->Util()->ValidateString($value, $max_chars=60, $minChars = 0, "Semblanza");
+		$this->semblanza = $value;
+	}
+
 	public function setPersonalId($value)
 	{
 		$this->Util()->ValidateInteger($value);
@@ -435,6 +463,10 @@ class Personal extends Main
 					fecha_dgta = '".$this->fechaDgta."',
 					claves_presupuestales = '".$this->clavesPresupuestales."',
 					categoria = '".$this->categoria."',
+					foto = '".$this->foto."',
+					correo = '".$this->correo."',
+					celular = '".$this->celular."',
+					semblanza = '".$this->semblanza."',
 					perfil = '".$this->perfil."'
 				WHERE 
 					personalId = ".$this->personalId;
@@ -540,7 +572,24 @@ class Personal extends Main
 		return $name;
 		
 	}
-	
+
+	public function UpdateFoto($id)
+	{
+		$ext = end(explode('.', basename($_FILES['foto']['name'])));
+		if(strtolower($ext) != "jpg" && strtolower($ext) != "jepg" && strtolower($ext) != "png")
+		{
+			return;
+		}
+
+		$target_path = DOC_ROOT."/personal_foto/".$id.".".$ext;
+
+		if(move_uploaded_file($_FILES['foto']['tmp_name'], $target_path)) {
+		}
+
+		$path = "personal_foto/".$id.".".$ext;
+
+		return $path;
+	}
 }
 
 

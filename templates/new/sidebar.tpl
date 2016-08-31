@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="{$WEB_ROOT}/personal" class="nav-link ">
+                    <a href="{$WEB_ROOT}/personal_foto" class="nav-link ">
                         <span class="title">Personal</span>
                     </a>
                 </li>
