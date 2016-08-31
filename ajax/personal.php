@@ -32,7 +32,7 @@ switch($_POST["type"])
 		$positions = $util->EncodeResult($listPositions);
 		$listRoles = $role->Enumerate();
 		$roles = $util->EncodeResult($listRoles);
-		
+
 		foreach($roles as $key => $val){
 			
 			$personal->setRoleId($val['roleId']);

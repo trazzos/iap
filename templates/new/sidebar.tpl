@@ -197,7 +197,16 @@
                 </a>
             </li>
 
-            {if $mnuMain == "modulo"}
+        <li class="nav-item {if $page == "docente"} active {/if}">
+            <a href="{$WEB_ROOT}/docente/id/{$id}" class="nav-link nav-toggle">
+                <i class="fa fa-user"></i>
+                <span class="title">Información del Docente</span>
+            </a>
+        </li>
+
+
+
+        {if $mnuMain == "modulo"}
             <li class="nav-item {if $page == "calendar-image-modules-student"} active {/if} ">
                 <a href="{$WEB_ROOT}/calendar-image-modules-student/id/{$id}" class="nav-link nav-toggle">
                     <i class="fa fa-calendar"></i>
@@ -249,6 +258,14 @@
                     <span class="title">Mi Equipo</span>
                 </a>
             </li>
+
+            <li class="nav-item ">
+                <a href="{$WEB_ROOT}/wiki/index.php/Página_principal" class="nav-link nav-toggle">
+                    <i class="fa fa-wikipedia-w"></i>
+                    <span class="title">Wiki</span>
+                </a>
+            </li>
+
 
         {/if}
 

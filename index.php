@@ -79,7 +79,8 @@ $pages = array(
 	'kardex-calificacion',
 	'register',
     'recuperacion',
-	
+		'docente',
+
 	//new
 	"new-subject",
 	"edit-subject",

@@ -1,4 +1,6 @@
-<form class="form-horizontal" id="editPersonalForm" name="editPersonalForm" method="post">
+
+
+<form class="form-horizontal" id="editPersonalForm" name="editPersonalForm" method="post" action="{$WEB_ROOT}/personal" enctype="multipart/form-data">
     <input type="hidden" id="type" name="type" value="saveEditPersonal"/>
     <input type="hidden" id="id" name="id" value="{$info.personalId}" />
     <input type="hidden" id="list_roles" name="list_roles" value="" />
@@ -89,49 +91,70 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Descripción:</label>
             <div class="col-md-8">
-                <textarea name="description" id="description" cols="50" rows="6" class="form-control" >{$info.description}</textarea>
+                <textarea name="description" id="description" class="form-control" >{$info.description}</textarea>
             </div>
         </div>
+
         <div class="form-group">
-            <div class="col-md-8">
-                <table width="92%" cellpadding="0" cellspacing="0" border="0">
-                    <tr><td colspan="4" height="10"></td></tr>
-                    <tr>
-                        <td width="300">Roles:</td>
-                        <td align="center">
-                            <select class="textfield" style="width:160px" name="role_from" size="6" multiple >
-                                {foreach from=$roles item=item key=key}
-                                    <option value="{$item.roleId}">{$item.name}</option>
-                                {/foreach}
-                            </select>
-                        </td>
-                        <td align="center" width="20">
-                            <div style="width:60px">
-                                <input type="button" class="button" onclick="javascript:MoveRole(document.addPersonalForm.role_from,document.addPersonalForm.role_to)" value="&gt;&gt;">
-                                <br />
-                                <input type="button" class="button" onclick="javascript:MoveRole(document.addPersonalForm.role_to,document.addPersonalForm.role_from)" value="&lt;&lt;">
-                            </div>
-                        </td>
-                        <td align="center">
-                            <select class="textfield" style="width:160px" name="role_to" size="6" multiple >
-                                {foreach from=$usrRoles item=item key=key}
-                                    <option value="{$item.roleId}">{$item.name}</option>
-                                {/foreach}
-                            </select>
-                        </td>
-                    </tr>
-                    <tr><td colspan="4" height="10"></td></tr>
-                </table>
+            <label class="control-label col-md-3">Default</label>
+            <div class="col-md-9">
+                <select multiple="multiple" class="multi-select" id="role_from" name="role_from[]">
+                    {foreach from=$roles item=item key=key}
+                        <option {if $item.selected} selected="selected" {/if} value="{$item.roleId}">{$item.name}</option>
+                    {/foreach}
+                </select>
             </div>
         </div>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Foto:</label>
+            <div class="col-md-8">
+                <input type="file" name="foto" id="foto" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Correo:</label>
+            <div class="col-md-8">
+                <input type="text" name="correo" id="correo" class="form-control"  value="{$info.correo}" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Celular:</label>
+            <div class="col-md-8">
+                <input type="text" name="celular" id="celular" class="form-control" value="{$info.celular}" />
+            </div>
+        </div>
+
+
     </div>
     <div class="form-actions">
         <div class="row">
             <div class="col-md-offset-3 col-md-9">
-                <button type="button" class="btn green submitForm">Guardar</button>
+                <input type="submit" class="btn green" value="Guardar" />
                 <button type="button" class="btn default closeModal">Cancelar</button>
             </div>
         </div>
     </div>
 
 </form>
+
+<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
+
+<script>
+    $( document ).ready(function() {
+        $('#role_from').multiSelect();
+
+        console.log("here");
+        window.tinymce.dom.Event.domLoaded = true;
+        tinyMCE.init({
+            mode : "textareas",
+            theme : "advanced",
+            skin : "o2k7"
+
+        });
+        console.log("here");
+
+    });
+</script>
