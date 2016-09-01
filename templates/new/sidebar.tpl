@@ -200,7 +200,7 @@
         <li class="nav-item {if $page == "docente"} active {/if}">
             <a href="{$WEB_ROOT}/docente/id/{$id}" class="nav-link nav-toggle">
                 <i class="fa fa-user"></i>
-                <span class="title">Información del Docente</span>
+                <span class="title">Docente</span>
             </a>
         </li>
 

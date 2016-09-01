@@ -15,7 +15,7 @@
 </div>
 <!-- END PAGE BAR -->
 <!-- BEGIN PAGE TITLE-->
-<h1 class="page-title"> Informacion del Docente
+<h1 class="page-title"> Información del Docente
     <small></small>
 </h1>
 <!-- END PAGE TITLE-->
@@ -65,8 +65,8 @@
             <!-- PORTLET MAIN -->
             <div class="portlet light ">
                 <div>
-                    <h4 class="profile-desc-title">Acerca del IAP Chiapas</h4>
-                    <span class="profile-desc-text"> El <b>Instituto de Administración Pública del Estado de Chiapas, A. C.</b><br />te da la mas cordial bienvenida a nuestro Sistema de Educación en Línea.</span>
+                    <h4 class="profile-desc-title">IAP-Chiapas</h4>
+                    <span class="profile-desc-text">Compromiso, innovación y resultados</span>
                     <div class="margin-top-20 profile-desc-link">
                         <i class="fa fa-globe"></i>
                         <a href="http://www.iapchiapas.org.mx">www.iapchiapas.org.mx</a>
