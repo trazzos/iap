@@ -62,7 +62,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <form class="login-form" method="post" id="frmLogin">
         <input type="hidden" name="type" value="doLogin" />
 
-        <h3 class="form-title">Entra a tu cuenta</h3>
+        <h3 class="form-title">Ingresa a tu cuenta</h3>
         <div class="alert alert-danger display-hide">
             <button class="close" data-close="alert"></button>
             <span> Tu usuario o contraseña son incorrectas. Favor de verificarlas. </span>
@@ -88,7 +88,7 @@ License: You must have a valid license purchased only from themeforest(the above
             </label>
 *}
 
-            <button type="button" onclick="DoLogin()" class="btn green pull-right"> Acceder </button>
+            <button type="button" onclick="DoLogin()" class="btn green pull-right"> Ingresar </button>
         </div>
 {*
         <div class="login-options">
@@ -113,7 +113,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="forget-password">
             <h4>¿Olvidaste tu contraseña?</h4>
             <p> No te preocupes. Da click
-                <a href="javascript:;" id="forget-password" style="color:#fff; text-decoration: underline"> aqui </a> para recuperarlo. </p>
+                <a href="javascript:;" id="forget-password" style="color:#fff; text-decoration: underline"> aqui </a> para recuperarla. </p>
         </div>
         <div class="create-account">
             <p> ¿Estás interesado en cursar un programa en línea?&nbsp;
