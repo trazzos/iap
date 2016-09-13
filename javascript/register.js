@@ -67,14 +67,14 @@ function estado_dependencia()
    new Ajax.Request(WEB_ROOT+'/ajax/dependencia-estado.php',{
    method:'post',
    parameters: {type: "loadCities", paisId: paisId},
-   
+
    onSuccess: function(transport){
-    var response = transport.responseText || "no response text";    
+    var response = transport.responseText || "no response text";
     var splitResponse = response.split("[#]");
-  
+
      $('Stateposition').innerHTML = splitResponse[0];
-    
-    
+
+
    },
   onFailure: function(){ alert('Something went wrong...') }
    });
