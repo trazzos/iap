@@ -5,7 +5,9 @@
         </div>
 
     </div>
-    <div class="portlet-body">
+</div>
+    <br />
+    <br />
 
         <div style="float:left; width:600px;">
             <iframe width="480" height="296" src="http://www.ustream.tv/embed/recorded/{$actual.embed}?wmode=direct" scrolling="no" frameborder="0" style="border: 0px none transparent; padding-left:20px">    </iframe>
@@ -17,5 +19,4 @@
             {/foreach}
         </div>
 
-    </div>
-</div>
+

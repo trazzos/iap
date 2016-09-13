@@ -1,7 +1,7 @@
 <div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-bullhorm"></i>Recursos de apoyo {$myModule.name|truncate:40:"..."} {if $vistaPrevia==0}&raquo; <a href="{$WEB_ROOT}/curricula" style="color:#000">Regresar</a>{/if}
+            <i class="fa fa-bullhorm"></i>Recursos de apoyo {$myModule.name|truncate:65:"..."}
         </div>
 
     </div>

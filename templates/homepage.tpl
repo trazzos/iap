@@ -4,7 +4,7 @@
         <div class="content-header-left">
           <img src="{$WEB_ROOT}/images/icons/22/display.png" alt="" />
             <h2>Inicio</h2>
-        </div>                 
+        </div>
     </div>
     <div class="content-in" id="dashboard">
     
