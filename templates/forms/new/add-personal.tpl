@@ -91,32 +91,15 @@
                 <textarea name="description" id="description" cols="50" rows="6" class="form-control" ></textarea>
             </div>
         </div>
+
         <div class="form-group">
-            <div class="col-md-8">
-                <table width="92%" cellpadding="0" cellspacing="0" border="0">
-                    <tr><td colspan="4" height="10"></td></tr>
-                    <tr>
-                        <td width="300">Roles:</td>
-                        <td align="center">
-                            <select class="textfield" style="width:160px" name="role_from" size="6" multiple >
-                                {foreach from=$roles item=item key=key}
-                                    <option value="{$item.roleId}">{$item.name}</option>
-                                {/foreach}
-                            </select>
-                        </td>
-                        <td align="center" width="20">
-                            <div style="width:60px">
-                                <input type="button" class="button" onclick="javascript:MoveRole(document.addPersonalForm.role_from,document.addPersonalForm.role_to)" value="&gt;&gt;">
-                                <br />
-                                <input type="button" class="button" onclick="javascript:MoveRole(document.addPersonalForm.role_to,document.addPersonalForm.role_from)" value="&lt;&lt;">
-                            </div>
-                        </td>
-                        <td align="center">
-                            <select class="textfield" style="width:160px" name="role_to" size="6" multiple ></select>
-                        </td>
-                    </tr>
-                    <tr><td colspan="4" height="10"></td></tr>
-                </table>
+            <label class="control-label col-md-3">Default</label>
+            <div class="col-md-9">
+                <select multiple="multiple" class="multi-select" id="role_from" name="role_from[]">
+                    {foreach from=$roles item=item key=key}
+                        <option {if $item.selected} selected="selected" {/if} value="{$item.roleId}">{$item.name}</option>
+                    {/foreach}
+                </select>
             </div>
         </div>
     </div>
@@ -130,3 +113,9 @@
     </div>
 
 </form>
+
+<script>
+    $( document ).ready(function() {
+        $('#role_from').multiSelect();
+    });
+</script>

@@ -9,7 +9,7 @@
 
     <div class="form-body">
         <div class="form-group">
-            <label class="col-md-3 control-label">Respuesta:</label>
+            <label class="col-md-3 control-label">Aportación:</label>
             <div class="col-md-8">
                 <textarea name="reply" id="reply" class="form-control"></textarea>
             </div>

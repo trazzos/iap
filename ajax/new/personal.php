@@ -33,18 +33,28 @@ switch($_POST["type"])
         $listRoles = $role->Enumerate();
         $roles = $util->EncodeResult($listRoles);
 
+
         foreach($roles as $key => $val){
 
             $personal->setRoleId($val['roleId']);
-            if(!$personal->IsRoleSelected())
+
+            $roles[$key]["selected"] = false;
+            if($personal->IsRoleSelected())
+            {
+                $roles[$key]["selected"] = true;
+            }
+
+/*            if(!$personal->IsRoleSelected())
+            {
                 $roles2[$key] = $val;
+            }*/
         }
 
         $usrRoles = $personal->EnumerateRoles();
 
         $smarty->assign('states', $states);
         $smarty->assign("usrRoles",$usrRoles);
-        $smarty->assign("roles",$roles2);
+        $smarty->assign("roles",$roles);
         $smarty->assign("positions",$positions);
         $smarty->assign("info", $info);
         $smarty->assign("DOC_ROOT", DOC_ROOT);
@@ -62,6 +72,8 @@ switch($_POST["type"])
         $personal->setUserName($_POST['username']);
         $personal->setPasswd($_POST['passwd']);
         $personal->setDescription($_POST['description']);
+        $_POST['list_roles'] = implode(',', $_POST['role_from']);
+
         $personal->setRolesId($_POST['list_roles']);
 
         $personal->setCurp($_POST['curp']);

@@ -37,7 +37,7 @@
         {/if}
         {if $item.activityType == "Tarea"}
             {if $vistaPrevia==0}
-        <a href="{$WEB_ROOT}/graybox.php?page=upload-homework&id={$item.activityId}" title="Subir Tarea" data-target="#ajax" data-toggle="modal" style="color:#000" > Subir Tarea al Sistema de Tareas.</a>
+        <a href="{$WEB_ROOT}/graybox.php?page=upload-homework&id={$item.activityId}" title="Subir Tarea" data-target="#ajax" data-toggle="modal" style="color:#000" class="btn btn-xs green-jungle"> Subir Actividad al Sistema de Tareas <i class="fa fa-upload "></i></a>
             {else} Subir Tarea al Sistema de Tareas.
             {/if}
         {/if}
@@ -47,6 +47,7 @@
                 El Docente lo presentara localmente
             {else}
                 {if $vistaPrevia==0}
+                <a id="presentarExamen" style="display: none" class=" btn yellow btn-outline sbold" href="{$WEB_ROOT}/graybox.php?page=make-test&id={$item.activityId}" data-target="#ajax" data-toggle="modal"> Presentar examen </a>
                 <a style="cursor:pointer; color:#000" onclick="DoTest({$item.activityId})">Presentar Ex&aacute;men.</a>
                 {else}  Presentar Ex&aacute;men.
                 {/if}

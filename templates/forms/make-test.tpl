@@ -54,8 +54,9 @@
 			{/foreach}
       
       <div style="float:left"><span class="reqField">*</span> Campo requerido</div>
-      <div style="padding-right:60px">                 
-      <input type="submit" class="btn-70-l" id="addMajor" name="addMajor" value="." onClick="return confirmSubmit()" />                  
+      <div style="padding-right:60px">
+
+        <input type="submit" class="btn green submitForm" id="addMajor" name="addMajor" value="Enviar" onClick="return confirmSubmit()" />
       </div>
       
     </div>

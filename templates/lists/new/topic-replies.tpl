@@ -13,9 +13,9 @@
 <div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-bullhorm"></i> Respuesta por:
-            {if $item.positionId == NULL || $item.positionId == 0}aaa
-                {if $item.names}{$item.names} {$item.lastNamePaterno} {$item.lastNameMaterno}{else}Profesor{/if}
+            <i class="fa fa-bullhorm"></i> Aportación de:
+            {if $item.positionId == NULL || $item.positionId == 0}
+                {if $item.names}{$item.names} {$item.lastNamePaterno} {$item.lastNameMaterno}{else}{/if}
             {else}
                 {$item.name} {$item.lastname_paterno} {$item.lastname_materno}
             {/if}
@@ -30,7 +30,7 @@
                     <input value="Eliminar" type="submit" class="btn-70-delete"  onClick="return confirmando();" style="border:none; height:24px;" name="eliminar" id="eliminar" >
                 </form>
             {/if}
-            <a href="{$WEB_ROOT}/graybox.php?page=add-comment&id={$item.replyId}&moduleId={$moduleId}&topicsubId={$topicsubId}" data-target="#ajax" data-toggle="modal" class="btn btn-default btn-sm">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-comment&id={$item.replyId}&moduleId={$moduleId}&topicsubId={$topicsubId}" data-target="#ajax" data-toggle="modal" class="btn green">
                 Agregar Comentario
             </a>
 
@@ -41,14 +41,14 @@
             <div>{if $item.path}<img src="{$WEB_ROOT}/forofiles/{$item.path}" > {/if}</div>
 
             {foreach from=$item.replies item=reply}
-            <div class="portlet box red">
+            <div class="portlet box grey-steel">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-bullhorm"></i> Comentario por:
-                        {if $reply.positionId == NULL || $reply.positionId == 0}aaa
-                            {if $reply.names}{$item.names} {$reply.lastNamePaterno} {$reply.lastNameMaterno}{else}Profesor{/if}
+                        <i class="fa fa-bullhorm"></i> Comentario de:
+                        {if $reply.positionId == NULL || $reply.positionId == 0}
+                            {if $reply.names}{$reply.names}  {$reply.lastNamePaterno} {$reply.lastNameMaterno}{else}{/if}
                         {else}
-                            {$reply.name} {$reply.lastname_paterno} {$reply.lastname_materno}
+                            {$reply.names} {$reply.lastname_paterno} {$reply.lastname_materno}
                         {/if}
                         &nbsp;Fecha: {$reply.replyDate|date_format:"%d-%m-%Y %H:%M"}
                     </div>

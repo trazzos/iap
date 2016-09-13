@@ -1,4 +1,4 @@
-<form class="form-horizontal" id="addMajorForm" name="addMajorForm" method="post" enctype="multipart/form-data" action="{$WEB_ROOT}/upload-homework">
+<form class="form-horizontal" id="addMajorForm" name="addMajorForm" method="post" enctype="multipart/form-data" action="{$WEB_ROOT}/upload-homework/id/{$actividad.activityId}">
     <input type="hidden" name="modality" id="modality" value="{$actividad.modality}"
     <input type="hidden" id="type" name="type" value="saveAddMajor"/>
 
@@ -20,7 +20,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Fecha Limite:</label>
             <div class="col-md-8">
-                {$actividad.finalDate}
+                {$actividad.finalDateNoFormat}
             </div>
         </div>
 

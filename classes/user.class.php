@@ -1001,14 +1001,16 @@ class User extends Main
 		
 		if(file_exists(DOC_ROOT."/alumnos/".$row["userId"].".jpg"))
 			{
-				$card["foto"] = '
+				$row["foto"] = '
 					<img src="'.WEB_ROOT.'/alumnos/'.$row["userId"].'.jpg" width="110" height="110"/>';
+				$row["imagen"] = WEB_ROOT.'/alumnos/'.$row["userId"].'.jpg';
 			}
 			else
 			{
-				$card["foto"] = '<img src="'.WEB_ROOT.'/alumnos/no_foto.JPG" width="110" height="110"/>';
+				$row["foto"] = '<img src="'.WEB_ROOT.'/alumnos/no_foto.JPG" width="110" height="110"/>';
+				$row["imagen"] = WEB_ROOT.'/alumnos/no_foto.JPG';
 			}
-			return $card;
+			return $row;
 	}
 	
 	
@@ -1704,7 +1706,7 @@ public function enviarMail()
 			if($usuario){
 			$mail = new PHPMailer(); // defaults to using php "mail()"
 			//contenido del correo
-			$body = "Has hecho una solicitud de recuperacion contraseña <br/> Numero de control:  ".$usuario['controlNumber']." <br/> Password:  ".$usuario['password']." <br/>  <a href='http://www.iapchiapasenlinea.mx/'>IAP-CHIAPAS EN LINEA</a> ";
+			$body = "Has hecho una solicitud de recuperacion contraseï¿½a <br/> Numero de control:  ".$usuario['controlNumber']." <br/> Password:  ".$usuario['password']." <br/>  <a href='http://www.iapchiapasenlinea.mx/'>IAP-CHIAPAS EN LINEA</a> ";
 			//asunto o tema
 			$subject ="Recuperacion de Password";
 			//("quienloenvia@hotmail.com", "nombre de quien lo envia");
@@ -2018,7 +2020,7 @@ public function enviarMail()
 			$name = $infS['name'];		
 			$card['name'] = $name;
 			
-			if(strpos($name,'MÓDULO:') !== false){			
+			if(strpos($name,'Mï¿½DULO:') !== false){			
 				$mod = $card;
 				break;
 			}
@@ -2151,7 +2153,7 @@ public function enviarMail()
 		$pdf->SetFont('Arial','B',8);		
 					
 		$pdf->SetWidths(array(35,30,30,30,30,30));
-		$pdf->Row(array('','Lunes','Martes','Miércoles','Jueves','Viernes'));
+		$pdf->Row(array('','Lunes','Martes','Miï¿½rcoles','Jueves','Viernes'));
 					
 		foreach($time as $val){
 		
