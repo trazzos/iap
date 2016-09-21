@@ -272,7 +272,7 @@
 				SELECT *, major.name AS majorName, subject.name AS name  FROM course
 				LEFT JOIN subject ON course.subjectId = subject.subjectId 
 				LEFT JOIN major ON major.majorId = subject.tipo
-				ORDER BY initialDate DESC LIMIT ' . $rowOffset . ', ' . $rowsPerPage);
+				ORDER BY subject.tipo,  subject.name,  course.modality, initialDate DESC LIMIT ' . $rowOffset . ', ' . $rowsPerPage);
 			
 			$result = $this->Util()->DB()->GetResult();
 			//echo "<pre>".print_r($result)."</pre>";exit;
