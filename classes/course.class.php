@@ -272,7 +272,7 @@
 				SELECT *, major.name AS majorName, subject.name AS name  FROM course
 				LEFT JOIN subject ON course.subjectId = subject.subjectId 
 				LEFT JOIN major ON major.majorId = subject.tipo
-				ORDER BY initialDate DESC LIMIT ' . $rowOffset . ', ' . $rowsPerPage);
+				ORDER BY subject.tipo,  subject.name,  course.modality, initialDate DESC LIMIT ' . $rowOffset . ', ' . $rowsPerPage);
 			
 			$result = $this->Util()->DB()->GetResult();
 			//echo "<pre>".print_r($result)."</pre>";exit;
@@ -572,14 +572,14 @@
 		
 		public function EnumerateActive()
 		{
-			//TODO porque tenia IN(0) no logro recordar
+			//TODO porque tenia IN(0) no logro recordar -> Para mostrar solo los cursos en donde si se pueden inscribir
 //				WHERE course.active = 'si' AND courseId IN (0)
 
 			$this->Util()->DB()->setQuery("
 				SELECT *, major.name AS majorName, subject.name AS name FROM course
 				LEFT JOIN subject ON course.subjectId = subject.subjectId 
 				LEFT JOIN major ON major.majorId = subject.tipo
-				WHERE course.active = 'si'
+				WHERE course.active = 'si' AND courseId IN (55)
 				ORDER BY subject.tipo");
 				//echo $this->Util()->DB()->query;
 			$result = $this->Util()->DB()->GetResult();

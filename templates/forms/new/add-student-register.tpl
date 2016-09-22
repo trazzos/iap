@@ -1,4 +1,4 @@
-<form class="form-horizontal" id="addStudentForm" name="addStudentForm" method="post" action="{$WEB_ROOT}/new-subject">
+<form class="form-horizontal" id="addStudentForm" name="addStudentForm" method="post"   >
     <input type="hidden" id="type" name="type" value="saveAddStudentRegister"/>
     <input type="hidden" id="redireccion" name="redireccion" value="1"/>
     <input type="hidden" id="tam" name="tam" value="0"/>
@@ -365,7 +365,7 @@
         <div class="row">
             <div class="col-md-offset-3 col-md-9">
                 <button type="button" class="btn default" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn green submitForm" >Guardar</button>
+                <button type="submit" class="btn green submitForm" onclick="AddStudentRegister();" id="addStudent" >Guardar</button>
             </div>
         </div>
     </div>
