@@ -21,7 +21,7 @@
 		$course->setFolio($_POST["folio"]);
 		$course->setLibro($_POST["libro"]);
 		$course->setScholarCicle($_POST["scholarCicle"]);
-		
+
 		$course->Open();
 
 		//TODO add heeder location when we finish the template change

@@ -7,6 +7,8 @@
         </div>
     </div>
     <div class="portlet-body">
+        {include file="boxes/status_no_ajax.tpl"}
+
         {include file="forms/new/open-subject.tpl"}
     </div>
 </div>
