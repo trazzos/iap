@@ -10,6 +10,7 @@
 </script>
 <!-- /TinyMCE -->
 <form id="addMajorForm" name="addMajorForm" method="post" enctype="multipart/form-data">
+<input type="hidden" name="courseId" id="courseId" value="{$actividad.courseModuleId}"
 <input type="hidden" name="modality" id="modality" value="{$actividad.modality}"
 <input type="hidden" id="type" name="type" value="saveAddMajor"/>
 <ul id="sort-box" class="sorts">
