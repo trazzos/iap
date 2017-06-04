@@ -5,9 +5,9 @@ var DOC_ROOT_SECTION = "../../";
 //var WEB_ROOT = "http://187.143.245.7/iapenlinea";
 //var WEB_ROOT = "http://192.168.1.200/iapenlinea";
 
-//var WEB_ROOT ="http://"+location.hostname+"/iapenlinea";
+var WEB_ROOT ="http://"+location.hostname+"/iap";
 
- var WEB_ROOT = "http://www.iapchiapasenlinea.mx";
+ // var WEB_ROOT = "http://www.iapchiapasenlinea.mx";
 
 
 
