@@ -277,21 +277,33 @@
 			foreach($result as $key => $res)
 			{
 				$result[$key]["content"] = $this->Util()->DecodeTiny($result[$key]["content"]);
-
+				if(file_exists(DOC_ROOT."/forofiles/".$res["path"])){
+					$result[$key]["existeArchivo"] = "si";
+				}else{
+					$result[$key] ["existeArchivo"] = "no";
+				} 
+				
 				$this->Util()->DB()->setQuery("
 				SELECT * FROM reply
 				LEFT JOIN user ON user.userId = reply.userId
 				LEFT JOIN personal ON personal.personalId = reply.personalId
 				WHERE son = '".$res["replyId"]."'
 				ORDER BY replyDate DESC");
-
 				$result[$key]["replies"] = $this->Util()->DB()->GetResult();
 				foreach($result[$key]["replies"] as $keyReply => $reply)
 				{
-					$result[$key]["replies"][$keyReply]["content"] = $this->Util()->DecodeTiny($reply["content"]);
+					if(file_exists(DOC_ROOT."/forofiles/".$reply["path"])){
+						$result[$key]["replies"][$keyReply]["existeArchivo"] = "si";
+					}else{
+						$result[$key]["replies"][$keyReply]["existeArchivo"] = "no";
+					} 
+						$result[$key]["replies"][$keyReply]["content"] = $this->Util()->DecodeTiny($reply["content"]);
 				}
 
 			}
+			// echo "<pre>"; print_r($result);
+					// exit;
+			
 			return $result;
 		}
 

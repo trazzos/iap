@@ -22,7 +22,7 @@
   -->
 
         <div class="form-group">
-            <label class="col-md-3 control-label">Subir imagen (solo formato jpg):</label>
+            <label class="col-md-3 control-label">Subir Archivo:</label>
             <div class="col-md-8">
                 <input type="file" name="path" id="path" class="form-control" />
             </div>

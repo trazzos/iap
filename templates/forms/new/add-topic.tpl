@@ -28,7 +28,7 @@
                     {*
                                         <button type="submit" class="btn green submitForm">Guardar</button>
                     *}
-                    <button type="button" class="btn default closeModal">Cancelar</button>
+                    <button type="button" class="btn default closeModal" onClick="closeModal()">Cancelar</button>
                 </div>
             </div>
         </div>
