@@ -1,16 +1,16 @@
-<?php /* Smarty version Smarty3-b7, created on 2015-10-27 12:14:52
+<?php /* Smarty version Smarty3-b7, created on 2016-08-26 14:46:41
          compiled from "/home/iapchiap/public_html//templates/forms/year.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:476175397562fbf1c5bb1c3-91979772%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:55751491557c09ca1e738a8-52088254%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'd015218f9b254d3499b05d977d1738d94e444bf8' => 
     array (
       0 => '/home/iapchiap/public_html//templates/forms/year.tpl',
-      1 => 1395940487,
+      1 => 1472184423,
     ),
   ),
-  'nocache_hash' => '476175397562fbf1c5bb1c3-91979772',
+  'nocache_hash' => '55751491557c09ca1e738a8-52088254',
   'function' => 
   array (
   ),
@@ -18,7 +18,7 @@ $_smarty_tpl->decodeProperties(array (
 )); /*/%%SmartyHeaderCode%%*/?>
 <select name="<?php echo $_smarty_tpl->getVariable('name')->value;?>
 " id="<?php echo $_smarty_tpl->getVariable('name')->value;?>
-">
+" class="form-control"  style="width:100px">
     <option value="1950" <?php if ($_smarty_tpl->getVariable('selected')->value==1950){?> selected="selected" <?php }?>>1940</option>
     <option value="1950" <?php if ($_smarty_tpl->getVariable('selected')->value==1950){?> selected="selected" <?php }?>>1941</option>
     <option value="1950" <?php if ($_smarty_tpl->getVariable('selected')->value==1950){?> selected="selected" <?php }?>>1942</option>

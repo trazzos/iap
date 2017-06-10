@@ -1,22 +1,22 @@
-<?php /* Smarty version Smarty3-b7, created on 2017-06-01 17:14:08
+<?php /* Smarty version Smarty3-b7, created on 2016-08-26 19:55:33
          compiled from "templates/new/student_profile.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:8937593091b0b5dfb7-73287259%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:44869923457c0e50517bd95-05607234%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '1af195e1073969426326b23b085ce8a0416fbaa5' => 
     array (
       0 => 'templates/new/student_profile.tpl',
-      1 => 1496355232,
+      1 => 1472259327,
     ),
   ),
-  'nocache_hash' => '8937593091b0b5dfb7-73287259',
+  'nocache_hash' => '44869923457c0e50517bd95-05607234',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
-<?php if (!is_callable('smarty_modifier_date_format')) include 'C:\wamp\www\iap\libs\plugins\modifier.date_format.php';
+<?php if (!is_callable('smarty_modifier_date_format')) include '/home/iapchiap/public_html/libs/plugins/modifier.date_format.php';
 ?><!-- BEGIN PAGE BAR -->
 <div class="page-bar">
     <ul class="page-breadcrumb">

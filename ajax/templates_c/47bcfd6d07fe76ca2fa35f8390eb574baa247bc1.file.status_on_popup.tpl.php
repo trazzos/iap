@@ -1,16 +1,16 @@
-<?php /* Smarty version Smarty3-b7, created on 2015-10-25 13:38:51
+<?php /* Smarty version Smarty3-b7, created on 2016-08-17 15:24:19
          compiled from "/home/iapchiap/public_html//templates/boxes/status_on_popup.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1881767068562d2fcbafa5c3-88753121%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:176895801957b4c7f3911058-75032473%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '47bcfd6d07fe76ca2fa35f8390eb574baa247bc1' => 
     array (
       0 => '/home/iapchiap/public_html//templates/boxes/status_on_popup.tpl',
-      1 => 1379524999,
+      1 => 1468707033,
     ),
   ),
-  'nocache_hash' => '1881767068562d2fcbafa5c3-88753121',
+  'nocache_hash' => '176895801957b4c7f3911058-75032473',
   'function' => 
   array (
   ),
@@ -29,7 +29,7 @@ $_smarty_tpl->decodeProperties(array (
 /images/error.png" style="cursor:pointer" />
     			<?php }?>  
        	</h3>
-        <div style="position:relative;top:-20px;left:50px; font-size:14px">
+        <div style="position:relative;top:-20px;left:50px; font-size:14px" class="errorStatusBox">
         <?php  $_smarty_tpl->tpl_vars["error"] = new Smarty_Variable;
  $_smarty_tpl->tpl_vars["key"] = new Smarty_Variable;
  $_from = $_smarty_tpl->getVariable('errors')->value['value']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
