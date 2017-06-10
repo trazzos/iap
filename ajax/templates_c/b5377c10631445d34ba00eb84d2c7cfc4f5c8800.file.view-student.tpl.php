@@ -1,21 +1,22 @@
-<?php /* Smarty version Smarty3-b7, created on 2015-11-19 15:32:00
+<?php /* Smarty version Smarty3-b7, created on 2016-08-03 13:09:37
          compiled from "/home/iapchiap/public_html//templates/boxes/view-student.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:702277244564e3fd0634611-25030115%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:147730680657a2336106f125-33220035%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'b5377c10631445d34ba00eb84d2c7cfc4f5c8800' => 
     array (
       0 => '/home/iapchiap/public_html//templates/boxes/view-student.tpl',
-      1 => 1379525001,
+      1 => 1469918358,
     ),
   ),
-  'nocache_hash' => '702277244564e3fd0634611-25030115',
+  'nocache_hash' => '147730680657a2336106f125-33220035',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
+
 <!-- Esta pantalla se muestra en   Cirricula -> Historial-> Alumnos A/I --><div class="popupheader" style="z-index:70">
       
       <div class="ftitl">
