@@ -1,3 +1,4 @@
+<<<<<<< 58e3275b296180f21a2858ced0e37f70f1107103
 function CalificacionesAct(id){
 	// alert("f")
 	
@@ -14,12 +15,30 @@ function CalificacionesAct(id){
 				$("#frmModal").html(response);
 			// else
 				// alert(msgFail);
+=======
+
+
+function CalificacionesAct(id){
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/studentCurricula.php',
+	  	data: "type=calificaciones&id="+id,
+		beforeSend: function(){			
+			// $("#td_"+id).html(LOADER3);
+		},
+	  	success: function(response) {	
+		
+			  $("#td_"+id).html(response);
+			  $("#td_"+id).toggle();
+
+>>>>>>> 3fbc77da4e97d049d09566c31bc75342f5732446
 		},
 		error:function(){
 			alert(msgError);
 		}
     });
 	
+<<<<<<< 58e3275b296180f21a2858ced0e37f70f1107103
 	$("#frmModal").modal("show");
 	
 }//AddReg
@@ -99,4 +118,29 @@ new Ajax.Request(WEB_ROOT+'/ajax/notificacion.php',
 		},
     onFailure: function(){ alert('Something went wrong...') }
   });
+=======
+}//CalificacionesAct
+
+
+function CalificacionesExa(id){
+
+$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/studentCurricula.php',
+	  	data: "type=calificacionesExa&id="+id,
+		beforeSend: function(){			
+			// $("#td_"+id).html(LOADER3);
+		},
+	  	success: function(response) {	
+		
+			  $("#td_"+id).html(response);
+			  $("#td_"+id).toggle();
+
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+
+>>>>>>> 3fbc77da4e97d049d09566c31bc75342f5732446
 }
