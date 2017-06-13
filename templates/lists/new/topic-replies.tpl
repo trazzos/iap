@@ -1,7 +1,6 @@
 <script type="text/javascript">
     function confirmando()
     {
-
         if (confirm("Estas seguro que deseas eliminar la respuesta a este Topico? "))
             return true
         else
@@ -48,24 +47,41 @@
 						<div class="accordion-inner">
 							<br>
 							<br>
-							<a href="{$WEB_ROOT}/graybox.php?page=add-comment&id={$item.replyId}&moduleId={$moduleId}&topicsubId={$topicsubId}" data-target="#ajax" data-toggle="modal" class="btn green">
-										Agregar Comentario
-									</a>
-									<br>
-									<br>
-							<div>{$item.content}</div>
-							<div>{if $item.path}<img src="{$WEB_ROOT}/forofiles/{$item.path}" > {/if}</div>
+													
 							<table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 								<thead>
 								<tr>
+									<td>Aportación</td>
+									<td>Archivo Adjunto</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>{$item.content}</td>
 									<td>
-										Autor / Fecha Publicación
+										{if $item.existeArchivo eq "si"}
+											{if $item.path}
+												<a href="{$WEB_ROOT}/forofiles/{$item.path}" target="_black" title="VER ARCHIVO ADJUNTO"> 
+													<img src="{$WEB_ROOT}/images/file.png" style="max-width: 40px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
+												</a>
+												<br>
+											{/if}
+										{/if}
 									</td>
 									<td>
-										Mensaje
+										<a href="{$WEB_ROOT}/graybox.php?page=add-comment&id={$item.replyId}&moduleId={$moduleId}&topicsubId={$topicsubId}" data-target="#ajax" data-toggle="modal" class="btn green">
+											Agregar Comentario
+										</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<b>Autor / Fecha Publicación</b>
 									</td>
 									<td>
-										
+										<b>Mensaje</b>
+									</td>
+									<td>
+										<b>Archivo Adjunto</b>
 									</td>
 								</tr>
 								</thead>
@@ -96,7 +112,17 @@
 										<div>{$reply.content}</div>
 									</td>
 									<td>
-										<div>{if $reply.path}<img src="{$WEB_ROOT}/forofiles/{$reply.path}" > {/if}</div>
+										<div>
+										{if $reply.existeArchivo eq "si"}
+											{if $reply.path}
+											
+											<a href="{$WEB_ROOT}/forofiles/{$reply.path}" target="_black" title="VER ARCHIVO ADJUNTO">
+												<img src="{$WEB_ROOT}/images/file.png" style="max-width: 40px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
+											</a>
+											{/if}
+										{/if}
+										
+										</div>
 									</td>
 								</tr>
 						<!--	<div class="portlet box grey-steel">
@@ -126,7 +152,6 @@
 
 
 {*}
-
 {foreach from=$replies item=item}
 <div class="portlet box red">
     <div class="portlet-title">
@@ -141,23 +166,20 @@
         </div>
         <div class="actions">
             {if $positionId == 1}
-				<a href="{$WEB_ROOT}/graybox.php?page=add-comment&id={$item.replyId}&moduleId={$moduleId}&topicsubId={$topicsubId}" data-target="#ajax" data-toggle="modal" class="btn green">
-					Agregar Comentario
-				</a>
                 <form id="deleteReplay" name="deleteReplay" method="post">
                     <input type="hidden" id="moduleId" name="moduleId" value="{$moduleId}">
                     <input type="hidden"  id="replyId" name="replyId" value="{$item.replyId}" />
                     <input value="Eliminar" type="submit" class="btn-70-delete"  onClick="return confirmando();" style="border:none; height:24px;" name="eliminar" id="eliminar" >
                 </form>
             {/if}
-            
-
+            <a href="{$WEB_ROOT}/graybox.php?page=add-comment&id={$item.replyId}&moduleId={$moduleId}&topicsubId={$topicsubId}" data-target="#ajax" data-toggle="modal" class="btn green">
+                Agregar Comentario
+            </a>
         </div>
     </div>
     <div class="portlet-body">
             <div>{$item.content}</div>
             <div>{if $item.path}<img src="{$WEB_ROOT}/forofiles/{$item.path}" > {/if}</div>
-
             {foreach from=$item.replies item=reply}
             <div class="portlet box grey-steel">
                 <div class="portlet-title">
@@ -172,7 +194,6 @@
                     </div>
                     <div class="actions">
                         {if $positionId == 1}
-
                             <form id="deleteReplay" name="deleteReplay" method="post">
                                 <input type="hidden" id="moduleId" name="moduleId" value="{$moduleId}">
                                 <input type="hidden"  id="replyId" name="replyId" value="{$reply.replyId}" />
@@ -191,5 +212,4 @@
     </div>
 </div>
 {/foreach}
-
-	{*}
+{*}
