@@ -642,7 +642,11 @@
 				else
 				{
 					echo "ok[#]";
-					$smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
+					echo '<div class="alert alert-success">
+					<button class="close" data-dismiss="alert"></button>
+							El Alumno fue editado correctamente
+					</div>';
+					// $smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
 //					header("Location: ".WEB_ROOT."/alumn-services");
 /*					$smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
 					echo "[#]";

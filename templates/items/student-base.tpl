@@ -39,7 +39,7 @@
 				 {/if}
 			 <!--<a href="{$WEB_ROOT}/graybox.php?page=edit-student&id={$item.userId}" title="EDITAR" onclick="return parent.GB_show('Ver Curricula', this.href,650,700) " style="color:#000" >
 			-->
-			<a href="{$WEB_ROOT}/graybox.php?page=edit-student&id={$item.userId}" data-target="#ajax" data-toggle="modal" data-width="1000px">
+			<a href="{$WEB_ROOT}/graybox.php?page=edit-student&id={$item.userId}&auxImagen=1" data-target="#ajax" data-toggle="modal" data-width="1000px">
 			<img src="{$WEB_ROOT}/images/icons/16/pencil.png" class="spanEdit" id="{$item.userId}" title="Editar" />
 			</a>
 			<!--

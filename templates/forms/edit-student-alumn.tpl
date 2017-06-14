@@ -1,3 +1,5 @@
+
+{if $auxImagen ne 1}
 <div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">
@@ -16,6 +18,7 @@
         </div>
     </div>
 </div>
+{/if}
 
 
 
