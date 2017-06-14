@@ -155,7 +155,8 @@ $pages = array(
 
     //reportes
     'reporte-general',
-    'reporte-alumno-modulo'
+    'reporte-alumno-modulo',
+    'edit-student'
 
 );
 
@@ -164,6 +165,8 @@ if(!in_array($_GET['page'], $pages))
     $_GET['page'] = "homepage";
 }
 
+// echo  "<pre>"; print_r($_GET['page']);
+// exit;
 
 $smarty->assign('positionId', $User['positionId']);
 

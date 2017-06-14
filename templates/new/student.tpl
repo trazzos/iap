@@ -15,9 +15,9 @@
         </div>
 
 
-        <div class="actions">
+        
             {include file="boxes/status_no_ajax.tpl"}
-            {include file="forms/search-student.tpl"}
+           <div class="accions">
             <table>
                 <tr>
                     <td>
@@ -33,9 +33,13 @@
                     </td>
                 </tr>
             </table>
-        </div>
+			</div>
+      
     </div>
+	
+	 
     <div class="portlet-body">
+		{include file="forms/search-student.tpl"}
         <div id="tblContent">{include file="lists/student.tpl"}</div>
     </div>
             <br />
