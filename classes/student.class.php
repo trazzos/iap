@@ -329,7 +329,7 @@ class Student extends User
 			return false;
 		}
 		
-		$sqlQuery = "INSERT INTO 
+		 $sqlQuery = "INSERT INTO 
 						user 
 						(
 							type,
@@ -1103,12 +1103,7 @@ class Student extends User
 			}
 			else
 			{
-				$card["foto"] = '<a href="#open-'.$res["userId"].'" id="foto-'.$res["userId"].'">
-					<img src="'.WEB_ROOT.'/alumnos/no_foto.JPG" width="40" height="40" style=" height: auto; 
-				width: auto; 
-				max-width: 80px; 
-				max-height: 80px;"/>
-				</a>';
+				$card["foto"] = '';
 			}
 			
 			$result[$key] = $card;		
@@ -1154,7 +1149,40 @@ class Student extends User
 	
 	public function CountTotalRows()
 	{
-		$this->Util()->DB()->setQuery('SELECT COUNT(*) FROM user');
+		
+		$filtro = "";
+		
+		if($this->nombre){
+			$filtro .= " and names like '%".$this->nombre."%'";
+		}
+		
+		if($this->apaterno){
+			$filtro .= " and lastNamePaterno like '%".$this->apaterno."%'";
+		}
+		
+		if($this->amaterno){
+			$filtro .= " and lastNameMaterno like '%".$this->amaterno."%'";
+		}
+		
+		if($this->noControl){
+			$filtro .= " and controlNumber = '".$this->noControl."'";
+		}
+		
+		if($this->estatus){
+			if($this->estatus==2){
+				$filtro .= " and activo = 0";
+			}else{
+				$filtro .= " and activo = '".$this->estatus."'";
+			}
+				
+			
+		}
+		
+		
+	
+		$sql = 'SELECT COUNT(*) FROM user where type = "student" '.$filtro.'';
+		
+		$this->Util()->DB()->setQuery($sql);
 		return $this->Util()->DB()->GetSingle();
 	}
 	

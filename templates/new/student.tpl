@@ -20,8 +20,9 @@
            <div class="accions">
             <table>
                 <tr>
-                    <td>
-                        <a href="javascript:;" class="btn green" id="btnAddPersonal">
+                    <td><!--
+                        <a href="javascript:;" class="btn green" id="btnAddPersonal">-->
+						<a class="btn green" href="{$WEB_ROOT}/graybox.php?page=add-alumno-admin&id={$item.userId}" data-target="#ajax" data-toggle="modal" data-width="1000px">
                             <i class="fa fa-plus"></i> Agregar
                         </a>
                     </td>
