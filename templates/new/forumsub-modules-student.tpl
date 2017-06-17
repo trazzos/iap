@@ -1,17 +1,17 @@
-<div class="portlet box red">
-    <div class="portlet-title">
+<div class="portlet box "  style="background-colo:white;  border-radius: 2px;   border: 1px solid #73AD21 ">
+    <div class="portlet-title" style="background-colo:white; color: #73b760; ">
         <div class="caption">
             <i class="fa fa-bullhorm"></i>Foro {$asunto}
         </div>
         <div class="actions">
             {if $positionId != 0}
-                <a href="{$WEB_ROOT}/edit-modules-course/id/{$id}">Regresar</a>
+                <a href="{$WEB_ROOT}/edit-modules-course/id/{$id}" class="btn btn-default btn-sm" style="background:#73AD21; color:white">Regresar</a>
             {else}
-                <a href="{$WEB_ROOT}/forum-modules-student/id/{$id}">Regresar</a>
+                <a href="{$WEB_ROOT}/forum-modules-student/id/{$id}" class="btn btn-default btn-sm" style="background:#73AD21; color:white">Regresar</a>
             {/if}
             {if ($asunto== "Foro de Discusion") && ($User.type == "student")}
             {else} |
-                <a href="{$WEB_ROOT}/graybox.php?page=add-topic&id={$topicId}" data-target="#ajax" data-toggle="modal">
+                <a href="{$WEB_ROOT}/graybox.php?page=add-topic&id={$topicId}&cId={$id}" data-target="#ajax" data-toggle="modal" class="btn btn-default btn-sm" style="background:#73AD21; color:white">
                     <span class="btnAdd" id="btnAddSubject">Agregar</span>
                 </a>
             {/if}

@@ -22,7 +22,9 @@ if($_POST)
         }
         $forum->AddReply();
     }
-    //TODO redirect back to page
+
+	header("Location:".WEB_ROOT."/add-reply/id/".$_POST["moduleId"]."/topicsubId/".$_POST["topicsubId"]."");
+	exit;
 }
 
 //print_r($_SESSION);exit;

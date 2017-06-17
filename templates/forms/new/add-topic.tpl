@@ -2,7 +2,7 @@
 <script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
 <!-- /TinyMCE -->
 
-<form class="form-horizontal" id="addMajorForm" name="addMajorForm" method="post" action="{$WEB_ROOT}/add-topic/id/{$topicId}">
+<form class="form-horizontal" id="addMajorForm" name="addMajorForm" method="post" action="{$WEB_ROOT}/add-topic/id/{$topicId}/cId/{$cId}">
     <input type="hidden" id="topicId" name="topicId" value="{$topicId}"/>
     <input type="hidden" id="userId" name="userId" value="{$userId}"/>
     <input type="hidden" id="type" name="type" value="saveAddMajor"/>
@@ -28,7 +28,7 @@
                     {*
                                         <button type="submit" class="btn green submitForm">Guardar</button>
                     *}
-                    <button type="button" class="btn default closeModal">Cancelar</button>
+                    <button type="button" class="btn default closeModal" onClick="closeModal()">Cancelar</button>
                 </div>
             </div>
         </div>

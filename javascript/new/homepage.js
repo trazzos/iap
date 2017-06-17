@@ -1,26 +1,25 @@
+
+
 function CalificacionesAct(id){
-	// alert("f")
-	
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/studentCurricula.php',
-	  	data: "type=calificaciones&id="+id,		
+	  	data: "type=calificaciones&id="+id,
+		beforeSend: function(){			
+			// $("#td_"+id).html(LOADER3);
+		},
 	  	success: function(response) {	
+		
+			  $("#td_"+id).html(response);
+			  $("#td_"+id).toggle();
 
-			console.log(response)
-			// var splitResp = response.split("[#]");
-									
-			// if(splitResp[0] == "ok")
-				$("#frmModal").html(response);
-			// else
-				// alert(msgFail);
+
 		},
 		error:function(){
 			alert(msgError);
 		}
     });
-	
-	$("#frmModal").modal("show");
+
 	
 }//AddReg
 
@@ -99,4 +98,29 @@ new Ajax.Request(WEB_ROOT+'/ajax/notificacion.php',
 		},
     onFailure: function(){ alert('Something went wrong...') }
   });
+
+}//CalificacionesAct
+
+
+function CalificacionesExa(id){
+
+$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/studentCurricula.php',
+	  	data: "type=calificacionesExa&id="+id,
+		beforeSend: function(){			
+			// $("#td_"+id).html(LOADER3);
+		},
+	  	success: function(response) {	
+		
+			  $("#td_"+id).html(response);
+			  $("#td_"+id).toggle();
+
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+
+
 }

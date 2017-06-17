@@ -19,6 +19,12 @@
         <td align="center">
             <input type="text" name="retro[{$item.alumnoId}]" {*if $entrega==0} disabled {/if*} name="retro[{$item.alumnoId}]" value="{$item.retro}" />
         </td>
+		<td>
+			<div id="divRetro_">
+				<input type="file" name="fileRetro_{$item.alumnoId}" id="fileRetro_{$item.alumnoId}" onChange="upFile({$item.alumnoId})">
+			</div>
+			
+		</td>
     </tr>
 {foreachelse}
 	<tr><td colspan="4" align="center">No se encontr&oacute; ning&uacute;n registro.</td></tr>

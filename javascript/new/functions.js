@@ -1,7 +1,13 @@
 var DOC_ROOT = "../";
 var DOC_ROOT_TRUE = "../";
 var DOC_ROOT_SECTION = "../../";
-var WEB_ROOT = "http://www.iapchiapasenlinea.mx";
+
+
+var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/cargando.gif'><br>Cargando...</div>";
+
+// var WEB_ROOT ="http://"+document.location.hostname+"/iap";
+
+// var WEB_ROOT = "http://www.iapchiapasenlinea.mx";
 
 $( document ).ready(function() {
 

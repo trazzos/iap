@@ -7,7 +7,9 @@
 	if($_POST)
 	{
 	
-  //print_r($_POST['ponderation']);exit;
+		// echo "<pre>"; print_r($_POST);
+		// echo "<pre>"; print_r($_FILES);
+		// exit;
   	    $activity->setActivityId($_GET["id"]);
 		$actividad = $activity->Info();
 		$group->setCourseModuleId($actividad["courseModuleId"]);
@@ -18,7 +20,7 @@
 	$activity->setActivityId($_GET["id"]);
 	$actividad = $activity->Info();
 	$smarty->assign('actividad', $actividad);
-$smarty->assign('id', $_GET["id"]);
+	$smarty->assign('id', $_GET["id"]);
 
 	$module->setCourseModuleId($actividad["courseModuleId"]);
 	$info = $module->InfoCourseModule();

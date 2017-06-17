@@ -1,6 +1,17 @@
 <div class="portlet-body">
-
-    {if $timestamp > $item.initialDateTimestamp && $timestamp < $item.finalDateTimestamp}
+	{if $item.activityId eq $tareaId}
+		{if $exito eq "si"}
+			
+			<div class="alert alert-warning alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <strong></strong> La actividad se subió correctamente al sistema de tareas
+			</div>
+		{/if}
+	{/if}
+	<!--
+   <a href="{$WEB_ROOT}/graybox.php?page=upload-homework&id={$item.activityId}" title="Subir Tarea" data-target="#ajax" data-toggle="modal" style="color:#000" class="btn btn-xs green-jungle"> Subir Actividad al Sistema de Tareas <i class="fa fa-upload "></i></a>
+-->
+	{if $timestamp > $item.initialDateTimestamp && $timestamp < $item.finalDateTimestamp}
         <span style="color:#0C0">Esta actividad se encuentra disponible</span>
     {/if}
     {if $timestamp > $item.finalDateTimestamp}
@@ -65,7 +76,9 @@
     {/if}
     {if $item.homework}
         <br />
-        <b>Tarea entregada</b> <a href="{$WEB_ROOT}/download.php?file=homework/{$item.homework.path}&mime={$item.homework.mime}" style="color:#000">Ver Tarea</a>
+        <b>Tarea entregada</b><!--
+		<a href="{$WEB_ROOT}/download.php?file=homework/{$item.homework.path}&mime={$item.homework.mime}" style="color:#000">Ver Tarea</a>-->
+		<button class="btn blue" onclick="window.location.href='{$WEB_ROOT}/download.php?file=homework/{$item.homework.path}&mime={$item.homework.mime}'" class="bb" style="width:90px">VER TAREA</button>
     {/if}
     {if $item.ponderation}
         <br />

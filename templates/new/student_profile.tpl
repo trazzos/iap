@@ -229,7 +229,7 @@
                                 <table class="table table-hover table-light">
                                     <thead>
                                     <tr class="uppercase">
-                                        <th> Clave </th>
+                                        
                                         <th> Tipo </th>
                                         <th> Nombre </th>
                                         <th> Modalidad </th>
@@ -238,20 +238,20 @@
 {*
                                         <th> Pagos </th>
 *}
-                                        <th> Dias Activo </th>
+                                        
                                         <th> Modulos </th>
                                         <th> Acciones </th>
                                     </tr>
                                     </thead>
                                     {foreach from=$activeCourses item=subject}
                                     <tr>
-                                        <td >{$subject.clave}</td>
+                                       
                                         <td >{$subject.majorName}</td>
                                         <td >{$subject.name}</td>
                                         <td >{$subject.modality}</td>
                                         <td >{$subject.initialDate|date_format:"%d-%m-%Y"}</td>
                                         <td >{$subject.finalDate|date_format:"%d-%m-%Y"}</td>
-                                        <td >{$subject.daysToFinish}</td>
+                                     
 {*
                                         <td align="center">{$subject.payments}</td>
 *}

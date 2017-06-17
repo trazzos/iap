@@ -4,7 +4,7 @@ include_once('init.php');
 include_once('config.php');
 include_once(DOC_ROOT.'/libraries.php');
 
-//print_r($_GET);exit;
+// print_r($_GET);exit;
 if (!isset($_SESSION))
 {
     session_start();
@@ -155,7 +155,9 @@ $pages = array(
 
     //reportes
     'reporte-general',
-    'reporte-alumno-modulo'
+    'reporte-alumno-modulo',
+    'edit-student',
+    'add-alumno-admin'
 
 );
 
@@ -164,6 +166,8 @@ if(!in_array($_GET['page'], $pages))
     $_GET['page'] = "homepage";
 }
 
+// echo  "<pre>"; print_r($_GET);
+// exit;
 
 $smarty->assign('positionId', $User['positionId']);
 
@@ -176,6 +180,9 @@ $smarty->assign('section', $_GET['section']);
 if($User['userId'])
     $AccessMod = $user->GetModulesAccess();
 
+$smarty->assign('auxTpl',$_GET["auxTpl"]);
+$smarty->assign('cId',$_GET["cId"]);
+$smarty->assign('auxImagen',$_GET["auxImagen"]);
 $smarty->assign('AccessMod',$AccessMod);
 $smarty->assign('User',$User);
 
@@ -186,7 +193,8 @@ if($_GET['section'])
 }
 $smarty->assign('includedTpl', $includedTpl);
 
-//print_r($_GET); exit;
+// echo $includedTpl;
+// exit;
 
 if(isset($_GET['vp'])){
     $smarty->assign("vistaPrevia",$_GET['vp']);

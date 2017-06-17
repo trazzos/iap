@@ -87,16 +87,16 @@ $cursos = $course->infoCoursem();
 //*************************************************************************************************************	
 	
 	//checar a que curriculas tengo permiso
-	if(in_array(2, $info["roles"]))
-	{
-		$smarty->assign('docente', 1);
-		$permisosDocente = $user->PermisosDocente();
+	// if(in_array(2, $info["roles"]))
+	// {
+		// $smarty->assign('docente', 1);
+		// $permisosDocente = $user->PermisosDocente();
 		
-		if(!in_array($myModule["courseModuleId"], $permisosDocente["courseModule"]))
-		{
-			header("Location: ".WEB_ROOT);
-		}
-	}
+		// if(!in_array($myModule["courseModuleId"], $permisosDocente["courseModule"]))
+		// {
+			// header("Location: ".WEB_ROOT);
+		// }
+	// }
 	
 	$smarty->assign('algo', 1);
 	

@@ -10,9 +10,9 @@
         <td align="left">{$subject.active}</td>
         {if $User.type == "student"}
 			    <td>{$subject.totalScore} <br/>
-				<a href="#" onclick="CalificacionesAct({$subject.courseModuleId});"> Actividades</a>
+				<a href="javascript:void(0)" onclick="CalificacionesAct({$subject.courseModuleId});"> Actividades</a>
                 <br/>
-                 <a href="#" onclick="CalificacionesExa({$subject.courseModuleId});"> Examenes</a></td>			
+                 <a href="javascript:void(0)" onclick="CalificacionesExa({$subject.courseModuleId});"> Examenes</a></td>			
 			{/if}
 				
         <td align="center">
@@ -40,6 +40,11 @@
    
 		
     </tr>
+	<tr>
+		<td id="td_{$subject.courseModuleId}" colspan="10" style="display:none">
+			
+		</td>
+	</tr>
 {foreachelse}
 	<tr>
     	<td colspan="12" align="center">No se encontr&oacute; ning&uacute;n registro.</td>
