@@ -110,10 +110,13 @@ function AddStudentRegister()
         url : WEB_ROOT+'/ajax/student.php',
         type: "POST",
         data :  $('#addStudentForm').serialize(),
+		beforeSend: function(){		
+			$("#loader").html(LOADER3);
+		},
         success: function(data)
         {
+			$("#loader").html('');
             var splitResponse = data.split("[#]");
-
             if(splitResponse[0] == "fail")
             {
                 ShowStatusPopUp($(splitResponse[1]));
@@ -121,10 +124,11 @@ function AddStudentRegister()
             else
             {
                 ShowStatus($(splitResponse[1]));
+				CloseFview();
                 $('#tblContent').html(splitResponse[2]);
-                CloseFview();
-				setTimeout("",5000);
-				 location.reload();
+				setTimeout("recargarPage()",5000);
+
+				
             }
         },
         error: function ()
@@ -135,6 +139,13 @@ function AddStudentRegister()
 
 
 }
+
+function recargarPage()
+{
+	WEB_ROOTDoc = WEB_ROOT+'/login';
+	$(location).attr('href',WEB_ROOTDoc);
+}
+
 
 
 
