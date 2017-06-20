@@ -271,8 +271,11 @@
 				LEFT JOIN user ON user.userId = reply.userId
 				LEFT JOIN personal ON personal.personalId = reply.personalId
 				WHERE topicId = ".$this->topicsubId." AND son = 0
-				ORDER BY replyDate DESC");
+				ORDER BY replyDate ASC");
 			$result = $this->Util()->DB()->GetResult();
+			
+			// echo "<pre>"; print_r($result);
+			// exit;
 			
 			foreach($result as $key => $res)
 			{
@@ -298,7 +301,22 @@
 					max-height: 80px;"/>
 					</a>';
 				} 
-
+				
+				 $sql = "
+				SELECT count(*) FROM reply
+				LEFT JOIN user ON user.userId = reply.userId
+				LEFT JOIN personal ON personal.personalId = reply.personalId
+				WHERE son = '".$res["replyId"]."'
+				ORDER BY replyDate DESC";
+				$this->Util()->DB()->setQuery($sql);
+				$countComen = $this->Util()->DB()->GetSingle();
+				$result[$key]["numComentarios"] = $countComen;
+// echo "<br>";
+// echo "<br>";
+// echo "<br>";
+// echo "<br>";
+			
+				
 				$this->Util()->DB()->setQuery("
 				SELECT * FROM reply
 				LEFT JOIN user ON user.userId = reply.userId
@@ -306,6 +324,8 @@
 				WHERE son = '".$res["replyId"]."'
 				ORDER BY replyDate DESC");
 
+				
+				
 				$result[$key]["replies"] = $this->Util()->DB()->GetResult();
 				foreach($result[$key]["replies"] as $keyReply => $reply)
 				{

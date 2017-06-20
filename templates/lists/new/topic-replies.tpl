@@ -26,6 +26,7 @@
 				{foreach from=$replies item=item key=key}
 					<tr>
 						<td>
+								
 								{$item.foto}
 								<br>
 								<font style="text-transform: uppercase; font-size:9px; color:gray" >
@@ -46,7 +47,7 @@
 								</font>
 						</td>
 						<td valign="bottom">
-							{$item.content}
+							<font style="text-transform: uppercase; font-size:12px; color:#585858" >{$item.content}</font>
 							<hr>
 							<div <!--style="background:rgba(141, 145, 150, 0.22); top:50px"-->
 								
@@ -54,9 +55,16 @@
 								<a href="{$WEB_ROOT}/graybox.php?page=add-comment&id={$item.replyId}&moduleId={$moduleId}&topicsubId={$topicsubId}" data-target="#ajax" data-toggle="modal" >
 									<img src="{$WEB_ROOT}/images/add.png" style="max-width: 25px;height: auto;" title="AGREGAR COMENTARIO"> 
 								</a>
-								<a href="javascript:void(0)" onClick="verComentario({$item.replyId})">
-								<img src="{$WEB_ROOT}/images/comentario.png" style="max-width: 25px;height: auto;" title="VER COMENTARIOS"> 
-								</a>
+								{if $item.numComentarios <= 0}
+
+									<img src="{$WEB_ROOT}/images/comentarioGris.png" style="max-width: 25px;height: auto;" title="VER COMENTARIOS"> 
+
+								{else}
+									<a href="javascript:void(0)" onClick="verComentario({$item.replyId})">
+									<img src="{$WEB_ROOT}/images/comentario.png" style="max-width: 25px;height: auto;" title="VER COMENTARIOS"> 
+									</a>
+								{/if}
+								
 								{if $item.existeArchivo eq "si"}
 									{if $item.path}
 										<a href="{$WEB_ROOT}/forofiles/{$item.path}" target="_black" title="VER ARCHIVO ADJUNTO"> 
@@ -65,12 +73,66 @@
 										
 									{/if}
 								{/if}
+								
 							</div>
 						</td>
 					</tr>
-					<tr id="divCom_{$item.replyId}">
+					<tr id="divCom_{$item.replyId}" style="display:none">
+						<td >
+							
+						</td>
 						<td>
-							hol_{$item.replyId}
+							<table>
+								<tr>
+									<td></td>
+									<td></td>
+								</tr>
+								{foreach from=$item.replies item=reply}
+								<tr>
+									<td style="width:200px">
+										<i class="fa fa-bullhorm"></i>
+									
+										{$reply.foto}
+										<br>
+
+										<font style="text-transform: uppercase; font-size:9px; color:gray" >
+										{if $reply.positionId == NULL || $reply.positionId == 0}
+											{if $reply.names}{$reply.names}  {$reply.lastNamePaterno} {$reply.lastNameMaterno}{else}{/if}
+										{else}
+											{$reply.names} {$reply.lastname_paterno} {$reply.lastname_materno}
+										{/if}
+										</font>
+								
+										<br>
+										<font style="text-transform: uppercase; font-size:9px; color:gray" >
+										{$reply.replyDate|date_format:"%d-%m-%Y %H:%M"}
+										</font>
+										{if $positionId == 1}
+
+											<form id="deleteReplay" name="deleteReplay" method="post">
+												<input type="hidden" id="moduleId" name="moduleId" value="{$moduleId}">
+												<input type="hidden"  id="replyId" name="replyId" value="{$reply.replyId}" />
+												<input value="Eliminar" type="submit" class="btn-70-delete"  onClick="return confirmando();" style="border:none; height:24px;" name="eliminar" id="eliminar" >
+											</form>
+										{/if}
+									</td>
+									<td>
+										<div>{$reply.content}</div><br>
+										<div>
+											{if $reply.existeArchivo eq "si"}
+												{if $reply.path}
+												
+												<a href="{$WEB_ROOT}/forofiles/{$reply.path}" target="_black" title="VER ARCHIVO ADJUNTO">
+													<img src="{$WEB_ROOT}/images/file.png" style="max-width: 40px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
+												</a>
+												{/if}
+											{/if}
+										</div>
+									</td>
+
+								</tr>
+								{/foreach}
+							</table>
 						</td>
 					</tr>
 					{/foreach}
