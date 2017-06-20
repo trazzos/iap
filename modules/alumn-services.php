@@ -32,6 +32,9 @@ if($_FILES)
 	$smarty->assign("DOC_ROOT", DOC_ROOT);
 	$student->setUserId($_SESSION['User']["userId"]);
 	$result = $student->GetInfo();
+	
+	// echo "<pre>"; print_r($result);
+	// exit;
 	$info = $util->EncodeRow($result);
 	
 	            $student->setCountry($info['pais']);
@@ -54,6 +57,7 @@ if($_FILES)
 	$info['dayBirthdate'] = $bd[0];
 	$info['monthBirthdate'] = $bd[1];
 	$info['yearBirthdate'] = $bd[2];
+	$smarty->assign("rand", rand());
 	$smarty->assign("info", $info);
 	
 	

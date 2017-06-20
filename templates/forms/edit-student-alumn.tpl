@@ -8,7 +8,8 @@
     </div>
     <div class="portlet-body">
         <div class="form-group">
-            <label class="col-md-3 control-label"></label>{$infoStudent.foto}
+            <label class="col-md-3 control-label"></label>
+			<img src="{$WEB_ROOT}/alumnos/{$info.userId}.jpg?{$rand}" width="110" height="110">
             <form name="{$item.userId}" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="userId" id="userId" value="{$info.userId}" />
                 <input type="hidden" name="permiso" id="permiso" value="1" />
