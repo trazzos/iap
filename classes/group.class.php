@@ -73,35 +73,38 @@
 									
 									
 								// echo $result;
-							// echo $arch =  "fileRetro_".$retros[$key];
+							// echo "<pre>"; print_r($_FILES);
+							// echo $arch =  "fileRetro_".$key;
 							
 							// exit;
-							foreach($_FILES as $keyf=>$varf)
+							$url = DOC_ROOT;
+							foreach($_FILES as $key=>$var)
 							{
-							   switch($keyf)
+							   switch($key)
 							   {
-									case $arch:
-										if($varf["name"]<>""){
-											// $aux = explode(".",$varf["name"]);
-											$target_path = DOC_ROOT."/file_retro/";
-											$ext = end(explode('.', basename($varf['name'])));			
-											$target_path = $target_path."".$ext; 
-											$relative_path = $target_path."".$ext; 
+								   case $arch:
+								   if($var["name"]<>""){
+										$aux = explode(".",$var["name"]);
+										$extencion=end($aux);
+										$temporal = $var['tmp_name'];
+										$foto_name="doc_".$result.".".$extencion;		
+										if(move_uploaded_file($temporal,$url."/file_retro/".$foto_name)){		
+													
+											$sql = 'UPDATE 		
+											activity_score SET 		
+											rutaArchivoRetro = "'.$foto_name.'"			      		
+											WHERE activityScoreId = '.$result.'';		
+												
+										$this->Util()->DB()->setQuery($sql);		
+										$this->Util()->DB()->UpdateData();
 
-											if(move_uploaded_file($varf['tmp_name'], $target_path)) 
-											{
-												$sql = "UPDATE 
-															activity_score
-															SET
-																rutaArchivoRetro = '".$relative_path."'
-															WHERE activityScoreId = '".$result."'";		
-												$this->Util()->DB()->setQuery($sql);
-												$this->Util()->DB()->UpdateData();
-											}
-										}
-									break;
-								}
+									   }
+										
+								   }
+							   }
 							}
+												
+							//
 						}
 						else
 						{
