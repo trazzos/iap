@@ -744,7 +744,30 @@ public function TopicsubInfo()
 			$this->Util()->DB()->setQuery($sqlNot);
 			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
 			$this->Util()->DB()->InsertData();
-					 
+				
+			if($datTop["tipo"] == "dudas"){
+				
+				 $sql = "
+					SELECT * FROM topic
+					LEFT JOIN course as c ON c.courseId = topic.courseId
+					LEFT JOIN subject_group as s ON s.subjectId = c.subjectId
+					LEFT JOIN personal as p ON p.personalId = s.personalId
+					WHERE topicId = ".$datSub['topicId']."";
+				$this->Util()->DB()->setQuery($sql);
+				$infoDu = $this->Util()->DB()->GetRow();
+				//admin docente
+				$sendmail->PrepareAttachment("Dudas para el Docente", $this->reply, "","", $infoDu["correo"], $infoDu["name"], $attachment, $fileName);
+			}
+			
+			if($datTop["tipo"] == "asesoria"){
+				//admin 
+				 $sql = "
+					SELECT * FROM personal
+					WHERE perfil = 'Administrador'";
+				$this->Util()->DB()->setQuery($sql);
+				$infoDu = $this->Util()->DB()->GetRow();
+				$sendmail->PrepareAttachment("Asesoria Academica",$this->reply, "", "", $infoDu["correo"], $infoDu["name"], $attachment, $fileName);
+			}
 			
 			$this->Util()->setError(90000, 'complete', "Has respondido al Topico");
 			$this->Util()->PrintErrors();
