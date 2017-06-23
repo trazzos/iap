@@ -41,6 +41,14 @@ function VerGrupo(id){
 }
 
 
+
+function verAcciones(id){
+
+$("#divAccion_"+id).toggle();
+
+}
+
+
 function VerGrupoAdmin(id){
 
     $.ajax({
