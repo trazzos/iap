@@ -1693,8 +1693,22 @@ class Student extends User
 		
 		// echo "<pre>"; print_r($infoDu);
 		// exit;
-		$sendmail->PrepareAttachment("Dudas para el Docente", "reply", "","", $infoDu["email"], $infoDu["names"], $attachment, $fileName);
-		// $sendmail->PrepareAttachment("Dudas para el Docente", "reply", "s","s", "juanjosepm@live.com","juanjosepm@live.com", $attachment, $fileName);
+		$msj = "
+		Instituto de Administración Pública del Estado de Chiapas,
+		<br>
+		<br>
+		Se adjunta la Información Solicitada
+		<br>
+		<br>
+		Saludos.
+		<br>
+		<br>
+		<br>
+		<b>Password</b> : ".$infoDu["password"]."
+		";
+		
+		$sendmail->PrepareAttachment("Recuperar Contraseña", $msj, "","", $infoDu["email"], $infoDu["names"], $attachment, $fileName);
+
 		
 		return true;
 
