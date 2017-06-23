@@ -1700,14 +1700,17 @@ class Student extends User
 		Se adjunta la Información Solicitada
 		<br>
 		<br>
+		<b>Password</b> : ".$infoDu["password"]."
+		<br>
+		<br>
 		Saludos.
 		<br>
 		<br>
 		<br>
-		<b>Password</b> : ".$infoDu["password"]."
+		
 		";
 		
-		$sendmail->PrepareAttachment("Recuperar Contraseña", $msj, "","", $infoDu["email"], $infoDu["names"], $attachment, $fileName);
+		$sendmail->PrepareAttachment("Recuperar Contraseña", utf8_decode($msj), "","", $infoDu["email"], $infoDu["names"], $attachment, $fileName);
 
 		
 		return true;
