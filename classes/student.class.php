@@ -1677,6 +1677,25 @@ class Student extends User
 	}
 	
 	
+		
+				
+	function enviarMail(){
+		
+		
+		$sendmail = new SendMail;
+			
+		 $sql = "
+			SELECT * FROM user
+			WHERE email = '".$this->getEmail()."'";
+		$this->Util()->DB()->setQuery($sql);
+		$infoDu = $this->Util()->DB()->GetRow();
+		//admin docente
+		$sendmail->PrepareAttachment("Dudas para el Docente", $this->reply, "","", $infoDu["correo"], $infoDu["names"], $attachment, $fileName);
+		
+		return true;
+
+	}
+	
 	
 }
 

@@ -13,6 +13,7 @@ switch($_POST["type"])
         $student->setPermiso(0);
         $student->setEmail($_POST['email']);
 
+		
         if(!$student->enviarMail())
         {
             echo "fail[#]";

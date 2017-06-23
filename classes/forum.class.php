@@ -745,6 +745,8 @@ public function TopicsubInfo()
 			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
 			$this->Util()->DB()->InsertData();
 				
+			$sendmail = new SendMail;	
+				
 			if($datTop["tipo"] == "dudas"){
 				
 				 $sql = "
