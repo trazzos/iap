@@ -1710,7 +1710,7 @@ class Student extends User
 		
 		";
 		
-		$sendmail->PrepareAttachment("Recuperar Contraseña", utf8_decode($msj), "","", $infoDu["email"], $infoDu["names"], $attachment, $fileName);
+		$sendmail->PrepareAttachment("Recuperar Contraseña", utf8_encode($msj), "","", $infoDu["email"], $infoDu["names"], $attachment, $fileName);
 
 		
 		return true;
