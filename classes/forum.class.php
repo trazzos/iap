@@ -77,7 +77,7 @@
 		
 		public function setReply($value)
 		{
-			$this->Util()->ValidateString($value, 50000, 1, 'Respuesta');
+			// $this->Util()->ValidateString($value, 50000, 1, 'Respuesta');
 			$this->reply = $value;
 		}
 
@@ -279,9 +279,18 @@
 			
 			foreach($result as $key => $res)
 			{
+				
+				
+				
+				
+				
 				$result[$key]["content"] = $this->Util()->DecodeTiny($result[$key]["content"]);
 				if(file_exists(DOC_ROOT."/forofiles/".$res["path"])){
 					$result[$key]["existeArchivo"] = "si";
+					$ext = explode(".",$res["path"]);
+					if($ext[1]=="png" or $ext[1]=="jpg" or $ext[1]=="jpeg"){
+						$result[$key]["formato"] = "imagen";
+					}
 				}else{
 					$result[$key] ["existeArchivo"] = "no";
 				} 
@@ -331,6 +340,10 @@
 				{
 					if(file_exists(DOC_ROOT."/forofiles/".$reply["path"])){
 						$result[$key]["replies"][$keyReply]["existeArchivo"] = "si";
+						$ext2 = explode(".",$reply["path"]);
+						if($ext2[1]=="png" or $ext2[1]=="jpg" or $ext2[1]=="jpeg"){
+							$result[$key]["replies"][$keyReply]["formato"]= "imagen";
+						}
 					}else{
 						$result[$key]["replies"][$keyReply]["existeArchivo"] = "no";
 					} 
@@ -355,6 +368,9 @@
 				}
 
 			}
+			
+				// echo "<pre>"; print_r($result);
+			// exit;
 			return $result;
 		}
 

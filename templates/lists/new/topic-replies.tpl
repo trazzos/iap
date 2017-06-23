@@ -24,16 +24,23 @@
 					<td></td>
 					</tr>
 				{foreach from=$replies item=item key=key}
-					<tr>
+				
+					{if $key%2==0}
+						<tr style="background:rgba(239, 239, 239, 0.37)"  >
+					{else}
+						<tr   >
+					{/if}  
+					
 						<td>
 								
 								{$item.foto}
 								<br>
 								<font style="text-transform: uppercase; font-size:9px; color:gray" >
 								{if $item.positionId == NULL || $item.positionId == 0}
-										{if $item.names}{$item.names} {$item.lastNamePaterno} {$item.lastNameMaterno}{else}{/if}
+										{$item.names} {$item.lastNamePaterno} {$item.lastNameMaterno}
 									{else}
 										{$item.name} {$item.lastname_paterno} {$item.lastname_materno}
+
 									{/if}
 									<br>
 									&nbsp;Fecha: {$item.replyDate|date_format:"%d-%m-%Y %H:%M"}
@@ -48,6 +55,13 @@
 						</td>
 						<td valign="bottom">
 							<font style="text-transform: uppercase; font-size:12px; color:#585858" >{$item.content}</font>
+							
+							<br>
+							
+							{if $item.formato eq "imagen"}
+								<hr>
+									<img src="{$WEB_ROOT}/forofiles/{$item.path}" style="max-width: 200px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
+							{/if}
 							<hr>
 							<div <!--style="background:rgba(141, 145, 150, 0.22); top:50px"-->
 								
@@ -68,7 +82,7 @@
 								{if $item.existeArchivo eq "si"}
 									{if $item.path}
 										<a href="{$WEB_ROOT}/forofiles/{$item.path}" target="_black" title="VER ARCHIVO ADJUNTO"> 
-											<img src="{$WEB_ROOT}/images/file.png" style="max-width: 25px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
+											<img src="{$WEB_ROOT}/images/blue.jpg" style="max-width: 25px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
 										</a>
 										
 									{/if}
@@ -82,22 +96,25 @@
 							
 						</td>
 						<td>
-							<table>
-								<tr>
-									<td></td>
-									<td></td>
-								</tr>
-								{foreach from=$item.replies item=reply}
-								<tr>
-									<td style="width:200px">
-										<i class="fa fa-bullhorm"></i>
+							<div class="portlet box " style="border-radius: 2px;   border: 2px solid #f36a5a ">
+							<table width=100%>
+								{foreach from=$item.replies item=reply key=key2}
+								
+								{if $key2%2==0}
+									<tr style="background:rgba(239, 239, 239, 0.37)"  >
+								{else}
+									<tr   >
+								{/if}  
+								
+									<td style="width:250px">
+										
 									
 										{$reply.foto}
 										<br>
 
 										<font style="text-transform: uppercase; font-size:9px; color:gray" >
 										{if $reply.positionId == NULL || $reply.positionId == 0}
-											{if $reply.names}{$reply.names}  {$reply.lastNamePaterno} {$reply.lastNameMaterno}{else}{/if}
+											{$reply.names}  {$reply.lastNamePaterno} {$reply.lastNameMaterno}
 										{else}
 											{$reply.names} {$reply.lastname_paterno} {$reply.lastname_materno}
 										{/if}
@@ -117,22 +134,32 @@
 										{/if}
 									</td>
 									<td>
-										<div>{$reply.content}</div><br>
-										<div>
-											{if $reply.existeArchivo eq "si"}
-												{if $reply.path}
-												
-												<a href="{$WEB_ROOT}/forofiles/{$reply.path}" target="_black" title="VER ARCHIVO ADJUNTO">
-													<img src="{$WEB_ROOT}/images/file.png" style="max-width: 40px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
-												</a>
-												{/if}
+										
+											<div>{$reply.content}</div>
+											{if $reply.formato eq "imagen"}
+												<hr>
+													<img src="{$WEB_ROOT}/forofiles/{$item.path}" style="max-width: 200px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
 											{/if}
-										</div>
+											
+											<br>
+											<hr>
+											<div>
+												{if $reply.existeArchivo eq "si"}
+													{if $reply.path}
+													
+													<a href="{$WEB_ROOT}/forofiles/{$reply.path}" target="_black" title="VER ARCHIVO ADJUNTO">
+														<img src="{$WEB_ROOT}/images/blue.jpg" style="max-width: 25px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
+													</a>
+													{/if}
+												{/if}
+											</div>
+										
 									</td>
 
 								</tr>
 								{/foreach}
 							</table>
+							</div>
 						</td>
 					</tr>
 					{/foreach}

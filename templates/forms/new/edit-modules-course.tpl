@@ -254,7 +254,7 @@
             <i class="fa fa-gift"></i>.:: Recursos de Apoyo ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=add-resource&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" class="btn green">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-resource&id={$myModule.courseModuleId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" class="btn green">
                 &raquo; Agregar Recurso de Apoyo
             </a>
         </div>

@@ -31,7 +31,7 @@
             </a>
 
             {if $subject.score > 0}
-                <a href="{$WEB_ROOT}/graybox.php?page=score-activity&id={$subject.activityId}" data-target="#ajax" data-toggle="modal">
+                <a href="{$WEB_ROOT}/graybox.php?page=score-activity&id={$subject.activityId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
                     <img src="{$WEB_ROOT}/images/icons/16/score.gif" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Calificar" />
                 </a>
             {/if}

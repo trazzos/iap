@@ -71,40 +71,10 @@
 							   $enlace="/score-activity/id/".$id;
 							   $actividad="Se ha calificado la Actividad ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";;
 									
-									
-								// echo $result;
-							// echo "<pre>"; print_r($_FILES);
-							// echo $arch =  "fileRetro_".$key;
-							
-							// exit;
-							$url = DOC_ROOT;
-							foreach($_FILES as $key=>$var)
-							{
-							   switch($key)
-							   {
-								   case $arch:
-								   if($var["name"]<>""){
-										$aux = explode(".",$var["name"]);
-										$extencion=end($aux);
-										$temporal = $var['tmp_name'];
-										$foto_name="doc_".$result.".".$extencion;		
-										if(move_uploaded_file($temporal,$url."/file_retro/".$foto_name)){		
-													
-											$sql = 'UPDATE 		
-											activity_score SET 		
-											rutaArchivoRetro = "'.$foto_name.'"			      		
-											WHERE activityScoreId = '.$result.'';		
-												
-										$this->Util()->DB()->setQuery($sql);		
-										$this->Util()->DB()->UpdateData();
 
-									   }
-										
-								   }
-							   }
-							}
-												
-							//
+							
+							
+
 						}
 						else
 						{
@@ -114,22 +84,58 @@
 									`retro` = '".$retros[$key]."'
 								WHERE
 									`userId` = '".$key."' AND activityId = '".$id."' LIMIT 1");
-							$result = $this->Util()->DB()->UpdateData();					
+							$this->Util()->DB()->UpdateData();	
+
+							$this->Util()->DB()->setQuery("
+							SELECT activityScoreId
+							FROM activity_score
+							WHERE activityId = '".$id."' AND userId = '".$key."'");
+							$result = $this->Util()->DB()->GetSingle();
+
+							// echo $result;
+							// exit;
+							$hecho=$_SESSION['User']['userId']."p";				       
+							$vista="1p,".$hecho.",".$key."u";
+							$tablas="activity_score";
+							$enlace="/score-activity/id/".$id;
+
+							if($activityAnt['ponderation']==number_format($score,2,'.','') &&  $activityAnt['retro']==$retros[$key])
+							$actividad="NO";                       
+							else					   
+							$actividad="Se ha modificado calificación en ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";
+
+
+							// print_r($enlace); exit;
+							//print_r($actividad); exit;			   
+						}
 						
-						
-                       $hecho=$_SESSION['User']['userId']."p";				       
-					   $vista="1p,".$hecho.",".$key."u";
-				       $tablas="activity_score";
-                       $enlace="/score-activity/id/".$id;
-					   
-                       if($activityAnt['ponderation']==number_format($score,2,'.','') &&  $activityAnt['retro']==$retros[$key])
-                       $actividad="NO";                       
-					   else					   
-						 $actividad="Se ha modificado calificación en ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";
-			          
-					   
-					   // print_r($enlace); exit;
-						//print_r($actividad); exit;			   
+						$arch =  "fileRetro_".$key;
+						$url = DOC_ROOT;
+						foreach($_FILES as $key=>$var)
+						{
+						   switch($key)
+						   {
+							   case $arch:
+							   if($var["name"]<>""){
+									$aux = explode(".",$var["name"]);
+									$extencion=end($aux);
+									$temporal = $var['tmp_name'];
+									$foto_name="doc_".$result.".".$extencion;	
+									 $url."/file_retro/".$foto_name;
+									if(move_uploaded_file($temporal,$url."/file_retro/".$foto_name)){		
+												
+										$sql = 'UPDATE 		
+										activity_score SET 		
+										rutaArchivoRetro = "'.$foto_name.'"			      		
+										WHERE activityScoreId = '.$result.'';		
+											
+									$this->Util()->DB()->setQuery($sql);		
+									$this->Util()->DB()->UpdateData();
+
+								   }
+									
+							   }
+						   }
 						}
 						
 						//crear notificacion de actualizacion de calificaciones
@@ -223,6 +229,12 @@
 							FROM activity_score
 							WHERE activityId = '".$id."' AND userId = '".$res["alumnoId"]."'");
 						$result[$key]["retro"] = $this->Util()->DB()->GetSingle();
+						
+						$this->Util()->DB()->setQuery("
+							SELECT rutaArchivoRetro
+							FROM activity_score
+							WHERE activityId = '".$id."' AND userId = '".$res["alumnoId"]."'");
+						$result[$key]["fileRetro"] = $this->Util()->DB()->GetSingle();
 
 						$this->Util()->DB()->setQuery("
 							SELECT *
