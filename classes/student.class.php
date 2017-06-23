@@ -1690,7 +1690,11 @@ class Student extends User
 		$this->Util()->DB()->setQuery($sql);
 		$infoDu = $this->Util()->DB()->GetRow();
 		//admin docente
-		$sendmail->PrepareAttachment("Dudas para el Docente", "reply", "2","2", $infoDu["correo"], $infoDu["names"], $attachment, $fileName);
+		
+		// echo "<pre>"; print_r($infoDu);
+		// exit;
+		$sendmail->PrepareAttachment("Dudas para el Docente", "reply", "","", $infoDu["email"], $infoDu["names"], $attachment, $fileName);
+		// $sendmail->PrepareAttachment("Dudas para el Docente", "reply", "s","s", "juanjosepm@live.com","juanjosepm@live.com", $attachment, $fileName);
 		
 		return true;
 
