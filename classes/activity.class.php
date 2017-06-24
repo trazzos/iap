@@ -339,10 +339,13 @@
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y obtenemos el resultado
 			$result = $this->Util()->DB()->GetRow();
+			
+			
+			$f = explode(" ",$result["finalDate"]);
 
 			$result["initialDate"] = $this->Util()->FormatDateBack($result["initialDate"]);
 			$result["finalDateNoFormat"] = $result["finalDate"];
-			$result["finalDate"] = $this->Util()->FormatDateBack($result["finalDate"]);
+			$result["finalDate"] = $this->Util()->FormatDateBack($f[0]);
 			if($result)
 				$result = $this->Util->EncodeRow($result);
 

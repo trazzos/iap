@@ -26,7 +26,7 @@
         <td align="center">
             <img src="{$WEB_ROOT}/images/icons/16/delete.png" class="spanDelete" data-id="{$subject.activityId}" id="d-{$subject.activityId}" name="d-{$subject.name}" title="Eliminar" />&nbsp;
 
-            <a href="{$WEB_ROOT}/graybox.php?page=edit-activity&id={$subject.activityId}" data-target="#ajax" data-toggle="modal">
+            <a href="{$WEB_ROOT}/graybox.php?page=edit-activity&id={$subject.activityId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
                 <img src="{$WEB_ROOT}/images/icons/16/pencil.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Editar" />
             </a>
 

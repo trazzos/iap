@@ -741,7 +741,7 @@ class Student extends User
 				$this->setWorkplaceAddress($info['workplaceAddress']);
 				$this->setWorkplaceArea($info['workplaceArea']);
 				$this->setWorkplacePosition($info['workplacePosition']);
-				$this->setWorkplaceCity($info['workplaceCity']);
+				$this->setWorkplaceCity($info['ciudadt']);
 				$this->setWorkplacePhone($info['workplacePhone']);
 				$this->setWorkplaceEmail($info['workplaceEmail']);
 				
@@ -1086,9 +1086,23 @@ class Student extends User
 		foreach($result2 as $key => $res){
 			$card = $res;
 			
-			$card["lastNameMaterno"] = $this->Util->DecodeTiny($card["lastNameMaterno"]);
-			$card["lastNamePaterno"] = $this->Util->DecodeTiny($card["lastNamePaterno"]);
-			$card["names"] = $this->Util->DecodeTiny($card["names"]);
+			 $sql = "
+				SELECT 
+					courseId 
+				FROM 
+					user_subject
+				WHERE 
+					alumnoId = ".$res["userId"]."";
+
+		$this->Util()->DB()->setQuery($sql);
+		$courseId = $this->Util()->DB()->GetSIngle();
+		
+		$card["courseId"] = $courseId;
+		// $result["courseId"] = "zxzf";
+			
+		$card["lastNameMaterno"] = $this->Util->DecodeTiny($card["lastNameMaterno"]);
+		$card["lastNamePaterno"] = $this->Util->DecodeTiny($card["lastNamePaterno"]);
+		$card["names"] = $this->Util->DecodeTiny($card["names"]);
 
 			
 			
@@ -1144,6 +1158,9 @@ class Student extends User
 		}
 		$arrPages['refreshPage'] = $pageLink . '/' . $pageVar . '/' . $currentPage ;
 
+		
+		// echo "<pre>"; print_r($result);
+		// exit;
 		return $result;
 	}
 	

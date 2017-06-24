@@ -258,7 +258,7 @@
 				//$student->setWorkplaceCity($_POST['workplaceCity']);
 				$student->setPaisT($_POST['paist']);
 				$student->setEstadoT($_POST['estadot']);
-				$student->setCiudadT($_POST['ciudadt']);
+				$student->setCiudadT($_POST['ciudadt']); 
 				
 				
 				$student->setWorkplacePhone($_POST['workplacePhone']);

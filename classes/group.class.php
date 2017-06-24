@@ -540,10 +540,14 @@ if($result[$key]["homework"]) { break; }
 		function MyTeam($userId, $courseModuleId)
 		{
 			$this->setCourseModuleId($courseModuleId);
-			$this->Util()->DB()->setQuery("
+			
+			 $sql = "
 				SELECT teamNumber FROM team
 				WHERE courseModuleId = '".$this->getCourseModuleId()."'
-					AND userId = '".$userId."'");
+					AND userId = '".$userId."'";
+					
+					// exit;
+			$this->Util()->DB()->setQuery($sql);
 			$teamNumber = $this->Util()->DB()->GetSingle();
 			
 			$this->setTeamNumber($teamNumber);
@@ -554,12 +558,15 @@ if($result[$key]["homework"]) { break; }
 
 		public function Team()
 		{
-			$this->Util()->DB()->setQuery("
+			
+			 $sql = "
 				SELECT *, team.userId AS userId FROM team
 				LEFT JOIN user ON team.userId = user.userId
 				WHERE courseModuleId = '".$this->getCourseModuleId()."'
 					AND teamNumber = '".$this->teamNumber."'
-				ORDER BY teamNumber ASC, lastNamePaterno ASC, lastNameMaterno ASC, names ASC");
+				ORDER BY teamNumber ASC, lastNamePaterno ASC, lastNameMaterno ASC, names ASC";
+				// exit;
+			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
 			foreach($result as $key => $res)
 			{
@@ -694,12 +701,12 @@ if($result[$key]["homework"]) { break; }
 			$details_body = array();
 			$details_subject = array();
 
-/*			foreach($mails as $mail)
+		foreach($mails as $mail)
 			{
 				$sendmail->Prepare($message[4]["subject"], $message[4]["body"], $details_body, $details_subject, $mail, $mail, $_FILES["file"]["tmp_name"], $_FILES["file"]["name"]); 						
 			}
 			
-*/
+
 			$student = new Student;
 			$student->setUserId($_SESSION["User"]["userId"]);
 			$info = $student->InfoUser();

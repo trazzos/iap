@@ -4,8 +4,11 @@
             <i class="fa fa-gift"></i>.:: Datos del M&oacute;dulo ::.
         </div>
         <div class="actions">
-            <a  class="btn green" href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
-                Vista previa del M&oacute;dulo
+            <!--<a  class="btn green" href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">-->
+               <a class="btn green" href="{$WEB_ROOT}/graybox.php?page=view-modules-student&id={$myModule.courseModuleId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
+
+
+			 Vista previa del M&oacute;dulo
             </a>
         </div>
     </div>
@@ -213,7 +216,7 @@
             <i class="fa fa-gift"></i>.:: Grupo ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=config-teams&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal"  class="btn green">
+            <a href="{$WEB_ROOT}/graybox.php?page=config-teams&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn green">
                 &raquo; Configurar Equipos
             </a>
         </div>
@@ -229,7 +232,7 @@
             <i class="fa fa-gift"></i>.:: Actividades ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=add-activity&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" class="btn green">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-activity&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal" class="btn green">
                 &raquo; Agregar actividad
             </a>
         </div>

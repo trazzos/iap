@@ -5,6 +5,8 @@
 <!-- /TinyMCE -->
 
 <form class="form-horizontal" id="addMajorForm" name="addMajorForm" method="post" action="{$WEB_ROOT}/add-activity/id/{$id}">
+    <input type="hidden" id="auxTpl" name="auxTpl" value="{$auxTpl}"/>
+    <input type="hidden" id="id" name="id" value="{$id}"/>
     <input type="hidden" id="type" name="type" value="saveAddMajor"/>
     <div class="form-body">
         <div class="form-group">

@@ -5,7 +5,10 @@
 <!-- /TinyMCE -->
 
 <form class="form-horizontal" id="addMajorForm" name="addMajorForm" method="post" action="{$WEB_ROOT}/edit-activity/id/{$id}">
+  <input type="hidden" id="auxTpl" name="auxTpl" value="{$auxTpl}"/>
+    <input type="hidden" id="cId" name="cId" value="{$cId}"/>
     <input type="hidden" id="type" name="type" value="saveAddMajor"/>
+	
     <div class="form-body">
         <div class="form-group">
             <label class="col-md-3 control-label">Tipo de Actividad:</label>
