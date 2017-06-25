@@ -5,6 +5,7 @@
 <form class="form-horizontal" id="addNoticia" name="addNoticia" method="post" action="{$WEB_ROOT}/add-noticia/id/{$id}">
     <input type="hidden" id="type" name="type" value="addNoticia"/>
     <input type="hidden" id="type" name="type" value="saveAddMajor"/>
+    <input type="hidden" id="auxTpl" name="auxTpl" value="{$auxTpl}"/>
     <input type="hidden" id="courseModuleId" name="courseModuleId" value="{$id}"/>
 
     <div class="form-body">

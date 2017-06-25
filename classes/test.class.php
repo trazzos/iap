@@ -138,10 +138,13 @@
 
 		public function Access($maxTries)
 		{
-			$this->Util()->DB()->setQuery("
+			
+			 $sql = "
 				SELECT try FROM activity_score
 				WHERE activityId = '".$this->getActivityId()."'
-				AND userId = '".$this->getUserId()."'");
+				AND userId = '".$this->getUserId()."'";
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
 			$try = $this->Util()->DB()->GetSingle();
 			if($try < $maxTries)
 			{

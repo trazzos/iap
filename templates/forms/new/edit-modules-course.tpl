@@ -274,7 +274,7 @@
             <i class="fa fa-gift"></i>.:: Avisos ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=add-noticia&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal"  class="btn green">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-noticia&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn green">
                 &raquo; Agregar Aviso
             </a>
         </div>

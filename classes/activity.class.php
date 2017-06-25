@@ -212,10 +212,14 @@
 				$add = " AND activityType != 'Examen'";
 			}
 		
-			$this->Util()->DB()->setQuery("
+			 $sql = "
 				SELECT *,@rownum:=@rownum+1 AS rownum  FROM (SELECT @rownum:=0) r,activity
 				WHERE courseModuleId = '".$this->getCourseModuleId()."' ".$add."
-				ORDER BY initialDate ASC, activityId ASC");
+				ORDER BY initialDate ASC, activityId ASC";
+				
+				// exit;
+		
+			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
 			
 			$module = new Module;
@@ -240,7 +244,7 @@
 				          	$result[$key]["tipo"]="Examen";
 						  }
 				
-				
+				 
 				}
 				else{
 							$adds = " AND activityType != 'Examen'";
@@ -302,6 +306,9 @@
 				$result[$key]{"realScore"} = $realScore;
 				
 			}
+			
+			// echo "<pre>"; print_r($result);
+			// exit;
 			return $result;
 		}
 
@@ -450,7 +457,7 @@
 		
 		function GetMajorModality()
 		{
-			$sql = "SELECT 
+			 $sql = "SELECT 
 						course.modality FROM activity
 						LEFT JOIN course_module ON activity.courseModuleId = course_module.courseModuleId
 						LEFT JOIN course ON course.courseId = course_module.courseId

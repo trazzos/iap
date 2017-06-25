@@ -1,3 +1,14 @@
+<div class="portlet box red">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-bullhorm"></i>Editar Preguntas
+        </div>
+        <div class="actions">
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div id="tblContent">
+
 <!-- TinyMCE -->
 <script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
 <script type="text/javascript">
@@ -59,10 +70,14 @@
 
       <div style="float:left"><span class="reqField">*</span> Campo requerido</div>
       <div style="padding-right:60px">                 
-      <input type="submit" class="btn-70-l" id="addMajor" name="addMajor" value="." />                  
+      <input type="submit" class="btn-70-l" id="addMajor" name="addMajor" value="Editar" />                  
       </div>
       
     </div>
    </li>                              
  </ul>    
 </form>
+
+      </div>
+    </div>
+</div>

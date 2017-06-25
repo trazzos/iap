@@ -38,7 +38,7 @@
 
       <div style="float:left"><span class="reqField">*</span> Campo requerido</div>
       <div style="padding-right:60px">                 
-      <input type="submit" class="btn-70-l" id="addMajor" name="addMajor" value="." />
+      <input type="submit" class="btn-70-l" id="addMajor" name="addMajor" value="Guardar" />
       </div>
       
 			 <div class="content-settings-row-register" align="center">

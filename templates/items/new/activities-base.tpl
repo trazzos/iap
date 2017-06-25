@@ -15,8 +15,9 @@
         <td align="center">{$subject.resumen}</td>
         <td align="center">
             {if $subject.activityType == "Examen"}
+			 
                 {if $majorModality == "Online"}
-                    <a href="{$WEB_ROOT}/configuracion-examen/id/{$subject.activityId}" style="color:#000000">Configurar</a>
+                    <a href="{$WEB_ROOT}/configuracion-examen/id/{$subject.activityId}" style="background:#32c5d2; color:white">Configurar</a>
                 {else}
                     Aplicar Localmente
                 {/if}

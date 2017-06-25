@@ -9,6 +9,12 @@
 		$resource->setName($_POST["name"]);
 		$resource->setDescription($_POST["description"]);
 		$resource->Edit();
+		
+		if($_POST["auxTpl"] == "admin"){
+			
+			header("Location:".WEB_ROOT."/edit-modules-course/id/".$_POST["cId"]."");
+			exit;
+		}
 	}
 
 $smarty->assign('id', $_GET["id"]);
