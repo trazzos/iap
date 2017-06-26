@@ -762,6 +762,7 @@ public function TopicsubInfo()
 				// exit;
 				//admin docente
 				$sendmail->PrepareAttachment("Dudas para el Docente", $this->reply, "","", $infoDu["correo"], $infoDu["name"], $attachment, $fileName);
+				$sendmail->PrepareAttachment("Asesoria Academica",$this->reply, "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
 			}
 			
 			if($datTop["tipo"] == "asesoria"){
@@ -772,7 +773,6 @@ public function TopicsubInfo()
 				$this->Util()->DB()->setQuery($sql);
 				$infoDu = $this->Util()->DB()->GetRow();
 				$sendmail->PrepareAttachment("Asesoria Academica",$this->reply, "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
-				$sendmail->PrepareAttachment("Asesoria Academica",$this->reply, "", "", "juanjosepm@live.com", "Administrador", $attachment, $fileName);
 			}
 			
 			$this->Util()->setError(90000, 'complete', "Has respondido al Topico");
