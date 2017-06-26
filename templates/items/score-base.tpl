@@ -21,9 +21,11 @@
         </td>
 		<td>
 			<div id="divRetro_">
+				{if $item.fileRetro ne ""}
 				<a href="{$WEB_ROOT}/file_retro/{$item.fileRetro}" target="_blank">
 					<img src="{$WEB_ROOT}/images/file.png" style="width:40px">
 				</a>
+				{/if}
 				<input type="file" name="fileRetro_{$item.alumnoId}" id="fileRetro_{$item.alumnoId}" onChange="upFile({$item.alumnoId})">
 			</div>
 			
