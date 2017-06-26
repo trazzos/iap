@@ -26,7 +26,7 @@
                     <label class="col-md-3 control-label">Perteneciente al (a la) {$myModule.majorName}:</label>
                     <div class="col-md-8">
                         <b> {$myModule.subjectName}</b>
-                        {if !$docente}| <a href="{$WEB_ROOT}/history-subject" title="Ver Curricula" style="background:#cc212c; color:white" >Ver Curricula Activa</a>{/if}
+                        {if !$docente}| <a href="{$WEB_ROOT}/history-subject" title="Ver Curricula" style="background:#73b760; color:white" >Ver Curricula Activa</a>{/if}
                     </div>
                 </div>
 
@@ -34,9 +34,9 @@
                     <label class="col-md-3 control-label">Nombre del M&oacute;dulo::</label>
                     <div class="col-md-8">
                         <b>{$myModule.name}</b>
-                        || <a href="{$WEB_ROOT}/edit-module/id/{$myModule.subjectModuleId}/course/{$myModule.courseModuleId}" title="Editar Modulo" style="background:#cc212c; color:white" >Editar Detalle</a>
+                        || <a href="{$WEB_ROOT}/edit-module/id/{$myModule.subjectModuleId}/course/{$myModule.courseModuleId}" title="Editar Modulo" style="background:#73b760; color:white" >Editar Detalle</a>
                         {if !$docente}||
-                            <a href="{$WEB_ROOT}/graybox.php?page=view-modules-course&id={$myModule.courseId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" style="background:#cc212c; color:white" >Ver Otros Modulos></a>
+                            <a href="{$WEB_ROOT}/graybox.php?page=view-modules-course&id={$myModule.courseId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" style="background:#73b760; color:white" >Ver Otros Modulos></a>
                         {/if}
                     </div>
                 </div>

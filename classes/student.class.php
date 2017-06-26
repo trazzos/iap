@@ -1728,7 +1728,9 @@ class Student extends User
 		";
 		
 		$sendmail->PrepareAttachment("Recuperar Contraseña", utf8_decode($msj), "","", $infoDu["email"], $infoDu["names"], $attachment, $fileName);
-
+		
+		$this->Util()->setError(10030, "complete","Se ha enviado un correo con tus datos de acceso");
+		$this->Util()->PrintErrors();	
 		
 		return true;
 
