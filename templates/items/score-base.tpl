@@ -2,7 +2,7 @@
         <tr id="1">
         <td align="center">{$item.controlNumber}</td>
         <td align="left">{$item.lastNamePaterno} {$item.lastNameMaterno} {$item.names}</td>
-        <td align="center">
+        <td align="center" style="width:20px !important">
         {if $item.homework}
 		{assign var="entrega" value="1"}
         	<a href="{$WEB_ROOT}/download.php?file=homework/{$item.homework.path}">
@@ -10,7 +10,7 @@
         
 		{else}
 		      {assign var="entrega" value="0"}
-        	Sin Entregar
+        	Sin Entregardgdsfdfgdfgdfgdfgdfgdfg
         {/if}
         </td>
         <td align="center">

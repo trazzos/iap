@@ -615,8 +615,9 @@
 				//datos laborales
 				$student->setWorkplace($_POST['workplace']);
 				$student->setWorkplaceAddress($_POST['workplaceAddress']);
-				$student->setWorkplaceArea($_POST['workplaceArea']);
-				// $student->setWorkplacePosition($_POST['workplacePosition']);
+				$student->setWorkplaceArea($_POST['workplaceArea']); 
+				$student->setWorkplaceOcupation($_POST['workplaceOcupation']);
+				// $student->setWorkplacePosition($_POST['workplacePosition']); 
 			    $student->setPaisT($_POST['paist']);
 				$student->setEstadoT($_POST['estadot']);
 				$student->setCiudadT($_POST['ciudadt']);
@@ -629,7 +630,7 @@
 				$student->setProfesion($_POST['profesion']);
 				$student->setSchool($_POST['school']);
 				$student->setHighSchool($_POST['highSchool']);
-				$student->setMasters($_POST['masters']);
+				$student->setMasters($_POST['masters']); 
 				$student->setMastersSchool($_POST['mastersSchool']);
 								
 				if(!$student->UpdateAlumn())

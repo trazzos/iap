@@ -1,3 +1,4 @@
+<div  style="height:600px; overflow:scroll" class="showScroll lion">
 <form id="frmModal" method="post" action="{$WEB_ROOT}/score-activity/id/{$id}" enctype= "multipart/form-data">
 <input type="hidden" name="modality" id="modality" value="Individual" />
 <input type="hidden" name="auxTpl" id="auxTpl" value="{$auxTpl}" />
@@ -11,3 +12,4 @@
 </tbody>
 </table>
 </form>
+</div>

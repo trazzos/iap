@@ -190,7 +190,12 @@ class Student extends User
 	
 	public function GetInfo()
 	{ //print_r($this->userId);exit;
-		$this->Util()->DB()->setQuery("SELECT * FROM user WHERE userId = '".$this->userId."'");
+	
+			$sql = "
+		SELECT u.*,m.nombre as nombreciudad FROM user as u 
+		left join municipio as m on m.municipioId = u.ciudadt
+		WHERE userId = '".$this->userId."'";
+		$this->Util()->DB()->setQuery($sql);
 		
 		$row = $this->Util()->DB()->GetRow();
 		$row["names"] = $this->Util()->DecodeTiny($row["names"]);
@@ -703,8 +708,8 @@ class Student extends User
 			if($this->Util()->DB()->InsertData()){
 			   $complete = "Has registrado al alumno exitosamente, le hemos enviado un correo electronico para continuar con el proceso de inscripcion";}
             else  {$complete="no";}
-			if($this->getNames() == "")
-			{
+			// if($this->getNames() == "")
+			// {
 				$this->setUserId($id);
 				$info = $this->GetInfo();
 				
@@ -741,7 +746,7 @@ class Student extends User
 				$this->setWorkplaceAddress($info['workplaceAddress']);
 				$this->setWorkplaceArea($info['workplaceArea']);
 				$this->setWorkplacePosition($info['workplacePosition']);
-				$this->setWorkplaceCity($info['ciudadt']);
+				$this->setWorkplaceCity($info['nombreciudad']);
 				$this->setWorkplacePhone($info['workplacePhone']);
 				$this->setWorkplaceEmail($info['workplaceEmail']);
 				
@@ -753,7 +758,7 @@ class Student extends User
 				$this->setMastersSchool($info['mastersSchool']);
 				$this->setProfesion($info['profesion']);				
 				
-			}
+			// }
 			
 			//crear vencimientos
 			$this->AddInvoices($id, $curricula);
@@ -847,7 +852,7 @@ class Student extends User
 		}
 		
 		$sqlQuery = "UPDATE user				
-						SET 
+						SET  
 							names = '".$this->getNames()."', 
 							lastNamePaterno = '".$this->getLastNamePaterno()."', 
 							lastNameMaterno = '".$this->getLastNameMaterno()."', 
@@ -870,7 +875,7 @@ class Student extends User
 							workplaceAddress = '".$this->getWorkplaceAddress()."', 
 							workplaceArea = '".$this->getWorkplaceArea()."', 
 							workplaceOcupation = '".$this->getWorkplaceOcupation()."', 
-							workplacePosition = '".$this->getWorkplacePosition()."', 
+
 						    paist='".$this->getPaisT()."',
 							estadot='".$this->getEstadoT()."',
 							ciudadt='".$this->getCiudadT()."',
@@ -888,8 +893,77 @@ class Student extends User
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$this->Util()->DB()->ExecuteQuery();
 		
-		$this->Util()->setError(10030, "complete");
-		$this->Util()->PrintErrors();
+	
+		$this->setUserId($this->getUserId());
+		$info = $this->GetInfo();
+		
+		// echo "<pre>"; print_r($info);
+		// exit;
+		//datos personales
+		$this->setControlNumber();
+		$this->setNames($info['names']);
+		$this->setLastNamePaterno($info['lastNamePaterno']);
+		$this->setLastNameMaterno($info['lastNameMaterno']);
+		$this->setSexo($info['sexo']);
+		$info['birthdate'] = explode("-", $info['birthdate']);
+		$this->setBirthdate($info['birthdate'][2], $info['birthdate'][1], $info['birthdate'][0]);
+		$this->setMaritalStatus($info['maritalStatus']);
+		$this->setPassword(trim($info['password']));
+
+		//domicilio
+		//print_r($info);
+		$this->setStreet($info['street']);
+		$this->setNumber($info['number']);
+		$this->setColony($info['colony']);
+		$this->setCity($info['city']);
+		$this->setState($info['state']);
+		$this->setCountry($info['country']);
+		$this->setPostalCode($info['postalCode']);
+
+		//datos de contacto
+		$this->setEmail($info['email']);
+		$this->setPhone($info['phone']);
+		$this->setFax($info['fax']);
+		$this->setMobile($info['mobile']);
+
+		//datos laborales
+		$this->setWorkplace($info['workplace']);
+		$this->setWorkplaceOcupation($info['workplaceOcupation']);
+		$this->setWorkplaceAddress($info['workplaceAddress']);
+		$this->setWorkplaceArea($info['workplaceArea']);
+		$this->setWorkplacePosition($info['workplacePosition']);
+		$this->setWorkplaceCity($info['nombreciudad']);
+		$this->setWorkplacePhone($info['workplacePhone']);
+		$this->setWorkplaceEmail($info['workplaceEmail']);
+		
+		//Estudios
+		$this->setAcademicDegree($info['academicDegree']);
+		$this->setSchool($info['school']);
+		$this->setHighSchool($info['highSchool']);
+		$this->setMasters($info['masters']);
+		$this->setMastersSchool($info['mastersSchool']);
+		$this->setProfesion($info['profesion']);				
+		
+
+	
+	 $sql = "
+			SELECT 
+				* 
+			FROM 
+				user_subject
+			WHERE 
+				alumnoId = ".$this->getUserId()." ";
+		
+		$this->Util()->DB()->setQuery($sql);
+		$infoUS = $this->Util()->DB()->GetRow();
+
+
+	$files  = new Files;
+
+	$file = $files->CedulaInscripcion($this->getUserId(), $infoUS["courseId"], $this, $major, $course);
+		
+	$this->Util()->setError(10030, "complete");
+	$this->Util()->PrintErrors();
 		
 		return true;
 	}	
