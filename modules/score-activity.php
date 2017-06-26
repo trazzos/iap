@@ -25,14 +25,14 @@
 	 
 	 }
 
-	 echo "<pre>"; 
-	print_r($theGroup);
-	exit;
+	 
 	$activity->setActivityId($_GET["id"]);
 	$actividad = $activity->Info();
 	$smarty->assign('actividad', $actividad);
 	$smarty->assign('id', $_GET["id"]);
-
+echo "<pre>"; 
+	print_r($_POST);
+	exit;
 	$module->setCourseModuleId($actividad["courseModuleId"]);
 	$info = $module->InfoCourseModule();
 
