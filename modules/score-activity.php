@@ -37,8 +37,8 @@
 	$group->setCourseModuleId($actividad["courseModuleId"]);
 	$group->setCourseId($info["courseId"]);
 	$theGroup = $group->ScoreGroup($actividad["modality"], $actividad["activityType"], $_GET["id"]);
-	echo "<pre>"; 
-	print_r($theGroup);
+	// echo "<pre>"; 
+	// print_r($theGroup);
 	$smarty->assign('theGroup', $theGroup);
 
 
