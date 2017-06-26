@@ -758,8 +758,8 @@ public function TopicsubInfo()
 					WHERE topicId = ".$datSub['topicId']."";
 				$this->Util()->DB()->setQuery($sql);
 				$infoDu = $this->Util()->DB()->GetRow();
-				echo "<pre>"; print_r($infoDu );
-				exit;
+				// echo "<pre>"; print_r($infoDu );
+				// exit;
 				//admin docente
 				$sendmail->PrepareAttachment("Dudas para el Docente", $this->reply, "","", $infoDu["correo"], $infoDu["name"], $attachment, $fileName);
 			}
@@ -771,7 +771,8 @@ public function TopicsubInfo()
 					WHERE perfil = 'Administrador'";
 				$this->Util()->DB()->setQuery($sql);
 				$infoDu = $this->Util()->DB()->GetRow();
-				$sendmail->PrepareAttachment("Asesoria Academica",$this->reply, "", "", $infoDu["correo"], $infoDu["name"], $attachment, $fileName);
+				$sendmail->PrepareAttachment("Asesoria Academica",$this->reply, "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+				$sendmail->PrepareAttachment("Asesoria Academica",$this->reply, "", "", "juanjosepm@live.com", "Administrador", $attachment, $fileName);
 			}
 			
 			$this->Util()->setError(90000, 'complete', "Has respondido al Topico");
