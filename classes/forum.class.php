@@ -449,6 +449,7 @@ public function TopicsubInfo()
 				WHERE courseId = ".$this->courseId." 
 				ORDER BY topicDate DESC";
 			$this->Util()->DB()->setQuery($sql);
+			// exit;
 			$result = $this->Util()->DB()->GetResult();
 			
 			foreach($result as $key => $res)
@@ -757,6 +758,8 @@ public function TopicsubInfo()
 					WHERE topicId = ".$datSub['topicId']."";
 				$this->Util()->DB()->setQuery($sql);
 				$infoDu = $this->Util()->DB()->GetRow();
+				echo "<pre>"; print_r($infoDu );
+				exit;
 				//admin docente
 				$sendmail->PrepareAttachment("Dudas para el Docente", $this->reply, "","", $infoDu["correo"], $infoDu["name"], $attachment, $fileName);
 			}
