@@ -5,6 +5,9 @@
 
 	if($_POST)
 	{
+		
+		// echo "<pre>"; print_r($_FILES);
+		// exit;
 		$group->SendMailTeam();
 	}
 	

@@ -8,7 +8,7 @@
     <div class="portlet-body">
 
 
-<form class="form-horizontal" id="addPersonalForm" name="addPersonalForm" method="post">
+<form class="form-horizontal" id="addPersonalForm" name="addPersonalForm" method="post" enctype="multipart/form-data">
     <input type="hidden" id="type" name="type" value="saveAddPersonal"/>
     <input type="hidden" id="list_roles" name="list_roles" value="" />
 
