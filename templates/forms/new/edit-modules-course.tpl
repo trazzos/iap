@@ -4,9 +4,9 @@
             <i class="fa fa-gift"></i>.:: Datos del M&oacute;dulo ::.
         </div>
         <div class="actions">
-            <!--<a  class="btn green" href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">-->
-               <a class="btn green" href="{$WEB_ROOT}/graybox.php?page=view-modules-student&id={$myModule.courseModuleId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
-
+            <a  class="btn green" href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
+              <!-- <a class="btn green" href="{$WEB_ROOT}/graybox.php?page=view-modules-student&id={$myModule.courseModuleId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
+-->
 
 			 Vista previa del M&oacute;dulo
             </a>

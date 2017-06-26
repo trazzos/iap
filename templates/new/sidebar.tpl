@@ -40,6 +40,7 @@
 
         {if $User.positionId == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
         {if !$docente}
+        {if $vistaPrevia ne 1}
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-diamond"></i>
@@ -86,9 +87,10 @@
         </li>
         {/if}
         {/if}
+        {/if}
 
         {if $AccessMod[34] == 1 || $User.positionId == 1}
-
+		{if $vistaPrevia ne 1}
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-puzzle"></i>
@@ -109,9 +111,11 @@
             </ul>
         </li>
         {/if}
+        {/if}
 
         {if $AccessMod[11] == 1 || $User.positionId == 1 || $AccessMod[31] == 1 || $AccessMod[8] == 1}
             {if !$docente}
+			{if $vistaPrevia ne 1}
                 <li class="nav-item  ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-settings"></i>
@@ -131,6 +135,7 @@
                         </li>
                     </ul>
                 </li>
+			{/if}
             {else}
                 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/history-subject" class="nav-link nav-toggle">
@@ -144,7 +149,8 @@
 
 
         {if $User.positionId == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
-        <li class="nav-item  ">
+        {if $vistaPrevia ne 1}
+		<li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-video-camera"></i>
                 <span class="title">Videoconferencias</span>
@@ -163,6 +169,7 @@
                 </li>
             </ul>
         </li>
+        {/if}
         {/if}
 
         {if $User.positionId == 1 || $AccessMod[13] == 1 || $AccessMod[14] == 1  || $AccessMod[15] == 1 || $AccessMod[16] == 1}
