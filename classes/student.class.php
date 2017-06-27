@@ -1785,10 +1785,7 @@ class Student extends User
 		// echo "<pre>"; print_r($infoDu);
 		// exit;
 		$msj = "
-		 Instituto de Administracion Publica del Estado de Chiapas, A. C.
-		<br>
-		<br>
-		Se adjunta la Información Solicitada
+		 Instituto de Administración Publica del Estado de Chiapas, A. C.
 		<br>
 		<br>
 		Sus datos de acceso para nuestro Sistema de Educación en Línea son:<br>
@@ -1803,7 +1800,8 @@ class Student extends User
 		Correo: enlinea@iapchiapas.org.mx<br>
 		Saludos.<br>
 		IAP-Chiapas<br>
-		<img src=".WEB_ROOT."/images/logo_correo.jpg>
+		1<img src='".WEB_ROOT."/images/logo_correo.jpg'><br>
+		2<img src='".DOC_ROOT."/images/logo_correo.jpg'>
 		<br>
 		<br>
 		<br>
