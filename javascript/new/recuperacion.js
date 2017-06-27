@@ -28,10 +28,13 @@ function Recuperacion()
         url : WEB_ROOT+'/ajax/new/recuperacion.php',
         type: "POST",
         data : $('#emailrecuperacion').serialize(),
+		beforeSend: function(){		
+			$("#loader").html(LOADER3);
+		},
         success: function(data)
         {
             console.log(data);
-
+			$("#loader").html('');
             var splitResponse = data.split("[#]");
             if(splitResponse[0] == "fail")
             {
@@ -40,9 +43,10 @@ function Recuperacion()
             }
             else
             {
-                ShowStatus($(splitResponse[1]));
-                $('#tblContent').html(splitResponse[2]);
-                CloseFview();
+                // ShowStatus($(splitResponse[1]));
+                $('#divMsj').show();
+                $('#divMsj').html(splitResponse[1]);
+                // CloseFview();
 				setTimeout("recargarPage()",4000);
             }
 

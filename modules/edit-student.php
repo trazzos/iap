@@ -37,17 +37,30 @@ if($_FILES)
 	$result = $student->GetInfo();
 	$info = $util->EncodeRow($result);
 	
-	            $student->setCountry($info['pais']);
-				$student->setState($info['estado']);
+	//datos domiciio
+	$student->setCountry($info['pais']);
+	$student->setState($info['estado']);
+	$paises=$student->EnumeratePaises();					
+	$estados=$student->EnumerateEstados();
+	$ciudades=$student->EnumerateCiudades();	
+	
+	$smarty->assign('paises',$paises);				
+	$smarty->assign('estados',$estados);
+	$smarty->assign('ciudades',$ciudades);
+	
+	//datos trabajo
+	$student->setCountry($info['paist']);
+	$student->setState($info['estadot']);
+	$paisest=$student->EnumeratePaises();					
+	$estadost=$student->EnumerateEstados();
+	$ciudadest=$student->EnumerateCiudades();	
+				
+	// echo "<pre>"; print_r($paisest);		
+	// exit;	
+	$smarty->assign('paisest',$paisest);				
+	$smarty->assign('estadost',$estadost);
+	$smarty->assign('ciudadest',$ciudadest);	
 		        
-				$paises=$student->EnumeratePaises();	
-		        $smarty->assign('paises',$paises);
-				
-				$estados=$student->EnumerateEstados();	
-		        $smarty->assign('estados',$estados);
-				
-				$ciudades=$student->EnumerateCiudades();	
-		        $smarty->assign('ciudades',$ciudades);
 	
 	$resGroup = $group->Enumerate();
 	$groups = $util->EncodeResult($resGroup);

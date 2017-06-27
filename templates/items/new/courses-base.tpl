@@ -20,11 +20,19 @@
             {*} Flecha verde {*}
 			<br>
             {if ($docente == 1 AND $subject.courseModuleActive > 0) || !$docente}
-                <a href="{$WEB_ROOT}/graybox.php?page=view-modules-course&id={$subject.courseId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" style="color:#000" ><img src="{$WEB_ROOT}/images/pres.jpg" style="width:16px" title="Ver Modulos del Curso" /></a>
+                <a href="{$WEB_ROOT}/graybox.php?page=view-modules-course&id={$subject.courseId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
+				<img src="{$WEB_ROOT}/images/icons/16/applications-blue.png" style="width:16px" title="Ver Modulos del Curso" />
+
+				</a>
             {/if}
 
             {if !$docente}
-                <a href="{$WEB_ROOT}/graybox.php?page=add-modules-course&id={$subject.courseId}" title="Agregar Modulo a Curso" data-target="#ajax" data-toggle="modal" style="color:#000" ><img src="{$WEB_ROOT}/images/add_small.png " style="width:16px" title="Agregar Modulo a Curso" /></a>
+                <a href="{$WEB_ROOT}/graybox.php?page=add-modules-course&id={$subject.courseId}" title="Agregar Modulo a Curso" data-target="#ajax" data-toggle="modal" style="color:#000" >
+				<!--<img src="{$WEB_ROOT}/images/add_small.png " style="width:16px" title="Agregar Modulo a Curso" />-->
+				<i class="fa fa-plus-circle" aria-hidden="true" ></i>
+
+
+				</a>
             {/if} 
         </td>
         <td align="center">
@@ -44,36 +52,44 @@
         {if !$docente}
             <td align="center">
 				
-				
+				<!--
 				<a href="javascript:void(0)" onClick="verAcciones({$subject.courseId})" title="VER ACCIONES">
 					Ver Acciones
-				</a>
+				</a>-->
 				
-				<div id="divAccion_{$subject.courseId}" style="display:none">
+				<div id="divAccion_{$subject.courseId}" >
 					{*TODO este boton no funciona de cualquier manera asi que lo quite por lo pronto
 					<img src="{$WEB_ROOT}/images/icons/16/delete.png" class="spanDelete" data-id="{$subject.courseId}" id="d-{$subject.courseId}" name="d-{$subject.name}" title="Eliminar" />&nbsp;
 					*}
 
-					{if $subject.majorName=="ESPECIALIDAD" || $subject.majorName=="MAESTRIA"}
-						<img src="{$WEB_ROOT}/images/engrane.png" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="Generar Matriculas"  style="width:16px" />&nbsp;
+					{if $subject.majorName=="ESPECIALIDAD" || $subject.majorName=="MAESTRIA"}<!--
+						<img src="{$WEB_ROOT}/images/engrane.png" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="Generar Matriculas"  style="width:16px" />-->
+						<i class="fa fa-cog" aria-hidden="true" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="Generar Matriculas"></i>
+						&nbsp;
 					{/if}
 
-					<a href="{$WEB_ROOT}/graybox.php?page=edit-course&id={$subject.courseId}" data-target="#ajax" data-toggle="modal">
-						<img src="{$WEB_ROOT}/images/pencil.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Editar" style="width:16px" />
+					<a href="{$WEB_ROOT}/graybox.php?page=edit-course&id={$subject.courseId}" data-target="#ajax" data-toggle="modal"><!--
+						<img src="{$WEB_ROOT}/images/pencil.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Editar" style="width:16px" />-->
+						<i class="fa fa-pencil" aria-hidden="true"></i>
 					</a>
 
 					{*TODO creo que seria mejor abrir un modal ancho*}
 					{*TODO falta la parte de generar certificado*}
-					<a href="{$WEB_ROOT}/graybox.php?page=ver-sabana-course&id={$subject.courseId}" data-target="#ajax" data-toggle="modal">
-						<img src="{$WEB_ROOT}/images/cal.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Sabana de Calificaciones" style="width:16px"  />
+					<a href="{$WEB_ROOT}/graybox.php?page=ver-sabana-course&id={$subject.courseId}" data-target="#ajax" data-toggle="modal" title="Sabana de Calificaciones">
+						<!--<img src="{$WEB_ROOT}/images/cal.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}"  style="width:16px"  />
+						--><i class="fa fa-clone" aria-hidden="true"></i>
 					</a>
 
 					<a href="{$WEB_ROOT}/diplomas.php?id={$subject.courseId}" target="_blank" >
-						<img src="{$WEB_ROOT}/images/cer.jpg" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Impresion de Diplomas"  style="width:16px" />
+						<i class="fa fa-certificate" aria-hidden="true"></i>
+						<!--<img src="{$WEB_ROOT}/images/cer.jpg" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Impresion de Diplomas"  style="width:16px" />
+						-->
 					</a>
 
 					<a href="{$WEB_ROOT}/reporte.php?id={$subject.courseId}" target="_blank" >
-						<img src="{$WEB_ROOT}/images/graf.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Reporte General" style="width:16px"  />
+						<i class="fa fa-line-chart" aria-hidden="true"></i>
+						<!--<img src="{$WEB_ROOT}/images/graf.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Reporte General" style="width:16px"  />
+						-->
 					</a>
 				</div>
 				

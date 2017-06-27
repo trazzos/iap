@@ -302,6 +302,8 @@
 				$result[$key]["ponderation"] = $this->Score();
 				$result[$key]["retro"] = $this->Retro();
 				
+				$result[$key]["retroFile"] = $this->RetroFile();
+				
 				$realScore = $result[$key]["ponderation"] * $result[$key]["score"] / 100;
 				$result[$key]{"realScore"} = $realScore;
 				
@@ -321,6 +323,18 @@
 			
 			return $result;
 		}
+		
+		
+		function RetroFile()
+		{
+			$this->Util()->DB()->setQuery("
+				SELECT rutaArchivoRetro FROM activity_score
+				WHERE activityId = '".$this->getActivityId()."' AND userId = '".$this->getUserId()."'");
+			$result = $this->Util()->DB()->GetSingle();
+			
+			return $result;
+		}
+		
 		
 		function Score()
 		{

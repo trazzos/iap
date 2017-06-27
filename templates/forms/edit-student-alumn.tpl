@@ -272,7 +272,7 @@
                 <div class="col-md-8">
                     <select id="paist" name="paist" style="width:300px" onChange="estado_dependenciat();" class="form-control">
                         <option value="0">Selecciona Tu Pa&iacute;s</option>
-                        {foreach from=$paises item=pais}
+                        {foreach from=$paisest item=pais}
                             {if $pais.paisId == $info.paist}
                                 <option selected="selected" value="{$pais.paisId}">{$pais.nombre} </option>
                             {else}
@@ -289,7 +289,7 @@
                     <div id="Statepositiont">
                         <select id="estadot" name="estadot" style="width:300px" onChange="ciudad_dependenciat();" class="form-control" >
                             <option value="0">Selecciona Tu Estado</option>
-                            {foreach from=$estados item=estado}
+                            {foreach from=$estadost item=estado}
                                 {if $estado.estadoId == $info.estadot}
                                     <option selected="selected" value="{$estado.estadoId}">{$estado.nombre} </option>
                                 {else}
@@ -307,7 +307,7 @@
                     <div id="Citypositiont">
                         <select id="ciudadt" name="ciudadt" style="width:300px" class="form-control" >
                             <option value="0">Selecciona Tu ciudad</option>
-                            {foreach from=$ciudades item=ciudad}
+                            {foreach from=$ciudadest item=ciudad}
                                 {if $ciudad.municipioId == $info.ciudadt}
                                     <option selected="selected" value="{$ciudad.municipioId}">{$ciudad.nombre} </option>
                                 {else}

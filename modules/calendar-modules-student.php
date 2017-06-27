@@ -19,6 +19,9 @@
 	$actividades = $activity->Enumerate("Tarea");
 	$smarty->assign('actividades', $actividades);
 	
+	// echo "<pre>"; print_r($actividades);
+ 	// exit;
+	
 	$realScore = 0;
 	
 	foreach($actividades as $res)

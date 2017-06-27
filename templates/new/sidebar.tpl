@@ -173,33 +173,36 @@
         {/if}
 
         {if $User.positionId == 1 || $AccessMod[13] == 1 || $AccessMod[14] == 1  || $AccessMod[15] == 1 || $AccessMod[16] == 1}
-
-        <li class="nav-item  ">
-            <a href="{$WEB_ROOT}/reporte-general" class="nav-link">
-                <i class="icon-briefcase"></i>
-                <span class="title">Reportes</span>
-                <span class="arrow"></span>
-            </a>
-        </li>
-        <li class="nav-item  ">
-            <a href="{$WEB_ROOT}/institution" class="nav-link ">
-                <i class="icon-wallet"></i>
-                <span class="title">Configuración</span>
-                <span class="arrow"></span>
-            </a>
-        </li>
+			 {if $vistaPrevia ne 1}
+			<li class="nav-item  ">
+				<a href="{$WEB_ROOT}/reporte-general" class="nav-link">
+					<i class="icon-briefcase"></i>
+					<span class="title">Reportes</span>
+					<span class="arrow"></span>
+				</a>
+			</li>
+			<li class="nav-item  ">
+				<a href="{$WEB_ROOT}/institution" class="nav-link ">
+					<i class="icon-wallet"></i>
+					<span class="title">Configuración</span>
+					<span class="arrow"></span>
+				</a>
+			</li>
+			{/if}
         {/if}
 		
 		
 
         {if $mnuMain == "modulo1" || $mnuMain == "modulo"}
 		
-		<li class="nav-item {if $page == "forum-modules-student"} active {/if} ">
-                <a href="{$WEB_ROOT}/forum-modules-student/id/{$id}" class="nav-link nav-toggle">
-                    <i class="fa fa-comments"></i>
-                    <span class="title">Foro</span>
+		<li class="nav-item {if $page == "view-modules-student"} active {/if} ">
+                <a href="{$WEB_ROOT}/view-modules-student/id/{$id}" class="nav-link nav-toggle">
+                    <i class="fa fa-bullhorn"></i>
+                    <span class="title">Anuncios</span>
                 </a>
             </li>
+		
+		
 			
             
             <li class="nav-item {if $page == "information-modules-student"} active {/if} ">
@@ -257,7 +260,12 @@
                 </a>
             </li>
 
-            
+            <li class="nav-item {if $page == "forum-modules-student"} active {/if} ">
+                <a href="{$WEB_ROOT}/forum-modules-student/id/{$id}" class="nav-link nav-toggle">
+                    <i class="fa fa-comments"></i>
+                    <span class="title">Foro</span>
+                </a>
+            </li>
 
             <li class="nav-item {if $page == "team-modules-student"} active {/if} ">
                 <a href="{$WEB_ROOT}/team-modules-student/id/{$id}" class="nav-link nav-toggle">
@@ -273,12 +281,7 @@
                 </a>
             </li>
 			
-			<li class="nav-item {if $page == "view-modules-student"} active {/if} ">
-                <a href="{$WEB_ROOT}/view-modules-student/id/{$id}" class="nav-link nav-toggle">
-                    <i class="fa fa-bullhorn"></i>
-                    <span class="title">Anuncios</span>
-                </a>
-            </li>
+			
 
 
         {/if}

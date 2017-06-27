@@ -1785,23 +1785,32 @@ class Student extends User
 		// echo "<pre>"; print_r($infoDu);
 		// exit;
 		$msj = "
-		Instituto de Administración Pública del Estado de Chiapas,
+		 Instituto de Administracion Publica del Estado de Chiapas, A. C.
 		<br>
 		<br>
 		Se adjunta la Información Solicitada
 		<br>
 		<br>
-		<b>Password</b> : ".$infoDu["password"]."
+		Sus datos de acceso para nuestro Sistema de Educación en Línea son:<br>
+		Usuario: ".$infoDu["email"]."<br>
+		Contraseña: ".$infoDu["password"]."<br>
 		<br>
 		<br>
-		Saludos.
+		Para una correcta navegación en nuestro Sistema, puede consultar el manual del alumno en:<br>
+		http://www.iapchiapasenlinea.mx/manual_alumno.pdf<br>
+		Cualquier duda, favor de contactarnos:<br>
+		Teléfonos: (961) 125-15-08, 125-15-09, 125-15-10 Ext. 106 o 114<br>
+		Correo: enlinea@iapchiapas.org.mx<br>
+		Saludos.<br>
+		IAP-Chiapas<br>
+		<img src=".WEB_ROOT."/images/logo_correo.jpg>
 		<br>
 		<br>
 		<br>
 		
 		";
 		
-		$sendmail->PrepareAttachment("Recuperar Contraseña", utf8_decode($msj), "","", $infoDu["email"], $infoDu["names"], $attachment, $fileName);
+		$sendmail->PrepareAttachment("IAP Chiapas | Recuperacion de datos de usuario", utf8_decode($msj), "","", $infoDu["email"], $infoDu["names"], $attachment, $fileName);
 		
 		$this->Util()->setError(10030, "complete","Se ha enviado un correo con tus datos de acceso");
 		$this->Util()->PrintErrors();	

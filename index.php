@@ -207,6 +207,9 @@ error_reporting($showErrors);
 if($includedTpl == 'login'){
 	$smarty->display(DOC_ROOT.'/templates/login_new.tpl');
 }
+else if($includedTpl == 'recuperacion'){
+	$smarty->display(DOC_ROOT.'/templates/recuperacion.tpl');
+}
 else
 {
 	$smarty->display(DOC_ROOT.'/templates/index_new.tpl');
