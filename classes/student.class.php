@@ -1800,8 +1800,8 @@ class Student extends User
 		Correo: enlinea@iapchiapas.org.mx<br>
 		Saludos.<br>
 		IAP-Chiapas<br>
-		1<img src='".WEB_ROOT."/images/logo_correo.jpg'><br>
-		2<img src='".DOC_ROOT."/images/logo_correo.jpg'>
+		<img src='".WEB_ROOT."/images/logo_correo.jpg'>
+
 		<br>
 		<br>
 		<br>
