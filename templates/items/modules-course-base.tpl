@@ -1,13 +1,13 @@
 {foreach from=$subjects item=subject}
     <tr>
-        <td align="center" class="id">{$subject.courseModuleId}</td>
-        <td align="center">{$subject.clave}</td>
+       <!-- <td align="center" class="id">{$subject.courseModuleId}</td>-->
+       <!-- <td align="center">{$subject.clave}</td>-->
         <td align="center">{$subject.semesterId}</td>
         <td align="left">{$subject.name}</td>
         <td align="left">{$subject.initialDate|date_format:"%d-%m-%Y"}</td>
         <td align="left">{$subject.finalDate|date_format:"%d-%m-%Y"}</td>
-        <td align="left">{$subject.daysToFinish}</td>
-        <td align="left">{$subject.active}</td>
+          <!-- <td align="left">{$subject.daysToFinish}</td>
+     <td align="left">{$subject.active}</td>-->
         {if $User.type == "student"}
 			    <td>{$subject.totalScore} <br/>
 				<a href="javascript:void(0)" onclick="CalificacionesAct({$subject.courseModuleId});"> Actividades</a>

@@ -220,7 +220,7 @@
 				break;
 		case "saveAddStudentRegister":
 				
-				//print_r($_POST); 
+				
 				
 				$status = $_POST['status'];
 				

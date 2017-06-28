@@ -57,12 +57,14 @@ License: You must have a valid license purchased only from themeforest(the above
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
-<div class="content" style="height:300px">
+<div class="content" style="height:450px">
     <!-- BEGIN LOGIN FORM -->
     <form class="" method="post" id="emailrecuperacion">
         <input type="hidden" name="type" value="recupera" />
 
-        <h3 class="form-title">Ingresa a tu cuenta</h3>
+        <h3 class="form-title">Recuperación de Datos de Acceso</h3>
+
+       <p style="text-align:justify"><font color="white">Ingresa el correo electrónico con el que te diste de alta en nuestro Sistema de Educación en Línea, , por ese medio te enviaremos tus datos de acceso</font></p>
         <div class="alert alert-danger display-hide">
             <button class="close" data-close="alert"></button>
             <span> Tu usuario o contraseña son incorrectas. Favor de verificarlas. </span>
@@ -72,7 +74,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <label class="control-label visible-ie8 visible-ie9">Usuario</label>
             <div class="input-icon">
                 <i class="fa fa-user"></i>
-                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Usuario" name="email" id="email" /> </div>
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Correo" name="email" id="email" /> </div>
         </div>
 
         <div class="form-actions">

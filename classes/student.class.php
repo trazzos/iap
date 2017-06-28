@@ -306,6 +306,8 @@ class Student extends User
 			return false; 
 		}
 		
+		
+		
 		//Verificando que no se duplique el correo electronico
 		$this->Util()->DB()->setQuery("
 							SELECT 
@@ -402,7 +404,7 @@ class Student extends User
 							'".$this->getWorkplaceAddress()."', 
 							'".$this->getWorkplaceArea()."', 
 							'".$this->getWorkplacePosition()."', 
-							'".$this->getWorkplaceCity()."', 
+							'".$this->getCiudadT()."', 
 							'".$this->getPaisT()."', 
 							'".$this->getEstadoT()."', 
 							'".$this->getCiudadT()."',
@@ -494,6 +496,9 @@ class Student extends User
 		   }
 	}
 	
+	// echo "fail[#]";
+				// print_r($_POST); 
+				// exit;
 //print_r($_POST); EXIT;
 	
 	/*    */
@@ -729,9 +734,9 @@ class Student extends User
 				$this->setStreet($info['street']);
 				$this->setNumber($info['number']);
 				$this->setColony($info['colony']);
-				$this->setCity($info['city']);
-				$this->setState($info['state']);
-				$this->setCountry($info['country']);
+				$this->setCity($info['ciudad']);
+				$this->setState($info['estado']);
+				$this->setCountry($info['pais']);
 				$this->setPostalCode($info['postalCode']);
 
 				//datos de contacto
@@ -1789,7 +1794,7 @@ class Student extends User
 		<br>
 		<br>
 		Sus datos de acceso para nuestro Sistema de Educación en Línea son:<br>
-		Usuario: ".$infoDu["email"]."<br>
+		Usuario: ".$infoDu["controlNumber"]."<br>
 		Contraseña: ".$infoDu["password"]."<br>
 		<br>
 		<br>

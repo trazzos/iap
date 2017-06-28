@@ -200,6 +200,7 @@ $smarty->assign("vistaPrevia",0);
 
 $smarty->assign('lang', $lang);
 $smarty->assign('timestamp', time());
+$smarty->assign('rand', rand());
 
 ini_set("display_errors", "ON"); 
 $showErrors = "E_ALL";

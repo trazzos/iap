@@ -8,14 +8,36 @@
     </div>
     <div class="portlet-body">
         <div class="form-group">
-            <label class="col-md-3 control-label"></label>
-			<img src="{$WEB_ROOT}/alumnos/{$info.userId}.jpg?{$rand}" width="110" height="110">
-            <form name="{$item.userId}" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="userId" id="userId" value="{$info.userId}" />
-                <input type="hidden" name="permiso" id="permiso" value="1" />
-                <input type="file" name="foto" id="foto" style="float:left; width:240px" />
-                <input type="submit" value="Aceptar" style="width:100px; float:left" />
-            </form>
+			<table>
+			<tr>
+			<td>
+				<label class="col-md-3 control-label"></label>
+				{if $exFoto eq "si"}
+				<img src="{$WEB_ROOT}/alumnos/{$info.userId}.jpg?{$rand}" width="110" height="110">
+				{else}
+				<img src="{$WEB_ROOT}/alumnos/no_foto.JPG?{$rand}" width="110" height="110">
+				{/if}
+			</td>
+			<td>
+				<form name="{$item.userId}" id="frmImg" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="userId" id="userId" value="{$info.userId}" />
+					<input type="hidden" name="permiso" id="permiso" value="1" />
+					<input type="file" name="foto" id="foto" style="float:left; width:240px" />
+					<br>
+					<br>
+					
+				</form>
+				 <button type="submit" class="btn green submitForm" onClick="updateFoto()">Guardar</button>
+            </td>
+			</tr>
+			</table>
+			{if $msjConfirma eq "si"}
+
+			<div class="alert alert-success alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			 La Foto de perfil se actualizo correctamente
+			</div>
+			{/if}
         </div>
     </div>
 </div>
@@ -417,7 +439,12 @@
  <div class="form-actions">
         <div class="row">
             <div class="col-md-offset-3 col-md-9">
-                <button type="button" class="btn default" data-dismiss="modal">Salir</button>
+				{if $alumnoSer eq "si"}
+				<button type="button" onclick=" location.href='{$WEB_ROOT}/index' " class="btn default" data-dismiss="modal">Regresar</button>
+				{else}
+				<button type="button" class="btn default" data-dismiss="modal">Salir</button>
+				{/if}
+                
                 <button type="submit" class="btn green submitForm" onClick="saveEditStudentAlumn()">Guardar</button>
             </div>
         </div>
