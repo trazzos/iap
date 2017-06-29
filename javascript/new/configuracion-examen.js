@@ -15,8 +15,9 @@ function EditTest(){
 			  // $("#td_"+id).toggle();
 			  $("#msj").html('');
 			 var splitResponse = response.split("[#]");
-			  alert("aqui")
+			  
 			  alert(splitResponse[0])
+			  alert("aqui")
 			 if(splitResponse[0]=="ok"){
 				 alert("llega")
 				 $("#tblContent2").html(splitResponse[1]);
