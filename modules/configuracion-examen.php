@@ -23,6 +23,7 @@
 	
 		
 	
+	$smarty->assign('activityId', $_GET["id"]);
 	$smarty->assign('mnuMain', "cursos");
 
 ?>

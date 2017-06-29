@@ -4,7 +4,12 @@ function verComentario(Id)
 }
 
 
-
+function closeModal(){
+	
+	$("#ajax").hide();
+	$("#ajax").modal("hide");
+	
+}
 
 
 function updateForo(id,activo){

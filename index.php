@@ -157,7 +157,8 @@ $pages = array(
 	//reportes
 	'reporte-general',
 	'reporte-alumno-modulo',
-	'edit-student'
+	'edit-student',
+
 	
 );
 

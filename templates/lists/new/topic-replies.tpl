@@ -18,6 +18,7 @@
 	<div class="portlet-body">
 	
 
+
 				<table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 					<tr>
 					<td></td>
@@ -60,29 +61,33 @@
 							
 							{if $item.formato eq "imagen"}
 								<hr>
-									<img src="{$WEB_ROOT}/forofiles/{$item.path}" style="max-width: 200px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
+									<!--<a href="javascript:void(0)" onClick="Zoom('{$WEB_ROOT}/forofiles/{$item.path}')" title="VER ARCHIVO ADJUNTO">-->
+									<a href="{$WEB_ROOT}/graybox.php?page=zoom&id={$WEB_ROOT}/forofiles/{$item.path}" data-target="#ajax" data-toggle="modal" >
+									<img src="{$WEB_ROOT}/forofiles/{$item.path}" style="max-width: 200px;height: auto;" title="VER ARCHIVO ADJUNTO">
+									</a>	
 							{/if}
 							<hr>
 							<div <!--style="background:rgba(141, 145, 150, 0.22); top:50px"-->
 								
 								
 								<a href="{$WEB_ROOT}/graybox.php?page=add-comment&id={$item.replyId}&moduleId={$moduleId}&topicsubId={$topicsubId}" data-target="#ajax" data-toggle="modal" >
-									<img src="{$WEB_ROOT}/images/add.png" style="max-width: 25px;height: auto;" title="AGREGAR COMENTARIO"> 
+									<img src="{$WEB_ROOT}/images/add.png" style="max-width: 16px;height: auto;" title="AGREGAR COMENTARIO"> 
 								</a>
 								{if $item.numComentarios <= 0}
 
-									<img src="{$WEB_ROOT}/images/comentarioGris.png" style="max-width: 25px;height: auto;" title="VER COMENTARIOS"> 
+									<img src="{$WEB_ROOT}/images/comentarioGris.png" style="max-width: 15px;height: auto;" title="VER COMENTARIOS"> 
 
 								{else}
 									<a href="javascript:void(0)" onClick="verComentario({$item.replyId})">
-									<img src="{$WEB_ROOT}/images/comentario.png" style="max-width: 25px;height: auto;" title="VER COMENTARIOS"> 
+									<img src="{$WEB_ROOT}/images/comentario.png" style="max-width: 16px;height: auto;" title="VER COMENTARIOS"> 
 									</a>
 								{/if}
 								
 								{if $item.existeArchivo eq "si"}
 									{if $item.path}
 										<a href="{$WEB_ROOT}/forofiles/{$item.path}" target="_black" title="VER ARCHIVO ADJUNTO"> 
-											<img src="{$WEB_ROOT}/images/blue.jpg" style="max-width: 25px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
+											<!--<img src="{$WEB_ROOT}/images/blue.jpg" style="max-width: 25px;height: auto;" title="VER ARCHIVO ADJUNTO">-->
+											<i class="fa fa-file" aria-hidden="true"></i>
 										</a>
 										
 									{/if}
@@ -138,7 +143,9 @@
 											<div>{$reply.content}</div>
 											{if $reply.formato eq "imagen"}
 												<hr>
-													<img src="{$WEB_ROOT}/forofiles/{$item.path}" style="max-width: 200px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
+													<a href="{$WEB_ROOT}/graybox.php?page=zoom&id={$WEB_ROOT}/forofiles/{$item.path}" data-target="#ajax" data-toggle="modal" >
+														<img src="{$WEB_ROOT}/forofiles/{$item.path}" style="max-width: 200px;height: auto;" title="VER ARCHIVO ADJUNTO">
+													</a>			
 											{/if}
 											
 											<br>
@@ -148,7 +155,8 @@
 													{if $reply.path}
 													
 													<a href="{$WEB_ROOT}/forofiles/{$reply.path}" target="_black" title="VER ARCHIVO ADJUNTO">
-														<img src="{$WEB_ROOT}/images/blue.jpg" style="max-width: 25px;height: auto;" title="VER ARCHIVO ADJUNTO"> 
+														<!--<img src="{$WEB_ROOT}/images/blue.jpg" style="max-width: 25px;height: auto;" title="VER ARCHIVO ADJUNTO">--> 
+														<i class="fa fa-file" aria-hidden="true"></i>
 													</a>
 													{/if}
 												{/if}

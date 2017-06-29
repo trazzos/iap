@@ -3,6 +3,20 @@
 	class Activity extends Module
 	{
 		private $timeLimit;
+		private $testId;
+		private $pregunta;
+		private $opcionA;
+		private $opcionB;
+		private $opcionC;
+		private $opcionD;
+		private $opcionE;
+		private $hora;
+		
+		public function setTestId($value)
+		{
+			$this->Util()->ValidateInteger($value);
+			$this->testId = $value;
+		}
 
 		public function setTimeLimit($value)
 		{
@@ -90,6 +104,61 @@
 			return $this->resumen;
 		}		
 
+
+		public function setPregunta($value)
+		{
+			// if($this->Util()->ValidateRequireField($value, 'RFC')){
+			$this->Util()->ValidateString($value,10000,0);
+			$this->pregunta = $value;
+			// }
+		}
+		
+		public function setOpcionA($value)
+		{
+			$this->Util()->ValidateString($value,10000,0);
+			$this->opcionA = $value;
+		}
+		
+		public function setOpcionB($value)
+		{
+			$this->Util()->ValidateString($value,10000,0);
+			$this->opcionB = $value;
+		}
+		
+		public function setOpcionC($value)
+		{
+			$this->Util()->ValidateString($value,10000,0);
+			$this->opcionC = $value;
+		}
+		
+		public function setOpcionD($value)
+		{
+			$this->Util()->ValidateString($value,10000,0);
+			$this->opcionD = $value;
+		}
+		
+		public function setOpcionE($value)
+		{
+			$this->Util()->ValidateString($value,10000,0);
+			$this->opcionE = $value;
+		}
+		
+		public function setRespuesta($value)
+		{
+			$this->Util()->ValidateString($value,10000,0);
+			$this->respuesta = $value;
+		}
+		
+		
+		public function setHora($value)
+		{
+			$this->Util()->ValidateString($value,10000,0);
+			$this->hora = $value;
+		}
+		
+		
+		
+		
 		public function Save()
 		{
 			if($this->Util()->PrintErrors())
@@ -152,6 +221,8 @@
 				return false;
 			}
 			
+			$fechaFinal = $this->getFinalDate()." ".$this->hora;
+			
 			//si no hay errores
 			//creamos la cadena de insercion
 			$sql = "UPDATE
@@ -159,7 +230,7 @@
 						SET
 							activityType = '".$this->activityType."',
 							initialDate = '".$this->getInitialDate()."',
-							finalDate = '".$this->getFinalDate()."',
+							finalDate = '".$fechaFinal."',
 							modality = '".$this->getModality()."',
 							description = '".$this->getDescription()."',
 							resumen = '".$this->resumen."',
@@ -361,15 +432,19 @@
 			//ejecutamos la consulta y obtenemos el resultado
 			$result = $this->Util()->DB()->GetRow();
 			
-			
+			// ECHO "<PRE>"; print_r($result );
+			// EXIT;
 			$f = explode(" ",$result["finalDate"]);
 
 			$result["initialDate"] = $this->Util()->FormatDateBack($result["initialDate"]);
 			$result["finalDateNoFormat"] = $result["finalDate"];
 			$result["finalDate"] = $this->Util()->FormatDateBack($f[0]);
+			$result["horaFinal"] = $f[1];
 			if($result)
 				$result = $this->Util->EncodeRow($result);
 
+			// echo "<pre>"; print_r($result);
+			// exit;
 			return $result;	
 		}
 
@@ -480,6 +555,36 @@
 			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
 			$result = $this->Util()->DB()->GetSingle();
 			return $result;
+		}
+		
+		function EditTest()
+		{
+			
+
+			if($this->Util()->PrintErrors()){ 
+		
+				return false; 
+			}
+
+			 $sql = "UPDATE
+							activity_test
+							SET
+								question = '".$this->pregunta."',
+								opcionA = '".$this->opcionA."',
+								opcionB = '".$this->opcionB."',
+								opcionC = '".$this->opcionC."',
+								opcionD = '".$this->opcionD."',
+								opcionE = '".$this->opcionE."',
+								answer = '".$this->respuesta."'
+							WHERE testId = '".$this->testId."'";
+				//configuramos la consulta con la cadena de insercion
+				$this->Util()->DB()->setQuery($sql);
+				//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
+				$result = $this->Util()->DB()->UpdateData();
+				$this->Util()->setError(90000, 'complete', "Se ha editado la actividad");
+				$this->Util()->PrintErrors();
+
+			return true;
 		}
 		
 	}	

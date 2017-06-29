@@ -157,7 +157,8 @@ $pages = array(
     'reporte-general',
     'reporte-alumno-modulo',
     'edit-student',
-    'add-alumno-admin'
+    'add-alumno-admin',
+    'zoom'
 
 );
 
@@ -166,11 +167,11 @@ if(!in_array($_GET['page'], $pages))
     $_GET['page'] = "homepage";
 }
 
-// echo  "<pre>"; print_r($_GET);
-// exit;
+
 
 $smarty->assign('positionId', $User['positionId']);
-
+// echo  "<pre>"; print_r($_GET);
+// exit;
 include_once(DOC_ROOT.'/modules/user.php');
 include_once(DOC_ROOT.'/modules/'.$_GET['page'].'.php');
 

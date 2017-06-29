@@ -331,7 +331,7 @@
 				LEFT JOIN user ON user.userId = reply.userId
 				LEFT JOIN personal ON personal.personalId = reply.personalId
 				WHERE son = '".$res["replyId"]."'
-				ORDER BY replyDate DESC");
+				ORDER BY replyDate ASC");
 
 				
 				
