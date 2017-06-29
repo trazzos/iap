@@ -11,15 +11,12 @@ function EditTest(){
 		},
 	  	success: function(response) {	
 				console.log(response)
-			  // $("#td_"+id).html(response);
-			  // $("#td_"+id).toggle();
+
 			  $("#msj").html('');
 			 var splitResponse = response.split("[#]");
-			  
-			  alert($.trim(splitResponse[0]))
-			  alert("aqui")
+
 			 if($.trim(splitResponse[0])=="ok"){
-				 alert("llega")
+
 				 $("#tblContent2").html(splitResponse[1]);
 				 $("#ajax").hide();
 				$("#ajax").modal("hide");
