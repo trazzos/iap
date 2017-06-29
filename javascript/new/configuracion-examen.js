@@ -16,6 +16,7 @@ function EditTest(){
 			  $("#msj").html('');
 			 var splitResponse = response.split("[#]");
 			  alert("aqui")
+			  alert(splitResponse[0])
 			 if(splitResponse[0]=="ok"){
 				 alert("llega")
 				 $("#tblContent2").html(splitResponse[1]);
