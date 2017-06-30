@@ -117,7 +117,7 @@ function AddStudentRegister()
         {
 			$("#loader").html('');
 			 var splitResponse = data.split("[#]");
-			if(splitResponse[0] == "ok"){
+			if($.trim(splitResponse[0]) == "ok"){
 				ShowStatus($(splitResponse[1]));
 				CloseFview();
                 $('#tblContent').html(splitResponse[2]);
