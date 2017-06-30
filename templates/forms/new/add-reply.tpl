@@ -31,7 +31,7 @@
         <div class="form-actions">
             <div class="row">
                 <div class="col-md-offset-3 col-md-9">
-                    <input type="submit" class="btn green submitForm" id="addMajor" name="addMajor"/>
+                    <input type="submit" class="btn green submitForm" id="addMajor" name="addMajor" value="Enviar Aportación"/>
                 </div>
             </div>
         </div>

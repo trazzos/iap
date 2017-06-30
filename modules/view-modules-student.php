@@ -4,7 +4,8 @@
 //	$user->allow_access(8);	
 
 
-
+	// echo "<pre>"; print_r($_GET);
+	// exit;
 
 	$module->setCourseModuleId($_GET["id"]);
 	$myModule = $module->InfoCourseModule();

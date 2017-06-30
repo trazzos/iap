@@ -106,10 +106,13 @@
 		
 		public function Enumerate()
 		{
-			$this->Util()->DB()->setQuery("
+			
+			 $sql = "
 				SELECT * FROM activity_test
 				WHERE activityId = '".$this->getActivityId()."'
-				ORDER BY testId ASC");
+				ORDER BY testId ASC";
+			
+			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
 			
 			foreach($result as $key => $res)
@@ -138,10 +141,13 @@
 
 		public function Access($maxTries)
 		{
-			$this->Util()->DB()->setQuery("
+			
+			 $sql = "
 				SELECT try FROM activity_score
 				WHERE activityId = '".$this->getActivityId()."'
-				AND userId = '".$this->getUserId()."'");
+				AND userId = '".$this->getUserId()."'";
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
 			$try = $this->Util()->DB()->GetSingle();
 			if($try < $maxTries)
 			{

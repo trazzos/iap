@@ -9,6 +9,12 @@
 		$announcement->setTitle($_POST["title"]);
 		$announcement->setDescription($_POST["description"]);
 		$announcement->Save();
+		
+		if($_POST["auxTpl"]=="admin"){
+			header("Location:".WEB_ROOT."/edit-modules-course/id/".$_POST["courseModuleId"]."");
+			exit;
+		}
+		
 	}
 
 	$date = date("d-m-Y");

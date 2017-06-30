@@ -226,37 +226,41 @@
                         </div>
                         <div class="portlet-body">
                             <div class="table-scrollable table-scrollable-borderless">
-                                <table class="table table-hover table-light">
+                                <table class="table table-hover table-light" >
                                     <thead>
                                     <tr class="uppercase">
                                         
-                                        <th> Tipo </th>
-                                        <th> Nombre </th>
-                                        <th> Modalidad </th>
-                                        <th> Fecha Inicial </th>
-                                        <th> Fecha Final </th>
+                                        <th style="text-align: center"> Tipo </th>
+                                        <th style="text-align: center"> Nombre </th>
+										 <th style="text-align: center"> Grupo </th>
+                                        <th style="text-align: center"> Modalidad </th>
+                                        <th style="text-align: center"> Fecha Inicial </th>
+                                        <th style="text-align: center"> Fecha Final </th>
 {*
-                                        <th> Pagos </th>
+                                        <th style="text-align: center"> Pagos </th>
 *}
                                         
-                                        <th> Modulos </th>
-                                        <th> Acciones </th>
+                                        <th style="text-align: center"> Modulos </th>
+                                       
+                                        <th style="text-align: center"> Acciones </th>
                                     </tr>
                                     </thead>
                                     {foreach from=$activeCourses item=subject}
                                     <tr>
                                        
-                                        <td >{$subject.majorName}</td>
-                                        <td >{$subject.name}</td>
-                                        <td >{$subject.modality}</td>
-                                        <td >{$subject.initialDate|date_format:"%d-%m-%Y"}</td>
-                                        <td >{$subject.finalDate|date_format:"%d-%m-%Y"}</td>
+                                        <td align="center">{$subject.majorName}</td>
+                                        <td align="center">{$subject.name}</td>
+										  <td align="center">{$subject.group}
+                                        <td align="center">{$subject.modality}</td>
+                                        <td align="center">{$subject.initialDate|date_format:"%d-%m-%Y"}</td>
+                                        <td align="center">{$subject.finalDate|date_format:"%d-%m-%Y"}</td>
                                      
 {*
                                         <td align="center">{$subject.payments}</td>
 *}
-                                        <td >{$subject.courseModule}
-                                        <td >
+                                        <td align="center">{$subject.courseModule}
+                                      
+                                        <td align="center">
                                             <a href="{$WEB_ROOT}/graybox.php?page=view-modules-course-student&id={$subject.courseId}" data-target="#ajax" data-toggle="modal" data-width="1000px">
                                             <i class="fa fa-sign-in fa-lg"></i>
                                             </a>
@@ -292,17 +296,17 @@
                                 <table class="table table-hover table-light">
                                     <thead>
                                     <tr class="uppercase">
-                                        <th> Clave </th>
-                                        <th> Tipo </th>
-                                        <th> Nombre </th>
-                                        <th> Modalidad </th>
-                                        <th> Fecha Inicial </th>
-                                        <th> Fecha Final </th>
+                                        <th style="text-align: center"> Clave </th>
+                                        <th style="text-align: center"> Tipo </th>
+                                        <th style="text-align: center"> Nombre </th>
+                                        <th style="text-align: center"> Modalidad </th>
+                                        <th style="text-align: center"> Fecha Inicial </th>
+                                        <th style="text-align: center"> Fecha Final </th>
                                         {*
                                                                                 <th> Pagos </th>
                                         *}
-                                        <th> Dias Activo </th>
-                                        <th> Modulos </th>
+                                        <th style="text-align: center"> Dias Activo </th>
+                                        <th style="text-align: center"> Modulos </th>
 {*
                                         <th> Acciones </th>
 *}
@@ -311,19 +315,19 @@
                                     {foreach from=$inactiveCourses item=subject}
 
                                     <tr>
-                                        <td >{$subject.clave}</td>
-                                        <td >{$subject.majorName}</td>
-                                        <td >{$subject.name}</td>
-                                        <td >{$subject.modality}</td>
-                                        <td >{$subject.initialDate|date_format:"%d-%m-%Y"}</td>
-                                        <td >{$subject.finalDate|date_format:"%d-%m-%Y"}</td>
-                                        <td >{$subject.daysToFinish}</td>
+                                        <td align="center">{$subject.clave}</td>
+                                        <td align="center">{$subject.majorName}</td>
+                                        <td align="center">{$subject.name}</td>
+                                        <td align="center">{$subject.modality}</td>
+                                        <td align="center">{$subject.initialDate|date_format:"%d-%m-%Y"}</td>
+                                        <td align="center">{$subject.finalDate|date_format:"%d-%m-%Y"}</td>
+                                        <td align="center">{$subject.daysToFinish}</td>
                                         {*
                                                                                 <td align="center">{$subject.payments}</td>
                                         *}
-                                        <td >{$subject.courseModule}
+                                        <td align="center">{$subject.courseModule}
 {*
-                                        <td >
+                                        <td align="center">
                                             <a href="{$WEB_ROOT}/graybox.php?page=view-modules-course-student&id={$subject.courseId}" data-target="#ajax" data-toggle="modal">
                                                 <i class="fa fa-sign-in fa-lg"></i>
                                             </a>
@@ -359,35 +363,35 @@
                                 <table class="table table-hover table-light">
                                     <thead>
                                     <tr class="uppercase">
-                                        <th> Clave </th>
-                                        <th> Tipo </th>
-                                        <th> Nombre </th>
-                                        <th> Modalidad </th>
-                                        <th> Fecha Inicial </th>
-                                        <th> Fecha Final </th>
+                                        <th style="text-align: center"> Clave </th>
+                                        <th style="text-align: center"> Tipo </th>
+                                        <th style="text-align: center"> Nombre </th>
+                                        <th style="text-align: center"> Modalidad </th>
+                                        <th style="text-align: center"> Fecha Inicial </th>
+                                        <th style="text-align: center"> Fecha Final </th>
                                         {*
                                                                                 <th> Pagos </th>
                                         *}
-                                        <th> Dias Activo </th>
-                                        <th> Modulos </th>
-                                        <th> Calificación </th>
+                                        <th style="text-align: center"> Dias Activo </th>
+                                        <th style="text-align: center"> Modulos </th>
+                                        <th style="text-align: center"> Calificación </th>
                                     </tr>
                                     </thead>
                                     {foreach from=$finishedCourses item=subject}
 
                                     <tr>
-                                        <td >{$subject.clave}</td>
-                                        <td >{$subject.majorName}</td>
-                                        <td >{$subject.name}</td>
-                                        <td >{$subject.modality}</td>
-                                        <td >{$subject.initialDate|date_format:"%d-%m-%Y"}</td>
-                                        <td >{$subject.finalDate|date_format:"%d-%m-%Y"}</td>
+                                        <td style="text-align: center">{$subject.clave}</td>
+                                        <td style="text-align: center">{$subject.majorName}</td>
+                                        <td style="text-align: center">{$subject.name}</td>
+                                        <td style="text-align: center">{$subject.modality}</td>
+                                        <td style="text-align: center">{$subject.initialDate|date_format:"%d-%m-%Y"}</td>
+                                        <td style="text-align: center"style="text-align: center">{$subject.finalDate|date_format:"%d-%m-%Y"}</td>
                                         <td >{$subject.daysToFinish}</td>
                                         {*
                                                                                 <td align="center">{$subject.payments}</td>
                                         *}
-                                        <td >{$subject.courseModule}
-                                        <td >{$subject.mark}</td>
+                                        <td style="text-align: center">{$subject.courseModule}
+                                        <td style="text-align: center">{$subject.mark}</td>
                                      </tr>
                                         {foreachelse}
                                         <tr>

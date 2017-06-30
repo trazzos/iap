@@ -77,7 +77,7 @@
 		
 		public function setReply($value)
 		{
-			$this->Util()->ValidateString($value, 50000, 1, 'Respuesta');
+			// $this->Util()->ValidateString($value, 50000, 1, 'Respuesta');
 			$this->reply = $value;
 		}
 
@@ -271,37 +271,106 @@
 				LEFT JOIN user ON user.userId = reply.userId
 				LEFT JOIN personal ON personal.personalId = reply.personalId
 				WHERE topicId = ".$this->topicsubId." AND son = 0
-				ORDER BY replyDate DESC");
+				ORDER BY replyDate ASC");
 			$result = $this->Util()->DB()->GetResult();
+			
+			// echo "<pre>"; print_r($result);
+			// exit;
 			
 			foreach($result as $key => $res)
 			{
+				
+				
+				
+				
+				
 				$result[$key]["content"] = $this->Util()->DecodeTiny($result[$key]["content"]);
 				if(file_exists(DOC_ROOT."/forofiles/".$res["path"])){
 					$result[$key]["existeArchivo"] = "si";
+					$ext = explode(".",$res["path"]);
+					if($ext[1]=="png" or $ext[1]=="jpg" or $ext[1]=="jpeg"){
+						$result[$key]["formato"] = "imagen";
+					}
 				}else{
 					$result[$key] ["existeArchivo"] = "no";
 				} 
-
+				
+				if(file_exists(DOC_ROOT."/alumnos/".$res["userId"])){
+					$result[$key]["foto"] = '
+						<img src="'.WEB_ROOT.'/alumnos/'.$res["userId"].'.jpg" width="40" height="40" style=" height: auto; 
+					width: auto; 
+					max-width: 80px; 
+					max-height: 80px;"/>
+					</a>';
+				}else{
+					$result[$key]["foto"] ='
+						<img src="'.WEB_ROOT.'/images/new/user.png" width="40" height="40" style=" height: auto; 
+					width: auto; 
+					max-width: 80px; 
+					max-height: 80px;"/>
+					</a>';
+				} 
+				
+				 $sql = "
+				SELECT count(*) FROM reply
+				LEFT JOIN user ON user.userId = reply.userId
+				LEFT JOIN personal ON personal.personalId = reply.personalId
+				WHERE son = '".$res["replyId"]."'
+				ORDER BY replyDate DESC";
+				$this->Util()->DB()->setQuery($sql);
+				$countComen = $this->Util()->DB()->GetSingle();
+				$result[$key]["numComentarios"] = $countComen;
+// echo "<br>";
+// echo "<br>";
+// echo "<br>";
+// echo "<br>";
+			
+				
 				$this->Util()->DB()->setQuery("
 				SELECT * FROM reply
 				LEFT JOIN user ON user.userId = reply.userId
 				LEFT JOIN personal ON personal.personalId = reply.personalId
 				WHERE son = '".$res["replyId"]."'
-				ORDER BY replyDate DESC");
+				ORDER BY replyDate ASC");
 
+				
+				
 				$result[$key]["replies"] = $this->Util()->DB()->GetResult();
 				foreach($result[$key]["replies"] as $keyReply => $reply)
 				{
 					if(file_exists(DOC_ROOT."/forofiles/".$reply["path"])){
 						$result[$key]["replies"][$keyReply]["existeArchivo"] = "si";
+						$ext2 = explode(".",$reply["path"]);
+						if($ext2[1]=="png" or $ext2[1]=="jpg" or $ext2[1]=="jpeg"){
+							$result[$key]["replies"][$keyReply]["formato"]= "imagen";
+						}
 					}else{
 						$result[$key]["replies"][$keyReply]["existeArchivo"] = "no";
 					} 
+					
+					if(file_exists(DOC_ROOT."/alumnos/".$reply["userId"])){
+						$result[$key]["replies"][$keyReply]["foto"] = '
+							<img src="'.WEB_ROOT.'/alumnos/'.$reply["userId"].'.jpg" width="40" height="40" style=" height: auto; 
+						width: auto; 
+						max-width: 80px; 
+						max-height: 80px;"/>
+						</a>';
+					}else{
+						$result[$key]["replies"][$keyReply]["foto"] ='
+							<img src="'.WEB_ROOT.'/images/new/user.png" width="40" height="40" style=" height: auto; 
+						width: auto; 
+						max-width: 80px; 
+						max-height: 80px;"/>
+						</a>';
+					} 
+					
 					$result[$key]["replies"][$keyReply]["content"] = $this->Util()->DecodeTiny($reply["content"]);
 				}
 
 			}
+			
+				// echo "<pre>"; print_r($result);
+			// exit;
 			return $result;
 		}
 
@@ -380,6 +449,7 @@ public function TopicsubInfo()
 				WHERE courseId = ".$this->courseId." 
 				ORDER BY topicDate DESC";
 			$this->Util()->DB()->setQuery($sql);
+			// exit;
 			$result = $this->Util()->DB()->GetResult();
 			
 			foreach($result as $key => $res)
@@ -675,7 +745,35 @@ public function TopicsubInfo()
 			$this->Util()->DB()->setQuery($sqlNot);
 			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
 			$this->Util()->DB()->InsertData();
-					 
+				
+			$sendmail = new SendMail;	
+				
+			if($datTop["tipo"] == "dudas"){
+				
+				 $sql = "
+					SELECT * FROM topic
+					LEFT JOIN course as c ON c.courseId = topic.courseId
+					LEFT JOIN subject_group as s ON s.subjectId = c.subjectId
+					LEFT JOIN personal as p ON p.personalId = s.personalId
+					WHERE topicId = ".$datSub['topicId']."";
+				$this->Util()->DB()->setQuery($sql);
+				$infoDu = $this->Util()->DB()->GetRow();
+				// echo "<pre>"; print_r($infoDu );
+				// exit;
+				//admin docente
+				$sendmail->PrepareAttachment("Dudas para el Docente", $this->reply, "","", $infoDu["correo"], $infoDu["name"], $attachment, $fileName);
+				$sendmail->PrepareAttachment("Asesoria Academica",$this->reply, "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+			}
+			
+			if($datTop["tipo"] == "asesoria"){
+				//admin 
+				 $sql = "
+					SELECT * FROM personal
+					WHERE perfil = 'Administrador'";
+				$this->Util()->DB()->setQuery($sql);
+				$infoDu = $this->Util()->DB()->GetRow();
+				$sendmail->PrepareAttachment("Asesoria Academica",$this->reply, "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+			}
 			
 			$this->Util()->setError(90000, 'complete', "Has respondido al Topico");
 			$this->Util()->PrintErrors();

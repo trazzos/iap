@@ -3,6 +3,13 @@
 	/* For Session Control - Don't remove this */
 	//$user->allow_access(8);	
 
+
+	if(!isset($_SESSION["User"]["userId"]) or $_SESSION["User"]["userId"]==null or $_SESSION["User"]["userId"]==""){
+		header('Location: '.WEB_ROOT);
+		exit;
+	}
+
+	
 	if($_POST)
 	{
 		$test->setUserId($_SESSION["User"]["userId"]);

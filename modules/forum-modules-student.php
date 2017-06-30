@@ -9,7 +9,8 @@
 	
 	$forum->setCourseId($myModule["courseId"]);
 	$forum = $forum->Enumerate();
-//	print_r($forum);
+	// echo "<pre>"; print_r($forum);
+	// exit;
 	$smarty->assign('forum', $forum);
 	
 	$smarty->assign('id', $_GET["id"]);

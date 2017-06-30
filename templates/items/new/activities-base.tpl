@@ -15,8 +15,9 @@
         <td align="center">{$subject.resumen}</td>
         <td align="center">
             {if $subject.activityType == "Examen"}
+			 
                 {if $majorModality == "Online"}
-                    <a href="{$WEB_ROOT}/configuracion-examen/id/{$subject.activityId}" style="color:#000000">Configurar</a>
+                    <a href="{$WEB_ROOT}/configuracion-examen/id/{$subject.activityId}" style="background:#32c5d2; color:white">Configurar</a>
                 {else}
                     Aplicar Localmente
                 {/if}
@@ -26,12 +27,12 @@
         <td align="center">
             <img src="{$WEB_ROOT}/images/icons/16/delete.png" class="spanDelete" data-id="{$subject.activityId}" id="d-{$subject.activityId}" name="d-{$subject.name}" title="Eliminar" />&nbsp;
 
-            <a href="{$WEB_ROOT}/graybox.php?page=edit-activity&id={$subject.activityId}" data-target="#ajax" data-toggle="modal">
+            <a href="{$WEB_ROOT}/graybox.php?page=edit-activity&id={$subject.activityId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
                 <img src="{$WEB_ROOT}/images/icons/16/pencil.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Editar" />
             </a>
 
             {if $subject.score > 0}
-                <a href="{$WEB_ROOT}/graybox.php?page=score-activity&id={$subject.activityId}" data-target="#ajax" data-toggle="modal">
+                <a href="{$WEB_ROOT}/graybox.php?page=score-activity&id={$subject.activityId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
                     <img src="{$WEB_ROOT}/images/icons/16/score.gif" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Calificar" />
                 </a>
             {/if}

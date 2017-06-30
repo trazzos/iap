@@ -1,7 +1,7 @@
 <div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-bullhorm"></i>Agregar Recurso
+            <i class="fa fa-bullhorm"></i>Editar Recurso
         </div>
         <div class="actions">
         </div>

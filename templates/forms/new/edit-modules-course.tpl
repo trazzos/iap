@@ -4,8 +4,11 @@
             <i class="fa fa-gift"></i>.:: Datos del M&oacute;dulo ::.
         </div>
         <div class="actions">
-            <a  class="btn green" href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
-                Vista previa del M&oacute;dulo
+            <a  class="btn green" href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
+              <!-- <a class="btn green" href="{$WEB_ROOT}/graybox.php?page=view-modules-student&id={$myModule.courseModuleId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
+-->
+
+			 Vista previa del M&oacute;dulo
             </a>
         </div>
     </div>
@@ -23,7 +26,7 @@
                     <label class="col-md-3 control-label">Perteneciente al (a la) {$myModule.majorName}:</label>
                     <div class="col-md-8">
                         <b> {$myModule.subjectName}</b>
-                        {if !$docente}| <a href="{$WEB_ROOT}/history-subject" title="Ver Curricula" style="color:#000" >Ver Curricula Activa</a>{/if}
+                        {if !$docente}| <a href="{$WEB_ROOT}/history-subject" title="Ver Curricula" style="background:#73b760; color:white" >Ver Curricula Activa</a>{/if}
                     </div>
                 </div>
 
@@ -31,9 +34,9 @@
                     <label class="col-md-3 control-label">Nombre del M&oacute;dulo::</label>
                     <div class="col-md-8">
                         <b>{$myModule.name}</b>
-                        || <a href="{$WEB_ROOT}/edit-module/id/{$myModule.subjectModuleId}/course/{$myModule.courseModuleId}" title="Editar Modulo" style="color:#000" >Editar Detalle</a>
+                        || <a href="{$WEB_ROOT}/edit-module/id/{$myModule.subjectModuleId}/course/{$myModule.courseModuleId}" title="Editar Modulo" style="background:#73b760; color:white" >Editar Detalle</a>
                         {if !$docente}||
-                            <a href="{$WEB_ROOT}/graybox.php?page=view-modules-course&id={$myModule.courseId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" style="color:#000" >Ver Otros Modulos></a>
+                            <a href="{$WEB_ROOT}/graybox.php?page=view-modules-course&id={$myModule.courseId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" style="background:#73b760; color:white" >Ver Otros Modulos></a>
                         {/if}
                     </div>
                 </div>
@@ -213,7 +216,7 @@
             <i class="fa fa-gift"></i>.:: Grupo ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=config-teams&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal"  class="btn green">
+            <a href="{$WEB_ROOT}/graybox.php?page=config-teams&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn green">
                 &raquo; Configurar Equipos
             </a>
         </div>
@@ -229,7 +232,7 @@
             <i class="fa fa-gift"></i>.:: Actividades ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=add-activity&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" class="btn green">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-activity&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal" class="btn green">
                 &raquo; Agregar actividad
             </a>
         </div>
@@ -254,7 +257,7 @@
             <i class="fa fa-gift"></i>.:: Recursos de Apoyo ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=add-resource&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" class="btn green">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-resource&id={$myModule.courseModuleId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" class="btn green">
                 &raquo; Agregar Recurso de Apoyo
             </a>
         </div>
@@ -264,23 +267,6 @@
         <div id="tblContentResources">{include file="lists/new/resources.tpl"}</div>
     </div>
 </div>
-
-<div class="portlet box red">
-    <div class="portlet-title">
-        <div class="caption">
-            <i class="fa fa-gift"></i>.:: Avisos ::.
-        </div>
-        <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=add-noticia&id={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal"  class="btn green">
-                &raquo; Agregar Aviso
-            </a>
-        </div>
-    </div>
-    <div class="portlet-body">
-        <div id="tblContentNoticias">{include file="lists/new/module-announcements.tpl"}</div>
-    </div>
-</div>
-
 
 <div class="portlet box red">
     <div class="portlet-title">
@@ -298,3 +284,21 @@
 	  {*}
     </div>
 </div>
+
+<div class="portlet box red">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>.:: Avisos ::.
+        </div>
+        <div class="actions">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-noticia&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn green">
+                &raquo; Agregar Aviso
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div id="tblContentNoticias">{include file="lists/new/module-announcements.tpl"}</div>
+    </div>
+</div>
+
+

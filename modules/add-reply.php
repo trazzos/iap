@@ -42,6 +42,9 @@
 	
 	
 	$replies = $forum->Replies();
+	
+	// echo "<pre>"; print_r($replies);
+	// exit;
 	$smarty->assign('replies', $replies);
     
 	$topic = $forum->TopicsubInfo();

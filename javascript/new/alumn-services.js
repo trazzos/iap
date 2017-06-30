@@ -1,3 +1,25 @@
+
+function comprueba_extension(archivo) { 
+   extensiones_permitidas = new Array(".jpg");  
+      extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase(); 
+      permitida = false; 
+      for (var i = 0; i < extensiones_permitidas.length; i++) { 
+         if (extensiones_permitidas[i] == extension) { 
+         permitida = true; 
+         break; 
+         } 
+      } 
+	  
+      if (!permitida) { 
+         return "no";
+      	}else{ 
+         return "si"; 
+      	} 
+		
+   return 0; 
+}
+
+
 function saveEditStudentAlumn(){
 	
 	$("#type").val("saveEditStudentAlumn")
@@ -161,3 +183,16 @@ function estado_dependenciat()
     });
 	
 }//estado_dependencia
+
+  function updateFoto(){
+	  
+		var1 = comprueba_extension($("#foto").val())
+	
+		if(var1=="no"){
+			alert("Solo se permiten imagenes con extension .JPG")
+			return false;
+		}
+	
+		$("#frmImg").submit()
+	
+  }

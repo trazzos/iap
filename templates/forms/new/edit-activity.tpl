@@ -5,7 +5,10 @@
 <!-- /TinyMCE -->
 
 <form class="form-horizontal" id="addMajorForm" name="addMajorForm" method="post" action="{$WEB_ROOT}/edit-activity/id/{$id}">
+  <input type="hidden" id="auxTpl" name="auxTpl" value="{$auxTpl}"/>
+    <input type="hidden" id="cId" name="cId" value="{$cId}"/>
     <input type="hidden" id="type" name="type" value="saveAddMajor"/>
+	
     <div class="form-body">
         <div class="form-group">
             <label class="col-md-3 control-label">Tipo de Actividad:</label>
@@ -29,9 +32,19 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Fecha Final:</label>
             <div class="col-md-8">
-                <input type="text" name="finalDate" id="finalDate" value="{$actividad.finalDate}"  class="form-control  date-picker"/>
+                <input type="text" name="finalDate" id="finalDate" value="{$actividad.finalDate}"  class="form-control  date-picker" style="width:200px"/>
+               
             </div>
         </div>
+		<div class="form-group">
+            <label class="col-md-3 control-label">Hora Final:</label>
+            <div class="col-md-8">
+                <input type="time" name="hora" id="hora" value="{$actividad.horaFinal}"   style="width:200px" class="form-control "/>
+               
+            </div>
+        </div>
+		
+		
 
         <div class="form-group">
             <label class="col-md-3 control-label">Modalidad:</label>

@@ -17,8 +17,9 @@
     <div class="form-actions">
         <div class="row">
             <div class="col-md-offset-3 col-md-9">
-                <button type="button" class="btn green submitForm">Enviar</button>
+              
             </div>
         </div>
     </div>
 </form>
+  <button type="button" class="btn green submitForm" onClick="Recuperacion()">Enviar</button>

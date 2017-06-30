@@ -113,7 +113,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="forget-password">
             <h4>¿Olvidaste tu contraseña?</h4>
             <p> No te preocupes. Da click
-                <a href="javascript:;" id="forget-password" style="color:#fff; text-decoration: underline"> aqui </a> para recuperarla. </p>
+                <a href="recuperacion"  style="color:#fff; text-decoration: underline"> aqui </a> para recuperarla. </p>
         </div>
         <div class="create-account">
             <p> ¿Estás interesado en cursar un programa en línea?&nbsp;

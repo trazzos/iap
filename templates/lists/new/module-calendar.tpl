@@ -90,5 +90,10 @@
         <br />
         <b>Retroalimentación:</b> {$item.retro}
     {/if}
+	 {if $item.retroFile ne ""}
+        <br />
+        <b>Archivo Adjunto Disponible:</b>
+		<a href='{$WEB_ROOT}/file_retro/{$item.retroFile}' target="_blank" class="bb" style="background: #73b760; color:white">Descargar</a>
+    {/if}
     {*}{$majorModality[$item.activityId]}{*}
 </div>

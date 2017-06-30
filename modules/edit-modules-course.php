@@ -2,6 +2,8 @@
 		
 	/* For Session Control - Don't remove this */
 	$user->allow_access(37);	
+	
+
 
 	if($_POST)
 	{
@@ -129,6 +131,9 @@ $cursos = $course->infoCoursem();
 	$smarty->assign('totalPonderation', $totalPonderation);
 
 	$majorModality = $activity->GetMajorModality();
+	
+	// echo ""; print_r($majorModality);
+	// exit;
 	$smarty->assign('majorModality', $majorModality);
 
 	//recursos
