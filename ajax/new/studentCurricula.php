@@ -15,6 +15,7 @@ switch($_POST["type"])
         $smarty->assign("courseId",$_POST['id']);
         $smarty->assign("DOC_ROOT", DOC_ROOT);
         $smarty->assign("students", $students);
+		 $smarty->assign("tip",$_POST['tip']);
         $smarty->display(DOC_ROOT.'/templates/boxes/view-student.tpl');
 
         break;
@@ -24,6 +25,7 @@ switch($_POST["type"])
         $group->setCourseId($_POST['id']);
         $students=$group->DefaultGroup();
         $smarty->assign("courseId",$_POST['id']);
+        $smarty->assign("tip",$_POST['tip']);
         $smarty->assign("DOC_ROOT", DOC_ROOT);
         $smarty->assign("students", $students);
         $smarty->display(DOC_ROOT.'/templates/boxes/view-studentadmin.tpl');
@@ -125,7 +127,7 @@ switch($_POST["type"])
 
         $group->setCourseId($_POST['id']);
         $students=$group->DefaultGroupInactivo();
-
+		 $smarty->assign("tip",$_POST['tip']);
         $smarty->assign("DOC_ROOT", DOC_ROOT);
         $smarty->assign("students", $students);
         $smarty->display(DOC_ROOT.'/templates/boxes/view-student.tpl');
@@ -136,7 +138,7 @@ switch($_POST["type"])
 
         $group->setCourseId($_POST['id']);
         $students=$group->DefaultGroupInactivo();
-
+		 $smarty->assign("tip",$_POST['tip']);
         $smarty->assign("DOC_ROOT", DOC_ROOT);
         $smarty->assign("students", $students);
         $smarty->display(DOC_ROOT.'/templates/boxes/view-studentadmin.tpl');

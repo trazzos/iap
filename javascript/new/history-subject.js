@@ -10,10 +10,10 @@ function VerGrupo(id){
     $.ajax({
         url : WEB_ROOT+'/ajax/new/studentCurricula.php',
         type: "POST",
-        data : {type: "Student", id:id},
+        data : {type: "Student", id:id, tip:"Activo"},
         success: function(data)
         {
-            showModal("Ver Grupo Activos", data);
+            showModal("&nbsp;", data);
         },
         error: function ()
         {
@@ -54,10 +54,10 @@ function VerGrupoAdmin(id){
     $.ajax({
         url : WEB_ROOT+'/ajax/new/studentCurricula.php',
         type: "POST",
-        data : {type: "StudentAdmin", id:id},
+        data : {type: "StudentAdmin", id:id, tip:"Activo"},
         success: function(data)
         {
-            showModal("Ver Grupo Activos", data);
+            showModal("&nbsp;", data);
         },
         error: function ()
         {
@@ -70,10 +70,10 @@ function VerGrupoInactivo(id){
     $.ajax({
         url : WEB_ROOT+'/ajax/new/studentCurricula.php',
         type: "POST",
-        data : {type: "StudentInactivo", id:id},
+        data : {type: "StudentInactivo", id:id, tip:"Inactivo"},
         success: function(data)
         {
-            showModal("Ver Grupo Inactivo", data);
+            showModal("&nbsp;", data);
         },
         error: function ()
         {
@@ -86,10 +86,10 @@ function VerGrupoInactivoAdmin(id){
     $.ajax({
         url : WEB_ROOT+'/ajax/new/studentCurricula.php',
         type: "POST",
-        data : {type: "StudentInactivoAdmin", id:id},
+        data : {type: "StudentInactivoAdmin", id:id, tip:"Inactivo"},
         success: function(data)
         {
-            showModal("Ver Grupo Inactivo", data);
+            showModal("&nbsp;", data);
         },
         error: function ()
         {

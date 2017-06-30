@@ -1,3 +1,12 @@
+<div class="portlet box red">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-user-plus "></i>Ver Grupo {$tip}
+        </div>
+
+    </div>
+    <div class="portlet-body">
+        <div id="tblContent">
 {*TODO quitar box solo dejar lista*}
 <!-- Esta pantalla se muestra en   Cirricula -> Historial-> Alumnos A/I --><div class="popupheader" style="z-index:70">
       
@@ -13,5 +22,6 @@
        </div>
                
      {include file="{$DOC_ROOT}/templates/lists/student1.tpl"}                      
-         
+    </div>
+    </div>
 </div>
