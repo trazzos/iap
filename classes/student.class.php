@@ -418,18 +418,14 @@ class Student extends User
 							'".$this->getHighSchool()."' 
 							
 						)";
-						
-						
-						
+
 		$this->Util()->DB()->setQuery($sqlQuery);
 		
 		
-		if($this->Util()->DB()->InsertData()){
-		          $this->Util()->DB()->setQuery("SELECT MAX(userId) FROM user");
-		          $id = $this->Util()->DB()->GetSIngle();
+		if($id = $this->Util()->DB()->InsertData()){
 				  $fecha_aplicacion=date("Y-m-d H:i:s"); 
 				  $enlace="/student";
-		//print_r($this->getRegister()); exit;
+
 		               if($this->getRegister()==0){
 					      //$hecho=$this->getNames()." ".$this->getLastNamePaterno()." ".$this->getLastNameMaterno();
 					      $hecho=$id."u";
@@ -460,11 +456,6 @@ class Student extends User
 		
 		}
 
-		$this->Util()->DB()->setQuery("SELECT MAX(userId) FROM user");
-		$id = $this->Util()->DB()->GetSIngle();
-		
-	
-		
 		if($option == "createCurricula")
 		{
 			$course = new Course();
@@ -775,7 +766,7 @@ class Student extends User
 			$sendmail = new SendMail;
 
 			$details_body = array(
-				"email" => $this->getControlNumber(),
+				"email" => $info["controlNumber"],
 				"password" => $password,
 				"major" => utf8_decode($major),
 				"course" => utf8_decode($course),
