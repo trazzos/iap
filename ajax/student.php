@@ -1,13 +1,10 @@
 <?php
-
 	include_once('../init.php');
 	include_once('../config.php');
 	include_once(DOC_ROOT.'/libraries.php');
 
 	session_start();
 
-//print_r($_POST);
-	
 	switch($_POST["type"])
 	{
 	
