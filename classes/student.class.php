@@ -766,7 +766,7 @@ class Student extends User
 			$sendmail = new SendMail;
 
 			$details_body = array(
-				"email" => $this->getControlNumber(),
+				"email" => $info["controlNumber"],
 				"password" => $password,
 				"major" => utf8_decode($major),
 				"course" => utf8_decode($course),
