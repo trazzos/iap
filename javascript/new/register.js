@@ -111,6 +111,7 @@ function AddStudentRegister()
         type: "POST",
         data :  $('#addStudentForm').serialize(),
 		beforeSend: function(){		
+			$("#addStudent").hide();
 			$("#loader").html(LOADER3);
 		},
         success: function(data)
@@ -123,6 +124,7 @@ function AddStudentRegister()
                 $('#tblContent').html(splitResponse[2]);
 				setTimeout("recargarPage()",5000);
 			}else{
+				$("#addStudent").show();
 				ShowStatusPopUp($(splitResponse[1]));
 			}	
 			// $("#loader").html('');

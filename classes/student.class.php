@@ -424,9 +424,9 @@ class Student extends User
 		$this->Util()->DB()->setQuery($sqlQuery);
 		
 		
-		if($this->Util()->DB()->InsertData()){
-		          $this->Util()->DB()->setQuery("SELECT MAX(userId) FROM user");
-		          $id = $this->Util()->DB()->GetSIngle();
+		if($id = $this->Util()->DB()->InsertData()){
+		          // $this->Util()->DB()->setQuery("SELECT MAX(userId) FROM user");
+		          // $id = $this->Util()->DB()->GetSIngle();
 				  $fecha_aplicacion=date("Y-m-d H:i:s"); 
 				  $enlace="/student";
 		//print_r($this->getRegister()); exit;
@@ -460,9 +460,9 @@ class Student extends User
 		
 		}
 
-		$this->Util()->DB()->setQuery("SELECT MAX(userId) FROM user");
-		$id = $this->Util()->DB()->GetSIngle();
-		
+		// $this->Util()->DB()->setQuery("SELECT MAX(userId) FROM user");
+		// $id = $this->Util()->DB()->GetSIngle();
+		//
 	
 		
 		if($option == "createCurricula")
