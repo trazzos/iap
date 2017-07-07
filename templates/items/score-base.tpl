@@ -10,7 +10,7 @@
         
 		{else}
 		      {assign var="entrega" value="0"}
-        	Sin Entregardgdsfdfgdfgdfgdfgdfgdfg
+        	Sin Entregar
         {/if}
         </td>
         <td align="center">

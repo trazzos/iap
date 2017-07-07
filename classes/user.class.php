@@ -1214,7 +1214,7 @@ class User extends Main
 						$card['isLogged'] = true;
 						$_SESSION['User'] = $card;
 						$_SESSION["lastClick"] = time();							
-						return true;
+						return $row['userId'];
 					}else{
 						$this->Util()->setError(10057, "error", "");
 						$this->Util()->PrintErrors();					
