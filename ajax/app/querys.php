@@ -52,10 +52,6 @@
 			echo "<tr>";
 			echo "<td>TIPO</td>";
 			echo "<td>NOMBRE</td>";
-			// echo "<td>GRUPO</td>";
-			// echo "<td>MODALIDAD</td>";
-			// echo "<td>FECHA INICIAL</td>";
-			// echo "<td>FECHA FINAL</td>";
 			echo "<td></td>";
 			echo "<tr>";
 			
@@ -64,9 +60,8 @@
 				echo "<tr>";
 				echo "<td>".$aux["majorName"]."</td>";
 				echo "<td>".$aux["name"]."</td>";
-				// echo "<td>".$aux["initialDate"]."</td>";
 				echo "<td>
-				<a href='' onClick='verActividad()'>
+				<a href='' onClick='verDetalle(".$aux["courseId"].")'>
 				Ir
 				</a>
 				</td>";
@@ -74,6 +69,50 @@
 			}
 			echo "</table>";
 					
+		break;
+		
+		
+		case "verDetalle":
+		
+			//anuncios
+			$module->setCourseModuleId($_POST["courseId"]);
+			// $module->setCourseModuleId(12);
+			$myModule = $module->InfoCourseModule();
+			
+			//informacion
+			$module->setCourseModuleId($_POST["courseId"]);
+			$infoMod = $module->InfoCourseModule();
+			
+			$announcements = $announcement->Enumerate($myModule["courseId"], $myModule["courseModuleId"]);
+			echo "ok[#]";
+			echo "<table border=1>";
+			foreach($announcements as $key=>$aux){
+			echo "<tr>";
+			echo "<td>".$aux["title"]."<td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>".$aux["description"]."<td>";
+			echo "</tr>";
+			}
+			echo "</table>";
+			
+			echo "[#]";
+			// echo "<pre>"; print_r($infoMod);
+			echo "<table>";
+			echo "<tr><td>Bienvenida</td></tr>";
+			echo "<tr><td>".$infoMod["welcomeTextDecoded"]."</td></tr>";
+			echo "<tr><td>Intenciones del Curso</td></tr>";
+			echo "<tr><td>".$infoMod["intentionsDecoded"]."</td></tr>";
+			echo "<tr><td>Temas</td></tr>";
+			echo "<tr><td>".$infoMod["themesDecoded"]."</td></tr>";
+			echo "<tr><td>Metodología</td></tr>";
+			echo "<tr><td>".$infoMod["methodologyDecoded"]."</td></tr>";
+			echo "<tr><td>Evaluacion</td></tr>";
+			echo "<tr><td>".$infoMod["evaluationDecoded"]."</td></tr>";
+			echo "<tr><td>Bibliografía</td></tr>";
+			echo "<tr><td>".$infoMod["bibliographyDecoded"]."</td></tr>";
+			echo "</table>";
+		
 		break;
 
 
