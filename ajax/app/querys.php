@@ -37,37 +37,49 @@
 			//Info Estudiante
 			$student->setUserId($_POST["usuarioId"]);
 			$info = $student->GetInfo();
-			//curricula activa
-			$activeCourses = $student->StudentCourses("activo", "si");
-
-	
-			echo "ok[#]";
-			echo "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg' style='width:100px'>";
-			echo "[#]";
-			echo $info["name"]." ".$info["lastNamePaterno"]." ".$info["lastNameMaterno"]."<br>";
-			echo $info["email"]."<br>";
-			echo "No. Control:".$info["controlNumber"];
-			echo "[#]";
-			echo "<table border='0'>";
-			echo "<tr>";
-			echo "<td>TIPO</td>";
-			echo "<td>NOMBRE</td>";
-			echo "<td></td>";
-			echo "<tr>";
 			
+			if(file_exists(DOC_ROOT."/alumnos/".$info["userId"].".jpg"))
+			{
+				$urlFoto = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg?".rand()."' style='width:100px; border-radius: 50%;' '>";
+				$fotoHeader = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg?".rand()."' style='width:30px; border-radius: 50%;' >";
+			}else{
+				$urlFoto = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;' '>";
+				$fotoHeader = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:30px; border-radius: 50%;' '>";
+			}
+			
+			$activeCourses = $student->StudentCourses("activo", "si");
+			echo "ok[#]";
+			echo $urlFoto;
+			echo "[#]";
+			echo "<p class='h3'><b>".$info["name"]." ".$info["lastNamePaterno"]." ".$info["lastNameMaterno"]."</b><br>";
+			echo "".$info["email"]."<br>";
+			echo "No. Control:".$info["controlNumber"]."</p>";
+			echo "[#]";
+			echo "<table style='color:#93a2a9; align-text:center; font-size:13px'>";
+			echo "<thead>";
+			echo "<tr>";
+			echo "<th style='width:200px'>TIPO</th>";
+			echo "<th>NOMBRE</th>";
+			echo "<th></th>";
+			echo "</tr>";
+			echo "</thead>";
+			echo "<tbody>";
 			
 			foreach($activeCourses as $key=>$aux){
 				echo "<tr>";
-				echo "<td>".$aux["majorName"]."</td>";
-				echo "<td>".$aux["name"]."</td>";
-				echo "<td>
+				echo "<td style='width:200px; text-align:center'>".$aux["majorName"]."</td>";
+				echo "<td style='text-align:center'>".$aux["name"]."</td>";
+				echo "<td style='text-align:center'>
 				<a href='' onClick='verDetalle(".$aux["courseId"].")'>
-				Ir
+				<img src='".WEB_ROOT."/images/flecha.png'>
 				</a>
 				</td>";
 				echo "</tr>";
 			}
+			echo "</tbody>";	
 			echo "</table>";
+			echo "[#]";
+			echo $fotoHeader;
 					
 		break;
 		
@@ -115,6 +127,30 @@
 		
 		break;
 
+		
+		case "miCuenta":
+			$student->setUserId($_POST["usuarioId"]);
+			$info = $student->GetInfo();
+			
+			if(file_exists(DOC_ROOT."/alumnos/".$info["userId"].".jpg"))
+			{
+				$fotoHeader = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg?".rand()."' style='width:30px; border-radius: 50%;' >";
+			}else{
+				$fotoHeader = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:30px; border-radius: 50%;' '>";
+			}
+		
+			echo "ok[#]";
+			echo $fotoHeader;
+			echo "[#]";
+			echo "<table>";
+			echo "<tr><td class='label'>Nombre:<td><td><input type='text' name='' id='' value='".$info["names"]."' class='form-control'><td></tr>";
+			echo "<tr><td class='label'>Apellido Paterno:<td><td><input type='text' name='' id='' value='".$info["lastNamePaterno"]."' class='form-control'><td></tr>";
+			echo "<tr><td class='label'>Apellido Materno:<td><td><input type='text' name='' id='' value='".$info["lastNameMaterno"]."' class='form-control'><td></tr>";
+			echo "<tr><td class='label'>Sexo:<td><td><select name='sexo' class='form-control'> <option value='m'>Masculino</opcion> <option value='f'>Femenino</opcion> </select><td></tr>";
+			echo "<tr><td class='label'>Fecha de Nacimiento:<td><td><select name='sexo' class='form-control'> <option value='m'>Masculino</opcion> <option value='f'>Femenino</opcion> </select><td></tr>";
+			echo "</table>";
+
+		break;
 
 	}
 
