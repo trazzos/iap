@@ -84,10 +84,9 @@ class Files extends Main
 		<table><tr><td align="center"><br><br></td></tr></table>
 		<table><tr><td align="center">'.$major.'</td></tr></table>
 		<table><tr><td align="center"><br><b>"'.$curricula.'"</b></td></tr></table>
-		<table><tr><td align="center"><b>MODALIDAD"</b></td></tr></table>
-		<table><tr><td align="center">'.$info["modality"].'</td></tr></table>
-		<table><tr><td align="center">CEDULA DE INSCRIPCION</td></tr></table>
-		<table><tr><td align="center"><br><br><br></td></tr></table>
+		<table><tr><td align="center"><b>MODALIDAD:</b>'.$info["modality"].'</td></tr></table>
+		<table><tr><td align="center"><br></td></tr></table>
+		<table><tr><td align="center">CEDULA DE INSCRIPCION<br></td></tr></table>
 		<table><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>A) DATOS PERSONALES</b></td></tr></table>
 		<table><tr><td align="center"><br></td></tr></table>
 
