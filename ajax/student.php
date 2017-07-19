@@ -775,6 +775,21 @@
 					}
 
 			break;
+			
+			case "generaSolicitud":
+			
+				echo "<pre>"; print_r($_POST);
+				$course->setCourseId($_POST["courseId"]);
+				$courseInfo = $course->Info();
+				echo "<pre>"; print_r($courseInfo);
+				exit;
+				// if($files->CedulaInscripcion($_POST["alumnoId"], $curricula, $this, $courseInfo["majorName"],  $courseInfo["name"])){
+					// echo "si";
+				// }else{
+					// echo "no";
+				// }
+				
+			break;
 	}
 
 ?>

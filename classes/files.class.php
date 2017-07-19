@@ -4,6 +4,19 @@ class Files extends Main
 {
 	function CedulaInscripcion($alumn, $course, $data, $major, $curricula)
 	{
+		$sql = "SELECT 
+				*
+			FROM
+				course
+			WHERE
+				courseId='" . $course."'";
+		
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();
+		
+		$sql = "SELECT * FROM user WHERE userId = '".$alumn."'";
+		$this->Util()->DB()->setQuery($sql);
+		$infoU = $this->Util()->DB()->GetRow();
 		//echo $data->getNames();
 		require_once(DOC_ROOT.'/tcpdf/config/lang/spa.php');
 		require_once(DOC_ROOT.'/tcpdf/tcpdf.php');
@@ -70,15 +83,16 @@ class Files extends Main
 		<table><tr><td align="center">DIRECCION ACADEMICA</td></tr></table>
 		<table><tr><td align="center"><br><br></td></tr></table>
 		<table><tr><td align="center">'.$major.'</td></tr></table>
-		<table><tr><td align="center"><br><b>"'.$curricula.'"</b><br></td></tr></table>
-		<table><tr><td align="center">CEDULA DE INSCRIPCION</td></tr></table>
-		<table><tr><td align="center"><br><br><br></td></tr></table>
+		<table><tr><td align="center"><br><b>"'.$curricula.'"</b></td></tr></table>
+		<table><tr><td align="center"><b>MODALIDAD:</b>'.$info["modality"].'</td></tr></table>
+		<table><tr><td align="center"><br></td></tr></table>
+		<table><tr><td align="center">CEDULA DE INSCRIPCION<br></td></tr></table>
 		<table><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>A) DATOS PERSONALES</b></td></tr></table>
 		<table><tr><td align="center"><br></td></tr></table>
 
 		<table><tr><td align="left" width="250"><b>Nombre:</b></td><td style="text-decoration:underline">'.$data->getLastNamePaterno().' '.$data->getLastNameMaterno().' '.$data->getNames().'</td></tr></table>
 		<table><tr><td align="left" width="250"><b>Sexo:</b></td><td style="text-decoration:underline">'.$data->getSexo().'</td></tr></table>
-		<table><tr><td align="left" width="250"><b>Fecha de Nacimiento:</b> </td><td style="text-decoration:underline">'.$data->getBirthdate().'</td></tr></table>
+		<table><tr><td align="left" width="250"><b>Fecha de Nacimiento:</b> </td><td style="text-decoration:underline">'.$infoU["birthdate"].'</td></tr></table>
 		<table><tr><td align="left" width="250"><b>Estado Civil:</b> </td><td style="text-decoration:underline">'.$data->getMaritalStatus().'</td></tr></table>
 		<table><tr><td align="left" width="250"><b>Domicilio:</b> </td><td style="text-decoration:underline">'.$data->getStreet().' '.$data->getNumer().' '.$data->getColony().' '.$data->getCity().' '.$data->getState().' '.$data->getCountry().'</td></tr></table>
 		<table><tr><td align="left" width="250"><b>Tel&eacute;fono:</b> </td><td style="text-decoration:underline">'.$data->getPhone().'</td></tr></table>

@@ -53,6 +53,8 @@
 			</a>   
 
 			<a href="{$WEB_ROOT}/files/solicitudes/{$item.userId}_{$item.courseId}.pdf" target="_blank">
+				<!--<a href="#" onclick="generaSolicitud('{$item.userId}','{$item.courseId}')" >
+			-->		
 				<img src="{$WEB_ROOT}/images/icons/16/document--arrow.png" title="Ficha de Registro" />
 			</a>      
 

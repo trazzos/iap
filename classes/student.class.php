@@ -709,6 +709,8 @@ class Student extends User
 				$this->setUserId($id);
 				$info = $this->GetInfo();
 				
+				// echo ""
+				// exit;
 				//datos personales
 				$this->setControlNumber();
 				$this->setNames($info['names']);
@@ -716,7 +718,7 @@ class Student extends User
 				$this->setLastNameMaterno($info['lastNameMaterno']);
 				$this->setSexo($info['sexo']);
 				$info['birthdate'] = explode("-", $info['birthdate']);
-				$this->setBirthdate($info['birthdate'][2], $info['birthdate'][1], $info['birthdate'][0]);
+				$this->setBirthdate($info['birthdate']);
 				$this->setMaritalStatus($info['maritalStatus']);
 				$this->setPassword(trim($info['password']));
 
