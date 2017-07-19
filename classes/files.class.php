@@ -4,6 +4,15 @@ class Files extends Main
 {
 	function CedulaInscripcion($alumn, $course, $data, $major, $curricula)
 	{
+		$sql = "SELECT 
+				*
+			FROM
+				course
+			WHERE
+				courseId='" . $course."'";
+		
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();
 		//echo $data->getNames();
 		require_once(DOC_ROOT.'/tcpdf/config/lang/spa.php');
 		require_once(DOC_ROOT.'/tcpdf/tcpdf.php');
@@ -71,6 +80,8 @@ class Files extends Main
 		<table><tr><td align="center"><br><br></td></tr></table>
 		<table><tr><td align="center">'.$major.'</td></tr></table>
 		<table><tr><td align="center"><br><b>"'.$curricula.'"</b><br></td></tr></table>
+		<table><tr><td align="center"><br><b>MODALIDAD"</b><br></td></tr></table>
+		<table><tr><td align="center"><br>'.$info["modality"].'<br></td></tr></table>
 		<table><tr><td align="center">CEDULA DE INSCRIPCION</td></tr></table>
 		<table><tr><td align="center"><br><br><br></td></tr></table>
 		<table><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>A) DATOS PERSONALES</b></td></tr></table>

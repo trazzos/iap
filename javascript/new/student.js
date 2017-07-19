@@ -373,3 +373,29 @@ function addModuls(){
     });
 	
 }//viewCourse
+
+
+function generaSolicitud(alumnoId,courseId){
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/student.php', 
+	  	data: $("#frmFiltro").serialize(true)+'&type=generaSolicitud'+'&alumnoId='+alumnoId+'&courseId='+courseId,
+		beforeSend: function(){			
+			$('#tblContentGray').html(LOADER3);
+		},
+	  	success: function(response) {	
+		$('divLoading').hide();
+			console.log(response)
+			var splitResp = response.split("[#]");
+			
+
+			$('#tblContentGray').html(splitResp[1]);
+			// $('#pagination').html();				
+			// $('#divLoading').hide();
+				
+		},
+		error:function(){
+			// alert(msgError);
+		}
+    });
+}
