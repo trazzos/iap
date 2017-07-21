@@ -1,6 +1,6 @@
 <?php
 	header('Access-Control-Allow-Origin: *'); 
-	echo "hola";
 ?>
+<center><?php echo $urlFoto;  ?></center>
 
 
