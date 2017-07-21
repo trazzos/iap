@@ -56,8 +56,7 @@
 			echo "ok[#]";
 			echo $fotoHeader;
 			echo "[#]";
-			echo "llega";
-			$smarty->display(DOC_ROOT.'/templates/app/perfil-inicio.tpl');
+			include(DOC_ROOT.'/ajax/app/view/perfil-inicio.php');
 			echo "[#]";
 			$smarty->display(DOC_ROOT.'/templates/app/curricula-activa.tpl');
 					
