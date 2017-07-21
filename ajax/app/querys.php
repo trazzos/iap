@@ -48,39 +48,17 @@
 			}
 			
 			$activeCourses = $student->StudentCourses("activo", "si");
-			// if($activeCourses as $key=>$aux){
-				
-				// $aux["name"] = strtolower($aux["name"]);
-			// }
-			// text-transform: lowercase !important'
-			// strtolower($aux["name"]
-			echo "ok[#]";
-			echo $urlFoto;
-			echo "[#]";
-			echo "<p class='h3'><b>".$info["name"]." ".$info["lastNamePaterno"]." ".$info["lastNameMaterno"]."</b><br>";
-			echo "".$info["email"]."<br>";
-			echo "No. Control:".$info["controlNumber"]."</p>";
-			echo "[#]";
-			echo "<table style='color:#93a2a9; align-text:center; font-size:13px; ' >";
-			echo "<thead>";
-			echo "</thead>";
-			echo "<tbody>";
+			$smarty->assign("urlFoto", $urlFoto);
+			$smarty->assign("info", $info);
+			$smarty->assign("activeCourses", $activeCourses);
+			$smarty->assign("DOC_ROOT", DOC_ROOT);
 			
-			foreach($activeCourses as $key=>$aux){
-				echo "<tr>";
-				// echo "<td style='width:200px; text-align:center'>".$aux["majorName"]."</td>";
-				echo "
-				<td style='text-align:left'>
-					<b>
-						<a href='' style=' text-decoration:none; color: #93a2a9;'  onClick='verDetalle(".$aux["courseId"].")'><font>".($aux["name"])."</font></a>
-					</b>
-				<br>".$aux["majorName"]."</td>";
-				echo "</tr>";
-			}
-			echo "</tbody>";	
-			echo "</table>";
-			echo "[#]";
+			echo "ok[#]";
 			echo $fotoHeader;
+			echo "[#]";
+			$smarty->display(DOC_ROOT.'/templates/app/perfil-inicio.tpl');
+			echo "[#]";
+			$smarty->display(DOC_ROOT.'/templates/app/curricula-activa.tpl');
 					
 		break;
 		
@@ -89,7 +67,6 @@
 		
 			//anuncios
 			$module->setCourseModuleId($_POST["courseId"]);
-			// $module->setCourseModuleId(12);
 			$myModule = $module->InfoCourseModule();
 			
 			//informacion
@@ -110,7 +87,6 @@
 			echo "</table>";
 			
 			echo "[#]";
-			// echo "<pre>"; print_r($infoMod);
 			echo "<table>";
 			echo "<tr><td>Bienvenida</td></tr>";
 			echo "<tr><td>".$infoMod["welcomeTextDecoded"]."</td></tr>";
