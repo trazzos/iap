@@ -7,6 +7,38 @@
 		<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/assets/jqm/themes/jquery.mobile.icons.min.css" />
 		<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/assets/jqm/jquery.mobile.structure-1.4.5.min.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo WEB_ROOT; ?>/assets/jqm/jquery.mobile-1.4.5.css" />
+<style type="text/css">
+.titulocontenedor {
+	background:#f6f6f6;
+	border: #ddd;
+	border-top-width: 0;
+    border-bottom-width: 1px;
+    border-style: solid;
+	height:20px;
+	padding: 14px 10px 10px 10px;
+	color: #276e36;
+	font-weight: bold;
+}
+
+.contenedor {
+	background:white;
+	border: #ddd;
+	border-top-width: 0;
+    border-bottom-width: 1px;
+    border-style: solid;
+	padding: 14px 10px 10px 10px;
+	color: #93a3b5;
+
+}
+.col-md-3{
+	color: #93a2a9;
+	font-weight: bold;
+}
+
+.col-md-8{
+	height:30px
+}
+</style>
 </head>
 
 <body>
