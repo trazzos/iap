@@ -63,7 +63,7 @@ var app = {
 
 var urlLoc = "localhost";
 
-   var WEB_ROOT = "http://" + urlLoc + "/iap";
+   var WEB_ROOT = "http://" + urlLoc + "/gitiap";
 // var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
 
 
