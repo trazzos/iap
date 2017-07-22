@@ -34,7 +34,7 @@
 		
 		case 'inicio':
 		
-			//Info Estudiante
+
 			$student->setUserId($_POST["usuarioId"]);
 			$info = $student->GetInfo();
 			
@@ -58,7 +58,8 @@
 			echo "[#]";
 			include(DOC_ROOT.'/ajax/app/view/perfil-inicio.php');
 			echo "[#]";
-			$smarty->display(DOC_ROOT.'/templates/app/curricula-activa.tpl');
+			include(DOC_ROOT.'/ajax/app/view/curricula-activa.php');
+			// $smarty->display(DOC_ROOT.'/templates/app/curricula-activa.tpl');
 					
 		break;
 		
@@ -72,35 +73,13 @@
 			//informacion
 			$module->setCourseModuleId($_POST["courseId"]);
 			$infoMod = $module->InfoCourseModule();
-			
 			$announcements = $announcement->Enumerate($myModule["courseId"], $myModule["courseModuleId"]);
-			echo "ok[#]";
-			echo "<table border=1>";
-			foreach($announcements as $key=>$aux){
-			echo "<tr>";
-			echo "<td>".$aux["title"]."<td>";
-			echo "</tr>";
-			echo "<tr>";
-			echo "<td>".$aux["description"]."<td>";
-			echo "</tr>";
-			}
-			echo "</table>";
 			
+			echo "ok[#]";
+			include(DOC_ROOT.'/ajax/app/view/anuncios.php');			
 			echo "[#]";
-			echo "<table>";
-			echo "<tr><td>Bienvenida</td></tr>";
-			echo "<tr><td>".$infoMod["welcomeTextDecoded"]."</td></tr>";
-			echo "<tr><td>Intenciones del Curso</td></tr>";
-			echo "<tr><td>".$infoMod["intentionsDecoded"]."</td></tr>";
-			echo "<tr><td>Temas</td></tr>";
-			echo "<tr><td>".$infoMod["themesDecoded"]."</td></tr>";
-			echo "<tr><td>Metodología</td></tr>";
-			echo "<tr><td>".$infoMod["methodologyDecoded"]."</td></tr>";
-			echo "<tr><td>Evaluacion</td></tr>";
-			echo "<tr><td>".$infoMod["evaluationDecoded"]."</td></tr>";
-			echo "<tr><td>Bibliografía</td></tr>";
-			echo "<tr><td>".$infoMod["bibliographyDecoded"]."</td></tr>";
-			echo "</table>";
+			include(DOC_ROOT.'/ajax/app/view/informacion.php');
+
 		
 		break;
 
@@ -119,13 +98,8 @@
 			echo "ok[#]";
 			echo $fotoHeader;
 			echo "[#]";
-			echo "<table>";
-			echo "<tr><td class='label'>Nombre:<td><td><input type='text' name='' id='' value='".$info["names"]."' class='form-control'><td></tr>";
-			echo "<tr><td class='label'>Apellido Paterno:<td><td><input type='text' name='' id='' value='".$info["lastNamePaterno"]."' class='form-control'><td></tr>";
-			echo "<tr><td class='label'>Apellido Materno:<td><td><input type='text' name='' id='' value='".$info["lastNameMaterno"]."' class='form-control'><td></tr>";
-			echo "<tr><td class='label'>Sexo:<td><td><select name='sexo' class='form-control'> <option value='m'>Masculino</opcion> <option value='f'>Femenino</opcion> </select><td></tr>";
-			echo "<tr><td class='label'>Fecha de Nacimiento:<td><td><select name='sexo' class='form-control'> <option value='m'>Masculino</opcion> <option value='f'>Femenino</opcion> </select><td></tr>";
-			echo "</table>";
+			include(DOC_ROOT.'/ajax/app/view/mi-cuenta.php');
+			
 
 		break;
 
