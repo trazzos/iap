@@ -47,11 +47,14 @@
     -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
 	<link rel="stylesheet" href="css/jqm/themes/iap.css" />
 	<link rel="stylesheet" href="css/jqm/themes/jquery.mobile.icons.min.css" />
 	<link rel="stylesheet" href="css/jqm/jquery.mobile.structure-1.4.5.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/jqm/jquery.mobile-1.4.5.css" />	
+	<link rel="stylesheet" type="text/css" href="css/jqm/jquery.mobile-1.4.5.css" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<!--agregar aqui los estilos nuevos -->
+	<link rel="stylesheet" type="text/css" href="css/extras.css" />
     <title>IAP</title>
 </head>
 
@@ -65,20 +68,19 @@
 		<div data-role="content">
 		<br>
 			<div class="divlogin">
-				<h3>Ingresa a tu cuenta</h3>
+				<h3 class="login white">Ingresa a tu cuenta</h3>
 				<form id="frmGral">
 						<input type="hidden" name="type" id="type" value="doLogin" >
 						<input type="text" name="username" placeholder="Usuario">
 						<input type="password" name="passwd" placeholder="Contraseña">
 				</form>
-				<a onClick="DoLogin()" class="ui-btn">
+				<a onClick="DoLogin()" class="ui-btn login white">
 					Ingresar
 				</a>
 				<h4>¿Olvidaste tu contraseña?</h4>
-				<p class="parrafoLogin">No te preocupes. Da click aqui para recuperarla.</p>
 			</div>
 		</div>
-		<center><p class="parrafoLogin">2016 © Instituto de Administración Pública del Estado de Chiapas, A.C.</p></center>
+		<center><p class="parrafoLogin">2017 © IAP Chiapas.</p></center>
 	</div>
 	
 	
@@ -94,24 +96,18 @@
 				</div>
 				<br>
 				<div  class="perfilInicio">
-					<table  id="" align="center">
-						<tr>
-							<td>
 								<p  class='h3'>
 									El <b>Instituto de Administración Pública del Estado de Chiapas, A.C.</b> te
 									da la mas cordial bienvenida a nuestro Sistema De Educación En Línea
-									<br>
-									<br>
-									www.iapchiapas.org.mx<br>
-									iapchiapas
+									<div class="material-icon h3">
+										<i class="material-icons green">public</i>
+										<a class="text">www.iapchiapas.org.mx</a>
+									</div>
 								</p>
-							</td>
-						</tr>
-					</table>
 				</div>
 				<br>
 				<div data-role="collapsible-set" >
-				<div data-role="collapsible"   >
+				<div data-role="collapsible"  data-collapsed="false"   >
 					<h3>Curricula Activa</h3>
 					<div id="divActiva">
 					</div>
@@ -126,14 +122,16 @@
 				</div>
 				</div>
 		</div>
+<!-- TODO no tiene caso el footer por ahora, pero si se ve padre, para cuando haya mas opciones
 		<div data-role="footer" data-id="foo1" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
-					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
+					&lt;!&ndash;<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>&ndash;&gt;
 				</ul>
-			</div><!-- /navbar -->
+			</div>&lt;!&ndash; /navbar &ndash;&gt;
 		</div>
+-->
 	</div>
 
 
@@ -172,14 +170,14 @@
 				</div>
 			</div>
 		</div>
-		<div data-role="footer" data-id="foo1" data-position="fixed">
+		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
 					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
 				</ul>
-			</div><!-- /navbar -->
-		</div>
+			</div>
+		</div>-->
 	</div>
 
 	<div data-role="page" data-theme="a" id="cuenta" >
@@ -188,14 +186,14 @@
 			<h2>Mi Cuenta</h2>
 		</div>
 		<div id="divPersonal"></div>
-		<div data-role="footer" data-id="foo1" data-position="fixed">
+		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
 					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
 				</ul>
-			</div><!-- /navbar -->
-		</div>
+			</div>
+		</div>-->
 	</div>
 
     <script type="text/javascript" src="cordova.js"></script>

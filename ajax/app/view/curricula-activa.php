@@ -10,12 +10,10 @@ foreach($activeCourses as $key=>$aux){
 ?>
 	<tr>
 		<td style='text-align:left'>
-		<b>
-			<a href='' style=' text-decoration:none; color: #93a2a9;'  onClick='verDetalle(<?php echo $aux["courseId"] ?>)'>
-				<font><?php echo $aux["name"]?></font>
-			</a>
-		</b>
-		<br><?php echo $aux["majorName"]?>
+		<b><?php echo $aux["majorName"]?><br></b>
+		<a href='' style=' text-decoration:none; color: #93a2a9; font-weight: normal'  onClick='verDetalle(<?php echo $aux["courseId"] ?>)'>
+			<font><?php echo $aux["name"]?></font>
+		</a>
 		</td>
 	</tr>
 <?php 

@@ -3,11 +3,12 @@
 ?>
 <html>
 <head>
-		<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/assets/jqm/themes/iap.css" />
-		<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/assets/jqm/themes/jquery.mobile.icons.min.css" />
-		<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/assets/jqm/jquery.mobile.structure-1.4.5.min.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo WEB_ROOT; ?>/assets/jqm/jquery.mobile-1.4.5.css" />
 <style type="text/css">
+
+.ui-content {
+    overflow-x: initial;
+}
+
 .titulocontenedor {
 	background:#f6f6f6;
 	border: #ddd;
@@ -43,8 +44,21 @@
 
 <body>
 
-		<br>
-		<br>
+
+<div class="ui-content ui-page-theme-a" data-form="ui-page-theme-a" data-theme="a" role="main">
+
+    <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+        <li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
+            Información personal</li>
+        <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Nombre: <span class="h3"><?php echo $info["names"]?></span>
+        </li>
+        <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Apellido paterno: <span class="h3"><?php echo $info["lastNamePaterno"]?></span>
+        </li>
+    </ul>
+</div>
+
 		<div class="titulocontenedor">Información Personal</div>
 			<div class="contenedor">
 				 <div class="portlet-body">

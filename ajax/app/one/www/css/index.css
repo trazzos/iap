@@ -86,17 +86,17 @@ body {
 .perfilInicio{
 	background:white;
 	-webkit-border-radius: 5px 10px;  /* Safari  */
-	-moz-border-radius: 5px 10px; 
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	padding: 15px;
+	-moz-border-radius: 5px 10px;
+    font-family: "Open Sans",sans-serif !important;
+	padding: 5px 9px;
 }
 
 
 #divActiva{
 	background:white;
 	-webkit-border-radius: 5px 10px;  /* Safari  */
-	-moz-border-radius: 5px 10px; 
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;	
+	-moz-border-radius: 5px 10px;
+    font-family: "Open Sans",sans-serif !important;
 }
 
 h4 {
@@ -112,6 +112,7 @@ h4 {
     color: #5a7391;
 	font-weight: 600;
 	text-shadow: 0 /*{c-bup-shadow-x}*/ 0px /*{c-bup-shadow-y}*/ 0 /*{c-bup-shadow-radius}*/ #FFF /*{c-bup-shadow-color}*/;
+    margin-bottom: 5px;
 }
 
 .h3{
@@ -281,5 +282,4 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
-
 
