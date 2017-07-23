@@ -56,3 +56,11 @@ a.login {
 .ul-list-view-inset {
     margin-top:5px;
 }
+
+.ui-content-no-padding {
+    padding-top: 0;
+}
+
+.ui-content-no-overflow {
+    overflow-x: initial;
+}
