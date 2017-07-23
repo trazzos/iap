@@ -41,6 +41,7 @@
 <body>
 
 
+
 <div class="ui-content ui-content-no-overflow ui-content-no-padding ui-page-theme-a" data-form="ui-page-theme-a" data-theme="a" role="main">
 
     <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
@@ -52,237 +53,117 @@
         <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Apellido paterno: <span class="h3"><?php echo $info["lastNamePaterno"]?></span>
         </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Apellido Materno: <span class="h3"><?php echo $info["lastNameMaterno"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Sexo: <span class="h3"><?php echo $info["sexo"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Fecha de Nacimiento: <span class="h3"><?php echo $info["birthdate"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Estado Civil: <span class="h3"><?php echo $info["birthdate"]?></span>
+        </li>
+    </ul>
+	
+	 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+        <li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
+            Domicilio</li>
+        <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Calle: <span class="h3"><?php echo $info["street"]?></span>
+        </li>
+        <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Número: <span class="h3"><?php echo $info["number"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Colonia: <span class="h3"><?php echo $info["colony"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Pais: <span class="h3"><?php echo $info["pais"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Estado: <span class="h3"><?php echo $info["estado"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Municipio: <span class="h3"><?php echo $info["ciudad"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Código postal: <span class="h3"><?php echo $info["postalCode"]?></span>
+        </li>
+    </ul>
+	
+	
+	 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+        <li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
+            Datos de Contacto</li>
+        <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Email: <span class="h3"><?php echo $info["email"]?></span>
+        </li>
+        <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Celular: <span class="h3"><?php echo $info["mobile"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Telefono Local: <span class="h3"><?php echo $info["phone"]?></span>
+        </li>
+    </ul>
+	
+	 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+        <li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
+            Datos Laborales</li>
+        <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+           Ocupación: <span class="h3"><?php echo $info["workplaceOcupation"]?></span>
+        </li>
+        <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Lugar de Trabajo: <span class="h3"><?php echo $info["workplace"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Domicilio: <span class="h3"><?php echo $info["workplaceAddress"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Pais: <span class="h3"><?php echo $info["paist"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Estado: <span class="h3"><?php echo $info["estadot"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Municipio: <span class="h3"><?php echo $info["ciudadt"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Area: <span class="h3"><?php echo $info["workplaceArea"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Telefono de Oficina: <span class="h3"><?php echo $info["workplacePhone"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Correo Oficial: <span class="h3"><?php echo $info["workplaceEmail"]?></span>
+        </li>
+    </ul>
+	
+	 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+        <li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
+            Estudios</li>
+        <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Grado  Académico: <span class="h3"><?php echo $info["academicDegree"]?></span>
+        </li>
+        <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Profesión: <span class="h3"><?php echo $info["profesion"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Escuela o Institución universitaria: <span class="h3"><?php echo $info["school"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Maestria En: <span class="h3"><?php echo $info["masters"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Escuela o institucion Maestria: <span class="h3"><?php echo $info["mastersSchool"]?></span>
+        </li>
+		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            Escuela o institucion bachillerato: <span class="h3"><?php echo $info["highSchool"]?></span>
+        </li>
     </ul>
 </div>
 
-		<div class="titulocontenedor">Información Personal</div>
-			<div class="contenedor">
-				 <div class="portlet-body">
-					<div class="form-group">
-						<div class="col-md-3">Nombre:</div>
-						<div class="col-md-8">
-							<?php echo $info["names"]?>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="col-md-3">Apellido Paterno:</div>
-						<div class="col-md-8">
-						  <?php echo $info["lastNamePaterno"]?>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-3 control-div">Apellido Materno:</div>
-						<div class="col-md-8">
-						   <?php echo $info["lastNameMaterno"]?>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-3 control-div">Sexo:</div>
-						<div class="col-md-8">
-							<?php echo $info["sexo"]?>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-3 control-div">Fecha de Nacimiento:</div>
-						<div class="col-md-8">
-							<?php echo $info["sexo"]?>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-3 control-div">Estado Civil:</div>
-						<div class="col-md-8">
-							<?php echo $info["maritalStatus"]?>
-						</div>
-					</div>
-				</div>
-			</div>
-		<div class="titulocontenedor">Domicilio</div>
-		<div class="contenedor">
-			 <div class="form-group">
-                <div class="col-md-3 control-div">Calle</div>
-                <div class="col-md-8">
-					<?php echo $info["street"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Número</div>
-                <div class="col-md-8">
-					<?php echo $info["number"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Colonia:</div>
-                <div class="col-md-8">
-                 <?php echo $info["colony"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">País</div>
-                <div class="col-md-8">
-                  <?php echo $info["pais"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Estado:</div>
-                <div class="col-md-8">
-                    <?php echo $info["estadoId"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Municipio</div>
-                <div class="col-md-8">
-                    <?php echo $info["municipioId"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Código Postal:</div>
-                <div class="col-md-8">
-                     <?php echo $info["postalCode"]?>
-                </div>
-            </div>
-		</div>
-		<div class="titulocontenedor">Datos de Contacto</div>
-		<div class="contenedor">
-			<div class="form-group">
-                <div class="col-md-3 control-div">Email:</div>
-                <div class="col-md-8">
-                     <?php echo $info["email"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Celular:</div>
-                <div class="col-md-8">
-					  <?php echo $info["mobile"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Teléfono local</div>
-                <div class="col-md-8">
-					 <?php echo $info["phone"]?>
-                </div>
-            </div>
-
-		</div>
-		<div class="titulocontenedor">Datos Laborales</div>
-		<div class="contenedor">
-			<div class="form-group">
-                <div class="col-md-3 control-div">Ocupación</div>
-                <div class="col-md-8">
-                        <?php echo $info["workplaceOcupation"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Lugar de trabajo:</div>
-                <div class="col-md-8">
-                        <?php echo $info["workplace"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Domicilio:</div>
-                <div class="col-md-8">
-                     <?php echo $info["workplaceAddress"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">País</div>
-                <div class="col-md-8">
-                     <?php echo $info["paist"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div" >Estado:</div>
-                <div class="col-md-8">
-                        <?php echo $info["estadot"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Municipio</div>
-                <div class="col-md-8">
-                      <?php echo $info["ciudadt"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Area</div>
-                <div class="col-md-8">
-                       <?php echo $info["workplaceArea"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Teléfono de Oficina</div>
-                <div class="col-md-8">
-                      <?php echo $info["workplacePhone"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Correo Oficial</div>
-                <div class="col-md-8">
-                        <?php echo $info["workplaceEmail"]?>
-                </div>
-            </div>
-
-
-		</div>
-		<div class="titulocontenedor">Estudios</div>
-		<div class="contenedor">
-			 <div class="form-group">
-                <div class="col-md-3 control-div">Grado Académico</div>
-                <div class="col-md-8">
-                        <?php echo $info["academicDegree"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Profesión</div>
-                <div class="col-md-8">
-                      <?php echo $info["profesion"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Escuela o Institución  Universitaria:</div>
-                <div class="col-md-8">
-                    <?php echo $info["school"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Maestría en:</div>
-                <div class="col-md-8">
-                    <?php echo $info["masters"]?>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-3 control-div">Escuela o Institución Maestría</div>
-                <div class="col-md-8">
-                     <?php echo $info["mastersSchool"]?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-3 control-div">Escuela o Institución Bachillerato</div>
-                <div class="col-md-8">
-                     <?php echo $info["highSchool"]?>
-                </div>
-            </div>
-
-		</div>
 
 
 

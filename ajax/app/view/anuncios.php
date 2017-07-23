@@ -29,6 +29,11 @@
   position: relative;
   width: 0;
 }
+.enlace {
+  color: white; /* el color del texto */
+  font-family: Arial, Sans-serif;
+  font-size: 12px;
+}
 </style>
 </head>
 
@@ -36,12 +41,17 @@
 			
 
 <?php	
+	// echo "<pre>"; print_r($announcements);
+	// exit;
 	foreach($announcements as $key=>$aux){
 ?>
 	<div class="speech-bubble">
 		<?php echo $aux["title"]?>
 		<br>
-		<?php //echo $aux["description"]?>
+		<div  class="enlace" onClick="openAnuncio(<?php echo $aux["announcementId"]?>)" >Abrir</div>
+		<div id="divanun_<?php echo $aux["announcementId"]?>" style="display:none">
+		<?php echo $aux["description"]?>
+		</div>
 	</div>
 	<br>
 	<br>
