@@ -161,8 +161,11 @@ function verDetalle(Id)
            var splitResponse = data.split("[#]");
            $("#divAnuncios").html(splitResponse[1])
            $("#divInformacion").html(splitResponse[2])
-           // $("#dataAlumnos").html(splitResponse[2])
-           // $("#divActiva").html(splitResponse[3])
+           $("#divActividad").html(splitResponse[3])
+           $("#divExamen").html(splitResponse[4])
+           $("#divRecursos").html(splitResponse[5])
+           $("#divForo").html(splitResponse[6])
+           $("#divDocente").html(splitResponse[7])
             
         },
         error: function ()
@@ -200,7 +203,6 @@ function miCuenta()
 
 function back(id)
 {
-		// alert("lety")
 	$.mobile.changePage("#"+id);
 }
 

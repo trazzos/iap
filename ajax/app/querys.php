@@ -75,11 +75,44 @@
 			$infoMod = $module->InfoCourseModule();
 			$announcements = $announcement->Enumerate($myModule["courseId"], $myModule["courseModuleId"]);
 			
+			//actividades
+			$activity->setCourseModuleId($_POST["courseId"]);
+			$actividades = $activity->Enumerate("Tarea");
+			//examenes
+			$activity->setCourseModuleId($_POST["courseId"]);
+			$lstExmanenes = $activity->Enumerate("Examen");
+			//recursos de apoyo
+			$resource->setCourseModuleId($_POST["courseId"]);
+			$resources = $resource->Enumerate();
+			//foro
+			$forum->setCourseId($_POST["courseId"]);
+			$forums = $forum->Enumerate();
+			//docente
+			$module->setCourseModuleId($_POST["courseId"]);
+			$myModule = $module->InfoCourseModule();
+
+			$personal->setPersonalId($myModule["access"][1]);
+			$docente = $personal->Info();
+
+			// echo "<pre>"; print_r($docente);
+			
+			$urlFotoDoc = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;' '>";
+			// exit;
+			
 			echo "ok[#]";
 			include(DOC_ROOT.'/ajax/app/view/anuncios.php');			
 			echo "[#]";
 			include(DOC_ROOT.'/ajax/app/view/informacion.php');
-
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/actividades.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/examen.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/recursos.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/foro.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/docente.php');
 		
 		break;
 
