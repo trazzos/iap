@@ -46,7 +46,7 @@
 	<?php 
 	foreach($lstExmanenes as $key=>$aux){
 	?>
-    <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><?php echo $aux["resumen"]?></a></li>
+    <li><a href="#" onClick="detalleActividad('<?php echo $aux["activityId"]?>')" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><?php echo $aux["resumen"]?></a></li>
 	<?php 
 	}
 	?>

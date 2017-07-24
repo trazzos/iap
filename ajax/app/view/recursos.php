@@ -46,7 +46,7 @@
 	<?php 
 	foreach($resources as $key=>$aux){
 	?>
-    <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><?php echo $aux["name"]?></a></li>
+    <li><a href="#" onClick="detalleRecurso('<?php echo $aux["resourceId"]?>')" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><?php echo $aux["name"]?></a></li>
 	<?php 
 	}
 	?>

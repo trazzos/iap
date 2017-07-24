@@ -587,5 +587,35 @@
 			return true;
 		}
 		
+		function InfoApp()
+		{
+			//creamos la cadena de seleccion
+			 $sql = "SELECT 
+						* 
+					FROM
+						activity
+					WHERE
+							activityId='" . $this->getActivityId() . "'";
+			//configuramos la consulta con la cadena de actualizacion
+			$this->Util()->DB()->setQuery($sql);
+			//ejecutamos la consulta y obtenemos el resultado
+			$result = $this->Util()->DB()->GetRow();
+			
+			// ECHO "<PRE>"; print_r($result );
+			// EXIT;
+			$f = explode(" ",$result["finalDate"]);
+
+			$result["initialDate"] = $this->Util()->FormatDateBack($result["initialDate"]);
+			$result["finalDateNoFormat"] = $result["finalDate"];
+			$result["finalDate"] = $this->Util()->FormatDateBack($f[0]);
+			$result["horaFinal"] = $f[1];
+			if($result)
+				$result = $this->Util->EncodeRow($result);
+
+			// echo "<pre>"; print_r($result);
+			// exit;
+			return $result;	
+			
+		}	
 	}	
 ?>

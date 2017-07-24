@@ -211,3 +211,52 @@ function openAnuncio(Id)
 {
 	$("#divanun_"+Id).toggle();
 }
+
+
+
+function detalleActividad(id)
+{
+	$.mobile.changePage("#divDetalleActividad");
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=detalleActividad&usuarioId='+getCookie("usuarioId")+'&actividadId='+id,
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+           $("#divDetalleP").html(splitResponse[1])
+
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+
+
+
+function detalleRecurso(id)
+{
+	$.mobile.changePage("#divDetaRecurso");
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=detalleRecurso&usuarioId='+getCookie("usuarioId")+'&actividadId='+id,
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+           $("#divDetalleR").html(splitResponse[1])
+
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}

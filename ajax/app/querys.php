@@ -59,7 +59,7 @@
 			include(DOC_ROOT.'/ajax/app/view/perfil-inicio.php');
 			echo "[#]";
 			include(DOC_ROOT.'/ajax/app/view/curricula-activa.php');
-			// $smarty->display(DOC_ROOT.'/templates/app/curricula-activa.tpl');
+
 					
 		break;
 		
@@ -94,11 +94,9 @@
 			$personal->setPersonalId($myModule["access"][1]);
 			$docente = $personal->Info();
 
-			// echo "<pre>"; print_r($docente);
-			
 			$urlFotoDoc = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;' '>";
-			// exit;
 			
+
 			echo "ok[#]";
 			include(DOC_ROOT.'/ajax/app/view/anuncios.php');			
 			echo "[#]";
@@ -136,6 +134,24 @@
 
 		break;
 
+		
+		case "detalleActividad":
+		
+			$activity->setActivityId($_POST["actividadId"]);
+			$infoActividad = $activity->InfoApp();
+			echo "ok[#]";
+			include(DOC_ROOT.'/ajax/app/view/detalle-actividad.php');
+			
+		break;
+		
+		case "detalleRecurso":
+		
+			// $activity->setActivityId($_POST["actividadId"]);
+			// $infoActividad = $activity->InfoApp();
+			echo "ok[#]";
+			include(DOC_ROOT.'/ajax/app/view/detalle-recurso.php');
+			
+		break;
 	}
 
 ?>
