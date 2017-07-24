@@ -144,7 +144,7 @@ function iniciaMysql()
 
 function verDetalle(Id)
 {
-	// alert("llega")
+
 	$.mobile.changePage("#divDetalle");
 	
 	document.cookie = "courseId="+Id;
