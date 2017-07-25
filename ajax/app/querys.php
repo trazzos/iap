@@ -63,6 +63,20 @@
 					
 		break;
 		
+		case "viewModules":
+		
+			// echo "<pre>"; print_r($_POST);
+			// echo "vacio";
+			$course->setCourseId($_POST["courseId"]);
+			$date = date("d-m-Y");
+			$addedModules = $course->StudentCourseModules();
+			echo "ok[#]";
+			include(DOC_ROOT.'/ajax/app/view/view-modules.php');
+			// echo "<pre>"; print_r($addedModules);
+			// exit;
+		
+		break;
+		
 		
 		case "verDetalle":
 		

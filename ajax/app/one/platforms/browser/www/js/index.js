@@ -63,8 +63,8 @@ var app = {
 
 var urlLoc = "localhost";
 
-   var WEB_ROOT = "http://" + urlLoc + "/iap";
-// var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
+   // var WEB_ROOT = "http://" + urlLoc + "/iap";
+var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
 
 
 function getCookie(cname) {
@@ -141,6 +141,35 @@ function iniciaMysql()
         }
     });
 }
+
+
+function viewModules(Id)
+{
+
+	$.mobile.changePage("#divModules");
+	
+	document.cookie = "courseId="+Id;
+	 
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=viewModules&courseId='+Id,
+        success: function(data)
+        {
+			
+			console.log(data)
+           var splitResponse = data.split("[#]");
+           $("#divModule").html(splitResponse[1])
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+	
+}
+
 
 function verDetalle(Id)
 {
