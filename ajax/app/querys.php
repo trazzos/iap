@@ -70,10 +70,27 @@
 			$course->setCourseId($_POST["courseId"]);
 			$date = date("d-m-Y");
 			$addedModules = $course->StudentCourseModules();
+			
+			$timestamp = time();
+			
+			foreach($addedModules as $key=>$aux){
+					
+					if($aux["finalDateStamp"] > 0 AND $timestamp > $aux["finalDateStamp"]){
+						$addedModules[$key]["estatusCourse"] = "Finalizado";
+					}else if($aux["active"] == "no"){
+						$addedModules[$key]["estatusCourse"] = "Finalizado";
+					}
+					else if($aux["finalDateStamp"] <= 0 AND $initialDateStamp < $aux["daysToFinishStamp"] AND $timestamp > $aux["daysToFinishStamp"]){
+						$addedModules[$key]["estatusCourse"] = "Finalizado";
+					}else{
+						$addedModules[$key]["estatusCourse"] = "Activo";
+					}
+				}
+				// echo "<pre>"; print_r($addedModules);
+			// exit;
 			echo "ok[#]";
 			include(DOC_ROOT.'/ajax/app/view/view-modules.php');
-			// echo "<pre>"; print_r($addedModules);
-			// exit;
+			
 		
 		break;
 		
@@ -132,6 +149,17 @@
 		case "miCuenta":
 			$student->setUserId($_POST["usuarioId"]);
 			$info = $student->GetInfo();
+			
+			$iPais = $student->InfoPais($info["pais"]);
+			$iEdo = $student->InfoEstado($info["estado"]);
+			$iMpo = $student->InfoMunicipio($info["ciudad"]);
+			
+			$iPaist = $student->InfoPais($info["paist"]);
+			$iEdot = $student->InfoEstado($info["estadot"]);
+			$iMpot = $student->InfoMunicipio($info["ciudadt"]);
+			
+			$profesion->setProfesionId($info["profesion"]);
+			$infoPro = $profesion->Info();
 			
 			if(file_exists(DOC_ROOT."/alumnos/".$info["userId"].".jpg"))
 			{

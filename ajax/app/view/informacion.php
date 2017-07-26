@@ -42,57 +42,58 @@
 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
 	<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
 		Bienvenida</li>
-	<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+	<div>
 	   <span class="h3"><?php echo $infoMod["welcomeTextDecoded"]?></span>
-	</li>
+	</div>
+
 </ul>
 
 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
 	<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
 		Introducci&oacute;n</li>
-	<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+	<div>
 	   <span class="h3"><?php echo $infoMod["introductionDecoded"]?></span>
-	</li>
+	</div>
 </ul>
 
 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
 	<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
 		Intenciones del Curso</li>
-	<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+	<div>
 	   <span class="h3"><?php echo $infoMod["intentionsDecoded"]?></span>
-	</li>
+	</div>
 </ul>
 	
 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
 	<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
 		Temas</li>
-	<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+	<div>
 	   <span class="h3"><?php echo $infoMod["themesDecoded"]?></span>
-	</li>
+	</div>
 </ul>	
 
 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
 	<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
 		Metodología</li>
-	<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+	<div>
 	   <span class="h3"><?php echo $infoMod["methodologyDecoded"]?></span>
-	</li>
+	</div>
 </ul>	
 
 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
 	<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
 		Evaluacion</li>
-	<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+	<div>
 	   <span class="h3"><?php echo $infoMod["evaluationDecoded"]?></span>
-	</li>
+	</div>
 </ul>	
 
 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
 	<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
 		Bibliografía</li>
-	<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+	<div>
 	   <span class="h3"><?php echo $infoMod["bibliographyDecoded"]?></span>
-	</li>
+	</div>
 </ul>
 
 

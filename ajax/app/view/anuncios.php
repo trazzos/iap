@@ -46,8 +46,9 @@
 	foreach($announcements as $key=>$aux){
 ?>
 	<div class="speech-bubble">
-		<?php echo $aux["title"]?>
+		<?php if($aux["title"]==""){ echo "Sin Titulo"; } else{ echo $aux["title"]; }?>
 		<br>
+		<?php  echo $aux["date"]?>
 		<div  class="enlace" onClick="openAnuncio(<?php echo $aux["announcementId"]?>)" >Abrir</div>
 		<div id="divanun_<?php echo $aux["announcementId"]?>" style="display:none">
 		<?php echo $aux["description"]?>

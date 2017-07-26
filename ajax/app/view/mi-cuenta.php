@@ -57,13 +57,13 @@
             Apellido Materno: <span class="h3"><?php echo $info["lastNameMaterno"]?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Sexo: <span class="h3"><?php echo $info["sexo"]?></span>
+            Sexo: <span class="h3"><?php if($info["sexo"]=="f"){ echo "Femenino"; }else{ echo "Masculino"; } ?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Fecha de Nacimiento: <span class="h3"><?php echo $info["birthdate"]?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Estado Civil: <span class="h3"><?php echo $info["birthdate"]?></span>
+            Estado Civil: <span class="h3"><?php echo $info["maritalStatus"]?></span>
         </li>
     </ul>
 	
@@ -80,13 +80,13 @@
             Colonia: <span class="h3"><?php echo $info["colony"]?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Pais: <span class="h3"><?php echo $info["pais"]?></span>
+            Pais: <span class="h3"><?php echo $iPais["nombre"]?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Estado: <span class="h3"><?php echo $info["estado"]?></span>
+            Estado: <span class="h3"><?php echo $iEdo["nombre"]?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Municipio: <span class="h3"><?php echo $info["ciudad"]?></span>
+            Municipio: <span class="h3"><?php echo $iMpo["nombre"]?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Código postal: <span class="h3"><?php echo $info["postalCode"]?></span>
@@ -121,13 +121,13 @@
             Domicilio: <span class="h3"><?php echo $info["workplaceAddress"]?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Pais: <span class="h3"><?php echo $info["paist"]?></span>
+            Pais: <span class="h3"><?php echo $iPaist["nombre"]?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Estado: <span class="h3"><?php echo $info["estadot"]?></span>
+            Estado: <span class="h3"><?php echo $iEdot["nombre"]?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Municipio: <span class="h3"><?php echo $info["ciudadt"]?></span>
+            Municipio: <span class="h3"><?php echo $iMpot["nombre"]?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Area: <span class="h3"><?php echo $info["workplaceArea"]?></span>
@@ -147,7 +147,7 @@
             Grado  Académico: <span class="h3"><?php echo $info["academicDegree"]?></span>
         </li>
         <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Profesión: <span class="h3"><?php echo $info["profesion"]?></span>
+            Profesión: <span class="h3"><?php echo $infoPro["profesionName"]?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Escuela o Institución universitaria: <span class="h3"><?php echo $info["school"]?></span>

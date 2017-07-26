@@ -171,7 +171,7 @@ function viewModules(Id)
 }
 
 
-function verDetalle(Id)
+function verDetalle(Id,estatus)
 {
 
 	$.mobile.changePage("#divDetalle");
@@ -181,7 +181,7 @@ function verDetalle(Id)
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
-        data : 'type=verDetalle&courseId='+Id,
+        data : 'type=verDetalle&courseId='+Id+'&estatus='+estatus,
         success: function(data)
         {
 			

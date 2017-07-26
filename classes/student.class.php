@@ -1815,6 +1815,33 @@ class Student extends User
 
 	}
 	
+	function InfoPais($Id){
+		
+		$sql = "SELECT * FROM pais WHERE paisId =".$Id."";
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+		
+		return $result;
+	}
+	
+	
+	function InfoEstado($Id){
+		
+		 $sql = "SELECT * FROM estado WHERE estadoId =".$Id."";
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+		
+		return $result;
+	}
+	
+	function InfoMunicipio($Id){
+		
+		 $sql = "SELECT * FROM municipio WHERE municipioId =".$Id."";
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+		
+		return $result;
+	}
 	
 }
 

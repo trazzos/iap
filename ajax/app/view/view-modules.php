@@ -46,7 +46,13 @@
 	<?php 
 	foreach($addedModules as $key=>$aux){
 	?>
-    <li><a href="#" onClick="verDetalle('<?php echo $aux["courseModuleId"]?>')" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><?php echo $aux["name"]?></a></li>
+		<li>
+			<a href="#" onClick="verDetalle('<?php echo $aux["courseModuleId"]?>','<?php echo $aux["estatusCourse"]?>')" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><?php echo $aux["name"]?>
+			<br>
+			<?php if($aux["estatusCourse"]=="Activo"){?><font color="#276e36">Activo</font><?php }else{?> <font color="#93a2a9">Finalizado</font> <?php }?>
+			</a>
+			
+		</li>
 	<?php 
 	}
 	?>
