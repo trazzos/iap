@@ -96,6 +96,45 @@
 		
 		
 		case "verDetalle":
+		// echo "<pre>"; print_r($_POST);
+		// exit;
+			if($_POST["estatus"]=="Finalizado"){
+				// actividades
+				$module->setCourseModuleId($_POST['courseId']);
+				$infoModule=$module->InfoCourseModule();
+				$courseId=$infoModule['courseId'];
+				$activity->setCourseModuleId($_POST['courseId']);
+				$activityInfoTask=$activity->Enumerate("Tarea");
+				$userId=$_POST["usuarioId"];
+				$activity->setUserId($userId);
+				foreach($activityInfoTask as $key => $fila){
+				  $activity->setCourseModuleId($_POST['courseId']);
+				  $activity->setActivityId($fila['activityId']);
+				  $activityInfoTask[$key]['calificacion']=$activity->Score();
+				  $activityInfoTask[$key]['retroTotal']=$activity->Retro();
+				  }
+				//examenes
+				$tipo=2;
+				$module->setCourseModuleId($_POST['courseId']);
+				$infoModule=$module->InfoCourseModule();
+				$courseId=$infoModule['courseId'];
+				$activity->setCourseModuleId($_POST['courseId']);
+				$activityInfoTaskExam=$activity->Enumerate("Examen");
+				$userId=$_POST["usuarioId"];
+				$activity->setUserId($userId);				
+				foreach($activityInfoTaskExam as $key => $fila){
+				  $activity->setCourseModuleId($_POST['courseId']);
+				  $activity->setActivityId($fila['activityId']);
+				  $activityInfoTaskExam[$key]['calificacion']=$activity->Score();
+				  $activityInfoTaskExam[$key]['retroTotal']=$activity->Retro();
+				  
+				  }
+				 echo "ok[#]";
+				 include(DOC_ROOT.'/ajax/app/view/calificacion-actividad.php');
+				 echo "[#]";
+				 include(DOC_ROOT.'/ajax/app/view/calificacion-examen.php');
+				 exit;
+			}
 		
 			//anuncios
 			$module->setCourseModuleId($_POST["courseId"]);
@@ -188,8 +227,9 @@
 		
 		case "detalleRecurso":
 		
-			// $activity->setActivityId($_POST["actividadId"]);
-			// $infoActividad = $activity->InfoApp();
+			$resource->setResourceId($_POST["actividadId"]);
+			$infoRe = $resource->Info();
+			// echo "<pre>"; print_r($infoRe);
 			echo "ok[#]";
 			include(DOC_ROOT.'/ajax/app/view/detalle-recurso.php');
 			

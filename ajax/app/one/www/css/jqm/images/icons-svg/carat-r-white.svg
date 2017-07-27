@@ -3,14 +3,14 @@
 
  <g>
   <title>background</title>
-  <rect fill="#fff" id="canvas_background" height="1109" width="1115" y="-1" x="-1"/>
+  <rect fill="#276e36" id="canvas_background" height="1109" width="1115" y="-1" x="-1"/>
   <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
    <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
   </g>
  </g>
  <g>
   <title>Layer 1</title>
-  <g stroke="null" fill="#fff" id="svg_6">
+  <g stroke="null" fill="#276e36" id="svg_6">
    <polygon stroke="null" id="svg_5" fill="#276e36" points="157.99964904785156,163.76060445838067 598.3630922691646,550.3535767690626 157.99964904785156,937.0247219417213 346.68863654523193,1102.629350088551 975.7410364448424,550.3535767690626 346.68863654523193,-2.000251531600952 "/>
   </g>
  </g>

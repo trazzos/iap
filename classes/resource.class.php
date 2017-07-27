@@ -136,7 +136,7 @@
 		public function Info()
 		{
 			//creamos la cadena de seleccion
-			$sql = "SELECT 
+			echo $sql = "SELECT 
 						* 
 					FROM
 						resource

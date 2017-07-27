@@ -46,12 +46,12 @@
 
     <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
         <li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
-            <?php echo $infoActividad["resumen"]?></li>
+            <?php echo $infoRe["name"]?></li>
         <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Descripción: <span class="h3"><?php echo $infoActividad["initialDate"]?></span>
+            Descripción: <span class="h3"><?php echo $infoRe["description"]?></span>
         </li>
         <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Descargar: <span class="h3"><?php echo $infoActividad["finalDate"]?></span>
+            Descargar: <span class="h3"><a href="<?php echo WEB_ROOT."/resources/".$infoRe["path"]?>" target="_blank" >Descargar</span>
         </li>
 	
     </ul>

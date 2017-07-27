@@ -174,27 +174,33 @@ function viewModules(Id)
 function verDetalle(Id,estatus)
 {
 
-	$.mobile.changePage("#divDetalle");
+	
 	
 	document.cookie = "courseId="+Id;
 	 
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
-        data : 'type=verDetalle&courseId='+Id+'&estatus='+estatus,
+        data : 'type=verDetalle&courseId='+Id+'&estatus='+estatus+'&usuarioId='+getCookie("usuarioId"),
         success: function(data)
         {
-			
-			
 			console.log(data)
-           var splitResponse = data.split("[#]");
-           $("#divAnuncios").html(splitResponse[1])
-           $("#divInformacion").html(splitResponse[2])
-           $("#divActividad").html(splitResponse[3])
-           $("#divExamen").html(splitResponse[4])
-           $("#divRecursos").html(splitResponse[5])
-           $("#divForo").html(splitResponse[6])
-           $("#divDocente").html(splitResponse[7])
+			var splitResponse = data.split("[#]");
+			if(estatus=="Activo"){
+				$.mobile.changePage("#divDetalle");
+			   $("#divAnuncios").html(splitResponse[1])
+			   $("#divInformacion").html(splitResponse[2])
+			   $("#divActividad").html(splitResponse[3])
+			   $("#divExamen").html(splitResponse[4])
+			   $("#divRecursos").html(splitResponse[5])
+			   $("#divForo").html(splitResponse[6])
+			   $("#divDocente").html(splitResponse[7])
+			}else{
+				$.mobile.changePage("#divCal");
+				$("#divActividades").html(splitResponse[1])
+			    $("#divExamenes").html(splitResponse[2])
+			}
+			
             
         },
         error: function ()
