@@ -72,7 +72,7 @@
 				<form id="frmGral">
 						<input type="hidden" name="type" id="type" value="doLogin" >
 						<input type="text" name="username" placeholder="Usuario">
-						<input type="password" name="passwd" placeholder="Contraseña">
+						<input type="password" name="passwd" id="passwd" placeholder="Contraseña">
 				</form>
 				<a onClick="DoLogin()" class="ui-btn login white">
 					Ingresar
@@ -88,6 +88,7 @@
 		<div data-role="header" data-theme="a">
 			<div id="fotoheader" class="fotoher" onClick="miCuenta()"></div>
 			<h2>IAP Chiapas</h2>
+			<div id="" class="headerConfig" onClick="openConfig()">config</div>
 		</div>
 		<div data-role="content" data-theme="a" id="page1_content">
 				<div class="perfilInicio" onClick="miCuenta()">
@@ -105,6 +106,9 @@
 									</div>
 								</p>
 				</div>
+				<div class="ui-icon-jj">
+				
+				</div>
 				<br>
 				<div data-role="collapsible-set" >
 				<div data-role="collapsible"  data-collapsed="false"   >
@@ -114,11 +118,13 @@
 				</div>
 				<div data-role="collapsible">
 					<h3>Curricula Inactiva</h3>
-					<p></p>
+					<div id="divInactiva">
+					</div>
 				</div>
 				<div data-role="collapsible">
 					<h3>Curricula Finalizada</h3>
-					<p></p>
+					<div id="divFinalizada">
+					</div>
 				</div>
 				</div>
 		</div>
@@ -278,6 +284,57 @@
 			<h2>Recursos de Apoyo</h2>
 		</div>
 		<div id="divDetalleR"></div>
+		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
+					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
+				</ul>
+			</div>
+		</div>-->
+	</div>
+	
+	<div data-role="page" data-theme="a" id="divConfig" >
+		<div data-role="header" data-theme="a">
+			<div  class="atras" onClick="back('home')">&nbsp;&nbsp;&nbsp;</div>
+			<h2>Configuración</h2>
+		</div>
+		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
+			  
+			  <ul data-role="listview" data-inset="true">
+				  <li data-role="list-divider"></li>
+				  <li><a href="#" onClick="acercaDe()">Acerca de</a></li>
+				  <li><a href="#" onClick="Close()">Salir</a></li>
+			</ul>
+		</div>
+		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
+					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
+				</ul>
+			</div>
+		</div>-->
+	</div>
+	
+	<div data-role="page" data-theme="a" id="divAcerca" >
+		<div data-role="header" data-theme="a">
+			<div  class="atras" onClick="back('divConfig')">&nbsp;&nbsp;&nbsp;</div>
+			<h2>Acerca de</h2>
+		</div>
+		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
+			  
+			 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+				<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
+					</li>
+				<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+				   Nombre:<span class="h3">SISEL</span>
+				</li>
+				<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+				   Version:<span class="h3">1.0</span>
+				</li>
+			</ul>
+		</div>
 		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
 			<div data-role="navbar">
 				<ul>

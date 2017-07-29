@@ -46,7 +46,10 @@
 
     <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
         <li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
-            <?php echo $infoActividad["resumen"]?></li>
+        <?php echo $infoActividad["resumen"]?></li>
+		 <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+            <center>Descripción</center> <br><span class="h3"><?php echo $infoActividad["description"]?></span>
+        </li>
         <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Fecha Inicial: <span class="h3"><?php echo $infoActividad["initialDate"]?></span>
         </li>
@@ -56,21 +59,36 @@
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Modalidad: <span class="h3"><?php echo $infoActividad["modality"]?></span>
         </li>
+		<?php if ($infoActividad["homework"]){ ?>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Tarea Entregada: <span class="h3"><?php echo $infoActividad["sexo"]?></span>
+            Tarea Entregada: 
+			<span class="h3">
+				<?php echo $infoActividad["sexo"]?>
+				<a  href="<?php echo WEB_ROOT."/download.php?file=homework/".$infoActividad["homework"]["path"]."&mime=".$infoActividad["homework"]["mime"] ?>" >VER TAREA</a>
+			</span>
         </li>
+		<?php }?>
+		 <?php if($infoActividad["ponderation"]) {?>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Calificación: <span class="h3"><?php echo $infoActividad["birthdate"]?></span>
+            Calificación: <span class="h3"><?php echo $infoActividad["ponderation"]?></span>
         </li>
+		
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Porcentaje Obtenido: <span class="h3"><?php echo $infoActividad["birthdate"]?></span>
+            Porcentaje Obtenido: <span class="h3"><?php echo $infoActividad["realScore"]?>%</span>
         </li>
+		 <?php }?>
+		 <?php if($infoActividad["retro"]) {?>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Retroalimentación: <span class="h3"><?php echo $infoActividad["birthdate"]?></span>
         </li>
+		 <?php }?>
+		 <?php if($infoActividad["retroFile"] <> ""){?>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Archivo adjunto disponible: <span class="h3"><?php echo $infoActividad["birthdate"]?></span>
+            Archivo adjunto disponible: <span class="h3">
+			<a href='<?php echo WEB_ROOT."/file_retro/".$infoActividad["retroFile"] ?>' target="_blank"  style="">Descargar</a>
+			</span>
         </li>
+		 <?php }?>
     </ul>
 	
 </div>

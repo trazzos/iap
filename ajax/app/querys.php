@@ -48,10 +48,9 @@
 			}
 			
 			$activeCourses = $student->StudentCourses("activo", "si");
-			$smarty->assign("urlFoto", $urlFoto);
-			$smarty->assign("info", $info);
-			$smarty->assign("activeCourses", $activeCourses);
-			$smarty->assign("DOC_ROOT", DOC_ROOT);
+			$inactiveCourses = $student->StudentCourses("inactivo", "si");
+			$finishedCourses = $student->StudentCourses("finalizado");
+			
 			
 			echo "ok[#]";
 			echo $fotoHeader;
@@ -59,37 +58,50 @@
 			include(DOC_ROOT.'/ajax/app/view/perfil-inicio.php');
 			echo "[#]";
 			include(DOC_ROOT.'/ajax/app/view/curricula-activa.php');
-
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/curricula-inactiva.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/curricula-finalizada.php');
 					
 		break;
 		
 		case "viewModules":
 		
-			// echo "<pre>"; print_r($_POST);
-			// echo "vacio";
-			$course->setCourseId($_POST["courseId"]);
-			$date = date("d-m-Y");
-			$addedModules = $course->StudentCourseModules();
 			
-			$timestamp = time();
-			
-			foreach($addedModules as $key=>$aux){
-					
-					if($aux["finalDateStamp"] > 0 AND $timestamp > $aux["finalDateStamp"]){
-						$addedModules[$key]["estatusCourse"] = "Finalizado";
-					}else if($aux["active"] == "no"){
-						$addedModules[$key]["estatusCourse"] = "Finalizado";
+			if($_POST["estatus"]=="activa"){	
+				$course->setCourseId($_POST["courseId"]);
+				$date = date("d-m-Y");
+				$addedModules = $course->StudentCourseModules();
+				
+				$timestamp = time();
+				
+				foreach($addedModules as $key=>$aux){
+						
+						if($aux["finalDateStamp"] > 0 AND $timestamp > $aux["finalDateStamp"]){
+							$addedModules[$key]["estatusCourse"] = "Finalizado";
+						}else if($aux["active"] == "no"){
+							$addedModules[$key]["estatusCourse"] = "Finalizado";
+						}
+						else if($aux["finalDateStamp"] <= 0 AND $initialDateStamp < $aux["daysToFinishStamp"] AND $timestamp > $aux["daysToFinishStamp"]){
+							$addedModules[$key]["estatusCourse"] = "Finalizado";
+						}else{
+							$addedModules[$key]["estatusCourse"] = "Activo";
+						}
 					}
-					else if($aux["finalDateStamp"] <= 0 AND $initialDateStamp < $aux["daysToFinishStamp"] AND $timestamp > $aux["daysToFinishStamp"]){
-						$addedModules[$key]["estatusCourse"] = "Finalizado";
-					}else{
-						$addedModules[$key]["estatusCourse"] = "Activo";
-					}
+				echo "ok[#]";
+				include(DOC_ROOT.'/ajax/app/view/view-modules.php');
+				exit;
+			}else{
+
+				$student->setUserId($_POST["usuarioId"]);
+				if($_POST["estatus"]=="finalizada"){
+					$infoMol = $student->InfoStudentCourses("finalizado",null,$_POST["courseId"]);
+				}else{
+					$infoMol = $student->InfoStudentCourses("inactivo","si",$_POST["courseId"]);
 				}
-				// echo "<pre>"; print_r($addedModules);
-			// exit;
-			echo "ok[#]";
-			include(DOC_ROOT.'/ajax/app/view/view-modules.php');
+				echo "ok[#]";
+				include(DOC_ROOT.'/ajax/app/view/info-modules.php');
+			}
 			
 		
 		break;
@@ -166,7 +178,7 @@
 
 			$urlFotoDoc = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;' '>";
 			
-
+			// echo "<pre>"; print_r($actividades);
 			echo "ok[#]";
 			include(DOC_ROOT.'/ajax/app/view/anuncios.php');			
 			echo "[#]";
@@ -219,7 +231,11 @@
 		case "detalleActividad":
 		
 			$activity->setActivityId($_POST["actividadId"]);
+			$activity->setUsuarioId($_POST["usuarioId"]);
 			$infoActividad = $activity->InfoApp();
+			echo "<pre>"; print_r($infoActividad);
+			// $activity->setCourseModuleId($_GET["id"]);
+			// $infoActividad = $activity->Enumerate("Tarea");
 			echo "ok[#]";
 			include(DOC_ROOT.'/ajax/app/view/detalle-actividad.php');
 			

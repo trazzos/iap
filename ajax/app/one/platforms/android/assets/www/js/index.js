@@ -63,8 +63,8 @@ var app = {
 
 var urlLoc = "localhost";
 
-   // var WEB_ROOT = "http://" + urlLoc + "/iap";
-var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
+   var WEB_ROOT = "http://" + urlLoc + "/iap";
+// var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
 
 
 function getCookie(cname) {
@@ -132,6 +132,8 @@ function iniciaMysql()
 		   $("#fotoheader").html(splitResponse[1])
            $("#dataAlumnos").html(splitResponse[2])
            $("#divActiva").html(splitResponse[3])
+           $("#divInactiva").html(splitResponse[4])
+           $("#divFinalizada").html(splitResponse[5])
            
             
         },
@@ -143,7 +145,7 @@ function iniciaMysql()
 }
 
 
-function viewModules(Id)
+function viewModules(Id,estatus)
 {
 
 	$.mobile.changePage("#divModules");
@@ -153,7 +155,7 @@ function viewModules(Id)
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
-        data : 'type=viewModules&courseId='+Id,
+        data : 'type=viewModules&courseId='+Id+'&estatus='+estatus+'&usuarioId='+getCookie("usuarioId"),
         success: function(data)
         {
 			
@@ -294,4 +296,24 @@ function detalleRecurso(id)
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
+}
+
+
+function openConfig()
+{
+	$.mobile.changePage("#divConfig");
+}
+
+function Close()
+{
+	$.mobile.changePage("#login");
+	document.cookie = "courseId=''";
+	document.cookie = "usuarioId=''";
+	$("#passwd").val('');
+}
+
+
+function acercaDe()
+{
+	$.mobile.changePage("#divAcerca");
 }

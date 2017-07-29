@@ -44,9 +44,26 @@
     <ul data-role="listview" data-autodividers="true" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
     <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit ui-first-child"></li>
 	<?php 
+	$timestamp = time();
 	foreach($actividades as $key=>$aux){
 	?>
-    <li><a href="#" onClick="detalleActividad('<?php echo $aux["activityId"]?>')" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><?php echo $aux["resumen"]?></a></li>
+    <li>
+		<a href="#" onClick="detalleActividad('<?php echo $aux["activityId"]?>')" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
+			<?php echo $aux["resumen"]?>
+			<br>
+			<?php if ($timestamp > $aux["initialDateTimestamp"] && $timestamp < $aux["finalDateTimestamp"]){ ?>
+				<span style="color:#0C0">Esta actividad se encuentra disponible</span>
+			<?php }?>
+
+			<?php if ($timestamp > $aux["finalDateTimestamp"]){ ?>
+				<span style="color:#C00">El tiempo de esta actividad ha terminado</span>
+			<?php }?>
+			<?php  if ($timestamp < $aux["initialDateTimestamp"] ){?>
+				<span style="color:#C00">Esta actividad aun no ha iniciado</span>
+			<?php }?>
+
+		</a>
+		</li>
 	<?php 
 	}
 	?>
