@@ -85,7 +85,7 @@ function getCookie(cname) {
 	
 function DoLogin()
 {
-
+// alert(WEB_ROOT)
     $.ajax({
         url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",

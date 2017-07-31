@@ -178,10 +178,13 @@ h4 {
 .headerConfig{
 	float:right;
 	margin-top: -30px;
-    margin-right: 0px;
+    margin-right: 10px;
     margin-left: 0px;
     height: 29px;
-    display: inline-block;   
+    height: 29px;
+    display: inline-block;  
+	background: url(../img/gear-white.png);
+	background-repeat: no-repeat	
 }
 
 
