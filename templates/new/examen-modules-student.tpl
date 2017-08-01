@@ -20,7 +20,7 @@
                         <!-- TODO Poner al centro el título-->
                         <div class="caption" >
                             <!-- TODO Ver Descripción ponerlo en blanco y subrayado-->
-                            <b>Examen  {$item.count} </b>
+                            <b>Examen  {$item.count} </b> 
                         </div>
                         <div class="actions">
                             <a href="{$WEB_ROOT}/graybox.php?page=view-description-activity&id={$item.activityId}" class="btn btn-default btn-sm" data-target="#ajax" data-toggle="modal" >

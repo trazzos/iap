@@ -18,19 +18,19 @@
         <td align="center">
         {if $User.type == "student"}
 	        {if  $timestamp < $subject.initialDateStamp}
-          	No Iniciado
-          {else}
-          	{if $subject.finalDateStamp > 0 AND $timestamp > $subject.finalDateStamp}  
-            	Finalizado
-            {elseif $subject.active == "no"}  
-            	Finalizado
-          	{elseif $subject.finalDateStamp <= 0 AND $initialDateStamp < $subject.daysToFinishStamp AND $timestamp > $subject.daysToFinishStamp}  
-            	Finalizado
-	        	{else}
-                <br />
-							<a href="{$WEB_ROOT}/view-modules-student/id/{$subject.courseModuleId}" title="Ver Modulo de Curso"  style="color:#000" target="_top" ><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
-                            </a>
-          	{/if}		
+				No Iniciado
+			{else}
+				{if $subject.finalDateStamp > 0 AND $timestamp > $subject.finalDateStamp}  
+					Finalizado
+				{elseif $subject.active == "no"}  
+					Finalizado
+				{elseif $subject.finalDateStamp <= 0 AND $initialDateStamp < $subject.daysToFinishStamp AND $timestamp > $subject.daysToFinishStamp}  
+					Finalizado
+					{else}
+					<br />
+								<a href="{$WEB_ROOT}/view-modules-student/id/{$subject.courseModuleId}" title="Ver Modulo de Curso"  style="color:#000" target="_top" ><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+								</a>
+				{/if}		
           {/if}
         {else}
         <a href="{$WEB_ROOT}/edit-modules-course/id/{$subject.courseModuleId}" title="Ver Modulos de Curso"  style="color:#000" target="_top" ><img src="{$WEB_ROOT}/images/arrow.png" title="Configurar Modulo" /></a>

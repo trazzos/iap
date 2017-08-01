@@ -6,6 +6,7 @@
     </div>
     <input type="hidden" value="0" id="recarga" name="recarga">
     <div class="portlet-body">
+
         {foreach from=$actividades item=item}
             {if $timestamp > $item.initialDateTimestamp && $timestamp < $item.finalDateTimestamp}
                 <div class="portlet box red">

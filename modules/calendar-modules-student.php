@@ -50,6 +50,8 @@
 	$smarty->assign('totalPonderation', $totalPonderation);
 
 	$majorModality = $activity->GetMajorModality();
+	// echo "<pre>"; print_r($majorModality);
+	// exit;
 	$smarty->assign('majorModality', $majorModality);
 
 	$smarty->assign('id', $_GET["id"]);

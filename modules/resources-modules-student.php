@@ -22,6 +22,9 @@
 	
     $resources = $resource->Enumerate();
 	$smarty->assign('resources', $resources);
+	
+	// echo "<pre>"; print_r($resources);
+	// exit;
 
 	$majorModality = $activity->GetMajorModality();
 	$smarty->assign('majorModality', $majorModality);

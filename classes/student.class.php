@@ -1815,6 +1815,76 @@ class Student extends User
 
 	}
 	
+	function InfoPais($Id){
+		
+		$sql = "SELECT * FROM pais WHERE paisId =".$Id."";
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+		
+		return $result;
+	}
+	
+	
+	function InfoEstado($Id){
+		
+		 $sql = "SELECT * FROM estado WHERE estadoId =".$Id."";
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+		
+		return $result;
+	}
+	
+	function InfoMunicipio($Id){
+		
+		 $sql = "SELECT * FROM municipio WHERE municipioId =".$Id."";
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+		
+		return $result;
+	}
+	
+	function InfoStudentCourses($status = NULL, $active = NULL,$courseId){
+		
+		
+		 $sql = "SELECT
+					*, subject.name AS name, major.name AS majorName
+				FROM
+					user_subject
+				LEFT JOIN course ON course.courseId = user_subject.courseId
+				LEFT JOIN subject ON subject.subjectId = course.subjectId	
+				LEFT JOIN major ON major.majorId = subject.tipo
+				WHERE
+					alumnoId = '".$this->getUserId()."' and user_subject.courseId = ".$courseId."";
+		
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+		
+
+		
+			$this->Util()->DB()->setQuery("
+				SELECT COUNT(*) FROM subject_module WHERE subjectId ='".$result["subjectId"]."'");
+		
+			$result["modules"] = $this->Util()->DB()->GetSingle();
+
+			$this->Util()->DB()->setQuery("
+				SELECT COUNT(*) FROM user_subject WHERE courseId ='".$result["courseId"]."' AND status = 'inactivo'");
+			$result["alumnInactive"] = $this->Util()->DB()->GetSingle();
+			
+			$this->Util()->DB()->setQuery("
+				SELECT COUNT(*) FROM user_subject WHERE courseId ='".$result["courseId"]."' AND status = 'activo'");
+		
+			$result["alumnActive"] = $this->Util()->DB()->GetSingle();
+
+			$this->Util()->DB()->setQuery("
+				SELECT COUNT(*) FROM course_module WHERE courseId ='".$result["courseId"]."'");
+		
+			$result["courseModule"] = $this->Util()->DB()->GetSingle();
+			
+		
+		
+		return $result;
+		
+	}
 	
 }
 

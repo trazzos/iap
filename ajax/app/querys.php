@@ -34,7 +34,7 @@
 		
 		case 'inicio':
 		
-			//Info Estudiante
+
 			$student->setUserId($_POST["usuarioId"]);
 			$info = $student->GetInfo();
 			
@@ -48,83 +48,151 @@
 			}
 			
 			$activeCourses = $student->StudentCourses("activo", "si");
-			// if($activeCourses as $key=>$aux){
-				
-				// $aux["name"] = strtolower($aux["name"]);
-			// }
-			// text-transform: lowercase !important'
-			// strtolower($aux["name"]
-			echo "ok[#]";
-			echo $urlFoto;
-			echo "[#]";
-			echo "<p class='h3'><b>".$info["name"]." ".$info["lastNamePaterno"]." ".$info["lastNameMaterno"]."</b><br>";
-			echo "".$info["email"]."<br>";
-			echo "No. Control:".$info["controlNumber"]."</p>";
-			echo "[#]";
-			echo "<table style='color:#93a2a9; align-text:center; font-size:13px; ' >";
-			echo "<thead>";
-			echo "</thead>";
-			echo "<tbody>";
+			$inactiveCourses = $student->StudentCourses("inactivo", "si");
+			$finishedCourses = $student->StudentCourses("finalizado");
 			
-			foreach($activeCourses as $key=>$aux){
-				echo "<tr>";
-				// echo "<td style='width:200px; text-align:center'>".$aux["majorName"]."</td>";
-				echo "
-				<td style='text-align:left'>
-					<b>
-						<a href='' style=' text-decoration:none; color: #93a2a9;'  onClick='verDetalle(".$aux["courseId"].")'><font>".($aux["name"])."</font></a>
-					</b>
-				<br>".$aux["majorName"]."</td>";
-				echo "</tr>";
-			}
-			echo "</tbody>";	
-			echo "</table>";
-			echo "[#]";
+			
+			echo "ok[#]";
 			echo $fotoHeader;
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/perfil-inicio.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/curricula-activa.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/curricula-inactiva.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/curricula-finalizada.php');
 					
+		break;
+		
+		case "viewModules":
+		
+			
+			if($_POST["estatus"]=="activa"){	
+				$course->setCourseId($_POST["courseId"]);
+				$date = date("d-m-Y");
+				$addedModules = $course->StudentCourseModules();
+				
+				$timestamp = time();
+				
+				foreach($addedModules as $key=>$aux){
+						
+						if($aux["finalDateStamp"] > 0 AND $timestamp > $aux["finalDateStamp"]){
+							$addedModules[$key]["estatusCourse"] = "Finalizado";
+						}else if($aux["active"] == "no"){
+							$addedModules[$key]["estatusCourse"] = "Finalizado";
+						}
+						else if($aux["finalDateStamp"] <= 0 AND $initialDateStamp < $aux["daysToFinishStamp"] AND $timestamp > $aux["daysToFinishStamp"]){
+							$addedModules[$key]["estatusCourse"] = "Finalizado";
+						}else{
+							$addedModules[$key]["estatusCourse"] = "Activo";
+						}
+					}
+				echo "ok[#]";
+				include(DOC_ROOT.'/ajax/app/view/view-modules.php');
+				exit;
+			}else{
+
+				$student->setUserId($_POST["usuarioId"]);
+				if($_POST["estatus"]=="finalizada"){
+					$infoMol = $student->InfoStudentCourses("finalizado",null,$_POST["courseId"]);
+				}else{
+					$infoMol = $student->InfoStudentCourses("inactivo","si",$_POST["courseId"]);
+				}
+				echo "ok[#]";
+				include(DOC_ROOT.'/ajax/app/view/info-modules.php');
+			}
+			
+		
 		break;
 		
 		
 		case "verDetalle":
+		// echo "<pre>"; print_r($_POST);
+		// exit;
+			if($_POST["estatus"]=="Finalizado"){
+				// actividades
+				$module->setCourseModuleId($_POST['courseId']);
+				$infoModule=$module->InfoCourseModule();
+				$courseId=$infoModule['courseId'];
+				$activity->setCourseModuleId($_POST['courseId']);
+				$activityInfoTask=$activity->Enumerate("Tarea");
+				$userId=$_POST["usuarioId"];
+				$activity->setUserId($userId);
+				foreach($activityInfoTask as $key => $fila){
+				  $activity->setCourseModuleId($_POST['courseId']);
+				  $activity->setActivityId($fila['activityId']);
+				  $activityInfoTask[$key]['calificacion']=$activity->Score();
+				  $activityInfoTask[$key]['retroTotal']=$activity->Retro();
+				  }
+				//examenes
+				$tipo=2;
+				$module->setCourseModuleId($_POST['courseId']);
+				$infoModule=$module->InfoCourseModule();
+				$courseId=$infoModule['courseId'];
+				$activity->setCourseModuleId($_POST['courseId']);
+				$activityInfoTaskExam=$activity->Enumerate("Examen");
+				$userId=$_POST["usuarioId"];
+				$activity->setUserId($userId);				
+				foreach($activityInfoTaskExam as $key => $fila){
+				  $activity->setCourseModuleId($_POST['courseId']);
+				  $activity->setActivityId($fila['activityId']);
+				  $activityInfoTaskExam[$key]['calificacion']=$activity->Score();
+				  $activityInfoTaskExam[$key]['retroTotal']=$activity->Retro();
+				  
+				  }
+				 echo "ok[#]";
+				 include(DOC_ROOT.'/ajax/app/view/calificacion-actividad.php');
+				 echo "[#]";
+				 include(DOC_ROOT.'/ajax/app/view/calificacion-examen.php');
+				 exit;
+			}
 		
 			//anuncios
 			$module->setCourseModuleId($_POST["courseId"]);
-			// $module->setCourseModuleId(12);
 			$myModule = $module->InfoCourseModule();
 			
 			//informacion
 			$module->setCourseModuleId($_POST["courseId"]);
 			$infoMod = $module->InfoCourseModule();
-			
 			$announcements = $announcement->Enumerate($myModule["courseId"], $myModule["courseModuleId"]);
-			echo "ok[#]";
-			echo "<table border=1>";
-			foreach($announcements as $key=>$aux){
-			echo "<tr>";
-			echo "<td>".$aux["title"]."<td>";
-			echo "</tr>";
-			echo "<tr>";
-			echo "<td>".$aux["description"]."<td>";
-			echo "</tr>";
-			}
-			echo "</table>";
 			
+			//actividades
+			$activity->setCourseModuleId($_POST["courseId"]);
+			$actividades = $activity->Enumerate("Tarea");
+			//examenes
+			$activity->setCourseModuleId($_POST["courseId"]);
+			$lstExmanenes = $activity->Enumerate("Examen");
+			//recursos de apoyo
+			$resource->setCourseModuleId($_POST["courseId"]);
+			$resources = $resource->Enumerate();
+			//foro
+			$forum->setCourseId($_POST["courseId"]);
+			$forums = $forum->Enumerate();
+			//docente
+			$module->setCourseModuleId($_POST["courseId"]);
+			$myModule = $module->InfoCourseModule();
+
+			$personal->setPersonalId($myModule["access"][1]);
+			$docente = $personal->Info();
+
+			$urlFotoDoc = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;' '>";
+			
+			// echo "<pre>"; print_r($actividades);
+			echo "ok[#]";
+			include(DOC_ROOT.'/ajax/app/view/anuncios.php');			
 			echo "[#]";
-			// echo "<pre>"; print_r($infoMod);
-			echo "<table>";
-			echo "<tr><td>Bienvenida</td></tr>";
-			echo "<tr><td>".$infoMod["welcomeTextDecoded"]."</td></tr>";
-			echo "<tr><td>Intenciones del Curso</td></tr>";
-			echo "<tr><td>".$infoMod["intentionsDecoded"]."</td></tr>";
-			echo "<tr><td>Temas</td></tr>";
-			echo "<tr><td>".$infoMod["themesDecoded"]."</td></tr>";
-			echo "<tr><td>Metodología</td></tr>";
-			echo "<tr><td>".$infoMod["methodologyDecoded"]."</td></tr>";
-			echo "<tr><td>Evaluacion</td></tr>";
-			echo "<tr><td>".$infoMod["evaluationDecoded"]."</td></tr>";
-			echo "<tr><td>Bibliografía</td></tr>";
-			echo "<tr><td>".$infoMod["bibliographyDecoded"]."</td></tr>";
-			echo "</table>";
+			include(DOC_ROOT.'/ajax/app/view/informacion.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/actividades.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/examen.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/recursos.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/foro.php');
+			echo "[#]";
+			include(DOC_ROOT.'/ajax/app/view/docente.php');
 		
 		break;
 
@@ -132,6 +200,17 @@
 		case "miCuenta":
 			$student->setUserId($_POST["usuarioId"]);
 			$info = $student->GetInfo();
+			
+			$iPais = $student->InfoPais($info["pais"]);
+			$iEdo = $student->InfoEstado($info["estado"]);
+			$iMpo = $student->InfoMunicipio($info["ciudad"]);
+			
+			$iPaist = $student->InfoPais($info["paist"]);
+			$iEdot = $student->InfoEstado($info["estadot"]);
+			$iMpot = $student->InfoMunicipio($info["ciudadt"]);
+			
+			$profesion->setProfesionId($info["profesion"]);
+			$infoPro = $profesion->Info();
 			
 			if(file_exists(DOC_ROOT."/alumnos/".$info["userId"].".jpg"))
 			{
@@ -143,16 +222,34 @@
 			echo "ok[#]";
 			echo $fotoHeader;
 			echo "[#]";
-			echo "<table>";
-			echo "<tr><td class='label'>Nombre:<td><td><input type='text' name='' id='' value='".$info["names"]."' class='form-control'><td></tr>";
-			echo "<tr><td class='label'>Apellido Paterno:<td><td><input type='text' name='' id='' value='".$info["lastNamePaterno"]."' class='form-control'><td></tr>";
-			echo "<tr><td class='label'>Apellido Materno:<td><td><input type='text' name='' id='' value='".$info["lastNameMaterno"]."' class='form-control'><td></tr>";
-			echo "<tr><td class='label'>Sexo:<td><td><select name='sexo' class='form-control'> <option value='m'>Masculino</opcion> <option value='f'>Femenino</opcion> </select><td></tr>";
-			echo "<tr><td class='label'>Fecha de Nacimiento:<td><td><select name='sexo' class='form-control'> <option value='m'>Masculino</opcion> <option value='f'>Femenino</opcion> </select><td></tr>";
-			echo "</table>";
+			include(DOC_ROOT.'/ajax/app/view/mi-cuenta.php');
+			
 
 		break;
 
+		
+		case "detalleActividad":
+		
+			$activity->setActivityId($_POST["actividadId"]);
+			$activity->setUsuarioId($_POST["usuarioId"]);
+			$infoActividad = $activity->InfoApp();
+			echo "<pre>"; print_r($infoActividad);
+			// $activity->setCourseModuleId($_GET["id"]);
+			// $infoActividad = $activity->Enumerate("Tarea");
+			echo "ok[#]";
+			include(DOC_ROOT.'/ajax/app/view/detalle-actividad.php');
+			
+		break;
+		
+		case "detalleRecurso":
+		
+			$resource->setResourceId($_POST["actividadId"]);
+			$infoRe = $resource->Info();
+			// echo "<pre>"; print_r($infoRe);
+			echo "ok[#]";
+			include(DOC_ROOT.'/ajax/app/view/detalle-recurso.php');
+			
+		break;
 	}
 
 ?>

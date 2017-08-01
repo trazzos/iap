@@ -11,6 +11,13 @@
 		private $opcionD;
 		private $opcionE;
 		private $hora;
+		private $usuarioId;
+		
+		public function setUsuarioId($value)
+		{
+			$this->Util()->ValidateInteger($value);
+			$this->usuarioId = $value;
+		}
 		
 		public function setTestId($value)
 		{
@@ -587,5 +594,100 @@
 			return true;
 		}
 		
+		function InfoApp($tipo = NULL)
+		{
+			
+			
+			if($tipo == "Examen")
+			{
+				$add = " AND activityType = 'Examen'";
+			}
+			elseif($tipo == "Tarea")
+			{
+				$add = " AND activityType != 'Examen'";
+			}
+		
+			 $sql = "
+				SELECT *,@rownum:=@rownum+1 AS rownum  FROM (SELECT @rownum:=0) r,activity
+				WHERE activityId = '".$this->activityId."' ".$add."";
+
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetRow();
+			
+			$module = new Module;
+			$module->setCourseModuleId($this->getCourseModuleId());
+			$myModule = $module->InfoCourseModule();
+			//print_r($myModule);
+			
+			$count = 1;
+			
+			
+				$result["count"] = $count;
+				$count++;
+				$result["descriptionShort"] = substr($result["description"], 0, 30);
+				$this->setActivityId($this->activityId);
+				  
+				 if($tipo == "Tarea"){
+						$result["numreq"]=$resultado["rownum"];
+						$result["tipo"]="Examen";
+				}
+				else{
+							$adds = " AND activityType != 'Examen'";
+							$this->Util()->DB()->setQuery("
+							SELECT *,@rownum:=@rownum+1 AS rownum  FROM (SELECT @rownum:=0) r,activity
+							WHERE activityId = '".$this->activityId."' ".$adds."
+							ORDER BY initialDate ASC");
+							$datosExa = $this->Util()->DB()->GetRow();
+												
+							$result["numreq"]=$datosExa["rownum"];
+							$result["tipo"]="Examen";
+
+			   }
+			   
+			  
+			   
+				$result["requerida"] = $this->Info();
+				//$result[$key]["req"]=$this->ver("Tarea");
+
+				$result["available"] = true;
+				//if requerida checamos si ya entregamos la tarea
+				
+				$result["initialDateTimestamp"] = strtotime($result["initialDate"]);
+				$result["finalDateTimestamp"] = strtotime($result["finalDate"]);
+				
+				$explodedInitialDate = explode("-", $result["initialDate"]);
+				$date = mktime(0, 0, 0, $explodedInitialDate[1], $explodedInitialDate[2], $explodedInitialDate[0]); 
+				$result["week"] = date('W', $date) - $myModule["week"] + 1; 
+				
+				//checar tareas
+				$homework = new Homework;
+				$homework->setActivityId($result["activityId"]);
+				$homework->setUserId($this->usuarioId);
+				$result["homework"] = $homework->Uploaded();
+				
+				if($result["requerida"]["activityId"])
+				{
+					$homework->setActivityId($result["requerida"]["activityId"]);
+					$entregada = $homework->Uploaded();
+					if(!$entregada)
+					{
+						$result["available"] = false;
+					}
+				}
+
+				$result["score"] = $result["ponderation"];
+				$this->setActivityId($result["activityId"]);
+				$this->setUserId($this->usuarioId);
+				$result["ponderation"] = $this->Score();
+				$result["retro"] = $this->Retro();
+				
+				$result["retroFile"] = $this->RetroFile();
+				
+				$realScore = $result["ponderation"] * $result["score"] / 100;
+				$result["realScore"] = $realScore;
+
+			return $result;
+			
+		}	
 	}	
 ?>
