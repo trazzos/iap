@@ -64,8 +64,8 @@ var app = {
 var urlLoc = "localhost";
 
 // var WEB_ROOT = "http://" + urlLoc + "/iap";
-// var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
-var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
+var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
+// var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
 
 
 function getCookie(cname) {
@@ -196,8 +196,9 @@ function verDetalle(Id,estatus)
 			   $("#divActividad").html(splitResponse[3])
 			   $("#divExamen").html(splitResponse[4])
 			   $("#divRecursos").html(splitResponse[5])
-			   $("#divForo").html(splitResponse[6])
+			   // $("#divForo").html(splitResponse[6])
 			   $("#divDocente").html(splitResponse[7])
+			   $("#divForo").html(splitResponse[8])
 			}else{
 				$.mobile.changePage("#divCal");
 				$("#divActividades").html(splitResponse[1])
@@ -317,4 +318,183 @@ function Close()
 function acercaDe()
 {
 	$.mobile.changePage("#divAcerca");
+}
+
+
+
+
+
+function verSubforo(topicId,courseId)
+{
+	$.mobile.changePage("#divSubForo");
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=verSubforo&usuarioId='+getCookie("usuarioId")+'&topicId='+topicId+'&courseId='+courseId,
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+           $("#subForo").html(splitResponse[1])
+           $("#forotopicId").val(splitResponse[2])
+
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+
+function verSubforoDetalle(topicId,courseId)
+{
+	$.mobile.changePage("#divSubForoDetalle");
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=verSubforoDetalle&usuarioId='+getCookie("usuarioId")+'&topicId='+topicId+'&courseId='+courseId,
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+           $("#subForoDetalle").html(splitResponse[1])
+           $("#dtopicId").val(splitResponse[2])
+           $("#dcourseId").val(splitResponse[3])
+           //$("#forotopicId").val(splitResponse[2])
+
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+
+function saveForo(topicId,courseId)
+{
+	
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=saveForo&usuarioId='+getCookie("usuarioId")+'&'+$('#frmForo').serialize(),
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+           $("#subForo").html(splitResponse[1])
+           $("#asunto").val('')
+           $("#mensaje").val('')
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+
+
+function saveAportacion(topicId,courseId)
+{
+	
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=saveAportacion&usuarioId='+getCookie("usuarioId")+'&'+$('#frmAportacion').serialize(),
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+           $("#subForo").html(splitResponse[1])
+           $("#asunto").val('')
+           $("#mensaje").val('')
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+
+
+
+
+function saveAportacion()
+{
+	
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=saveAportacion&usuarioId='+getCookie("usuarioId")+'&'+$('#frmAportacion').serialize(),
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+		   if(splitResponse[0]=="ok"){
+			   $("#subForoDetalle").html(splitResponse[1])
+				$("#aportacion").val('')
+		   }else{
+			  alert("error al guardar") 
+		   }
+           
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+function detalleAportacion()
+{
+	$.mobile.changePage("#Aportacion");
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=detalleAportacion&usuarioId='+getCookie("usuarioId")+'&topicId='+topicId+'&courseId='+courseId,
+        success: function(data)
+        {
+			console.log(data)
+
+           $("#divAportacion").html(data)
+
+
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+function verComentario(Id)
+{
+	/*
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=verComentario&usuarioId='+getCookie("usuarioId")+'&Id='+Id,
+        success: function(data)
+        {
+			console.log(data)
+*/
+          // $("#div_"+Id).html(data)
+			$("#div_"+Id).toggle();
+
+         /*   
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });*/
 }
