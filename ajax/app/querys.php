@@ -250,8 +250,7 @@
 			include(DOC_ROOT.'/ajax/app/view/detalle-recurso.php');
 			
 		break;
-<<<<<<< 54aab187c71acdde1fbb07f637cc16ac43ee8dc2
-=======
+
 		
 		case "verSubforo":
 			
@@ -377,7 +376,7 @@
 			}
 		
 		break;
->>>>>>> b127497d628a6f9b37816f5809406b8477d30351
+
 	}
 
 ?>
