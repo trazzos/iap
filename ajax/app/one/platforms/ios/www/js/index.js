@@ -63,8 +63,8 @@ var app = {
 
 var urlLoc = "localhost";
 
-// var WEB_ROOT = "http://" + urlLoc + "/iap";
-var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
+var WEB_ROOT = "http://" + urlLoc + "/iap";
+// var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
 // var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
 
 
@@ -196,9 +196,8 @@ function verDetalle(Id,estatus)
 			   $("#divActividad").html(splitResponse[3])
 			   $("#divExamen").html(splitResponse[4])
 			   $("#divRecursos").html(splitResponse[5])
-			   // $("#divForo").html(splitResponse[6])
+			   $("#divForo").html(splitResponse[6])
 			   $("#divDocente").html(splitResponse[7])
-			   $("#divForo").html(splitResponse[8])
 			}else{
 				$.mobile.changePage("#divCal");
 				$("#divActividades").html(splitResponse[1])
@@ -529,8 +528,7 @@ function SaveComentario()
            var splitResponse = data.split("[#]");
 		   if(splitResponse[0]=="ok"){
 			   verSubforoDetalle(splitResponse[2],splitResponse[3])
-			   // $("#subForoDetalle").html(splitResponse[1])
-				// $("#aportacion").val('')
+	
 		   }else{
 			  alert("error al guardar") 
 		   }
@@ -543,3 +541,4 @@ function SaveComentario()
         }
     });
 }
+

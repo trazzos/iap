@@ -167,7 +167,7 @@
 			$resource->setCourseModuleId($_POST["courseId"]);
 			$resources = $resource->Enumerate();
 			//foro
-			$forum->setCourseId($_POST["courseId"]);
+			$forum->setCourseId($myModule["courseId"]);
 			$forums = $forum->Enumerate();
 			//docente
 			$module->setCourseModuleId($_POST["courseId"]);
@@ -267,10 +267,11 @@
 		case "saveForo":
 		
 			// echo "<pre>"; print_r($_POST);
+			// exit;
 			$forum->setTopicId($_POST["forotopicId"]);
 			$forum->setUserId($_POST["usuarioId"]);
 			$forum->setSubject($_POST["asunto"]);
-			$forum->setReply($_POST["reply"]);
+			$forum->setReply($_POST["mensaje"]);
 			if($forum->AddTopic()){
 				$forum->setTopicId($_POST["forotopicId"]);
 				$forums = $forum->Enumeratesub();
@@ -344,6 +345,9 @@
 		break;
 		
 		case "SaveComentario":
+		
+		// echo "<pre>"; print_r($_POST);
+		// exit;
 		
 			$infoUser = $student->InfoStudent($_POST["usuarioId"]);
 			$infoUser["positionId"] = 0;

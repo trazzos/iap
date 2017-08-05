@@ -422,12 +422,15 @@ public function TopicsubInfo()
 		
 	public function Enumeratesub()
 		{
-			$this->Util()->DB()->setQuery("
+			
+			 $sql = "
 				SELECT * FROM topicsub
 				LEFT JOIN topic ON topic.topicId=topicsub.topicsubId
 				LEFT JOIN user ON user.userId = topicsub.userId
 				WHERE topicsub.topicId = ".$this->topicId." 
-				ORDER BY topicsubDate DESC");
+				ORDER BY topicsubDate DESC";
+				// exit;
+			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
 			
 			foreach($result as $key => $res)
@@ -556,7 +559,7 @@ public function TopicsubInfo()
 			
 			$this->Util()->setError(90000, 'complete', "Se ha creado un nuevo topico");
 			$this->Util()->PrintErrors();
-			return $result;
+			return true;
 		}
 		
 		public function EnumerateNotificacion(){
@@ -777,7 +780,7 @@ public function TopicsubInfo()
 			
 			$this->Util()->setError(90000, 'complete', "Has respondido al Topico");
 			$this->Util()->PrintErrors();
-			return $result;
+			return true;
 		}
 		
 	public function DeleteReply(){

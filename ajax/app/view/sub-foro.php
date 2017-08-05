@@ -44,11 +44,14 @@
     <ul data-role="listview" data-autodividers="true" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
     <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit ui-first-child"></li>
 	<?php 
-	// echo "<pre>"; print_r($forums);
-	// exit;
 	foreach($forums as $key=>$aux){
 	?>
-    <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r" onClick="verSubforo(<?php echo $aux["topicId"]?>,<?php echo $myModule["courseId"]?>)"><?php echo $aux["subject"]?></a></li>
+    <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r" onClick="verSubforoDetalle(<?php echo $aux["topicsubId"]?>,<?php echo $myModule["courseId"]?>)"><?php echo $aux["nombre"]?>
+	<br>
+	<?php echo $aux["names"]." ".$aux["lastNamePaterno"]." ".$aux["lastNameMaterno"]?>
+	</a>
+	
+	</li>
 	<?php 
 	}
 	?>

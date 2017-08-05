@@ -63,9 +63,9 @@ var app = {
 
 var urlLoc = "localhost";
 
-// var WEB_ROOT = "http://" + urlLoc + "/iap";
+var WEB_ROOT = "http://" + urlLoc + "/iap";
 // var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
-var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
+// var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
 
 
 function getCookie(cname) {
@@ -318,8 +318,6 @@ function acercaDe()
 {
 	$.mobile.changePage("#divAcerca");
 }
-<<<<<<< 54aab187c71acdde1fbb07f637cc16ac43ee8dc2
-=======
 
 
 
@@ -530,8 +528,7 @@ function SaveComentario()
            var splitResponse = data.split("[#]");
 		   if(splitResponse[0]=="ok"){
 			   verSubforoDetalle(splitResponse[2],splitResponse[3])
-			   // $("#subForoDetalle").html(splitResponse[1])
-				// $("#aportacion").val('')
+	
 		   }else{
 			  alert("error al guardar") 
 		   }
@@ -544,4 +541,4 @@ function SaveComentario()
         }
     });
 }
->>>>>>> b127497d628a6f9b37816f5809406b8477d30351
+

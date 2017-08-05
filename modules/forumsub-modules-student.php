@@ -31,7 +31,7 @@
 	
     //$dato = $forum->TopicInfo();
 	
-	// echo "<pre>"; print_r($_GET);
+	// echo "<pre>"; print_r($forum);
 	// exit;
 	//	print_r($forum);
 $smarty->assign('positionId', $User["positionId"]);
