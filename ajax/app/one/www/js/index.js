@@ -318,3 +318,230 @@ function acercaDe()
 {
 	$.mobile.changePage("#divAcerca");
 }
+<<<<<<< 54aab187c71acdde1fbb07f637cc16ac43ee8dc2
+=======
+
+
+
+
+
+function verSubforo(topicId,courseId)
+{
+	$.mobile.changePage("#divSubForo");
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=verSubforo&usuarioId='+getCookie("usuarioId")+'&topicId='+topicId+'&courseId='+courseId,
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+           $("#subForo").html(splitResponse[1])
+           $("#forotopicId").val(splitResponse[2])
+
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+
+function verSubforoDetalle(topicId,courseId)
+{
+	$.mobile.changePage("#divSubForoDetalle");
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=verSubforoDetalle&usuarioId='+getCookie("usuarioId")+'&topicId='+topicId+'&courseId='+courseId,
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+           $("#subForoDetalle").html(splitResponse[1])
+           $("#dtopicId").val(splitResponse[2])
+           $("#dcourseId").val(splitResponse[3])
+           //$("#forotopicId").val(splitResponse[2])
+
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+
+function saveForo(topicId,courseId)
+{
+	
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=saveForo&usuarioId='+getCookie("usuarioId")+'&'+$('#frmForo').serialize(),
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+           $("#subForo").html(splitResponse[1])
+           $("#asunto").val('')
+           $("#mensaje").val('')
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+
+
+function saveAportacion(topicId,courseId)
+{
+	
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=saveAportacion&usuarioId='+getCookie("usuarioId")+'&'+$('#frmAportacion').serialize(),
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+           $("#subForo").html(splitResponse[1])
+           $("#asunto").val('')
+           $("#mensaje").val('')
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+
+
+
+
+function saveAportacion()
+{
+	
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=saveAportacion&usuarioId='+getCookie("usuarioId")+'&'+$('#frmAportacion').serialize(),
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+		   if(splitResponse[0]=="ok"){
+			   $("#subForoDetalle").html(splitResponse[1])
+				$("#aportacion").val('')
+		   }else{
+			  alert("error al guardar") 
+		   }
+           
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+function detalleAportacion()
+{
+	$.mobile.changePage("#Aportacion");
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=detalleAportacion&usuarioId='+getCookie("usuarioId")+'&topicId='+topicId+'&courseId='+courseId,
+        success: function(data)
+        {
+			console.log(data)
+
+           $("#divAportacion").html(data)
+
+
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+function verComentario(Id)
+{
+	$("#div_"+Id).toggle();
+}
+
+
+
+function addComentario(replyId,topicId,courseId)
+{
+	$.mobile.changePage("#divAddComentario");
+	$("#replyId").val(replyId);
+	$("#ccourseId").val(courseId);
+	$("#ctopicId").val(topicId);
+	$("#usuarioId").val(getCookie("usuarioId"));
+	// $.ajax({
+		// url : WEB_ROOT+'/ajax/app/querys.php',
+        // type: "POST",
+        // data : 'type=addComentario&usuarioId='+getCookie("usuarioId")+'&topicId='+topicId+'&courseId='+courseId+'&replyId='+replyId,
+        // success: function(data)
+        // {
+			// console.log(data)
+
+           // $("#divAportacion").html(data)
+
+
+            
+        // },
+        // error: function ()
+        // {
+            // alert('Algo salio mal, compruebe su conexion a internet');
+        // }
+    // });
+}
+
+
+
+
+
+
+
+function SaveComentario()
+{
+	
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=SaveComentario&usuarioId='+getCookie("usuarioId")+'&'+$('#frmRetro').serialize(),
+        success: function(data)
+        {
+			console.log(data)
+           var splitResponse = data.split("[#]");
+		   if(splitResponse[0]=="ok"){
+			   verSubforoDetalle(splitResponse[2],splitResponse[3])
+			   // $("#subForoDetalle").html(splitResponse[1])
+				// $("#aportacion").val('')
+		   }else{
+			  alert("error al guardar") 
+		   }
+           
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+>>>>>>> b127497d628a6f9b37816f5809406b8477d30351

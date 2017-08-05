@@ -478,23 +478,68 @@ function detalleAportacion()
 
 function verComentario(Id)
 {
-	/*
+	$("#div_"+Id).toggle();
+}
+
+
+
+function addComentario(replyId,topicId,courseId)
+{
+	$.mobile.changePage("#divAddComentario");
+	$("#replyId").val(replyId);
+	$("#ccourseId").val(courseId);
+	$("#ctopicId").val(topicId);
+	$("#usuarioId").val(getCookie("usuarioId"));
+	// $.ajax({
+		// url : WEB_ROOT+'/ajax/app/querys.php',
+        // type: "POST",
+        // data : 'type=addComentario&usuarioId='+getCookie("usuarioId")+'&topicId='+topicId+'&courseId='+courseId+'&replyId='+replyId,
+        // success: function(data)
+        // {
+			// console.log(data)
+
+           // $("#divAportacion").html(data)
+
+
+            
+        // },
+        // error: function ()
+        // {
+            // alert('Algo salio mal, compruebe su conexion a internet');
+        // }
+    // });
+}
+
+
+
+
+
+
+
+function SaveComentario()
+{
+	
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
-        data : 'type=verComentario&usuarioId='+getCookie("usuarioId")+'&Id='+Id,
+        data : 'type=SaveComentario&usuarioId='+getCookie("usuarioId")+'&'+$('#frmRetro').serialize(),
         success: function(data)
         {
 			console.log(data)
-*/
-          // $("#div_"+Id).html(data)
-			$("#div_"+Id).toggle();
-
-         /*   
+           var splitResponse = data.split("[#]");
+		   if(splitResponse[0]=="ok"){
+			   verSubforoDetalle(splitResponse[2],splitResponse[3])
+			   // $("#subForoDetalle").html(splitResponse[1])
+				// $("#aportacion").val('')
+		   }else{
+			  alert("error al guardar") 
+		   }
+           
+            
         },
         error: function ()
         {
             alert('Algo salio mal, compruebe su conexion a internet');
         }
-    });*/
+    });
 }

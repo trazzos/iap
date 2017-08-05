@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--
+<!-- 
     Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
 
     Licensed to the Apache Software Foundation (ASF) under one
@@ -397,29 +397,31 @@
 	</div>
 
 	
-	<div data-role="page" data-theme="a" id="Aportacion" >
+	<div data-role="page" data-theme="a" id="divAddComentario" >
 		<div data-role="header" data-theme="a">
 			<div  class="atras" onClick="back('divSubForo')">&nbsp;&nbsp;&nbsp;</div>
 			<h2>Foros</h2>
 		</div>
 		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
 			  
-			 <div id="divAportacion"> </div>
-		</div>
-		<div data-role="footer" data-id="foo1" data-position="fixed">
-			<center>
-				<form id="frmComentario">
+			 <center>
+				<form id="frmRetro">
 				
 				<textarea name="comentario" id="comentario" placeholder="Comentario"></textarea>
-				<input type="hidden" name="dcourseId" id="dcourseId">
-				<input type="hidden" name="dtopicId" id="dtopicId">
+				<input type="hidden" name="replyId" id="replyId">
+				<input type="hidden" name="ccourseId" id="ccourseId">
+				<input type="hidden" name="ctopicId" id="ctopicId">
+				<input type="hidden" name="usuarioId" id="usuarioId">
 				</form>
-				<a onClick="saveComentario()" class="ui-btn login white">
+				<a onClick="SaveComentario()" class="ui-btn login white">
 					Comentar
 				</a>
 			</center>
 		</div>
+		
 	</div>
+	
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="css/jqm/jquery.js"></script>

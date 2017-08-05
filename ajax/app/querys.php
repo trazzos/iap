@@ -250,6 +250,134 @@
 			include(DOC_ROOT.'/ajax/app/view/detalle-recurso.php');
 			
 		break;
+<<<<<<< 54aab187c71acdde1fbb07f637cc16ac43ee8dc2
+=======
+		
+		case "verSubforo":
+			
+			// echo "<pre>"; print_r($_POST);
+			$forum->setTopicId($_POST["topicId"]);
+			$forums = $forum->Enumeratesub();
+			echo "ok[#]";
+			include(DOC_ROOT.'/ajax/app/view/sub-foro.php');
+			echo "[#]";
+			echo $_POST["topicId"];
+		
+		break;
+		
+		case "saveForo":
+		
+			// echo "<pre>"; print_r($_POST);
+			$forum->setTopicId($_POST["forotopicId"]);
+			$forum->setUserId($_POST["usuarioId"]);
+			$forum->setSubject($_POST["asunto"]);
+			$forum->setReply($_POST["reply"]);
+			if($forum->AddTopic()){
+				$forum->setTopicId($_POST["forotopicId"]);
+				$forums = $forum->Enumeratesub();
+				echo "ok[#]";
+				include(DOC_ROOT.'/ajax/app/view/sub-foro.php');
+			}else{
+				echo "fail[#]";
+			}
+		
+		break;
+		
+		case "verSubforoDetalle":
+		
+			// echo "<pre>"; print_r($_POST);
+			$forum->setTopicsubId($_POST["topicId"]);
+			$replies = $forum->Replies();
+			echo "ok[#]";
+			include(DOC_ROOT.'/ajax/app/view/aportaciones.php');
+			echo "[#]";
+			echo $_POST["topicId"];
+			echo "[#]";
+			echo $_POST["courseId"];
+		
+		break;
+		
+		case "saveAportacion":
+		
+		
+			$infoUser = $student->InfoStudent($_POST["usuarioId"]);
+			$infoUser["positionId"] = 0;
+			$forum->setTopicsubId($_POST["dtopicId"]);
+			$forum->setModuleId($_POST["dcourseId"]);
+			$forum->setReply($_POST["aportacion"]);
+		     if($infoUser["positionId"]==0 || $infoUser["positionId"]=="" || $infoUser["positionId"]==null || !isset($infoUser["positionId"])){
+				 $forum->setUserId($infoUser["userId"]);
+				 $forum->setPersonalId(0);
+		    }
+			else{
+				$forum->setUserId(0);
+				$forum->setPersonalId($infoUser["userId"]);
+			}
+			
+
+			$_SESSION['User']['userId'] = $_POST["usuarioId"];
+			if($forum->AddReply()){
+				$forum->setTopicsubId($_POST["dtopicId"]);
+				$replies = $forum->Replies();
+				echo "ok[#]";
+				include(DOC_ROOT.'/ajax/app/view/aportaciones.php');
+				
+			}else{
+				echo "fail[#]";
+			}
+		
+		break;
+		
+		case "detalleAportacion":
+		
+			echo "ok[#]";
+			include(DOC_ROOT.'/ajax/app/view/detalle-aportacion.php');
+		break;
+		
+		case "verComentario":
+
+			// echo "<pre>"; print_r($_POST);
+			include(DOC_ROOT.'/ajax/app/view/comentarios.php');
+		break;
+		
+		case "addComentario":
+		
+		break;
+		
+		case "SaveComentario":
+		
+			$infoUser = $student->InfoStudent($_POST["usuarioId"]);
+			$infoUser["positionId"] = 0;
+			$forum->setTopicsubId($_POST["ctopicId"]);
+			$forum->setModuleId($_POST["ccourseId"]);
+			$forum->setReplyId($_POST["replyId"]);
+			$forum->setReply($_POST["comentario"]);
+		     if($infoUser["positionId"]==0 || $infoUser["positionId"]=="" || $infoUser["positionId"]==null || !isset($infoUser["positionId"])){
+				 $forum->setUserId($infoUser["userId"]);
+				 $forum->setPersonalId(0);
+		    }
+			else{
+				$forum->setUserId(0);
+				$forum->setPersonalId($infoUser["userId"]);
+			}
+			
+
+			$_SESSION['User']['userId'] = $_POST["usuarioId"];
+			if($forum->AddReply()){
+				$forum->setTopicsubId($_POST["ctopicId"]);
+				$replies = $forum->Replies();
+				echo "ok[#]";
+				include(DOC_ROOT.'/ajax/app/view/aportaciones.php');
+				echo $_POST["ctopicId"];
+				echo "[#]";
+				echo $_POST["ccourseId"];
+				
+			}else{
+				echo "fail[#]";
+			}
+		
+		break;
+>>>>>>> b127497d628a6f9b37816f5809406b8477d30351
 	}
 
 ?>
