@@ -365,7 +365,9 @@
 				<textarea name="mensaje" id="mensaje" placeholder="Descripcion"></textarea>
 				<input type="hidden" name="forotopicId" id="forotopicId">
 				</form>
-				<a onClick="saveForo()" class="ui-btn login white">
+				<div class="msj"></div>
+				<div class="loader"></div>
+				<a onClick="saveForo()" class="ui-btn login white" id="btnSave">
 					Guardar
 				</a>
 			</center>
@@ -389,7 +391,9 @@
 				<input type="hidden" name="dcourseId" id="dcourseId">
 				<input type="hidden" name="dtopicId" id="dtopicId">
 				</form>
-				<a onClick="saveAportacion()" class="ui-btn login white">
+				<div class="msj"></div>
+				<div class="loader"></div>
+				<a onClick="saveAportacion()" id="btnAportacion" class="ui-btn login white">
 					Guardar Aportación
 				</a>
 			</center>
@@ -399,7 +403,7 @@
 	
 	<div data-role="page" data-theme="a" id="divAddComentario" >
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('divSubForo')">&nbsp;&nbsp;&nbsp;</div>
+			<div  class="atras" onClick="back('divSubForoDetalle')">&nbsp;&nbsp;&nbsp;</div>
 			<h2>Foros</h2>
 		</div>
 		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
@@ -415,7 +419,9 @@
 				<input type="hidden" name="replyId" id="replyId">
 				<input type="hidden" name="usuarioId" id="usuarioId">
 				</form>
-				<a onClick="SaveComentario()" class="ui-btn login white">
+				<div class="msj"></div>
+				<div class="loader"></div>
+				<a onClick="SaveComentario()" id="btnComentario" class="ui-btn login white">
 					Comentar
 				</a>
 			</center>

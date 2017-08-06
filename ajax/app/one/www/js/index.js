@@ -67,6 +67,8 @@ var WEB_ROOT = "http://" + urlLoc + "/iap";
 // var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
 // var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
 
+var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
+
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -241,6 +243,7 @@ function miCuenta()
 
 function back(id)
 {
+	$(".msj").html("")
 	$.mobile.changePage("#"+id);
 }
 
@@ -380,13 +383,25 @@ function saveForo(topicId,courseId)
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
         data : 'type=saveForo&usuarioId='+getCookie("usuarioId")+'&'+$('#frmForo').serialize(),
+		beforeSend: function(){			
+			$("#btnSave").hide();
+			$(".loader").html(LOADER3);
+			$(".msj").html('')
+		},
         success: function(data)
         {
 			console.log(data)
+			$(".loader").html("");
+			
            var splitResponse = data.split("[#]");
-           $("#subForo").html(splitResponse[1])
-           $("#asunto").val('')
-           $("#mensaje").val('')
+           if(splitResponse[0]=="ok"){
+			    $("#subForo").html(splitResponse[1])
+				$("#asunto").val('')
+				$("#mensaje").val('')
+		   }else if(splitResponse[0]=="fail"){
+			    $(".msj").html(splitResponse[1])
+		   }
+		   $("#btnSave").show();
             
         },
         error: function ()
@@ -405,44 +420,25 @@ function saveAportacion(topicId,courseId)
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
         data : 'type=saveAportacion&usuarioId='+getCookie("usuarioId")+'&'+$('#frmAportacion').serialize(),
-        success: function(data)
+        beforeSend: function(){	
+			// alert("lel")
+			$("#btnAportacion").hide();
+			$(".loader").html(LOADER3);
+			$(".msj").html('')
+		},
+		success: function(data)
         {
 			console.log(data)
+			$(".loader").html("");
+			
            var splitResponse = data.split("[#]");
-           $("#subForo").html(splitResponse[1])
-           $("#asunto").val('')
-           $("#mensaje").val('')
-            
-        },
-        error: function ()
-        {
-            alert('Algo salio mal, compruebe su conexion a internet');
-        }
-    });
-}
-
-
-
-
-
-function saveAportacion()
-{
-	
-	$.ajax({
-		url : WEB_ROOT+'/ajax/app/querys.php',
-        type: "POST",
-        data : 'type=saveAportacion&usuarioId='+getCookie("usuarioId")+'&'+$('#frmAportacion').serialize(),
-        success: function(data)
-        {
-			console.log(data)
-           var splitResponse = data.split("[#]");
-		   if(splitResponse[0]=="ok"){
+		    if(splitResponse[0]=="ok"){
 			   $("#subForoDetalle").html(splitResponse[1])
-				$("#aportacion").val('')
-		   }else{
-			  alert("error al guardar") 
-		   }
-           
+			   $("#aportacion").val('')
+			}else if(splitResponse[0]=="fail"){
+				$(".msj").html(splitResponse[1])
+			}
+			$("#btnAportacion").show();
             
         },
         error: function ()
@@ -451,6 +447,9 @@ function saveAportacion()
         }
     });
 }
+
+
+
 
 function detalleAportacion()
 {
@@ -489,24 +488,7 @@ function addComentario(replyId,topicId,courseId)
 	$("#ccourseId").val(courseId);
 	$("#ctopicId").val(topicId);
 	$("#usuarioId").val(getCookie("usuarioId"));
-	// $.ajax({
-		// url : WEB_ROOT+'/ajax/app/querys.php',
-        // type: "POST",
-        // data : 'type=addComentario&usuarioId='+getCookie("usuarioId")+'&topicId='+topicId+'&courseId='+courseId+'&replyId='+replyId,
-        // success: function(data)
-        // {
-			// console.log(data)
 
-           // $("#divAportacion").html(data)
-
-
-            
-        // },
-        // error: function ()
-        // {
-            // alert('Algo salio mal, compruebe su conexion a internet');
-        // }
-    // });
 }
 
 
@@ -522,15 +504,24 @@ function SaveComentario()
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
         data : 'type=SaveComentario&usuarioId='+getCookie("usuarioId")+'&'+$('#frmRetro').serialize(),
-        success: function(data)
+        beforeSend: function(){	
+			$("#btnComentario").hide();
+			$(".loader").html(LOADER3);
+			 $(".msj").html('')
+		},
+		success: function(data)
         {
 			console.log(data)
+			$("#btnComentario").show();
+			$(".loader").html('');
            var splitResponse = data.split("[#]");
 		   if(splitResponse[0]=="ok"){
+			   $("#comentario").val('');
 			   verSubforoDetalle(splitResponse[2],splitResponse[3])
 	
-		   }else{
-			  alert("error al guardar") 
+		   }else if(splitResponse[0]=="fail"){
+			   $(".msj").html(splitResponse[1])
+			 
 		   }
            
             

@@ -268,6 +268,13 @@
 		
 			// echo "<pre>"; print_r($_POST);
 			// exit;
+			if($_POST["asunto"]==null){
+				echo "fail[#]";
+				echo "Campo requerido: Asunto";
+				exit;
+			}
+			
+			
 			$forum->setTopicId($_POST["forotopicId"]);
 			$forum->setUserId($_POST["usuarioId"]);
 			$forum->setSubject($_POST["asunto"]);
@@ -299,7 +306,14 @@
 		
 		case "saveAportacion":
 		
+		// echo "<pre>"; print_r($_POST);
+		// exit;
 		
+			if($_POST["aportacion"]==null){
+				echo "fail[#]";
+				echo "Campo requerido: Aportacion";
+				exit;
+			}
 			$infoUser = $student->InfoStudent($_POST["usuarioId"]);
 			$infoUser["positionId"] = 0;
 			$forum->setTopicsubId($_POST["dtopicId"]);
@@ -348,6 +362,11 @@
 		
 		// echo "<pre>"; print_r($_POST);
 		// exit;
+			if($_POST["comentario"]==null){
+				echo "fail[#]";
+				echo "Campo requerido: Comentario";
+				exit;
+			}
 		
 			$infoUser = $student->InfoStudent($_POST["usuarioId"]);
 			$infoUser["positionId"] = 0;
@@ -371,6 +390,7 @@
 				$replies = $forum->Replies();
 				echo "ok[#]";
 				include(DOC_ROOT.'/ajax/app/view/aportaciones.php');
+				echo "[#]";
 				echo $_POST["ctopicId"];
 				echo "[#]";
 				echo $_POST["ccourseId"];
