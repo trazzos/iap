@@ -359,8 +359,13 @@
 			 <div id="subForo"> </div>
 		</div>
 		<div data-role="footer" data-id="foo1" data-position="fixed">
-			<center>
+			<center><!--
+				<a onClick="toma()" class="ui-btn login white" id="btnSave">
+					subir
+				</a>-->
+				
 				<form id="frmForo">
+				<!--<input type="file" name="archivo" id="archivo">-->
 				<input type="text" name="asunto" id="asunto" placeholder="Asunto">
 				<textarea name="mensaje" id="mensaje" placeholder="Descripcion"></textarea>
 				<input type="hidden" name="forotopicId" id="forotopicId">
@@ -386,7 +391,10 @@
 		<div data-role="footer" data-id="foo1" data-position="fixed">
 			<center>
 				<form id="frmAportacion">
-				
+				<div class="btn btn-default btn-file">
+				<img src="./img/camera-black.png">
+				<input type="file" name="path" id="path" >
+				</div>
 				<textarea name="aportacion" id="aportacion" placeholder="Aportacion"></textarea>
 				<input type="hidden" name="dcourseId" id="dcourseId">
 				<input type="hidden" name="dtopicId" id="dtopicId">
@@ -412,7 +420,10 @@
 		
 			<center>
 				<form id="frmRetro">
-				
+				<div class="btn btn-default btn-file">
+				<img src="./img/camera-black.png">
+				<input type="file" name="path" id="path" >
+				</div>
 				<textarea name="comentario" id="comentario" placeholder="Comentario"></textarea>
 				<input type="hidden" name="ctopicId" id="ctopicId">
 				<input type="hidden" name="ccourseId" id="ccourseId">

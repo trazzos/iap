@@ -1,5 +1,11 @@
 <?php
-	header('Access-Control-Allow-Origin: *'); 
+header('Access-Control-Allow-Origin: *'); 
+// echo "<pre>"; print_r($_POST);
+// echo "<pre>"; print_r($_FILES);
+// file_put_contents('logs.txt', print_r($_FILES));
+// $_FILES["fileToUpload"]
+exit;
+	
 	include_once('../../init.php');
 	include_once('../../config.php');
 	include_once(DOC_ROOT.'/libraries.php');
@@ -266,7 +272,7 @@
 		
 		case "saveForo":
 		
-			// echo "<pre>"; print_r($_FILES);
+			// echo "<pre>"; print_r($_POST);
 			// exit;
 			if($_POST["asunto"]==null){
 				echo "fail[#]";
@@ -333,7 +339,6 @@
 			if($forum->AddReply()){
 				$forum->setTopicsubId($_POST["dtopicId"]);
 				$replies = $forum->Replies();
-				$_POST["topicId"] = $_POST["dtopicId"];
 				echo "ok[#]";
 				include(DOC_ROOT.'/ajax/app/view/aportaciones.php');
 				
@@ -361,7 +366,7 @@
 		
 		case "SaveComentario":
 		
-		// echo "<pre>"; print_r($_FILES);
+		// echo "<pre>"; print_r($_POST);
 		// exit;
 			if($_POST["comentario"]==null){
 				echo "fail[#]";
