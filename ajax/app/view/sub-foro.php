@@ -39,10 +39,10 @@
 
 <body>
 
-<div class="ui-content ui-content-no-overflow ui-content-no-padding ui-page-theme-a" data-form="ui-page-theme-a" data-theme="a" role="main">
+<div  role="main">
 
     <ul data-role="listview" data-autodividers="true" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
-    <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit ui-first-child"></li>
+
 	<?php 
 	foreach($forums as $key=>$aux){
 	?>

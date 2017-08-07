@@ -51,7 +51,11 @@
             Descripción: <span class="h3"><?php echo $infoRe["description"]?></span>
         </li>
         <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Descargar: <span class="h3"><a href="<?php echo WEB_ROOT."/resources/".$infoRe["path"]?>" target="_blank" >Descargar</span>
+            Descargar: <span class="h3"><a href="<?php echo WEB_ROOT."/resources/".$infoRe["path"]?>" target="_blank" >
+
+				<i class="material-icons green">archive</i>
+					</a>
+			</span>
         </li>
 	
     </ul>

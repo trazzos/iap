@@ -88,6 +88,8 @@
 							$addedModules[$key]["estatusCourse"] = "Activo";
 						}
 					}
+				// echo "<pre>"; print_r($addedModules);
+				// exit;
 				echo "ok[#]";
 				include(DOC_ROOT.'/ajax/app/view/view-modules.php');
 				exit;
@@ -178,7 +180,8 @@
 
 			$urlFotoDoc = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;' '>";
 			
-			// echo "<pre>"; print_r($actividades);
+			// echo "<pre>"; print_r($docente);
+			// exit;
 			echo "ok[#]";
 			include(DOC_ROOT.'/ajax/app/view/anuncios.php');			
 			echo "[#]";
@@ -399,6 +402,24 @@
 			}else{
 				echo "fail[#]";
 			}
+		
+		break;
+		
+		case "upActividad":
+		
+			$homework->setActivityId($_POST["upactividadId"]);
+			$homework->setModality($_POST["upmodalidad"]);
+			$homework->setNombre($_POST["titulo"]);
+			$homework->setUserId($_POST["upusuarioId"]);
+			if($homework->Upload($_FILES["path"])){
+				echo "ok[#]";
+				echo $_POST["upactividadId"];
+				echo "[#]";
+				echo $_POST["upmodalidad"];
+			}else{
+				echo "fail[#]";
+			}
+			
 		
 		break;
 

@@ -71,7 +71,7 @@
 				<h3 class="login white">Ingresa a tu cuenta</h3>
 				<form id="frmGral">
 						<input type="hidden" name="type" id="type" value="doLogin" >
-						<input type="text" name="username" placeholder="Usuario">
+						<input type="number" name="username" placeholder="Usuario">
 						<input type="password" name="passwd" id="passwd" placeholder="Contraseña">
 				</form>
 				<a onClick="DoLogin()" class="ui-btn login white">
@@ -269,7 +269,7 @@
 	<div data-role="page" data-theme="a" id="divDetalleActividad" >
 		<div data-role="header" data-theme="a">
 			<div  class="atras" onClick="back('divDetalle')">&nbsp;&nbsp;&nbsp;</div>
-			<h2>Actividad</h2>
+			<h2><div id="tituloactividad"></div></h2>
 		</div>
 		<div id="divDetalleP"></div>
 		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
@@ -303,10 +303,9 @@
 			<div  class="atras" onClick="back('home')">&nbsp;&nbsp;&nbsp;</div>
 			<h2>Configuración</h2>
 		</div>
-		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
+		<div data-role="content"  id="page1_content" class="ui-content-no-padding">
 			  
 			  <ul data-role="listview" data-inset="true">
-				  <li data-role="list-divider"></li>
 				  <li><a href="#" onClick="acercaDe()">Acerca de</a></li>
 				  <li><a href="#" onClick="Close()">Salir</a></li>
 			</ul>
@@ -326,7 +325,7 @@
 			<div  class="atras" onClick="back('divConfig')">&nbsp;&nbsp;&nbsp;</div>
 			<h2>Acerca de</h2>
 		</div>
-		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
+		<div data-role="content"  id="page1_content" class="ui-content-no-padding">
 			  
 			 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
 				<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
@@ -354,7 +353,7 @@
 			<div  class="atras" onClick="back('divDetalle')">&nbsp;&nbsp;&nbsp;</div>
 			<h2>Foros</h2>
 		</div>
-		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
+		<div data-role="content" data-theme="a" id="page1_content" >
 			  
 			 <div id="subForo"> </div>
 		</div>
@@ -436,7 +435,37 @@
 					Comentar
 				</a>
 			</center>
+		</div>
+	</div>
+	<div data-role="page" data-theme="a" id="divUp" >
+		<div data-role="header" data-theme="a">
+			<div  class="atras" onClick="back('divDetalleActividad')">&nbsp;&nbsp;&nbsp;</div>
+			<h2>Subir Tarea</h2>
+		</div>
+		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
+			  
+			
 		
+			<center>
+				<form id="frmUpActividad">
+				<div class="btn btn-default btn-file">
+				<img src="./img/camera-black.png">
+				<input type="file" name="path" id="path" >
+				</div>
+				<textarea name="titulo" id="titulo" placeholder="Titulo"></textarea>
+				<input type="hidden" name="upactividadId" id="upactividadId" >
+				<input type="hidden" name="upmodalidad" id="upmodalidad" >
+
+				<input type="hidden" name="upusuarioId" id="upusuarioId">
+				</form>
+				<div class="msj"></div>
+				<div class="loader"></div>
+				<a onClick="upActividad()" id="btnUpActividad" class="ui-btn login white">
+					Subir
+				</a>
+			</center>
+		
+		</div>
 	</div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>

@@ -40,25 +40,27 @@
 <body>
 
 <div class="ui-content ui-content-no-overflow ui-content-no-padding ui-page-theme-a" data-form="ui-page-theme-a" data-theme="a" role="main">
+<font color="#276e36" >Los examenes solo se pueden realizar a través de www.iapchiapasenlinea.mx</font>
 
     <ul data-role="listview" data-autodividers="true" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
-    <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit ui-first-child"></li>
+
 	<?php 
 	$timestamp = time();
 	foreach($lstExmanenes as $key=>$aux){
 	?>
     <li>
-		<a href="#" onClick="detalleActividad('<?php echo $aux["activityId"]?>')" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><?php echo $aux["resumen"]?>
+		<a href="#" onClick="detalleActividad('<?php echo $aux["activityId"]?>','examen')" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><?php echo $aux["resumen"]?>
 		<br>
 		<?php if ($timestamp > $aux["initialDateTimestamp"] && $timestamp < $aux["finalDateTimestamp"]){ ?>
-				<span style="color:#0C0">Esta actividad se encuentra disponible</span>
+				<span style="color:#0C0">Actividad Disponible</span>
 			<?php }?>
 
 			<?php if ($timestamp > $aux["finalDateTimestamp"]){ ?>
-				<span style="color:#C00">El tiempo de esta actividad ha terminado</span>
+				<span style="color:#C00">Tiempo Terminado</span><br>
+				<span style="color:gray">Calificación:<?php echo $aux["ponderation"]?></span>
 			<?php }?>
 			<?php  if ($timestamp < $aux["initialDateTimestamp"] ){?>
-				<span style="color:#C00">Esta actividad aun no ha iniciado</span>
+				<span style="color:#C00">No Iniciada</span>
 			<?php }?>
 		</a>
 	</li>

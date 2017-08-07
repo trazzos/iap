@@ -155,7 +155,9 @@
 			$this->Util()->setError(90000, 'complete', "Servidor de correos off-line");
 			
 			
-			$this->Util()->PrintErrors();			
+			$this->Util()->PrintErrors();
+
+			return true;
 		}
 
 		public function Uploaded()

@@ -39,10 +39,10 @@
 
 <body>
 
-<div class="ui-content ui-content-no-overflow ui-content-no-padding ui-page-theme-a" data-form="ui-page-theme-a" data-theme="a" role="main">
+<div class="ui-content ui-content-no-overflow ui-content-no-padding"  role="main">
 
     <ul data-role="listview" data-autodividers="true" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
-    <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit ui-first-child"></li>
+
 	<?php 
 	foreach($addedModules as $key=>$aux){
 	?>
@@ -50,6 +50,8 @@
 			<a href="#" onClick="verDetalle('<?php echo $aux["courseModuleId"]?>','<?php echo $aux["estatusCourse"]?>')" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><?php echo $aux["name"]?>
 			<br>
 			<?php if($aux["estatusCourse"]=="Activo"){?><font color="#276e36">Activo</font><?php }else{?> <font color="#93a2a9">Finalizado</font> <?php }?>
+			<br>
+			<span style="color:gray">Calificación:<?php echo $aux["totalScore"]?></span>
 			</a>
 			
 		</li>

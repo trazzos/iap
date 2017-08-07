@@ -63,8 +63,8 @@ var app = {
 
 var urlLoc = "localhost";
 
-var WEB_ROOT = "http://" + urlLoc + "/iap";
-// var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
+// var WEB_ROOT = "http://" + urlLoc + "/iap";
+var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
 // var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
 
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
@@ -255,7 +255,7 @@ function openAnuncio(Id)
 
 
 
-function detalleActividad(id)
+function detalleActividad(id,tipo)
 {
 	$.mobile.changePage("#divDetalleActividad");
 	$.ajax({
@@ -265,8 +265,15 @@ function detalleActividad(id)
         success: function(data)
         {
 			console.log(data)
+			
+			
            var splitResponse = data.split("[#]");
-           $("#divDetalleP").html(splitResponse[1])
+		   $("#divDetalleP").html(splitResponse[1])
+			if(tipo=="actividad"){
+				$("#tituloactividad").html("Actividad")
+			}else{
+				$("#tituloactividad").html("Examenes")
+			}
 
             
         },
@@ -550,43 +557,6 @@ function addComentario(replyId,topicId,courseId)
 
 
 
-// function ()
-// {
-	
-	// $.ajax({
-		// url : WEB_ROOT+'/ajax/app/querys.php',
-        // type: "POST",
-        // data : 'type=SaveComentario&usuarioId='+getCookie("usuarioId")+'&'+$('#frmRetro').serialize(),
-        // beforeSend: function(){	
-			// $("#btnComentario").hide();
-			// $(".loader").html(LOADER3);
-			 // $(".msj").html('')
-		// },
-		// success: function(data)
-        // {
-			// console.log(data)
-			// $("#btnComentario").show();
-			// $(".loader").html('');
-           // var splitResponse = data.split("[#]");
-		   // if(splitResponse[0]=="ok"){
-			   // $("#comentario").val('');
-			   // verSubforoDetalle(splitResponse[2],splitResponse[3])
-	
-		   // }else if(splitResponse[0]=="fail"){
-			   // $(".msj").html(splitResponse[1])
-			 
-		   // }
-           
-            
-        // },
-        // error: function ()
-        // {
-            // alert('Algo salio mal, compruebe su conexion a internet');
-        // }
-    // });
-// }
-
-
 function SaveComentario(){
 	
 	// En esta var va incluido $_POST y $_FILES
@@ -627,6 +597,74 @@ function SaveComentario(){
 			if(splitResp[0] == "ok"){
 				  $("#comentario").val('');
 			   verSubforoDetalle(splitResp[2],splitResp[3])
+			}else if(splitResp[0] == "fail"){
+				 $(".msj").html(splitResp[1])			
+			}else{
+				 alert('Algo salio mal, compruebe su conexion a internet');
+			}
+			
+			
+		},
+	})
+
+}
+
+
+
+function verFormUp(Id,modl)
+{
+
+
+	$.mobile.changePage("#divUp");
+	$("#upactividadId").val(Id);
+	$("#upmodalidad").val(modl);
+	$("#upusuarioId").val(getCookie("usuarioId"));
+}
+
+
+
+
+
+function upActividad(){
+	
+	// En esta var va incluido $_POST y $_FILES
+	var fd = new FormData(document.getElementById("frmUpActividad"));
+	fd.append('type','upActividad');
+	fd.append('usuarioId',getCookie("usuarioId"));
+
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+		data: fd,
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		xhr: function(){
+				var XHR = $.ajaxSettings.xhr();
+				XHR.upload.addEventListener('progress',function(e){
+					console.log(e)
+					var Progress = ((e.loaded / e.total)*100);
+					Progress = (Progress);
+					console.log(Progress)
+					$('#progress_').val(Math.round(Progress));						
+					
+				},false);
+			return XHR;
+		},
+		beforeSend: function(){		
+			$(".loader").html(LOADER3);
+			$(".msj").hide(0);
+			$("#btnUpActividad").hide();
+		},
+		success: function(response){
+			
+			console.log(response);
+			var splitResp = response.split("[#]");
+
+			$(".loader").html("");
+			$("#btnUpActividad").show();
+			if(splitResp[0] == "ok"){
+				  $("#titulo").val('');
+			   detalleActividad(splitResp[2],splitResp[3])
 			}else if(splitResp[0] == "fail"){
 				 $(".msj").html(splitResp[1])			
 			}else{
