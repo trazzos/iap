@@ -77,15 +77,14 @@
 				<br>
 				<?php 
 				echo '
-					<a href="javascript:void(0)" onClick="addComentario('.$aux["replyId"].','.$_POST["topicId"].','.$_POST["courseId"].')">
-					<img src="'.WEB_ROOT.'/images/add.png" style="width:17px; border-radius: 50%;" >
+					<a href="javascript:void(0)" onClick="addComentario('.$aux["replyId"].','.$_POST["topicId"].','.$_POST["courseId"].')" style=" text-decoration:none; ">
+					
+						<i class="material-icons green">add_box</i>
 					</a>';
-				echo "&nbsp;";
-				if($aux["numComentarios"] <= 0){
-					echo '<img src="'.WEB_ROOT.'/images/comentarioGris.png" style="max-width: 15px;height: auto;" title="VER COMENTARIOS"> ';
-				}else{
-					echo '<a href="javascript:void(0)" onClick="verComentario('.$aux["replyId"].')">
-							<img src="'.WEB_ROOT.'/images/comentario.png" style="max-width: 16px;height: auto;" title="VER COMENTARIOS"> 
+				echo "";
+				if($aux["numComentarios"] >= 1){
+					echo '<a href="javascript:void(0)" onClick="verComentario('.$aux["replyId"].')" style=" text-decoration:none; ">
+							<i class="material-icons green">comment</i>
 						</a>';
 				}
 				?>

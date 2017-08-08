@@ -26,6 +26,8 @@ a.login {
 
 .material-icons.green {
     color: #276e36;
+	height: 24px;
+    width: 24px;
 }
 
 .material-icon .text{

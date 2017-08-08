@@ -110,18 +110,18 @@
 				
 				</div>
 				<br>
-				<div data-role="collapsible-set" >
-				<div data-role="collapsible"  data-collapsed="false"   >
+				<div data-role="collapsible-set"  >
+				<div data-role="collapsible"  data-collapsed="false"  style="display:none" id="curricula_1" >
 					<h3>Curricula Activa</h3>
 					<div id="divActiva">
 					</div>
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="curricula_2">
 					<h3>Curricula Inactiva</h3>
 					<div id="divInactiva">
 					</div>
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="curricula_3">
 					<h3>Curricula Finalizada</h3>
 					<div id="divFinalizada">
 					</div>
@@ -171,38 +171,34 @@
 
 		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
 			<div data-role="collapsible-set" >
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="seccion_1">
 					<h3>Anuncios</h3>
 					<div id="divAnuncios"></div>
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" id="seccion_2">
 					<h3>Informacion</h3>
 					<div id="divInformacion"></div>
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" id="seccion_3">
 					<h3>Docente</h3>
 					<div id="divDocente"></div>
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="seccion_4">
 					<h3>Actividades</h3>
 					<div id="divActividad"></div>  
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="seccion_5">
 					<h3>Examenes</h3>
 					<div id="divExamen"></div> 
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="seccion_6">
 					<h3>Recursos de Apoyo</h3>
 					<div id="divRecursos"></div> 
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="seccion_7">
 					<h3>Foro</h3>
 					<div id="divForo"></div> 
 				</div>
-				<!--<div data-role="collapsible">
-					<h3>Foros</h3>
-					<div id="divForo"></div> 
-				</div>-->
 			</div>
 			
 
@@ -228,11 +224,11 @@
 		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
 		
 			<div data-role="collapsible-set" >
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="cal_1">
 					<h3>Actividades</h3>
 					<div id="divActividades"></div>
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="cal_2">
 					<h3>Examenes</h3>
 					<div id="divExamenes"></div>
 				</div>
@@ -391,7 +387,7 @@
 			<center>
 				<form id="frmAportacion">
 				<div class="btn btn-default btn-file">
-				<img src="./img/camera-black.png">
+				<i class="material-icons green">add_a_photo</i>
 				<input type="file" name="path" id="path" >
 				</div>
 				<textarea name="aportacion" id="aportacion" placeholder="Aportacion"></textarea>
@@ -419,10 +415,7 @@
 		
 			<center>
 				<form id="frmRetro">
-				<div class="btn btn-default btn-file">
-				<img src="./img/camera-black.png">
-				<input type="file" name="path" id="path" >
-				</div>
+				
 				<textarea name="comentario" id="comentario" placeholder="Comentario"></textarea>
 				<input type="hidden" name="ctopicId" id="ctopicId">
 				<input type="hidden" name="ccourseId" id="ccourseId">
@@ -431,6 +424,10 @@
 				</form>
 				<div class="msj"></div>
 				<div class="loader"></div>
+				<div class="btn btn-default btn-file">
+				<i class="material-icons green">add_a_photo</i>
+				<input type="file" name="path" id="path" >
+				</div>
 				<a onClick="SaveComentario()" id="btnComentario" class="ui-btn login white">
 					Comentar
 				</a>
@@ -448,10 +445,7 @@
 		
 			<center>
 				<form id="frmUpActividad">
-				<div class="btn btn-default btn-file">
-				<img src="./img/camera-black.png">
-				<input type="file" name="path" id="path" >
-				</div>
+				
 				<textarea name="titulo" id="titulo" placeholder="Titulo"></textarea>
 				<input type="hidden" name="upactividadId" id="upactividadId" >
 				<input type="hidden" name="upmodalidad" id="upmodalidad" >
@@ -460,6 +454,10 @@
 				</form>
 				<div class="msj"></div>
 				<div class="loader"></div>
+				<div class="btn btn-default btn-file">
+				<i class="material-icons green">add_a_photo</i>
+				<input type="file" name="path" id="path" >
+				</div>
 				<a onClick="upActividad()" id="btnUpActividad" class="ui-btn login white">
 					Subir
 				</a>

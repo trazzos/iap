@@ -62,6 +62,12 @@
 			include(DOC_ROOT.'/ajax/app/view/curricula-inactiva.php');
 			echo "[#]";
 			include(DOC_ROOT.'/ajax/app/view/curricula-finalizada.php');
+			echo "[#]";
+			echo count($activeCourses);
+			echo "[#]";
+			echo count($inactiveCourses);
+			echo "[#]";
+			echo count($finishedCourses);
 					
 		break;
 		
@@ -147,6 +153,10 @@
 				 include(DOC_ROOT.'/ajax/app/view/calificacion-actividad.php');
 				 echo "[#]";
 				 include(DOC_ROOT.'/ajax/app/view/calificacion-examen.php');
+				 echo "[#]";
+				 echo count($activityInfoTask);
+				 echo "[#]";
+				 echo count($activityInfoTaskExam);
 				 exit;
 			}
 		
@@ -196,11 +206,23 @@
 			include(DOC_ROOT.'/ajax/app/view/foro.php');
 			echo "[#]";
 			include(DOC_ROOT.'/ajax/app/view/docente.php');
+			echo "[#]";
+			echo count($announcements);
+			echo "[#]";
+			echo count($actividades);
+			echo "[#]";
+			echo count($lstExmanenes);
+			echo "[#]";
+			echo count($resources);
+			echo "[#]";
+			echo count($forums);
 		
 		break;
 
 		
 		case "miCuenta":
+		// echo "<pre>"; print_r($_POST);
+		// exit;
 			$student->setUserId($_POST["usuarioId"]);
 			$info = $student->GetInfo();
 			
@@ -217,9 +239,9 @@
 			
 			if(file_exists(DOC_ROOT."/alumnos/".$info["userId"].".jpg"))
 			{
-				$fotoHeader = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg?".rand()."' style='width:30px; border-radius: 50%;' >";
+				$urlFoto = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg?".rand()."' style='width:100px; border-radius: 50%;' '>";
 			}else{
-				$fotoHeader = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:30px; border-radius: 50%;' '>";
+				$urlFoto = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;' '>";
 			}
 		
 			echo "ok[#]";
@@ -236,7 +258,7 @@
 			$activity->setActivityId($_POST["actividadId"]);
 			$activity->setUsuarioId($_POST["usuarioId"]);
 			$infoActividad = $activity->InfoApp();
-			echo "<pre>"; print_r($infoActividad);
+			// echo "<pre>"; print_r($infoActividad);
 			// $activity->setCourseModuleId($_GET["id"]);
 			// $infoActividad = $activity->Enumerate("Tarea");
 			echo "ok[#]";
@@ -423,6 +445,19 @@
 		
 		break;
 
+		case "editFoto":
+		
+		// echo '<pre>'; print_r($_FILES);
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+			$ext = end(explode('.', basename($_FILES["pathfoto"]['name'])));			
+			$target_path = DOC_ROOT.'/alumnos/'.$_POST['usuarioId'].'.jpg'; 
+			if(move_uploaded_file($_FILES["pathfoto"]['tmp_name'], $target_path)) 
+			{
+				echo 'ok[#]';
+			}
+
+		break;
 	}
 
 ?>

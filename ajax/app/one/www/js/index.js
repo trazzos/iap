@@ -63,8 +63,8 @@ var app = {
 
 var urlLoc = "localhost";
 
-// var WEB_ROOT = "http://" + urlLoc + "/iap";
-var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
+var WEB_ROOT = "http://" + urlLoc + "/iap";
+// var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
 // var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
 
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
@@ -137,8 +137,15 @@ function iniciaMysql()
            $("#divActiva").html(splitResponse[3])
            $("#divInactiva").html(splitResponse[4])
            $("#divFinalizada").html(splitResponse[5])
-           
-            
+           if(splitResponse[6]>0){
+			    $("#curricula_1").show()
+		   } 
+			if(splitResponse[7]>0){
+			    $("#curricula_2").show()
+		   } 
+			if(splitResponse[8]>0){
+			    $("#curricula_3").show()
+		   }   		   
         },
         error: function ()
         {
@@ -200,10 +207,33 @@ function verDetalle(Id,estatus)
 			   $("#divRecursos").html(splitResponse[5])
 			   $("#divForo").html(splitResponse[6])
 			   $("#divDocente").html(splitResponse[7])
+			   if(splitResponse[8]>0){
+					 $("#seccion_1").show()
+				}
+				if(splitResponse[9]>0){
+					 $("#seccion_4").show()
+				}
+				if(splitResponse[10]>0){
+					 $("#seccion_5").show()
+				}
+				if(splitResponse[11]>0){
+					 $("#seccion_6").show()
+				}
+				if(splitResponse[12]>0){
+					 $("#seccion_7").show()
+				}
+
 			}else{
 				$.mobile.changePage("#divCal");
 				$("#divActividades").html(splitResponse[1])
 			    $("#divExamenes").html(splitResponse[2])
+
+				if(splitResponse[3]>0){
+					 $("#cal_1").show()
+				}
+				if(splitResponse[4]>0){
+					$("#cal_2").show()
+				}
 			}
 			
             
@@ -664,7 +694,63 @@ function upActividad(){
 			$("#btnUpActividad").show();
 			if(splitResp[0] == "ok"){
 				  $("#titulo").val('');
-			   detalleActividad(splitResp[2],splitResp[3])
+			   detalleActividad(splitResp[1],splitResp[2])
+			}else if(splitResp[0] == "fail"){
+				 $(".msj").html(splitResp[1])			
+			}else{
+				 alert('Algo salio mal, compruebe su conexion a internet');
+			}
+			
+			
+		},
+	})
+
+}
+
+
+
+
+
+function editFoto(){
+	
+	// En esta var va incluido $_POST y $_FILES
+	var fd = new FormData(document.getElementById("frmAlumno"));
+	fd.append('type','editFoto');
+	fd.append('usuarioId',getCookie("usuarioId"));
+
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+		data: fd,
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		xhr: function(){
+				var XHR = $.ajaxSettings.xhr();
+				XHR.upload.addEventListener('progress',function(e){
+					console.log(e)
+					var Progress = ((e.loaded / e.total)*100);
+					Progress = (Progress);
+					console.log(Progress)
+					$('#progress_').val(Math.round(Progress));						
+					
+				},false);
+			return XHR;
+		},
+		beforeSend: function(){		
+			$(".loader").html(LOADER3);
+			$(".msj").hide(0);
+			$("#btnUpActividad").hide();
+		},
+		success: function(response){
+			
+			console.log(response);
+			var splitResp = response.split("[#]");
+
+			$(".loader").html("");
+			$("#btnUpActividad").show();
+			if(splitResp[0] == "ok"){
+				$.mobile.changePage("#home");
+				iniciaMysql()
 			}else if(splitResp[0] == "fail"){
 				 $(".msj").html(splitResp[1])			
 			}else{
