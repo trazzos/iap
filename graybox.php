@@ -158,7 +158,8 @@ $pages = array(
     'reporte-alumno-modulo',
     'edit-student',
     'add-alumno-admin',
-    'zoom'
+    'zoom',
+    'view-solicitud'
 
 );
 

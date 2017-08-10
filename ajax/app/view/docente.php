@@ -17,7 +17,7 @@
 	<?php }?>
 	<?php if($docente["celular"]<>null){?>
 	<div class="material-icon h3 margin">
-		<i class="material-icons green">ic_phone_in_talk</i>
+		<i class="material-icons green">phone_in_talk</i>
 		<span class="text"><?php echo $info["celular"]; ?></span>
 	</div>
 	<?php }?>
