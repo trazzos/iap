@@ -8,13 +8,11 @@
 
 	
 
-	$date = date("d-m-Y");
-	$smarty->assign('date', $date);
-	$smarty->assign('id', $_GET["id"]);
+	$finishedCourses = $student->StudentCourses("finalizado");
+	
+	$smarty->assign("finishedCourses", $finishedCourses);	
 
-	$activity->setCourseModuleId($_GET["id"]);
-	$actividades = $activity->Enumerate();
-	$smarty->assign('actividades', $actividades);
+
 	
 
 ?>

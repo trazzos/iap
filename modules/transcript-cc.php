@@ -8,13 +8,9 @@
 
 	
 
-	$date = date("d-m-Y");
-	$smarty->assign('date', $date);
-	$smarty->assign('id', $_GET["id"]);
+	$lstCuentas = $bank->getCuentas();
 
-	$activity->setCourseModuleId($_GET["id"]);
-	$actividades = $activity->Enumerate();
-	$smarty->assign('actividades', $actividades);
+	$smarty->assign("lstCuentas", $lstCuentas);	
 	
 
 ?>

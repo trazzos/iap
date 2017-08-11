@@ -1699,7 +1699,7 @@ class Student extends User
 		{
 			$active = " AND course.active = '".$active."'";
 		}
-		$sql = "SELECT
+		 $sql = "SELECT
 					*, subject.name AS name, major.name AS majorName
 				FROM
 					user_subject

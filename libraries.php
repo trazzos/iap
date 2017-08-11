@@ -80,6 +80,8 @@ include_once(DOC_ROOT."/classes/producto.class.php");
 include_once(DOC_ROOT."/classes/comprobante.class.php");
 include_once(DOC_ROOT."/classes/invoice.class.php");
 include_once(DOC_ROOT."/classes/notificacion.class.php");
+include_once(DOC_ROOT."/classes/bank.class.php");
+include_once(DOC_ROOT.'/libs/pdf/dompdf_config.inc.php');
 
 $db = new DB;
 $error = new Error;
@@ -132,6 +134,7 @@ $comprobante = new Comprobante;
 $sucursal = new Sucursal;
 $producto = new Producto;
 $notificacion= new Notificacion;
+$bank= new Bank;
 
 $smarty = new Smarty;
 
