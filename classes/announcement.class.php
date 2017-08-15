@@ -5,6 +5,13 @@
 		private $title;
 		private $description;
 		private $announcementId;
+		private $limit;
+		
+		public function setLimit($value)
+		{
+			$this->Util()->ValidateInteger($value);
+			$this->limit = $value;
+		}
 		
 		
 		public function setAnnouncementId($value)
@@ -38,10 +45,19 @@
 				$courseModuleId = "AND courseModuleId = '".$courseModuleId."'";
 			//}
 			
-			 $sql = "
+			if($this->limit){
+				 $sql = "
+				SELECT * FROM announcement
+				WHERE courseId = '".$courseId."' ".$courseModuleId." 
+				ORDER BY date DESC LIMIT 5";
+			}else{
+				 $sql = "
 				SELECT * FROM announcement
 				WHERE courseId = '".$courseId."' ".$courseModuleId." 
 				ORDER BY date DESC LIMIT 20";
+			}
+			
+			
 			// exit;
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();

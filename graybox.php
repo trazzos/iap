@@ -159,7 +159,9 @@ $pages = array(
     'edit-student',
     'add-alumno-admin',
     'zoom',
-    'view-solicitud'
+    'view-solicitud',
+    'solicitud-constancia',
+    'add-baja'
 
 );
 

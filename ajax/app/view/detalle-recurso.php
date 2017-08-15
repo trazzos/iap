@@ -48,17 +48,15 @@
         <li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
             <?php echo $infoRe["name"]?></li>
         <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Descripción: <span class="h3"><?php echo $infoRe["description"]?></span>
+            Descripción:<br>
+			<span class="h3"><?php echo $infoRe["description"]?></span>
         </li>
-        <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Descargar: <span class="h3"><a href="<?php echo WEB_ROOT."/resources/".$infoRe["path"]?>" target="_blank" >
 
-				<i class="material-icons green">archive</i>
-					</a>
-			</span>
-        </li>
 	
     </ul>
+	<a href="<?php echo WEB_ROOT."/resources/".$infoRe["path"]?>" target="_blank" class="ui-btn login white">
+		Descargar Recurso de Apoyo
+	</a>
 	
 </div>
 

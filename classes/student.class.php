@@ -1886,6 +1886,40 @@ class Student extends User
 		
 	}
 	
+	
+	public function SaveSolicitud()
+	{
+		
+		 $sqlNot="insert into 
+				solicitud(
+				fechaSolicitud,
+				tiposolicitudId,
+				estatus,
+				userId
+				)
+			   values(
+			            '".date('Y-m-d')."', 
+			            '1',
+			            'pendiente',
+			            '".$_SESSION['User']['userId']."'
+			         )";
+					 
+			$this->Util()->DB()->setQuery($sqlNot);
+			$Id = $this->Util()->DB()->InsertData(); 
+			
+			$ext = end(explode('.', basename($_FILES['comprobante']['name'])));
+			$filename  = "comprobante_".$Id.".".$ext;
+			$target_path = DOC_ROOT."/alumnos/comprobantes/comprobante_".$Id.".".$ext; 
+			
+			move_uploaded_file($_FILES['comprobante']['tmp_name'], $target_path);
+			
+			$sqlQuery = "UPDATE solicitud set ruta ='".$filename."'  where solicitudId = '".$Id."'"; 	
+			$this->Util()->DB()->setQuery($sqlQuery);
+			$this->Util()->DB()->ExecuteQuery();			  
+			
+		return true;
+	}
+	
 }
 
 ?>

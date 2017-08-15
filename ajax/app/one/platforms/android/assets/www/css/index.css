@@ -243,11 +243,11 @@ h4 {
 	margin-top: 15px;
     margin-right: 5px;
     margin-left: 10px;
-    height: 29px;
+    height: 14px;
 
     display: inline-block;   
-	background: url(../img/back.png);
-	background-repeat: no-repeat
+	background: url(../img/back.png);/*
+	background-repeat: no-repeat*/
 }
 
 .bton{

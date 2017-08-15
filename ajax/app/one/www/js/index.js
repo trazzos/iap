@@ -20,6 +20,7 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+		iniciaMysql()
     },
     // Bind Event Listeners
     //
@@ -324,7 +325,7 @@ function detalleActividad(id,tipo)
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
-        data : 'type=detalleActividad&usuarioId='+getCookie("usuarioId")+'&actividadId='+id,
+        data : 'type=detalleActividad&usuarioId='+getCookie("usuarioId")+'&actividadId='+id+'&tipo='+tipo,
         success: function(data)
         {
 			console.log(data)
@@ -464,11 +465,11 @@ function saveForo(topicId,courseId)
 			$(".loader").html("");
 			
            var splitResponse = data.split("[#]");
-           if(splitResponse[0]=="ok"){
+           if($.trim(splitResponse[0])=="ok"){
 			    $("#subForo").html(splitResponse[1])
 				$("#asunto").val('')
 				$("#mensaje").val('')
-		   }else if(splitResponse[0]=="fail"){
+		   }else if($.trim(splitResponse[0])=="fail"){
 			    $(".msj").html(splitResponse[1])
 		   }
 		   $("#btnSave").show();
@@ -557,10 +558,10 @@ function saveAportacion(){
 
 			$(".loader").html("");
 			$("#btnAportacion").show();
-			if(splitResp[0] == "ok"){
+			if($.trim(splitResp[0]) == "ok"){
 				  $("#subForoDetalle").html(splitResp[1])
 				  $("#aportacion").val('')
-			}else if(splitResp[0] == "fail"){
+			}else if($.trim(splitResp[0]) == "fail"){
 				 $(".msj").html(splitResp[1])			
 			}else{
 				 alert('Algo salio mal, compruebe su conexion a internet');
@@ -657,10 +658,10 @@ function SaveComentario(){
 
 			$(".loader").html("");
 			$("#btnComentario").show();
-			if(splitResp[0] == "ok"){
+			if($.trim(splitResp[0]) == "ok"){
 				  $("#comentario").val('');
 			   verSubforoDetalle(splitResp[2],splitResp[3])
-			}else if(splitResp[0] == "fail"){
+			}else if($.trim(splitResp[0]) == "fail"){
 				 $(".msj").html(splitResp[1])			
 			}else{
 				 alert('Algo salio mal, compruebe su conexion a internet');

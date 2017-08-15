@@ -8,8 +8,20 @@
         </div>
     </div>
     <div class="portlet-body">
-		<div style='float:right !important'><button class="btn blue" onclick="window.location.href=''" style="width:150px">Solicitar</button></div>
+	{if $msj eq 'si'}
+	<div class="alert alert-info alert-dismissable">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <strong></strong>La Solicitud ha sido enviada correctamente
+	</div>
+	{/if}
+		<div style='float:right !important'>
+
+			<a class="btn blue"  href="{$WEB_ROOT}/graybox.php?page=solicitud-constancia" data-target="#ajax" data-toggle="modal" data-width="1000px">
+                 Solicitar
+			</a>
+		</div>
         {include file="boxes/status_no_ajax.tpl"}
+		
 		<h3>Bancos Autorizados</h3>
 		<table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 			<thead>

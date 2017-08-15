@@ -167,6 +167,7 @@
 			//informacion
 			$module->setCourseModuleId($_POST["courseId"]);
 			$infoMod = $module->InfoCourseModule();
+			$announcement->setLimit(5);
 			$announcements = $announcement->Enumerate($myModule["courseId"], $myModule["courseModuleId"]);
 			
 			//actividades

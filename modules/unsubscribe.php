@@ -6,15 +6,36 @@
 	// echo "<pre>"; print_r($_POST);
 	// exit;
 
+	if($_POST){
+		
+		
+		if($_POST['type'] =  'saveSolicitudBaja'){
+
+			if($solicitud->upSolicitudBaja()){
+				$smarty->assign("msj", 'si');	
+			}else{
+				$smarty->assign("msj", 'no');	
+			}
+			
+		}else{
+			$solicitud->setTipo(3);
+			$solicitud->setMotivo($_POST['motivo']);
+			if($solicitud->SaveSolicitud()){
+				$smarty->assign("msj", 'si');	
+			}else{
+				$smarty->assign("msj", 'no');	
+			}
+		}
+		
+		
+		
+	}
+
+
+	$infoBaja =  $solicitud->buscaBaja();
 	
 
-	$date = date("d-m-Y");
-	$smarty->assign('date', $date);
-	$smarty->assign('id', $_GET["id"]);
-
-	$activity->setCourseModuleId($_GET["id"]);
-	$actividades = $activity->Enumerate();
-	$smarty->assign('actividades', $actividades);
+	$smarty->assign('infoBaja', $infoBaja);
 	
 
 ?>

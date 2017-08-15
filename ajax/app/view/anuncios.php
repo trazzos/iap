@@ -51,8 +51,7 @@
 			
 		<div class="content">
 		   <span class="h3"><?php  echo $aux["date"]?></span>
-		   <div  class="enlace" onClick="openAnuncio(<?php echo $aux["announcementId"]?>)"  style="color: #276e36;">Abrir</div>
-			<div id="divanun_<?php echo $aux["announcementId"]?>" style="display:none">
+			<div id="divanun_<?php echo $aux["announcementId"]?>" >
 			<?php echo $aux["description"]?>
 			</div>
 		</div>
