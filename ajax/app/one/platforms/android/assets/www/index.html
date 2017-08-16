@@ -87,7 +87,7 @@
 	
 	<div data-role="page" data-theme="a" id="home" >
 		<div data-role="header" data-theme="a">
-			<div id="fotoheader" class="fotoher" onClick="miCuenta()"></div>
+			<div id="" class="homeheader" ><i class="material-icons">home</i></div>
 			<h2>IAP Chiapas</h2>
 			<div id="" class="headerConfig" onClick="openConfig()">&nbsp;&nbsp;&nbsp;&nbsp;</div>
 		</div>
@@ -388,15 +388,17 @@
 			<center>
 				<form id="frmAportacion">
 				<div class="btn btn-default btn-file">
-				<i class="material-icons green">add_a_photo</i>
-				<input type="file" name="path" id="path" >
+				<i class="material-icons green">cloud_upload</i>
+				<input type="file" name="path" id="path" onChange="compruebaExistencia(1)">
 				</div>
+				<div id="archiivocargado_1"></div>
 				<textarea name="aportacion" id="aportacion" placeholder="Aportacion"></textarea>
 				<input type="hidden" name="dcourseId" id="dcourseId">
 				<input type="hidden" name="dtopicId" id="dtopicId">
 				</form>
 				<div class="msj"></div>
 				<div class="loader"></div>
+				
 				<a onClick="saveAportacion()" id="btnAportacion" class="ui-btn login white">
 					Guardar Aportación
 				</a>
@@ -426,9 +428,10 @@
 				<div class="msj"></div>
 				<div class="loader"></div>
 				<div class="btn btn-default btn-file">
-				<i class="material-icons green">add_a_photo</i>
-				<input type="file" name="path" id="path" >
+				<i class="material-icons green">cloud_upload</i>
+				<input type="file" name="path" id="path" onchange='compruebaExistencia(2)'>
 				</div>
+				<div id="archiivocargado_2"></div>
 				<a onClick="SaveComentario()" id="btnComentario" class="ui-btn login white">
 					Comentar
 				</a>
@@ -456,9 +459,10 @@
 				<div class="msj"></div>
 				<div class="loader"></div>
 				<div class="btn btn-default btn-file">
-				<i class="material-icons green">add_a_photo</i>
-				<input type="file" name="path" id="path" >
+				<i class="material-icons green">cloud_upload</i>
+				<input type="file" name="path" id="path" onchange='compruebaExistencia(3)'>
 				</div>
+				<div id="archiivocargado_3"></div>
 				<a onClick="upActividad()" id="btnUpActividad" class="ui-btn login white">
 					Subir
 				</a>

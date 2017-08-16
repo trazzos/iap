@@ -163,6 +163,7 @@ $pages = array(
 	'transcript-sc',
 	'bank-reference',
 	'unsubscribe',
+	'report-card-teacher',
 	
 	
 	

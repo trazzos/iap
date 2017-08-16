@@ -49,6 +49,13 @@
 
 }
 
+
+.botns {
+
+	text-align:center
+
+}
+
 </style>
 </head>
 
@@ -75,6 +82,7 @@
 				<br>
 				<span class="h3"><?php echo $aux["replyDate"]?></span>
 				<br>
+				<div class='botns'>
 				<?php 
 				echo '
 					<a href="javascript:void(0)" onClick="addComentario('.$aux["replyId"].','.$_POST["topicId"].','.$_POST["courseId"].')" style=" text-decoration:none; ">
@@ -88,6 +96,7 @@
 						</a>';
 				}
 				?>
+				</div>
 			<br>
 			<br>
 			<br>

@@ -223,6 +223,15 @@ h4 {
     display: inline-block;   
 }
 
+.homeheader{
+	float:left;
+	margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 10px;
+    height: 29px;
+    display: inline-block;   
+}
+
 
 
 .headerConfig{
