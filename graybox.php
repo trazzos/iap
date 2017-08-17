@@ -161,7 +161,8 @@ $pages = array(
     'zoom',
     'view-solicitud',
     'solicitud-constancia',
-    'add-baja'
+    'add-baja',
+    'add-calificacion'
 
 );
 

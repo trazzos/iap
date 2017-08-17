@@ -7,13 +7,15 @@
             <a  class="btn green" href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
               <!-- <a class="btn green" href="{$WEB_ROOT}/graybox.php?page=view-modules-student&id={$myModule.courseModuleId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
 -->
-
 			 Vista previa del M&oacute;dulo
+            </a>
+			  <a href="{$WEB_ROOT}/graybox.php?page=add-calificacion&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn green">
+                Acta de Calificaciones
             </a>
         </div>
     </div>
     <div class="portlet-body">
-
+		<div id="msj">2</div>
         {*TODO agregar todas las acciones y javascript*}
         <form id="addMajorForm" name="addMajorForm" action="{$WEB_ROOT}/edit-modules-course/id/{$id}" method="post" enctype="multipart/form-data" class="form-horizontal">
             <input type="hidden" id="type" name="type" value="saveAddMajor"/>

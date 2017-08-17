@@ -143,12 +143,7 @@
                         <span class="title">Currícula</span>
                     </a>
                 </li>
-				<li class="nav-item  ">
-                    <a href="{$WEB_ROOT}/report-card-teacher" class="nav-link nav-toggle">
-                        <i class="icon-settings"></i>
-                        <span class="title">Acta de Calificaciones</span>
-                    </a>
-                </li>
+				
             {/if}
 
         {/if}

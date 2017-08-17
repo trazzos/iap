@@ -3,7 +3,16 @@
 	class Group extends Module
 	{
 		private $teamNumber;
+		private $coursemoduleId;
 
+		
+		public function setCourseModuleId($value)
+		{
+			$this->Util()->ValidateInteger($value,999,1);
+			$this->coursemoduleId = $value;
+		}
+		
+		
 		public function setTeamNumber($value)
 		{
 			$this->Util()->ValidateInteger($value,999,1);
@@ -613,6 +622,36 @@ if($result[$key]["homework"]) { break; }
 			return $result;
 		}	
 		
+		public function actaCalificacion()
+		{
+			
+			
+			$this->Util()->DB()->setQuery("
+				SELECT *, user_subject.status AS status FROM user_subject
+				LEFT JOIN user ON user_subject.alumnoId = user.userId
+				WHERE courseId = '".$this->getCourseId()."'
+				ORDER BY lastNamePaterno ASC, lastNameMaterno ASC, names ASC");
+			$result = $this->Util()->DB()->GetResult();
+			
+			
+			foreach($result as $key => $res)
+			{
+				 $sql = "
+					SELECT *
+					FROM course_module_score
+					WHERE courseModuleId = '".$this->coursemoduleId."' and userId = ".$res["alumnoId"]." and courseId = ".$res["courseId"]."";
+
+				$this->Util()->DB()->setQuery($sql);
+				$infoCc = $this->Util()->DB()->GetRow();
+				$result[$key]["score"] = $infoCc["calificacion"];
+				
+			}
+			
+			// echo "<pre>"; print_r($result);
+			// exit;
+			return $result;
+		}	
+		
 		function GetTeamNumber()
 		{
 			$this->Util()->DB()->setQuery("
@@ -720,5 +759,69 @@ if($result[$key]["homework"]) { break; }
 			
 			
 		}
+		
+		function EditCalificacion()
+		{
+			
+			$this->Util()->DB()->setQuery("
+					SELECT *
+					FROM course_module
+					WHERE courseModuleId = '".$this->coursemoduleId."'");
+			$info = $this->Util()->DB()->GetRow();
+
+			foreach($_POST as $key=>$aux){ 
+				
+				$e = explode("_",$key);
+				if($e[0]=="cal"){
+					
+					$this->Util()->DB()->setQuery("
+					SELECT *
+					FROM course_module_score
+					WHERE courseModuleId = '".$this->coursemoduleId."' and userId = ".$e[1]." and courseId = ".$info["courseId"]."");
+					$infoCc = $this->Util()->DB()->GetRow();
+					
+					if($infoCc["courseModuleScoreId"] <= 0){
+						
+						$sql = "
+							INSERT INTO  `course_module_score` (
+								`courseModuleId` ,
+								`courseId` ,
+								`userId` ,
+								`calificacion`
+								)
+								VALUES (
+								'".$this->coursemoduleId."',  
+								'".$info["courseId"]."',  
+								'".$e[1]."',  
+								'".$aux."')";
+						$this->Util()->DB()->setQuery($sql);
+						$result = $this->Util()->DB()->InsertData();
+						
+					}else{
+						$this->Util()->DB()->setQuery("
+								UPDATE `course_module_score` SET
+									`calificacion` = '".$aux."'
+								WHERE
+									`courseModuleScoreId` = '".$infoCc["courseModuleScoreId"]."'");
+							$this->Util()->DB()->UpdateData();	
+					}
+					
+				}
+			}
+				return true;
+		}
+		
+		function validarCalificacion()
+		{
+			$this->Util()->DB()->setQuery("
+								UPDATE `course_module` SET
+									`calificacionValida` = 'si'
+								WHERE
+									`courseModuleId` = '".$this->coursemoduleId."'");
+							$this->Util()->DB()->UpdateData();	
+			return true;
+		}
+		
+		
 	}	
 ?>
