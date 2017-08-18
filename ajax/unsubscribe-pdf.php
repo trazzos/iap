@@ -7,10 +7,16 @@
 
 	session_start();
 
-	
+		
+	$student->setUserId($_SESSION['User']['userId']);
+	$infoUser  = $student->GetInfo();
 	
 
+	$infoBaja  = $student->GetBaja();
 	
+
+	// echo '<pre>'; print_r($infoBaja);
+	// exit;
 	$html .= "
 	<html>
 	<head>
@@ -55,6 +61,15 @@
 					Nombre del Alumno:
 				</td>
 				<td >
+					".$infoUser['names']." ".$infoUser['lastNamePaterno']." ".$infoUser['lastNameMaterno']."
+				</td>
+			</tr>
+			<tr>
+				<td style='width:200px'>
+					Fecha de Solicitud:
+				</td>
+				<td >
+					".$infoBaja['fechaSolicitud']."
 				</td>
 			</tr>
 			<tr>
@@ -62,11 +77,20 @@
 					Motivo:
 				</td>
 				<td >
+					".html_entity_decode($infoBaja['motivo'])."
 				</td>
 			</tr>
 			
 		</table>
-
+		
+		
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<hr style ='width:200px'>
+		<center>".$infoUser['names']." ".$infoUser['lastNamePaterno']." ".$infoUser['lastNameMaterno']."</center>
 	
 
 	";

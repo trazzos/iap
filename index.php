@@ -164,6 +164,7 @@ $pages = array(
 	'bank-reference',
 	'unsubscribe',
 	'report-card-teacher',
+	'solicitud',
 	
 	
 	

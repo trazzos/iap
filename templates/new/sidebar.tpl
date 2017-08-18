@@ -170,6 +170,13 @@
                 </li>
             </ul>
         </li>
+		<li class="nav-item  ">
+            <a href="{$WEB_ROOT}/solicitud" class="nav-link nav-toggle">
+                <i class="fa fa-video-camera"></i>
+                <span class="title">Solicitudes</span>
+                <span class="arrow"></span>
+            </a>
+        </li>
         {/if}
         {/if}
 

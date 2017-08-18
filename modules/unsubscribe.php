@@ -2,14 +2,14 @@
 		
 	/* For Session Control - Don't remove this */
 	// $user->allow_access(37);	
-	
-	// echo "<pre>"; print_r($_POST);
-	// exit;
+
 
 	if($_POST){
-		
-		
-		if($_POST['type'] =  'saveSolicitudBaja'){
+			
+			
+// echo "<pre>"; print_r($_POST);
+	// exit;
+		if($_POST['type'] ==  'saveSolicitudBaja'){
 
 			if($solicitud->upSolicitudBaja()){
 				$smarty->assign("msj", 'si');	

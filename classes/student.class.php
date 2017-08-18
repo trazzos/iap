@@ -1920,6 +1920,19 @@ class Student extends User
 		return true;
 	}
 	
+	public function GetBaja()
+	{
+		
+		$sql = "
+				SELECT * FROM solicitud WHERE solicitudId = 3 order by solicitudId DESC ";
+				// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+			
+		return $result;
+	}
+	
+	
 }
 
 ?>

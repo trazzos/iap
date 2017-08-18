@@ -46,6 +46,38 @@ class Solicitud extends Module
 		return $result;
 	}
 	
+	public function enumarateSolicitudesAdmin($value)
+	{
+		$filtro = '';
+		
+		if($this->userId){
+			$filtro .= $this->userId;
+		}
+		
+		if($this->tiposolicitudId){
+			$filtro .= $_SESSION['User']['userId'];
+		}
+		
+		
+		 $sqlQuery = 'SELECT 
+					*,
+					t.nombre as solicitud
+				FROM 
+					solicitud as s 
+				left join user as u on u.userId = s.userId
+				left join tiposolicitud as t on t.tiposolicitudId = s.tiposolicitudId
+				WHERE  1 '.$filtro.'';
+// exit;
+			
+	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$result = $this->Util()->DB()->GetResult();
+		// echo '<pre>'; print_r($result);
+		// exit;
+		return $result;
+	}
+	
+	
 	public function SaveSolicitud()
 	{
 		
