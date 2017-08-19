@@ -40,14 +40,7 @@
 			
 			if(file_exists(DOC_ROOT."/alumnos/".$info["userId"].".jpg"))
 			{
-				$urlFoto = "
-				<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg' style='width:100px; border-radius: 50%;'>
-				<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg' style='width:100px; border-radius: 50%;' />
-				<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg' />
-				<img src='alumnos/".$info["userId"].".jpg' style='width:100px; border-radius: 50%;'>
-				<img src='/alumnos/".$info["userId"].".jpg' style='width:100px; border-radius: 50%;'>
-				<img src='../../alumnos/".$info["userId"].".jpg' style='width:100px; border-radius: 50%;'>
-				<img src='http://xiostorage.com/wp-content/uploads/2015/10/test.png'/>".WEB_ROOT."/alumnos/".$info["userId"];
+				$urlFoto = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg' style='width:100px; border-radius: 50%;' />";
 				$fotoHeader = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg' style='width:30px; border-radius: 50%;' >";
 			}else{
 				$urlFoto = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;'>";
