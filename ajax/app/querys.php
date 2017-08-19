@@ -42,6 +42,8 @@
 			{
 				$urlFoto = "
 				<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg' style='width:100px; border-radius: 50%;'>
+				<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg' style='width:100px; border-radius: 50%;' />
+				<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg' />
 				<img src='alumnos/".$info["userId"].".jpg' style='width:100px; border-radius: 50%;'>
 				<img src='/alumnos/".$info["userId"].".jpg' style='width:100px; border-radius: 50%;'>
 				<img src='../../alumnos/".$info["userId"].".jpg' style='width:100px; border-radius: 50%;'>
