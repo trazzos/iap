@@ -165,6 +165,8 @@ $pages = array(
 	'unsubscribe',
 	'report-card-teacher',
 	'solicitud',
+	'view-solicitud',
+	'referencia-bancaria',
 	
 	
 	

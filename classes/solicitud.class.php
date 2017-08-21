@@ -6,12 +6,34 @@ class Solicitud extends Module
 	private $Id;
 	private $tipo;
 	private $motivo;
+	private $status;
+	private $userId;
+	private $tiposolicitudId;
+	private $solicitudId;
 
 	
 	public function setId($value)
 	{
 		$this->Util()->ValidateInteger($value);
 		$this->Id = $value;
+	}
+	
+	public function setSolicitudId($value)
+	{
+		$this->Util()->ValidateInteger($value);
+		$this->solicitudId = $value;
+	}
+	
+	public function setUserId($value)
+	{
+		$this->Util()->ValidateInteger($value);
+		$this->userId = $value;
+	}
+	
+	public function setTipoSolicitudId($value)
+	{
+		$this->Util()->ValidateInteger($value);
+		$this->tiposolicitudId = $value;
 	}
 
 	public function setTipo($value)
@@ -24,6 +46,12 @@ class Solicitud extends Module
 	{
 		$this->Util()->ValidateString($value);
 		$this->nombre = $value;
+	}
+	
+	public function setStatus($value)
+	{
+		$this->Util()->ValidateString($value);
+		$this->status = $value;
 	}
 	
 	public function setMotivo($value)
@@ -51,12 +79,21 @@ class Solicitud extends Module
 		$filtro = '';
 		
 		if($this->userId){
-			$filtro .= $this->userId;
+			$filtro .= ' and s.userId = '.$this->userId;
 		}
 		
 		if($this->tiposolicitudId){
-			$filtro .= $_SESSION['User']['userId'];
+			$filtro .= ' and t.tiposolicitudId = '.$this->tiposolicitudId;
 		}
+		
+		if($this->status){
+			$filtro .= ' and s.estatus = "'.$this->status.'"';
+		}
+		
+		if($this->inicio and $this->fin){
+			$filtro .= ' and s.fechaSolicitud >= "'.$this->inicio.'" and fechaSolicitud <= "'.$this->fin.'"';
+		}
+		
 		
 		
 		 $sqlQuery = 'SELECT 
@@ -80,6 +117,13 @@ class Solicitud extends Module
 	
 	public function SaveSolicitud()
 	{
+		$status = "";
+		
+		if($this->tipo == 4){
+			$status = "completado";
+		}else{
+			$status = "pendiente";
+		}
 		
 		 $sqlNot="insert into 
 				solicitud(
@@ -92,7 +136,7 @@ class Solicitud extends Module
 			   values(
 			            '".date('Y-m-d')."', 
 			            '".$this->tipo."',
-			            'pendiente',
+			            '".$status."',
 			            '".$this->motivo."',
 			            '".$_SESSION['User']['userId']."'
 			         )";
@@ -100,17 +144,17 @@ class Solicitud extends Module
 			$this->Util()->DB()->setQuery($sqlNot);
 			$Id = $this->Util()->DB()->InsertData(); 
 			
-			if($this->tipo ==1 or $this->tipo ==2){ 
-				$ext = end(explode('.', basename($_FILES['comprobante']['name'])));
-				$filename  = "comprobante_".$Id.".".$ext;
-				$target_path = DOC_ROOT."/alumnos/comprobantes/comprobante_".$Id.".".$ext; 
+			// if($this->tipo ==1 or $this->tipo ==2){ 
+				// $ext = end(explode('.', basename($_FILES['comprobante']['name'])));
+				// $filename  = "comprobante_".$Id.".".$ext;
+				// $target_path = DOC_ROOT."/alumnos/comprobantes/comprobante_".$Id.".".$ext; 
 				
-				move_uploaded_file($_FILES['comprobante']['tmp_name'], $target_path);
+				// move_uploaded_file($_FILES['comprobante']['tmp_name'], $target_path);
 				
-				$sqlQuery = "UPDATE solicitud set ruta ='".$filename."'  where solicitudId = '".$Id."'"; 	
-				$this->Util()->DB()->setQuery($sqlQuery);
-				$this->Util()->DB()->ExecuteQuery();			  
-			}
+				// $sqlQuery = "UPDATE solicitud set ruta ='".$filename."'  where solicitudId = '".$Id."'"; 	
+				// $this->Util()->DB()->setQuery($sqlQuery);
+				// $this->Util()->DB()->ExecuteQuery();			  
+			// }
 		return true;
 	}
 	
@@ -146,6 +190,57 @@ class Solicitud extends Module
 	}
 	
 	
+	
+	
+	public function arraySolicitudes()
+	{
+		$sqlQuery = 'SELECT 
+					* 
+				FROM 
+					tiposolicitud 
+				WHERE  1';
+
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$result = $this->Util()->DB()->GetResult();
+		
+		return $result;
+	}
+	
+	
+	
+	public function countReferenciaBancaria()
+	{
+		
+		// echo '<pre>'; print_r($_SESSION);
+		// exit;
+		$sqlQuery = 'SELECT 
+					count(*)
+				FROM 
+					solicitud 
+				WHERE  tiposolicitudId = 5 and userId = '.$_SESSION['User']['userId'].'';
+
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$result = $this->Util()->DB()->GetSingle();
+		
+		return $result;
+	}
+	
+	
+	public function enviarArchivo()
+	{
+		// buscar la ultima baja y actulizarle la ruta
+		$ext = end(explode('.', basename($_FILES['comprobante']['name'])));
+		$filename  = "solicitud_".$this->solicitudId.".".$ext;
+		$target_path = DOC_ROOT."/alumnos/comprobantes/solicitud_".$this->solicitudId.".".$ext; 
+		
+		move_uploaded_file($_FILES['comprobante']['tmp_name'], $target_path);
+		
+		$sqlQuery = "UPDATE solicitud set ruta ='".$filename."', estatus ='en progreso'  where solicitudId = '".$this->solicitudId."'"; 	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}
 	
 
 

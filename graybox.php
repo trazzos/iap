@@ -162,7 +162,9 @@ $pages = array(
     'view-solicitud',
     'solicitud-constancia',
     'add-baja',
-    'add-calificacion'
+    'add-calificacion',
+	'referencia-bancaria',
+	'view-boleta',
 
 );
 

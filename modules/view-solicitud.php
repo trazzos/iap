@@ -2,19 +2,17 @@
 		
 	/* For Session Control - Don't remove this */
 	// $user->allow_access(37);	
+
+
+	$lstSol = $solicitud->arraySolicitudes();
+	$registros = $solicitud->enumarateSolicitudesAdmin();
 	
-	// echo "<pre>"; print_r($_POST);
+		
+	// echo "<pre>"; print_r($registros);
 	// exit;
 
-	
-
-	$date = date("d-m-Y");
-	$smarty->assign('date', $date);
-	$smarty->assign('id', $_GET["id"]);
-
-	$activity->setCourseModuleId($_GET["id"]);
-	$actividades = $activity->Enumerate();
-	$smarty->assign('actividades', $actividades);
+	$smarty->assign('registros', $registros);
+	$smarty->assign('lstSol', $lstSol);
 	
 
 ?>

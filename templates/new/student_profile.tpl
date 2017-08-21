@@ -83,8 +83,18 @@
                                 <i class="fa fa-camera"></i> Grabaciones </a>
                         </li>
 						 <li>
-                            <a href="{$WEB_ROOT}/graybox.php?page=view-solicitud" data-target="#ajax" data-toggle="modal" data-width="1000px">
+                            <a href="{$WEB_ROOT}/view-solicitud" >
                                <i class="fa fa-folder-open" aria-hidden="true"></i>Solicitudes 
+							</a>
+                        </li>
+						 <li>
+                            <a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px">
+                               <i class="fa fa-university" aria-hidden="true"></i>Referencia Bancaria 
+							</a>
+                        </li>
+						 <li>
+                            <a href="{$WEB_ROOT}/constancia.pdf" target="_blank">
+                              <i class="fa fa-file-text" aria-hidden="true"></i>Descargar Formato de Inscripción 
 							</a>
                         </li>
                     </ul>

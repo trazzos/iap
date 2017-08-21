@@ -7,7 +7,7 @@
 			<th width="">Estatus</th>		 
 			<th width="">Acciones</th>		 
 	 
-			<th width=""></th>		 
+		 
 		</tr>
     </thead>
     <tbody>
@@ -22,10 +22,7 @@
 					<i class="fa fa-file" aria-hidden="true"></i>
 				</a>
 				
-				<a href="{$WEB_ROOT}/alumnos/constancia/{$item.ruta}" target='_blank' title='CONSTANCIA DE ESTUDIOS SIN CALIFICACIONES'>
-					<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-				</a>
-				
+
 			</td>
 		</tr>
 	{/foreach}
