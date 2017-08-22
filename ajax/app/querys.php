@@ -37,14 +37,16 @@
 
 			$student->setUserId($_POST["usuarioId"]);
 			$info = $student->GetInfo();
-			
+			echo DOC_ROOT."/alumnos/".$info["userId"].".jpg";
 			if(file_exists(DOC_ROOT."/alumnos/".$info["userId"].".jpg"))
 			{
-				$urlFoto = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg' style='width:100px; border-radius: 50%;' />";
-				$fotoHeader = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg' style='width:30px; border-radius: 50%;' >";
+				echo 'si';
+				$urlFoto = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg?".rand()."' style='width:100px; height:100px; border-radius: 50%;' />";
+				$fotoHeader = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg?".rand()."' style='width:30px; border-radius: 50%;' />";
 			}else{
-				$urlFoto = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;'>";
-				$fotoHeader = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:30px; border-radius: 50%;'>";
+				echo  'no';
+				$urlFoto = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;' />";
+				$fotoHeader = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:30px; border-radius: 50%;' />";
 			}
 			
 			$activeCourses = $student->StudentCourses("activo", "si");
@@ -173,6 +175,8 @@
 			//actividades
 			$activity->setCourseModuleId($_POST["courseId"]);
 			$actividades = $activity->Enumerate("Tarea");
+			// echo '<pre>'; print_r($actividades); 
+			// exit;
 			//examenes
 			$activity->setCourseModuleId($_POST["courseId"]);
 			$lstExmanenes = $activity->Enumerate("Examen");
@@ -240,9 +244,9 @@
 			
 			if(file_exists(DOC_ROOT."/alumnos/".$info["userId"].".jpg"))
 			{
-				$urlFoto = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg?".rand()."' style='width:100px; border-radius: 50%;' '>";
+				$urlFoto = "<img src='".WEB_ROOT."/alumnos/".$info["userId"].".jpg?".rand()."' style='width:100px; height:100px; border-radius: 50%;' />";
 			}else{
-				$urlFoto = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;' '>";
+				$urlFoto = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;' />";
 			}
 		
 			echo "ok[#]";
@@ -430,15 +434,21 @@
 		
 		case "upActividad":
 		
-			$homework->setActivityId($_POST["upactividadId"]);
-			$homework->setModality($_POST["upmodalidad"]);
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<br>'; $target_path;
+			// exit;
+		
+			$homework->setActividadId($_POST["upactividadId"]);
+			$homework->setModalidad($_POST["upmodalidad"]);
 			$homework->setNombre($_POST["titulo"]);
-			$homework->setUserId($_POST["upusuarioId"]);
-			if($homework->Upload($_FILES["path"])){
+			$homework->setUser5Id($_POST["upusuarioId"]);
+			if($homework->UploadApp($_FILES["path"])){
 				echo "ok[#]";
 				echo $_POST["upactividadId"];
 				echo "[#]";
-				echo $_POST["upmodalidad"];
+				echo $_POST["tipoactivi"];
 			}else{
 				echo "fail[#]";
 			}

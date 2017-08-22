@@ -28,10 +28,14 @@
 					</a>
 					{/if}
 				{/if}
-				 <a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px">
-				<i class="fa fa-university" aria-hidden="true"></i>
-				</a>
-				
+					<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px">
+					<i class="fa fa-university" aria-hidden="true"></i>
+					</a>
+				{if $subject.tiposolicitudId eq 3}
+					<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px">
+					<i class="fa fa-university" aria-hidden="true"></i>
+					</a>
+				{/if}
 			</td>
 		</tr>
 		{/foreach}

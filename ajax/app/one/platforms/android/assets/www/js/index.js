@@ -171,13 +171,13 @@ function iniciaMysql()
            $("#divActiva").html(splitResponse[3])
            $("#divInactiva").html(splitResponse[4])
            $("#divFinalizada").html(splitResponse[5])
-           if(splitResponse[6]>0){
+           if($.trim(splitResponse[6])>0){
 			    $("#curricula_1").show()
 		   } 
-			if(splitResponse[7]>0){
+			if($.trim(splitResponse[7])>0){
 			    $("#curricula_2").show()
 		   } 
-			if(splitResponse[8]>0){
+			if($.trim(splitResponse[8])>0){
 			    $("#curricula_3").show()
 		   }   		   
         },
@@ -223,7 +223,11 @@ function verDetalle(Id,estatus)
 	
 	
 	document.cookie = "courseId="+Id;
-	 
+	  $("#seccion_1").hide()
+	  $("#seccion_4").hide()
+	  $("#seccion_5").hide()
+	  $("#seccion_6").hide()
+	  $("#seccion_7").hide()
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
@@ -244,7 +248,7 @@ function verDetalle(Id,estatus)
 			   if(splitResponse[8]>0){
 					 $("#seccion_1").show()
 				}
-				if(splitResponse[9]>0){
+				if($.trim(splitResponse[9])>0){
 					 $("#seccion_4").show()
 				}
 				if(splitResponse[10]>0){
@@ -559,6 +563,7 @@ function saveAportacion(){
 			$(".loader").html("");
 			$("#btnAportacion").show();
 			if($.trim(splitResp[0]) == "ok"){
+				  $(".archivoscargados").html('')
 				  $("#subForoDetalle").html(splitResp[1])
 				  $("#aportacion").val('')
 			}else if($.trim(splitResp[0]) == "fail"){
@@ -660,6 +665,7 @@ function SaveComentario(){
 			$("#btnComentario").show();
 			if($.trim(splitResp[0]) == "ok"){
 				  $("#comentario").val('');
+				  $(".archivoscargados").html('');
 			   verSubforoDetalle(splitResp[2],splitResp[3])
 			}else if($.trim(splitResp[0]) == "fail"){
 				 $(".msj").html(splitResp[1])			
@@ -675,13 +681,14 @@ function SaveComentario(){
 
 
 
-function verFormUp(Id,modl)
+function verFormUp(Id,modl,tipo)
 {
 
 
 	$.mobile.changePage("#divUp");
 	$("#upactividadId").val(Id);
 	$("#upmodalidad").val(modl);
+	$("#tipoactivi").val(tipo);
 	$("#upusuarioId").val(getCookie("usuarioId"));
 }
 
@@ -726,10 +733,12 @@ function upActividad(){
 
 			$(".loader").html("");
 			$("#btnUpActividad").show();
-			if(splitResp[0] == "ok"){
+			if($.trim(splitResp[0]) == "ok"){
+					
+					$(".archivoscargados").html('');
 				  $("#titulo").val('');
 			   detalleActividad(splitResp[1],splitResp[2])
-			}else if(splitResp[0] == "fail"){
+			}else if($.trim(splitResp[0]) == "fail"){
 				 $(".msj").html(splitResp[1])			
 			}else{
 				 alert('Algo salio mal, compruebe su conexion a internet');
@@ -782,10 +791,10 @@ function editFoto(){
 
 			$(".loader").html("");
 			$("#btnUpActividad").show();
-			if(splitResp[0] == "ok"){
+			if($.trim(splitResp[0]) == "ok"){
 				$.mobile.changePage("#home");
 				iniciaMysql()
-			}else if(splitResp[0] == "fail"){
+			}else if($.trim(splitResp[0]) == "fail"){
 				 $(".msj").html(splitResp[1])			
 			}else{
 				 alert('Algo salio mal, compruebe su conexion a internet');

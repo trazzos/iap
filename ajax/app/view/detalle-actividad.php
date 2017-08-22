@@ -66,7 +66,7 @@
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Tarea Entregada: 
 			<span class="h3">
-				<?php echo $infoActividad["sexo"]?>
+
 				<a  href="<?php echo WEB_ROOT."/download.php?file=homework/".$infoActividad["homework"]["path"]."&mime=".$infoActividad["homework"]["mime"] ?>" >
 				<i class="material-icons green">archive</i>
 				</a>
@@ -97,7 +97,7 @@
 		 
     </ul>
 	<?php if($_POST["tipo"]=="actividad"){?>
-	<a onClick="verFormUp('<?php echo $infoActividad["activityId"]?>','<?php echo $infoActividad["modality"]?>')" id="btnComentario" class="ui-btn login white">
+	<a onClick="verFormUp('<?php echo $infoActividad["activityId"]?>','<?php echo $infoActividad["modality"]?>','<?php echo $_POST["tipo"]?>')" id="btnComentario" class="ui-btn login white">
 		Subir Actividad
 	</a>
 	<?php }else{?>

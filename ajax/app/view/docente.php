@@ -10,15 +10,15 @@
 		Docente
 </center>
 	<?php if($docente["correo"]<>null){?>
-	<div class="material-icon">
+	<div class="material-icon h3 margin">
 		<i class="material-icons green">mail</i>
 		<span class="text"><?php echo $docente["correo"]; ?></span>
 	</div>
 	<?php }?>
-	<?php if($docente["celular"]<>null){?>
+	<?php if(trim($docente["celular"]<>null)){?>
 	<div class="material-icon h3 margin">
 		<i class="material-icons green">phone_in_talk</i>
-		<span class="text"><?php echo $info["celular"]; ?></span>
+		<span class="text"><?php echo $docente["celular"]; ?></span>
 	</div>
 	<?php }?>
     <?php if($docente["semblanza"]<>null){?>
