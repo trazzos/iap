@@ -469,6 +469,25 @@
 			}
 
 		break;
+		
+		case "verSeccion":
+					// echo '<pre>'; print_r($_POST);
+
+			if($_POST["Id"]==1){
+				include(DOC_ROOT.'/ajax/app/view/nosotros.php');
+			}else if($_POST["Id"]==2){
+				include(DOC_ROOT.'/ajax/app/view/prodim.php');
+			}else if($_POST["Id"]==3){
+				include(DOC_ROOT.'/ajax/app/view/red.php');
+			}else if($_POST["Id"]==4){
+				include(DOC_ROOT.'/ajax/app/view/profe.php');
+			}else if($_POST["Id"]==5){
+				include(DOC_ROOT.'/ajax/app/view/contacto.php');
+			}
+		
+		break;
+		
+		
 	}
 
 ?>

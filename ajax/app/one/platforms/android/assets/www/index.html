@@ -60,7 +60,92 @@
 
 <body>
 
-		<div data-role="page" id="login" class="login" >
+	<div data-role="page" id="welcome" class="welcome" >
+	<br>
+	<br>
+
+		<center><div class="logo">&nbsp;</div></center>
+		<div data-role="content">
+		<br>
+			<div class="divwelcome">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+				<center>
+				<table class="tblwelcome" align="center" width="100%" border="0">
+					<tr>
+						<td style="width:100px">
+							<a onclick="verSeccion(1)" class="tblwelcome">
+							<i class="material-icons white">account_balance</i>
+							</a>
+							<br>
+							Nosotros
+							
+						</td>
+						<td style="width:100px">
+							<a onclick="verSeccion(2)" class="tblwelcome">
+							<i class="material-icons white">import_contacts</i>
+							</a>
+							<br>
+							PRODIM
+						</td>
+						<td style="width:100px">
+							<a onclick="verSeccion(3)" class="tblwelcome">
+							<i class="material-icons white">device_hub</i>
+							</a>
+							<br>
+							Red Conocer
+						</td>
+					</tr>
+					<tr>
+						<td colspan='3'>
+						</td>
+					</tr>
+					<tr>
+						<td >
+							
+						<a onclick="verSeccion(4)" class="tblwelcome">
+							<i class="material-icons white">grade</i>
+								<br>
+						</a>
+								Profesionalización
+					
+						</td>
+						<td>
+						<a onclick="verSeccion(5)" class="tblwelcome">
+							<i class="material-icons white">settings_phone</i>
+								<br>
+							</a>
+								Contacto
+							
+						</td>
+						<td>
+							<a onclick="verSeccion(5)" class="tblwelcome">
+							<i class="material-icons white">group</i>
+								<br>
+							</a>		
+							Redes Sociales
+							
+							
+						</td>
+					</tr>
+				</table>
+				<br>
+				<br>
+				<br>
+				<a onClick="CargaDoLogin()" class="ui-btn login white">
+					Ingresar
+				</a>
+				</center>
+			</div>
+		</div>
+		
+	</div>
+
+	<div data-role="page" id="login" class="login" >
 	<br>
 	<br>
 
@@ -472,6 +557,27 @@
 			</center>
 		
 		</div>
+	</div>
+	
+	
+	<div data-role="page" id="divSeccion" class="welcome" >
+	<br>
+	<br>
+
+		<center><div class="logo">&nbsp;</div></center>
+		<div data-role="content">
+		<br>
+			<div id="divContenidoSeccion">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+				
+			</div>
+		</div>
+		
 	</div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>

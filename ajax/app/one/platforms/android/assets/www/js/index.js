@@ -809,3 +809,50 @@ function editFoto(){
 function compruebaExistencia(Id){
 	$("#archiivocargado_"+Id).html('<font color="276e36">Archivo adjunto</font>');
 }
+
+
+
+function verSeccion(Id){
+	
+	
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=verSeccion&Id='+Id,
+		beforeSend: function(){			
+			$("#btnSave").hide();
+			$(".loader").html(LOADER3);
+			$(".msj").html('')
+		},
+        success: function(data)
+        {
+			 console.log(data)
+			$.mobile.changePage("#divSeccion");
+			$("#divContenidoSeccion").html(data)
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+	
+}
+
+
+
+
+
+function backHome()
+{
+
+	$.mobile.changePage("#welcome");
+}
+
+
+
+function CargaDoLogin()
+{
+
+	$.mobile.changePage("#login");
+}

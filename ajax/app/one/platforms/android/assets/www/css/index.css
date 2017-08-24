@@ -63,6 +63,19 @@ body {
 
 }
 
+.welcome {
+    background:url(../img/imgmenu4.jpg?556sdf) no-repeat center top; /* 170px x 200px */
+
+}
+
+
+.tblwelcome {
+   color: white;
+   text-align:center;
+   font-size:11px;
+
+
+}
 
 .logo {
 
