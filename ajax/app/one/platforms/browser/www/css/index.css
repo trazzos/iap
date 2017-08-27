@@ -64,16 +64,22 @@ body {
 }
 
 .welcome {
-    background:url(../img/imgmenu4.jpg?556sdf) no-repeat center top; /* 170px x 200px */
+	display:none;
+    background:url(../img/imgmenu.jpg?66g56kljsdfsdfsdfdsdf) no-repeat center top; /* 170px x 200px */
 
 }
 
 
+
+
+
+
+
 .tblwelcome {
-   color: white;
+   color: #276e36  ;
    text-align:center;
    font-size:11px;
-
+font-weight: 800;
 
 }
 
@@ -154,6 +160,8 @@ h4 {
 	background:#eef1f5;
 	color: black;
 }
+
+
 
  #divSubForo{
 	background:#eef1f5;

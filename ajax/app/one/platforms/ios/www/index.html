@@ -63,13 +63,21 @@
 	<div data-role="page" id="welcome" class="welcome" >
 	<br>
 	<br>
+	<div data-role="panel" id="myPanel"> 
+	
+		<div  id="divmyPanel"> 
 
+		</div>
+	  </div>
 		<center><div class="logo">&nbsp;</div></center>
 		<div data-role="content">
 		<br>
 			<div class="divwelcome">
 			<br>
 			<br>
+			<a onClick="CargaDoLogin()" class="ui-btn login white">
+					Ingresar
+				</a>
 			<br>
 			<br>
 			<br>
@@ -78,23 +86,23 @@
 				<table class="tblwelcome" align="center" width="100%" border="0">
 					<tr>
 						<td style="width:100px">
-							<a onclick="verSeccion(1)" class="tblwelcome">
-							<i class="material-icons white">account_balance</i>
+							<a onclick="verSeccion(1)"  class="menuPrincipal" >
+							<i class="material-icons green">account_balance</i>
 							</a>
 							<br>
 							Nosotros
 							
 						</td>
 						<td style="width:100px">
-							<a onclick="verSeccion(2)" class="tblwelcome">
-							<i class="material-icons white">import_contacts</i>
+							<a onclick="verSeccion(2)" class="menuPrincipal">
+							<i class="material-icons green">import_contacts</i>
 							</a>
 							<br>
 							PRODIM
 						</td>
 						<td style="width:100px">
-							<a onclick="verSeccion(3)" class="tblwelcome">
-							<i class="material-icons white">device_hub</i>
+							<a onclick="verSeccion(3)" class="menuPrincipal">
+							<i class="material-icons green">device_hub</i>
 							</a>
 							<br>
 							Red Conocer
@@ -107,27 +115,28 @@
 					<tr>
 						<td >
 							
-						<a onclick="verSeccion(4)" class="tblwelcome">
-							<i class="material-icons white">grade</i>
+						<a onclick="verSeccion(4)" class="menuPrincipal">
+							<i class="material-icons green">grade</i>
 								<br>
 						</a>
 								Profesionalización
 					
 						</td>
 						<td>
-						<a onclick="verSeccion(5)" class="tblwelcome">
-							<i class="material-icons white">settings_phone</i>
+						<a onclick="verSeccion(5)" class="menuPrincipal">
+							<i class="material-icons green">group</i>
 								<br>
 							</a>
-								Contacto
+							Redes Sociales
+								
 							
 						</td>
 						<td>
-							<a onclick="verSeccion(5)" class="tblwelcome">
-							<i class="material-icons white">group</i>
+							<a onclick="verSeccion(6)" class="menuPrincipal">
+							<i class="material-icons green">settings_phone</i>
 								<br>
 							</a>		
-							Redes Sociales
+							Contacto
 							
 							
 						</td>
@@ -136,13 +145,31 @@
 				<br>
 				<br>
 				<br>
-				<a onClick="CargaDoLogin()" class="ui-btn login white">
-					Ingresar
-				</a>
+				
 				</center>
 			</div>
 		</div>
 		
+	</div>
+	
+	
+	<div data-role="page" id="pagSubSeccion"  class="welcome">
+	<br>
+	<br>
+		<center><div class="logo">&nbsp;</div></center>
+		<br>
+		<br>
+		&nbsp;
+		&nbsp;
+		&nbsp;
+		&nbsp;
+		<a onclick="backHome()" class="tblwelcome">
+		<i class="material-icons green">keyboard_arrow_left</i>
+		</a>
+		<div data-role="content" id="divSubSeccion">
+		
+		</div>
+		<center><p class="parrafoLogin">2017 © IAP Chiapas.</p></center>
 	</div>
 
 	<div data-role="page" id="login" class="login" >

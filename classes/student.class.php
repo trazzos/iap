@@ -1932,6 +1932,18 @@ class Student extends User
 		return $result;
 	}
 	
+	public function muestraMenu($Id)
+	{
+		
+		$sql = "
+				SELECT * FROM menu_app WHERE menuId =  ".$Id."";
+
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetResult();
+			
+		return $result;
+	}
+	
 	
 }
 
