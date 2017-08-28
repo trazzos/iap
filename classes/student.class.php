@@ -1944,6 +1944,17 @@ class Student extends User
 		return $result;
 	}
 	
+	public function contenidoSeccion($Id)
+	{
+		$sql = "
+				SELECT * FROM menu_app WHERE menuAppId =  ".$Id."";
+
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+			
+		return $result;
+	}
+	
 	
 }
 

@@ -492,6 +492,25 @@
 		
 		break;
 		
+		case 'verSubSeccion':
+		
+			// echo '<pre>'; print_r($_POST);
+			$uno = "<img src='".WEB_ROOT."/images/instalaciones/1.jpg' style='width:100px;' />";
+			$dos = "<img src='".WEB_ROOT."/images/instalaciones/2.jpg' style='width:100px;' />";
+			$tres = "<img src='".WEB_ROOT."/images/instalaciones/3.jpg' style='width:100px;' />";
+			$cuatro = "<img src='".WEB_ROOT."/images/instalaciones/4.jpg' style='width:100px;' />";
+			$cinco = "<img src='".WEB_ROOT."/images/instalaciones/5.jpg' style='width:100px;' />";
+			$seis = "<img src='".WEB_ROOT."/images/instalaciones/6.jpg' style='width:100px;' />";
+			$siete = "<img src='".WEB_ROOT."/images/instalaciones/7.jpg' style='width:100px;' />";
+			$ocho = "<img src='".WEB_ROOT."/images/instalaciones/8.jpg' style='width:100px;' />";
+			$nueve = "<img src='".WEB_ROOT."/images/instalaciones/9.jpg' style='width:100px;' />";
+			$diez = "<img src='".WEB_ROOT."/images/instalaciones/10.jpg' style='width:100px;' />";
+
+			$infoSeccion = $student->contenidoSeccion($_POST["Id"]);
+			include(DOC_ROOT.'/ajax/app/view/seccion.php');
+			
+		break;
+		
 		
 	}
 
