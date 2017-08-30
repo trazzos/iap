@@ -97,9 +97,9 @@ var app = {
 
 var urlLoc = "localhost";
 
-var WEB_ROOT = "http://" + urlLoc + "/iap";
-// var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
-// var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
+ //var WEB_ROOT = "http://" + urlLoc + "/iap";
+var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
+ //var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
 
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
 
@@ -878,10 +878,52 @@ function verSubSeccion(Id){
         success: function(data)
         {
 			 console.log(data)
-
+			var splitResp = data.split("[#]");
 		// $("#myPanel").html(data);
 			$.mobile.changePage("#pagSubSeccion");
-			$("#divSubSeccion").html(data);
+			$("#divSubSeccion").html(splitResp[1]);
+			$("#divFooter").html(splitResp[2]);
+			
+
+		
+			
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+	
+}
+
+
+
+
+function clickMenu(Id){
+	
+	// $(".menuPrincipal").attr("href", "#myPanel");
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=clickMenu&Id='+Id,
+		beforeSend: function(){			
+			$("#btnSave").hide();
+			$(".loader").html(LOADER3);
+			$(".msj").html('')
+		},
+        success: function(data)
+        {
+			 console.log(data)
+			var splitResp = data.split("[#]");
+		// $("#myPanel").html(data);
+			// $.mobile.changePage("#pagSubSeccion");
+			$("#contenidoAjax").html(splitResp[1]);
+			// $("#divFooter").html(splitResp[2]);
+			
+
+		
+			
             
         },
         error: function ()

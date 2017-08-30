@@ -42,7 +42,6 @@
     border-radius: 3px 0 0 3px;
 	padding: 3px 22px;
 	font-size:12px;
-	background: #276e36;
 	border-color: #165e26 ;
 }
 #derecha {	
@@ -51,7 +50,6 @@
     border-radius: 0 3px 3px 0;
 	padding: 3px 22px;
 	font-size:12px;
-	background: #276e36;
 	border-color: #165e26 ;
 }
 .enlace{
@@ -68,13 +66,10 @@
 
 
 
-<div class="ui-content ui-content-no-overflow ui-content-no-padding ui-page-theme-a" data-form="ui-page-theme-a" data-theme="a" role="main">
 
 
-	<div  id='contenidoAjax'>
-	
-		<?php 
-		if($_POST['Id'] == 7 or $var == 1){
+	<?php 
+		if($_POST['Id'] == 7 or $var == 1 or $_POST['Id'] == 40){
 		?>
 		<div id="izquierda">
 		<a onClick='clickMenu(<?php echo 7?>)' class='enlace'>Nosotros</a>
@@ -87,42 +82,52 @@
 		<?php 
 		}else if ($_POST['Id'] == 36){
 		?>
-		<div id="izquierda" class='enlace'>
-		Directorio
+		<div id="izquierda">
+		<a onClick='clickMenu(<?php echo 36?>)' class='enlace'>Directorio</a>
 		</div>
-		<div id="derecha" class='enlace'>
-		Consejo Directivo
+		<div id="derecha">
+		<a onClick='clickMenu(<?php echo 36?>)' class='enlace'>Consejo Di..</a>
 		</div>
 		<div style='clear:both'>
 		</div>
 		<?php 
 		}
-		?>
-		
-		<div class='contenido' style="height:400px; overflow:scroll" class="showScroll lion">
-		<?php 
-		if ($_POST['Id'] == 5){
-		?>
-		<table>
-		<tr>
-			<td>fac</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-		</tr>
-		</table>
-		<?php
-		}else{
-			echo $infoSeccion['contenido'];
-		}
-		?>	
-		</div>
+		?> 
+	
+	<div class='contenido' id='contenidoAjax' style="height:400px; overflow:scroll" class="showScroll lion">
+	<?php 
+	if ($_POST['Id'] == 40){
+	?>
+	<table>
+	<tr>
+		<td><?php echo $uno?></td>
+		<td><?php echo $dos?></td>
+	</tr>
+	<tr>
+		<td><?php echo $tres?></td>
+		<td><?php echo $cuatro?></td>
+	</tr>
+	<tr>
+		<td><?php echo $cinco?></td>
+		<td><?php echo $seis?></td>
+	</tr>
+	<tr>
+		<td><?php echo $siete?></td>
+		<td><?php echo $ocho?></td>
+	</tr>
+	<tr>
+		<td><?php echo $nueve?></td>
+		<td><?php echo $diez?></td>
+	</tr>
+	</table>
+	<?php	
+	}else{
+		echo $infoSeccion['contenido'];
+	}
+	
+	?>	
 	</div>
-	
-	
-</div>
+
 
 </body>
 </html>

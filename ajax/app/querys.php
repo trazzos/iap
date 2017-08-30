@@ -493,7 +493,7 @@
 		break;
 		
 		case 'verSubSeccion':
-		
+		// exit;
 			// echo '<pre>'; print_r($_POST);
 			$uno = "<img src='".WEB_ROOT."/images/instalaciones/1.jpg' style='width:100px;' />";
 			$dos = "<img src='".WEB_ROOT."/images/instalaciones/2.jpg' style='width:100px;' />";
@@ -507,10 +507,58 @@
 			$diez = "<img src='".WEB_ROOT."/images/instalaciones/10.jpg' style='width:100px;' />";
 
 			$infoSeccion = $student->contenidoSeccion($_POST["Id"]);
+			$var = 0;
+			
+			if($_POST["Id"]==7){
+				$var = 1;
+			}
+			
+			if($_POST["Id"]==9){
+				$var = 2;
+			}
+			
+			if($_POST["Id"]==12){
+				$var = 3;
+			}
+			
+			if($_POST["Id"]==24){
+				$var = 4;
+			}
+			
+			if($_POST["Id"]==6){
+				$var = 6;
+			}
+			
+			
+			
+			$lstMenu = $student->muestraMenu($var);
+			$lstSubmenu = $student->muestraMenu($_POST["Id"]);
+			echo 'ok[#]';
 			include(DOC_ROOT.'/ajax/app/view/seccion.php');
+			echo '[#]';
+			include(DOC_ROOT.'/ajax/app/view/menu.php');
 			
 		break;
 		
+		case 'clickMenu';
+		
+			
+			// echo '<pre>'; print_r($_POST);
+			$uno = "<img src='".WEB_ROOT."/images/instalaciones/1.jpg' style='width:100px;' />";
+			$dos = "<img src='".WEB_ROOT."/images/instalaciones/2.jpg' style='width:100px;' />";
+			$tres = "<img src='".WEB_ROOT."/images/instalaciones/3.jpg' style='width:100px;' />";
+			$cuatro = "<img src='".WEB_ROOT."/images/instalaciones/4.jpg' style='width:100px;' />";
+			$cinco = "<img src='".WEB_ROOT."/images/instalaciones/5.jpg' style='width:100px;' />";
+			$seis = "<img src='".WEB_ROOT."/images/instalaciones/6.jpg' style='width:100px;' />";
+			$siete = "<img src='".WEB_ROOT."/images/instalaciones/7.jpg' style='width:100px;' />";
+			$ocho = "<img src='".WEB_ROOT."/images/instalaciones/8.jpg' style='width:100px;' />";
+			$nueve = "<img src='".WEB_ROOT."/images/instalaciones/9.jpg' style='width:100px;' />";
+			$diez = "<img src='".WEB_ROOT."/images/instalaciones/10.jpg' style='width:100px;' />";
+			$infoSeccion = $student->contenidoSeccion($_POST["Id"]);
+			echo 'ok[#]';
+			include(DOC_ROOT.'/ajax/app/view/seccion2.php');
+			
+		break;
 		
 	}
 
