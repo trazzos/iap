@@ -33,9 +33,7 @@ header('Access-Control-Allow-Origin: *');
 	font-weight: bold;
 }
 
-.contenido{
-	background: rgba(255, 255, 255, 0.58)
-}
+
 
 .menu{
 	float:left;

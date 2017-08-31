@@ -529,7 +529,10 @@
 				$var = 6;
 			}
 			
-			
+			$urlFace = "<img src='".WEB_ROOT."/images/face.png' style='width:30px; height:30px; border-radius: 2%;' />";
+			$urlTwi = "<img src='".WEB_ROOT."/images/twitter.png' style='width:30px; height:30px; border-radius: 2%;' />";
+			$urlIns = "<img src='".WEB_ROOT."/images/insta.png' style='width:30px; height:30px; border-radius: 2%;' />";
+			$urlLink = "<img src='".WEB_ROOT."/images/link.png' style='width:30px; height:30px; border-radius: 2%;' />";
 			
 			$lstMenu = $student->muestraMenu($var);
 			$lstSubmenu = $student->muestraMenu($_POST["Id"]);
@@ -542,7 +545,11 @@
 		
 		case 'clickMenu';
 		
+		// echo $_POST["Id"];
+			$urlPres = "<img src='".WEB_ROOT."/images/presi.png' style='width:200px; height:200px; border-radius: 2%;' />";
+			$urlSede = "<img src='".WEB_ROOT."/images/sedes.png' style='width:200px; height:200px; border-radius: 2%;' />";
 			
+			$lstSubmenu = $student->muestraMenu($_POST["Id"]);
 			// echo '<pre>'; print_r($_POST);
 			$uno = "<img src='".WEB_ROOT."/images/instalaciones/1.jpg' style='width:100px;' />";
 			$dos = "<img src='".WEB_ROOT."/images/instalaciones/2.jpg' style='width:100px;' />";
@@ -555,6 +562,7 @@
 			$nueve = "<img src='".WEB_ROOT."/images/instalaciones/9.jpg' style='width:100px;' />";
 			$diez = "<img src='".WEB_ROOT."/images/instalaciones/10.jpg' style='width:100px;' />";
 			$infoSeccion = $student->contenidoSeccion($_POST["Id"]);
+			$lstSubmenu = $student->muestraMenu($_POST["Id"]);
 			echo 'ok[#]';
 			include(DOC_ROOT.'/ajax/app/view/seccion2.php');
 			

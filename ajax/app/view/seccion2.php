@@ -27,14 +27,15 @@
 	color: #93a3b5;
 
 }
+
+
+
 .col-md-3{
 	color: #93a2a9;
 	font-weight: bold;
 }
 
-.contenido{
-	background: rgba(255, 255, 255, 0.58)
-}
+
 
 #izquierda {	
 	float:left;
@@ -80,13 +81,13 @@
 		<div style='clear:both'>
 		</div>
 		<?php 
-		}else if ($_POST['Id'] == 36){
+		}else if ($_POST['Id'] == 36 or $_POST['Id'] == 41){
 		?>
 		<div id="izquierda">
 		<a onClick='clickMenu(<?php echo 36?>)' class='enlace'>Directorio</a>
 		</div>
 		<div id="derecha">
-		<a onClick='clickMenu(<?php echo 36?>)' class='enlace'>Consejo Di..</a>
+		<a onClick='clickMenu(<?php echo 41?>)' class='enlace'>Consejo Di..</a>
 		</div>
 		<div style='clear:both'>
 		</div>
@@ -98,6 +99,7 @@
 	<?php 
 	if ($_POST['Id'] == 40){
 	?>
+	<center>
 	<table>
 	<tr>
 		<td><?php echo $uno?></td>
@@ -120,8 +122,33 @@
 		<td><?php echo $diez?></td>
 	</tr>
 	</table>
+	</center>
 	<?php	
-	}else{
+	}
+	else if($_POST['Id'] == 13){
+		foreach($lstSubmenu as $key => $fila){
+		echo '<a onclick="clickMenu('.$fila['menuAppId'].')" class="ui-btn login white">
+					'.$fila['nombre'].'
+				</a>';
+		}
+	}
+	else if($_POST['Id'] == 25 or $_POST['Id'] == 26){
+		foreach($lstSubmenu as $key => $fila){
+		echo '<a onclick="clickMenu('.$fila['menuAppId'].')" class="ui-btn login white">
+					'.$fila['nombre'].'
+				</a>';
+		}
+	}
+	else{
+		
+		if($_POST['Id'] == 8){
+			echo '<br><center>'.$urlPres.'</center><br>';
+		}
+		
+		if($_POST['Id'] == 10){
+			echo '<br><center>'.$urlSede.'</center><br>';
+		}
+		
 		echo $infoSeccion['contenido'];
 	}
 	

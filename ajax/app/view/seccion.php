@@ -33,7 +33,9 @@
 }
 
 .contenido{
-	background: rgba(255, 255, 255, 0.58)
+	background: rgba(255, 255, 255, 0.54);
+	padding: 5px 11px;
+	text-align : justify
 }
 
 #izquierda {	
@@ -61,6 +63,8 @@
 	
     font-weight: 100;	
 }
+
+
 </style>
 </head>
 
@@ -68,7 +72,6 @@
 
 
 
-<div class="ui-content ui-content-no-overflow ui-content-no-padding ui-page-theme-a" data-form="ui-page-theme-a" data-theme="a" role="main">
 
 
 	<div  id='contenidoAjax'>
@@ -99,20 +102,30 @@
 		}
 		?>
 		
-		<div class='contenido' style="height:400px; overflow:scroll" class="showScroll lion">
+		<div class='contenido' style="width: 95%; height:400px; overflow:scroll" class="showScroll lion">
 		<?php 
 		if ($_POST['Id'] == 5){
 		?>
-		<table>
+		<br>
+			<br>
+		<center>
+		<table width=100% style='text-align:center'>
 		<tr>
-			<td>fac</td>
-			<td></td>
+			<td><?php echo $urlFace?></td>
+			<td><?php echo $urlTwi?></td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
+			<td colspan='2'>
+			<br>
+			<br>
+			</td>
+		</tr>
+		<tr>
+			<td><?php echo $urlIns?></td>
+			<td><?php echo $urlLink?></td>
 		</tr>
 		</table>
+		</center>
 		<?php
 		}else{
 			echo $infoSeccion['contenido'];
@@ -122,7 +135,7 @@
 	</div>
 	
 	
-</div>
+
 
 </body>
 </html>
