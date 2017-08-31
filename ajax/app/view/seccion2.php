@@ -93,7 +93,27 @@
 		</div>
 		<?php 
 		}
+		if($_POST['Id'] >= 42 and $_POST['Id'] <= 51){
 		?> 
+		<div id="izquierda">
+		<a href='<?php echo WEB_ROOT?>/estandares/<?php echo $_POST['Id']?>.pdf' target='_blank' class='enlace'>Descargar</a>
+		</div>
+		<div style='clear:both'>
+		</div>
+		<?php 
+		}
+		?>
+		<?php 
+		if($_POST['Id'] >= 52 and $_POST['Id'] <= 55){
+		?> 
+		<div id="izquierda">
+		<a href='<?php echo WEB_ROOT?>/tripticos/<?php echo $_POST['Id']?>.jpg' target='_blank' class='enlace'>Descargar</a>
+		</div>
+		<div style='clear:both'>
+		</div>
+		<?php 
+		}
+		?>
 	
 	<div class='contenido' id='contenidoAjax' style="height:400px; overflow:scroll" class="showScroll lion">
 	<?php 
@@ -138,6 +158,55 @@
 					'.$fila['nombre'].'
 				</a>';
 		}
+	}
+	else if($_POST['Id'] == 32){
+		echo '
+		<br><b>Contacto</b>
+		<br><br>
+		<b>Ubicación</b><br>
+		Libramiento Norte Poniente No. 2718. Fraccionamiento Ladera de la Loma. C.P. 29026. 
+		<br>
+		<br>
+		<b>Telefonos y Correo</b><br>
+		(961) 125 1508<br>
+		(961) 125 1509<br>
+		(961) 125 1510<br>
+		contacto@iapchiapas.org.mx<br>
+
+		';
+	}
+	else if($_POST['Id'] == 34){
+		echo '
+		<br><b>Formulario de Contacto</b>
+		<br><br>
+		<form >
+		<table >
+			<tr>
+				<td>Nombre</td>
+				<td><input type="text" name="nombre" style="width:180px"></td>
+			</tr>
+			<tr>
+				<td>Correo electrónico</td>
+				<td><input type="text" name="correo" style="width:180px"></td>
+			</tr>
+			<tr>
+				<td>Teléfono de contacto</td>
+				<td><input type="text" name="telefono" style="width:180px"></td>
+			</tr>
+			<tr>
+				<td>Solicitud / Petición</td>
+				<td>
+				<textarea name="">
+				</textarea>
+				</td>
+			</tr>
+		</table>
+		</form>
+		<a onclick="" class="ui-btn login white">
+			Enviar					
+				</a>
+
+		';
 	}
 	else{
 		

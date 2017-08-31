@@ -127,7 +127,24 @@
 		</table>
 		</center>
 		<?php
-		}else{
+		}
+		else if($var == 6){
+		echo '
+		<br><b>Contacto</b>
+		<br><br>
+		<b>Ubicación</b><br>
+		Libramiento Norte Poniente No. 2718. Fraccionamiento Ladera de la Loma. C.P. 29026. 
+		<br>
+		<br>
+		<b>Telefonos y Correo</b><br>
+		(961) 125 1508<br>
+		(961) 125 1509<br>
+		(961) 125 1510<br>
+		contacto@iapchiapas.org.mx<br>
+
+		';
+		}
+		else{
 			echo $infoSeccion['contenido'];
 		}
 		?>	

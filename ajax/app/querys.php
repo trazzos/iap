@@ -529,6 +529,8 @@
 				$var = 6;
 			}
 			
+			
+			
 			$urlFace = "<img src='".WEB_ROOT."/images/face.png' style='width:30px; height:30px; border-radius: 2%;' />";
 			$urlTwi = "<img src='".WEB_ROOT."/images/twitter.png' style='width:30px; height:30px; border-radius: 2%;' />";
 			$urlIns = "<img src='".WEB_ROOT."/images/insta.png' style='width:30px; height:30px; border-radius: 2%;' />";
