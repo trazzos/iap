@@ -109,20 +109,22 @@
 		<br>
 			<br>
 		<center>
-		<table width=100% style='text-align:center'>
+		<table width=50% border=0 width=100% >
 		<tr>
-			<td><?php echo $urlFace?></td>
-			<td><?php echo $urlTwi?></td>
+			<td><?php echo $urlFace?> </td>
+			<td >Facebook</td>
 		</tr>
 		<tr>
-			<td colspan='2'>
-			<br>
-			<br>
-			</td>
+			<td><?php echo $urlTwi?></td>
+			<td style>Twitter</td>
 		</tr>
 		<tr>
 			<td><?php echo $urlIns?></td>
+			<td>Instagram</td>
+		</tr>
+		<tr>
 			<td><?php echo $urlLink?></td>
+			<td>LinkedIn</td>
 		</tr>
 		</table>
 		</center>
@@ -145,6 +147,10 @@
 		';
 		}
 		else{
+			if($_POST['Id'] == 7){
+				echo '<center>'.$imgFachada.'</center>';
+			}
+			
 			echo $infoSeccion['contenido'];
 		}
 		?>	

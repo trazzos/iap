@@ -146,6 +146,7 @@
 	<?php	
 	}
 	else if($_POST['Id'] == 13){
+		
 		foreach($lstSubmenu as $key => $fila){
 		echo '<a onclick="clickMenu('.$fila['menuAppId'].')" class="ui-btn login white">
 					'.$fila['nombre'].'
@@ -217,6 +218,13 @@
 		if($_POST['Id'] == 10){
 			echo '<br><center>'.$urlSede.'</center><br>';
 		}
+		if($_POST['Id'] == 7){
+			echo '<center>'.$imgFachada.'</center>';
+		}
+		if($_POST['Id'] >= 42 and $_POST['Id'] <=51){
+			echo '<input type="hidden" id="auxMenu" value="1">';
+		}
+		
 		
 		echo $infoSeccion['contenido'];
 	}

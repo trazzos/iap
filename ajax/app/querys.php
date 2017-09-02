@@ -531,10 +531,11 @@
 			
 			
 			
-			$urlFace = "<img src='".WEB_ROOT."/images/face.png' style='width:30px; height:30px; border-radius: 2%;' />";
-			$urlTwi = "<img src='".WEB_ROOT."/images/twitter.png' style='width:30px; height:30px; border-radius: 2%;' />";
-			$urlIns = "<img src='".WEB_ROOT."/images/insta.png' style='width:30px; height:30px; border-radius: 2%;' />";
-			$urlLink = "<img src='".WEB_ROOT."/images/link.png' style='width:30px; height:30px; border-radius: 2%;' />";
+			$urlFace = "<img src='".WEB_ROOT."/images/face.png'  border-radius: 2%;' />";
+			$imgFachada = "<img src='".WEB_ROOT."/images/fachada.jpg' border-radius: 2%;' />";
+			$urlTwi = "<img src='".WEB_ROOT."/images/twitter.png'  border-radius: 2%;' />";
+			$urlIns = "<img src='".WEB_ROOT."/images/insta.png'  border-radius: 2%;' />";
+			$urlLink = "<img src='".WEB_ROOT."/images/link.png'  border-radius: 2%;' />";
 			
 			$lstMenu = $student->muestraMenu($var);
 			$lstSubmenu = $student->muestraMenu($_POST["Id"]);
@@ -550,7 +551,8 @@
 		// echo $_POST["Id"];
 			$urlPres = "<img src='".WEB_ROOT."/images/presi.png' style='width:200px; height:200px; border-radius: 2%;' />";
 			$urlSede = "<img src='".WEB_ROOT."/images/sedes.png' style='width:200px; height:200px; border-radius: 2%;' />";
-			
+			$imgFachada = "<img src='".WEB_ROOT."/images/fachada.jpg' border-radius: 2%;' />";
+				
 			$lstSubmenu = $student->muestraMenu($_POST["Id"]);
 			// echo '<pre>'; print_r($_POST);
 			$uno = "<img src='".WEB_ROOT."/images/instalaciones/1.jpg' style='width:100px;' />";
