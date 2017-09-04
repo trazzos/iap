@@ -21,12 +21,12 @@ function addSolicitud(){
 			var splitResp = response.split("[#]");
 			
 		
-			if(splitResp[0] == "ok"){
+			if($.trim(splitResp[0]) == "ok"){
 					// DoSearch()
 					$("#msj").html(splitResp[1]);
 					$("#container").html(splitResp[2]);
 				}
-			else if(splitResp[0] == "fail"){
+			else if($.trim(splitResp[0]) == "fail"){
 				// alert(splitResp[1])
 				$("#msj").html(splitResp[1]);
 				$("#centeredDivOnPopup").show();
