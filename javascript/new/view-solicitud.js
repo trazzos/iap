@@ -70,12 +70,12 @@ function enviarArchivo(){
 
 			// $("#loader").html("");
 			
-			if(splitResp[0] == "ok"){
+			if($.trim(splitResp[0]) == "ok"){
 				$("#msj").html(splitResp[1]);
 				$("#container").html(splitResp[2]);
 				closeModal();
-			}else if(splitResp[0] == "fail"){
-								
+			}else if($.trim(splitResp[0]) == "fail"){
+					$("#msj").html(splitResp[1]);			
 			}else{
 				// alert(msgFail);
 			}
