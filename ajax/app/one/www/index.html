@@ -34,7 +34,8 @@
 <!--
 	<meta http-equiv="Content-Security-Policy" content="default-src *; script-src *; object-src *; style-src *; img-src *; media-src *; frame-src *; font-src *; connect-src *" />
 -->
-	<meta http-equiv="Content-Security-Policy" content="default-src * data: gap: 'unsafe-inline' http://www.iapchiapasenlinea.mx; script-src * 'unsafe-inline' http://www.iapchiapasenlinea.mx ;style-src * 'unsafe-inline' http://www.iapchiapasenlinea.mx; media-src *" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * data: gap: 'unsafe-inline' http://www.iapchiapasenlinea.mx; 
+	script-src * 'unsafe-inline' http://www.iapchiapasenlinea.mx ; frame-src *;  font-src *;  style-src * 'unsafe-inline' http://www.iapchiapasenlinea.mx; " />
 
 
     <!-- Good default declaration:
@@ -91,11 +92,11 @@
 					<tr>
 						<td style="width:100px">
 						
-							<a onclick="verSubSeccion(7)"  class="menuPrincipal" >
-							<i class="material-icons green48 md-48">account_balance</i>
+							<a onclick="verPortal()"  class="menuPrincipal" >
+							<i class="material-icons green48 md-48">public</i>
 							</a>
 							<br>
-							Nosotros
+							Portal
 							
 						</td>
 						<td style="width:100px">
@@ -157,7 +158,17 @@
 		</div>
 		
 	</div>
-	
+	<div data-role="page" id="portal"  class="welcome">
+	<center><div class="logo">&nbsp;
+		</div>
+		</center>
+	<a onclick="backHome()" class="tblwelcome">
+		<i class="material-icons green">keyboard_arrow_left</i>
+		</a>
+		<div data-role="content">
+		    <iframe scrolling="si" id="viewsite_iframe" sandbox="allow-scripts allow-popups allow-forms" src="http://iapchiapas.org.mx/" class="clsIframe" style="width:100%; height:800px;"></iframe>
+		</div>
+	</div>
 	
 	<div data-role="page" id="pagSubSeccion"  class="welcome">
 	<br>

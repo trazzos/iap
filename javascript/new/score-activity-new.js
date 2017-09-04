@@ -21,10 +21,10 @@ function saveCalificacion(){
 
 					$("#loader").html("");
 					$("#btnEnviar").show();
-					if(splitResp[0] == "ok"){
+					if($.trim(splitResp[0]) == "ok"){
 
 						$("#msjdiv").html(splitResp[1]);
-					}else if(splitResp[0] == "fail"){
+					}else if($.trim(splitResp[0]) == "fail"){
 						$("#msjdiv").html(splitResp[1]);				
 					}else{
 						alert('Ocurrio un error');
