@@ -8,7 +8,9 @@
         </div>
     </div>
     <div class="portlet-body">
+	
 		<div style="left:400px; position:relative">
+		<div>Por Favor, Seleccione.</div>
 		<select name='solicitudId' id='solicitudId' class="form-control" style='width:350px; float:left'>
 			<option></option>
 			{foreach from=$lstSol item=item}

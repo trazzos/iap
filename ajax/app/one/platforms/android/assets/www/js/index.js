@@ -97,8 +97,8 @@ var app = {
 
 var urlLoc = "localhost";
 
- // var WEB_ROOT = "http://" + urlLoc + "/iap";
- var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
+  var WEB_ROOT = "http://" + urlLoc + "/iap";
+ //var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
  //var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
 
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
@@ -936,4 +936,39 @@ function clickMenu(Id){
         }
     });
 	
+}
+
+
+function saveContacto(topicId,courseId)
+{
+	
+	$.ajax({
+		url : WEB_ROOT+'/ajax/app/querys.php',
+        type: "POST",
+        data : 'type=saveContacto&usuarioId='+getCookie("usuarioId")+'&'+$('#frmContacto').serialize(),
+		beforeSend: function(){			
+			$("#btnSave").hide();
+			$(".loader").html(LOADER3);
+			$(".msj").html('')
+		},
+        success: function(data)
+        {
+			console.log(data)
+			$(".loader").html("");
+			
+           var splitResponse = data.split("[#]");
+           if($.trim(splitResponse[0])=="ok"){
+			    $("#msjContacto").html(splitResponse[1])
+			    $(".txts").val('')
+		   }else if($.trim(splitResponse[0])=="fail"){
+			    $(".msj").html(splitResponse[1])
+		   }
+		   $("#btnSave").show();
+            
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
 }

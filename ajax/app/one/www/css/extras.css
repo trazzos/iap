@@ -35,12 +35,11 @@ a.login {
     top: -7px;
 }
 
-.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-48 { font-size: 77px; }
 
 .material-icons.green48 {
     color: #276e36;
-	height: 48px;
-    width: 48px;
+	
 }
 
 .material-icon .margin{

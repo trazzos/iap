@@ -1,5 +1,11 @@
 function addSolicitud(){
 	
+	
+	var resp = confirm("¿Desea agregar la Solicitud?");
+	
+	if(!resp)
+		return;
+	
 	$("#type").val("addSolicitud")
 // alert($('#solicitudId').val())
 	$.ajax({
@@ -22,7 +28,7 @@ function addSolicitud(){
 				}
 			else if(splitResp[0] == "fail"){
 				// alert(splitResp[1])
-				$("#res_").html(splitResp[1]);
+				$("#msj").html(splitResp[1]);
 				$("#centeredDivOnPopup").show();
 			}
 		},

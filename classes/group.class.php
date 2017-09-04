@@ -208,7 +208,9 @@
 				
 			}
 			$this->Util()->setError(90000, 'complete', "Has modificado las calificaciones");
-			$this->Util()->PrintErrors();			
+			$this->Util()->PrintErrors();	
+
+			return true;
 		}
 		
 		public function ScoreGroup($modality, $type, $id)
@@ -216,12 +218,12 @@
 			switch($modality)
 			{
 				case "Individual":
-					 $sql = "
+				 	 $sql = "
 						SELECT *, user_subject.status AS status FROM user_subject
 						LEFT JOIN user ON user_subject.alumnoId = user.userId
 						WHERE courseId = '".$this->getCourseId()."' and user_subject.status = 'activo'
 						ORDER BY lastNamePaterno ASC, lastNameMaterno ASC, names ASC";
-					
+					// exit
 					$this->Util()->DB()->setQuery($sql);
 					$result = $this->Util()->DB()->GetResult();
 					
@@ -286,13 +288,15 @@
 								FROM activity_score
 								WHERE activityId = '".$id."' AND userId = '".$member["userId"]."'");
 							$result[$key]["retro"] = $this->Util()->DB()->GetSingle();
-if($result[$key]["homework"]) { break; }
+								if($result[$key]["homework"]) { 
+									break; 
+								}
 						}
 						
 					}
 					
 					return $result;
-				;
+				
 			}
 			return $result;
 		}

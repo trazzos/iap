@@ -9,6 +9,13 @@
 	switch($_POST["type"])
 	{
 		case 'addSolicitud':
+		
+			if($_POST['solicitudId']==''){
+				echo 'fail[#]';
+				echo '<center><font color="red">Por favor, seleccione el tipo de solicitud</font></center>';
+				exit;
+			}
+		
 
 				$solicitud->setTipo($_POST['solicitudId']);
 				if ($solicitud->SaveSolicitud()){

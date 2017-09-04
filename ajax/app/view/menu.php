@@ -36,10 +36,19 @@ header('Access-Control-Allow-Origin: *');
 
 
 .menu{
+	word-wrap: break-word;
 	float:left;
 	text-align:center;
 	height: 40px;
-	width: 100px;
+<?php 
+if($_POST['Id']==12 or $_POST['Id']==6){
+	echo 'width: 49.5%;';
+}else{
+	echo 'width: 33%;';
+}
+
+?>	
+	
 	border-right: 1px solid ;
 	border-color: #165e26 ;
 	text-decoration:none;  

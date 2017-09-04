@@ -434,6 +434,7 @@
 						activity
 					WHERE
 							activityId='" . $this->getActivityId() . "'";
+						// exit;
 			//configuramos la consulta con la cadena de actualizacion
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y obtenemos el resultado

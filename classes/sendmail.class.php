@@ -2,6 +2,28 @@
 
 class SendMail extends Main
 {
+	
+	public function enviarCorreo($subject, $body, $details_body, $details_subject, $to, $toName, $attachment = array(), $fileName = array(), $from, $fromName) 
+	{
+			$mail = new PHPMailer(); // defaults to using php "mail()"
+			
+			$body = nl2br($this->Util()->handle_mail_patterns($body,$details_body));
+			$subject = $this->Util()->handle_mail_patterns($subject,$details_subject);
+			
+			$mail->AddReplyTo($from, $fromName);
+			$mail->SetFrom($from, $fromName);
+			
+			$mail->AddAddress($to, $toName);
+			$mail->Subject    = $subject;
+			$mail->MsgHTML($body);
+			
+			foreach($attachment as $key => $attach)
+			{
+				$mail->AddAttachment($attach, $fileName[$key]);
+			}
+			$mail->Send();
+	}
+	
 	public function PrepareAttachment($subject, $body, $details_body, $details_subject, $to, $toName, $attachment = array(), $fileName = array(), $from = "enlinea@iapchiapas.org.mx", $fromName = "Administrador del Sistema") 
 	{
 			$mail = new PHPMailer(); // defaults to using php "mail()"

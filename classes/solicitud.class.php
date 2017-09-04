@@ -125,6 +125,22 @@ class Solicitud extends Module
 			$status = "pendiente";
 		}
 		
+		
+		 $sqlQuery = 'SELECT 
+					count(*)
+				FROM 
+					solicitud 
+				WHERE  tiposolicitudId = '.$this->tipo.' and estatus <> "completado"';
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$countS = $this->Util()->DB()->GetSingle();
+		
+		if($countS >= 1){
+			echo 'fail[#]';
+			echo '<center><font color="red">Existe una solicitud del mismo tipo en progreso</font></center>';
+			exit;
+		}
+		
+		
 		 $sqlNot="insert into 
 				solicitud(
 				fechaSolicitud,

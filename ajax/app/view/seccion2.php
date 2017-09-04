@@ -104,7 +104,7 @@
 		}
 		?>
 		<?php 
-		if($_POST['Id'] >= 52 and $_POST['Id'] <= 55){
+		if($_POST['Id'] >= 52 and $_POST['Id'] <= 58){
 		?> 
 		<div id="izquierda">
 		<a href='<?php echo WEB_ROOT?>/tripticos/<?php echo $_POST['Id']?>.jpg' target='_blank' class='enlace'>Descargar</a>
@@ -180,30 +180,31 @@
 		echo '
 		<br><b>Formulario de Contacto</b>
 		<br><br>
-		<form >
+		<form id="frmContacto">
 		<table >
 			<tr>
 				<td>Nombre</td>
-				<td><input type="text" name="nombre" style="width:180px"></td>
+				<td><input type="text" name="nombre" class="txts" style="width:180px"></td>
 			</tr>
 			<tr>
 				<td>Correo electrónico</td>
-				<td><input type="text" name="correo" style="width:180px"></td>
+				<td><input type="text" name="correo" class="txts" style="width:180px"></td>
 			</tr>
 			<tr>
 				<td>Teléfono de contacto</td>
-				<td><input type="text" name="telefono" style="width:180px"></td>
+				<td><input type="text" name="telefono" style="width:180px" class="txts"></td>
 			</tr>
 			<tr>
 				<td>Solicitud / Petición</td>
 				<td>
-				<textarea name="">
-				</textarea>
+				<textarea name="peticion" class="txts"></textarea>
 				</td>
 			</tr>
 		</table>
 		</form>
-		<a onclick="" class="ui-btn login white">
+		<div id="msjContacto"></div>
+		<div class="loader"></div>
+		<a onclick="saveContacto()" class="ui-btn login white">
 			Enviar					
 				</a>
 

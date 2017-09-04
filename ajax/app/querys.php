@@ -539,6 +539,9 @@
 			
 			$lstMenu = $student->muestraMenu($var);
 			$lstSubmenu = $student->muestraMenu($_POST["Id"]);
+			
+			echo '<pre>'; print_r($lstMenu);
+			// exit;
 			echo 'ok[#]';
 			include(DOC_ROOT.'/ajax/app/view/seccion.php');
 			echo '[#]';
@@ -570,6 +573,23 @@
 			echo 'ok[#]';
 			include(DOC_ROOT.'/ajax/app/view/seccion2.php');
 			
+		break;
+		
+		case 'saveContacto';
+		
+			// echo '<pre>'; print_r($_POST);
+			if($student->saveContacto()){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable" style="color: #3a87ad;
+					background-color: #d9edf7;
+					border-color: #bce8f1">
+				 El mensaje se envio correctamente, en breve nos pondremos en contacto contigo
+				</div>';
+			}else{
+				echo 'fail[#]';
+			}
+		
 		break;
 		
 	}

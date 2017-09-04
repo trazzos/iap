@@ -1956,6 +1956,38 @@ class Student extends User
 	}
 	
 	
+	public function saveContacto($Id)
+	{
+		$sendmail = new SendMail;	
+		
+		$contenido = 'Datos de contacto: <br><br>  
+		<table>
+		<tr>
+			<td>Nombre:</td>
+			<td>'.$_POST['nombre'].'</td>
+		</tr>
+		<tr>
+			<td>Telefono:</td>
+			<td>'.$_POST['telefono'].'</td>
+		</tr>
+		<tr>
+			<td>Correo:</td>
+			<td>'.$_POST['correo'].'</td>
+		</tr>
+		<tr>
+			<td>Solicitud:</td>
+			<td>'.$_POST['peticion'].'</td>
+		</tr>
+		</table>
+		
+		'.$_POST['peticion'];
+		 // contacto@iapchiapas.org.mx
+		$sendmail->enviarCorreo("Formulario de Contacto",$contenido, "", "", "juanjosepm@live.com", "Administrador", $attachment, $fileName,$_POST['correo'],$_POST['nombre']);
+		
+		return true;
+	}
+	
+	
 }
 
 ?>
