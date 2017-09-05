@@ -1699,7 +1699,7 @@ class Student extends User
 		{
 			$active = " AND course.active = '".$active."'";
 		}
-		$sql = "SELECT
+		 $sql = "SELECT
 					*, subject.name AS name, major.name AS majorName
 				FROM
 					user_subject
@@ -1885,6 +1885,108 @@ class Student extends User
 		return $result;
 		
 	}
+	
+	
+	public function SaveSolicitud()
+	{
+		
+		 $sqlNot="insert into 
+				solicitud(
+				fechaSolicitud,
+				tiposolicitudId,
+				estatus,
+				userId
+				)
+			   values(
+			            '".date('Y-m-d')."', 
+			            '1',
+			            'pendiente',
+			            '".$_SESSION['User']['userId']."'
+			         )";
+					 
+			$this->Util()->DB()->setQuery($sqlNot);
+			$Id = $this->Util()->DB()->InsertData(); 
+			
+			$ext = end(explode('.', basename($_FILES['comprobante']['name'])));
+			$filename  = "comprobante_".$Id.".".$ext;
+			$target_path = DOC_ROOT."/alumnos/comprobantes/comprobante_".$Id.".".$ext; 
+			
+			move_uploaded_file($_FILES['comprobante']['tmp_name'], $target_path);
+			
+			$sqlQuery = "UPDATE solicitud set ruta ='".$filename."'  where solicitudId = '".$Id."'"; 	
+			$this->Util()->DB()->setQuery($sqlQuery);
+			$this->Util()->DB()->ExecuteQuery();			  
+			
+		return true;
+	}
+	
+	public function GetBaja()
+	{
+		
+		$sql = "
+				SELECT * FROM solicitud WHERE solicitudId = 3 order by solicitudId DESC ";
+				// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+			
+		return $result;
+	}
+	
+	public function muestraMenu($Id)
+	{
+		
+		$sql = "
+				SELECT * FROM menu_app WHERE menuId =  ".$Id."";
+
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetResult();
+			
+		return $result;
+	}
+	
+	public function contenidoSeccion($Id)
+	{
+		$sql = "
+				SELECT * FROM menu_app WHERE menuAppId =  ".$Id."";
+
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+			
+		return $result;
+	}
+	
+	
+	public function saveContacto($Id)
+	{
+		$sendmail = new SendMail;	
+		
+		$contenido = 'Datos de contacto: <br><br>  
+		<table>
+		<tr>
+			<td>Nombre:</td>
+			<td>'.$_POST['nombre'].'</td>
+		</tr>
+		<tr>
+			<td>Telefono:</td>
+			<td>'.$_POST['telefono'].'</td>
+		</tr>
+		<tr>
+			<td>Correo:</td>
+			<td>'.$_POST['correo'].'</td>
+		</tr>
+		<tr>
+			<td>Solicitud:</td>
+			<td>'.$_POST['peticion'].'</td>
+		</tr>
+		</table>
+		
+		'.$_POST['peticion'];
+		 // contacto@iapchiapas.org.mx
+		$sendmail->enviarCorreo("Formulario de Contacto",$contenido, "", "", "juanjosepm@live.com", "Administrador", $attachment, $fileName,$_POST['correo'],$_POST['nombre']);
+		
+		return true;
+	}
+	
 	
 }
 

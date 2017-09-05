@@ -40,10 +40,22 @@
 
 <body>
 
+<br>
 
 
-<div class="ui-content ui-content-no-overflow ui-content-no-padding ui-page-theme-a" data-form="ui-page-theme-a" data-theme="a" role="main">
+<form id="frmAlumno">
+<div class="ui-content ui-content-no-overflow ui-content-no-padding" role="main">
+<div class="perfilInicio" >
+				<div id="dataAlumnos">
+					<center>
+					<div class="btn btn-default btn-file">
+						<input type="file" name="pathfoto" id="pathfoto" onChange="editFoto('<?php echo $info["userId"]?>')" >
+						<?php echo $urlFoto;?><i class="material-icons green">create</i> 
 
+					</div>
+					</center>
+				</div>
+</div>
     <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
         <li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
             Información personal</li>
@@ -163,6 +175,7 @@
         </li>
     </ul>
 </div>
+</form>
 
 
 

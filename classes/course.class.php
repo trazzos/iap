@@ -3,6 +3,15 @@
 	class Course extends Subject
 	{
 		private $ponenteText;
+		private $userId;
+		
+		
+		public function setUserId($value)
+		{
+			$this->Util()->ValidateInteger($value, 3000, 0);
+			$this->userId = $value;
+		}
+		
 		public function setPonenteText($value)
 		{
 			$this->Util()->ValidateString($value, 255, 0, 'Texto Ponente');
@@ -729,6 +738,36 @@
 				SELECT DISTINCT(semesterId) FROM subject_module
 				WHERE subjectId = '".$info["subjectId"]."' ORDER BY semesterId ASC");
 			$result = $this->Util()->DB()->GetResult();
+			return $result;
+		}
+		
+		
+		
+		function boletaAlumno()
+		{
+			
+			 $sql = "
+				SELECT 
+					* 
+				FROM 
+					course_module as c
+				left join subject_module as s on s.subjectModuleId = c.subjectModuleId
+				WHERE c.courseId = '".$this->courseId."' and calificacionValida = 'si'";
+		
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			
+			foreach($result as $key=>$aux){
+				 $sql = "
+				SELECT 
+					calificacion 
+				FROM 
+					course_module_score
+				WHERE courseModuleId = '".$aux["courseModuleId"]."' and userId = ".$this->userId."";		
+				$this->Util()->DB()->setQuery($sql);
+				$cal = $this->Util()->DB()->GetSingle();
+				$result[$key]["cal"] = $cal;
+			}
 			return $result;
 		}
 		

@@ -428,12 +428,13 @@
 		public function Info()
 		{
 			//creamos la cadena de seleccion
-			$sql = "SELECT 
+			 $sql = "SELECT 
 						* 
 					FROM
 						activity
 					WHERE
 							activityId='" . $this->getActivityId() . "'";
+						// exit;
 			//configuramos la consulta con la cadena de actualizacion
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y obtenemos el resultado
@@ -614,6 +615,7 @@
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetRow();
 			
+			
 			$module = new Module;
 			$module->setCourseModuleId($this->getCourseModuleId());
 			$myModule = $module->InfoCourseModule();
@@ -645,7 +647,7 @@
 			   }
 			   
 			  
-			   
+			  
 				$result["requerida"] = $this->Info();
 				//$result[$key]["req"]=$this->ver("Tarea");
 
@@ -662,8 +664,9 @@
 				//checar tareas
 				$homework = new Homework;
 				$homework->setActivityId($result["activityId"]);
-				$homework->setUserId($this->usuarioId);
-				$result["homework"] = $homework->Uploaded();
+				$homework->setUser5Id($this->usuarioId);
+				$result["homework"] = $homework->UploadedApp();
+			
 				
 				if($result["requerida"]["activityId"])
 				{

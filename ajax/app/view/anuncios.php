@@ -30,7 +30,7 @@
   width: 0;
 }
 .enlace {
-  color: white; /* el color del texto */
+  color: #276e36; /* el color del texto */
   font-family: Arial, Sans-serif;
   font-size: 12px;
 }
@@ -45,17 +45,19 @@
 	// exit;
 	foreach($announcements as $key=>$aux){
 ?>
-	<div class="speech-bubble">
-		<?php if($aux["title"]==""){ echo "Sin Titulo"; } else{ echo $aux["title"]; }?>
-		<br>
-		<?php  echo $aux["date"]?>
-		<div  class="enlace" onClick="openAnuncio(<?php echo $aux["announcementId"]?>)" >Abrir</div>
-		<div id="divanun_<?php echo $aux["announcementId"]?>" style="display:none">
-		<?php echo $aux["description"]?>
+	<ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+		<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
+			<?php if($aux["title"]==""){ echo "Sin Titulo"; } else{ echo $aux["title"]; }?></li>
+			
+		<div class="content">
+		   <span class="h3"><?php  echo $aux["date"]?></span>
+			<div id="divanun_<?php echo $aux["announcementId"]?>" >
+			<?php echo $aux["description"]?>
+			</div>
 		</div>
-	</div>
-	<br>
-	<br>
+
+	</ul>
+
 <?php 
 }
 ?>

@@ -2,7 +2,9 @@
 
 /* For Session Control - Don't remove this */
 //$user->allow_access(8);
-//print_r($_SESSION);exit;
+echo "<pre>"; print_r($_SESSION);
+echo "<pre>"; print_r($_POST);
+exit;
 
 if($_POST)
 {

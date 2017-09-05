@@ -14,10 +14,10 @@
         {/if}
         </td>
         <td align="center">
-            <input type="text" maxlength="5" size="5"   {*if $entrega==0} disabled {/if*}  name="ponderation[{$item.alumnoId}]" name="ponderation[{$item.alumnoId}]" value="{$item.ponderation}" />
+            <input type="text" class = 'form-control' maxlength="5" size="5"   {*if $entrega==0} disabled {/if*}  name="ponderation[{$item.alumnoId}]" name="ponderation[{$item.alumnoId}]" value="{$item.ponderation}" />
         </td>
         <td align="center">
-            <input type="text" name="retro[{$item.alumnoId}]" {*if $entrega==0} disabled {/if*} name="retro[{$item.alumnoId}]" value="{$item.retro}" />
+            <textarea class = 'form-control' name="retro[{$item.alumnoId}]" {*if $entrega==0} disabled {/if*} name="retro[{$item.alumnoId}]" style='width:300px; height:250px;' >{$item.retro}</textarea>
         </td>
 		<td>
 			<div id="divRetro_">
@@ -37,6 +37,6 @@
 
         <tr>
         <td colspan="4" align="center">
-            <input type="submit" name="Enviar" name="Enviar" value="Actualizar Calificaciones" />
+           
         </td>
     </tr>

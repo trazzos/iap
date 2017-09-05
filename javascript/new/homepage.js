@@ -124,3 +124,33 @@ $.ajax({
 
 
 }
+
+
+
+function solicitarReferencia(id){
+
+$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/homepage.php',
+	  	data: "type=solicitarReferencia&id="+id,
+		beforeSend: function(){			
+			// $("#td_"+id).html(LOADER3);
+		},
+	  	success: function(response) {	
+			console.log(response)
+			var splitResponse = response.split("[#]");
+			if(splitResponse[0] == "ok"){
+				$("#msj").html(splitResponse[1]);
+			}else if (splitResponse[0] == "ok"){
+				$("#msj").html(splitResponse[2]);
+			}
+			  
+
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+
+
+}

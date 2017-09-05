@@ -110,3 +110,78 @@ function upFile(Id,reqId,tramiteId){
 			
 		}
 		
+		
+function SaveCalificacion(alumnoId,courseId){
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+	  	data: $("#frmCal").serialize(true)+'&type=SaveCalificacion',
+		beforeSend: function(){			
+			$('#loader').html(LOADER3);
+			$('#btnSave').hide();
+		},
+	  	success: function(response) {	
+		$('divLoading').hide();
+			console.log(response)
+			var splitResp = response.split("[#]");
+			
+			if(splitResp[0]=="ok"){
+				$('#btnSave').show();
+				$('#loader').html('');
+				$('#msj').html(splitResp[1]);
+				$("#ajax").hide();
+				$("#ajax").modal("hide");
+			}else if(splitResp[0]=="fail"){
+				alert(splitResp[1])
+			}
+			
+				
+		},
+		error:function(){
+			// alert(msgError);
+		}
+    });
+}
+
+
+function closeModal(){
+	
+	$("#ajax").hide();
+	$("#ajax").modal("hide");
+	
+}
+
+
+
+
+function validarCal(){
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+	  	data: $("#frmCal").serialize(true)+'&type=validarCal',
+		beforeSend: function(){			
+			$('#loader').html(LOADER3);
+			$('#btnSave').hide();
+		},
+	  	success: function(response) {	
+		$('divLoading').hide();
+			console.log(response)
+			var splitResp = response.split("[#]");
+			
+			if(splitResp[0]=="ok"){
+				$('#btnSave').show();
+				$('#loader').html('');
+				$('#msj').html(splitResp[1]);
+				$("#ajax").hide();
+				$("#ajax").modal("hide");
+			}else if(splitResp[0]=="fail"){
+				alert(splitResp[1])
+			}
+			
+				
+		},
+		error:function(){
+			// alert(msgError);
+		}
+    });
+}

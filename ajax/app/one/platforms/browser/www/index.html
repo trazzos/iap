@@ -34,7 +34,8 @@
 <!--
 	<meta http-equiv="Content-Security-Policy" content="default-src *; script-src *; object-src *; style-src *; img-src *; media-src *; frame-src *; font-src *; connect-src *" />
 -->
-	<meta http-equiv="Content-Security-Policy" content="default-src * data: gap: 'unsafe-inline' http://www.iapchiapasenlinea.mx; script-src * 'unsafe-inline' http://www.iapchiapasenlinea.mx ;style-src * 'unsafe-inline' http://www.iapchiapasenlinea.mx; media-src *" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * data: gap: 'unsafe-inline' http://www.iapchiapasenlinea.mx; 
+	script-src * 'unsafe-inline' http://www.iapchiapasenlinea.mx ; frame-src *;  font-src *;  style-src * 'unsafe-inline' http://www.iapchiapasenlinea.mx; " />
 
 
     <!-- Good default declaration:
@@ -60,7 +61,139 @@
 
 <body>
 
-		<div data-role="page" id="login" class="login" >
+	<div data-role="page" id="welcome" class="welcome" >
+	<br>
+	<br>
+	<div data-role="panel" id="myPanel"> 
+	
+		<div  id="divmyPanel"> 
+
+		</div>
+	  </div>
+
+<br>			
+<br>			
+<br>			
+		<center><div class="logoPrincipal">&nbsp;
+		</div>
+		</center>
+	
+		<div data-role="content">
+	
+			<div class="divwelcome"> 
+<br>
+			<a onClick="CargaDoLogin()" class="ui-btn login white" style="width:100%; left:-15px">
+					INGRESAR
+				</a>
+		<br>
+
+				<center>
+				<table class="tblwelcome" align="center" width="100%" border="0">
+					<tr>
+						<td style="width:100px">
+						
+							<a onclick="verPortal()"  class="menuPrincipal" >
+							<i class="material-icons green48 md-48">public</i>
+							</a>
+							<br>
+							Portal
+							
+						</td>
+						<td style="width:100px">
+							<a onclick="verSubSeccion(9)" class="menuPrincipal">
+							<i class="material-icons green48 md-48">import_contacts</i>
+							</a>
+							<br>
+							PRODIM
+						</td>
+						<td style="width:100px">
+							<a onclick="verSubSeccion(12)" class="menuPrincipal">
+							<i class="material-icons green48 md-48">device_hub</i>
+							</a>
+							<br>
+							Red Conocer
+						</td>
+					</tr>
+					<tr>
+						<td colspan='3'>
+						<br>
+						</td>
+					</tr>
+					<tr>
+						<td >
+							
+						<a onclick="verSubSeccion(24)" class="menuPrincipal">
+							<i class="material-icons green48 md-48">grade</i>
+								<br>
+						</a>
+								Profesionalización
+					
+						</td>
+						<td>
+						<a onclick="verSubSeccion(5)" class="menuPrincipal">
+							<i class="material-icons green48 md-48">group</i>
+								<br>
+							</a>
+							Redes Sociales
+								
+							
+						</td>
+						<td>
+							<a onclick="verSubSeccion(6)" class="menuPrincipal">
+							<i class="material-icons green48 md-48">settings_phone</i>
+								<br>
+							</a>		
+							Contacto
+							
+							
+						</td>
+					</tr>
+				</table>
+				<br>
+				<br>
+				<br>
+				
+				</center>
+			</div>
+		</div>
+		
+	</div>
+	<div data-role="page" id="portal"  class="welcome">
+	<center><div class="logo">&nbsp;
+		</div>
+		</center>
+	<a onclick="backHome()" class="tblwelcome">
+		<i class="material-icons green">keyboard_arrow_left</i>
+		</a>
+		<div data-role="content">
+		    <iframe scrolling="si" id="viewsite_iframe" sandbox="allow-scripts allow-popups allow-forms" src="http://iapchiapas.org.mx/" class="clsIframe" style="width:100%; height:800px;"></iframe>
+		</div>
+	</div>
+	
+	<div data-role="page" id="pagSubSeccion"  class="welcome">
+	<br>
+	<br>
+		<center><div class="logo">&nbsp;</div></center>
+		<br>
+		<br>
+		&nbsp;
+		&nbsp;
+		&nbsp;
+		&nbsp;
+		<a onclick="backHome()" class="tblwelcome">
+		<i class="material-icons green">keyboard_arrow_left</i>
+		</a>
+		<div data-role="content" id="divSubSeccion">
+		
+		</div>
+		<div data-theme="d" data-role="footer"
+ data-position="fixed" id ="divFooter">
+			
+		</div>
+		<center><p class="parrafoLogin">2017 © IAP Chiapas.</p></center>
+	</div>
+
+	<div data-role="page" id="login" class="login" >
 	<br>
 	<br>
 
@@ -69,9 +202,10 @@
 		<br>
 			<div class="divlogin">
 				<h3 class="login white">Ingresa a tu cuenta</h3>
-				<form id="frmGral">
+				<form id="frmGral"><!--
+						<input type="text" id="notificacionesPush">-->
 						<input type="hidden" name="type" id="type" value="doLogin" >
-						<input type="text" name="username" placeholder="Usuario">
+						<input type="number" name="username" placeholder="Usuario">
 						<input type="password" name="passwd" id="passwd" placeholder="Contraseña">
 				</form>
 				<a onClick="DoLogin()" class="ui-btn login white">
@@ -86,7 +220,7 @@
 	
 	<div data-role="page" data-theme="a" id="home" >
 		<div data-role="header" data-theme="a">
-			<div id="fotoheader" class="fotoher" onClick="miCuenta()"></div>
+			<div id="" class="homeheader" onClick="miCuenta()"><i class="material-icons">create</i></div>
 			<h2>IAP Chiapas</h2>
 			<div id="" class="headerConfig" onClick="openConfig()">&nbsp;&nbsp;&nbsp;&nbsp;</div>
 		</div>
@@ -110,18 +244,18 @@
 				
 				</div>
 				<br>
-				<div data-role="collapsible-set" >
-				<div data-role="collapsible"  data-collapsed="false"   >
+				<div data-role="collapsible-set"  >
+				<div data-role="collapsible"  data-collapsed="false"  style="display:none" id="curricula_1" >
 					<h3>Curricula Activa</h3>
 					<div id="divActiva">
 					</div>
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="curricula_2">
 					<h3>Curricula Inactiva</h3>
 					<div id="divInactiva">
 					</div>
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="curricula_3">
 					<h3>Curricula Finalizada</h3>
 					<div id="divFinalizada">
 					</div>
@@ -171,34 +305,34 @@
 
 		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
 			<div data-role="collapsible-set" >
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="seccion_1">
 					<h3>Anuncios</h3>
 					<div id="divAnuncios"></div>
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" id="seccion_2">
 					<h3>Informacion</h3>
 					<div id="divInformacion"></div>
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" id="seccion_3">
 					<h3>Docente</h3>
 					<div id="divDocente"></div>
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="seccion_4">
 					<h3>Actividades</h3>
 					<div id="divActividad"></div>  
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="seccion_5">
 					<h3>Examenes</h3>
 					<div id="divExamen"></div> 
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="seccion_6">
 					<h3>Recursos de Apoyo</h3>
 					<div id="divRecursos"></div> 
 				</div>
-				<!--<div data-role="collapsible">
-					<h3>Foros</h3>
+				<div data-role="collapsible" style="display:none" id="seccion_7">
+					<h3>Foro</h3>
 					<div id="divForo"></div> 
-				</div>-->
+				</div>
 			</div>
 			
 
@@ -224,11 +358,11 @@
 		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
 		
 			<div data-role="collapsible-set" >
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="cal_1">
 					<h3>Actividades</h3>
 					<div id="divActividades"></div>
 				</div>
-				<div data-role="collapsible">
+				<div data-role="collapsible" style="display:none" id="cal_2">
 					<h3>Examenes</h3>
 					<div id="divExamenes"></div>
 				</div>
@@ -265,7 +399,7 @@
 	<div data-role="page" data-theme="a" id="divDetalleActividad" >
 		<div data-role="header" data-theme="a">
 			<div  class="atras" onClick="back('divDetalle')">&nbsp;&nbsp;&nbsp;</div>
-			<h2>Actividad</h2>
+			<h2><div id="tituloactividad"></div></h2>
 		</div>
 		<div id="divDetalleP"></div>
 		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
@@ -299,10 +433,9 @@
 			<div  class="atras" onClick="back('home')">&nbsp;&nbsp;&nbsp;</div>
 			<h2>Configuración</h2>
 		</div>
-		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
+		<div data-role="content"  id="page1_content" class="ui-content-no-padding">
 			  
 			  <ul data-role="listview" data-inset="true">
-				  <li data-role="list-divider"></li>
 				  <li><a href="#" onClick="acercaDe()">Acerca de</a></li>
 				  <li><a href="#" onClick="Close()">Salir</a></li>
 			</ul>
@@ -322,7 +455,7 @@
 			<div  class="atras" onClick="back('divConfig')">&nbsp;&nbsp;&nbsp;</div>
 			<h2>Acerca de</h2>
 		</div>
-		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
+		<div data-role="content"  id="page1_content" class="ui-content-no-padding">
 			  
 			 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
 				<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
@@ -344,7 +477,156 @@
 			</div>
 		</div>-->
 	</div>
+	
+	<div data-role="page" data-theme="a" id="divSubForo" >
+		<div data-role="header" data-theme="a">
+			<div  class="atras" onClick="back('divDetalle')">&nbsp;&nbsp;&nbsp;</div>
+			<h2>Foros</h2>
+		</div>
+		<div data-role="content" data-theme="a" id="page1_content" >
+			  
+			 <div id="subForo"> </div>
+		</div>
+		<div data-role="footer" data-id="foo1" data-position="fixed">
+			<center><!--
+				<a onClick="toma()" class="ui-btn login white" id="btnSave">
+					subir
+				</a>-->
+				
+				<form id="frmForo">
+				<!--<input type="file" name="archivo" id="archivo">-->
+				<input type="text" name="asunto" id="asunto" placeholder="Asunto">
+				<textarea name="mensaje" id="mensaje" placeholder="Descripcion"></textarea>
+				<input type="hidden" name="forotopicId" id="forotopicId">
+				</form>
+				<div class="msj"></div>
+				<div class="loader"></div>
+				<a onClick="saveForo()" class="ui-btn login white" id="btnSave">
+					Guardar
+				</a>
+			</center>
+		</div>
+	</div>
+	
+	<div data-role="page" data-theme="a" id="divSubForoDetalle" >
+		<div data-role="header" data-theme="a">
+			<div  class="atras" onClick="back('divSubForo')">&nbsp;&nbsp;&nbsp;</div>
+			<h2>Foros</h2>
+		</div>
+		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
+			  
+			 <div id="subForoDetalle"> </div>
+		</div>
+		<div data-role="footer" data-id="foo1" data-position="fixed">
+			<center>
+				<form id="frmAportacion">
+				<div class="btn btn-default btn-file">
+				<i class="material-icons green">cloud_upload</i>
+				<input type="file" name="path" id="path" onChange="compruebaExistencia(1)">
+				</div>
+				<div id="archiivocargado_1" class="archivoscargados" ></div>
+				<textarea name="aportacion" id="aportacion" placeholder="Aportacion"></textarea>
+				<input type="hidden" name="dcourseId" id="dcourseId">
+				<input type="hidden" name="dtopicId" id="dtopicId">
+				</form>
+				<div class="msj"></div>
+				<div class="loader"></div>
+				
+				<a onClick="saveAportacion()" id="btnAportacion" class="ui-btn login white">
+					Guardar Aportación
+				</a>
+			</center>
+		</div>
+	</div>
 
+	
+	<div data-role="page" data-theme="a" id="divAddComentario" >
+		<div data-role="header" data-theme="a">
+			<div  class="atras" onClick="back('divSubForoDetalle')">&nbsp;&nbsp;&nbsp;</div>
+			<h2>Foros</h2>
+		</div>
+		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
+			  
+			
+		
+			<center>
+				<form id="frmRetro">
+				
+				<textarea name="comentario" id="comentario" placeholder="Comentario"></textarea>
+				<input type="hidden" name="ctopicId" id="ctopicId">
+				<input type="hidden" name="ccourseId" id="ccourseId">
+				<input type="hidden" name="replyId" id="replyId">
+				<input type="hidden" name="usuarioId" id="usuarioId">
+				
+				<div class="msj"></div>
+				<div class="loader"></div>
+				<div class="btn btn-default btn-file">
+				<i class="material-icons green">cloud_upload</i>
+				<input type="file" name="path" id="path" onchange='compruebaExistencia(2)'>
+				</div>
+				</form> 
+				<div id="archiivocargado_2" class="archivoscargados"></div> 
+				<a onClick="SaveComentario()" id="btnComentario" class="ui-btn login white">
+					Comentar
+				</a>
+			</center>
+		</div>
+	</div>
+	<div data-role="page" data-theme="a" id="divUp" >
+		<div data-role="header" data-theme="a">
+			<div  class="atras" onClick="back('divDetalleActividad')">&nbsp;&nbsp;&nbsp;</div>
+			<h2>Subir Tarea</h2>
+		</div>
+		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
+			  
+			
+		
+			<center>
+				<form id="frmUpActividad">
+				
+				<textarea name="titulo" id="titulo" placeholder="Titulo"></textarea>
+				<input type="hidden" name="upactividadId" id="upactividadId" >
+				<input type="hidden" name="upmodalidad" id="upmodalidad" >
+				<input type="hidden" name="tipoactivi" id="tipoactivi" >
+
+				<input type="hidden" name="upusuarioId" id="upusuarioId">
+				
+				<div class="msj"></div>
+				<div class="loader"></div>
+				<div class="btn btn-default btn-file">
+				<i class="material-icons green">cloud_upload</i>
+				<input type="file" name="path" id="path" onchange='compruebaExistencia(3)'>
+				</div>
+				</form>
+				<div id="archiivocargado_3" class="archivoscargados"></div> 
+				<a onClick="upActividad()" id="btnUpActividad" class="ui-btn login white">
+					Subir
+				</a>
+			</center>
+		
+		</div>
+	</div>
+	
+	
+	<div data-role="page" id="divSeccion" class="welcome" >
+	<br>
+	<br>
+
+		<center><div class="logo">&nbsp;</div></center>
+		<div data-role="content">
+		<br>
+			<div id="divContenidoSeccion">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+				
+			</div>
+		</div>
+		
+	</div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="css/jqm/jquery.js"></script>

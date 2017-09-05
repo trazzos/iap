@@ -63,12 +63,38 @@ body {
 
 }
 
+.welcome {
+	display:none;
+    background:url(../img/imgmenu.jpg?66g56kljsdfsdfsdfdsdf) no-repeat center top; /* 170px x 200px */
+
+}
+
+
+
+
+
+
+
+.tblwelcome {
+   color: #276e36   ;
+   text-align:center;
+   font-size:11px;
+font-weight: 800;
+
+}
 
 .logo {
 
 	background-image: url(../img/logo_iap.png);
 	 width:170px; 
 	 height:70px; 
+}
+
+.logoPrincipal {
+
+	background-image: url(../img/logo_principal.png?kjkjhjk5kdf);
+	 width:296px; 
+	 height:130px; 
 }
 
 .divlogin{
@@ -90,6 +116,19 @@ body {
     font-family: "Open Sans",sans-serif !important;
 	padding: 5px 9px;
 }
+
+
+#divFooter{
+	background:#276e36;
+	position:fixed;
+  left:0px;
+  bottom:0px;
+  height:40px;
+  width:100%;
+
+	
+}
+
 
 
 #divActiva{
@@ -121,6 +160,11 @@ h4 {
 	font-weight: 400
 }
 
+.h2{
+	color: #93a3b5;
+    font-size: 12px;
+	font-weight: 400
+}
 
 .parrafoLogin {
 	font-size: 13px;
@@ -137,6 +181,12 @@ h4 {
 	color: black;
 }
 
+
+
+ #divSubForo{
+	background:#eef1f5;
+	color: black;
+}
 
 #cuenta{
 	background:#eef1f5;
@@ -155,6 +205,47 @@ h4 {
 }
 
 
+#divModules{
+	background:#eef1f5;
+	color: black;
+}
+
+
+#divConfig{
+	background:#eef1f5;
+	color: black;
+}
+
+
+#divAcerca{
+	background:#eef1f5;
+	color: black;
+}
+
+#divSubForoDetalle{
+	background:#eef1f5;
+	color: black;
+}
+
+
+
+#divCal{
+	background:#eef1f5;
+	color: black;
+}
+
+
+#divAddComentario{
+	background:#eef1f5;
+	color: black;
+}
+
+
+#divUp{
+	background:#eef1f5;
+	color: black;
+}
+
 .tables.thead{
     font-weight: 600;
     font-size: 13px;
@@ -165,6 +256,15 @@ h4 {
 }
 
 .fotoher{
+	float:left;
+	margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 10px;
+    height: 29px;
+    display: inline-block;   
+}
+
+.homeheader{
 	float:left;
 	margin-top: 5px;
     margin-right: 5px;
@@ -193,11 +293,11 @@ h4 {
 	margin-top: 15px;
     margin-right: 5px;
     margin-left: 10px;
-    height: 29px;
+    height: 14px;
 
     display: inline-block;   
-	background: url(../img/back.png);
-	background-repeat: no-repeat
+	background: url(../img/back.png);/*
+	background-repeat: no-repeat*/
 }
 
 .bton{

@@ -158,7 +158,19 @@ $pages = array(
 	'reporte-general',
 	'reporte-alumno-modulo',
 	'edit-student',
-
+	'report-card',
+	'transcript-cc',
+	'transcript-sc',
+	'bank-reference',
+	'unsubscribe',
+	'report-card-teacher',
+	'solicitud',
+	'view-solicitud',
+	'referencia-bancaria',
+	'score-activity-new'
+	
+	
+	
 	
 );
 

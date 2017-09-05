@@ -26,11 +26,20 @@ a.login {
 
 .material-icons.green {
     color: #276e36;
+	height: 24px;
+    width: 24px;
 }
 
 .material-icon .text{
     position:relative;
     top: -7px;
+}
+
+.material-icons.md-48 { font-size: 77px; }
+
+.material-icons.green48 {
+    color: #276e36;
+	
 }
 
 .material-icon .margin{
@@ -67,4 +76,25 @@ a.login {
 
 .ui-content-no-overflow {
     overflow-x: initial;
+}
+
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  }
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: left;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: red;
+    cursor: inherit;
+    display: block;
 }
