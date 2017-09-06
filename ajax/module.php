@@ -5,6 +5,8 @@ include_once(DOC_ROOT.'/libraries.php');
 
 $smarty->assign("DOC_ROOT", DOC_ROOT);
 
+session_start();
+
 switch($_POST["type"])
 {
 	case 'viewModules':

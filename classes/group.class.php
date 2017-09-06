@@ -492,7 +492,7 @@
 			{
 				//get activities
 				$activity = new Activity;
-				$activity->setCourseModuleId($this->getCourseModuleId());
+				$activity->setCourseModuleId($this->coursemoduleId);
 				$actividades = $activity->Enumerate();
 				$result[$key]["names"] = $this->Util()->DecodeTiny($result[$key]["names"]);
 				$result[$key]["lastNamePaterno"] = $this->Util()->DecodeTiny($result[$key]["lastNamePaterno"]);
@@ -501,7 +501,7 @@
 				$this->Util()->DB()->setQuery("
 					SELECT teamNumber
 					FROM team
-					WHERE courseModuleId = '".$this->getCourseModuleId()."' AND userId = '".$res["alumnoId"]."'");
+					WHERE courseModuleId = '".$this->coursemoduleId."' AND userId = '".$res["alumnoId"]."'");
 				$result[$key]["equipo"] = $this->Util()->DB()->GetSingle();
 				
 				$result[$key]{"addepUp"} = 0;

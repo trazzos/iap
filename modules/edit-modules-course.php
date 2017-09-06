@@ -124,6 +124,9 @@ $cursos = $course->infoCoursem();
 			$totalActividades++;
 		}
 	}
+	
+	// echo $totalActividades;
+	// exit;
 	$smarty->assign('totalActividades', $totalActividades);
 	
 
@@ -151,8 +154,8 @@ $cursos = $course->infoCoursem();
 	$group->setCourseId($info["courseId"]);
 	$theGroup = $group->DefaultGroup();
 
-//	print_r($theGroup);
-	
+	// echo '<pre>'; print_r($theGroup);
+	// exit;
 	//print_r($theGroup);
 	$smarty->assign('theGroup', $theGroup);
 	

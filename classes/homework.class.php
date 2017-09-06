@@ -193,7 +193,7 @@
 			
 			$sql ="
 				SELECT COUNT(*) FROM homework
-				WHERE activityId = '".$this->getActivityId()."' AND userId = '".$this->getUserId()."'";
+				WHERE activityId = '".$this->getActivityId()."' AND userId = '".$_SESSION['User']['userId']."'";
 			$this->Util()->DB()->setQuery($sql);
 			$count = $this->Util()->DB()->GetSingle();			
 			// exit;
@@ -214,7 +214,7 @@
                                 date
 							)
 						VALUES (
-								'" . $this->getUserId() . "', 
+								'" . $_SESSION['User']['userId']. "', 
 								'" . $this->getActivityId(). "',
 								'" . $nombre. "',
                                 '" . date('Y-m-d H:i:s') . "'
@@ -228,14 +228,14 @@
 							homework
 							SET
 								nombre = '".$nombre."'
-							WHERE activityId = '".$this->getActivityId()."' AND userId = '".$this->getUserId()."'";		
+							WHERE activityId = '".$this->getActivityId()."' AND userId = '".$_SESSION['User']['userId']."'";		
 				$this->Util()->DB()->setQuery($sql);
 				$this->Util()->DB()->UpdateData();
 			}
 
 			$target_path = DOC_ROOT."/homework/";
 			$id = $this->getActivityId();
-			$userId = $this->getUserId();
+			$userId = $_SESSION['User']['userId'];
 			
 			if($this->getModalityId == "Individual")
 			{
@@ -284,13 +284,13 @@
 								path = '".$relative_path."',
 								mime = '".$file["type"]."',
 								confirmacion=".$confirmacion."
-							WHERE activityId = '".$this->getActivityId()."' AND userId = '".$this->getUserId()."'";		
+							WHERE activityId = '".$this->getActivityId()."' AND userId = '".$_SESSION['User']['userId']."'";		
 				$this->Util()->DB()->setQuery($sql);
 				$this->Util()->DB()->UpdateData();
 			}
 			
 			$user= new Student;
-			$user->setUserId($this->getUserId());
+			$user->setUserId($_SESSION['User']['userId']);
 			$datos=$user->GetInfo();
 			
 		//echo "<pre>".print_r($datos)."</pre>";exit;

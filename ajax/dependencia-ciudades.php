@@ -3,6 +3,9 @@ include_once('../init.php');
 include_once('../config.php');
 include(DOC_ROOT."/classes/class.mysql.php");
 include(DOC_ROOT."/classes/class.combos.php");
+
+session_start();
+
 $ciudades = new selects();
 $ciudades->code = $_POST["estadoId"];
 $tam=$_POST["tam"];

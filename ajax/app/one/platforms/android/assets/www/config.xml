@@ -62,7 +62,7 @@
         <icon height="50" platform="ios" src="www/res/icon/ios/iap.png" width="50" />
         <icon height="100" platform="ios" src="www/res/icon/ios/iap.png" width="100" />
         <icon height="60" platform="ios" src="www/res/icon/ios/iap.png" width="60" />
-        <icon height="120" platform="ios" src="www/res/icon/ios/iap.png" width="120" />
+        <icon height="120" platform="ios" src="www/res/icon/ios/iap120.png" width="120" />
         <icon height="180" platform="ios" src="www/res/icon/ios/iap.png" width="180" />
         <icon height="72" platform="ios" src="www/res/icon/ios/iap.png" width="72" />
         <icon height="144" platform="ios" src="www/res/icon/ios/iap.png" width="144" />

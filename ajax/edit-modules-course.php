@@ -6,6 +6,8 @@ include_once(DOC_ROOT.'/libraries.php');
 
 session_start();
 
+session_start();
+
 switch($_POST["type"])
 	{
 		case 'SaveCalificacion':

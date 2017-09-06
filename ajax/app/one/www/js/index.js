@@ -97,9 +97,9 @@ var app = {
 
 var urlLoc = "localhost";
 
-  // var WEB_ROOT = "http://" + urlLoc + "/iap";
- var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
- //var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
+ // var WEB_ROOT = "http://" + urlLoc + "/iap";
+  // var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
+ var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
 
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
 
@@ -974,8 +974,18 @@ function saveContacto(topicId,courseId)
 }
 
 
-function verPortal()
+function verPortal(Id)
 {
-	$.mobile.changePage("#portal");
-
+	if(Id == 7){
+		$.mobile.changePage("#portal");
+	}else if(Id == 9){
+		$.mobile.changePage("#portalprodim");
+	}else if(Id == 12){
+		$.mobile.changePage("#portalred");
+	}else if(Id == 24){
+		$.mobile.changePage("#portalprofe");
+	}else if(Id == 6){
+		$.mobile.changePage("#portalconta");
+	}
+	
 }
