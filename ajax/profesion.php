@@ -3,6 +3,8 @@ include_once('../init.php');
 include_once('../config.php');
 include_once(DOC_ROOT.'/libraries.php');
 
+session_start();
+
 $smarty->assign("DOC_ROOT", DOC_ROOT);
 switch($_POST["type"])
 {

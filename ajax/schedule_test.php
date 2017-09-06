@@ -3,6 +3,8 @@ include_once('../init.php');
 include_once('../config.php');
 include_once(DOC_ROOT.'/libraries.php');
 
+session_start();
+
 if($_POST["type"] == 'addSchedule_test' || $_POST["type"] == 'editSchedule_test' )
 {
 	//recuperamos los tipos de examenes que existen

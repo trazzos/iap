@@ -4,7 +4,7 @@
 	include_once('../config.php');
 	include_once(DOC_ROOT.'/libraries.php');
 	
-	
+	session_start();
 	
 	$type = $_POST['type'];
 	

@@ -13,14 +13,14 @@
           {/if}
         </td>
         {section name=foo loop=$totalActividades} 
-		    	<td align="center">
-          {if $item.score.{$smarty.section.foo.iteration - 1} > 0}
-          	{$item.score.{$smarty.section.foo.iteration - 1}}/{$item.realScore.{$smarty.section.foo.iteration - 1}}%
-          {else}
-          	 No. Cal 
-          {/if}
-          </td> 
-				{/section}
+			<td align="center">
+			{if $item.score.{$smarty.section.foo.iteration - 1} > 0}
+			{$item.score.{$smarty.section.foo.iteration - 1}}/{$item.realScore.{$smarty.section.foo.iteration - 1}}%
+			{else}
+			No. Cal 
+			{/if}
+			</td> 
+		{/section}
         <td align="center">{$item.addepUp}%</td>
 {*}        <td align="center">
             <img src="images/icons/16/delete.png" class="spanDelete" id="{$item.groupId}" title="Eliminar" />&nbsp;

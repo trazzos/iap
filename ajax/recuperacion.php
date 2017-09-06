@@ -6,6 +6,7 @@
 	session_start();
 
 	
+	
 	// echo "<pre>"; print_r($_POST);
 	// exit;
 	switch($_POST["type"])

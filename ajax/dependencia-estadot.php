@@ -4,6 +4,9 @@ include_once('../config.php');
 include(DOC_ROOT."/classes/class.mysql.php");
 include(DOC_ROOT."/classes/class.combos.php");
 include_once(DOC_ROOT.'/libraries.php');
+
+session_start();
+
 $estados = new selects();
 $estados->code = $_POST["paisId"];
 $tam=$_POST["tam"];
