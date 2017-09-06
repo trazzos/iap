@@ -92,7 +92,7 @@
 					<tr>
 						<td style="width:100px">
 						
-							<a onclick="verSubSeccion(7)"  class="menuPrincipal" >
+							<a onclick="verPortal()"  class="menuPrincipal" >
 							<i class="material-icons green48 md-48">public</i>
 							</a>
 							<br>
@@ -158,65 +158,18 @@
 		</div>
 		
 	</div>
-	
-	<!--
-	--->
 	<div data-role="page" id="portal"  class="welcome">
-	<div data-role="header" data-theme="a">
-		<div id="" class="homeheader" onClick="backHome()"><i class="material-icons">keyboard_arrow_left</i></div>
-		<h2>PORTAL</h2>
-	</div>
-		
-	
-		<iframe scrolling="si" id="viewsite_iframe" sandbox="allow-scripts allow-popups allow-forms" src="http://iapchiapas.org.mx/" class="clsIframe" style="width:100%; height:800px;"></iframe>
-	
-	</div>
-	
-	<div data-role="page" id="portalprodim"  class="welcome">
-	<div data-role="header" data-theme="a">
-		<div id="" class="homeheader" onClick="backHome()"><i class="material-icons">keyboard_arrow_left</i></div>
-		<h2>PRODIM</h2>
-	</div>
-		
-		
-		<iframe scrolling="si" id="viewsite_iframe" sandbox="allow-scripts allow-popups allow-forms" src="http://iapchiapas.org.mx/prodim" class="clsIframe" style="width:100%; height:800px;"></iframe>
-	
+	<center><div class="logo">&nbsp;
+		</div>
+		</center>
+	<a onclick="backHome()" class="tblwelcome">
+		<i class="material-icons green">keyboard_arrow_left</i>
+		</a>
+		<div data-role="content">
+		    <iframe scrolling="si" id="viewsite_iframe" sandbox="allow-scripts allow-popups allow-forms" src="http://iapchiapas.org.mx/" class="clsIframe" style="width:100%; height:800px;"></iframe>
+		</div>
 	</div>
 	
-	<div data-role="page" id="portalred"  class="welcome">
-	<div data-role="header" data-theme="a">
-		<div id="" class="homeheader" onClick="backHome()"><i class="material-icons">keyboard_arrow_left</i></div>
-		<h2>RED CONOCER</h2>
-	</div>
-		
-		
-		<iframe scrolling="si" id="viewsite_iframe" sandbox="allow-scripts allow-popups allow-forms" src="http://iapchiapas.org.mx/conocer" class="clsIframe" style="width:100%; height:800px;"></iframe>
-		
-	</div>
-	
-	<div data-role="page" id="portalprofe"  class="welcome">
-	<div data-role="header" data-theme="a">
-		<div id="" class="homeheader" onClick="backHome()"><i class="material-icons">keyboard_arrow_left</i></div>
-		<h2>PROFESIONALIZACION</h2>
-	</div>
-		
-	
-		<iframe scrolling="si" id="viewsite_iframe" sandbox="allow-scripts allow-popups allow-forms" src="http://iapchiapas.org.mx/profesionalizacion" class="clsIframe" style="width:100%; height:800px;"></iframe>
-
-	</div>
-	
-	<div data-role="page" id="portalconta"  class="welcome">
-	<div data-role="header" data-theme="a">
-		<div id="" class="homeheader" onClick="backHome()"><i class="material-icons">keyboard_arrow_left</i></div>
-		<h2>CONTACTO</h2>
-	</div>
-		
-		
-		<iframe scrolling="si" id="viewsite_iframe" sandbox="allow-scripts allow-popups allow-forms" src="http://iapchiapas.org.mx/contacto" class="clsIframe" style="width:100%; height:800px;"></iframe>
-		
-	</div>
-	<!--
-	--->
 	<div data-role="page" id="pagSubSeccion"  class="welcome">
 	<br>
 	<br>
@@ -233,7 +186,8 @@
 		<div data-role="content" id="divSubSeccion">
 		
 		</div>
-		<div data-theme="d" data-role="footer"  data-position="fixed" id ="divFooter">
+		<div data-theme="d" data-role="footer"
+ data-position="fixed" id ="divFooter">
 			
 		</div>
 		<center><p class="parrafoLogin">2017 © IAP Chiapas.</p></center>
