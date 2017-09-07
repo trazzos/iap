@@ -18,7 +18,7 @@
 			$this->ponenteText = $value;
 		}
 
-		private $fechaDiploma;
+		private $fechaDi2ploma;
 		public function setFechaDiploma($value)
 		{
 			$this->Util()->ValidateString($value, 255, 0, 'Fecha Diploma');
@@ -668,7 +668,7 @@
 		function StudentCourseModules()
 		{
 			$info = $this->Info();
-			
+
 			$sql = "
 				SELECT * FROM course_module
 				LEFT JOIN subject_module ON subject_module.subjectModuleId = course_module.subjectModuleId
@@ -692,7 +692,6 @@
 				$result[$key]["totalScore"] = $student->GetAcumuladoCourseModule($res["courseModuleId"]);
 			}
 			
-//			print_r($result);
 			return $result;
 		}
 
