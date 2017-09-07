@@ -3,15 +3,6 @@
 	class Course extends Subject
 	{
 		private $ponenteText;
-		private $userId;
-		
-		
-		public function setUserId($value)
-		{
-			$this->Util()->ValidateInteger($value, 3000, 0);
-			$this->userId = $value;
-		}
-		
 		public function setPonenteText($value)
 		{
 			$this->Util()->ValidateString($value, 255, 0, 'Texto Ponente');
