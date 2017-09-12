@@ -167,7 +167,8 @@ $pages = array(
 	'solicitud',
 	'view-solicitud',
 	'referencia-bancaria',
-	'score-activity-new'
+	'score-activity-new',
+	'reinscripcion'
 	
 	
 	

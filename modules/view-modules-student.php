@@ -3,17 +3,19 @@
 	/* For Session Control - Don't remove this */
 //	$user->allow_access(8);	
 
-
-	// echo "<pre>"; print_r($_GET);
+	 // echo "<pre>"; print_r($courseId);
 	// exit;
-
+	
+	header("Location:".WEB_ROOT."/reinscripcion");
+	exit;
+	
 	$module->setCourseModuleId($_GET["id"]);
 	$myModule = $module->InfoCourseModule();
      $courseId=$myModule["courseId"];
-	 
+
 	 $course->setCourseId($courseId);
 	 $info= $course->Info();
-$modalidad=$info["modality"];
+	$modalidad=$info["modality"];
 	
 	$empleados = $personal->Enumerate();
 	$smarty->assign('empleados', $empleados);
