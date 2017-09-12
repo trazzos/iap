@@ -36,7 +36,7 @@
 								
 								{$item.foto}
 								<br>
-								<font style="text-transform: uppercase; font-size:9px; color:gray" >
+								<font style="font-size:9px; color:gray" >
 								{if $item.positionId == NULL || $item.positionId == 0}
 										{$item.names} {$item.lastNamePaterno} {$item.lastNameMaterno}
 									{else}
@@ -55,7 +55,7 @@
 								</font>
 						</td>
 						<td valign="bottom">
-							<font style="text-transform: uppercase; font-size:12px; color:#585858" >{$item.content}</font>
+							<font style="font-size:12px; color:#585858" >{$item.content}</font>
 							
 							<br>
 							
@@ -117,7 +117,7 @@
 										{$reply.foto}
 										<br>
 
-										<font style="text-transform: uppercase; font-size:9px; color:gray" >
+										<font style="font-size:9px; color:gray" >
 										{if $reply.positionId == NULL || $reply.positionId == 0}
 											{$reply.names}  {$reply.lastNamePaterno} {$reply.lastNameMaterno}
 										{else}
@@ -126,7 +126,7 @@
 										</font>
 								
 										<br>
-										<font style="text-transform: uppercase; font-size:9px; color:gray" >
+										<font style="font-size:9px; color:gray" >
 										{$reply.replyDate|date_format:"%d-%m-%Y %H:%M"}
 										</font>
 										{if $positionId == 1}
