@@ -36,7 +36,9 @@ var app = {
     onDeviceReady: function() {
         console.log('Received Device Ready Event');
         console.log('calling setup push');
+		document.addEventListener("backbutton", onBackKeyDown, false);
         app.setupPush();
+		
     },
     setupPush: function() {
         console.log('calling push init');
@@ -99,7 +101,7 @@ var urlLoc = "localhost";
 
  // var WEB_ROOT = "http://" + urlLoc + "/iap";
   var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
- //var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
+ // var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
 
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
 
@@ -988,4 +990,10 @@ function verPortal(Id)
 		$.mobile.changePage("#portalconta");
 	}
 	
+}
+
+
+function onBackKeyDown()
+{
+	navigator.app.backHistory();
 }
