@@ -38,7 +38,8 @@
 	$numberTeams = $group->GetNumberOfTeams();
 	$smarty->assign('numberTeams', $numberTeams);
 
-	$teams = $group->Teams();
+	$group->setCourseModuleId($_GET["id"]);
+	$teams = $group->TeamsModule();
 	$smarty->assign('teams', $teams);
 
 ?>
