@@ -178,10 +178,13 @@
 						
 					break;   //}
 					default:
+					
+					
 						$this->setTeamNumber($key);
 						$members = $this->Team();
 						foreach($members as $keyme=>$member)
 						{
+							// echo 'llega';;
 							//checar si ya hay calificacion
 							 $sql =	"
 								SELECT COUNT(*)
@@ -193,7 +196,7 @@
 							
 							if($count == 0)
 							{
-								 $sql = "
+								  $sql = "
 									INSERT INTO  `activity_score` (
 										`userId` ,
 										`activityId` ,
@@ -218,12 +221,14 @@
 								WHERE activityId = '".$id."' AND userId = '".$member["userId"]."'");
 								$result = $this->Util()->DB()->GetSingle();
 							
-								$this->Util()->DB()->setQuery("
+							$sql  = "
 									UPDATE `activity_score` SET
 										`ponderation` = '".$score."',
 										`retro` = '".$retros[$k]."'
 									WHERE
-										`userId` = '".$member["userId"]."' AND activityId = '".$id."' LIMIT 1");
+										`userId` = '".$member["userId"]."' AND activityId = '".$id."' LIMIT 1";
+										
+								$this->Util()->DB()->setQuery($sql);
 								$this->Util()->DB()->UpdateData();					
 							}
 							
@@ -320,11 +325,21 @@
 					}
 				break;				
 				default: 
+				
+				if($this->getCourseModuleId()=='') {
+					$this->Util()->DB()->setQuery("
+						SELECT teamNumber, teamId FROM team
+						WHERE courseModuleId = '".$this->coursemoduleId."'
+						GROUP BY teamNumber
+						ORDER BY teamNumber ASC");
+				}else{
 					$this->Util()->DB()->setQuery("
 						SELECT teamNumber, teamId FROM team
 						WHERE courseModuleId = '".$this->getCourseModuleId()."'
 						GROUP BY teamNumber
 						ORDER BY teamNumber ASC");
+				}
+				
 					$result = $this->Util()->DB()->GetResult();
 					// echo "<pre>"; print_r($result);
 					// exit;
@@ -606,6 +621,24 @@
 			// 
 			return $result;
 		}
+		
+		public function TeamsModule()
+		{
+			$this->Util()->DB()->setQuery("
+				SELECT * FROM team
+				LEFT JOIN user ON team.userId = user.userId
+				WHERE courseModuleId = '".$this->coursemoduleId."'
+				ORDER BY teamNumber ASC, lastNamePaterno ASC, lastNameMaterno ASC, names ASC");
+			$result = $this->Util()->DB()->GetResult();
+			
+			foreach($result as $key => $res)
+			{
+				$result[$key]["names"] = $this->Util()->DecodeTiny($result[$key]["names"]);
+				$result[$key]["lastNamePaterno"] = $this->Util()->DecodeTiny($result[$key]["lastNamePaterno"]);
+				$result[$key]["lastNameMaterno"] = $this->Util()->DecodeTiny($result[$key]["lastNameMaterno"]);
+			}
+			return $result;
+		}
 
 		public function Teams()
 		{
@@ -646,13 +679,22 @@
 
 		public function Team()
 		{
-			
-			 $sql = "
+			if($this->getCourseModuleId()==''){
+				$sql = "
+				SELECT *, team.userId AS userId FROM team
+				LEFT JOIN user ON team.userId = user.userId
+				WHERE courseModuleId = '".$this->coursemoduleId."'
+					AND teamNumber = '".$this->teamNumber."'
+				ORDER BY teamNumber ASC, lastNamePaterno ASC, lastNameMaterno ASC, names ASC";
+			}else{
+				$sql = "
 				SELECT *, team.userId AS userId FROM team
 				LEFT JOIN user ON team.userId = user.userId
 				WHERE courseModuleId = '".$this->getCourseModuleId()."'
 					AND teamNumber = '".$this->teamNumber."'
 				ORDER BY teamNumber ASC, lastNamePaterno ASC, lastNameMaterno ASC, names ASC";
+			}
+			// echo  
 				// exit;
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
@@ -680,12 +722,23 @@
 			
 			foreach($result as $key => $res)
 			{
-				$this->getCourseModuleId();
 				
-				$this->Util()->DB()->setQuery("
+				if($this->getCourseModuleId() == ''){
+					$this->Util()->DB()->setQuery("
+					SELECT COUNT(*)
+					FROM team
+					WHERE userId = '".$res["alumnoId"]."' AND courseModuleId = '".$this->coursemoduleId."'");
+				
+				}else{
+					$this->Util()->DB()->setQuery("
 					SELECT COUNT(*)
 					FROM team
 					WHERE userId = '".$res["alumnoId"]."' AND courseModuleId = '".$this->getCourseModuleId()."'");
+				
+				}
+				
+				
+				
 				$inTeam = $this->Util()->DB()->GetSingle();
 				
 				$result[$key]["names"] = $this->Util()->DecodeTiny($result[$key]["names"]);
@@ -733,10 +786,20 @@
 		
 		function GetTeamNumber()
 		{
-			$this->Util()->DB()->setQuery("
+			if ($this->getCourseModuleId() == ''){
+				$sql = "
 					SELECT MAX(teamNumber)
 					FROM team
-					WHERE courseModuleId = '".$this->getCourseModuleId()."'");
+					WHERE courseModuleId = '".$this->coursemoduleId."'";
+			}
+			else{
+				$sql = "
+					SELECT MAX(teamNumber)
+					FROM team
+					WHERE courseModuleId = '".$this->getCourseModuleId()."'";
+			}
+			
+			$this->Util()->DB()->setQuery($sql);
 			$max = $this->Util()->DB()->GetSingle() + 1;
 			return $max;	
 		}
@@ -776,7 +839,7 @@
 							)
 						VALUES (
 								'" . utf8_decode($member) . "', 
-								'" . utf8_decode($this->getCourseModuleId()) . "',
+								'" . utf8_decode($this->coursemoduleId) . "',
 								'" . $teamNumber . "'
 								)";
 				$this->Util()->DB()->setQuery($sql);
