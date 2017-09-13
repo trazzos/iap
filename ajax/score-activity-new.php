@@ -1,4 +1,6 @@
 <?php
+// echo '<pre>'; print_r($_FILES);
+		// echo '<pre>'; print_r($_POST);
 include_once('../init.php');
 include_once('../config.php');
 include_once(DOC_ROOT.'/libraries.php');
@@ -9,8 +11,8 @@ switch($_POST["type"])
 {
 	case "saveCalificacion": 
 		
-		// echo '<pre>'; print_r($_FILES);
-		// echo '<pre>'; print_r($_POST);
+		// echo $_FILES["name"];
+		// exit;
 		$activity->setActivityId($_POST["id"]);
 		$actividad = $activity->Info();
 		$group->setCourseModuleId($actividad["courseModuleId"]);

@@ -21,8 +21,22 @@
 
 		function EditScore($modality, $id, $scores, $retros)
 		{
+			
+			// echo '<pre>'; print_r($scores);
+			// exit;
+			// foreach($scores as $key => $score){
+				// $this->setTeamNumber($key);
+				// $members = $this->Team();
+				// foreach($members as $member){
+					// echo $retros[$key];
+				// }
+			// }
+			
+			// exit;
+			
 			foreach($scores as $key => $score)
 			{
+				$k = $key;
 				$this->Util()->ValidateFloat($score, 2, 100,0);
 				switch($modality)
 				{
@@ -113,9 +127,7 @@
 							else					   
 							$actividad="Se ha modificado calificación en ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";
 
-
-							// print_r($enlace); exit;
-							//print_r($actividad); exit;			   
+						
 						}
 						
 						$arch =  "fileRetro_".$key;
@@ -168,18 +180,20 @@
 					default:
 						$this->setTeamNumber($key);
 						$members = $this->Team();
-						foreach($members as $member)
+						foreach($members as $keyme=>$member)
 						{
 							//checar si ya hay calificacion
-							$this->Util()->DB()->setQuery("
+							 $sql =	"
 								SELECT COUNT(*)
 								FROM activity_score
-								WHERE activityId = '".$id."' AND userId = '".$member["userId"]."'");
+								WHERE activityId = '".$id."' AND userId = '".$member["userId"]."'";
+							
+							$this->Util()->DB()->setQuery($sql);
 							$count = $this->Util()->DB()->GetSingle();
 							
 							if($count == 0)
 							{
-								$this->Util()->DB()->setQuery("
+								 $sql = "
 									INSERT INTO  `activity_score` (
 										`userId` ,
 										`activityId` ,
@@ -189,19 +203,69 @@
 										VALUES (
 										'".$member["userId"]."',  
 										'".$id."',  
-										'".$retros[$key]."',  
-										'".$score."');");
-								$this->Util()->DB()->InsertData();					
+										'".$retros[$k]."',  
+										'".$score."');";
+										
+								// echo '<br>';
+								$this->Util()->DB()->setQuery($sql);
+								$result = $this->Util()->DB()->InsertData();					
 							}
 							else
 							{
 								$this->Util()->DB()->setQuery("
+								SELECT activityScoreId
+								FROM activity_score
+								WHERE activityId = '".$id."' AND userId = '".$member["userId"]."'");
+								$result = $this->Util()->DB()->GetSingle();
+							
+								$this->Util()->DB()->setQuery("
 									UPDATE `activity_score` SET
-										`ponderation` = '".$score."'
+										`ponderation` = '".$score."',
+										`retro` = '".$retros[$k]."'
 									WHERE
 										`userId` = '".$member["userId"]."' AND activityId = '".$id."' LIMIT 1");
 								$this->Util()->DB()->UpdateData();					
 							}
+							
+							$edit = 'no';
+							// $editdos = '';
+							$arch =  "fileRetro_".$k;
+							$url = DOC_ROOT;
+							if($_FILES['fileRetro_'.$k]["name"]<>""){
+								$aux = explode(".",$_FILES['fileRetro_'.$k]["name"]);
+								$extencion=end($aux);
+								$temporal = $_FILES['fileRetro_'.$k]['tmp_name'];
+								$foto_name="doc_".$result.".".$extencion;	
+								 $url."/file_retro/".$foto_name;
+								if(move_uploaded_file($temporal,$url."/file_retro/".$foto_name)){		
+											
+									$sql = 'UPDATE 		
+									activity_score SET 		
+									rutaArchivoRetro = "'.$foto_name.'"			      		
+									WHERE activityScoreId = '.$result.'';		
+								$this->Util()->DB()->setQuery($sql);		
+								$this->Util()->DB()->UpdateData();
+							   }
+							   $edit = 'si';
+							}
+							if ($keyme >= 1){
+								if ($editdos=='si'){
+									copy($url.'/file_retro/'.$foto_nameant, $url."/file_retro/".$foto_name);
+									$sql = 'UPDATE 		
+										activity_score SET 		
+										rutaArchivoRetro = "'.$foto_name.'"			      		
+										WHERE activityScoreId = '.$result.'';		
+									$this->Util()->DB()->setQuery($sql);		
+									$this->Util()->DB()->UpdateData();
+								}
+								// echo 'copai';
+							}else
+							{
+								$foto_nameant = $foto_name;
+								 $editdos = $edit;
+							}
+							
+								 
 						}
 
 				}
@@ -262,7 +326,8 @@
 						GROUP BY teamNumber
 						ORDER BY teamNumber ASC");
 					$result = $this->Util()->DB()->GetResult();
-					
+					// echo "<pre>"; print_r($result);
+					// exit;
 					foreach($result as $key => $res)
 					{
 						//get all team members
@@ -283,19 +348,29 @@
 								WHERE activityId = '".$id."' AND userId = '".$member["userId"]."'");
 							$result[$key]["ponderation"] = $this->Util()->DB()->GetSingle();
 
-							$this->Util()->DB()->setQuery("
+							 $sql = "
 								SELECT retro
 								FROM activity_score
-								WHERE activityId = '".$id."' AND userId = '".$member["userId"]."'");
+								WHERE activityId = '".$id."' AND userId = '".$member["userId"]."'";
+							// echo '<br>';
+								// exit;
+							$this->Util()->DB()->setQuery($sql);
 							$result[$key]["retro"] = $this->Util()->DB()->GetSingle();
-								if($result[$key]["homework"]) { 
-									break; 
-								}
+							
+							 $sql = "
+								SELECT rutaArchivoRetro
+								FROM activity_score
+								WHERE activityId = '".$id."' AND userId = '".$member["userId"]."'";
+							// echo '<br>';
+								// exit;
+							$this->Util()->DB()->setQuery($sql);
+							$result[$key]["fileRetro"] = $this->Util()->DB()->GetSingle();
+
 						}
 						
 					}
-					
-					return $result;
+					break; 
+					// return $result;
 				
 			}
 			return $result;
