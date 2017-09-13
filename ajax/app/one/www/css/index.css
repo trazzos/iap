@@ -92,9 +92,12 @@ font-weight: 800;
 
 .logoPrincipal {
 
-	background-image: url(../img/logo_principal.png?kjkjhjk5kdf);
+	background-image: url(../img/logo_principal2.png?kjkjhjk5kdf);
 	 width:296px; 
-	 height:130px; 
+	 height:130px;
+    margin:auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .divlogin{

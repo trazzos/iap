@@ -61,114 +61,76 @@
 
 <body>
 
-	<div data-role="page" id="welcome" class="welcome" >
-	<br>
-	<br>
-	<div data-role="panel" id="myPanel"> 
-	
-		<div  id="divmyPanel"> 
+<div data-role="page" id="welcome" class="ui-page ui-page-theme-a ui-page-footer-fixed ui-page-active welcome">
 
-		</div>
-	  </div>
+	<div data-role="content">
+		<div class="logoPrincipal"></div>
 
-<br>			
-<br>			
-<br>			
-		<center><div class="logoPrincipal">&nbsp;
-		</div>
-		</center>
-	
-		<div data-role="content">
-	
-			<div class="divwelcome"> 
-<br>
-			<a onClick="CargaDoLogin()" class="ui-btn login white" style="width:100%; left:-15px">
-					INGRESAR
-				</a>
-		<br>
-
-				<center>
-				<table class="tblwelcome" align="center" width="100%" border="0">
-					<tr>
-						<td style="width:100px">
-						
-							<a onclick="verSubSeccion(7)"  class="menuPrincipal" >
-							<i class="material-icons green48 md-48">account_balance</i>
-							</a>
-							<br>
-							Nosotros
-							
-						</td>
-						<td style="width:100px">
-							<a onclick="verSubSeccion(9)" class="menuPrincipal">
+		<center>
+			<table class="tblwelcome" align="center" width="100%" border="0">
+				<tr>
+					<td style="width:100px">
+						<a onclick="verSubSeccion(9)" class="menuPrincipal">
 							<i class="material-icons green48 md-48">import_contacts</i>
-							</a>
-							<br>
-							PRODIM
-						</td>
-						<td style="width:100px">
-							<a onclick="verSubSeccion(12)" class="menuPrincipal">
-							<i class="material-icons green48 md-48">device_hub</i>
-							</a>
-							<br>
-							Red Conocer
-						</td>
-					</tr>
-					<tr>
-						<td colspan='3'>
+						</a>
 						<br>
-						</td>
-					</tr>
-					<tr>
-						<td >
-							
+						PRODIM
+					</td>
+					<td style="width:100px">
+						<a onclick="verSubSeccion(12)" class="menuPrincipal">
+							<i class="material-icons green48 md-48">device_hub</i>
+						</a>
+						<br>
+						Red Conocer
+					</td>
+				</tr>
+				<tr>
+					<td colspan='2'>
+						<br>
+					</td>
+				</tr>
+				<tr>
+					<td >
+
 						<a onclick="verSubSeccion(24)" class="menuPrincipal">
 							<i class="material-icons green48 md-48">grade</i>
-								<br>
-						</a>
-								Profesionalización
-					
-						</td>
-						<td>
-						<a onclick="verSubSeccion(5)" class="menuPrincipal">
-							<i class="material-icons green48 md-48">group</i>
-								<br>
-							</a>
-							Redes Sociales
-								
-							
-						</td>
-						<td>
-							<a onclick="verSubSeccion(6)" class="menuPrincipal">
-							<i class="material-icons green48 md-48">settings_phone</i>
-								<br>
-							</a>		
-							Contacto
-							
-							
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>
-							<a onclick="verPortal(7)"  class="menuPrincipal" >
-							<i class="material-icons green48 md-48">public</i>
-							</a>
 							<br>
-							Portal
-						</td>
-						<td></td>
-					</tr>
-				</table>
-				<br>
-				<br>
-				<br>
-				
-				</center>
-			</div>
-		</div>
-		
-	</div>
+						</a>
+						Profesionalización
+
+					</td>
+					<td>
+						<a onclick="verSubSeccion(6)" class="menuPrincipal">
+							<i class="material-icons green48 md-48">settings_phone</i>
+							<br>
+						</a>
+						Contacto
+					</td>
+				</tr>
+			</table>
+		</center>
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed" class="welcome-footer" onClick="CargaDoLogin()">
+		<h4>Ingresar al sistema</h4>
+	</div><!-- /footer -->
+
+	<!--
+        <div class="panel left" data-role="panel" data-position="left" data-display="push" id="left-panel">
+            <ul>
+                <li class="newsfeed"><a href="#" title="Home">Upload Logo</a></li>
+                <li class="profile"><a href="#" title="Profile">Manage Company Details</a></li>
+                <li class="setting"><a href="#" title="Setting">Manage Form Fields</a></li>
+
+                <li class="report"><a href="#" title="Report">Report Issue</a></li>
+                <li class="logout"><a href="#" title="Logout">Logout</a></li>
+            </ul>
+        </div>
+    -->
+
+
+
+</div>
 	
 	<!--
 	--->
@@ -258,7 +220,6 @@
 		<div data-role="content">
 		<br>
 			<div class="divlogin">
-				<h3 class="login white">Ingresa a tu cuenta</h3>
 				<form id="frmGral"><!--
 						<input type="text" id="notificacionesPush">-->
 						<input type="hidden" name="type" id="type" value="doLogin" >
@@ -268,7 +229,6 @@
 				<a onClick="DoLogin()" class="ui-btn login white">
 					Ingresar
 				</a>
-				<h4>¿Olvidaste tu contraseña?</h4>
 			</div>
 		</div>
 		<center><p class="parrafoLogin">2017 © IAP Chiapas.</p></center>

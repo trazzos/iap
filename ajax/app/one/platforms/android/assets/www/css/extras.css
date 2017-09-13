@@ -98,3 +98,21 @@ a.login {
     cursor: inherit;
     display: block;
 }
+
+.welcome-footer {
+    background:#276e36 !important;
+    color: #fff !important;
+    font-weight: normal !important;
+}
+
+.welcome-footer .ui-title {
+    font-weight: normal !important;
+}
+
+#divFooter .menu {
+    margin-top:8px;
+}
+
+#divFooter .enlace {
+    font-weight: normal;
+}
