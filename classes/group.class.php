@@ -350,11 +350,21 @@
 						$members = $this->Team();
 						foreach($members as $member)
 						{
-							$this->Util()->DB()->setQuery("
+							 $sql = "
 								SELECT *
 								FROM homework
-								WHERE activityId = '".$id."' AND userId = '".$member["userId"]."'");
-							$result[$key]["homework"] = $this->Util()->DB()->GetRow();
+								WHERE activityId = '".$id."' AND userId = '".$member["userId"]."' and path <>'' order by homeworkId ASC";
+								// echo '<br>';
+								// echo '<br>';
+							$this->Util()->DB()->setQuery($sql);
+							 $home = $this->Util()->DB()->GetRow();
+							// $home
+							if($home['path']<>''){
+								if(file_exists(DOC_ROOT."/homework/".$home['path'])){
+									$result[$key]["homework"] = WEB_ROOT."/homework/".$home["path"];
+									$result[$key]["nombre"] = $home['nombre'];
+								} 
+							} 
 
 
 							$this->Util()->DB()->setQuery("
@@ -388,7 +398,10 @@
 					// return $result;
 				
 			}
+			
+				// exit;
 			return $result;
+		
 		}
 
 		

@@ -4,7 +4,7 @@
         <td align="center">{$item.teamNumber}</td>
         <td align="center">
         {if $item.homework}
-        	<a href="{$WEB_ROOT}/download.php?file=homework/{$item.homework.path}">{$item.homework.nombre}</a>
+        	<a href="{$item.homework}" target='_blank'>{$item.nombre}</a>
         {else}
         	Sin Entregar
         {/if}

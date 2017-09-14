@@ -189,7 +189,7 @@
 		function Upload($file)
 		{
 			//check if homework
-			echo $this->getUserId();
+			 $this->getUserId();
 			
 			$sql ="
 				SELECT COUNT(*) FROM homework
