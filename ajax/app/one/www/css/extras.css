@@ -116,3 +116,12 @@ a.login {
 #divFooter .enlace {
     font-weight: normal;
 }
+
+#login {
+    min-height:100% !important;
+}
+
+/*Esto solo se necesita para iphone quitar en android*/
+.ui-header {
+    margin-top: 20px;
+}
