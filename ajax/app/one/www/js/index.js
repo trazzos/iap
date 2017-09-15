@@ -863,17 +863,15 @@ function backHome()
 	
 }
 
-
-
 function CargaDoLogin()
 {
-
 	$.mobile.changePage("#login");
 }
 
-
-
-
+function CargaInicio()
+{
+    $.mobile.changePage("#welcome");
+}
 
 function verSubSeccion(Id){
 	
