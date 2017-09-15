@@ -187,6 +187,9 @@ h4 {
     color: black;
 }
 
+#divDetalle{
+    color: black;
+}
 
  #divSubForo{
 	background:#eef1f5;
@@ -199,10 +202,7 @@ h4 {
 }
 
 
-#divDetalle{
-	background:#eef1f5;
-	color: black;
-}
+
 
 #page1_content{
 	background:#e9e9e9;
