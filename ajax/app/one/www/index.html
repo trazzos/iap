@@ -220,8 +220,8 @@
 		</div><!-- /footer -->
 	</div>
 	
-	
-	<div data-role="page" data-theme="a" id="home" >
+	<!--HOME-->
+	<div data-role="page" data-theme="a" id="home" class="headerBackground" >
 		<div data-role="header" data-theme="a">
 			<div id="" class="homeheader" onClick="miCuenta()"><i class="material-icons">create</i></div>
 			<h2>IAP Chiapas</h2>
@@ -267,27 +267,19 @@
 		</div>
 		<div data-role="footer" data-id="foo1" data-position="fixed" class="genericFooter"></div>
 	</div>
+	<!--HOME-->
 
-
-	<div data-role="page" data-theme="a" id="divModules" >
+	<!--MODULES-->
+	<div data-role="page" data-theme="a" id="divModules" class="headerBackground" >
 		<div data-role="header" data-theme="a">
 			<div  class="atras" onClick="back('home')">&nbsp;&nbsp;&nbsp;</div>
 			<h2>Modulos</h2>
 		</div>
-		<br>
-
-		<div id="divModule">
-			
+		<div data-role="content" data-theme="a" id="divModule" class="contentBackground">
 		</div>
-		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
-					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
-				</ul>
-			</div>
-		</div>-->
+		<div data-role="footer" data-id="foo1" data-position="fixed" class="genericFooter"></div>
 	</div>
+	<!--MODULES-->
 	
 	
 	<div data-role="page" data-theme="a" id="divDetalle" >
