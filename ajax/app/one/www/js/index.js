@@ -34,6 +34,12 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+
+        console.log(window.device.version);
+        if (parseFloat(window.device.version) >= 7.0) {
+            document.body.style.marginTop = "20px";
+            // OR do whatever layout you need here, to expand a navigation bar etc
+        }
         console.log('Received Device Ready Event');
         console.log('calling setup push');
 		document.addEventListener("backbutton", onBackKeyDown, false);
