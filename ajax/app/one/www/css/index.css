@@ -191,59 +191,41 @@ h4 {
     color: black;
 }
 
- #divSubForo{
-	background:#eef1f5;
-	color: black;
-}
-
-#cuenta{
-	background:#eef1f5;
-	color: black;
-}
-
-
-
-
-#page1_content{
-	background:#e9e9e9;
-	color: black;
-}
-
-
-
-
 #divConfig{
-	background:#eef1f5;
-	color: black;
+    color: black;
 }
 
 
 #divAcerca{
-	background:#eef1f5;
-	color: black;
+    color: black;
 }
-
-#divSubForoDetalle{
-	background:#eef1f5;
-	color: black;
-}
-
-
 
 #divCal{
-	background:#eef1f5;
+    color: black;
+}
+
+ #divSubForo{
 	color: black;
 }
 
+#cuenta{
+	color: black;
+}
+
+#page1_content{
+	color: black;
+}
+
+
+#divSubForoDetalle{
+	color: black;
+}
 
 #divAddComentario{
-	background:#eef1f5;
 	color: black;
 }
 
-
 #divUp{
-	background:#eef1f5;
 	color: black;
 }
 

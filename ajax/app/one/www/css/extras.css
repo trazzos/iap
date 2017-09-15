@@ -136,6 +136,10 @@ a.login {
     color: black;
 }
 
+.ui-li-divider.green {
+    background-color: #276e36;
+}
+
 /*A partir de aqui solo se necesita para iphone quitar en android*/
 .ui-header {
     margin-top: 20px;
