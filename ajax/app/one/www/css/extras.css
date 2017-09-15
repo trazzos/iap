@@ -125,3 +125,5 @@ a.login {
 .ui-header {
     margin-top: 20px;
 }
+
+.ui-page { -webkit-backface-visibility: hidden; }
