@@ -121,9 +121,16 @@ a.login {
     min-height:100% !important;
 }
 
-/*Esto solo se necesita para iphone quitar en android*/
+.genericFooter {
+    height: 38px;
+    min-height: 38px;
+    background-color: #eef1f5;
+}
+
+/*A partir de aqui solo se necesita para iphone quitar en android*/
 .ui-header {
     margin-top: 20px;
 }
 
 .ui-page { -webkit-backface-visibility: hidden; }
+
