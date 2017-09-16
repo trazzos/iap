@@ -65,43 +65,34 @@
 				$student->setMasters($_POST['masters']); 
 				$student->setMastersSchool($_POST['mastersSchool']);
 								
-				if(!$student->UpdateAlumn())
+				if ($_POST['semestreId']){
+					$_POST['semestreId'] = $_POST['semestreId'];
+				}else{
+					$_POST['semestreId'] = 0;
+				}
+					
+								
+								
+				if($student->UpdateAlumn())
+				{
+					$student->ProcesoReinscripcion($_POST['courseMxId'],$_POST['subjecxtId'],$_POST['coursexId'],$_POST['semestreId']);
+					echo "ok[#]";
+					echo '<div class="alert alert-success">
+					<button class="close" data-dismiss="alert"></button>
+							 Es necesario que descargue e imprima el formato de reinscripción que se encuentra en su menú principal y 
+							 llevarlo al área de control escolar para recabar las firmas correspondientes
+					</div>';
+					echo '[#]';
+					echo $_POST['courseMxId'];
+					
+				}
+				else
 				{
 					echo "fail[#]";
 					
 					$smarty->assign("auxMsj", $_POST["auxMsj"]);
 					$smarty->display(DOC_ROOT.'/templates/boxes/status_on_popup.tpl');
-				}
-				else
-				{
-					echo "ok[#]";
-					echo '<div class="alert alert-success">
-					<button class="close" data-dismiss="alert"></button>
-							El Proceso de reinscripción se ejecutó correctamente 
-					</div>';
-					// $smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
-//					header("Location: ".WEB_ROOT."/alumn-services");
-/*					$smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
-					echo "[#]";
-					
-					$arrPage = array();		
-					$viewPage = 1;			
-					$rowsPerPage = 30;		
-					
-					$pageVar = 'p';	
-					
-					if(isset($_GET["$pageVar"]))
-						$viewPage = $_GET["$pageVar"];	
-					
-					$students = $student->EnumerateByPage($viewPage, $rowsPerPage, $pageVar, WEB_ROOT.'/student', $arrPage, ' semesterId ASC, ');
-					
-					$students = $util->EncodeResult($students);
-					$smarty->assign('students', $students);	
-					$smarty->assign('arrPage', $arrPage);
-					
-					$smarty->assign("DOC_ROOT", DOC_ROOT);
-					$smarty->display(DOC_ROOT.'/templates/lists/student.tpl');
-*/				}		
+				}		
 				break;
 				
 	}

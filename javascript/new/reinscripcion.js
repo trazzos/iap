@@ -23,6 +23,7 @@ function comprueba_extension(archivo) {
 function saveEditStudentAlumn(){
 	
 	$("#type").val("saveEditStudentAlumn")
+	
 
 	$.ajax({
 	  	type: "POST",
@@ -39,6 +40,15 @@ function saveEditStudentAlumn(){
 		
 			if(splitResp[0] == "ok"){
 					$("#res_").html(splitResp[1]);
+					
+					if ($("#courseMxId").val()=='x'){
+						setTimeout("recargarPage()",600000);
+						location.href=WEB_ROOT;
+					}else{
+						setTimeout("recargarPage()",600000);
+						location.href=WEB_ROOT+"/view-modules-student/id/"+splitResp[2];
+					}
+					
 				}
 			else if(splitResp[0] == "fail"){
 				$("#res_").html(splitResp[1]);
@@ -53,6 +63,13 @@ function saveEditStudentAlumn(){
     });
 	
 }//saveEditStudentAlumn
+
+function recargarPage() {
+	va = 1;
+	alert('alert');
+	// return true;
+}
+
 
 function ToogleStatusDivOnPopup(){
 	$("#centeredDivOnPopup").hide();

@@ -1987,6 +1987,49 @@ class Student extends User
 		return true;
 	}
 	
+	public function ProcesoReinscripcion($courseMId,$subjectId,$courseId,$semestreId)
+	{
+		
+		if($courseMId=='x'){
+			$infoS['semesterId'] = $semestreId;
+		}else{
+			$sql = "
+				SELECT * FROM course_module  as c
+				left join subject_module as s on c.subjectModuleId = s.subjectModuleId
+				WHERE courseModuleId =  ".$courseMId."";
+			$this->Util()->DB()->setQuery($sql);
+			$infoS = $this->Util()->DB()->GetRow();
+		}
+		
+		
+	
+		 $sqlQuery = "INSERT INTO 
+						confirma_inscripcion 
+						(
+							reinscrito,
+							nivel, 
+							userId,
+							subjectId,
+							courseId,
+							courseModuleId
+						)
+							VALUES
+						(
+							'si',
+							'".$infoS['semesterId']."', 
+							'".$_SESSION['User']['userId']."', 
+							'".$subjectId."', 
+							'".$courseId."',
+							'".$courseMId."'
+						)";
+
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->InsertData();
+		
+		return true;
+	}
+	
+	
 	
 }
 

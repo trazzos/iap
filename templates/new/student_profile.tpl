@@ -93,8 +93,8 @@
 							</a>
                         </li>
 						 <li>
-                            <a href="{$WEB_ROOT}/constancia.pdf" target="_blank">
-                              <i class="fa fa-file-text" aria-hidden="true"></i>Descargar Formato de Inscripción 
+                            <a href="{$WEB_ROOT}/graybox.php?page=formato-reinscripcion" data-target="#ajax" data-toggle="modal" data-width="1000px">
+                              <i class="fa fa-file-text" aria-hidden="true"></i>Descargar Formatos de Inscripción/Reinscripción
 							</a>
                         </li>
                     </ul>

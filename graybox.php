@@ -165,6 +165,7 @@ $pages = array(
     'add-calificacion',
 	'referencia-bancaria',
 	'view-boleta',
+	'formato-reinscripcion',
 
 );
 

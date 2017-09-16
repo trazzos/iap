@@ -67,7 +67,7 @@
 	$groups = $util->EncodeResult($resGroup);
 	$smarty->assign('groups',$groups);
 	
-	// echo "<pre>"; print_r($info);
+	// echo "<pre>"; print_r($_GET);
 	// exit;
 	// echo $info["userId"];
 	if(file_exists(DOC_ROOT."/alumnos/".$info["userId"].".jpg")){
@@ -85,6 +85,10 @@
 	$smarty->assign("alumnoSer", "si");
 	$smarty->assign("msjConfirma", $msjConfirma);
 	$smarty->assign("info", $info);
+	$smarty->assign("courseMId", $_GET['id']);
+	$smarty->assign("subjectId", $_GET['s']);
+	$smarty->assign("courseId", $_GET['c']);
+	$smarty->assign("sId", $_GET['sId']);
 	
 	
 ?>

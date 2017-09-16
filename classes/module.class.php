@@ -141,7 +141,8 @@
 						subject_module.politics as politics,
 						subject_module.evaluation as evaluation,
 						subject_module.bibliography as bibliography,
-						subject_module.subjectModuleId as Id
+						subject_module.subjectModuleId as Id,
+						subject_module.semesterId as semesId
 					FROM
 						course_module
 					LEFT JOIN subject_module ON course_module.subjectModuleId = subject_module.subjectModuleId
@@ -383,6 +384,21 @@
 			$this->Util()->PrintErrors();
 			return $result;
 		}				
+		
+		public function compruebaInscripcion($semestreId,$courseId,$subjectId)
+		{
+			 $sql = "SELECT 
+						count(*)
+					FROM
+						confirma_inscripcion
+					WHERE
+						subjectId='".$subjectId."' and nivel = ".$semestreId." and userId = ".$_SESSION['User']['userId']."";
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetSingle();
+			
+			return $result;
+		}
 		
 	}	
 ?>

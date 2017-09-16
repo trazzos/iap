@@ -23,17 +23,21 @@
 					</a>
 				{else}
 					{if $subject.estatus eq 'pendiente'} 
-					<a  href="{$WEB_ROOT}/graybox.php?page=solicitud-constancia&id={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='ENVIAR COMPROBANTE DE PAGO'>
-						<i class="fa fa-money" aria-hidden="true"></i>
-					</a>
+						{if $subject.tiposolicitudId ne 3}
+							<a  href="{$WEB_ROOT}/graybox.php?page=solicitud-constancia&id={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='ENVIAR COMPROBANTE DE PAGO'>
+								<i class="fa fa-money" aria-hidden="true"></i>
+							</a>
+						{/if}
 					{/if}
 				{/if}
+				{if $subject.tiposolicitudId ne 3}
 					<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px" title='REFERENCIA BANCARIA'>
 					<i class="fa fa-university" aria-hidden="true"></i>
 					</a>
+				{/if}
 				{if $subject.tiposolicitudId eq 3}
-					<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px" title='REFERENCIA BANCARIA'>
-					<i class="fa fa-university" aria-hidden="true"></i>
+					<a href="{$WEB_ROOT}/unsubscribe"  title='INICIAR PROCESO'>
+						<i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
 					</a>
 				{/if}
 			</td>

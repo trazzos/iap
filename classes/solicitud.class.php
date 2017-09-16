@@ -258,7 +258,49 @@ class Solicitud extends Module
 		return true;
 	}
 	
-
+	
+	public function cursoActivo()
+	{
+		 $sqlQuery = 'SELECT 
+					*
+				FROM 
+					user_subject as u
+				left join course as c on c.courseId  = u.courseId
+				WHERE  c.active = "si" and u.alumnoId = '.$_SESSION['User']['userId'].'';
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$result = $this->Util()->DB()->GetResult();
+		return $result;
+	}
+	
+	public function semestresxSubject($Id)
+	{
+		 $sqlQuery = 'SELECT 
+					*
+				FROM 
+					subject_module as s
+				WHERE  subjectId = '.$Id.' group by semesterId';
+				// exit;
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$result = $this->Util()->DB()->GetResult();
+		
+		foreach ($result  as $key=>$aux){
+			 $sqlQuery = 'SELECT 
+					count(*)
+				FROM 
+					confirma_inscripcion as c
+				WHERE  subjectId = '.$Id.' and userId  = '.$_SESSION['User']['userId'].' and nivel = '.$aux['semesterId'].'';
+			$this->Util()->DB()->setQuery($sqlQuery);
+			$coun = $this->Util()->DB()->GetSingle();
+			
+			if($coun >= 1){
+				$result[$key]['tiene'] = 'si';
+			}
+		}
+		
+		return $result;
+	}
+	
+	
 
 }	
 ?>

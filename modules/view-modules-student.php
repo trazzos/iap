@@ -3,15 +3,29 @@
 	/* For Session Control - Don't remove this */
 //	$user->allow_access(8);	
 
-	 // echo "<pre>"; print_r($courseId);
-	// exit;
+
+	$empleados = $personal->Enumerate();
+	$smarty->assign('empleados', $empleados);
 	
-	header("Location:".WEB_ROOT."/reinscripcion");
-	exit;
+	
+		
 	
 	$module->setCourseModuleId($_GET["id"]);
 	$myModule = $module->InfoCourseModule();
-     $courseId=$myModule["courseId"];
+    $courseId=$myModule["courseId"];
+	// echo "<pre>"; print_r($myModule);
+	// exit;
+	if($myModule['semesId']>1){
+		$countIns = $module->compruebaInscripcion($myModule['semesId'],$_GET["id"],$myModule['subjectId']);
+		
+		// echo 	$countIns;
+		// exit;
+		if($countIns <= 0){
+			header("Location:".WEB_ROOT."/reinscripcion/id/".$_GET["id"]."/s/".$myModule['subjectId']."&c=".$myModule['courseId']);
+			exit;
+		}
+	}
+	
 
 	 $course->setCourseId($courseId);
 	 $info= $course->Info();
