@@ -29,9 +29,9 @@
 					{if $subject.semesterId eq 1}
 						<a href='{$WEB_ROOT}/files/solicitudes/{$userId}_{$courseId}.pdf' target="_blank" >Descargar</a>
 					{else if $subject.tiene eq 'si'}
-						<a href="" onClick='descargaFormato()' >Descargar</a>
+						<a href="javascript:void(0)" onClick='descargaFormato({$courseId},{$subject.semesterId})' >Descargar</a>
 					{else}
-						<a href='{$WEB_ROOT}/reinscripcion/id/x/s/{$subjectId}&c={$courseId}&sId={$subject.semesterId}'  >Llenar formato reinscripción</a>
+						<a href='{$WEB_ROOT}/reinscripcion/id/x/s/{$subjectId}&c={$courseId}&sId={$subject.semesterId}' >Llenar formato reinscripción</a>
 					{/if}
 				</td>
 			</tr>

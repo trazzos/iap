@@ -19,7 +19,6 @@ function CalificacionesAct(id){
 			alert(msgError);
 		}
     });
-
 	
 }//AddReg
 
@@ -153,4 +152,10 @@ $.ajax({
     });
 
 
+}
+
+
+function descargaFormato(courseId,semestreId){
+	url=WEB_ROOT+"/ajax/formato-reinscripcion.php?"+$('#frmfiltro').serialize(true)+'&courseId='+courseId+'&semestreId='+semestreId;
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
 }
