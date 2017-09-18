@@ -58,6 +58,11 @@
 	
 		<table align='center' width='100%' border='0'>
 			<tr>
+				<td colspan='3' align='right'>
+					<img src='".DOC_ROOT."/images/logo_correo.jpg'>
+				</td>
+			</tr>
+			<tr>
 				<td colspan='3' align='center'>
 					Cedula de Reinscripción<br>
 					Condicional
@@ -110,8 +115,8 @@
 				<td>
 					Ciclo:
 					<br>
-					<br>
 					<div class='line'>
+					".$infoCourse['initialDate']." -  ".$infoCourse['finalDate']."
 					</div>
 				</td>
 				<td >
@@ -128,6 +133,9 @@
 			</tr>
 			";
 		$html .= "</table>";
+		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<br>";
 		$html .= "<br>";
 		$html .= "<br>";
 		$html .= "<br>";

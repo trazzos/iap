@@ -20,7 +20,7 @@ switch($_POST["type"])
 			
 			
 			
-			$solicitud->setUserId($_POST['alumnoId']);
+			$solicitud->setNombre($_POST['alumnoId']);
 			$solicitud->setTipoSolicitudId($_POST['tipo']);
 			$solicitud->setStatus($_POST['estatus']);
 			$registros = $solicitud->enumarateSolicitudesAdmin();

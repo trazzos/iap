@@ -78,8 +78,8 @@ class Solicitud extends Module
 	{
 		$filtro = '';
 		
-		if($this->userId){
-			$filtro .= ' and s.userId = '.$this->userId;
+		if($this->nombre){
+			$filtro .= ' and u.names like "%'.$this->nombre.'%"';
 		}
 		
 		if($this->tiposolicitudId){
@@ -103,7 +103,7 @@ class Solicitud extends Module
 					solicitud as s 
 				left join user as u on u.userId = s.userId
 				left join tiposolicitud as t on t.tiposolicitudId = s.tiposolicitudId
-				WHERE  1 '.$filtro.'';
+				WHERE  estatus <> "pendiente" '.$filtro.'';
 // exit;
 			
 	
@@ -214,7 +214,7 @@ class Solicitud extends Module
 					* 
 				FROM 
 					tiposolicitud 
-				WHERE  1';
+				WHERE  tiposolicitudId <> 5';
 
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$result = $this->Util()->DB()->GetResult();
@@ -263,7 +263,7 @@ class Solicitud extends Module
 	{
 		// buscar la ultima baja y actulizarle la ruta
 		$ext = end(explode('.', basename($_FILES['comprobante']['name'])));
-		$filename  = "solicitud_".$this->solicitudId.".".$ext;
+		$filename  = "doc_".$this->solicitudId.".".$ext;
 		$target_path = DOC_ROOT."/alumnos/doc_adjuntos/doc_".$this->solicitudId.".".$ext; 
 		
 		move_uploaded_file($_FILES['comprobante']['tmp_name'], $target_path);

@@ -14,16 +14,19 @@
 	  <strong></strong>La Solicitud ha sido enviada correctamente
 	</div>
 	{/if}
+	<div id="msj">
+	</div>
 
         {include file="boxes/status_no_ajax.tpl"}
 		<form id='frmFiltro'>
 			<div style="float:left">Alumno<br>
-				<select name='alumnoId' class="form-control" style="width:150px;" >
+				<input type='text' name='alumnoId' class="form-control">
+				<!--<select name='alumnoId' class="form-control" style="width:150px;" >
 				<option></option>
 				{foreach from=$registrosStudent item=item}
 				<option value='{$item.userId}'>{$item.names} {$item.lastNamePaterno} {$item.lastNameMaterno}</option>
 				{/foreach}
-				</select>
+				</select>-->
 			</div>
 			<div style="float:left">Fecha Solicitud<br>
 				<input type='text' name='fechaInicio' id='fecha_1'class="form-control" style="width:150px; float:left" onClick='cargaCalendario(1)'>

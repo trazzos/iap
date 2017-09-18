@@ -1,5 +1,10 @@
 function addSolicitud(){
 	
+	if($("#solicitudId").val()==''){
+		ShowStatusPopUp('Por favor, seleccione el tipo de solicitud')
+		return;
+	}
+		
 	
 	var resp = confirm("¿Desea agregar la Solicitud?");
 	
@@ -13,7 +18,7 @@ function addSolicitud(){
 	  	url: WEB_ROOT+'/ajax/view-solicitud.php',
 	  	data: $("#editStudentForm").serialize(true)+'&solicitudId='+$('#solicitudId').val()+'&type=addSolicitud',
 		beforeSend: function(){			
-			$("#container").html('');
+			// $("#container").html('');
 		},
 	  	success: function(response) {	
 		
@@ -28,8 +33,10 @@ function addSolicitud(){
 				}
 			else if($.trim(splitResp[0]) == "fail"){
 				// alert(splitResp[1])
-				$("#msj").html(splitResp[1]);
-				$("#centeredDivOnPopup").show();
+				ShowStatusPopUp(splitResp[1])
+				return;
+				// $("#msj").html(splitResp[1]);
+				// $("#centeredDivOnPopup").show();
 			}
 		},
 		error:function(){

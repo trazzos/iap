@@ -47,8 +47,8 @@ function enviarArchivo(){
 		contentType: false,
 		type: 'POST',
 		beforeSend: function(){		
-			// $("#loader").html(LOADER);
-			// $("#erro_"+reqId).hide(0);
+			$("#loader3").html(LOADER3);
+			$("#addMajor").hide();
 		},
 		success: function(response){
 			
@@ -62,6 +62,7 @@ function enviarArchivo(){
 				$("#container").html(splitResp[2]);
 				closeModal();
 			}else if($.trim(splitResp[0]) == "fail"){
+					$("#addMajor").show();
 					$("#msj").html(splitResp[1]);			
 			}else{
 				// alert(msgFail);
