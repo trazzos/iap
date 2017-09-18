@@ -41,7 +41,9 @@
 				<select name='estatus' class="form-control" style="width:150px;  float:left">
 				<option></option>
 				<option>pendiente</option>
+				<option>en progreso</option>
 				<option>autorizado</option>
+				<option>completado</option>
 				</select>
 			</div>
 		</form>

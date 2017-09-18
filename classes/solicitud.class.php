@@ -259,6 +259,22 @@ class Solicitud extends Module
 	}
 	
 	
+	public function enviarArchivoConstancia()
+	{
+		// buscar la ultima baja y actulizarle la ruta
+		$ext = end(explode('.', basename($_FILES['comprobante']['name'])));
+		$filename  = "solicitud_".$this->solicitudId.".".$ext;
+		$target_path = DOC_ROOT."/alumnos/doc_adjuntos/doc_".$this->solicitudId.".".$ext; 
+		
+		move_uploaded_file($_FILES['comprobante']['tmp_name'], $target_path);
+		
+		$sqlQuery = "UPDATE solicitud set rutaAdjunto ='".$filename."', estatus ='completado'  where solicitudId = '".$this->solicitudId."'"; 	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}
+	
 	public function cursoActivo()
 	{
 		 $sqlQuery = 'SELECT 

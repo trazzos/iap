@@ -1,38 +1,51 @@
-function cargaCalendario(Id){
-	// $.datepicker.setDefaults( $.datepicker.regional['es'] );
-		$('#fecha_'+Id).datepicker({
-		 dateFormat: 'yy-mm-dd',
-		}).focus();
-}
-
-
-
-function buscarSolicitud(){
+function addSolicitud(){
 	
+	
+	var resp = confirm("¿Desea agregar la Solicitud?");
+	
+	if(!resp)
+		return;
+	
+	$("#type").val("addSolicitud")
+// alert($('#solicitudId').val())
 	$.ajax({
 	  	type: "POST",
-	  	url: WEB_ROOT+'/ajax/solicitud.php',
-	  	data: "type=buscarSolicitud&"+$("#frmFiltro").serialize(true),
+	  	url: WEB_ROOT+'/ajax/view-solicitud.php',
+	  	data: $("#editStudentForm").serialize(true)+'&solicitudId='+$('#solicitudId').val()+'&type=addSolicitud',
 		beforeSend: function(){			
-			$("#loader").html(LOADER3);
+			$("#container").html('');
 		},
-	  	success: function(response) {
-
-		$("#loader").html('');
+	  	success: function(response) {	
+		
 			console.log(response)
 			var splitResp = response.split("[#]");
-											
-				$("#contenido").html(response);
-
+			
+		
+			if($.trim(splitResp[0]) == "ok"){
+					// DoSearch()
+					$("#msj").html(splitResp[1]);
+					$("#container").html(splitResp[2]);
+				}
+			else if($.trim(splitResp[0]) == "fail"){
+				// alert(splitResp[1])
+				$("#msj").html(splitResp[1]);
+				$("#centeredDivOnPopup").show();
+			}
 		},
 		error:function(){
 			alert(msgError);
 		}
     });
 	
+}//addSolicitud
 
-	
-}//addHeredero
+
+function printBoleta(q){
+	url=WEB_ROOT+"/ajax/report-card-pdf.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
+	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+}
+
+
 
 
 function enviarArchivo(){
@@ -41,7 +54,7 @@ function enviarArchivo(){
 // En esta var va incluido $_POST y $_FILES
 	var fd = new FormData(document.getElementById("addMajorForm"));
 	$.ajax({
-		url: WEB_ROOT+'/ajax/solicitud.php',
+		url: WEB_ROOT+'/ajax/view-solicitud.php',
 		data: fd,
 		processData: false,
 		contentType: false,
@@ -70,7 +83,6 @@ function enviarArchivo(){
 	})
 	
 }
-
 
 
 function closeModal(){

@@ -123,7 +123,7 @@
 			</tr>
 			<tr>
 				<td colspan='3' align='left'>
-					Regular: Irregular: Materia:
+					Regular: [X]  Irregular:  
 				</td>
 			</tr>
 			";
