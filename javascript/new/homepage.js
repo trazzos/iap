@@ -138,9 +138,9 @@ $.ajax({
 	  	success: function(response) {	
 			console.log(response)
 			var splitResponse = response.split("[#]");
-			if(splitResponse[0] == "ok"){
+			if($.trim(splitResponse[0]) == "ok"){
 				$("#msj").html(splitResponse[1]);
-			}else if (splitResponse[0] == "ok"){
+			}else if ($.trim(splitResponse[0]) == "ok"){
 				$("#msj").html(splitResponse[2]);
 			}
 			  
