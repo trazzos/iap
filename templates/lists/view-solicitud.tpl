@@ -5,7 +5,7 @@
 			<th width="">Fecha de Solicitud </th>
 			<th width="">Estatus </th>
 			<th width="">Costo </th>
-			<th width=""></th>		 
+			<th width="">Acciones</th>		 
 		</tr>
     </thead>
     <tbody>
@@ -28,6 +28,9 @@
 					<a  href="{$WEB_ROOT}/graybox.php?page=view-boleta&id=con" data-target="#ajax" data-toggle="modal" data-width="1000px" title='DESCARGAR BOLETA DE CALIFICACIONES'>
 						<i class="material-icons md-16">cloud_download</i>
 					</a>
+					<a href="{$WEB_ROOT}/graybox.php?page=info&id=1" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
+					<i class="material-icons md-16">info</i>
+					</a>
 				{else}
 					{if $subject.estatus eq 'pendiente'} 
 						{if $subject.tiposolicitudId ne 3}
@@ -37,12 +40,15 @@
 							</a>
 						{/if}
 					{/if}
+					
 				{/if}
 				{if $subject.tiposolicitudId ne 3}
 					{if $subject.estatus eq 'pendiente'}
 					<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px" title='REFERENCIA BANCARIA'>
-					
 					<i class="material-icons md-16">account_balance</i>
+					</a>
+					<a href="{$WEB_ROOT}/graybox.php?page=info&id=2" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
+					<i class="material-icons md-16">info</i>
 					</a>
 					{/if}
 				{/if}

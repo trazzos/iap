@@ -74,6 +74,46 @@ class Solicitud extends Module
 		return $result;
 	}
 	
+	public function enumarateSolicitudesStden($value)
+	{
+		$filtro = '';
+		
+		if($this->nombre){
+			$filtro .= ' and u.names like "%'.$this->nombre.'%"';
+		}
+		
+		if($this->tiposolicitudId){
+			$filtro .= ' and t.tiposolicitudId = '.$this->tiposolicitudId;
+		}
+		
+		if($this->status){
+			$filtro .= ' and s.estatus = "'.$this->status.'"';
+		}
+		
+		if($this->inicio and $this->fin){
+			$filtro .= ' and s.fechaSolicitud >= "'.$this->inicio.'" and fechaSolicitud <= "'.$this->fin.'"';
+		}
+		
+		
+		
+		 $sqlQuery = 'SELECT 
+					*,
+					t.nombre as solicitud
+				FROM 
+					solicitud as s 
+				left join user as u on u.userId = s.userId
+				left join tiposolicitud as t on t.tiposolicitudId = s.tiposolicitudId
+				WHERE  1 '.$filtro.' and s.tiposolicitudId <> 5 and s.userId = '.$_SESSION['User']['userId'].'';
+// exit;
+			
+	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$result = $this->Util()->DB()->GetResult();
+		// echo '<pre>'; print_r($result);
+		// exit;
+		return $result;
+	}
+	
 	public function enumarateSolicitudesAdmin($value)
 	{
 		$filtro = '';
@@ -130,7 +170,7 @@ class Solicitud extends Module
 					count(*)
 				FROM 
 					solicitud 
-				WHERE  tiposolicitudId = '.$this->tipo.' and estatus <> "completado"';
+				WHERE  tiposolicitudId = '.$this->tipo.' and estatus <> "completado" and userId = '.$_SESSION['User']['userId'].'';
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$countS = $this->Util()->DB()->GetSingle();
 		
@@ -299,7 +339,34 @@ class Solicitud extends Module
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$result = $this->Util()->DB()->GetResult();
 		
+		$sem = 2;
 		foreach ($result  as $key=>$aux){
+		if($key == 0 or $key == 1){
+			
+				$result2[$key]['semesterId'] = $aux['semesterId'];
+			}
+			else{
+					
+				 $sqlQuery = 'SELECT 
+					count(*)
+				FROM 
+					confirma_inscripcion as c
+				WHERE  subjectId = '.$Id.' and userId  = '.$_SESSION['User']['userId'].' and nivel = '.$sem.'';
+				// echo '<br>';
+				// echo '<br>';
+				$this->Util()->DB()->setQuery($sqlQuery);
+				$coun1 = $this->Util()->DB()->GetSingle();
+				if($coun1 >= 1){
+					$result2[$key]['semesterId'] = $sem+1;
+				}
+				$sem++;
+			}
+			
+		}
+		
+		// echo '<pre>'; print_r($result2);
+		// exit;
+		foreach ($result2  as $key=>$aux){
 			 $sqlQuery = 'SELECT 
 					count(*)
 				FROM 
@@ -309,11 +376,13 @@ class Solicitud extends Module
 			$coun = $this->Util()->DB()->GetSingle();
 			
 			if($coun >= 1){
-				$result[$key]['tiene'] = 'si';
+				$result2[$key]['tiene'] = 'si';
 			}
+			
+			
 		}
 		
-		return $result;
+		return $result2;
 	}
 	
 	

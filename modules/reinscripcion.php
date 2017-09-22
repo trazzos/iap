@@ -1,5 +1,13 @@
 <?php
-		
+	
+	$counReins = $student->confirmaReinscripcion($_GET['s'],$_GET['sId']);
+	
+	if($counReins >=1){
+		$smarty->assign("courseId", $_GET['c']);
+		$smarty->assign("sId", $_GET['sId']);
+		 $smarty->assign('descargaAchivo','si');
+		// exit;
+	}
 	$msjConfirma = "";
 		
 	if($_FILES)
@@ -12,9 +20,9 @@
 				
 				
 				
-				$prof = $profesion->Enumerate();
-				$prof = $util->EncodeResult($prof);
-				$smarty->assign('prof',$prof);
+	$prof = $profesion->Enumerate();
+	$prof = $util->EncodeResult($prof);
+	$smarty->assign('prof',$prof);
 	
 	$resCode = $code->Enumerate();
 	$codes = $util->EncodeResult($resCode);

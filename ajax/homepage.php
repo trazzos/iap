@@ -26,6 +26,15 @@
 					
 		break;
 
+		case 'abrirReins':
+			echo 'ok[#]';
+			// echo '<pre>'; print_r($_POST);
+			$smarty->assign("DOC_ROOT", DOC_ROOT);
+			$smarty->assign("subjectId", $_POST['subjectId']);
+			$smarty->assign("courseId", $_POST['courseId']);
+			$smarty->assign("semesterId", $_POST['semesterId']);
+			$smarty->display(DOC_ROOT.'/templates/new/confirma-reinscripcion.tpl');
+		break;
 	
 	}
 

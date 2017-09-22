@@ -43,7 +43,8 @@ function saveEditStudentAlumn(){
 					
 					if ($("#courseMxId").val()=='x'){
 						setTimeout("recargarPage()",600000);
-						location.href=WEB_ROOT;
+						 location.reload();
+						// location.href=WEB_ROOT;
 					}else{
 						setTimeout("recargarPage()",600000);
 						location.href=WEB_ROOT+"/view-modules-student/id/"+splitResp[2];
@@ -213,3 +214,9 @@ function estado_dependenciat()
 		$("#frmImg").submit()
 	
   }
+  
+  
+  function descargaFormato(courseId,semestreId){
+	url=WEB_ROOT+"/ajax/formato-reinscripcion.php?"+$('#frmfiltro').serialize(true)+'&courseId='+courseId+'&semestreId='+semestreId;
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
+}

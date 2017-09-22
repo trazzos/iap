@@ -167,6 +167,7 @@ $pages = array(
 	'view-boleta',
 	'formato-reinscripcion',
 	'add-documento',
+	'info',
 
 );
 

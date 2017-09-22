@@ -2029,6 +2029,19 @@ class Student extends User
 		return true;
 	}
 	
+	public function confirmaReinscripcion($carreraId,$semestreId)
+	{
+			 $sql = "
+				SELECT count(*) FROM confirma_inscripcion
+				WHERE subjectId =  ".$carreraId." and nivel = ".$semestreId." and userId = ".$_SESSION["User"]["userId"]."";
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$infoS = $this->Util()->DB()->GetSingle();
+			
+		return $infoS;
+	}
+	
+	
 	
 	
 }
