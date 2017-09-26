@@ -1,5 +1,17 @@
 <?php
 
+$host = 'localhost:C:\wamp\www\fdb\SCHOOLFDB.FDB';
+
+$gestor_db = ibase_connect($host,'SYSDBA', 'masterkey');
+    // $conn=ibase_connect("localhost:C:\\AppServ\\www\\fdb\\MUSICA.FDB", "SYSDBA", "masterkey");
+    // if (!$conn)
+    // { 
+	// echo "Acceso Denegado!";
+    // exit;
+	// }
+
+
+exit;
 	/* For Session Control - Don't remove this */
 $x=0;	
 //print_r($_SESSION);exit;
