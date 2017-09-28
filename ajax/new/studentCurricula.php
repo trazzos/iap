@@ -143,9 +143,23 @@ switch($_POST["type"])
         $smarty->assign("students", $students);
         $smarty->display(DOC_ROOT.'/templates/boxes/view-studentadmin.tpl');
 
-        break;
+      break;
 
-
+	case 'saveNumReferencia';
+	
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+		 if ($group->saveNumReferencia()){
+			 echo 'ok[#]';
+			 echo '<div class="alert alert-info alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			 Los datos se guardaron correctamente
+			</div>';
+		 }else{
+			 echo 'fail[#]';
+		 }
+		
+	break;
 
 }
 

@@ -159,3 +159,39 @@ function generar(courseId,tipo){
 
 }
 
+
+
+
+
+function saveNumReferencia(id,activo){
+	
+	$("#type").val("saveNumReferencia")
+
+	$.ajax({
+	  	type: "POST",
+	  	url : WEB_ROOT+'/ajax/new/studentCurricula.php',
+	  	data: $("#frmGral").serialize(true)+'&id='+id+'&activo='+activo+'&type=saveNumReferencia',
+		beforeSend: function(){			
+			// $('#tblContent').html(LOADER3);
+		},
+	  	success: function(response) {	
+		
+			console.log(response)
+			var splitResp = response.split("[#]");
+			
+			// DoSearch()
+			if(splitResp[0] == "ok"){
+					$("#msj").html($.trim(splitResp[1]));
+					// DoSearch()
+				}
+			else if(splitResp[0] == "fail"){
+				$("#res_").html(splitResp[1]);
+				$("#centeredDivOnPopup").show();
+			}
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+	
+}//saveNumReferencia

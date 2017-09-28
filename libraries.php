@@ -23,6 +23,7 @@ require(DOC_ROOT.'/libs/Smarty.class.php');
 require_once(DOC_ROOT.'/phpmailer/class.phpmailer.php');
 
 include_once(DOC_ROOT."/classes/db.class.php");
+include_once(DOC_ROOT."/classes/dbfire.class.php");
 
 include_once(DOC_ROOT."/classes/error.class.php");
 include_once(DOC_ROOT."/classes/util.class.php");
@@ -137,6 +138,7 @@ $producto = new Producto;
 $notificacion= new Notificacion;
 $bank= new Bank;
 $solicitud= new Solicitud;
+$dbfire= new Dbfire;
 
 $smarty = new Smarty;
 

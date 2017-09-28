@@ -97,6 +97,11 @@
                               <i class="fa fa-file-text" aria-hidden="true"></i>Descargar Formatos de Inscripción/Reinscripción
 							</a>
                         </li>
+						 <li>
+                            <a href="#" onClick="verCalendario()">
+                              <i class="fa fa-file-text" aria-hidden="true"></i>Calendario de Pagos
+							</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- END MENU -->

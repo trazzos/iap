@@ -24,6 +24,15 @@ class Util extends Error
 		$this->DBSelect->setSqlDatabase("iapchiap_cbta");
 		return $this->DBSelect;
 	}
+	
+	public function Dbfire()
+	{
+		if($this->Dbfire == null )
+		{
+			$this->Dbfire = new Dbfire();
+		}
+		return $this->Dbfire;
+	}
 
 	function RoundNumber($number)
 	{

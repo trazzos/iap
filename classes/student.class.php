@@ -2042,6 +2042,59 @@ class Student extends User
 	}
 	
 	
+	public function testFire()
+	{
+		$sql="SELECT  *
+			FROM      
+			alumnos";
+		$this->Util()->Dbfire()->setQuery($sql);
+		$row = $this->Util()->Dbfire()->GetResult();
+		// exit;
+		return $row;
+	}
+	
+	public function verCalendarioPagos()
+	{
+		
+		 $sql = "
+				SELECT * FROM user
+				WHERE userId = ".$_SESSION["User"]["userId"]."";
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+		$infoS = $this->Util()->DB()->GetRow();  
+			
+		$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' order by id desc ";
+		$this->Util()->Dbfire()->setQuery($sql);
+		$row6 = $this->Util()->Dbfire()->GetRow();
+		
+		$sql="select periodo from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' and clavenivel = '".$row6['CLAVENIVEL']."' GROUP BY periodo  ";
+		$this->Util()->Dbfire()->setQuery($sql);
+		$row = $this->Util()->Dbfire()->GetResult();
+		
+		
+		foreach($row as $key=>$aux){
+			$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' and clavenivel = '".$row6['CLAVENIVEL']."' and  periodo = '".$aux['PERIODO']."' ";
+			$this->Util()->Dbfire()->setQuery($sql);
+			$rowp = $this->Util()->Dbfire()->GetResult();
+			foreach($rowp as $key6=>$aux6){
+				
+				 $sql="select * from alumnoshistorial where clave  = '".$infoS['referenciaBancaria']."' 
+				and clavenivel = '".$row6['CLAVENIVEL']."' and  ciclo = '".$row6['CICLO']."' and gradogrupo  = '".$aux6['GRADOGRUPO']."'";
+				// ECHO '<BR>';
+				$this->Util()->Dbfire()->setQuery($sql);
+				$rowp8 = $this->Util()->Dbfire()->GetRow();
+				$rowp[$key6]['inicioPago'] = $rowp8['FECHAINICIOPAGOS'];
+				$rowp[$key6]['beca'] = $rowp8['BECAPORCENTAJE'];
+			}
+			
+			$row[$key]['pagos'] = $rowp;
+		}
+		// echo '<pre>'; print_r($row);
+		// exit;
+		return $row;
+		
+	}
+	
 	
 	
 }
