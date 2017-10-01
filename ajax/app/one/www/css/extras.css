@@ -98,3 +98,64 @@ a.login {
     cursor: inherit;
     display: block;
 }
+
+.welcome-footer {
+    background:#276e36 !important;
+    color: #fff !important;
+    font-weight: normal !important;
+}
+
+.welcome-footer .ui-title {
+    font-weight: normal !important;
+}
+
+#divFooter .menu {
+    margin-top:8px;
+}
+
+#divFooter .enlace {
+    font-weight: normal;
+}
+
+#login {
+    min-height:100% !important;
+}
+
+.genericFooter {
+    height: 38px;
+    min-height: 38px;
+    background-color: #eef1f5;
+}
+
+.headerBackground {
+    background-image: -webkit-linear-gradient(top, #276e36, #276e36 25px, #e9e9e9 25px, #e9e9e9 100%);
+}
+
+.contentBackground {
+    background:#e9e9e9;
+    color: black;
+}
+
+.ui-li-divider.green {
+    background-color: #276e36;
+    color: #fff;
+}
+
+/*A partir de aqui solo se necesita para iphone quitar en android*/
+.ui-header {
+    margin-top: 20px;
+}
+
+.ui-page { -webkit-backface-visibility: hidden; }
+
+.material-icons.header-left{
+    float:left;
+    margin-top:5px;
+    font-size:32px;
+    cursor:pointer;
+}
+
+.material-icons.big{
+    font-size:48px;
+}
+

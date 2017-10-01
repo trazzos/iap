@@ -59,108 +59,63 @@
     <title>IAP Chiapas</title>
 </head>
 
-<body>
+<body style="margin-top:20px">
 
-	<div data-role="page" id="welcome" class="welcome" >
-	<br>
-	<br>
-	<div data-role="panel" id="myPanel"> 
-	
-		<div  id="divmyPanel"> 
-
-		</div>
-	  </div>
-
-<br>			
-<br>			
-<br>			
-		<center><div class="logoPrincipal">&nbsp;
-		</div>
-		</center>
-	
+	<!--WELCOME SCREEN-->
+	<div data-role="page" id="welcome" class="ui-page ui-page-theme-a ui-page-footer-fixed ui-page-active welcome">
 		<div data-role="content">
-	
-			<div class="divwelcome"> 
-<br>
-			<a onClick="CargaDoLogin()" class="ui-btn login white" style="width:100%; left:-15px">
-					INGRESAR
-				</a>
-		<br>
-
-				<center>
+			<div class="logoPrincipal"></div>
+			<center>
 				<table class="tblwelcome" align="center" width="100%" border="0">
 					<tr>
 						<td style="width:100px">
-						
-							<a onclick="verSubSeccion(7)"  class="menuPrincipal" >
-							<i class="material-icons green48 md-48">public</i>
-							</a>
-							<br>
-							Portal
-							
-						</td>
-						<td style="width:100px">
 							<a onclick="verSubSeccion(9)" class="menuPrincipal">
-							<i class="material-icons green48 md-48">import_contacts</i>
+								<i class="material-icons green48 md-48">import_contacts</i>
 							</a>
 							<br>
 							PRODIM
 						</td>
 						<td style="width:100px">
 							<a onclick="verSubSeccion(12)" class="menuPrincipal">
-							<i class="material-icons green48 md-48">device_hub</i>
+								<i class="material-icons green48 md-48">device_hub</i>
 							</a>
 							<br>
 							Red Conocer
 						</td>
 					</tr>
 					<tr>
-						<td colspan='3'>
-						<br>
+						<td colspan='2'>
+							<br>
 						</td>
 					</tr>
 					<tr>
 						<td >
-							
-						<a onclick="verSubSeccion(24)" class="menuPrincipal">
-							<i class="material-icons green48 md-48">grade</i>
-								<br>
-						</a>
-								Profesionalización
-					
-						</td>
-						<td>
-						<a onclick="verSubSeccion(5)" class="menuPrincipal">
-							<i class="material-icons green48 md-48">group</i>
+
+							<a onclick="verSubSeccion(24)" class="menuPrincipal">
+								<i class="material-icons green48 md-48">school</i>
 								<br>
 							</a>
-							Redes Sociales
-								
-							
+							Posgrados
+
 						</td>
 						<td>
 							<a onclick="verSubSeccion(6)" class="menuPrincipal">
-							<i class="material-icons green48 md-48">settings_phone</i>
+								<i class="material-icons green48 md-48">settings_phone</i>
 								<br>
-							</a>		
+							</a>
 							Contacto
-							
-							
 						</td>
 					</tr>
 				</table>
-				<br>
-				<br>
-				<br>
-				
-				</center>
-			</div>
+			</center>
 		</div>
-		
+		<div data-role="footer" data-position="fixed" class="welcome-footer" onClick="CargaDoLogin()">
+			<h4>Ir al login</h4>
+		</div>
 	</div>
-	
-	<!--
-	--->
+	<!--WELCOME SCREEN-->
+
+	<!-- Creo que esto ya no es necesario?-->
 	<div data-role="page" id="portal"  class="welcome">
 	<div data-role="header" data-theme="a">
 		<div id="" class="homeheader" onClick="backHome()"><i class="material-icons">keyboard_arrow_left</i></div>
@@ -197,7 +152,7 @@
 	<div data-role="page" id="portalprofe"  class="welcome">
 	<div data-role="header" data-theme="a">
 		<div id="" class="homeheader" onClick="backHome()"><i class="material-icons">keyboard_arrow_left</i></div>
-		<h2>PROFESIONALIZACION</h2>
+		<h2>POSGRADOS</h2>
 	</div>
 		
 	
@@ -238,16 +193,16 @@
 		</div>
 		<center><p class="parrafoLogin">2017 © IAP Chiapas.</p></center>
 	</div>
+	<!-- Hasta aqui creo que esto ya no es necesario?-->
 
+	<!--LOGIN-->
 	<div data-role="page" id="login" class="login" >
-	<br>
-	<br>
-
+		<br>
+		<br>
 		<center><div class="logo">&nbsp;</div></center>
 		<div data-role="content">
-		<br>
+			<br>
 			<div class="divlogin">
-				<h3 class="login white">Ingresa a tu cuenta</h3>
 				<form id="frmGral"><!--
 						<input type="text" id="notificacionesPush">-->
 						<input type="hidden" name="type" id="type" value="doLogin" >
@@ -257,20 +212,23 @@
 				<a onClick="DoLogin()" class="ui-btn login white">
 					Ingresar
 				</a>
-				<h4>¿Olvidaste tu contraseña?</h4>
 			</div>
 		</div>
 		<center><p class="parrafoLogin">2017 © IAP Chiapas.</p></center>
+		<div data-role="footer" data-position="fixed" class="welcome-footer" onClick="CargaInicio()">
+			<h4>Inicio</h4>
+		</div>
 	</div>
-	
-	
-	<div data-role="page" data-theme="a" id="home" >
+	<!--LOGIN-->
+
+	<!--HOME-->
+	<div data-role="page" data-theme="a" id="home" class="headerBackground" >
 		<div data-role="header" data-theme="a">
 			<div id="" class="homeheader" onClick="miCuenta()"><i class="material-icons">create</i></div>
 			<h2>IAP Chiapas</h2>
-			<div id="" class="headerConfig" onClick="openConfig()">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<div id="" class="headerConfig" onClick="openConfig()"><i class="material-icons">settings</i></div>
 		</div>
-		<div data-role="content" data-theme="a" id="page1_content">
+		<div data-role="content" data-theme="a" id="page1_content" class="contentBackground">
 				<div class="perfilInicio" onClick="miCuenta()">
 								<div id="dataAlumnos">
 								</div>
@@ -308,48 +266,29 @@
 				</div>
 				</div>
 		</div>
-<!-- TODO no tiene caso el footer por ahora, pero si se ve padre, para cuando haya mas opciones
-		<div data-role="footer" data-id="foo1" data-position="fixed">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
-					&lt;!&ndash;<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>&ndash;&gt;
-				</ul>
-			</div>&lt;!&ndash; /navbar &ndash;&gt;
-		</div>
--->
+		<div data-role="footer" data-id="foo1" data-position="fixed" class="genericFooter"></div>
 	</div>
+	<!--HOME-->
 
-
-	<div data-role="page" data-theme="a" id="divModules" >
+	<!--MODULES-->
+	<div data-role="page" data-theme="a" id="divModules" class="headerBackground" >
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('home')">&nbsp;&nbsp;&nbsp;</div>
+			<i class="material-icons header-left" onClick="back('home')">keyboard_arrow_left</i>
 			<h2>Modulos</h2>
 		</div>
-		<br>
-
-		<div id="divModule">
-			
+		<div data-role="content" data-theme="a" id="divModule" class="contentBackground">
 		</div>
-		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
-					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
-				</ul>
-			</div>
-		</div>-->
+		<div data-role="footer" data-id="foo1" data-position="fixed" class="genericFooter"></div>
 	</div>
-	
-	
-	<div data-role="page" data-theme="a" id="divDetalle" >
+	<!--MODULES-->
+
+	<!--DETALLE-->
+	<div data-role="page" data-theme="a" id="divDetalle" class="headerBackground">
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('divModules')">&nbsp;&nbsp;&nbsp;</div>
+			<i class="material-icons header-left" onClick="back('divModules')">keyboard_arrow_left</i>
 			<h2>IAP Chiapas</h2>
 		</div>
-		<br>
-
-		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
+		<div data-role="content" data-theme="a" class="contentBackground">
 			<div data-role="collapsible-set" >
 				<div data-role="collapsible" style="display:none" id="seccion_1">
 					<h3>Anuncios</h3>
@@ -375,34 +314,25 @@
 					<h3>Recursos de Apoyo</h3>
 					<div id="divRecursos"></div> 
 				</div>
+<!--
 				<div data-role="collapsible" style="display:none" id="seccion_7">
 					<h3>Foro</h3>
 					<div id="divForo"></div> 
 				</div>
+-->
 			</div>
-			
-
-			
+			<div data-role="footer" data-id="foo1" data-position="fixed" class="genericFooter"></div>
 		</div>
-		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
-					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
-				</ul>
-			</div>
-		</div>-->
 	</div>
+	<!--DETALLE-->
 
-	<div data-role="page" data-theme="a" id="divCal" >
+	<!--CALIFICACIONES-->
+	<div data-role="page" data-theme="a" id="divCal" class="headerBackground" >
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('divModules')">&nbsp;&nbsp;&nbsp;</div>
+			<i class="material-icons header-left" onClick="back('divModules')">keyboard_arrow_left</i>
 			<h2>IAP Chiapas</h2>
 		</div>
-		<br>
-
-		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
-		
+		<div data-role="content" data-theme="a" class="contentBackground">
 			<div data-role="collapsible-set" >
 				<div data-role="collapsible" style="display:none" id="cal_1">
 					<h3>Actividades</h3>
@@ -413,95 +343,68 @@
 					<div id="divExamenes"></div>
 				</div>
 			</div>
-
+			<div data-role="footer" data-id="foo1" data-position="fixed" class="genericFooter"></div>
 		</div>
-		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
-					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
-				</ul>
-			</div>
-		</div>-->
 	</div>
-	
-	<div data-role="page" data-theme="a" id="cuenta" >
+	<!--CALIFICACIONES-->
+
+	<!--MI CUENTA-->
+	<div data-role="page" data-theme="a" id="cuenta" class="headerBackground">
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('home')">&nbsp;&nbsp;&nbsp;</div>
+			<i class="material-icons header-left" onClick="back('home')">keyboard_arrow_left</i>
 			<h2>Mi Cuenta</h2>
 		</div>
-		<div id="divPersonal"></div>
-		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
-					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
-				</ul>
-			</div>
-		</div>-->
+		<div data-role="content" data-theme="a" id="divPersonal" class="contentBackground"></div>
+		<div data-role="footer" data-id="foo1" data-position="fixed" class="genericFooter"></div>
 	</div>
-	
-	
-	<div data-role="page" data-theme="a" id="divDetalleActividad" >
+	<!--MI CUENTA-->
+
+
+	<!--DETALLE ACTIVIDAD-->
+	<div data-role="page" data-theme="a" id="divDetalleActividad" class="headerBackground" >
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('divDetalle')">&nbsp;&nbsp;&nbsp;</div>
+			<i class="material-icons header-left" onClick="back('divDetalle')">keyboard_arrow_left</i>
 			<h2><div id="tituloactividad"></div></h2>
 		</div>
-		<div id="divDetalleP"></div>
-		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
-					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
-				</ul>
-			</div>
-		</div>-->
+		<div data-role="content" data-theme="a" id="divDetalleP" class="contentBackground"></div>
+		<div data-role="footer" data-id="foo1" data-position="fixed" class="genericFooter"></div>
 	</div>
-	
-	<div data-role="page" data-theme="a" id="divDetaRecurso" >
+	<!--DETALLE ACTIVIDAD-->
+
+	<!--RECURSOS DE APOYO-->
+	<div data-role="page" data-theme="a" id="divDetaRecurso" class="headerBackground" >
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('divDetalle')">&nbsp;&nbsp;&nbsp;</div>
+			<i class="material-icons header-left" onClick="back('divDetalle')">keyboard_arrow_left</i>
 			<h2>Recursos de Apoyo</h2>
 		</div>
-		<div id="divDetalleR"></div>
-		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
-					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
-				</ul>
-			</div>
-		</div>-->
+		<div data-role="content" data-theme="a" id="divDetalleR" class="contentBackground"></div>
+		<div data-role="footer" data-id="foo1" data-position="fixed" class="genericFooter"></div>
 	</div>
-	
-	<div data-role="page" data-theme="a" id="divConfig" >
+	<!--RECURSOS DE APOYO-->
+
+	<!--CONFIGURACION-->
+	<div data-role="page" data-theme="a" id="divConfig" class="headerBackground" >
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('home')">&nbsp;&nbsp;&nbsp;</div>
+			<i class="material-icons header-left" onClick="back('home')">keyboard_arrow_left</i>
 			<h2>Configuración</h2>
 		</div>
-		<div data-role="content"  id="page1_content" class="ui-content-no-padding">
-			  
+		<div data-role="content" class="contentBackground">
 			  <ul data-role="listview" data-inset="true">
 				  <li><a href="#" onClick="acercaDe()">Acerca de</a></li>
 				  <li><a href="#" onClick="Close()">Salir</a></li>
 			</ul>
 		</div>
-		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
-					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
-				</ul>
-			</div>
-		</div>-->
+		<div data-role="footer" data-id="foo1" data-position="fixed" class="genericFooter"></div>
 	</div>
-	
-	<div data-role="page" data-theme="a" id="divAcerca" >
+	<!--CONFIGURACION-->
+
+	<!--ACERCA DE-->
+	<div data-role="page" data-theme="a" id="divAcerca" class="headerBackground" >
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('divConfig')">&nbsp;&nbsp;&nbsp;</div>
+			<i class="material-icons header-left" onClick="back('divConfig')">keyboard_arrow_left</i>
 			<h2>Acerca de</h2>
 		</div>
-		<div data-role="content"  id="page1_content" class="ui-content-no-padding">
+		<div data-role="content" class="contentBackground">
 			  
 			 <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
 				<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
@@ -510,40 +413,27 @@
 				   Nombre:<span class="h3">SISEL</span>
 				</li>
 				<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-				   Version:<span class="h3">1.0</span>
+				   Version:<span class="h3">1.1</span>
 				</li>
 			</ul>
 		</div>
-		<!--<div data-role="footer" data-id="foo1" data-position="fixed">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#home" class="ui-btn ui-state-" data-icon="home">Inicio</a></li>
-					<li><a href="#kardex" class="ui-btn ui-state-" data-icon="home">Kardex</a></li>
-				</ul>
-			</div>
-		</div>-->
+		<div data-role="footer" data-id="foo1" data-position="fixed" class="genericFooter"></div>
 	</div>
-	
-	<div data-role="page" data-theme="a" id="divSubForo" >
+	<!--ACERCA DE-->
+
+	<!--SUBFORO-->
+	<div data-role="page" data-theme="a" id="divSubForo" class="headerBackground">
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('divDetalle')">&nbsp;&nbsp;&nbsp;</div>
+			<i class="material-icons header-left" onClick="back('divDetalle')">keyboard_arrow_left</i>
 			<h2>Foros</h2>
 		</div>
-		<div data-role="content" data-theme="a" id="page1_content" >
-			  
-			 <div id="subForo"> </div>
-		</div>
+		<div data-role="content" data-theme="a" id="subForo" class="contentBackground"></div>
 		<div data-role="footer" data-id="foo1" data-position="fixed">
-			<center><!--
-				<a onClick="toma()" class="ui-btn login white" id="btnSave">
-					subir
-				</a>-->
-				
+			<center>
 				<form id="frmForo">
-				<!--<input type="file" name="archivo" id="archivo">-->
-				<input type="text" name="asunto" id="asunto" placeholder="Asunto">
-				<textarea name="mensaje" id="mensaje" placeholder="Descripcion"></textarea>
-				<input type="hidden" name="forotopicId" id="forotopicId">
+					<input type="text" name="asunto" id="asunto" placeholder="Asunto">
+					<textarea name="mensaje" id="mensaje" placeholder="Descripcion"></textarea>
+					<input type="hidden" name="forotopicId" id="forotopicId">
 				</form>
 				<div class="msj"></div>
 				<div class="loader"></div>
@@ -553,63 +443,62 @@
 			</center>
 		</div>
 	</div>
-	
-	<div data-role="page" data-theme="a" id="divSubForoDetalle" >
+	<!--SUBFORO-->
+
+	<!--SUBFORO DETALLE-->
+	<div data-role="page" data-theme="a" id="divSubForoDetalle" class="headerBackground" >
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('divSubForo')">&nbsp;&nbsp;&nbsp;</div>
+			<i class="material-icons header-left" onClick="back('divSubforo')">keyboard_arrow_left</i>
 			<h2>Foros</h2>
 		</div>
-		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
-			  
+		<div data-role="content" data-theme="a" class="contentBackground">
 			 <div id="subForoDetalle"> </div>
 		</div>
 		<div data-role="footer" data-id="foo1" data-position="fixed">
 			<center>
 				<form id="frmAportacion">
-				<div class="btn btn-default btn-file">
-				<i class="material-icons green">cloud_upload</i>
-				<input type="file" name="path" id="path" onChange="compruebaExistencia(1)">
-				</div>
-				<div id="archiivocargado_1" class="archivoscargados" ></div>
-				<textarea name="aportacion" id="aportacion" placeholder="Aportacion"></textarea>
-				<input type="hidden" name="dcourseId" id="dcourseId">
-				<input type="hidden" name="dtopicId" id="dtopicId">
+					<div class="btn btn-default btn-file">
+						<i class="material-icons green">cloud_upload</i>
+						<br>Seleccionar archivo
+						<input type="file" name="path" id="path" onChange="compruebaExistencia(1)">
+					</div>
+					<div id="archiivocargado_1" class="archivoscargados" ></div>
+					<textarea name="aportacion" id="aportacion" placeholder="Aportacion"></textarea>
+					<input type="hidden" name="dcourseId" id="dcourseId">
+					<input type="hidden" name="dtopicId" id="dtopicId">
 				</form>
 				<div class="msj"></div>
 				<div class="loader"></div>
-				
 				<a onClick="saveAportacion()" id="btnAportacion" class="ui-btn login white">
 					Guardar Aportación
 				</a>
 			</center>
 		</div>
 	</div>
+	<!--SUBFORO DETALLE-->
 
-	
-	<div data-role="page" data-theme="a" id="divAddComentario" >
+	<!--ADD COMENTARIO-->
+	<div data-role="page" data-theme="a" id="divAddComentario" class="headerBackground" >
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('divSubForoDetalle')">&nbsp;&nbsp;&nbsp;</div>
+			<i class="material-icons header-left" onClick="back('divSubForoDetalle')">keyboard_arrow_left</i>
 			<h2>Foros</h2>
 		</div>
-		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
-			  
-			
-		
+		<div data-role="content" data-theme="a" class="contentBackground">
 			<center>
 				<form id="frmRetro">
+					<textarea name="comentario" id="comentario" placeholder="Comentario"></textarea>
+					<input type="hidden" name="ctopicId" id="ctopicId">
+					<input type="hidden" name="ccourseId" id="ccourseId">
+					<input type="hidden" name="replyId" id="replyId">
+					<input type="hidden" name="usuarioId" id="usuarioId">
 				
-				<textarea name="comentario" id="comentario" placeholder="Comentario"></textarea>
-				<input type="hidden" name="ctopicId" id="ctopicId">
-				<input type="hidden" name="ccourseId" id="ccourseId">
-				<input type="hidden" name="replyId" id="replyId">
-				<input type="hidden" name="usuarioId" id="usuarioId">
-				
-				<div class="msj"></div>
-				<div class="loader"></div>
-				<div class="btn btn-default btn-file">
-				<i class="material-icons green">cloud_upload</i>
-				<input type="file" name="path" id="path" onchange='compruebaExistencia(2)'>
-				</div>
+					<div class="msj"></div>
+					<div class="loader"></div>
+					<div class="btn btn-default btn-file">
+						<i class="material-icons green">cloud_upload</i>
+						<br>Seleccionar archivo
+						<input type="file" name="path" id="path" onchange='compruebaExistencia(2)'>
+					</div>
 				</form> 
 				<div id="archiivocargado_2" class="archivoscargados"></div> 
 				<a onClick="SaveComentario()" id="btnComentario" class="ui-btn login white">
@@ -618,46 +507,45 @@
 			</center>
 		</div>
 	</div>
-	<div data-role="page" data-theme="a" id="divUp" >
+	<!--ADD COMENTARIO-->
+
+	<!--SUBIR TAREA-->
+	<div data-role="page" data-theme="a" id="divUp" class="headerBackground" >
 		<div data-role="header" data-theme="a">
-			<div  class="atras" onClick="back('divDetalleActividad')">&nbsp;&nbsp;&nbsp;</div>
+			<i class="material-icons header-left" onClick="back('divDetalleActividad')">keyboard_arrow_left</i>
 			<h2>Subir Tarea</h2>
 		</div>
-		<div data-role="content" data-theme="a" id="page1_content" class="ui-content-no-padding">
-			  
-			
-		
+		<div data-role="content" data-theme="a" class="contentBackground">
 			<center>
 				<form id="frmUpActividad">
-				
-				<textarea name="titulo" id="titulo" placeholder="Titulo"></textarea>
-				<input type="hidden" name="upactividadId" id="upactividadId" >
-				<input type="hidden" name="upmodalidad" id="upmodalidad" >
-				<input type="hidden" name="tipoactivi" id="tipoactivi" >
+					<textarea name="titulo" id="titulo" placeholder="Titulo"></textarea>
+					<input type="hidden" name="upactividadId" id="upactividadId" >
+					<input type="hidden" name="upmodalidad" id="upmodalidad" >
+					<input type="hidden" name="tipoactivi" id="tipoactivi" >
 
-				<input type="hidden" name="upusuarioId" id="upusuarioId">
+					<input type="hidden" name="upusuarioId" id="upusuarioId">
 				
-				<div class="msj"></div>
-				<div class="loader"></div>
-				<div class="btn btn-default btn-file">
-				<i class="material-icons green">cloud_upload</i>
-				<input type="file" name="path" id="path" onchange='compruebaExistencia(3)'>
-				</div>
+					<div class="msj"></div>
+					<div class="loader"></div>
+					<div class="btn btn-default btn-file">
+						<i class="material-icons green">cloud_upload</i>
+						<br>Buscar archivo
+						<input type="file" name="path" id="path" onchange='compruebaExistencia(3)'>
+					</div>
 				</form>
 				<div id="archiivocargado_3" class="archivoscargados"></div> 
 				<a onClick="upActividad()" id="btnUpActividad" class="ui-btn login white">
 					Subir
 				</a>
 			</center>
-		
 		</div>
 	</div>
-	
-	
+	<!--SUBIR TAREA-->
+
+	<!--este de que es??-->
 	<div data-role="page" id="divSeccion" class="welcome" >
 	<br>
 	<br>
-
 		<center><div class="logo">&nbsp;</div></center>
 		<div data-role="content">
 		<br>
@@ -677,9 +565,4 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="css/jqm/jquery.js"></script>
     <script type="text/javascript" src="css/jqm/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
-</body>
-
-</html>
+    <script type="text/javascrip

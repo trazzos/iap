@@ -112,19 +112,19 @@
 		<table width=50% border=0 width=100% >
 		<tr>
 			<td><?php echo $urlFace?> </td>
-			<td >Facebook</td>
+			<td ><a href='https://www.facebook.com/IAPChiapas/'>Facebook</a></td>
 		</tr>
 		<tr>
 			<td><?php echo $urlTwi?></td>
-			<td style>Twitter</td>
+			<td style><a href='https://twitter.com/IapChiapas'>Twitter</a></td>
 		</tr>
 		<tr>
 			<td><?php echo $urlIns?></td>
-			<td>Instagram</td>
+			<td><a href='https://www.linkedin.com/in/iapchiapas/'>Instagram</a></td>
 		</tr>
 		<tr>
 			<td><?php echo $urlLink?></td>
-			<td>LinkedIn</td>
+			<td><a href='https://www.instagram.com/iapchiapas/'>LinkedIn</a></td>
 		</tr>
 		</table>
 		</center>

@@ -84,17 +84,20 @@ font-weight: 800;
 }
 
 .logo {
-
-	background-image: url(../img/logo_iap.png);
+	background-image: url(../img/Logo_3.png);
+    background-size: 170px 70px;
 	 width:170px; 
 	 height:70px; 
 }
 
 .logoPrincipal {
 
-	background-image: url(../img/logo_principal.png?kjkjhjk5kdf);
+	background-image: url(../img/logo_principal2.png?kjkjhjk5kdf);
 	 width:296px; 
-	 height:130px; 
+	 height:130px;
+    margin:auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .divlogin{
@@ -176,73 +179,53 @@ h4 {
 
    
 
- #home{
-	background:#eef1f5;
-	color: black;
+#home{
+    color: black;
 }
-
-
-
- #divSubForo{
-	background:#eef1f5;
-	color: black;
-}
-
-#cuenta{
-	background:#eef1f5;
-	color: black;
-}
-
-
-#divDetalle{
-	background:#eef1f5;
-	color: black;
-}
-
-#page1_content{
-	background:#eef1f5;
-	color: black;
-}
-
 
 #divModules{
-	background:#eef1f5;
-	color: black;
+    color: black;
 }
 
+#divDetalle{
+    color: black;
+}
 
 #divConfig{
-	background:#eef1f5;
-	color: black;
+    color: black;
 }
 
 
 #divAcerca{
-	background:#eef1f5;
-	color: black;
+    color: black;
 }
-
-#divSubForoDetalle{
-	background:#eef1f5;
-	color: black;
-}
-
-
 
 #divCal{
-	background:#eef1f5;
+    color: black;
+}
+
+ #divSubForo{
 	color: black;
 }
 
+#cuenta{
+	color: black;
+}
+
+#page1_content{
+	color: black;
+}
+
+
+#divSubForoDetalle{
+	color: black;
+}
 
 #divAddComentario{
-	background:#eef1f5;
 	color: black;
 }
 
-
 #divUp{
-	background:#eef1f5;
 	color: black;
 }
 
@@ -265,28 +248,16 @@ h4 {
 }
 
 .homeheader{
-	float:left;
-	margin-top: 5px;
-    margin-right: 5px;
-    margin-left: 10px;
-    height: 29px;
-    display: inline-block;   
+    position: absolute;
+    left: 10px;
+    top: 8px
 }
-
-
 
 .headerConfig{
-	float:right;
-	margin-top: -30px;
-    margin-right: 10px;
-    margin-left: 0px;
-    height: 29px;
-    height: 29px;
-    display: inline-block;  
-	background: url(../img/gear-white.png);
-	background-repeat: no-repeat	
+    position: absolute;
+    right: 10px;
+    top: 8px
 }
-
 
 .atras{
 	float:left;
