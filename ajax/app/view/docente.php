@@ -21,12 +21,12 @@
 		<span class="text"><?php echo $docente["celular"]; ?></span>
 	</div>
 	<?php }?>
-    <?php if($docente["semblanza"]<>null){?>
+    <?php if($docente["description"]<>null){?>
 	<ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
         <li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
             Semblanza</li>
         <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-           <span class="h3"><?php echo $docente["semblanza"]?></span>
+           <span class="h3"><?php echo html_entity_decode($docente["description"])?></span>
         </li>
     </ul>
 	<?php }?>

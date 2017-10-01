@@ -127,10 +127,9 @@
 								 
 								 $confirmacion=$year.$idUser.$num;
 								 
-			
-			if(move_uploaded_file($file['tmp_name'], $target_path)) 
+			if(move_uploaded_file($file['tmp_name'], $target_path))
 			{
-				$sql = "UPDATE 
+				$sql = "UPDATE
 							homework
 							SET
 								path = '".$relative_path."',

@@ -50,6 +50,9 @@
 	<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
 		Calificación: <span class="h3"><?php echo $aux["calificacion"]?></span>
 	</li>
+    <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
+      Porcentaje Obtenido: <span class="h3"><?php echo $aux["realScore"]?>%</span>
+    </li>
 	<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
 		Retroalimentación: <span class="h3"><?php echo $aux["retro"]?></span>
 	</li>

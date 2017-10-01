@@ -195,8 +195,12 @@
 			$personal->setPersonalId($myModule["access"][1]);
 			$docente = $personal->Info();
 
-			$urlFotoDoc = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;' '>";
-			
+			if($docente['foto']){
+				$urlFotoDoc = "<img src='".WEB_ROOT."/".$docente['foto']."' style='width:100px; border-radius: 50%;' '>";
+			} else {
+				$urlFotoDoc = "<img src='".WEB_ROOT."/alumnos/no_foto.JPG' style='width:100px; border-radius: 50%;' '>";
+			}
+
 			// echo "<pre>"; print_r($docente);
 			// exit;
 			echo "ok[#]";
@@ -435,12 +439,6 @@
 		break;
 		
 		case "upActividad":
-		
-		// echo '<pre>'; print_r($_POST);
-		// exit;
-			// echo '<pre>'; print_r($_FILES);
-			// echo '<br>'; $target_path;
-			// exit;
 		
 			$homework->setActividadId($_POST["upactividadId"]);
 			$homework->setModalidad($_POST["upmodalidad"]);

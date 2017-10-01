@@ -148,3 +148,14 @@ a.login {
 
 .ui-page { -webkit-backface-visibility: hidden; }
 
+.material-icons.header-left{
+    float:left;
+    margin-top:5px;
+    font-size:32px;
+    cursor:pointer;
+}
+
+.material-icons.big{
+    font-size:48px;
+}
+

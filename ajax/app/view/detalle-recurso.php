@@ -54,10 +54,9 @@
 
 	
     </ul>
-	<a href="<?php echo WEB_ROOT."/resources/".$infoRe["path"]?>" target="_blank" class="ui-btn login white">
-		Descargar Recurso de Apoyo
+	<a class="ui-btn login white" href="<?php echo WEB_ROOT."/download.php?file=resources/".$infoRe["path"]."&mime=".$infoRe["mime"] ?>" >
+		Descargar recurso de apoyo
 	</a>
-	
 </div>
 
 
