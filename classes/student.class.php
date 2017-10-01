@@ -1982,7 +1982,7 @@ class Student extends User
 		
 		'.$_POST['peticion'];
 		 // contacto@iapchiapas.org.mx
-		$sendmail->enviarCorreo("Formulario de Contacto",$contenido, "", "", "juanjosepm@live.com", "Administrador", $attachment, $fileName,$_POST['correo'],$_POST['nombre']);
+		$sendmail->enviarCorreo("Formulario de Contacto",$contenido, "", "", "contacto@iapchiapas.org.mx", "Administrador", $attachment, $fileName,$_POST['correo'],$_POST['nombre']);
 		
 		return true;
 	}

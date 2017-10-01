@@ -34,9 +34,17 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+
+        console.log(window.device.version);
+        if (parseFloat(window.device.version) >= 7.0) {
+            document.body.style.marginTop = "20px";
+            // OR do whatever layout you need here, to expand a navigation bar etc
+        }
         console.log('Received Device Ready Event');
         console.log('calling setup push');
+		document.addEventListener("backbutton", onBackKeyDown, false);
         app.setupPush();
+		
     },
     setupPush: function() {
         console.log('calling push init');
@@ -97,9 +105,9 @@ var app = {
 
 var urlLoc = "localhost";
 
- // var WEB_ROOT = "http://" + urlLoc + "/iap";
-  // var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
- var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
+  //var WEB_ROOT = "http://" + urlLoc + "/gitiap";
+  var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
+  //var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
 
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
 
@@ -855,17 +863,15 @@ function backHome()
 	
 }
 
-
-
 function CargaDoLogin()
 {
-
 	$.mobile.changePage("#login");
 }
 
-
-
-
+function CargaInicio()
+{
+    $.mobile.changePage("#welcome");
+}
 
 function verSubSeccion(Id){
 	
@@ -988,4 +994,10 @@ function verPortal(Id)
 		$.mobile.changePage("#portalconta");
 	}
 	
+}
+
+
+function onBackKeyDown()
+{
+	navigator.app.backHistory();
 }

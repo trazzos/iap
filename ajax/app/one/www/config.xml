@@ -118,5 +118,13 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <preference name="StatusBarOverlaysWebView" value="false" />
+        <preference name="StatusBarBackgroundColor" value="#000000" />
     </platform>
+    <gap:config-file platform="ios" parent="NSPhotoLibraryUsageDescription">
+        <string>User can opt to upload a photo or video as a response of an activity</string>
+    </gap:config-file>
+    <gap:config-file platform="ios" parent="NSCameraUsageDescription">
+        <string>User can opt to take a photo or record a video as a response of an activity</string>
+    </gap:config-file>
 </widget>

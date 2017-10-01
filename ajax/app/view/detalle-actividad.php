@@ -66,9 +66,8 @@
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Tarea Entregada: 
 			<span class="h3">
-
 				<a  href="<?php echo WEB_ROOT."/download.php?file=homework/".$infoActividad["homework"]["path"]."&mime=".$infoActividad["homework"]["mime"] ?>" >
-				<i class="material-icons green">archive</i>
+				Descargar
 				</a>
 			</span>
         </li>
@@ -84,22 +83,34 @@
 		 <?php }?>
 		 <?php if($infoActividad["retro"]) {?>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Retroalimentación: <span class="h3"><?php echo $infoActividad["birthdate"]?></span>
+            Retroalimentación:<br> <span class="h3"><?php echo nl2br($infoActividad["retro"])?></span>
         </li>
 		 <?php }?>
 		 <?php if($infoActividad["retroFile"] <> ""){?>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Archivo adjunto disponible: <span class="h3">
-			<a href='<?php echo WEB_ROOT."/file_retro/".$infoActividad["retroFile"] ?>' target="_blank"  style=""><i class="material-icons green">archive</i></a>
+			<a  href="<?php echo WEB_ROOT."/download.php?file=file_retro/".$infoActividad["retroFile"]."&mime=".$infoActividad["homework"]["mime"] ?>" >
+	Descargar</a>
 			</span>
         </li>
 		 <?php }?>
 		 
     </ul>
 	<?php if($_POST["tipo"]=="actividad"){?>
-	<a onClick="verFormUp('<?php echo $infoActividad["activityId"]?>','<?php echo $infoActividad["modality"]?>','<?php echo $_POST["tipo"]?>')" id="btnComentario" class="ui-btn login white">
-		Subir Actividad
-	</a>
+		<?php $timestamp = time(); ?>
+		<?php if ($timestamp > $infoActividad["initialDateTimestamp"] && $timestamp < $infoActividad["finalDateTimestamp"]){ ?>
+			<a onClick="verFormUp('<?php echo $infoActividad["activityId"]?>','<?php echo $infoActividad["modality"]?>','<?php echo $_POST["tipo"]?>')" id="btnComentario" class="ui-btn login white">
+				Subir Actividad
+			</a>
+		<?php }?>
+		<?php if ($timestamp > $infoActividad["finalDateTimestamp"]){ ?>
+			<span style="color:#C00">Tiempo Terminado</span><br>
+		<?php }?>
+		<?php  if ($timestamp < $infoActividad["initialDateTimestamp"] ){?>
+			<span style="color:#C00">No Iniciada</span>
+		<?php }?>
+
+
 	<?php }else{?>
 	<font color='#276e36'>
 	Los examenes solo se pueden realizar a través de www.iapchiapasenlinea.mx
