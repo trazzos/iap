@@ -2064,36 +2064,221 @@ class Student extends User
 		$infoS = $this->Util()->DB()->GetRow();  
 			
 		$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' order by id desc ";
-		$this->Util()->Dbfire()->setQuery($sql);
-		$row6 = $this->Util()->Dbfire()->GetRow();
+		$this->Util()->DB()->setQuery($sql);
+		$row6 = $this->Util()->DB()->GetRow();
 		
-		$sql="select periodo from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' and clavenivel = '".$row6['CLAVENIVEL']."' GROUP BY periodo  ";
-		$this->Util()->Dbfire()->setQuery($sql);
-		$row = $this->Util()->Dbfire()->GetResult();
+		$sql="select periodo from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' and clavenivel = '".$row6['clavenivel']."' GROUP BY periodo  ";
+		$this->Util()->DB()->setQuery($sql);
+		$row = $this->Util()->DB()->GetResult();
 		
 		
 		foreach($row as $key=>$aux){
-			$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' and clavenivel = '".$row6['CLAVENIVEL']."' and  periodo = '".$aux['PERIODO']."' ";
-			$this->Util()->Dbfire()->setQuery($sql);
-			$rowp = $this->Util()->Dbfire()->GetResult();
+			$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' 
+				and clavenivel = '".$row6['clavenivel']."' 
+				and  periodo = '".$aux['periodo']."' 
+				and (claveconcepto = 12 or claveconcepto = 21 or claveconcepto = 9)";
+			$this->Util()->DB()->setQuery($sql);
+			$rowp = $this->Util()->DB()->GetResult();
 			foreach($rowp as $key6=>$aux6){
 				
-				 $sql="select * from alumnoshistorial where clave  = '".$infoS['referenciaBancaria']."' 
-				and clavenivel = '".$row6['CLAVENIVEL']."' and  ciclo = '".$row6['CICLO']."' and gradogrupo  = '".$aux6['GRADOGRUPO']."'";
-				// ECHO '<BR>';
-				$this->Util()->Dbfire()->setQuery($sql);
-				$rowp8 = $this->Util()->Dbfire()->GetRow();
-				$rowp[$key6]['inicioPago'] = $rowp8['FECHAINICIOPAGOS'];
-				$rowp[$key6]['beca'] = $rowp8['BECAPORCENTAJE'];
+				  $sql="select * from alumnoshistorial where clave  = '".$infoS['referenciaBancaria']."' 
+				and clavenivel = '".$row6['clavenivel']."' and  ciclo = '".$row6['ciclo']."' and gradogrupo  = '".$aux6['gradogrupo']."'";
+				$this->Util()->DB()->setQuery($sql);
+				$rowp8 = $this->Util()->DB()->GetRow();
+				$rowp[$key6]['inicioPago'] = $rowp8['fechainiciopagos'];
+				$rowp[$key6]['beca'] = $rowp8['becaporcentaje'];
+				$rowp[$key6]['numPagos'] = $rowp8['numPagos'];
+				
+				if($aux6['claveconcepto'] == 21){
+					$rowp[2]['inicioPago'] = $rowp8['fechainiciopagos'];
+					$rowp[2]['descripcion'] = 'Materia';
+					$rowp[2]['numPagos'] = $rowp8['numPagos'];
+					$rowp[2]['beca'] = $rowp8['becaporcentaje'];
+					$rowp[2]['importe'] = $aux6['importe'];
+				}
+				
 			}
 			
 			$row[$key]['pagos'] = $rowp;
 		}
-		// echo '<pre>'; print_r($row);
-		// exit;
+
 		return $row;
 		
 	}
+	
+	public function extraeInfoFire()
+	{
+		$sql="select * from pagosadicio where ID > 13049 order by ID asc";
+		$this->Util()->Dbfire()->setQuery($sql);
+		$row6 = $this->Util()->Dbfire()->GetResult();
+		
+		// $sql="select * from alumnoshistorial ";
+		// $this->Util()->Dbfire()->setQuery($sql);
+		// $lstHistory = $this->Util()->Dbfire()->GetResult();
+		
+
+		foreach($row6 as $key=>$aux){
+			
+			 $sqlNot="insert into pagosadicio(
+				  id,
+				  ciclo,
+				  periodo,
+				  clavenivel,
+				  nombrenivel,
+				  gradogrupo,
+				  clavealumno,
+				  claveconcepto,
+				  descripcion,
+				  periodicidad,
+				  importe,
+				  iva,
+				  formato,
+				  formapago,
+				  aplicabeca,
+				  unidad,
+				  pagaren,
+				  pagacada,
+				  pases,
+				  accesos,
+				  categoria,
+				  usuario,
+				  fechacreacion,
+				  usuariomodificacion,
+				  fechamodificacion
+				)
+			   values(
+			            '".$aux['ID']."', 
+			            '".$aux['CICLO']."', 
+			            '".$aux['PERIODO']."',
+			            '".$aux['CLAVENIVEL']."',
+			            '".$aux['NOMBRENIVEL']."',
+			            '".$aux['GRADOGRUPO']."',
+			            '".$aux['CLAVEALUMNO']."',
+			            '".$aux['CLAVECONCEPTO']."',
+			            '".$aux['DESCRIPCION']."',
+			            '".$aux['PERIODICIDAD']."',
+			            '".$aux['IMPORTE']."',
+			            '".$aux['IVA']."',
+			            '".$aux['FORMATO']."',
+			            '".$aux['FORMAPAGO']."',
+			            '".$aux['APLICABECA']."',
+			            '".$aux['UNIDAD']."',
+			            '".$aux['PAGAREN']."',
+			            '".$aux['PAGACADA']."',
+			            '".$aux['PASES']."',
+			            '".$aux['ACCESOS']."',
+			            '".$aux['CATEGORIA']."',
+			            '".$aux['USUARIO']."',
+			            '".$aux['FECHACREACION']."',
+			            '".$aux['USUARIOMODIFICACION']."',
+						'".$aux['FECHAMODIFICACION']."'
+			         )";
+			$this->Util()->DB()->setQuery($sqlNot);
+			$this->Util()->DB()->InsertData(); 
+		}
+		
+		// foreach($lstHistory as $key=>$aux){
+			
+			// echo $sqlNot="insert into alumnoshistorial(
+				  // clave,
+				  // clavenivel,
+				  // nombrenivel,
+				  // gradogrupo,
+				  // ciclo,
+				  // becapesos,
+				  // becaporcentaje,
+				  // nombre,
+				  // apellidop,
+				  // apellidom,
+				  // periodo,
+				  // fechainiciopagos,
+				  // infocambio,
+				  // activado,
+				  // idplan,
+				  // idespecialidad,
+				  // usuario,
+				  // fechacreacion,
+				  // usuariomodificacion,
+				  // fechamodificacion,
+				  // status,
+				  // fechastatus,
+				  // observaciones
+				  
+				// )
+			   // values(
+			            // '".$aux['CLAVE']."', 
+			            // '".$aux['CLAVENIVEL']."',
+			            // '".$aux['NOMBRENIVEL']."',
+			            // '".$aux['GRADOGRUPO']."',
+			            // '".$aux['CICLO']."',
+			            // '".$aux['BECAPESOS']."',
+			            // '".$aux['BECAPORCENTAJE']."',
+			            // '".$aux['NOMBRE']."',
+			            // '".$aux['APELLIDOP']."',
+			            // '".$aux['APELLIDOM']."',
+			            // '".$aux['PERIODO']."',
+			            // '".$aux['FECHAINICIOPAGOS']."',
+			            // '".$aux['INFOCAMBIO']."',
+			            // '".$aux['ACTIVADO']."',
+			            // '".$aux['IDPLAN']."',
+			            // '".$aux['IDESPECIALIDAD']."',
+			            // '".$aux['USUARIO']."',
+			            // '".$aux['FECHACREACION']."',
+			            // '".$aux['USUARIOMODIFICACION']."',
+			            // '".$aux['FECHAMODIFICACION']."',
+			            // '".$aux['STATUS']."',
+			            // '".$aux['FECHASTATUS']."',
+			            // '".$aux['OBSERVACIONES']."'
+			         // )";
+
+			// $this->Util()->DB()->setQuery($sqlNot);
+			// $this->Util()->DB()->InsertData(); 
+
+		// }
+		
+		return true;
+	}
+	
+	
+	public function actualizapago()
+	{
+		
+		
+		$sql="select * from alumnoshistorial where ID >= 1649 and ID < 1749 ";
+		$this->Util()->DB()->setQuery($sql);
+		$rowp = $this->Util()->DB()->GetResult();
+		
+		
+			
+		foreach($rowp as $key=>$aux){
+			
+			
+			
+			$sql="select * from alumnoshistorial where ID = ".$aux['id']." ";
+			$this->Util()->Dbfire()->setQuery($sql);
+			$infoA = $this->Util()->Dbfire()->GetRow();
+			
+			$r = explode ('/',$infoA['FECHAINICIOPAGOS']);
+			
+			 $fecha = $r[2].$r[1].$r[0].'<br>';
+			
+			 $sql = "UPDATE
+						alumnoshistorial
+						SET
+							fechainiciopagos = '".$fecha."'
+						WHERE ID = '".$aux['id']."'";
+						
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->UpdateData();
+		}
+			
+			
+				
+		return true;
+	}
+	
+	
 	
 	
 	

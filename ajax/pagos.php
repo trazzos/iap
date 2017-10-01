@@ -41,10 +41,11 @@
 			";
 			
 	foreach($lstPagos as $key=>$aux){
-		$html .= "<div class='float'>".$aux['PERIODO']."
+		$html .= "<div class='float'>".$aux['periodo']."
 			<table>
 			<tr>
 			<td>Fecha de Pago</td>
+			<td>Descripcion</td>
 			<td>Pago Normal</td>
 			<td>% Beca</td>
 			<td>Importe</td>
@@ -53,9 +54,10 @@
 			$html .= "
 			<tr>
 			<td>".$aux4['inicioPago']."</td> 
+			<td>".$aux4['descripcion']."</td> 
 			<td></td>
-			<td>".$aux4['beca']."</td>
-			<td>".$aux4['IMPORTE']."</td>
+			<td>".$aux4['beca']." %</td>
+			<td>".number_format($aux4['importe']/$aux4['numPagos'],2)."</td>
 			</tr> ";
 			}
 			
