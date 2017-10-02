@@ -385,6 +385,19 @@ class Solicitud extends Module
 		return $result2;
 	}
 	
+	public function enumerateTiposSolicitud()
+	{
+		 $sqlQuery = 'SELECT 
+					*
+				FROM 
+					tiposolicitud
+				WHERE  1';
+			$this->Util()->DB()->setQuery($sqlQuery);
+			$coun = $this->Util()->DB()->GetResult();
+			
+		return $coun;
+	}
+	
 	
 
 }	

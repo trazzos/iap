@@ -177,6 +177,20 @@
                 <span class="arrow"></span>
             </a>
         </li>
+		 <li class="nav-item  ">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="icon-puzzle"></i>
+                <span class="title">Finanzas</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/concepto" class="nav-link ">
+                        <span class="title">Conceptos</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
         {/if}
         {/if}
 

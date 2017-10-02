@@ -2053,13 +2053,27 @@ class Student extends User
 		return $row;
 	}
 	
+	
+	public function infoCarrera()
+	{
+		$sql = "
+				SELECT * FROM user
+				WHERE userId = ".$_SESSION["User"]["userId"]."";
+			$this->Util()->DB()->setQuery($sql);
+		$infoS = $this->Util()->DB()->GetRow();  
+			
+		$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' order by id desc ";
+		$this->Util()->DB()->setQuery($sql);
+		$row6 = $this->Util()->DB()->GetRow();
+		
+		return $row6;
+	}
 	public function verCalendarioPagos()
 	{
 		
 		 $sql = "
 				SELECT * FROM user
 				WHERE userId = ".$_SESSION["User"]["userId"]."";
-			// exit;
 			$this->Util()->DB()->setQuery($sql);
 		$infoS = $this->Util()->DB()->GetRow();  
 			
@@ -2090,11 +2104,36 @@ class Student extends User
 				$rowp[$key6]['numPagos'] = $rowp8['numPagos'];
 				
 				if($aux6['claveconcepto'] == 21){
-					$rowp[2]['inicioPago'] = $rowp8['fechainiciopagos'];
-					$rowp[2]['descripcion'] = 'Materia';
-					$rowp[2]['numPagos'] = $rowp8['numPagos'];
-					$rowp[2]['beca'] = $rowp8['becaporcentaje'];
-					$rowp[2]['importe'] = $aux6['importe'];
+					
+					for($i=1;$i<=$rowp8['numPagos'];$i++){
+						
+						
+						if($i==2){
+								$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
+								$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
+						}
+						if($i==3){
+								$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
+								$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
+						}
+						if($i==4){
+								$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
+								$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
+						}
+						
+						$rowp[$i]['inicioPago'] = $rowp8['fechainiciopagos'];
+						$rowp[$i]['descripcion'] = 'Materia';
+						$rowp[$i]['numPagos'] = $rowp8['numPagos'];
+						$rowp[$i]['beca'] = $rowp8['becaporcentaje'];
+						@$rowp[$i]['total'] = $aux6['importe']/$rowp8['numPagos'];
+					}
+
+				}else{
+					$rowp[0]['inicioPago'] = $rowp8['fechainiciopagos'];
+					$rowp[0]['descripcion'] = $aux6['descripcion'];
+					$rowp[0]['numPagos'] = $rowp8['numPagos'];
+					$rowp[0]['beca'] = $rowp8['becaporcentaje'];
+					$rowp[0]['total'] = $aux6['importe'];
 				}
 				
 			}
