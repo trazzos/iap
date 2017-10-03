@@ -14,7 +14,9 @@
 			<td align="center">{$item.nombre}</td>
 			<td align="center">{$item.precio}</td>
 			<td align="center">
-				<i class="fa fa-pencil" aria-hidden="true"></i>
+				 <a   id="" href="{$WEB_ROOT}/graybox.php?page=add-concepto&id={$item.tiposolicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='EDITAR'>
+					<i class="fa fa-plus"></i>
+				</a>
 			</td>
 		</tr>
 	{/foreach}

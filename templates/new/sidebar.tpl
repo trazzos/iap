@@ -189,6 +189,11 @@
                         <span class="title">Conceptos</span>
                     </a>
                 </li>
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/sincronizar" class="nav-link ">
+                        <span class="title">Sincronizar DB</span>
+                    </a>
+                </li>
             </ul>
         </li>
         {/if}

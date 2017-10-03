@@ -6,7 +6,7 @@
 	
 	
 	
-	$registros = $solicitud->enumerateTiposSolicitud();
+	$registros = $solicitud->enumerateSincronizacion();
 
 	$smarty->assign("lstSolicitudes", $lstSolicitudes);	
 	$smarty->assign("registrosStudent", $registrosStudent);	

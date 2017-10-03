@@ -3,6 +3,35 @@
 	class Course extends Subject
 	{
 		private $ponenteText;
+		private $nombre;
+		private $precio;
+		private $idfire;
+		private $id;
+		
+		public function setId($value)
+		{
+			$this->id = $value;	
+		}
+	
+	
+		public function setNombre($value)
+		{
+			$this->Util()->ValidateString($value, 255, 0, 'Nombre');
+			$this->nombre = $value;
+		}
+		
+		public function setPrecio($value)
+		{
+			$this->Util()->ValidateString($value, 255, 0, 'Precio');
+			$this->precio = $value;
+		}
+		
+		public function setFire($value)
+		{
+			$this->Util()->ValidateString($value, 255, 0, 'ID Fire');
+			$this->idfire = $value;
+		}
+		
 		public function setPonenteText($value)
 		{
 			$this->Util()->ValidateString($value, 255, 0, 'Texto Ponente');
@@ -760,6 +789,69 @@
 			}
 			return $result;
 		}
+		
+		function saveConcepto5()
+		{
+			
+			if($this->nombre == ''){
+				echo 'fail[#]';
+				echo '<font color="red">Campo requerido: Nombre</font>';
+				exit;
+			}
+			
+			if($this->precio == ''){
+				echo 'fail[#]';
+				echo '<font color="red">Campo requerido: Nombre</font>';
+				exit;
+			}
+			
+			if($this->idfire == ''){
+				echo 'fail[#]';
+				echo '<font color="red">Campo requerido: Nombre</font>';
+				exit;
+			}
+			
+			if($this->id){
+				
+				$sql = " UPDATE 
+						tiposolicitud
+					SET
+						nombre='".$this->nombre."', 
+						precio='".$this->precio."',
+						idfire='".$this->idfire."'
+						WHERE tiposolicitudId ='".$this->id."'";
+						
+				$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->UpdateData();
+				
+			}else{
+				 $sql = "INSERT INTO
+						tiposolicitud
+						( 	
+						 	nombre,
+							precio,
+							idfire
+						)
+					VALUES (
+							'" . $this->nombre."',
+							'" . $this->precio."',
+							'" . $this->idfire."'
+							)";
+							
+			
+				$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->InsertData();
+			}
+
+				 
+			
+			
+			
+			
+			
+			return true;
+		}
+		
 		
 	
 }	

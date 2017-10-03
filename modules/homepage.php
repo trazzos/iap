@@ -1,12 +1,4 @@
 <?php
-
-
-// $student->extraeInfoFire();
-// $student->actualizapago();
-// $ls = $student->testFire();
-// exit;
-// echo '<pre>'; print_r($ls );
-// exit;
 	/* For Session Control - Don't remove this */
 $x=0;	
 //print_r($_SESSION);exit;

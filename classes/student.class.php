@@ -2147,13 +2147,22 @@ class Student extends User
 	
 	public function extraeInfoFire()
 	{
-		$sql="select * from pagosadicio where ID > 13049 order by ID asc";
+		
+		$sql="select max(id) from pagosadicio";
+		$this->Util()->Db()->setQuery($sql);
+		$maxIdPago = $this->Util()->Db()->GetSIngle();
+		
+		$sql="select max(id) from alumnoshistorial";
+		$this->Util()->Db()->setQuery($sql);
+		$maxIdH = $this->Util()->Db()->GetSIngle();
+		
+		$sql="select * from pagosadicio where ID > ".$maxIdPago." order by ID asc";
 		$this->Util()->Dbfire()->setQuery($sql);
 		$row6 = $this->Util()->Dbfire()->GetResult();
 		
-		// $sql="select * from alumnoshistorial ";
-		// $this->Util()->Dbfire()->setQuery($sql);
-		// $lstHistory = $this->Util()->Dbfire()->GetResult();
+		$sql="select * from alumnoshistorial where ID > ".$maxIdH." order by ID asc";
+		$this->Util()->Dbfire()->setQuery($sql);
+		$lstHistory = $this->Util()->Dbfire()->GetResult();
 		
 
 		foreach($row6 as $key=>$aux){
@@ -2216,64 +2225,97 @@ class Student extends User
 			$this->Util()->DB()->InsertData(); 
 		}
 		
-		// foreach($lstHistory as $key=>$aux){
+		foreach($lstHistory as $key=>$aux){
 			
-			// echo $sqlNot="insert into alumnoshistorial(
-				  // clave,
-				  // clavenivel,
-				  // nombrenivel,
-				  // gradogrupo,
-				  // ciclo,
-				  // becapesos,
-				  // becaporcentaje,
-				  // nombre,
-				  // apellidop,
-				  // apellidom,
-				  // periodo,
-				  // fechainiciopagos,
-				  // infocambio,
-				  // activado,
-				  // idplan,
-				  // idespecialidad,
-				  // usuario,
-				  // fechacreacion,
-				  // usuariomodificacion,
-				  // fechamodificacion,
-				  // status,
-				  // fechastatus,
-				  // observaciones
+			 $r = explode ('/',$aux['FECHAINICIOPAGOS']);
+			 $fecha = $r[2].$r[1].$r[0];
+			
+			 $sqlNot="insert into alumnoshistorial(
+				  id,
+				  clave,
+				  clavenivel,
+				  nombrenivel,
+				  gradogrupo,
+				  ciclo,
+				  becapesos,
+				  becaporcentaje,
+				  nombre,
+				  apellidop,
+				  apellidom,
+				  periodo,
+				  fechainiciopagos,
+				  infocambio,
+				  activado,
+				  idplan,
+				  idespecialidad,
+				  usuario,
+				  fechacreacion,
+				  usuariomodificacion,
+				  fechamodificacion,
+				  status,
+				  fechastatus,
+				  observaciones
 				  
-				// )
-			   // values(
-			            // '".$aux['CLAVE']."', 
-			            // '".$aux['CLAVENIVEL']."',
-			            // '".$aux['NOMBRENIVEL']."',
-			            // '".$aux['GRADOGRUPO']."',
-			            // '".$aux['CICLO']."',
-			            // '".$aux['BECAPESOS']."',
-			            // '".$aux['BECAPORCENTAJE']."',
-			            // '".$aux['NOMBRE']."',
-			            // '".$aux['APELLIDOP']."',
-			            // '".$aux['APELLIDOM']."',
-			            // '".$aux['PERIODO']."',
-			            // '".$aux['FECHAINICIOPAGOS']."',
-			            // '".$aux['INFOCAMBIO']."',
-			            // '".$aux['ACTIVADO']."',
-			            // '".$aux['IDPLAN']."',
-			            // '".$aux['IDESPECIALIDAD']."',
-			            // '".$aux['USUARIO']."',
-			            // '".$aux['FECHACREACION']."',
-			            // '".$aux['USUARIOMODIFICACION']."',
-			            // '".$aux['FECHAMODIFICACION']."',
-			            // '".$aux['STATUS']."',
-			            // '".$aux['FECHASTATUS']."',
-			            // '".$aux['OBSERVACIONES']."'
-			         // )";
+				)
+			   values(
+			            '".$aux['ID']."', 
+			            '".$aux['CLAVE']."', 
+			            '".$aux['CLAVENIVEL']."',
+			            '".$aux['NOMBRENIVEL']."',
+			            '".$aux['GRADOGRUPO']."',
+			            '".$aux['CICLO']."',
+			            '".$aux['BECAPESOS']."',
+			            '".$aux['BECAPORCENTAJE']."',
+			            '".$aux['NOMBRE']."',
+			            '".$aux['APELLIDOP']."',
+			            '".$aux['APELLIDOM']."',
+			            '".$aux['PERIODO']."',
+			            '".$fecha."',
+			            '".$aux['INFOCAMBIO']."',
+			            '".$aux['ACTIVADO']."',
+			            '".$aux['IDPLAN']."',
+			            '".$aux['IDESPECIALIDAD']."',
+			            '".$aux['USUARIO']."',
+			            '".$aux['FECHACREACION']."',
+			            '".$aux['USUARIOMODIFICACION']."',
+			            '".$aux['FECHAMODIFICACION']."',
+			            '".$aux['STATUS']."',
+			            '".$aux['FECHASTATUS']."',
+			            '".$aux['OBSERVACIONES']."'
+			         )";
 
-			// $this->Util()->DB()->setQuery($sqlNot);
-			// $this->Util()->DB()->InsertData(); 
+			$this->Util()->DB()->setQuery($sqlNot);
+			$this->Util()->DB()->InsertData(); 
 
-		// }
+		}
+		
+		$sql="select max(id) from pagosadicio";
+		$this->Util()->Db()->setQuery($sql);
+		$maxIdPago = $this->Util()->Db()->GetSIngle();
+		
+		$sql="select max(id) from alumnoshistorial";
+		$this->Util()->Db()->setQuery($sql);
+		$maxIdH = $this->Util()->Db()->GetSIngle();
+		
+		 $sql = "UPDATE
+						tablasincronizada
+				SET
+					ultimoRegistro = '".$maxIdPago."',
+					fechaSincronizacion = '".date('Y-m-d')."'
+				WHERE nombre = 'pagosadicio'";
+
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->UpdateData();
+		
+		 $sql = "UPDATE
+						tablasincronizada
+				SET
+					ultimoRegistro = '".$maxIdH."',
+					fechaSincronizacion = '".date('Y-m-d')."'
+				WHERE nombre = 'alumnoshistorial'";
+
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->UpdateData();
 		
 		return true;
 	}

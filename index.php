@@ -170,6 +170,7 @@ $pages = array(
 	'score-activity-new',
 	'reinscripcion',
 	'concepto',
+	'sincronizar',
 	
 	
 	

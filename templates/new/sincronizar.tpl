@@ -1,15 +1,12 @@
 <div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-bullhorm"></i><b>Conceptos</b> {$myModule.name|truncate:65:"..."} &raquo;
+            <i class="fa fa-bullhorm"></i><b>Sincronizar</b> {$myModule.name|truncate:65:"..."} &raquo;
         </div>
 		
          <div class="actions">
 		 
 	
-            <a  class="btn green" id="" href="{$WEB_ROOT}/graybox.php?page=add-concepto" data-target="#ajax" data-toggle="modal" data-width="1000px" title='ADJUNTAR DOCUMENTO'>
-                <i class="fa fa-plus"></i> Agregar
-            </a>
         </div>
 		<div class="actions">
             <!--<a href="javascript:;" class="btn green" id="btnAddMajor">
@@ -58,10 +55,16 @@
 		<br>
 		
 		<button onClick='buscarSolicitud()' class="btn green submitForm">Buscar</button>-->
+		
+		<center>
+		<a  class="btn green" onClick="sincronizarDB()">
+			<i class="fa fa-plus"></i> Sincronizar
+		</a>
+		</center>
 		<div id='loader'>
 		</div>
 		<div id='contenido'>
-        {include file="{$DOC_ROOT}/templates/lists/new/concepto.tpl"}
+        {include file="{$DOC_ROOT}/templates/lists/new/sincronizar.tpl"}
 		</div>
     </div>
 </div>

@@ -790,6 +790,29 @@
 				// }
 				
 			break;
+			
+			case 'saveConcepto';
+			
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+				
+				$course->setId($_POST['solicitudId']);
+				$course->setNombre($_POST['nombre']);
+				$course->setPrecio($_POST['precio']);
+				$course->setFire($_POST['id']);
+				if($course->saveConcepto5()){
+					echo 'ok[#]';
+					$registros = $solicitud->enumerateTiposSolicitud();
+					$smarty->assign("DOC_ROOT", DOC_ROOT);
+					$smarty->assign("registros", $registros);
+					$smarty->display(DOC_ROOT.'/templates/lists/new/concepto.tpl');
+				}else{
+					echo 'fail[#]';
+				}
+				// echo '<pre>'; 
+				// echo "<pre>"; print_r($courseInfo);
+				
+			break;
 	}
 
 ?>

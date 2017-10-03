@@ -399,6 +399,34 @@ class Solicitud extends Module
 	}
 	
 	
+	
+	public function infoSolicitud($Id)
+	{
+		 $sqlQuery = 'SELECT 
+					*
+				FROM 
+					tiposolicitud
+				WHERE  tiposolicitudId = '.$Id.'';
+			$this->Util()->DB()->setQuery($sqlQuery);
+			$coun = $this->Util()->DB()->GetRow();
+			
+		return $coun;
+	}
+	
+	
+	
+	public function enumerateSincronizacion($Id)
+	{
+		 $sqlQuery = 'SELECT 
+					*
+				FROM 
+					tablasincronizada
+				WHERE  1';
+			$this->Util()->DB()->setQuery($sqlQuery);
+			$coun = $this->Util()->DB()->GetResult();
+			
+		return $coun;
+	}
 
 }	
 ?>
