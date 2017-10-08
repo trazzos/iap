@@ -169,6 +169,8 @@ $pages = array(
 	'add-documento',
 	'add-concepto',
 	'info',
+	'cancelar-solicitud',
+	'concepto-pago',
 
 );
 

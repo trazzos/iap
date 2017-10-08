@@ -7,8 +7,7 @@
 	if($_POST){
 			
 			
-// echo "<pre>"; print_r($_POST);
-	// exit;
+
 		if($_POST['type'] ==  'saveSolicitudBaja'){
 
 			if($solicitud->upSolicitudBaja()){
@@ -33,7 +32,8 @@
 
 
 	$infoBaja =  $solicitud->buscaBaja();
-	
+	// echo "<pre>"; print_r($infoBaja);
+	// exit;
 
 	$smarty->assign('infoBaja', $infoBaja);
 	

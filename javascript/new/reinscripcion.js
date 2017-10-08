@@ -38,7 +38,7 @@ function saveEditStudentAlumn(){
 			var splitResp = response.split("[#]");
 			
 		
-			if(splitResp[0] == "ok"){
+			if($.trim(splitResp[0]) == "ok"){
 					$("#res_").html(splitResp[1]);
 					
 					if ($("#courseMxId").val()=='x'){
@@ -51,7 +51,7 @@ function saveEditStudentAlumn(){
 					}
 					
 				}
-			else if(splitResp[0] == "fail"){
+			else if($.trim(splitResp[0]) == "fail"){
 				$("#res_").html(splitResp[1]);
 				$("#centeredDivOnPopup").show();
 			}else{

@@ -9,6 +9,10 @@
 	$student->setUserId($_SESSION['User']['userId']);
 	$infoStudent = $student->GetInfo();
 	
+	if($infoStudent['referenciaBancaria']<>''){
+		$countSol = 1;
+	} 
+	
 		// echo '<pre>'; print_r($infoStudent);
 		// exit;
 	$lstCuentas = $bank->getCuentas();

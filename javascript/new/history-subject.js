@@ -180,11 +180,11 @@ function saveNumReferencia(id,activo){
 			var splitResp = response.split("[#]");
 			
 			// DoSearch()
-			if(splitResp[0] == "ok"){
+			if($.trim(splitResp[0]) == "ok"){
 					$("#msj").html($.trim(splitResp[1]));
-					// DoSearch()
+					location.reload();
 				}
-			else if(splitResp[0] == "fail"){
+			else if($.trim(splitResp[0]) == "fail"){
 				$("#res_").html(splitResp[1]);
 				$("#centeredDivOnPopup").show();
 			}

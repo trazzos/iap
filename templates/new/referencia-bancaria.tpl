@@ -47,8 +47,8 @@
 		<br>
 		<br>
 		<button onClick="solicitarReferencia()" class="btn green submitForm">Solicitar datos de referencia bancaria</button>
-		<div id="msj">
-		</div>
+		<div id="load"></div>
+		<div id="msj5"></div>
 		</center>	
 		<br>
 		<br>

@@ -87,21 +87,26 @@
                                <i class="fa fa-folder-open" aria-hidden="true"></i>Solicitudes 
 							</a>
                         </li>
-						 <li>
-                            <a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px">
-                               <i class="fa fa-university" aria-hidden="true"></i>Referencia Bancaria 
-							</a>
-                        </li>
-						 <li>
-                            <a href="{$WEB_ROOT}/graybox.php?page=formato-reinscripcion" data-target="#ajax" data-toggle="modal" data-width="1000px">
-                              <i class="fa fa-file-text" aria-hidden="true"></i>Descargar Formatos de Inscripción/Reinscripción
-							</a>
-                        </li>
-						 <li>
-                            <a href="#" onClick="verCalendario()">
-                              <i class="fa fa-file-text" aria-hidden="true"></i>Calendario de Pagos
-							</a>
-                        </li>
+						<li>
+						<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px">
+						   <i class="fa fa-university" aria-hidden="true"></i>Referencia Bancaria 
+						</a>
+						</li>
+						<li>
+						<a href="{$WEB_ROOT}/graybox.php?page=formato-reinscripcion" data-target="#ajax" data-toggle="modal" data-width="1000px">
+						  <i class="fa fa-file-text" aria-hidden="true"></i>Descargar Formatos de Inscripción/Reinscripción
+						</a>
+						</li>
+						<li>
+						<a href="{$WEB_ROOT}/ver-calendario" ><!--onClick="verCalendario()"-->
+						  <i class="fa fa-file-text" aria-hidden="true"></i>Calendario de Pagos
+						</a>
+						</li>
+						<li>
+						<a href="{$WEB_ROOT}/graybox.php?page=concepto-pago" data-target="#ajax" data-toggle="modal" data-width="1000px">
+						  <i class="fa fa-file-text" aria-hidden="true"></i>Conceptos de Pago
+						</a>
+						</li>
                     </ul>
                 </div>
                 <!-- END MENU -->

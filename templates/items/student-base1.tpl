@@ -14,7 +14,10 @@
          <td align="center">{$item.names|upper}</td>
         <td align="center">{$item.controlNumber}</td>
         <td align="center"><input type="text" name="num_{$item.userId}" id="num_{$item.userId}" value="{$item.referenciaBancaria}" class="form-control"></td>
-		<td align="center"> <a href="#" onclick="DeleteStudentCurricula({$item.userId},{$courseId});" title="Eliminar Alumno de esta Curricula"> <img src="{$WEB_ROOT}/images/icons/16/delete.png"></a></td>
+		<td align="center">
+		<!--<a href="#" onclick="DeleteStudentCurricula({$item.userId},{$courseId});" title="Eliminar Alumno de esta Curricula"> <img src="{$WEB_ROOT}/images/icons/16/delete.png"></a>
+		-->
+		</td>
 		
         <!--<td align="center">
         <form name="{$item.userId}" method="post" enctype="multipart/form-data">

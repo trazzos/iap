@@ -161,7 +161,11 @@ class Solicitud extends Module
 		
 		if($this->tipo == 4){
 			$status = "completado";
-		}else{
+		}
+		else if($this->tipo == 3){
+			$status = "en progreso";
+		}
+		else{
 			$status = "pendiente";
 		}
 		
@@ -221,7 +225,22 @@ class Solicitud extends Module
 					* 
 				FROM 
 					solicitud 
-				WHERE  userId = '.$_SESSION['User']['userId'].' and tiposolicitudId  = 3';
+				WHERE  userId = '.$_SESSION['User']['userId'].' and tiposolicitudId  = 3 and tipobaja <> ""';
+
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$result = $this->Util()->DB()->GetRow();
+		
+		return $result;
+	}
+	
+	
+	public function buscaBajaId($Id)
+	{
+		$sqlQuery = 'SELECT 
+					* 
+				FROM 
+					solicitud 
+				WHERE   solicitudId  = '.$Id.'';
 
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$result = $this->Util()->DB()->GetRow();
@@ -399,6 +418,19 @@ class Solicitud extends Module
 	}
 	
 	
+	public function enumerateSolicitudes()
+	{
+		 $sqlQuery = 'SELECT 
+					*
+				FROM 
+					tiposolicitud
+				WHERE  tiposolicitudId = 1 or tiposolicitudId = 2 or tiposolicitudId = 3 or tiposolicitudId = 4';
+			$this->Util()->DB()->setQuery($sqlQuery);
+			$coun = $this->Util()->DB()->GetResult();
+			
+		return $coun;
+	}
+	
 	
 	public function infoSolicitud($Id)
 	{
@@ -428,5 +460,25 @@ class Solicitud extends Module
 		return $coun;
 	}
 
+	public function cancelarSolicitud($Id)
+	{
+		$sqlQuery = "UPDATE solicitud set estatus ='cancelado'  where solicitudId = '".$this->solicitudId."'"; 	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}
+	
+	
+	
+	public function realizarBaja($Id)
+	{
+		$sqlQuery = "UPDATE solicitud set estatus ='completado'  where solicitudId = '".$Id."'"; 	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}
+	
 }	
 ?>

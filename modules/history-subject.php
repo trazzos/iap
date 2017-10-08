@@ -39,6 +39,12 @@
 		}
 	}
 	
+	if($_SESSION['msj']=='si'){
+		unset($_SESSION['msj']);
+		$smarty->assign('msj', 'si');
+	}
+	
+	
 	$smarty->assign('subjects', $result);
 	$smarty->assign('arrPage', $arrPage);
 	$smarty->assign('coursesCount', $coursesCount);

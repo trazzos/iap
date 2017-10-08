@@ -9,12 +9,25 @@ class Student extends User
 	private $nombre;
 	private $noControl;
 	private $estatus;
+	private $tipobaja;
+	private $motivo;
 
 		
 	public function setSubjectId($value)
 	{
 		$this->subjectId = $value;	
 	}
+	
+	public function setTipoBaja($value)
+	{
+		$this->tipobaja = $value;	
+	}
+	
+	public function setMotivo($value)
+	{
+		$this->motivo = $value;	
+	}
+	
 	private $alumnoId;
 	
 	public function setAlumnoId($value)
@@ -2360,6 +2373,19 @@ class Student extends User
 	}
 	
 	
+	public function saveBaja()
+	{
+		$sql = "UPDATE
+				solicitud
+				SET
+					tipobaja = '".$this->tipobaja."',
+					motivo = '".$this->motivo."'
+				WHERE tiposolicitudId = 3 and estatus = 'en progreso' ";
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->UpdateData();
+				
+		return true;
+	}
 	
 	
 	

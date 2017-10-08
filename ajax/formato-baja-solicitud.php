@@ -11,6 +11,9 @@
 	$course->setCourseId($_GET['courseId']);
 	$infoCourse = $course->Info();
 	
+	
+	$infoBaja =  $solicitud->buscaBajaId($_GET['q']);
+	
 	$in = explode('-',$infoCourse['initialDate']);
 	$fi = explode('-',$infoCourse['finalDate']);
 	// echo '<pre>'; print_r($infoCourse);
@@ -67,13 +70,26 @@
 			</tr>
 			<tr>
 				<td colspan='3' align='center'>
-					Cedula de Reinscripción<br>
+					Formato de Baja 
 					".$infoCourse['majorName']."
 					<br>
 					<br>
 					<br>
 				</td>
 			</tr>
+			<tr>
+				<td align=left>Folio: <div class='line'>".$infoBaja['solicitudId']."  </td>
+				<td colspan='2' align=left>
+				
+				</td>
+			</tr>
+			<tr>
+				<td align=left> Fecha:<div class='line'>".$infoBaja['fechaSolicitud']."</td>
+				<td colspan='2' align=left>
+				 Tipo de Baja:<div class='line'>".$infoBaja['tipobaja']."
+				</td>
+			</tr>
+
 			<tr>
 				<td width='70%' >
 					Nombre: <div class='line'>".$info['names']." ".$info['lastNamePaterno']." ".$info['lastNameMaterno']."</div>
@@ -157,6 +173,9 @@
 		$html .= "<br>";
 		$html .= "<br>";
 		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<br>";
 		$html .= "<table width='100%' border='0' cellspacing=22>";
 		$html .= "
 		<tr>
@@ -181,8 +200,28 @@
 		</tr>
 		";
 		$html .= "</table>";
-		
 
+		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<table align='center' border='0' width='100%'>";
+		$html .= "<tr><td>[ ] Cedula profesional</td></tr>";
+		$html .= "<tr><td>[ ] Acta de Nacimiento</td></tr>";
+		$html .= "<tr><td>[ ] Titulo de Licenciatura</td></tr>";
+		$html .= "<tr><td>[ ] Titulo de Maestria</td></tr>";
+		$html .= "<tr><td>[ ] Certificado de Maestria</td></tr>";
+		$html .= "</table>";
+
+		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<br>";
+		$html .= "<center>Nombre y Firma del Alumno</center>";
 
 	$html .= "	
 	</body>

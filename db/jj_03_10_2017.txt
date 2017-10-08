@@ -1,0 +1,12 @@
+
+CREATE TABLE IF NOT EXISTS `tablasincronizada` (
+  `tablasincronizadaId` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `ultimoRegistro` int(11) NOT NULL,
+  `fechaSincronizacion` date NOT NULL,
+  PRIMARY KEY (`tablasincronizadaId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+
+           

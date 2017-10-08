@@ -41,7 +41,7 @@ switch($_POST["type"])
 					  El Documento se adjunto correctamente
 					</div>';
 					echo '[#]';
-					$registros = $solicitud->enumarateSolicitudesAdmin();
+					$registros = $solicitud->enumarateSolicitudesAdmin(); 
 					$registrosStudent = $student->EnumerateTotal();
 					$lstSolicitudes = $solicitud->arraySolicitudes();
 					$smarty->assign("lstSolicitudes", $lstSolicitudes);	
@@ -52,9 +52,19 @@ switch($_POST["type"])
 					echo 'fail[#]';
 				}
 			
-			break;
+	break;
 		
-		
+	
+	case 'realizarBaja';
+	
+		// echo '<pre>'; print_r($_POST);
+		if ($solicitud->realizarBaja($_POST['Id'])){
+			echo 'ok[#]';
+		}else{
+			echo 'fail[#]';
+		}
+			
+	break;
 		
 }
 ?>

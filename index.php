@@ -171,6 +171,7 @@ $pages = array(
 	'reinscripcion',
 	'concepto',
 	'sincronizar',
+	'ver-calendario',
 	
 	
 	

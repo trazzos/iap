@@ -59,7 +59,7 @@ function enviarArchivo(){
 			
 			if($.trim(splitResp[0]) == "ok"){
 				$("#msj").html(splitResp[1]);
-				$("#container").html(splitResp[2]);
+				$("#contenido").html(splitResp[2]);
 				closeModal();
 			}else if($.trim(splitResp[0]) == "fail"){
 					$("#addMajor").show();
@@ -80,3 +80,38 @@ function closeModal(){
 	$("#ajax").modal("hide");
 	
 }
+
+
+
+
+function realizarBaja(Id){
+	
+	var resp = confirm("¿Estás seguro de dar de baja a este alumno?");
+	
+	if(!resp)
+		return;
+	
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/solicitud.php',
+	  	data: "type=realizarBaja&"+$("#frmFiltro").serialize(true)+'&Id='+Id,
+		beforeSend: function(){			
+			$("#loader").html(LOADER3);
+		},
+	  	success: function(response) {
+
+		$("#loader").html('');
+			console.log(response)
+			var splitResp = response.split("[#]");
+											
+				$("#contenido").html(response);
+
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+	
+
+	
+}//realizarBaja
