@@ -1,7 +1,7 @@
 <div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-bullhorm"></i>Calendario de Pagos
+            <i class="fa fa-bullhorm"></i>Estatus financiero
         </div>
         <div class="actions">
 			<a class="btn green" href="javascript:void(0)" onClick="verCalendario()">
@@ -20,6 +20,8 @@
 						<th>Descripcion</th>
 						<th>Beca</th>
 						<th>Importe</th>
+						<th>Abono</th>
+						<th>Saldo</th>
 					</tr>
 					</thead>
 					{foreach from=$aux.pagos item=aux4}
@@ -28,6 +30,8 @@
 						<td>{$aux4.descripcion}</td> 
 						<td>{$aux4.beca} %</td>
 						<td>$ {$aux4.total|number_format:2:'.':','}</td>
+						<td>$ {$aux4.abono|number_format:2:'.':','}</td>
+						<td>$ {$aux4.total - $aux4.abono|number_format:2:'.':','}</td>
 						</tr>
 					{/foreach}
 					</table>

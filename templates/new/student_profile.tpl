@@ -103,6 +103,11 @@
 						</a>
 						</li>
 						<li>
+						<a href="{$WEB_ROOT}/estatus-financiero" ><!--onClick="verCalendario()"-->
+						  <i class="fa fa-file-text" aria-hidden="true"></i>Estatus Financiero
+						</a>
+						</li>
+						<li>
 						<a href="{$WEB_ROOT}/graybox.php?page=concepto-pago" data-target="#ajax" data-toggle="modal" data-width="1000px">
 						  <i class="fa fa-file-text" aria-hidden="true"></i>Conceptos de Pago
 						</a>

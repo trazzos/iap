@@ -7,7 +7,7 @@ $( document ).ready(function() {
 
     $(document).on("click",".spanDeleteResource",function() {
         var $id = $(this).data('id');
-        DeleteResource($id);
+        // DeleteResource($id);
     });
 
 });
@@ -43,6 +43,8 @@ function DeleteActivity(id)
 
 function DeleteResource(id)
 {
+	
+	// alert(id)
     var $message = "¿Está seguro de eliminar este recurso?";
     bootbox.confirm($message, function(result) {
         if(result == false)
@@ -56,6 +58,7 @@ function DeleteResource(id)
             data : {type: "deleteResource", resourceId: id},
             success: function(data, textStatus, jqXHR)
             {
+				console.log(data)
                 var splitResponse = data.split("[#]");
                 ShowStatus(splitResponse[1]);
                 $('#tblContentResources').html(splitResponse[2]);

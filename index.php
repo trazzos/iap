@@ -172,6 +172,7 @@ $pages = array(
 	'concepto',
 	'sincronizar',
 	'ver-calendario',
+	'estatus-financiero',
 	
 	
 	

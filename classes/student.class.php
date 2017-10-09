@@ -2138,7 +2138,7 @@ class Student extends User
 						$rowp[$i]['descripcion'] = 'Materia';
 						$rowp[$i]['numPagos'] = $rowp8['numPagos'];
 						$rowp[$i]['beca'] = $rowp8['becaporcentaje'];
-						@$rowp[$i]['total'] = $aux6['importe']/$rowp8['numPagos'];
+						@$rowp[$i]['total'] = $aux6['importe'];
 					}
 
 				}else{
@@ -2154,6 +2154,95 @@ class Student extends User
 			$row[$key]['pagos'] = $rowp;
 		}
 
+		return $row;
+		
+	}
+	
+	
+	public function verCalendarioPagoscxc()
+	{
+		
+		 $sql = "
+				SELECT * FROM user
+				WHERE userId = ".$_SESSION["User"]["userId"]."";
+			$this->Util()->DB()->setQuery($sql);
+		$infoS = $this->Util()->DB()->GetRow();  
+			
+		$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' order by id desc ";
+		$this->Util()->DB()->setQuery($sql);
+		$row6 = $this->Util()->DB()->GetRow();
+		
+		$sql="select periodo from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' and clavenivel = '".$row6['clavenivel']."' GROUP BY periodo  ";
+		$this->Util()->DB()->setQuery($sql);
+		$row = $this->Util()->DB()->GetResult();
+		
+		
+		foreach($row as $key=>$aux){
+			$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' 
+				and clavenivel = '".$row6['clavenivel']."' 
+				and  periodo = '".$aux['periodo']."' 
+				and (claveconcepto = 12 or claveconcepto = 21 or claveconcepto = 9)";
+			$this->Util()->DB()->setQuery($sql);
+			$rowp = $this->Util()->DB()->GetResult();
+			foreach($rowp as $key6=>$aux6){
+				
+				  $sql="select * from alumnoshistorial where clave  = '".$infoS['referenciaBancaria']."' 
+				and clavenivel = '".$row6['clavenivel']."' and  ciclo = '".$row6['ciclo']."' and gradogrupo  = '".$aux6['gradogrupo']."'";
+				$this->Util()->DB()->setQuery($sql);
+				$rowp8 = $this->Util()->DB()->GetRow();
+				$rowp[$key6]['inicioPago'] = $rowp8['fechainiciopagos'];
+				$rowp[$key6]['beca'] = $rowp8['becaporcentaje'];
+				$rowp[$key6]['numPagos'] = $rowp8['numPagos'];
+				
+				if($aux6['claveconcepto'] == 21){
+					
+					for($i=1;$i<=$rowp8['numPagos'];$i++){
+						
+						
+						if($i==2){
+								$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
+								$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
+						}
+						if($i==3){
+								$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
+								$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
+						}
+						if($i==4){
+								$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
+								$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
+						}
+						
+						 $sql="select * from pagos where clave  = '".$infoS['referenciaBancaria']."' 
+							and ciclo = '".$row6['ciclo']."' 
+							and  periodoesc = '".$aux['periodo']."' 
+							and clavenivel = '".$row6['clavenivel']."'
+							and claveconcepto = '".$aux6['claveconcepto']."'";
+						// echo '<br>';
+						// echo '<br>';
+						$this->Util()->DB()->setQuery($sql);
+						$rowabono = $this->Util()->DB()->GetRow();
+			
+						$rowp[$i]['inicioPago'] = $rowp8['fechainiciopagos'];
+						$rowp[$i]['descripcion'] = 'Materia';
+						$rowp[$i]['numPagos'] = $rowp8['numPagos'];
+						$rowp[$i]['beca'] = $rowp8['becaporcentaje'];
+						@$rowp[$i]['total'] = $aux6['importe'];
+						@$rowp[$i]['abono'] = $rowabono['efectivo'];
+					}
+
+				}else{
+					$rowp[0]['inicioPago'] = $rowp8['fechainiciopagos'];
+					$rowp[0]['descripcion'] = $aux6['descripcion'];
+					$rowp[0]['numPagos'] = $rowp8['numPagos'];
+					$rowp[0]['beca'] = $rowp8['becaporcentaje'];
+					$rowp[0]['total'] = $aux6['importe'];
+				}
+				
+			}
+			
+			$row[$key]['pagos'] = $rowp;
+		}
+// exit;
 		return $row;
 		
 	}
