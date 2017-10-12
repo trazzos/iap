@@ -10,7 +10,15 @@ class Solicitud extends Module
 	private $userId;
 	private $tiposolicitudId;
 	private $solicitudId;
+	private $cursoId;
 
+	
+	
+	public function setCursoId($value)
+	{
+		$this->Util()->ValidateInteger($value);
+		$this->cursoId = $value;
+	}
 	
 	public function setId($value)
 	{
@@ -60,6 +68,24 @@ class Solicitud extends Module
 		$this->motivo = $value;
 	}
 	
+	
+	public function Info($id)
+	{
+		 $sqlQuery = 'SELECT 
+					* 
+				FROM 
+					solicitud as s
+				left join user as u on u.userId = s.userId 
+				left join subject as sb on sb.subjectId = s.subjectId 
+				left join course as c on c.courseId = s.courseId 
+				WHERE   s.solicitudId  = '.$id.'';
+// exit;
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$result = $this->Util()->DB()->GetRow();
+		
+		return $result;
+	}
+	
 	public function enumarateSolicitudes($value)
 	{
 		$sqlQuery = 'SELECT 
@@ -103,6 +129,7 @@ class Solicitud extends Module
 					solicitud as s 
 				left join user as u on u.userId = s.userId
 				left join tiposolicitud as t on t.tiposolicitudId = s.tiposolicitudId
+				left join subject as sb on sb.subjectId = s.subjectId
 				WHERE  1 '.$filtro.' and s.tiposolicitudId <> 5 and s.userId = '.$_SESSION['User']['userId'].'';
 // exit;
 			
@@ -170,6 +197,7 @@ class Solicitud extends Module
 		}
 		
 		
+		
 		 $sqlQuery = 'SELECT 
 					count(*)
 				FROM 
@@ -184,9 +212,21 @@ class Solicitud extends Module
 			exit;
 		}
 		
+		$sqlQuery = 'SELECT 
+					*
+				FROM 
+					course 
+				WHERE  courseId = '.$this->cursoId.'';
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$infocourseId = $this->Util()->DB()->GetRow();
+		
+		// echo '<pre>'; print_r($infocourseId);
+		// exit;
 		
 		 $sqlNot="insert into 
 				solicitud(
+				subjectId,
+				courseId,
 				fechaSolicitud,
 				tiposolicitudId,
 				estatus,
@@ -194,6 +234,8 @@ class Solicitud extends Module
 				userId
 				)
 			   values(
+			            '".$infocourseId['subjectId']."', 
+			            '".$this->cursoId."', 
 			            '".date('Y-m-d')."', 
 			            '".$this->tipo."',
 			            '".$status."',
@@ -478,6 +520,54 @@ class Solicitud extends Module
 		$this->Util()->DB()->ExecuteQuery();
 		
 		return true;
+	}
+	
+	
+	
+	public function buscaDondeIns($Id)
+	{
+		 $sqlQuery = 'SELECT 
+					*
+				FROM 
+					confirma_inscripcion
+				WHERE  subjectId = '.$Id.' and userId = '.$_SESSION['User']['userId'].' ORDER BY  nivel DESC';
+			// exit;
+			$this->Util()->DB()->setQuery($sqlQuery);
+		$coun = $this->Util()->DB()->GetRow();
+		
+		return $coun;
+	}
+	
+	
+	
+	public function buscaCalificaciones($Id)
+	{
+		// $info = $this->Info();
+			$this->Util()->DB()->setQuery("
+				SELECT semesterId FROM course_module
+				LEFT JOIN subject_module ON subject_module.subjectModuleId = course_module.subjectModuleId
+				WHERE courseId = '".$Id."'
+				group BY semesterId");
+		$result = $this->Util()->DB()->GetResult();
+			
+		
+		foreach($result as $key=>$aux){
+			
+			$sql = "
+				SELECT * FROM course_module
+				LEFT JOIN subject_module ON subject_module.subjectModuleId = course_module.subjectModuleId
+				LEFT JOIN course_module_score as cms ON cms.courseModuleId = course_module.courseModuleId
+				WHERE course_module.courseId = '".$Id."' and
+				semesterId = ".$aux['semesterId']." and userId = ".$_SESSION['User']['userId']."";
+				
+				// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$materias = $this->Util()->DB()->GetResult();
+			$result[$key]['materias'] = $materias;
+		}
+		
+		
+		return $result;
 	}
 	
 }	

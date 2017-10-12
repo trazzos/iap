@@ -8,6 +8,10 @@
 	$date = date("d-m-Y");
 	$addedModules = $course->AddedCourseModules();
 	
+	
+	// echo '<pre>'; print_r($addedModules);
+	// exit;
+	
 	//checar a que curriculas tengo permiso
 	if(in_array(2, $info["roles"]))
 	{

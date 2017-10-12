@@ -1,24 +1,17 @@
 function addSolicitud(){
-	
+
 	if($("#solicitudId").val()==''){
 		ShowStatusPopUp('Por favor, seleccione el tipo de solicitud')
 		return;
 	}
 		
-	
-	var resp = confirm("¿Desea agregar la Solicitud?");
-	
-	if(!resp)
-		return;
-	
+
 	$("#type").val("addSolicitud")
-// alert($('#solicitudId').val())
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/view-solicitud.php',
 	  	data: $("#editStudentForm").serialize(true)+'&solicitudId='+$('#solicitudId').val()+'&type=addSolicitud',
 		beforeSend: function(){			
-			// $("#container").html('');
 		},
 	  	success: function(response) {	
 		
@@ -27,16 +20,60 @@ function addSolicitud(){
 			
 		
 			if($.trim(splitResp[0]) == "ok"){
-					// DoSearch()
-					$("#msj").html(splitResp[1]);
-					$("#container").html(splitResp[2]);
+					
+					$("#ajax").attr("width","100px");
+					$("#ajax").attr("top","100px");
+					$("#ajax").html(splitResp[1]);
+					$("#ajax").show();
+					$("#ajax").modal("show");
 				}
 			else if($.trim(splitResp[0]) == "fail"){
-				// alert(splitResp[1])
+				
 				ShowStatusPopUp(splitResp[1])
 				return;
-				// $("#msj").html(splitResp[1]);
-				// $("#centeredDivOnPopup").show();
+
+			}
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+	
+}//addSolicitud
+
+
+function addSaveSolicitud(){
+
+
+	$("#type").val("addSaveSolicitud")
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/view-solicitud.php',
+	  	data: $("#frmGral").serialize(true)+'&solicitudId='+$('#solicitudId').val()+'&type=addSaveSolicitud',
+		beforeSend: function(){			
+		},
+	  	success: function(response) {	
+		
+			console.log(response)
+			var splitResp = response.split("[#]");
+			
+		
+			if($.trim(splitResp[0]) == "ok"){
+					
+					// $("#ajax").attr("width","100px");
+					// $("#ajax").attr("top","100px");
+					$("#msj").html(splitResp[1]);
+					$("#container").html(splitResp[2]);
+					$("#ajax").html('');
+					$("#ajax").hide();
+					$("#ajax").modal("hide");
+					
+				}
+			else if($.trim(splitResp[0]) == "fail"){
+				
+				$("#msjgg").html(splitResp[1]);
+				// return;
+
 			}
 		},
 		error:function(){
@@ -175,5 +212,11 @@ function cancelarSolicitud(){
 
 function descargarSolicitud(q){
 	url=WEB_ROOT+"/ajax/formato-baja-solicitud.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
+	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+}
+
+
+function descargarConstancias(q){
+	url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
 	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
 }

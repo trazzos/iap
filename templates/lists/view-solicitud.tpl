@@ -1,7 +1,9 @@
 <table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 	<thead>
     	<tr>
+			
 			<th width="">Tipo </th>
+			<th width="">Posgrado </th>
 			<th width="">Fecha de Solicitud </th>
 			<th width="">Estatus </th>
 			<th width="">Costo </th>
@@ -11,7 +13,9 @@
     <tbody>
 		{foreach from=$registros item=subject}
     	<tr>
+			
 			<td align="center">{$subject.solicitud}</td>
+			<td align="center">{$subject.name}</td>
 			<td align="center">{$subject.fechaSolicitud}</td>
 			<td align="center">
 			
@@ -22,7 +26,7 @@
 				{/if}
 				
 			</td>
-			<td align="center">{$subject.precio}</td>
+			<td align="center">$ {$subject.precio}</td>
 			<td align="center">
 			
 				{if $subject.tiposolicitudId eq 4}
@@ -82,6 +86,10 @@
 				
 					<a href="{$WEB_ROOT}/graybox.php?page=cancelar-solicitud&id={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CANCELAR SOLICITUD'>
 						<i class="material-icons md-16">delete_forever</i>
+					</a>
+					
+					<a href="javascript:void(0)" onClick='descargarConstancias({$subject.solicitudId})'  target='_blank' title='DESCARGAR CONSTANCIA'>
+							<i class="material-icons md-16">cloud_download</i>
 					</a>
 			</td>
 		</tr>
