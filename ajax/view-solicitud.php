@@ -11,8 +11,38 @@
 		case 'addSolicitud':
 		$student->setUserId($_SESSION["User"]["userId"]);
 		$activeCourses = $student->StudentCourses("activo", "si");
-		
 		$finishedCourses = $student->StudentCourses("finalizado");
+		
+		// $finishedCourses = array();
+		
+		if(count($activeCourses) == 1 and count($finishedCourses) == 0){
+
+			$solicitud->setTipo($_POST['solicitudId']);
+			$solicitud->setCursoId($activeCourses[0]['courseId']);
+			if($solicitud->SaveSolicitud()){
+				echo 'ok[#]';
+				echo 'recarga';
+				echo '[#]';
+					echo '<div class="alert alert-info alert-dismissable">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  La solicitud se genero correctamente
+					</div>';
+				echo '[#]';
+				$lstSol = $solicitud->arraySolicitudes();
+				$registros = $solicitud->enumarateSolicitudesStden();
+				$smarty->assign('registros', $registros);
+				$smarty->assign("lstSol", $lstSol);
+				$smarty->display(DOC_ROOT.'/templates/lists/view-solicitud.tpl');
+			}else{
+				echo 'fail[#]';
+			}
+			// echo 'llega';
+			exit;
+		}
+			
+		
+		
+		
 		$smarty->assign("finishedCourses", $finishedCourses);	
 		$smarty->assign("solicitudId", $_POST['solicitudId']);	
 		

@@ -103,8 +103,8 @@ function realizarBaja(Id){
 		$("#loader").html('');
 			console.log(response)
 			var splitResp = response.split("[#]");
-											
-				$("#contenido").html(response);
+				buscarSolicitud()				
+				// $("#contenido").html(response);
 
 		},
 		error:function(){
@@ -115,3 +115,42 @@ function realizarBaja(Id){
 
 	
 }//realizarBaja
+
+
+
+
+
+function validarPago(Id){
+	
+	var resp = confirm("¿Estás seguro de validar el pago?");
+	
+	if(!resp)
+		return;
+	
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/solicitud.php',
+	  	data: "type=validarPago&"+$("#frmFiltro").serialize(true)+'&Id='+Id,
+		beforeSend: function(){			
+			$("#loader").html(LOADER3);
+		},
+	  	success: function(response) {
+
+		$("#loader").html('');
+			console.log(response)
+			var splitResp = response.split("[#]");
+						buscarSolicitud()				
+				// $("#contenido").html(response);
+
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+		
+}//validarPago
+
+function descargarConstancias(q){
+	url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
+	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+}

@@ -65,6 +65,18 @@ switch($_POST["type"])
 		}
 			
 	break;
+	
+	
+	case 'validarPago';
+	
+		// echo '<pre>'; print_r($_POST);
+		if ($solicitud->validarPago($_POST['Id'])){
+			echo 'ok[#]';
+		}else{
+			echo 'fail[#]';
+		}
+			
+	break;
 		
 }
 ?>

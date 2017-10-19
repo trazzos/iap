@@ -171,6 +171,7 @@ $pages = array(
 	'info',
 	'cancelar-solicitud',
 	'concepto-pago',
+	'nuevo-mensaje',
 
 );
 

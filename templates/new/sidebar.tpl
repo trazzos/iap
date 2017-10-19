@@ -196,6 +196,13 @@
                 </li>
             </ul>
         </li>
+		<li class="nav-item  ">
+            <a href="{$WEB_ROOT}/mensaje" class="nav-link nav-toggle">
+                <i class="fa fa-video-camera"></i>
+                <span class="title">Mensajes</span>
+                <span class="arrow"></span>
+            </a>
+        </li>
         {/if}
         {/if}
 

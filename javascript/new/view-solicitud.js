@@ -20,13 +20,19 @@ function addSolicitud(){
 			
 		
 			if($.trim(splitResp[0]) == "ok"){
-					
+				
+				if($.trim(splitResp[1]) == "recarga"){
+					$("#msj").html(splitResp[2]);
+					$("#container").html(splitResp[3]);
+				}else{
 					$("#ajax").attr("width","100px");
 					$("#ajax").attr("top","100px");
 					$("#ajax").html(splitResp[1]);
 					$("#ajax").show();
 					$("#ajax").modal("show");
 				}
+						
+			}
 			else if($.trim(splitResp[0]) == "fail"){
 				
 				ShowStatusPopUp(splitResp[1])

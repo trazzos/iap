@@ -173,6 +173,8 @@ $pages = array(
 	'sincronizar',
 	'ver-calendario',
 	'estatus-financiero',
+	'mensaje',
+	'add-mensaje',
 	
 	
 	

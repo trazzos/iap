@@ -72,11 +72,17 @@ class Solicitud extends Module
 	public function Info($id)
 	{
 		 $sqlQuery = 'SELECT 
-					* 
+					u.*,
+					sb.*,
+					s.*,
+					c.*,
+					s.folio as folioSolicitud,
+					m.name as nombreMajor
 				FROM 
 					solicitud as s
 				left join user as u on u.userId = s.userId 
 				left join subject as sb on sb.subjectId = s.subjectId 
+				left join major as m on m.majorId = sb.tipo 
 				left join course as c on c.courseId = s.courseId 
 				WHERE   s.solicitudId  = '.$id.'';
 // exit;
@@ -130,7 +136,7 @@ class Solicitud extends Module
 				left join user as u on u.userId = s.userId
 				left join tiposolicitud as t on t.tiposolicitudId = s.tiposolicitudId
 				left join subject as sb on sb.subjectId = s.subjectId
-				WHERE  1 '.$filtro.' and s.tiposolicitudId <> 5 and s.userId = '.$_SESSION['User']['userId'].'';
+				WHERE  1 '.$filtro.' and s.tiposolicitudId <> 5 and s.userId = '.$_SESSION['User']['userId'].' order by orden asc';
 // exit;
 			
 	
@@ -170,7 +176,7 @@ class Solicitud extends Module
 					solicitud as s 
 				left join user as u on u.userId = s.userId
 				left join tiposolicitud as t on t.tiposolicitudId = s.tiposolicitudId
-				WHERE  estatus <> "pendiente" '.$filtro.'';
+				WHERE  1 '.$filtro.'';
 // exit;
 			
 	
@@ -205,7 +211,7 @@ class Solicitud extends Module
 				WHERE  tiposolicitudId = '.$this->tipo.' and estatus <> "completado" and userId = '.$_SESSION['User']['userId'].'';
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$countS = $this->Util()->DB()->GetSingle();
-		
+		// exit;
 		if($countS >= 1){
 			echo 'fail[#]';
 			echo '<center><font color="red">Existe una solicitud del mismo tipo en progreso</font></center>';
@@ -315,7 +321,7 @@ class Solicitud extends Module
 					* 
 				FROM 
 					tiposolicitud 
-				WHERE  tiposolicitudId <> 5';
+				WHERE  tiposolicitudId <> 5 order by orden asc';
 
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$result = $this->Util()->DB()->GetResult();
@@ -466,7 +472,7 @@ class Solicitud extends Module
 					*
 				FROM 
 					tiposolicitud
-				WHERE  tiposolicitudId = 1 or tiposolicitudId = 2 or tiposolicitudId = 3 or tiposolicitudId = 4';
+				WHERE  tiposolicitudId = 1 or tiposolicitudId = 2 or tiposolicitudId = 3 or tiposolicitudId = 4 ORDER BY orden asc';
 			$this->Util()->DB()->setQuery($sqlQuery);
 			$coun = $this->Util()->DB()->GetResult();
 			
@@ -523,6 +529,71 @@ class Solicitud extends Module
 	}
 	
 	
+	
+	public function validarPago($Id)
+	{
+		
+		$sqlQuery = 'SELECT 
+					*
+				FROM 
+					solicitud
+				WHERE  solicitudId = '.$Id.'';
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$coun = $this->Util()->DB()->GetRow();
+		
+		 $sqlQuery = 'SELECT 
+					*
+				FROM 
+					folio
+				WHERE  tiposolicitudId = '.$coun['tiposolicitudId'].'';
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$infoFol = $this->Util()->DB()->GetRow();
+		
+		$sqlQuery = 'SELECT 
+					*
+				FROM 
+					personal
+				WHERE  firmaConstancia = "si"';
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$infoFirma = $this->Util()->DB()->GetRow();
+		
+		$folio = $infoFol['nomenclatura'].'/'.$infoFol['folioSiguiente'];
+		
+		if($infoFirma['sexo']=='m'){
+			$puestofirmante ='Directora Academica';
+		}else{
+			$puestofirmante ='Director Academico';
+		}
+		
+		$sqlQuery = "
+			UPDATE 
+				solicitud 
+			set 
+				estatus = 'completado',
+				folio ='".$folio."',
+				nombreFirma ='".$infoFirma['name']." ".$infoFirma['lastname_materno']." ".$infoFirma['lastname_paterno']."',
+				sexoFirma ='".$infoFirma['sexo']."',
+				puestofirmante ='".$puestofirmante."',
+				fechaEntrega ='".date('Y-m-d')."'
+			where 
+				solicitudId = '".$Id."'"; 	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		$sqlQuery = "
+			UPDATE 
+				folio 
+			set 
+				folioSiguiente = '".($infoFol['folioSiguiente']+1)."', 
+				folioActual ='".$infoFol['folioSiguiente']."' 
+			where
+				tiposolicitudId = '".$coun['tiposolicitudId']."' and anio = '".date('Y')."' "; 	
+// exit;	
+	$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}
 	
 	public function buscaDondeIns($Id)
 	{

@@ -2476,8 +2476,100 @@ class Student extends User
 		return true;
 	}
 	
+	public function miChat(){
+		
+		
+		 $sql = 'SELECT 
+				*
+				FROM chat as c
+				left join user as u on u.userId = c.usuarioId
+				WHERE c.yoId = '.$_SESSION['User']["userId"].' or c.usuarioId = '.$_SESSION['User']["userId"].'
+				group by c.usuarioId,c.yoId ORDER BY  chatId ASC ';
+				
+	$this->Util()->DB()->setQuery($sql);	
+		$data = $this->Util()->DB()->GetResult();
+		foreach($data as $key=>$aux){
+			
+			if($aux["yoId"]==$_SESSION['User']["userId"]){
+				$sql = 'SELECT 
+				*
+				FROM user 
+				WHERE userId = '.$aux["usuarioId"].'';
+			$this->Util()->DB()->setQuery($sql);	
+			$infoU = $this->Util()->DB()->GetRow();
+				$data[$key]["nombre"] = $infoU["names"];
+			}
+			else{
+			$sql = 'SELECT 
+				*
+				FROM user 
+				WHERE userId = '.$aux["yoId"].'';
+			$this->Util()->DB()->setQuery($sql);	
+			$infoU = $this->Util()->DB()->GetRow();
+				$data[$key]["nombre"] = $infoU["names"];
+			}
+			 
+			
+		}
+		
+			
+		return $data;
+		
+	}//Enumerate
 	
+	public function entablandoConversacion($Id){
+
+		 $sql = 'SELECT * FROM chat WHERE chatId = '.$Id.'';
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();
+		
+		 $sql = 'SELECT 
+		* 
+		FROM chat as c
+		left join user as u on u.userId =   c.usuarioId 
+		WHERE (c.usuarioId = '.$info["usuarioId"].' or c.yoId = '.$info["usuarioId"].') and (c.usuarioId = '.$info["yoId"].' or c.yoId = '.$info["yoId"].')';
 	
+		$this->Util()->DB()->setQuery($sql);
+		$lstChat = $this->Util()->DB()->GetResult();
+		
+		// echo '<pre>'; print_r($lstChat);
+		// exit;
+				
+		return $lstChat;
+	}//
+	
+	public function SaveMensaje(){
+	
+		// $sql = 'SELECT * FROM chat WHERE chatId = '.$_POST["chatId"].'';
+		// $this->Util()->DB()->setQuery($sql);
+		// $infoChat = $this->Util()->DB()->GetRow();
+		
+		// if($infoChat["yoId"]<>$_SESSION['User']["userId"]){
+			// $userId = $infoChat["yoId"];
+		// }else{
+			// $userId = $infoChat["usuarioId"];
+		// }
+		
+		 $sql = "
+		INSERT INTO  chat (
+				`fechaEnvio` ,
+				`usuarioId`, 
+				`yoId`, 
+				`mensaje` 
+				)
+				VALUES (
+				'".date("Y-m-d")."',
+				'".$_POST['userId']."',
+				'".$_SESSION['User']["userId"]."',
+				'".$_POST["mensaje"]."'
+				);";
+				
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->InsertData(); 
+				
+		return true;
+	
+	}
 }
 
 ?>

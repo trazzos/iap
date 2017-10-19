@@ -26,9 +26,15 @@
 					{/if}
 				{/if}
 				{if $item.estatus eq 'completado'}
-					{if $item.tiposolicitudId ne 3}
+					{if $item.tiposolicitudId ne 3 and $item.tiposolicitudId ne 1 and $item.tiposolicitudId ne 6 and $item.tiposolicitudId ne 2 and $item.tiposolicitudId ne 7}
 						<a href="{$WEB_ROOT}/alumnos/doc_adjuntos/{$item.rutaAdjunto}" target='_blank' title='CONSTANCIA DE ESTUDIOS'>
 							<i class="material-icons md-16">remove_red_eye</i> 
+						</a>
+					{/if}
+					
+					{if $item.tiposolicitudId eq 1 or $item.tiposolicitudId eq 6 or $item.tiposolicitudId eq 2 or $item.tiposolicitudId eq 7}
+						<a href="javascript:void(0)" onClick='descargarConstancias({$item.solicitudId})'  target='_blank' title='DESCARGAR CONSTANCIA'>
+							<i class="material-icons md-16">cloud_download</i>
 						</a>
 					{/if}
 					
@@ -41,11 +47,17 @@
 					</a>
 					{/if}
 				{else}
+					{if  $item.tiposolicitudId ne 1 and $item.tiposolicitudId ne 6 and $item.tiposolicitudId ne 2 and $item.tiposolicitudId ne 7}
 					<a  href="{$WEB_ROOT}/graybox.php?page=add-documento&id={$item.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='ADJUNTAR DOCUMENTO'>
 						<i class="material-icons md-16">cloud_upload</i>
 					</a>
+					{/if}
 				{/if}
-				
+				{if $item.tiposolicitudId  ne 3}
+				<a href="javascript:void(0)" onClick='validarPago({$item.solicitudId})' title='VALIDAR PAGO'>
+					<i class="material-icons md-16">ic_check_box</i>
+				</a>
+				{/if}
 			</td>
 		</tr>
 	{/foreach}

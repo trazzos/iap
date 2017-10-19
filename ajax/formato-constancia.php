@@ -5,6 +5,11 @@
 
 	session_start();
 
+	
+	// echo '<pre>'; print_r($_GET['q']); 
+	$util = new Util;
+	
+
 	$infoSol = $solicitud->Info($_GET['q']);
 	$infoIns = $solicitud->buscaDondeIns($infoSol['subjectId']);
 	
@@ -12,32 +17,35 @@
 	$if = explode('-',$infoSol['finalDate']);
 	$fe = explode('-',$infoSol['fechaEntrega']);
 	
-	
+	// echo "<pre>"; print_r($infoSol); 
+	// exit;
 	if($infoSol['tiposolicitudId'] ==2 ){
 		
 		$lstCal = $solicitud->buscaCalificaciones($infoSol['courseId']);
-		// echo "<pre>"; print_r($lstCal); 
-	// exit;
-		$contenido .= "<br>
-		Que  el C. ".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."  , concluyó de la '".$infoSol['name']."',
-		correspondiente a la  generación ".$ii[0]." - ".$if[0]."  del plan obteniendo las siguientes calificaciones";
 		
-		$contenido .= "<br><br>A petición del Interesado  y para los usos legales que mejor convengan, 
-		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$fe[1]." del año ".$fe[0]."<br><br>";
+		$contenido .= "<br>
+		Que  el <b>C. ".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b>, concluyó la <b>".$infoSol['nombreMajor']." en ".$infoSol['name']."</b>,
+		correspondiente a la  generación ".$ii[0]." - ".$if[0].", plan ".$infoSol['tipoPeriodo'].", obteniendo las siguientes calificaciones.<br><br>";
+		
+		
 	
 		foreach($lstCal as $key=>$aux){
 			$contenido .= "<table width='100%'>";
 			$contenido .= "<tr><td width='70%'>Materias</td><td colspan='2'>Calificacion</td><td>Creditos</td></tr>";
 			$contenido .= "<tr><td>".$aux['semesterId']."</td><td>Cifra</td><td>Letra</td><td></td></tr>";
 			foreach($aux['materias'] as $key2=>$aux2){
-			$contenido .= "<tr><td>".$aux2['name']."</td><td>".$aux2['calificacion']."</td><td></td><td></td></tr>";
+			$h =  $util->num2letras($aux2['calificacion']);
+			$contenido .= "<tr><td>".$aux2['name']."</td><td>".$aux2['calificacion']."</td><td>".$h."</td><td></td></tr>"; 
 			}
 			$contenido .= "</table>
 			<br><br>";
 		}
+		
+		$contenido .= "<br><br>A petición del Interesado  y para los usos legales que mejor convengan, 
+		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$fe[1]." del año ".$fe[0]."<br><br>";
 	
 		$contenido .= "<br><br><br>Atentamente
-		".$infoSol['firmante']."<br>
+		".$infoSol['nombreFirma']."<br>
 		".$infoSol['puestofirmante']."<br>
 		";
 	} 
@@ -47,14 +55,17 @@
 	
 		
 		$contenido .= "<br>
-		Que  el C. ".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."  , está inscrito al  ".$infoIns['nivel']." cuatrimestre 
-		de la '".$infoSol['name']."', correspondiente a la  generación ".$ii[0]." - ".$if[0]."  los días ...";
+		Que  el C. <b>".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b>,
+		está inscrito al <b>".$infoSol['tipoPeriodo']." de ".$infoSol['nombreMajor']." </b>
+		de <b>".$infoSol['name']."</b>, correspondiente a la  generación <b>".$ii[0]." - ".$if[0]."</b>  los días ...";
 	
 		$contenido .= "<br><br><br>A petición del Interesado  y para los usos legales que mejor convengan, 
 		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$fe[1]." del año ".$fe[0]."";
 		
 		$contenido .= "<br><br><br>Atentamente
-		".$infoSol['firmante']."<br>
+		<br>
+		<br>
+		".$infoSol['nombreFirma']."<br>
 		".$infoSol['puestofirmante']."<br>
 		";
 	} 
@@ -66,14 +77,17 @@
 		$fe = explode('-',$infoSol['fechaEntrega']);
 		
 		$contenido .= "<br>
-		Que  el C. ".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."  , concluyó los estudios  
-		de la '".$infoSol['name']."', correspondiente a la  generación ".$ii[0]." - ".$if[0]."  así mismo se encuentra en proceso de certificación de estudios";
+		Que  el C. <b>".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b> , concluyó los estudios  
+		de la <b>".$infoSol['nombreMajor']."</b> en <b>".$infoSol['name']."</b>, correspondiente a la  generación ".$ii[0]." - ".$if[0].", así mismo se encuentra 
+		en proceso de certificación de estudios.";
 	
 		$contenido .= "<br><br><br>A petición del Interesado  y para los usos legales que mejor convengan, 
 		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$fe[1]." del año ".$fe[0]."";
 		
 		$contenido .= "<br><br><br>Atentamente
-		".$infoSol['firmante']."<br>
+		<br>
+		<br>
+		".$infoSol['nombreFirma']."<br>
 		".$infoSol['puestofirmante']."<br>
 		";
 	} 
@@ -85,14 +99,16 @@
 		$fe = explode('-',$infoSol['fechaEntrega']);
 				
 		$contenido .= "<br><br><br>Que  se ha solicitado ante la Secretaria de Educación la autorización para realizar 
-		los trámites  de titulación del LIC. ".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno'].", 
-		quien terminó la '".$infoSol['name']."' generación ".$ii[0]." - ".$if[0].".";
+		los trámites  de titulación del <b>LIC. ".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b>, 
+		quien terminó la <b>".$infoSol['nombreMajor']."</b> en <b>".$infoSol['name']."</b> generación ".$ii[0]." - ".$if[0].".";
 	
 		$contenido .= "<br><br><br>A petición del Interesado  y para los usos legales que mejor convengan, 
 		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$fe[1]." del año ".$fe[0]."";
 		
 		$contenido .= "<br><br><br>Atentamente
-		".$infoSol['firmante']."<br>
+		<br>
+		<br>
+		".$infoSol['nombreFirma']."<br> 
 		".$infoSol['puestofirmante']."<br>
 		";
 	} 
@@ -148,7 +164,7 @@
 							</tr>
 							<tr>
 								<td>Constancia:</td>
-								<td>".$infoSol['folio']."</td>
+								<td>".$infoSol['folioSolicitud']."</td>
 							</tr>
 							<tr>
 								<td>Fecha:</td>
@@ -166,7 +182,7 @@
 					<b>A QUIEN CORRESPONDA:</b>
 					<br>
 					<br>
-					El que suscribe C. Director Académico del Instituto de Administración  Pública del Estado de Chiapas.
+					El que suscribe C. ".$infoSol['nombreFirma']." ".$infoSol['puestofirmante']." del Instituto de Administración  Pública del Estado de Chiapas.
 					<br>
 					<br>
 					<center><b>H A C E &nbsp;&nbsp;&nbsp;&nbsp; C O N S T A R </b> </center>

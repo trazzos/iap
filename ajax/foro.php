@@ -41,7 +41,30 @@
 			$smarty->display(DOC_ROOT.'/templates/lists/new/topic-replies.tpl');
 					
 		break;
-
+	
+		case 'saveMsj':
+		
+			// echo '<pre>'; print_r($_POST);
+			if( $student->SaveMensaje($_POST['chatId'],$_POST['mensaje'])){
+				echo 'ok[#]';
+			}else{
+				echo 'fail[#]';
+			}
+		
+		break;
+		
+		
+		case 'saveNew':
+		
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			if( $student->SaveMensaje($_POST['mensaje'])){
+				echo 'ok[#]';
+			}else{
+				echo 'fail[#]';
+			}
+		
+		break;
 	
 	}
 
