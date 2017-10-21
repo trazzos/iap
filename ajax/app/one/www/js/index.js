@@ -105,45 +105,38 @@ var urlLoc = "localhost";
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
 
 function downloadFile(){
-    window.requestFileSystem(
-        LocalFileSystem.PERSISTENT, 0,
-        function onFileSystemSuccess(fileSystem) {
-            fileSystem.root.getFile(
-                "dummy.html", {create: true, exclusive: false},
-                function gotFileEntry(fileEntry){
-                    var sPath = fileEntry.fullPath.replace("dummy.html","");
-                    var fileTransfer = new FileTransfer();
-                    fileEntry.remove();
-                    fileTransfer.download(
-                        "http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf",
-                        sPath + "theFile.pdf",
-                        function(theFile) {
-                            console.log("download complete: " + theFile.toURI());
-                            showLink(theFile.toURI());
-                        },
-                        function(error) {
-                            console.log("download error source " + error.source);
-                            console.log("download error target " + error.target);
-                            console.log("upload error code: " + error.code);
-                        }
-                    );
-                },
-                fail);
-        },
-        fail);
+
+    var fileTransfer = new FileTransfer();
+    var uri = encodeURI("http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf");
+
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+        console.log("fileSystem.root.toURL()="+fileSystem.root.toURL());
+        console.log("fileSystem.root.toInternalURL()="+fileSystem.root.toInternalURL());
+        console.log("fileSystem.root.nativeURL="+fileSystem.root.nativeURL);
+        fileTransfer.download(
+            uri,
+            fileSystem.root.toURL(),
+            function(entry) {
+                console.log("download complete: " + "<strong>"+entry.toURL()+"</strong>");
+                window.open(entry.toURL(), '_blank', 'location=no,closebuttoncaption=Close,enableViewportScale=yes');
+            },
+            function(error) {
+                console.log("download error source " + error.source);
+                console.log("download error target " + error.target);
+                console.log("upload error code" + error.code);
+            },
+            false,
+            {
+                headers: {
+                    "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+                }
+            }
+        );
+    }, function(){
+        alert("fails!");
+    });
 }
-function showLink(url){
-    alert(url);
-    var divEl = document.getElementById("deviceready");
-    var aElem = document.createElement("a");
-    aElem.setAttribute("target", "_blank");
-    aElem.setAttribute("href", url);
-    aElem.appendChild(document.createTextNode("Ready! Click To Open."))
-    divEl.appendChild(aElem);
-}
-function fail(evt) {
-    console.log(evt.target.error.code);
-}
+
 
 /*function downloadFile(url, filename, callback, callback_error) {
 
