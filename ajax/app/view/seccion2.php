@@ -96,7 +96,7 @@
 		if($_POST['Id'] >= 42 and $_POST['Id'] <= 51){
 		?> 
 		<div id="izquierda">
-		<a href='<?php echo WEB_ROOT?>/estandares/<?php echo $_POST['Id']?>.pdf' target='_blank' class='enlace'>Descargar</a>
+		<a onclick="downloadFile('<?php echo WEB_ROOT?>/estandares/<?php echo $_POST['Id']?>.pdf', 'Estandar.pdf')" href='#' target='_blank' class='enlace'>Descargar</a>
 		</div>
 		<div style='clear:both'>
 		</div>

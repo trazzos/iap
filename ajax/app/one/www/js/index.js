@@ -104,6 +104,71 @@ var urlLoc = "localhost";
 
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
 
+function downloadFile(url){
+    window.requestFileSystem(
+        LocalFileSystem.PERSISTENT, 0,
+        function onFileSystemSuccess(fileSystem) {
+            fileSystem.root.getFile(
+                "dummy.html", {create: true, exclusive: false},
+                function gotFileEntry(fileEntry){
+                    var sPath = fileEntry.fullPath.replace("dummy.html","");
+                    var fileTransfer = new FileTransfer();
+                    console.log(sPath);
+                    //fileEntry.remove(true);
+                    fileTransfer.download(
+                        url,
+                        sPath + "theFile.pdf",
+                        function(theFile) {
+                            console.log("download complete: " + theFile.toURI());
+                            showLink(theFile.toURI());
+                        },
+                        function(error) {
+                            console.log("download error source " + error.source);
+                            console.log("download error target " + error.target);
+                            console.log("upload error code: " + error.code);
+                        }
+                    );
+                },
+                fail);
+        },
+        fail);
+}
+function showLink(url){
+    alert(url);
+    var divEl = document.getElementById("deviceready");
+    var aElem = document.createElement("a");
+    aElem.setAttribute("target", "_blank");
+    aElem.setAttribute("href", url);
+    aElem.appendChild(document.createTextNode("Ready! Click To Open."))
+    divEl.appendChild(aElem);
+}
+function fail(evt) {
+    console.log(evt.target.error.code);
+}
+
+/*function downloadFile(url, filename, callback, callback_error) {
+
+    var b = new FileManager();
+    // download a file from a remote location and store it localy
+    b.download_file(url,'filder_a/dwonloads_folder/','target_name.html',Log('downloaded sucess'));
+
+    var fileTransfer = new FileTransfer();
+    fileTransfer.download(url,
+        cordova.file.dataDirectory + "cache/" + filename,
+        function (theFile) {
+            console.log("download complete: " + theFile.toURL());
+            if (callback)
+                callback();
+        },
+        function (error) {
+            console.log("download error source " + error.source);
+            console.log("download error target " + error.target);
+            console.log("upload error code: " + error.code);
+            if (callback_error)
+                callback_error();
+        }
+    );
+}*/
 
 function getCookie(cname) {
     var name = cname + "=";
