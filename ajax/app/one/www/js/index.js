@@ -104,7 +104,7 @@ var urlLoc = "localhost";
 
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
 
-function downloadFile(url){
+function downloadFile(){
     window.requestFileSystem(
         LocalFileSystem.PERSISTENT, 0,
         function onFileSystemSuccess(fileSystem) {
@@ -113,10 +113,9 @@ function downloadFile(url){
                 function gotFileEntry(fileEntry){
                     var sPath = fileEntry.fullPath.replace("dummy.html","");
                     var fileTransfer = new FileTransfer();
-                    console.log(sPath);
-                    //fileEntry.remove(true);
+                    fileEntry.remove();
                     fileTransfer.download(
-                        url,
+                        "http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf",
                         sPath + "theFile.pdf",
                         function(theFile) {
                             console.log("download complete: " + theFile.toURI());
