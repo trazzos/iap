@@ -107,7 +107,7 @@ var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><b
 function downloadFile(){
 
     var fileTransfer = new FileTransfer();
-    var uri = encodeURI("http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf");
+    var uri = encodeURI("http://www.iapchiapasenlinea.mx/dev/iap/estandares/42.pdf");
 
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
         console.log("fileSystem.root.toURL()="+fileSystem.root.toURL());
