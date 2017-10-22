@@ -104,12 +104,13 @@ var urlLoc = "localhost";
 
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
 
-function downloadFile(){
+function downloadFile(url){
 
     var fileTransfer = new FileTransfer();
     var uri = encodeURI("http://www.iapchiapasenlinea.mx/dev/iap/estandares/42.pdf");
+    window.open(url, '_system', 'location=no,closebuttoncaption=Close,enableViewportScale=yes');
 
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+    /*window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
         console.log("fileSystem.root.toURL()="+fileSystem.root.toURL());
         console.log("fileSystem.root.toInternalURL()="+fileSystem.root.toInternalURL());
         console.log("fileSystem.root.nativeURL="+fileSystem.root.nativeURL);
@@ -134,7 +135,7 @@ function downloadFile(){
         );
     }, function(){
         alert("fails!");
-    });
+    });*/
 }
 
 
