@@ -6,14 +6,18 @@
         <td align="left">{$subject.name}</td>
         <td align="left">{$subject.initialDate|date_format:"%d-%m-%Y"}</td>
         <td align="left">{$subject.finalDate|date_format:"%d-%m-%Y"}</td>
-          <!-- <td align="left">{$subject.daysToFinish}</td>
-     <td align="left">{$subject.active}</td>-->
-        {if $User.type == "student"}
-			    <td>{$subject.totalScore} <br/>
-				<a href="javascript:void(0)" onclick="CalificacionesAct({$subject.courseModuleId});"> Actividades</a>
-                <br/>
-                 <a href="javascript:void(0)" onclick="CalificacionesExa({$subject.courseModuleId});"> Examenes</a></td>			
-			{/if}
+		<!-- <td align="left">{$subject.daysToFinish}</td>
+		<td align="left">{$subject.active}</td>-->
+		{if $User.type == "student"}
+		<td align="center">{$subject.totalScore} <br/>
+		<a href="javascript:void(0)" onclick="CalificacionesAct({$subject.courseModuleId});"> Actividades</a>
+		<br/>
+		<a href="javascript:void(0)" onclick="CalificacionesExa({$subject.courseModuleId});"> Examenes</a>
+		</td>
+		<td align="center">
+			{$subject.calificacionFinal}
+		</td>
+		{/if}
 				
         <td align="center">
         {if $User.type == "student"}

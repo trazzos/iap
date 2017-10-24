@@ -135,7 +135,10 @@ function SaveCalificacion(alumnoId,courseId){
 				$("#ajax").hide();
 				$("#ajax").modal("hide");
 			}else if(splitResp[0]=="fail"){
-				alert(splitResp[1])
+				// alert(splitResp[1])
+				$('#btnSave').show();
+				$('#loader').html('');
+				$('#msjd').html(splitResp[1]);
 			}
 			
 				
@@ -187,4 +190,11 @@ function validarCal(){
 			// alert(msgError);
 		}
     });
+}
+
+
+
+function descargarActa(Id){
+	url=WEB_ROOT+"/ajax/acta-calificacion.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id;
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
 }

@@ -700,6 +700,14 @@
 			//print_r($result);exit;
 			foreach($result as $key => $res)
 			{
+				$sql = "
+					SELECT *
+					FROM course_module_score
+					WHERE courseModuleId = '".$res['courseModuleId']."' and userId = ".$_SESSION["User"]["userId"]." and courseId = ".$info["courseId"]."";
+
+				$this->Util()->DB()->setQuery($sql);
+				$infoCc = $this->Util()->DB()->GetRow();
+				
 				$result[$key]["finalDate"]=$result[$key]["finalDate"]." 23:59:59";
 				$result[$key]["initialDateStamp"] = strtotime($result[$key]["initialDate"]);
 				$result[$key]["finalDateStamp"] = strtotime($result[$key]["finalDate"]);
@@ -710,6 +718,7 @@
 				//echo $result[$key]["finalDateStamp"]."+".$toFinishSeconds."=".$result[$key]["daysToFinishStamp"]."<br/>" ;
 				$student = new Student;
 				$result[$key]["totalScore"] = $student->GetAcumuladoCourseModule($res["courseModuleId"]);
+				$result[$key]["calificacionFinal"] = $infoCc['calificacion'];
 			}
 			
 			return $result;
@@ -851,6 +860,9 @@
 			
 			return true;
 		}
+		
+		
+		
 		
 		
 	

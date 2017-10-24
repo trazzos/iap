@@ -4,6 +4,7 @@
             <i class="fa fa-bullhorm"></i>Acta de Calificaciones
         </div>
         <div class="actions">
+		 <button  class="btn green submitForm" onClick="descargarActa({$id})">Descargar Acta</button>
         </div>
     </div>
     <div class="portlet-body">

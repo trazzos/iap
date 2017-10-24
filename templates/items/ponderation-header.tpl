@@ -3,7 +3,7 @@
 	<th width="">Ex&aacute;men</th>
 	{/if}
 	
-    <th width="">Calificaci&oacute;n</th>
+    <th width="">Calificaci&oacute;n / Porcentaje Obtenido</th>
     <th width="">Retroalimentaci&oacute;n</th>
     
  

@@ -208,7 +208,7 @@ class Solicitud extends Module
 					count(*)
 				FROM 
 					solicitud 
-				WHERE  tiposolicitudId = '.$this->tipo.' and estatus <> "completado" and userId = '.$_SESSION['User']['userId'].'';
+				WHERE    estatus <> "completado" and estatus <> "cancelado" and( tiposolicitudId = '.$this->tipo.' and userId = '.$_SESSION['User']['userId'].')';
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$countS = $this->Util()->DB()->GetSingle();
 		// exit;
@@ -472,7 +472,7 @@ class Solicitud extends Module
 					*
 				FROM 
 					tiposolicitud
-				WHERE  tiposolicitudId = 1 or tiposolicitudId = 2 or tiposolicitudId = 3 or tiposolicitudId = 4 ORDER BY orden asc';
+				WHERE  tiposolicitudId = 1 or tiposolicitudId = 2 or tiposolicitudId = 3 or tiposolicitudId = 4 or tiposolicitudId = 6 or tiposolicitudId = 7 ORDER BY orden asc';
 			$this->Util()->DB()->setQuery($sqlQuery);
 			$coun = $this->Util()->DB()->GetResult();
 			

@@ -64,33 +64,29 @@
 				{/if}
 				{if $subject.estatus eq 'completado'}
 					{if $subject.tiposolicitudId ne 4}
-						<a href="{$WEB_ROOT}/alumnos/doc_adjuntos/{$subject.rutaAdjunto}" target='_blank' title='DESCARGAR CONSTANCIA DE ESTUDIOS'>
+						<!--<a href="{$WEB_ROOT}/alumnos/doc_adjuntos/{$subject.rutaAdjunto}" target='_blank' title='DESCARGAR CONSTANCIA DE ESTUDIOS'>
 							<i class="material-icons md-16">cloud_download</i>
-						</a>
+						</a>-->
 					{/if}
 				{/if}
 				
-				{if $subject.estatus eq 'en progreso'}
-					{if $subject.tiposolicitudId eq 3}
-						<a href="javascript:void(0)" onClick='descargarSolicitud({$subject.solicitudId})'  target='_blank' title='FORMATO DE REINSCRIPION'>
-							<i class="material-icons md-16">cloud_download</i>
-						</a>
-					{else}
+				{if $subject.estatus eq 'en progreso'}	
 						<a href="{$WEB_ROOT}/alumnos/comprobantes/{$subject.ruta}" target='_blank' title='COMPROBANTE DE PAGO'>
 							<i class="material-icons md-16">description</i>
-						</a>
-					{/if}
-					
-					
+						</a>		
 				{/if}
-				
+				{if $subject.estatus ne 'cancelado'}
 					<a href="{$WEB_ROOT}/graybox.php?page=cancelar-solicitud&id={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CANCELAR SOLICITUD'>
 						<i class="material-icons md-16">delete_forever</i>
 					</a>
-					
+				{/if}
+				{if $subject.estatus eq 'completado'}
+					{if $subject.tiposolicitudId eq 1 or $subject.tiposolicitudId eq 6 or $subject.tiposolicitudId eq 2 or $subject.tiposolicitudId eq 7}
 					<a href="javascript:void(0)" onClick='descargarConstancias({$subject.solicitudId})'  target='_blank' title='DESCARGAR CONSTANCIA'>
 							<i class="material-icons md-16">cloud_download</i>
 					</a>
+					{/if}
+				{/if}
 			</td>
 		</tr>
 		{/foreach}

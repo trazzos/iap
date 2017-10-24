@@ -778,6 +778,7 @@
 				ORDER BY lastNamePaterno ASC, lastNameMaterno ASC, names ASC");
 			$result = $this->Util()->DB()->GetResult();
 			
+			$student = New Student;
 			
 			foreach($result as $key => $res)
 			{
@@ -788,7 +789,20 @@
 
 				$this->Util()->DB()->setQuery($sql);
 				$infoCc = $this->Util()->DB()->GetRow();
+				
+				$student->getUserId($res["alumnoId"]);
+				$cali = $student->GetAcumuladoCourseModule($this->coursemoduleId);
+				
+				$cali = $cali / 10;
+				
+				if($infoCc["calificacion"]==null){
+					$infoCc["calificacion"] = $cali;
+				}else{
+					$infoCc["calificacion"] = $infoCc["calificacion"];
+				}
+				
 				$result[$key]["score"] = $infoCc["calificacion"];
+				$result[$key]["scorePromedio"] = $cali;
 				
 			}
 			
@@ -918,6 +932,27 @@
 		function EditCalificacion()
 		{
 			
+			foreach($_POST as $key=>$aux){ 
+				
+				$e = explode("_",$key);
+				if($e[0]=="cal"){
+					
+					if($aux>=11){
+						echo 'fail[#]';
+						echo '<font color="red">La calificacion del alumno '.$e[1].' es mayor a 10</font>';
+						exit;
+					}
+					
+					// if($this->Util()->ValidateInteger($aux)){
+						// echo 'fail[#]';
+						// echo '<font color="red">La calificacion del alumno '.$e[1].' tiene decimales</font>';
+						// exit;
+					// }
+				}
+				
+			}
+			
+			// exit;
 			$this->Util()->DB()->setQuery("
 					SELECT *
 					FROM course_module

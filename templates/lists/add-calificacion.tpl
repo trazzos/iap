@@ -7,7 +7,8 @@
       <th width="100" height="28">ID</th>
       <th width="80">No. Control</th>
       <th width="200">Nombre</th>
-      <th width="200">Acciones</th>
+      <th width="200">Promedio</th>
+      <th width="200">Calificacion Final</th>
 	</tr>
 </thead>
 <tbody>
@@ -16,6 +17,9 @@
         <td align="center">{$item.alumnoId}</td>
         <td align="center">{$item.controlNumber}</td>
         <td align="center">{$item.lastNamePaterno} {$item.lastNameMaterno} {$item.names}</td>
+		<td align="center">
+           <input type="text" readonly name="pro_{$item.alumnoId}" id="pro_{$item.alumnoId}" value="{$item.scorePromedio}" class="form-control" style="width:60px">
+        </td>
         <td align="center">
            <input type="text" name="cal_{$item.alumnoId}" id="cal_{$item.alumnoId}" value="{$item.score}" class="form-control" style="width:60px">
         </td>
@@ -35,8 +39,8 @@
 </table>
 </form>
 <center>
-<div id="loader">
-</div>
+<div id="loader"></div>
+<div id="msjd"></div>
 <button class="btn " onClick="closeModal()">Cerrar</button>
 <button class="btn green" onClick="SaveCalificacion()" id="btnSave">Guardar</button>
 {if $infoUser.perfil eq 'Administrador'}
