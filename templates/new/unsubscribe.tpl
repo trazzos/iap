@@ -57,7 +57,7 @@
 		<br>
 		<br>
 			<center>
-			<a class="btn red"  href="#" onClick="descargarSolicitud()">
+			<a class="btn red"  href="javascript:void(0)" onClick="descargarSolicitud('{$info.courseId}','{$info.userId}','{$info.solicitudId}')">
 			Descargar Solicitud
 			</a>
 			</center>

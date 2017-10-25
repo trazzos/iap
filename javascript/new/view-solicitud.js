@@ -216,8 +216,8 @@ function cancelarSolicitud(){
 }
 
 
-function descargarSolicitud(q){
-	url=WEB_ROOT+"/ajax/formato-baja-solicitud.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
+function descargarSolicitud(c,u,s){
+	url=WEB_ROOT+"/ajax/formato-baja.php?"+$('#frmfiltro').serialize(true)+'&c='+c+'&u='+u+'&s='+s;
 	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
 }
 

@@ -196,7 +196,7 @@ class Solicitud extends Module
 			$status = "completado";
 		}
 		else if($this->tipo == 3){
-			$status = "en progreso";
+			$status = "pendiente";
 		}
 		else{
 			$status = "pendiente";
@@ -639,6 +639,20 @@ class Solicitud extends Module
 		
 		
 		return $result;
+	}
+	
+	public function actualizaBaja($Id)
+	{
+		$sqlQuery = "
+			UPDATE 
+				solicitud 
+			set 
+				estatus = 'en progreso'
+			where
+				solicitudId = '".$Id."'"; 	
+	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
 	}
 	
 }	

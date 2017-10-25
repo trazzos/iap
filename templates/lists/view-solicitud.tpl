@@ -20,7 +20,7 @@
 			<td align="center">
 			
 				{if $subject.tiposolicitudId eq 3}
-					{if $subject.estatus eq 'pendiente'} en progreso {else} {$subject.estatus} {/if}
+					 {$subject.estatus}
 				{else}
 					{if $subject.estatus eq 'pendiente'} En espera de pago {else} {$subject.estatus} {/if}
 				{/if}
@@ -33,9 +33,9 @@
 					<a  href="{$WEB_ROOT}/graybox.php?page=view-boleta&id=con" data-target="#ajax" data-toggle="modal" data-width="1000px" title='DESCARGAR BOLETA DE CALIFICACIONES'>
 						<i class="material-icons md-16">cloud_download</i>
 					</a>
-					<a href="{$WEB_ROOT}/graybox.php?page=info&id=1" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
+					<!--<a href="{$WEB_ROOT}/graybox.php?page=info&id=1" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
 					<i class="material-icons md-16">info</i>
-					</a>
+					</a>-->
 				{else}
 					{if $subject.estatus eq 'pendiente'} 
 						{if $subject.tiposolicitudId ne 3}
@@ -58,9 +58,17 @@
 					{/if}
 				{/if}
 				{if $subject.tiposolicitudId eq 3}
-					<a href="{$WEB_ROOT}/unsubscribe"  title='INICIAR PROCESO'>
-						<i class="material-icons md-16">play_circle_filled</i>
-					</a>
+					{if $subject.estatus eq 'pendiente'}	
+						<!--<a href="{$WEB_ROOT}/unsubscribe/sId/{$subject.solicitudId}"  title='INICIAR PROCESO'>-->
+						<a href="{$WEB_ROOT}/graybox.php?page=confirma-baja&id={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INICIAR PROCESO'>
+							<i class="material-icons md-16">play_circle_filled</i>
+						</a>
+					{else if $subject.estatus eq 'en progreso'}
+						<a href="javascript:void(0)" onClick='descargarSolicitud("{$subject.courseId}","{$subject.userId}","{$subject.solicitudId}")'  target='_blank' title='DESCARGAR SOLICITUD'>
+							<i class="material-icons md-16">cloud_download</i>
+						</a>
+					{/if}
+					
 				{/if}
 				{if $subject.estatus eq 'completado'}
 					{if $subject.tiposolicitudId ne 4}
@@ -71,9 +79,11 @@
 				{/if}
 				
 				{if $subject.estatus eq 'en progreso'}	
+						{if $subject.tiposolicitudId ne 3}
 						<a href="{$WEB_ROOT}/alumnos/comprobantes/{$subject.ruta}" target='_blank' title='COMPROBANTE DE PAGO'>
 							<i class="material-icons md-16">description</i>
 						</a>		
+						{/if}
 				{/if}
 				{if $subject.estatus ne 'cancelado'}
 					<a href="{$WEB_ROOT}/graybox.php?page=cancelar-solicitud&id={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CANCELAR SOLICITUD'>

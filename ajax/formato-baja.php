@@ -8,10 +8,11 @@
 	session_start();
 
 	
-	$course->setCourseId($_GET['courseId']);
+	$course->setCourseId($_GET['c']);
 	$infoCourse = $course->Info();
 	
 	
+	$solicitud->actualizaBaja($_GET['s']);
 	$infoBaja =  $solicitud->buscaBaja();
 	
 	$in = explode('-',$infoCourse['initialDate']);
@@ -71,6 +72,7 @@
 			<tr>
 				<td colspan='3' align='center'>
 					Formato de Baja 
+					<br>
 					".$infoCourse['majorName']."
 					<br>
 					<br>
