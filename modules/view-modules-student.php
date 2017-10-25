@@ -21,7 +21,7 @@
 		// echo 	$countIns;
 		// exit;
 		if($countIns <= 0){
-			header("Location:".WEB_ROOT."/reinscripcion/id/".$_GET["id"]."/s/".$myModule['subjectId']."&c=".$myModule['courseId']);
+			header("Location:".WEB_ROOT."/reinscripcion/id/".$_GET["id"]."/s/".$myModule['subjectId']."&c=".$myModule['courseId'].'&sId='.$myModule['semesId']);
 			exit;
 		}
 	}
