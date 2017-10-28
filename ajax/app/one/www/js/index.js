@@ -429,7 +429,7 @@ function detalleActividad(id,tipo)
 			}
             $.mobile.loading('hide');
         },
-        error: function ()
+        error: function (request, status, error)
         {
             $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
