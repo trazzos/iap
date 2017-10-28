@@ -314,12 +314,10 @@
 					<h3>Recursos de Apoyo</h3>
 					<div id="divRecursos"></div> 
 				</div>
-<!--
 				<div data-role="collapsible" style="display:none" id="seccion_7">
 					<h3>Foro</h3>
 					<div id="divForo"></div> 
 				</div>
--->
 			</div>
 			<div data-role="footer" data-id="foo1" data-position="fixed" class="genericFooter"></div>
 		</div>
@@ -436,7 +434,7 @@
 					<input type="hidden" name="forotopicId" id="forotopicId">
 				</form>
 				<div class="msj"></div>
-				<div class="loader"></div>
+				<!--<div class="loader"></div>-->
 				<a onClick="saveForo()" class="ui-btn login white" id="btnSave">
 					Guardar
 				</a>
@@ -448,7 +446,7 @@
 	<!--SUBFORO DETALLE-->
 	<div data-role="page" data-theme="a" id="divSubForoDetalle" class="headerBackground" >
 		<div data-role="header" data-theme="a">
-			<i class="material-icons header-left" onClick="back('divSubforo')">keyboard_arrow_left</i>
+			<i class="material-icons header-left" onClick="back('divSubForo')">keyboard_arrow_left</i>
 			<h2>Foros</h2>
 		</div>
 		<div data-role="content" data-theme="a" class="contentBackground">
@@ -457,18 +455,20 @@
 		<div data-role="footer" data-id="foo1" data-position="fixed">
 			<center>
 				<form id="frmAportacion">
+<!--
 					<div class="btn btn-default btn-file">
 						<i class="material-icons green">cloud_upload</i>
 						<br>Seleccionar archivo
 						<input type="file" name="path" id="path" onChange="compruebaExistencia(1)">
 					</div>
+-->
 					<div id="archiivocargado_1" class="archivoscargados" ></div>
 					<textarea name="aportacion" id="aportacion" placeholder="Aportacion"></textarea>
 					<input type="hidden" name="dcourseId" id="dcourseId">
 					<input type="hidden" name="dtopicId" id="dtopicId">
 				</form>
 				<div class="msj"></div>
-				<div class="loader"></div>
+				<!--<div class="loader"></div>-->
 				<a onClick="saveAportacion()" id="btnAportacion" class="ui-btn login white">
 					Guardar Aportación
 				</a>
@@ -493,13 +493,15 @@
 					<input type="hidden" name="usuarioId" id="usuarioId">
 				
 					<div class="msj"></div>
-					<div class="loader"></div>
+					<!--<div class="loader"></div>-->
+<!--
 					<div class="btn btn-default btn-file">
 						<i class="material-icons green">cloud_upload</i>
 						<br>Seleccionar archivo
 						<input type="file" name="path" id="path" onchange='compruebaExistencia(2)'>
 					</div>
-				</form> 
+-->
+				</form>
 				<div id="archiivocargado_2" class="archivoscargados"></div> 
 				<a onClick="SaveComentario()" id="btnComentario" class="ui-btn login white">
 					Comentar

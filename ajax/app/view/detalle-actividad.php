@@ -66,7 +66,7 @@
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Tarea Entregada: 
 			<span class="h3">
-				<a  href="<?php echo WEB_ROOT."/download.php?file=homework/".$infoActividad["homework"]["path"]."&mime=".$infoActividad["homework"]["mime"] ?>" >
+				<a onclick="downloadFile('<?php echo WEB_ROOT.'/homework/'.$infoActividad["homework"]["path"]?>')"  href="#" >
 				Descargar
 				</a>
 			</span>
@@ -89,9 +89,10 @@
 		 <?php if($infoActividad["retroFile"] <> ""){?>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Archivo adjunto disponible: <span class="h3">
-			<a  href="<?php echo WEB_ROOT."/download.php?file=file_retro/".$infoActividad["retroFile"]."&mime=".$infoActividad["homework"]["mime"] ?>" >
-	Descargar</a>
-			</span>
+
+			<a onclick="downloadFile('<?php echo WEB_ROOT.'/file_retro/'.$infoActividad["retroFile"]?>')"  href="#" >
+				Descargar
+			</a>
         </li>
 		 <?php }?>
 		 

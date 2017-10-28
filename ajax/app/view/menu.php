@@ -41,7 +41,7 @@ header('Access-Control-Allow-Origin: *');
 	text-align:center;
 	height: 40px;
 <?php 
-if($_POST['Id']==12 or $_POST['Id']==6){
+if($_POST['Id']==12){
 	echo 'width: 49.5%;';
 }else{
 	echo 'width: 33%;';
@@ -73,15 +73,15 @@ if($_POST['Id']==12 or $_POST['Id']==6){
 <?php
 
 if($_POST['Id'] <>5){
-
-foreach($lstMenu as $key=>$aux){
-if($aux['menuAppId'] <>9){
-?>
-<div class='menu'>
-<a class='enlace' onClick='clickMenu(<?php echo $aux['menuAppId']?>)'><?php echo $aux['nombre']?></a>
-</div>
-<?php 
-}}
+	foreach($lstMenu as $key=>$aux){
+		if($aux['menuAppId'] <>9){
+		?>
+			<div class='menu'>
+				<a class='enlace' onClick='clickMenu(<?php echo $aux['menuAppId']?>)'><?php echo $aux['nombre']?></a>
+			</div>
+		<?php
+		}
+	}
 }
 ?>
 
