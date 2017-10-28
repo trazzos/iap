@@ -90,7 +90,7 @@
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Archivo adjunto disponible: <span class="h3">
 
-			<a onclick="downloadFile('<?php echo WEB_ROOT.'/homework/'.$infoActividad["retroFile"]?>')"  href="#" >
+			<a onclick="downloadFile('<?php echo WEB_ROOT.'/file_retro/'.$infoActividad["retroFile"]?>')"  href="#" >
 				Descargar
 			</a>
         </li>
