@@ -44,79 +44,79 @@
 
 <div class="ui-content ui-content-no-overflow ui-content-no-padding ui-page-theme-a" data-form="ui-page-theme-a" data-theme="a" role="main">
 
-
+<!--
 
 
     <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
         <li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child green">
-        <?php echo $infoActividad["resumen"]?></li>
+        <?php /*echo $infoActividad["resumen"]*/?></li>
 		 <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            <center>Descripción</center> <br><span class="h3" style="text-align:justify"><?php echo $infoActividad["description"]?></span>
+            <center>Descripción</center> <br><span class="h3" style="text-align:justify"><?php /*echo $infoActividad["description"]*/?></span>
         </li>
         <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Fecha Inicial: <span class="h3"><?php echo $infoActividad["initialDate"]?></span>
+            Fecha Inicial: <span class="h3"><?php /*echo $infoActividad["initialDate"]*/?></span>
         </li>
         <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Fecha Final: <span class="h3"><?php echo $infoActividad["finalDate"]?></span>
+            Fecha Final: <span class="h3"><?php /*echo $infoActividad["finalDate"]*/?></span>
         </li>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Modalidad: <span class="h3"><?php echo $infoActividad["modality"]?></span>
+            Modalidad: <span class="h3"><?php /*echo $infoActividad["modality"]*/?></span>
         </li>
-		<?php if ($infoActividad["homework"]){ ?>
+		<?php /*if ($infoActividad["homework"]){ */?>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Tarea Entregada: 
 			<span class="h3">
-				<a onclick="downloadFile('<?php echo WEB_ROOT.'/homework/'.$infoActividad["homework"]["path"]?>')"  href="#" >
+				<a onclick="downloadFile('<?php /*echo WEB_ROOT.'/homework/'.$infoActividad["homework"]["path"]*/?>')"  href="#" >
 				Descargar
 				</a>
 			</span>
         </li>
-		<?php }?>
-		 <?php if($infoActividad["ponderation"]) {?>
+		<?php /*}*/?>
+		 <?php /*if($infoActividad["ponderation"]) {*/?>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Calificación: <span class="h3"><?php echo $infoActividad["ponderation"]?></span>
+            Calificación: <span class="h3"><?php /*echo $infoActividad["ponderation"]*/?></span>
         </li>
 		
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Porcentaje Obtenido: <span class="h3"><?php echo $infoActividad["realScore"]?>%</span>
+            Porcentaje Obtenido: <span class="h3"><?php /*echo $infoActividad["realScore"]*/?>%</span>
         </li>
-		 <?php }?>
-		 <?php if($infoActividad["retro"]) {?>
+		 <?php /*}*/?>
+		 <?php /*if($infoActividad["retro"]) {*/?>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
-            Retroalimentación:<br> <span class="h3"><?php echo nl2br($infoActividad["retro"])?></span>
+            Retroalimentación:<br> <span class="h3"><?php /*echo nl2br($infoActividad["retro"])*/?></span>
         </li>
-		 <?php }?>
-		 <?php if($infoActividad["retroFile"] <> ""){?>
+		 <?php /*}*/?>
+		 <?php /*if($infoActividad["retroFile"] <> ""){*/?>
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Archivo adjunto disponible: <span class="h3">
 
-			<a onclick="downloadFile('<?php echo WEB_ROOT.'/file_retro/'.$infoActividad["retroFile"]?>')"  href="#" >
+			<a onclick="downloadFile('<?php /*echo WEB_ROOT.'/file_retro/'.$infoActividad["retroFile"]*/?>')"  href="#" >
 				Descargar
 			</a>
         </li>
-		 <?php }?>
+		 <?php /*}*/?>
 		 
     </ul>
-	<?php if($_POST["tipo"]=="actividad"){?>
-		<?php $timestamp = time(); ?>
-		<?php if ($timestamp > $infoActividad["initialDateTimestamp"] && $timestamp < $infoActividad["finalDateTimestamp"]){ ?>
-			<a onClick="verFormUp('<?php echo $infoActividad["activityId"]?>','<?php echo $infoActividad["modality"]?>','<?php echo $_POST["tipo"]?>')" id="btnComentario" class="ui-btn login white">
+	<?php /*if($_POST["tipo"]=="actividad"){*/?>
+		<?php /*$timestamp = time(); */?>
+		<?php /*if ($timestamp > $infoActividad["initialDateTimestamp"] && $timestamp < $infoActividad["finalDateTimestamp"]){ */?>
+			<a onClick="verFormUp('<?php /*echo $infoActividad["activityId"]*/?>','<?php /*echo $infoActividad["modality"]*/?>','<?php /*echo $_POST["tipo"]*/?>')" id="btnComentario" class="ui-btn login white">
 				Subir Actividad
 			</a>
-		<?php }?>
-		<?php if ($timestamp > $infoActividad["finalDateTimestamp"]){ ?>
+		<?php /*}*/?>
+		<?php /*if ($timestamp > $infoActividad["finalDateTimestamp"]){ */?>
 			<span style="color:#C00">Tiempo Terminado</span><br>
-		<?php }?>
-		<?php  if ($timestamp < $infoActividad["initialDateTimestamp"] ){?>
+		<?php /*}*/?>
+		<?php /* if ($timestamp < $infoActividad["initialDateTimestamp"] ){*/?>
 			<span style="color:#C00">No Iniciada</span>
-		<?php }?>
+		<?php /*}*/?>
 
 
-	<?php }else{?>
+	<?php /*}else{*/?>
 	<font color='#276e36'>
 	Los examenes solo se pueden realizar a través de www.iapchiapasenlinea.mx
 	</font>
-	<?php }?>
+	--><?php /*}*/?>
 	
 </div>
 
