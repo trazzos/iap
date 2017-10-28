@@ -121,4 +121,5 @@
         <preference name="StatusBarOverlaysWebView" value="false" />
         <preference name="StatusBarBackgroundColor" value="#000000" />
     </platform>
+    <engine name="ios" spec="~4.4.0" />
 </widget>
