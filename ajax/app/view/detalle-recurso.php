@@ -54,7 +54,8 @@
 
 	
     </ul>
-	<a class="ui-btn login white" href="<?php echo WEB_ROOT."/download.php?file=resources/".$infoRe["path"]."&mime=".$infoRe["mime"] ?>" >
+
+	<a onclick="downloadFile('<?php echo WEB_ROOT.'/resources/'.$infoRe["path"]?>')" class="ui-btn login white" href="#" >
 		Descargar recurso de apoyo
 	</a>
 </div>
