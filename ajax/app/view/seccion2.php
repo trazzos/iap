@@ -107,7 +107,7 @@
 		if($_POST['Id'] >= 52 and $_POST['Id'] <= 58){
 		?> 
 		<div id="izquierda">
-		<a onclick="downloadFile('<?php echo WEB_ROOT?>/tripticos/<?php echo $_POST['Id']?>.jpg')" href='#' target='_blank' class='enlace'>Descargar</a>
+		<a onclick="downloadFile('<?php echo WEB_ROOT?>/tripticos/<?php echo $_POST['Id']?>.pdf')" href='#' target='_blank' class='enlace'>Descargar</a>
 		</div>
 		<div style='clear:both'>
 		</div>

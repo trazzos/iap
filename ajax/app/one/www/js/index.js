@@ -106,38 +106,77 @@ var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><b
 
 function downloadFile(url){
 
-    var fileTransfer = new FileTransfer();
-    var uri = encodeURI("http://www.iapchiapasenlinea.mx/dev/iap/estandares/42.pdf");
-    window.open(url, '_system', 'location=no,closebuttoncaption=Close,enableViewportScale=yes');
-
-    /*window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-        console.log("fileSystem.root.toURL()="+fileSystem.root.toURL());
-        console.log("fileSystem.root.toInternalURL()="+fileSystem.root.toInternalURL());
-        console.log("fileSystem.root.nativeURL="+fileSystem.root.nativeURL);
-        fileTransfer.download(
-            uri,
-            fileSystem.root.toURL(),
-            function(entry) {
-                console.log("download complete: " + "<strong>"+entry.toURL()+"</strong>");
-                window.open(entry.toURL(), '_blank', 'location=no,closebuttoncaption=Close,enableViewportScale=yes');
-            },
-            function(error) {
-                console.log("download error source " + error.source);
-                console.log("download error target " + error.target);
-                console.log("upload error code" + error.code);
-            },
-            false,
-            {
-                headers: {
-                    "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-                }
-            }
-        );
-    }, function(){
-        alert("fails!");
-    });*/
+    showFile(url);
 }
 
+var inAppBrowserRef;
+function showFile(url) {
+
+    var target = "_system";
+
+    var options = "location=yes,hidden=yes";
+
+    inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
+
+    inAppBrowserRef.addEventListener('loadstart', loadStartCallBack);
+
+    inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
+
+    inAppBrowserRef.addEventListener('loaderror', loadErrorCallBack);
+
+}
+
+function loadStartCallBack() {
+
+    $.mobile.loading('show');
+    console.log("loading");
+    //$('#status-message').text("loading please wait ...");
+
+}
+
+function loadStopCallBack() {
+
+    if (inAppBrowserRef != undefined) {
+
+        inAppBrowserRef.insertCSS({ code: "body{font-size: 25px;" });
+
+        console.log("stopcallback");
+        $.mobile.loading('hide');
+        //$('#status-message').text("");
+
+        inAppBrowserRef.show();
+    }
+
+}
+
+function loadErrorCallBack(params) {
+
+    //$('#status-message').text("");
+    console.log("errorcallback");
+    $.mobile.loading('hide');
+
+    var scriptErrorMesssage =
+        "alert('Sorry we cannot open that page. Message from the server is : "
+        + params.message + "');"
+
+    inAppBrowserRef.executeScript({ code: scriptErrorMesssage }, executeScriptCallBack);
+
+    inAppBrowserRef.close();
+
+    inAppBrowserRef = undefined;
+
+}
+
+function executeScriptCallBack(params) {
+
+    if (params[0] == null) {
+        console.log(params[0]);
+        /*$('#status-message').text(
+            "Sorry we couldn't open that page. Message from the server is : '"
+            + params.message + "'");*/
+    }
+
+}
 
 /*function downloadFile(url, filename, callback, callback_error) {
 

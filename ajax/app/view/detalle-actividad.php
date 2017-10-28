@@ -66,7 +66,7 @@
 		<li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">
             Tarea Entregada: 
 			<span class="h3">
-				<a  href="<?php echo WEB_ROOT."/download.php?file=homework/".$infoActividad["homework"]["path"]."&mime=".$infoActividad["homework"]["mime"] ?>" >
+				<a onclick="downloadFile('<?php echo WEB_ROOT.'/homework/'.$infoActividad["homework"]["path"]?>')"  href="#" >
 				Descargar
 				</a>
 			</span>
