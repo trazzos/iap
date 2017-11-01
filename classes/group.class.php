@@ -549,6 +549,8 @@
 			}
 			return $result;
 		}	
+		
+		
 
 		function MyTeam($userId, $courseModuleId)
 		{
@@ -569,6 +571,39 @@
 			return $members;
 		}
 
+		function MyTeamStudent($userId, $courseModuleId)
+		{
+						
+			 $sql = "
+				SELECT teamNumber FROM team
+				WHERE courseModuleId = '".$courseModuleId."'
+					AND userId = '".$userId."'";
+					
+					// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$teamNumber = $this->Util()->DB()->GetSingle();
+			
+			$sql = "
+				SELECT *, team.userId AS userId FROM team
+				LEFT JOIN user ON team.userId = user.userId
+				WHERE courseModuleId = '".$courseModuleId."'
+					AND teamNumber = '".$teamNumber."'
+				ORDER BY teamNumber ASC, lastNamePaterno ASC, lastNameMaterno ASC, names ASC";
+				// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			
+			foreach($result as $key => $res)
+			{
+				$result[$key]["names"] = $this->Util()->DecodeTiny($result[$key]["names"]);
+				$result[$key]["lastNamePaterno"] = $this->Util()->DecodeTiny($result[$key]["lastNamePaterno"]);
+				$result[$key]["lastNameMaterno"] = $this->Util()->DecodeTiny($result[$key]["lastNameMaterno"]);
+			}
+			
+			
+			return $result;
+		}
+		
 		public function Team()
 		{
 			
