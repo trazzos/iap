@@ -795,6 +795,8 @@
 				
 				$cali = $cali / 10;
 				
+				$cali = round($cali, 0, PHP_ROUND_HALF_DOWN);
+				
 				if($infoCc["calificacion"]==null){
 					$infoCc["calificacion"] = $cali;
 				}else{

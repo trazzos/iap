@@ -14,11 +14,12 @@
 	<!--Es necesario descargar e imprimir el formato de reinscripción y llevarlo al área de control escolar para recabar las firmas correspondientes-->
 
 	
-	{if $id eq 2}
-		Para completar este proceso, será necesario que realices el depósito por la cantidad de $XXXX al banco XXXX Es muy importante que el depósito lo realices con tu referencia bancaria
+	{**if $id eq 2}
 	{else if $id eq 1}
 		Tu solicitud está en progreso, en breve se estará adjunto la información que nos solicitaste
-	{/if}
+	{/if**}
+		Para completar este proceso, será necesario que realices el depósito por la cantidad de <b>$ {$infoSol.precio|number_format:2:'.':','} M.N.</b>  al banco <b>Bancomer</b>, Es muy importante que el depósito lo realices con tu referencia bancaria
+	
 		
     </div>
 </div>

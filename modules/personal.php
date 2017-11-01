@@ -37,7 +37,7 @@
 			$personal->setClavesPresupuestales($_POST['claves_presupuestales']);
 			$personal->setCategoria($_POST['categoria']);
 			$personal->setPerfil($_POST['perfil']);
-
+			$personal->setProf($_POST['prof']);
 			$personal->setCorreo($_POST['correo']);
 			$personal->setCelular($_POST['celular']);
 

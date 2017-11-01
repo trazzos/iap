@@ -15,7 +15,13 @@ switch($_POST["type"])
         $positions = $util->EncodeResult($listPositions);
         $listRoles = $role->Enumerate();
         $roles = $util->EncodeResult($listRoles);
+		
+        $lstPd = $personal->enumerateAbreviaciones();
+		
+		// echo '<pre>'; print_r($lstPd);
+		// exit;
 
+        $smarty->assign('lstPd', $lstPd);
         $smarty->assign('states', $states);
         $smarty->assign("roles",$roles);
         $smarty->assign("positions",$positions);
@@ -33,7 +39,7 @@ switch($_POST["type"])
         $positions = $util->EncodeResult($listPositions);
         $listRoles = $role->Enumerate();
         $roles = $util->EncodeResult($listRoles);
-
+		$lstPd = $personal->enumerateAbreviaciones();
 
         foreach($roles as $key => $val){
 
@@ -53,6 +59,7 @@ switch($_POST["type"])
 
         $usrRoles = $personal->EnumerateRoles();
 
+        $smarty->assign('lstPd', $lstPd);
         $smarty->assign('states', $states);
         $smarty->assign("usrRoles",$usrRoles);
         $smarty->assign("roles",$roles);
@@ -65,6 +72,8 @@ switch($_POST["type"])
 
     case "saveAddPersonal":
 
+	// echo '<pre>'; print_r($_POST);
+	// exit;
         $personal->setPositionId($_POST['positionId']);
         $personal->setName($_POST['name']);
         $personal->setLastnamePaterno($_POST['lastname_paterno']);
@@ -86,6 +95,7 @@ switch($_POST["type"])
         $personal->setClavesPresupuestales($_POST['claves_presupuestales']);
         $personal->setCategoria($_POST['categoria']);
         $personal->setPerfil($_POST['perfil']);
+        $personal->setProf($_POST['prof']);
 
         if(!$personal->Save())
         {
@@ -108,6 +118,8 @@ switch($_POST["type"])
 
     case "saveEditPersonal":
 
+	// echo '<pre>'; print_r($_POST['id']);
+	// exit;
         $personal->setPositionId($_POST['positionId']);
         $personal->setPersonalId($_POST['id']);
         $personal->setName($_POST['name']);
@@ -128,6 +140,7 @@ switch($_POST["type"])
         $personal->setClavesPresupuestales($_POST['claves_presupuestales']);
         $personal->setCategoria($_POST['categoria']);
         $personal->setPerfil($_POST['perfil']);
+		$personal->setProf($_POST['prof']);
 
         if(!$personal->Update())
         {

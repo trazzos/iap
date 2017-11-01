@@ -107,6 +107,8 @@ function AddPersonal()
         data :  $('#addPersonalForm').serialize(),
         success: function(data)
         {
+			
+			console.log(data)
             var splitResponse = data.split("[#]");
 
             if(splitResponse[0] == "fail")

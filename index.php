@@ -175,6 +175,7 @@ $pages = array(
 	'estatus-financiero',
 	'mensaje',
 	'add-mensaje',
+	'inbox',
 	
 	
 	

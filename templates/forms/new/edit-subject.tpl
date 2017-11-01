@@ -32,6 +32,12 @@
                 <input type="text" name="rvoe" id="rvoe"   class="form-control" value="{$post.rvoe}" />
             </div>
         </div>
+		 <div class="form-group">
+            <label class="col-md-3 control-label">Fecha de RVOE:</label>
+            <div class="col-md-8">
+                <input type="text" name="fechaRvoe" id="fechaRvoe"  value="{$post.fechaRvoe}"  class="form-control  date-picker" />
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Costo Mensual:</label>
             <div class="col-md-8">

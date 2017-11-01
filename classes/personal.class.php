@@ -26,6 +26,7 @@ class Personal extends Main
 	private $correo;
 	private $celular;
 	private $semblanza;
+	private $prof;
 
 	public function setFoto($value)
 	{
@@ -55,6 +56,12 @@ class Personal extends Main
 	{
 		$this->Util()->ValidateInteger($value);
 		$this->personalId = $value;
+	}
+	
+	public function setProf($value)
+	{
+		// $this->Util()->ValidateInteger($value);
+		$this->prof = $value;
 	}
 	
 	public function setRolesId($value)
@@ -383,7 +390,8 @@ class Personal extends Main
 						fecha_dgta,
 						claves_presupuestales,
 						categoria,
-						perfil
+						perfil,
+						profesion
 					)
 				 VALUES 
 					(						
@@ -403,7 +411,8 @@ class Personal extends Main
 						'".$this->fechaDgta."',
 						'".$this->clavesPresupuestales."',
 						'".$this->categoria."',
-						'".$this->perfil."'
+						'".$this->perfil."',
+						'".$this->prof."'
 					)";
 								
 		$this->Util()->DB()->setQuery($sql);
@@ -446,7 +455,7 @@ class Personal extends Main
 			return false; 
 		}
 
-		$sql = "UPDATE
+		 $sql = "UPDATE
 					personal SET positionId = ".$this->positionId.",
 				 	name =  '".$this->name."',
 					lastname_paterno = '".$this->lastnamePaterno."',
@@ -466,9 +475,12 @@ class Personal extends Main
 					correo = '".$this->correo."',
 					celular = '".$this->celular."',
 					semblanza = '".$this->semblanza."',
-					perfil = '".$this->perfil."'
+					perfil = '".$this->perfil."',
+					profesion = '".$this->prof."'
 				WHERE 
 					personalId = ".$this->personalId;
+					
+		
 		$this->Util()->DB()->setQuery($sql);
 		$this->Util()->DB()->ExecuteQuery();
 
@@ -598,6 +610,54 @@ class Personal extends Main
 		$path = "personal_foto/".$id.".".$ext;
 
 		return $path;
+	}
+	
+	
+	
+	public function extraeFirmaActa()
+	{
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					personal 
+				WHERE 
+					firmaConstancia = 'si'";
+	
+		$this->Util()->DB()->setQuery($sql);
+		$info9 = $this->Util()->DB()->GetRow();
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					personal 
+				WHERE 
+					positionId = 3";
+	
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();
+		
+		$data['director'] = $info9['profesion'].' '.$info9['name'].' '.$info9['lastname_paterno'].' '.$info9['lastname_materno'];
+		$data['controlEscolar'] = $info['profesion'].' '.$info['name'].' '.$info['lastname_paterno'].' '.$info['lastname_materno'];
+				
+		return $data;
+	}
+	
+	
+	public function enumerateAbreviaciones()
+	{
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					abreviacion 
+				WHERE 
+					1 order by abreviacion ASC";
+	
+		$this->Util()->DB()->setQuery($sql);
+		$info9 = $this->Util()->DB()->GetResult();
+		
+		return $info9;
 	}
 }
 

@@ -6,6 +6,17 @@
     <input type="hidden" id="list_roles" name="list_roles" value="" />
 
     <div class="form-body">
+		<div class="form-group">
+            <label class="col-md-3 control-label">Profesion:</label>
+            <div class="col-md-8">
+                <select class="form-control" name="prof">
+						<option></option>
+					 {foreach from=$lstPd item=item key=key}
+						<option {if $item.abreviacion eq $info.profesion} selected {/if} >{$item.abreviacion}</option>
+					 {/foreach}
+                </select>
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Puesto:</label>
             <div class="col-md-8">

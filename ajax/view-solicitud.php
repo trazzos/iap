@@ -117,6 +117,7 @@
 				
 				$solicitud->setTipo($_POST['solicitudId']);
 				$solicitud->setCursoId($cursoId);
+				// $solicitud->setPrecio($precio);
 				if ($solicitud->SaveSolicitud()){
 					echo 'ok[#]';
 					echo '<div class="alert alert-info alert-dismissable">

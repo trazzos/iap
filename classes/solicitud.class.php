@@ -11,7 +11,10 @@ class Solicitud extends Module
 	private $tiposolicitudId;
 	private $solicitudId;
 	private $cursoId;
+	
 
+	
+	
 	
 	
 	public function setCursoId($value)
@@ -130,7 +133,8 @@ class Solicitud extends Module
 		
 		 $sqlQuery = 'SELECT 
 					*,
-					t.nombre as solicitud
+					t.nombre as solicitud,
+					s.precio as costo
 				FROM 
 					solicitud as s 
 				left join user as u on u.userId = s.userId
@@ -226,6 +230,14 @@ class Solicitud extends Module
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$infocourseId = $this->Util()->DB()->GetRow();
 		
+		$sqlQuery = 'SELECT 
+					*
+				FROM 
+					tiposolicitud 
+				WHERE  tiposolicitudId = '.$this->tipo.'';
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$infoSol = $this->Util()->DB()->GetRow();
+		
 		// echo '<pre>'; print_r($infocourseId);
 		// exit;
 		
@@ -237,7 +249,8 @@ class Solicitud extends Module
 				tiposolicitudId,
 				estatus,
 				motivo,
-				userId
+				userId,
+				precio
 				)
 			   values(
 			            '".$infocourseId['subjectId']."', 
@@ -246,7 +259,8 @@ class Solicitud extends Module
 			            '".$this->tipo."',
 			            '".$status."',
 			            '".$this->motivo."',
-			            '".$_SESSION['User']['userId']."'
+			            '".$_SESSION['User']['userId']."',
+			            '".$infoSol['precio']."'
 			         )";
 					 
 			$this->Util()->DB()->setQuery($sqlNot);
@@ -525,6 +539,18 @@ class Solicitud extends Module
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$this->Util()->DB()->ExecuteQuery();
 		
+		$sqlQuery = 'SELECT 
+					*
+				FROM 
+					solicitud
+				WHERE  solicitudId = '.$Id.'';
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$coun = $this->Util()->DB()->GetRow();
+		
+		$sqlQuery = "UPDATE user_subject set status ='inactivo'  where alumnoId = '".$coun['userId']."' and courseId = ".$coun['courseId'].""; 	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
 		return true;
 	}
 	
@@ -611,7 +637,7 @@ class Solicitud extends Module
 	
 	
 	
-	public function buscaCalificaciones($Id)
+	public function buscaCalificaciones($Id,$userId)
 	{
 		// $info = $this->Info();
 			$this->Util()->DB()->setQuery("
@@ -629,7 +655,7 @@ class Solicitud extends Module
 				LEFT JOIN subject_module ON subject_module.subjectModuleId = course_module.subjectModuleId
 				LEFT JOIN course_module_score as cms ON cms.courseModuleId = course_module.courseModuleId
 				WHERE course_module.courseId = '".$Id."' and
-				semesterId = ".$aux['semesterId']." and userId = ".$_SESSION['User']['userId']."";
+				semesterId = ".$aux['semesterId']." and userId = ".$userId." and calificacionValida = 'si'";
 				
 				// exit;
 			$this->Util()->DB()->setQuery($sql);

@@ -2553,13 +2553,15 @@ class Student extends User
 		 $sql = "
 		INSERT INTO  chat (
 				`fechaEnvio` ,
+				`courseModuleId` ,
 				`usuarioId`, 
 				`yoId`, 
 				`mensaje` 
 				)
 				VALUES (
 				'".date("Y-m-d")."',
-				'".$_POST['userId']."',
+				'".$_POST['c5Id']."',
+				'".$_POST['profId']."',
 				'".$_SESSION['User']["userId"]."',
 				'".$_POST["mensaje"]."'
 				);";

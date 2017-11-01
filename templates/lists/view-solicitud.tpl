@@ -26,12 +26,15 @@
 				{/if}
 				
 			</td>
-			<td align="center">$ {$subject.precio}</td>
+			<td align="center">$ {$subject.costo}</td>
 			<td align="center">
 			
 				{if $subject.tiposolicitudId eq 4}
-					<a  href="{$WEB_ROOT}/graybox.php?page=view-boleta&id=con" data-target="#ajax" data-toggle="modal" data-width="1000px" title='DESCARGAR BOLETA DE CALIFICACIONES'>
+					<!--<a  href="{$WEB_ROOT}/graybox.php?page=view-boleta&id=con" data-target="#ajax" data-toggle="modal" data-width="1000px" title='DESCARGAR BOLETA DE CALIFICACIONES'>
 						<i class="material-icons md-16">cloud_download</i>
+					</a>-->
+					<a href="javascript:void(0)" onClick='descargarConstancias({$subject.solicitudId})'  target='_blank' title='DESCARGAR CONSTANCIA'>
+							<i class="material-icons md-16">cloud_download</i>
 					</a>
 					<!--<a href="{$WEB_ROOT}/graybox.php?page=info&id=1" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
 					<i class="material-icons md-16">info</i>
@@ -52,7 +55,7 @@
 					<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px" title='REFERENCIA BANCARIA'>
 					<i class="material-icons md-16">account_balance</i>
 					</a>
-					<a href="{$WEB_ROOT}/graybox.php?page=info&id=2" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
+					<a href="{$WEB_ROOT}/graybox.php?page=info&id={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
 					<i class="material-icons md-16">info</i>
 					</a>
 					{/if}

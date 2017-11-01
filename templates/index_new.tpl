@@ -29,7 +29,11 @@
 	{if ($page == 'homepage' && $User.type == 'student') || $page == 'docente'}
 		<link href="{$WEB_ROOT}/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
 	{/if}
+	{if $page == 'inbox'}
 
+	<link href="{$WEB_ROOT}/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"  />
+	{/if}
+	
 	<!-- BEGIN THEME LAYOUT STYLES -->
 	<link href="{$WEB_ROOT}/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
 	<link href="{$WEB_ROOT}/assets/layouts/layout/css/themes/light2.css" rel="stylesheet" type="text/css" id="style_color" />
@@ -40,7 +44,7 @@
 	<link rel="shortcut icon" href="favicon.ico" />
 
 	<link href="{$WEB_ROOT}/GreyBox/greybox/gb_styles.css" rel="stylesheet" type="text/css" />
-
+	<link href="{$WEB_ROOT}/css/inbox.css" rel="stylesheet" type="text/css"  />
 {*
 	<link href="{$WEB_ROOT}/css/style_new.css" rel="stylesheet" type="text/css"  />
 *}
@@ -51,6 +55,8 @@
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/AJS.js"></script>
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/AJS_fx.js"></script>
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/gb_scripts.js"></script>
+	<script type="text/javascript" src="{$WEB_ROOT}/javascript/inbox.js"></script>
+	
 
 	<style>
 		.modal-dialog{
@@ -72,6 +78,11 @@
 	<script type="text/javascript" src="{$WEB_ROOT}/cometchat/cometchatjs.php" charset="utf-8"></script>
 *}
 
+<style type="text/css">
+
+
+
+</style>
 </head>
 <!-- END HEAD -->
 

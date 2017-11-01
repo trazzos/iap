@@ -18,10 +18,10 @@
         <td align="center">{$item.controlNumber}</td>
         <td align="center">{$item.lastNamePaterno} {$item.lastNameMaterno} {$item.names}</td>
 		<td align="center">
-           <input type="text" readonly name="pro_{$item.alumnoId}" id="pro_{$item.alumnoId}" value="{$item.scorePromedio}" class="form-control" style="width:60px">
+           <input type="text"  readonly name="pro_{$item.alumnoId}" id="pro_{$item.alumnoId}" value="{$item.scorePromedio}" class="form-control" style="width:60px">
         </td>
         <td align="center">
-           <input type="text" name="cal_{$item.alumnoId}" id="cal_{$item.alumnoId}" value="{$item.score}" class="form-control" style="width:60px">
+           <input type="text" {if $item.score < 7} style="background:#ff00004f; width:60px" {/if} name="cal_{$item.alumnoId}" id="cal_{$item.alumnoId}" value="{$item.score}" class="form-control" style="width:60px">
         </td>
     </tr>
 {foreachelse}

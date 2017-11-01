@@ -4,7 +4,7 @@
             <i class="fa fa-bullhorm"></i><b>Referencia Bancaria</b> {$myModule.name|truncate:65:"..."} &raquo;
         </div>
         <div class="actions">
-
+			 <a href="javascript:void(0)" onClick="printReferencia()" class="btn green submitForm">Imprimir</a>
         </div>
     </div>
     <div class="portlet-body">
@@ -12,16 +12,20 @@
 	
 	{if $countSol >= 1}
 		<br>
-		<br>
-		<br>
+
 		<div style='text-align:justify'>
 		A efectos de poder identificar los pagos que realice a este Instituto durante su permanencia como alumno de posgrado,envío a Usted; la siguiente información:
 		</div>
+		<br>
+		<br>
 		<center>
-		PORCENTAJE DE BECA AUTORIZADO:<b>97.60 % (este dato cambia por alumno)</b><br>
+		PORCENTAJE DE BECA AUTORIZADO:<b> {$infoStudent.porcentajeBeca} % </b><br>
 		BANCO: <b>BBVABANCOMER</b><br>
 		N° DE REFERENCIA PERSONAL:<b> {$infoStudent.referenciaBancaria} </b>
 		</center>
+		
+		<br>
+		<br>
 		<b>Referencia Bancaria:</b>
 		
 		<br>
@@ -50,7 +54,8 @@
 			</tr>
 			</tbody>
 		</table>
-		
+		<br>
+		<br>
 		<b>Nota Aclaratoria:</b>
 		<br>
 		<br>

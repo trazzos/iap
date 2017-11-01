@@ -5,7 +5,9 @@
 
 	session_start();
 
-
+	$util = new Util;
+	
+	
 	$module->setCourseModuleId($_GET["Id"]);
 	$info = $module->InfoCourseModule();
 	
@@ -15,8 +17,22 @@
 	$group->setCourseModuleId($_GET["Id"]);
 	$group->setCourseId($info["courseId"]);
 	$noTeam = $group->actaCalificacion();
+	
+
+	$infoFirma = $personal->extraeFirmaActa();
+	
+	// echo '<pre>'; print_r($info);
+	// $profe  =  explode('|',$info['access']); 
+	
+	// echo $profe;
+	// exit;
+	$personal->setPersonalId($info['access'][1]);
+	$infoPersonal = $personal->Info();
+	
+	
+	
 	// Info
-	// echo "<pre>"; print_r($infoCo);
+	// echo "<pre>"; print_r($info);
 	// exit;
 	
 	// echo "<pre>"; print_r($info); 
@@ -61,7 +77,7 @@
 	<table class='txtTicket' width='100%'>
 	<tr>
 		<td>Acuerdo: No.: </td>
-		<td>".$info['rvoe']."</td>
+		<td>".$info['rvoe']." de fecha ".$info['fechaRvoe']."</td>
 	</tr>
 	<tr>
 		<td>Ciclo: </td>
@@ -90,18 +106,56 @@
 	$html .= "<td>Numero</td>";
 	$html .= "<td>Nombre</td>";
 	$html .= "<td>Calificación Final</td>";
+	$html .= "<td></td>";
 	$html .= "</tr>";
 	foreach($noTeam as $key=>$aux){
 		$html .= "<tr>";
 		$html .= "<td>".($key+1)."</td>";
 		$html .= "<td>".$aux['lastNamePaterno']." ".$aux['lastNameMaterno']." ".$aux['names']."</td>";
-		$html .= "<td>".$aux['score']."</td>";
+		$h =  $util->num2letras($aux['score']);
+		
+		if($aux['score'] < 7){
+			$html .= "<td><font color='red'>".$aux['score']."</font></td>";
+			$html .= "<td><font color='red'>".$h."</font></td>";
+		}else{
+			$html .= "<td>".$aux['score']."</td>";
+			$html .= "<td>".$h."</td>";
+		}
 		$html .= "</tr>";
 	}  
 	$html .= "</table>";
 	
 	$html .= "
 		
+	<br>
+	<br>
+	<center>
+		
+	
+	<table width=100% align='center' border=0>	
+		<tr>
+			<td colspan='2' align='center'>
+			".$infoPersonal['profesion']." ".$infoPersonal['name']." ".$infoPersonal['lastname_materno']." ".$infoPersonal['lastname_paterno']."<br>
+			Catedratico
+			<br>
+			<br>
+			<br>
+			<br>
+			</td>
+		</tr>
+		<tr>
+			<td align='center'>
+				".$infoFirma['director']."<br>
+				Director Academico
+			</td>
+			<td align='center'> 
+				".$infoFirma['controlEscolar']."<br>
+				Servicios Escolares
+			</td>
+		</tr>
+	</table>	
+		
+	</center>
 	</body>
 	</html>
 

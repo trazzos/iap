@@ -22,6 +22,7 @@
 </table>
 
 <form id="frmGral">
+<input type="hidden" name="type" id="type" >
 <textarea class='form-control' name="mensaje"></textarea>
 <input type='hidden' value='{$chatId}' name="chatId">
 </form>

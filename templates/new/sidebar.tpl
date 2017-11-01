@@ -314,7 +314,12 @@
                     <span class="title">Wiki</span>
                 </a>
             </li>
-			
+			 <li class="nav-item {if $page == "forum-modules-student"} active {/if} ">
+                <a href="{$WEB_ROOT}/inbox/id/{$id}" class="nav-link nav-toggle">
+                    <i class="fa fa-comments"></i>
+                    <span class="title">Inbox</span>
+                </a>
+            </li>
 			
 
 

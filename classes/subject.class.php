@@ -23,8 +23,17 @@
 		private $tipo;
 		private $claveGroupId;
 		private $payments;
+		private $fechaRvoe;
 		
 		//new
+		public function setFechaRvoe($value)
+		{
+			// $this->Util()->ValidateFloat($value);
+			$util = new Util;
+			$value = $util->FormatDateMySql($value);
+			$this->fechaRvoe = $value;
+		}
+		
 		public function setPayments($value)
 		{
 			$this->Util()->ValidateFloat($value);
@@ -610,11 +619,12 @@ public function Enumerate_p(){
 			}
 			//si no hay errores
 			//creamos la cadena de insercion
-			$sql = "INSERT INTO
+			 $sql = "INSERT INTO
 						subject
 						( 	
 						 	clave,
 						 	rvoe,
+						 	fechaRvoe,
 							name,
 							welcomeText,
 							introduction,
@@ -633,6 +643,7 @@ public function Enumerate_p(){
 					VALUES (
 							'" . $this->rvoe . "', 
 							'" . $this->clave . "', 
+							'" . $this->fechaRvoe . "', 
 							'" . $this->name . "',
 							'" . $this->welcomeText . "',
 							'" . $this->introduction . "',
@@ -889,6 +900,7 @@ public function Enumerate_p(){
 					SET
 						rvoe='" 	. $this->rvoe . "', 
 						clave='" 	. $this->clave . "', 
+						fechaRvoe='" 	. $this->fechaRvoe . "', 
 						name='" 	. $this->name . "',
 						welcomeText='" 	. $this->welcomeText . "',
 						introduction='" 	. $this->introduction . "',

@@ -23,6 +23,7 @@
 		$subject->setBibliography($_POST['bibliography']);
 		$subject->setCost($_POST['cost']);
 		$subject->setPayments($_POST['payments']);
+		$subject->setFechaRvoe($_POST['fechaRvoe']);
 		
 		$subject->Update();
 	}

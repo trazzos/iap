@@ -45,7 +45,7 @@
 		case 'saveMsj':
 		
 			// echo '<pre>'; print_r($_POST);
-			if( $student->SaveMensaje($_POST['chatId'],$_POST['mensaje'])){
+			if( $student->SaveMensaje()){
 				echo 'ok[#]';
 			}else{
 				echo 'fail[#]';
