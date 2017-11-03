@@ -3,6 +3,44 @@
 	class Module extends Course
 	{
 		private $subjectModuleId;
+		private $yoId;
+		private $quienEnviaId;
+		private $recibeId;
+		private $cmId;
+		private $tipoReporte;
+		private $statusIn;
+		
+		
+		public function setStatusIn($value)
+		{
+			$this->statusIn = $value;
+		}
+		
+		public function setTipoReporte($value)
+		{
+			$this->tipoReporte = $value;
+		}
+		
+		public function setCMId($value)
+		{
+			$this->cmId = $value;
+		}
+		
+		public function setRecibeId($value)
+		{
+			$this->recibeId = $value;
+		}
+		
+		public function setYoId($value)
+		{
+			$this->yoId = $value;
+		}
+		
+		public function setQuienEnviaId($value)
+		{
+			$this->quienEnviaId = $value;
+		}
+		
 		public function setSubjectModuleId($value)
 		{
 			$this->subjectModuleId = $value;
@@ -400,5 +438,72 @@
 			return $result;
 		}
 		
-	}	
+		
+		public function EnumerateInbox()
+		{
+			
+			// echo $this->tipoReporte;
+			// exit;
+			$filtro = "";
+			
+			if($this->statusIn){
+				$filtro .= " and estatus = '".$this->statusIn."'";
+			}
+			
+			if($this->yoId){
+				$filtro .= " and yoId = ".$this->yoId."";
+			}
+			
+			if($this->quienEnviaId){
+				$filtro .= " and quienEnvia = '".$this->quienEnviaId."'";
+			}
+			
+			if($this->recibeId){
+				$filtro .= " and c.usuarioId = '".$this->recibeId."'";
+			}
+			
+			if($this->cmId){
+				$filtro .= " and c.courseModuleId = ".$this->cmId."";
+			}
+			
+			if($this->tipoReporte=='entrada'){
+				  $sql = "SELECT 
+						p.*,
+						c.*,
+						sm.name as nombreMateria
+					FROM
+						chat as c
+					left join personal as p on p.personalId = c.yoId
+					left join course_module as cm on cm.courseModuleId = c.courseModuleId
+					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+					WHERE
+						1 ".$filtro."";
+// exit;
+			}else if($this->tipoReporte=='enviados' or $this->tipoReporte=='borrador' or $this->tipoReporte=='eliminados'){
+				  $sql = "SELECT 
+						p.*,
+						c.*,
+						sm.name as nombreMateria,
+						p.names as name, 
+						p.lastNamePaterno as lastname_paterno 
+					FROM
+						chat as c
+					left join user as p on p.userId = c.yoId
+					left join course_module as cm on cm.courseModuleId = c.courseModuleId
+					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+					WHERE
+						1 ".$filtro."";
+			}
+						 	
+			
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			
+			// echo '<pre>'; print_r($result);
+			// exit;
+			return $result;
+		}
+		
+}	
 ?>

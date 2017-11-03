@@ -16,12 +16,12 @@
 								</a>
 							</li>-->
 							<li class="inbox active">
-								<a href="javascript:;" class="btn" data-title="Inbox">Entrada(3)</a>
+								<a href="javascript:;" class="btn" data-title="Inbox" onClick="cargaInbox('entrada','{$courseMId}')">Entrada(3)</a>
 								<b></b>
 							</li>
-							<li class="sent"><a class="btn" href="javascript:;"  data-title="Sent">Enviados</a><b></b></li>
-							<li class="draft"><a class="btn" href="javascript:;" data-title="Draft">Borrador</a><b></b></li>
-							<li class="trash"><a class="btn" href="javascript:;" data-title="Trash">Eliminados</a><b></b></li>
+							<li class="sent"><a class="btn" href="javascript:;" onClick="cargaInbox('enviados','{$courseMId}')" data-title="Sent">Enviados</a><b></b></li>
+							<li class="draft"><a class="btn" href="javascript:;" onClick="cargaInbox('borrador','{$courseMId}')" data-title="Draft">Borrador</a><b></b></li>
+							<li class="trash"><a class="btn" href="javascript:;" onClick="cargaInbox('eliminados','{$courseMId}')" data-title="Trash">Eliminados</a><b></b></li>
 						</ul>
 					</div>
 					<div class="span10">
@@ -35,7 +35,7 @@
 							</form>
 						</div>
 						<div class="inbox-loading"></div>
-						<div class="inbox-content">
+						<div class="inbox-content" id="contentInbox">
 							{include file="{$DOC_ROOT}/templates/lists/inbox.tpl"}
 						</div>
 					</div>
