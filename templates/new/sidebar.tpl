@@ -196,13 +196,13 @@
                 </li>
             </ul>
         </li>
-		<li class="nav-item  ">
+		<!--<li class="nav-item  ">
             <a href="{$WEB_ROOT}/mensaje" class="nav-link nav-toggle">
                 <i class="fa fa-video-camera"></i>
                 <span class="title">Mensajes</span>
                 <span class="arrow"></span>
             </a>
-        </li>
+        </li>-->
         {/if}
         {/if}
 
@@ -314,7 +314,7 @@
                     <span class="title">Wiki</span>
                 </a>
             </li>
-			 <li class="nav-item {if $page == "forum-modules-student"} active {/if} ">
+			 <li class="nav-item {if $page == "inbox"} active {/if} ">
                 <a href="{$WEB_ROOT}/inbox/id/{$id}" class="nav-link nav-toggle">
                     <i class="fa fa-comments"></i>
                     <span class="title">Inbox</span>

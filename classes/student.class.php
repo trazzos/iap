@@ -11,6 +11,38 @@ class Student extends User
 	private $estatus;
 	private $tipobaja;
 	private $motivo;
+	private $cmId;
+	private $usuariojjId;
+	private $yoId;
+	private $mensaje;
+	private $statusjj;
+
+	
+	
+	public function setStatusjj($value)
+	{
+		$this->statusjj = $value;	
+	}
+	
+	public function setUsuariojjId($value)
+	{
+		$this->usuariojjId = $value;	
+	}
+	
+	public function setYoId($value)
+	{
+		$this->yoId = $value;	
+	}
+	
+	public function setMensaje($value)
+	{
+		$this->mensaje = $value;	
+	}
+	
+	public function setCMId($value)
+	{
+		$this->cmId = $value;	
+	}
 
 		
 	public function setSubjectId($value)
@@ -2572,6 +2604,44 @@ class Student extends User
 		return true;
 	
 	}
+	
+	public function SaveReply(){
+		
+		if ($_SESSION['User']['type']=='student'){
+			$quien = 'alumno';
+		}else{
+			$quien = 'personal';
+		}
+	
+				
+		 $sql = "
+		INSERT INTO  chat (
+				`fechaEnvio` ,
+				`courseModuleId` ,
+				`estatus` ,
+				`usuarioId`, 
+				`yoId`, 
+				`mensaje`, 
+				`quienEnvia` 
+				)
+				VALUES (
+				'".date("Y-m-d")."',
+				'".$this->cmId."',
+				'".$this->statusjj."',
+				'".$this->usuariojjId."',
+				'".$this->yoId."',
+				'".$this->mensaje."',
+				'".$quien."'
+				);";
+				
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->InsertData(); 
+				
+		return true;
+	
+	}
+	
+	
 }
 
 ?>

@@ -48,32 +48,53 @@ function cargaInbox(tipo,courseMId){
 	
 }//cargaInbox
 
-
-
-function deleteInbox(Id,courseId){
+function SaveMsj(courseMId,status){
 	
-	var resp = confirm("Seguro de  elimina el mensaje?");
+	$("#type").val("saveReply")
 	
-	if(!resp)
-		return;
+	if(status=='borrar'){
+		var resp = confirm("Seguro de  eliminar el mensaje?");
+	
+		if(!resp)
+			return;
+		
+		window.location.href = WEB_ROOT+"/inbox/id/"+courseMId;
+	}
 
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/foro.php',
-	  	data: $("#frmFiltro").serialize(true)+'&Id='+Id+'&type=deleteInbox',
+	  	data: $("#frmGral").serialize(true)+'&courseMId='+courseMId+'&status='+status,
 		beforeSend: function(){			
-			// $('#tblContent').html(LOADER3);
+			$("#centeredDivOnPopup").hide();
 		},
 	  	success: function(response) {	
 		
 			console.log(response)
 			var splitResp = response.split("[#]");
-			cargaInbox('entrada',courseId);
 			
+		
+			if(splitResp[0] == "ok"){
+					closeModal()
+					window.location.href = WEB_ROOT+"/inbox/id/"+courseMId;
+					// $("#contenido").html(splitResp[1]);
+				}
+			else if(splitResp[0] == "fail"){
+				// alert(splitResp[1])
+				$("#res_").html(splitResp[1]);
+				$("#centeredDivOnPopup").show();
+			}
 		},
-		error:function(){
-			alert(msgError);
-		}
+		// error:function(){
+			// alert(msgError);
+		// }
     });
 	
-}//deleteInbox
+}//SaveMsj
+
+function closeModal(){
+	
+	$("#ajax").hide();
+	$("#ajax").modal("hide");
+	
+}

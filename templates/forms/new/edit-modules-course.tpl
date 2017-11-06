@@ -12,6 +12,9 @@
 			  <a href="{$WEB_ROOT}/graybox.php?page=add-calificacion&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn green">
                 Acta de Calificaciones
             </a>
+			<a href="{$WEB_ROOT}/inbox/id/{$myModule.courseModuleId}" class="btn green">
+                Inbox
+            </a>
         </div>
     </div>
     <div class="portlet-body">

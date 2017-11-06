@@ -10,10 +10,14 @@
 <tbody>
 {foreach from=$lstMsj item=subject}
     <tr>
-        <td align="center">{$subject.name} {$subject.lastname_paterno} {$subject.lastname_materno}</td>
+        <td align="center"><a href='{$WEB_ROOT}/reply-inbox/id/{$courseMId}/cId/{$subject.chatId}'>{$subject.nombre} {$subject.paterno} {$subject.materno}</a></td>
         <td align="center">{$subject.nombreMateria}</td>
         <td align="center">{$subject.fechaEnvio}</td>
-        <td align="center"></td>
+        <td align="center">
+			<a href="javascript:void(0)" onClick='deleteInbox("{$subject.chatId}","{$courseMId}")'  title="ELIMINAR INBOX">			
+				<i class="material-icons md-16">delete_forever</i>
+			</a> 
+		</td>
     </tr>
     {foreachelse}
     <tr>

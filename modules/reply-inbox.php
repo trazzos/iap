@@ -3,20 +3,14 @@
 	/* For Session Control - Don't remove this */
 //	$user->allow_access(8);	
 
-	if ($_SESSION['User']['type']=='student'){
-		$module->setQuienEnviaId('personal');
-		$smarty->assign('mnuSubmain','foro');
-	}else{
-		
-		$module->setQuienEnviaId('alumno');
-		$smarty->assign('mnuMain', "cursos");
-	}
+	// $module->setCourseModuleId($_GET["id"]);
 	$module->setStatusIn('activo');
 	$module->setTipoReporte('entrada');
+	$module->setQuienEnviaId('personal');
 	$module->setRecibeId($_SESSION['User']['userId']);
 	$module->setCMId($_GET["id"]);
 	$lstMsj = $module->EnumerateInbox();
-	
+	$infoC = $module->infoChat($_GET["cId"]);
 	// exit;
 	// $smarty->assign('myModule', $myModule);
 	
@@ -31,6 +25,7 @@
 	$smarty->assign('infoC', $infoC);
 	$smarty->assign('courseMId', $_GET["id"]);
 	$smarty->assign('lstMsj', $lstMsj);
-	
+	$smarty->assign('mnuMain', "modulo");
+	$smarty->assign('mnuSubmain','foro');
 
 ?>

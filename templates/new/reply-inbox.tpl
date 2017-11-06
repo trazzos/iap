@@ -36,7 +36,7 @@
 						</div>
 						<div class="inbox-loading"></div>
 						<div class="inbox-content" id="contentInbox">
-							{include file="{$DOC_ROOT}/templates/lists/inbox.tpl"}
+							{include file="{$DOC_ROOT}/templates/lists/reply-inbox.tpl"}
 						</div>
 					</div>
 				</div>

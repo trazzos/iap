@@ -456,6 +456,17 @@
 			
 			if($this->quienEnviaId){
 				$filtro .= " and quienEnvia = '".$this->quienEnviaId."'";
+				if($this->quienEnviaId=='personal'){
+					$campos .= "p.name as nombre, p.lastname_paterno as paterno, p.lastname_materno as materno";
+					$left .= " left join personal as p on p.personalId = c.yoId";
+					$leftEnviado .= " left join personal as p on p.personalId = c.usuarioId";
+				}else{
+					$campos .= "p.names as nombre, p.lastNamePaterno as paterno, p.lastNameMaterno as materno";
+					$left .= " left join user as p on p.userId = c.yoId";
+					$leftEnviado .= " left join user as p on p.userId = c.usuarioId";
+				}
+				
+				
 			}
 			
 			if($this->recibeId){
@@ -470,29 +481,31 @@
 				  $sql = "SELECT 
 						p.*,
 						c.*,
-						sm.name as nombreMateria
+						sm.name as nombreMateria,
+						".$campos."
 					FROM
 						chat as c
-					left join personal as p on p.personalId = c.yoId
+					".$left." 
 					left join course_module as cm on cm.courseModuleId = c.courseModuleId
 					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
 					WHERE
 						1 ".$filtro."";
-// exit;
+			// exit;
 			}else if($this->tipoReporte=='enviados' or $this->tipoReporte=='borrador' or $this->tipoReporte=='eliminados'){
-				  $sql = "SELECT 
+				     $sql = "SELECT 
 						p.*,
 						c.*,
 						sm.name as nombreMateria,
-						p.names as name, 
-						p.lastNamePaterno as lastname_paterno 
+						".$campos."
 					FROM
 						chat as c
-					left join user as p on p.userId = c.yoId
+					".$leftEnviado."
 					left join course_module as cm on cm.courseModuleId = c.courseModuleId
 					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
 					WHERE
 						1 ".$filtro."";
+						
+					// exit;
 			}
 						 	
 			
@@ -503,6 +516,35 @@
 			// echo '<pre>'; print_r($result);
 			// exit;
 			return $result;
+		}
+		
+		public function infoChat($chatId)
+		{
+			$sql = "SELECT 
+						*
+					FROM
+						chat
+					WHERE
+						chatId = ".$chatId."";
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetRow();
+		
+			return $result;
+		}
+		
+		
+		
+		public function deleteInbox($chatId)
+		{
+			 $sql = "UPDATE 
+						chat
+					SET
+						estatus='eliminado'
+						WHERE 	chatId = '" . $chatId."'";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->UpdateData();
+			
+			return true;
 		}
 		
 }	

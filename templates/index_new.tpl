@@ -29,7 +29,7 @@
 	{if ($page == 'homepage' && $User.type == 'student') || $page == 'docente'}
 		<link href="{$WEB_ROOT}/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
 	{/if}
-	{if $page == 'inbox'}
+	{if $page == 'inbox' or $page == 'reply-inbox'}
 
 	<link href="{$WEB_ROOT}/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"  />
 	{/if}

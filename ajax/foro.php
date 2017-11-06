@@ -66,6 +66,37 @@
 		
 		break;
 	
+		case 'saveReply':
+		
+			
+			// if $_POST['status']
+			
+			$student->setYoId($_SESSION['User']['userId']);
+			$student->setStatusjj($_POST['status']);
+			$student->setUsuariojjId($_POST['yoId']);
+			$student->setCMId($_POST['courseMId']);
+			$student->setMensaje($_POST['mensaje']);
+			if( $student->saveReply()){
+				echo 'ok[#]';
+			}else{
+				echo 'fail[#]';
+			}
+		
+		break;
+		
+		case 'deleteInbox':
+		
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			// echo 'ok[#]';
+			if( $module->deleteInbox($_POST['Id'])){
+				echo 'ok[#]';
+			}else{
+				echo 'fail[#]';
+			}
+				
+		
+		break;
 	}
 
 ?>
