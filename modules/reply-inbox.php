@@ -9,7 +9,11 @@
 	$module->setRecibeId($_SESSION['User']['userId']);
 	$module->setCMId($_GET["id"]);
 	$lstMsj = $module->EnumerateInbox();
-	$infoC = $module->infoChat($_GET["cId"]);
+	
+	if ($_GET["cId"]<>0){
+		$infoC = $module->infoChat($_GET["cId"]);
+	}
+	
 
 	if($_GET["cId"] == 0){
 		$module->setCourseModuleId($_GET["id"]);
