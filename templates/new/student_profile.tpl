@@ -99,7 +99,7 @@
 						</li>
 						<li>
 						<a href="{$WEB_ROOT}/ver-calendario" ><!--onClick="verCalendario()"-->
-						  <i class="fa fa-file-text" aria-hidden="true"></i>Calendario de Pagos
+						   <i class="fa fa-calendar"></i>Calendario de Pagos
 						</a>
 						</li>
 						<li>
@@ -109,7 +109,12 @@
 						</li>
 						<li>
 						<a href="{$WEB_ROOT}/graybox.php?page=concepto-pago" data-target="#ajax" data-toggle="modal" data-width="1000px">
-						  <i class="fa fa-file-text" aria-hidden="true"></i>Conceptos de Pago
+						   <i class="fa fa-files-o"></i>Conceptos de Pago
+						</a>
+						</li>
+						<li>
+						<a href="{$WEB_ROOT}/inbox" >
+						 <i class="fa fa-comments"></i>Inbox 
 						</a>
 						</li>
                     </ul>

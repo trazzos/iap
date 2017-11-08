@@ -48,16 +48,16 @@
                 <div class="profile-usermenu">
                     <ul class="nav">
                         <li class="">
-                            <a href="{$WEB_ROOT}/graybox.php?page=add-inbox&id={$docente.personalId}&auxTpl={$id}" data-target="#ajax" data-toggle="modal" data-width="1000px">
+                            <a href="{$WEB_ROOT}/reply-inbox/id/{$id}/cId/0" >
                                 <i class="fa fa-envelope-o"></i> 
-								{$docente.correo}
+								Enviar Inbox
                             </a>
                         </li>
-                        <li>
+                       <!--  <li>
                             <a href="#">
                                 <i class="fa fa-phone"></i> {$docente.celular}
                             </a>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
                 <!-- END MENU -->

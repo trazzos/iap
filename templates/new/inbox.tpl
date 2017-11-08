@@ -16,7 +16,7 @@
 								</a>
 							</li>-->
 							<li class="inbox active" id="linkEntrada">
-								<a href="javascript:;" class="btn" data-title="Inbox" onClick="cargaInbox('entrada','{$courseMId}')">Entrada(3)</a>
+								<a href="javascript:;" class="btn" data-title="Inbox" onClick="cargaInbox('entrada','{$courseMId}')">Entrada</a>
 								<b></b>
 							</li>
 							<li class="sent" id="linkEnviado"><a class="btn" href="javascript:;"  onClick="cargaInbox('enviados','{$courseMId}')" data-title="Sent">Enviados</a><b></b></li>
@@ -29,15 +29,19 @@
 							<h1 class="pull-left">Inbox</h1>
 							<form action="#" class="form-search pull-right">
 								<div class="input-append">
-									<input class="form-control" style="float:left" type="text" placeholder="Search Mail">
-									<button class="btn green" type="button">Search</button>
+									<input class="form-control" style="float:left" type="text" placeholder="Buscar Correo">
+									<button class="btn green" type="button">Buscar</button>
 								</div>
 							</form>
 						</div>
+						<br>
 						<div class="inbox-loading"></div>
+						
+						<form id="frmGral" onsubmit="return false;">
 						<div class="inbox-content" id="contentInbox">
 							{include file="{$DOC_ROOT}/templates/lists/inbox.tpl"}
 						</div>
+						  </form>
 					</div>
 				</div>
 		

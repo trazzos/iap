@@ -16,8 +16,14 @@ class Student extends User
 	private $yoId;
 	private $mensaje;
 	private $statusjj;
+	private $asunto;
 
 	
+	
+	public function setAsunto($value)
+	{
+		$this->asunto = $value;	
+	}
 	
 	public function setStatusjj($value)
 	{
@@ -2622,7 +2628,8 @@ class Student extends User
 				`usuarioId`, 
 				`yoId`, 
 				`mensaje`, 
-				`quienEnvia` 
+				`quienEnvia`, 
+				`asunto` 
 				)
 				VALUES (
 				'".date("Y-m-d")."',
@@ -2631,14 +2638,55 @@ class Student extends User
 				'".$this->usuariojjId."',
 				'".$this->yoId."',
 				'".$this->mensaje."',
-				'".$quien."'
+				'".$quien."',
+				'".$this->asunto."'
 				);";
 				
 		$this->Util()->DB()->setQuery($sql);
-		$this->Util()->DB()->InsertData(); 
+		$aId = $this->Util()->DB()->InsertData(); 
+		
+		// echo '<pre>'; print_r($_FILES); 
+		// exit;
+		foreach($_FILES as $key=>$var)
+		{
+		   switch($key)
+		   {
+			   case 'archivos':
+			   if($var["name"]<>""){
+					$aux = explode(".",$var["name"]);
+					$extencion=end($aux);
+					$temporal = $var['tmp_name'];
+					$url = DOC_ROOT;				
+					$foto_name="doc_".$aId.".".$extencion;		
+					if(move_uploaded_file($temporal,$url."/doc_inbox/".$foto_name)){
+						
+						$sql = "UPDATE
+							chat
+							SET
+								rutaAdjunto = '".$foto_name."'
+							WHERE chatId = '".$aId."'";
+								$this->Util()->DB()->setQuery($sql);
+								$this->Util()->DB()->UpdateData();
+							
+					}
+				}
+		   }
+		}
 				
 		return true;
 	
+	}
+	
+	public function InfoEstudiate($Id)
+	{
+		
+		$sql = "
+				SELECT * FROM user WHERE userId =  ".$Id."";
+				// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+			
+		return $result;
 	}
 	
 	

@@ -489,7 +489,7 @@
 					left join course_module as cm on cm.courseModuleId = c.courseModuleId
 					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
 					WHERE
-						1 ".$filtro."";
+						1 ".$filtro." order by chatId DESC";
 			// exit;
 			}else if($this->tipoReporte=='enviados' or $this->tipoReporte=='borrador' or $this->tipoReporte=='eliminados'){
 				     $sql = "SELECT 
@@ -503,7 +503,7 @@
 					left join course_module as cm on cm.courseModuleId = c.courseModuleId
 					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
 					WHERE
-						1 ".$filtro."";
+						1 ".$filtro." order by chatId DESC";
 						
 					// exit;
 			}
@@ -520,7 +520,7 @@
 		
 		public function infoChat($chatId)
 		{
-			$sql = "SELECT 
+			 $sql = "SELECT 
 						*
 					FROM
 						chat
@@ -528,6 +528,23 @@
 						chatId = ".$chatId."";
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetRow();
+			// exit;
+			$student = New Student;
+			$personal = New Personal;
+			
+			if($result['quienEnvia']=='alumno'){
+				$infouu = $student->InfoEstudiate($result['yoId']);
+				$personal->setPersonalId($result['usuarioId']);
+				$inforr = $personal->Info();
+				$result['envio'] = $infouu['names'].' '.$infouu['lastNamePaterno'].' '.$infouu['lastNameMaterno'];
+				$result['recibe'] = $inforr['name'].' '.$inforr['lastname_paterno'].' '.$inforr['lastname_materno'];
+			}else{
+				$personal->setPersonalId($result['yopId']);
+				$infouu = $personal->Info();
+				$inforr = $student->InfoEstudiate($result['usuarioId']);
+				$result['envio'] = $infouu['name'].' '.$infouu['lastname_paterno'].' '.$infouu['lastname_materno'];
+				$result['recibe'] = $inforr['names'].' '.$inforr['lastNamePaterno'].' '.$inforr['lastNameMaterno'];
+			}
 		
 			return $result;
 		}
@@ -540,6 +557,20 @@
 						chat
 					SET
 						estatus='eliminado'
+						WHERE 	chatId = '" . $chatId."'";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->UpdateData();
+			
+			return true;
+		}
+		
+		
+		public function addFavorito($chatId)
+		{
+			 $sql = "UPDATE 
+						chat
+					SET
+						favorito='si'
 						WHERE 	chatId = '" . $chatId."'";
 			$this->Util()->DB()->setQuery($sql);
 			$this->Util()->DB()->UpdateData();

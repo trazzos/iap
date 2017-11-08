@@ -77,12 +77,33 @@
 	<link type="text/css" href="{$WEB_ROOT}/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
 	<script type="text/javascript" src="{$WEB_ROOT}/cometchat/cometchatjs.php" charset="utf-8"></script>
 *}
-
+{if $page == 'reply-inbox'}
 <style type="text/css">
 
-
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #00BCD4;
+  color:  #00BCD4;
+  }
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: red;
+    cursor: inherit;
+    display: block;
+}
 
 </style>
+{/if}
 </head>
 <!-- END HEAD -->
 

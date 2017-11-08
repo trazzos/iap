@@ -1,11 +1,11 @@
-function cargaInbox(tipo,courseMId){  
+function cargaInbox(tipo){  
 	
 	// alert(tipo)
 
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/student.php',
-	  	data: $("#editStudentForm").serialize(true)+'&type=cargaInbox&tipo='+tipo+'&courseMId='+courseMId,
+	  	data: $("#editStudentForm").serialize(true)+'&type=cargaInbox&tipo='+tipo,
 		beforeSend: function(){			
 			
 		},
@@ -68,7 +68,7 @@ function deleteInbox(Id,courseId){
 		
 			console.log(response)
 			var splitResp = response.split("[#]");
-			cargaInbox('entrada',courseId);
+			cargaInbox('entrada');
 			
 		},
 		error:function(){
@@ -77,3 +77,61 @@ function deleteInbox(Id,courseId){
     });
 	
 }//deleteInbox
+
+function accionesEliminar(){
+	
+	var resp = confirm("Seguro de  elimina los mensajes?");
+	
+	if(!resp)
+		return;
+
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/foro.php',
+	  	data: $("#frmGral").serialize(true)+'&type=accionesEliminar',
+		beforeSend: function(){			
+			// $('#tblContent').html(LOADER3);
+		},
+	  	success: function(response) {	
+		
+			console.log(response)
+			var splitResp = response.split("[#]");
+			cargaInbox('entrada');
+			
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+	
+}
+
+
+
+function accionesFavoritos(){
+	
+	// var resp = confirm("Seguro de  elimina los mensajes?");
+	
+	// if(!resp)
+		// return;
+
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/foro.php',
+	  	data: $("#frmGral").serialize(true)+'&type=accionesFavoritos',
+		beforeSend: function(){			
+			// $('#tblContent').html(LOADER3);
+		},
+	  	success: function(response) {	
+		
+			console.log(response)
+			var splitResp = response.split("[#]");
+			cargaInbox('entrada');
+			
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+	
+}

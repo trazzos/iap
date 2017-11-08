@@ -1,5 +1,4 @@
 <?php
-
 	include_once('../init.php');
 	include_once('../config.php');
 	include_once(DOC_ROOT.'/libraries.php');
@@ -68,9 +67,12 @@
 	
 		case 'saveReply':
 		
-			
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
 			// if $_POST['status']
 			
+			$student->setAsunto($_POST['asunto1'].''.$_POST['asunto2']);
 			$student->setYoId($_SESSION['User']['userId']);
 			$student->setStatusjj($_POST['status']);
 			$student->setUsuariojjId($_POST['yoId']);
@@ -95,6 +97,35 @@
 				echo 'fail[#]';
 			}
 				
+		
+		break;
+		
+		case 'accionesEliminar':
+		
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+			foreach($_POST as $key=>$aux){
+				$c = explode('_',$key);
+				if($c[0]=='check'){
+					$module->deleteInbox($c[1]);
+				}
+			}
+			
+		
+		break;
+		
+		
+		case 'accionesFavoritos':
+		
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+			foreach($_POST as $key=>$aux){
+				$c = explode('_',$key);
+				if($c[0]=='check'){
+					$module->addFavorito($c[1]);
+				}
+			}
+			
 		
 		break;
 	}

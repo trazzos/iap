@@ -196,6 +196,13 @@
                 </li>
             </ul>
         </li>
+		<li class="nav-item  ">
+            <a href="{$WEB_ROOT}/inbox" class="nav-link nav-toggle">
+                <i class="fa fa-video-camera"></i>
+                <span class="title">Inbox</span>
+                <span class="arrow"></span>
+            </a>
+        </li>
 		<!--<li class="nav-item  ">
             <a href="{$WEB_ROOT}/mensaje" class="nav-link nav-toggle">
                 <i class="fa fa-video-camera"></i>
@@ -314,12 +321,13 @@
                     <span class="title">Wiki</span>
                 </a>
             </li>
+			<!-- 
 			 <li class="nav-item {if $page == "inbox"} active {/if} ">
                 <a href="{$WEB_ROOT}/inbox/id/{$id}" class="nav-link nav-toggle">
                     <i class="fa fa-comments"></i>
                     <span class="title">Inbox</span>
                 </a>
-            </li>
+            </li>-->
 			
 
 

@@ -48,9 +48,11 @@ function cargaInbox(tipo,courseMId){
 	
 }//cargaInbox
 
-function SaveMsj(courseMId,status){
+function SaveMsj(courseMId,status,chatId){
 	
-	$("#type").val("saveReply")
+	
+	$('#mensaje').html(tinymce.get('mensaje').getContent());
+	//$("#type").val("saveReply")
 	
 	if(status=='borrar'){
 		var resp = confirm("Seguro de  eliminar el mensaje?");
@@ -58,13 +60,30 @@ function SaveMsj(courseMId,status){
 		if(!resp)
 			return;
 		
-		window.location.href = WEB_ROOT+"/inbox/id/"+courseMId;
+
+		if (chatId==0){
+			window.location.href = WEB_ROOT+"/docente/id/"+courseMId;
+		}else{
+			window.location.href = WEB_ROOT+"/inbox";
+		}
+		
+		return;
 	}
 
+	 var fd = new FormData(document.getElementById("frmGral"));
+	 fd.append('courseMId',courseMId);
+	 fd.append('status',status);
+	 fd.append('chatId',chatId);
+	 fd.append('asunto1',$('#subject1').val());
+	 fd.append('asunto2',$('#subject2').val());
+	 fd.append('type','saveReply');
+	
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/foro.php',
-	  	data: $("#frmGral").serialize(true)+'&courseMId='+courseMId+'&status='+status,
+		processData: false,
+		contentType: false,
+		data: fd,
 		beforeSend: function(){			
 			$("#centeredDivOnPopup").hide();
 		},
@@ -76,7 +95,12 @@ function SaveMsj(courseMId,status){
 		
 			if(splitResp[0] == "ok"){
 					closeModal()
-					window.location.href = WEB_ROOT+"/inbox/id/"+courseMId;
+					if (chatId==0){
+						window.location.href = WEB_ROOT+"/docente/id/"+courseMId;
+					}else{
+						window.location.href = WEB_ROOT+"/inbox/id/"+courseMId;
+					}
+					
 					// $("#contenido").html(splitResp[1]);
 				}
 			else if(splitResp[0] == "fail"){
@@ -97,4 +121,8 @@ function closeModal(){
 	$("#ajax").hide();
 	$("#ajax").modal("hide");
 	
+}
+
+function verArchivo(){
+	$("#divFileAdjunto").show();
 }

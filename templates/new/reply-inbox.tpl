@@ -16,7 +16,7 @@
 								</a>
 							</li>-->
 							<li class="inbox active" id="linkEntrada">
-								<a href="javascript:;" class="btn" data-title="Inbox" onClick="cargaInbox('entrada','{$courseMId}')">Entrada(3)</a>
+								<a href="javascript:;" class="btn" data-title="Inbox" onClick="cargaInbox('entrada','{$courseMId}')">Entrada</a>
 								<b></b>
 							</li>
 							<li class="sent" id="linkEnviado"><a class="btn" href="javascript:;"  onClick="cargaInbox('enviados','{$courseMId}')" data-title="Sent">Enviados</a><b></b></li>
@@ -27,12 +27,14 @@
 					<div class="span10">
 						<div class="inbox-header">
 							<h1 class="pull-left">Inbox</h1>
+							{if $page ne 'reply-inbox'}
 							<form action="#" class="form-search pull-right">
 								<div class="input-append">
 									<input class="form-control" style="float:left" type="text" placeholder="Search Mail">
 									<button class="btn green" type="button">Search</button>
 								</div>
 							</form>
+							{/if}
 						</div>
 						<div class="inbox-loading"></div>
 						<div class="inbox-content" id="contentInbox">
