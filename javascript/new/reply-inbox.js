@@ -93,7 +93,7 @@ function SaveMsj(courseMId,status,chatId){
 			var splitResp = response.split("[#]");
 			
 		
-			if(splitResp[0] == "ok"){
+			if($.trim(splitResp[0]) == "ok"){
 					closeModal()
 					if (chatId==0){
 						window.location.href = WEB_ROOT+"/docente/id/"+courseMId;
