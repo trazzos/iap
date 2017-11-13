@@ -146,7 +146,7 @@ function closeModal(){
 
 
 
-function solicitarReferencia(){
+function solicitarReferencia(courseId){
 
 	
 
@@ -155,7 +155,7 @@ function solicitarReferencia(){
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/view-solicitud.php',
-	  	data: $("#editStudentForm").serialize(true)+'&solicitudId='+$('#solicitudId').val()+'&type=solicitarReferencia',
+	  	data: $("#editStudentForm").serialize(true)+'&solicitudId='+$('#solicitudId').val()+'&type=solicitarReferencia&courseId='+courseId,
 		beforeSend: function(){			
 			$("#load").html(LOADER3);
 		},

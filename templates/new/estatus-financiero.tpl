@@ -27,8 +27,8 @@
 					{foreach from=$aux.pagos item=aux4}
 						<tr>
 						<td>{$aux4.inicioPago}</td> 
-						<td>{$aux4.descripcion}</td> 
-						<td>{$aux4.beca} %</td>
+						<td>{$aux4.claveconcepto} _ {$aux4.descripcion} </td> 
+						<td>{if $aux4.claveconcepto ne 9 and $aux4.claveconcepto ne 12} {$aux4.beca} % {/if}</td>
 						<td>$ {$aux4.total|number_format:2:'.':','}</td>
 						<td>$ {$aux4.abono|number_format:2:'.':','}</td>
 						<td>$ {$aux4.total - $aux4.abono|number_format:2:'.':','}</td>

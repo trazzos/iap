@@ -4,8 +4,11 @@
             <i class="fa fa-bullhorm"></i><b>Referencia Bancaria</b> {$myModule.name|truncate:65:"..."} &raquo;
         </div>
         <div class="actions">
+		
+			{if $infoStudent.referenciaBancaria ne  ''}
 			 <a href="javascript:void(0)" onClick="printReferencia()" class="btn green submitForm">Imprimir</a>
-        </div>
+			 {/if}
+		</div>
     </div>
     <div class="portlet-body">
 	
@@ -14,7 +17,8 @@
 		<br>
 
 		<div style='text-align:justify'>
-		A efectos de poder identificar los pagos que realice a este Instituto durante su permanencia como alumno de posgrado,envío a Usted; la siguiente información:
+		A efectos de poder identificar los pagos que realice a este Instituto durante su permanencia como alumno de posgrado, 
+		se presenta a usted; la siguiente información:
 		</div>
 		<br>
 		<br>
@@ -34,8 +38,8 @@
 		<table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 			<thead>
 			<tr>
-				<th width="">Metodo de Pago</th>
-				<th width="">Datos Bancarios Requeridos</th>		 
+				<th align="center" style="text-align:center" >Metodo de Pago</th>
+				<th align="center" style="text-align:center">Datos Bancarios Requeridos</th>		 
 
 			</tr>
 			</thead>
@@ -59,11 +63,12 @@
 		<b>Nota Aclaratoria:</b>
 		<br>
 		<br>
-		<li>En todos los casos deberá anotar el número de referencia personal y en el concepto, de preferencia el nombre del alumno; a menos de que el pago sea distinto a la colegiatura, deberá anotar como concepto el servicio que como alumno requiera (ejemplo: constancias, examen extraordinario, etc.).
+		<div style='text-align:justify'>
+		<b>*</b> En todos los casos deberá anotar el número de referencia personal y en el concepto, de preferencia el nombre del alumno; a menos de que el pago sea distinto a la colegiatura, deberá anotar como concepto el servicio que como alumno requiera (ejemplo: constancias, examen extraordinario, etc.).
 		<br>
 		<br>
-		<li>En caso de dudas o aclaraciones al respecto, deberá comunicarse a los teléfonos (961) 125 15 08 al 10, ext. 116.
-
+		<b>*</b> En caso de dudas o aclaraciones al respecto, deberá comunicarse a los teléfonos (961) 125 15 08 al 10, ext. 116.
+		</div>
 	{else}
 		<br>
 		<br>
@@ -74,9 +79,8 @@
 		<b>Tus datos de referencia bancaria no existen. Favor de solicitarlos dando click al siguiente botón</b>
 		<br>
 		<br>
-		<button onClick="solicitarReferencia()" class="btn green submitForm">Solicitar datos de referencia bancaria</button>
-		<div id="load"></div>
-		<div id="msj5"></div>
+		<button onClick="solicitarReferencia({$courseId})" class="btn green submitForm">Solicitar datos de referencia bancaria</button>
+		
 		</center>	
 		<br>
 		<br>
@@ -84,7 +88,8 @@
 		<br>
 		<br>
 	{/if}
-	
+	<div id="load"></div>
+		<div id="msj5"></div>
 	
     </div>
 </div>

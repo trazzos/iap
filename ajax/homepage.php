@@ -20,8 +20,6 @@
 					</div>';
 				echo '[#]';
 				$sendmail = new SendMail;
-				
-				
 				$student->setUserId($_SESSION["User"]["userId"]);
 				$info = $student->GetInfo();
 				$html .= 'Solicitud de Referencia Bancaria<br><br><br>';

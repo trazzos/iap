@@ -161,27 +161,25 @@
 			
 			case 'solicitarReferencia':
 			
-					echo 'llega';
-						$student->setUserId($_SESSION['User']['userId']);
-					$info = $student->GetInfo();
-					echo '<pre>'; print_r($info);
-					exit;
+				
+				// echo '<pre>'; print_r($_POST);
+				// exit;
 				$solicitud->setTipo(5);
+				$solicitud->setCursoId($_POST['courseId']);
 				if ($solicitud->SaveSolicitud()){
 					echo 'ok[#]';
 					echo '<div class="alert alert-info alert-dismissable">
 					  <button type="button" class="close" data-dismiss="alert">&times;</button>
 					  La solicitud se envio correctamente en breve nos pondremos en contacto contigo
 					</div>';
-					echo 'llega';
+					
 					$sendmail = new SendMail;
-				
-					;
-					$html = 'Solicitud de Referencia Bancaria<br><br><br>
-					
-					';
-					
-					$sendmail->PrepareAttachment("Solicitud de Referencia Bancaria",$html, "", "", "facturasfinanzas@iapchiapas.org.mx", "Finanzas", $attachment, $fileName);
+					$student->setUserId($_SESSION["User"]["userId"]);
+					$info = $student->GetInfo();
+					$html .= 'Solicitud de Referencia Bancaria<br><br><br>';
+					$html .= '<b>Alumno:</b> '.$info['names'].' '.$info['lastNamePaterno'].' '.$info['lastNameMaterno'].'<br>';
+					$html .= '<b>Numero de Control:</b> '.$info['controlNumber'];
+					$sendmail->PrepareAttachment("Solicitud de Referencia Bancaria", $html, "","", 'facturasfinanzas@iapchiapas.org.mx', "Finanzas", $attachment, $fileName);
 					$sendmail->PrepareAttachment("Solicitud de Referencia Bancaria",$html, "", "", "enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
 				}else{
 					echo 'fail[#]';

@@ -52,7 +52,7 @@
 				{/if}
 				{if $subject.tiposolicitudId ne 3}
 					{if $subject.estatus eq 'pendiente'}
-					<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px" title='REFERENCIA BANCARIA'>
+					<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria&id={$subject.courseId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='REFERENCIA BANCARIA'>
 					<i class="material-icons md-16">account_balance</i>
 					</a>
 					<a href="{$WEB_ROOT}/graybox.php?page=info&id={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
@@ -89,9 +89,11 @@
 						{/if}
 				{/if}
 				{if $subject.estatus ne 'cancelado'}
+					{if $subject.estatus ne 'completado'}	
 					<a href="{$WEB_ROOT}/graybox.php?page=cancelar-solicitud&id={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CANCELAR SOLICITUD'>
 						<i class="material-icons md-16">delete_forever</i>
 					</a>
+					{/if}
 				{/if}
 				{if $subject.estatus eq 'completado'}
 					{if $subject.tiposolicitudId eq 1 or $subject.tiposolicitudId eq 6 or $subject.tiposolicitudId eq 2 or $subject.tiposolicitudId eq 7}

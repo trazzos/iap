@@ -1,0 +1,2 @@
+ALTER TABLE  `chat` ADD  `favorito` ENUM(  'no',  'si' ) NOT NULL AFTER  `rutaAdjunto` ;
+ALTER TABLE  `chat` ADD  `asunto` TEXT NOT NULL AFTER  `usuarioId` ;

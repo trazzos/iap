@@ -43,6 +43,7 @@
 <div id="msjd"></div>
 <button class="btn " onClick="closeModal()">Cerrar</button>
 <button class="btn green" onClick="SaveCalificacion()" id="btnSave">Guardar</button>
+ <button  class="btn green submitForm" onClick="descargarActa({$id})">Descargar Acta</button>
 {if $infoUser.perfil eq 'Administrador'}
 <button class="btn green" style='background:#4CAF50' onClick="validarCal()" id="btnSave">Publicar</button>
 {/if}

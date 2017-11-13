@@ -98,10 +98,10 @@
 						</a>
 						</li>
 						<li>
-						<a href="{$WEB_ROOT}/ver-calendario" ><!--onClick="verCalendario()"-->
+						<!--<a href="{$WEB_ROOT}/ver-calendario" ><onClick="verCalendario()"
 						   <i class="fa fa-calendar"></i>Calendario de Pagos
 						</a>
-						</li>
+						</li>-->
 						<li>
 						<a href="{$WEB_ROOT}/estatus-financiero" ><!--onClick="verCalendario()"-->
 						  <i class="fa fa-file-text" aria-hidden="true"></i>Estatus Financiero

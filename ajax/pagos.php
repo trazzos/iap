@@ -12,7 +12,7 @@
 
 	// $student->setUserId($_SESSION['User']['userId']);
 	$infoCar = $student->infoCarrera();
-	$lstPagos = $student->verCalendarioPagos();
+	$lstPagos = $student->verCalendarioPagoscxc(); 
  
 	// echo '<pre>'; print_r($infoCar);
 	// exit;
@@ -25,7 +25,7 @@
 	
 	.float{
 
-		width: 450px; !important;
+		width: 459px; !important;
 		height: 200px; !important;
 		border: 2px solid;
 		display: inline-block
@@ -54,14 +54,25 @@
 			<td>Descripcion</td>
 			<td>Beca</td>
 			<td>Importe</td>
+			<td>Abono</td>
+			<td>Saldo</td>
 			</tr> ";
 			foreach($aux['pagos'] as $key4=>$aux4){
 			$html .= "
 			<tr>
 			<td>".$aux4['inicioPago']."</td> 
 			<td>".$aux4['descripcion']."</td> 
-			<td>".$aux4['beca']." %</td>
+			<td>"; 
+			
+			if($aux4['claveconcepto'] <> 9 and $aux4['claveconcepto'] <> 12){
+				$html .= $aux4['beca'].' %';
+			} 
+				
+			
+			$html .= " </td>
 			<td>$ ".number_format($aux4['total'],2)."</td>
+			<td>$ ".number_format($aux4['abono'],2)."</td>
+			<td>$ ".number_format($aux4['total']-$aux4['abono'],2)."</td>
 			</tr> ";
 			}
 			

@@ -128,13 +128,13 @@ function SaveCalificacion(alumnoId,courseId){
 			console.log(response)
 			var splitResp = response.split("[#]");
 			
-			if(splitResp[0]=="ok"){
+			if($.trim(splitResp[0])=="ok"){
 				$('#btnSave').show();
 				$('#loader').html('');
 				$('#msj').html(splitResp[1]);
 				$("#ajax").hide();
 				$("#ajax").modal("hide");
-			}else if(splitResp[0]=="fail"){
+			}else if($.trim(splitResp[0])=="fail"){
 				// alert(splitResp[1])
 				$('#btnSave').show();
 				$('#loader').html('');
@@ -174,13 +174,13 @@ function validarCal(){
 			console.log(response)
 			var splitResp = response.split("[#]");
 			
-			if(splitResp[0]=="ok"){
+			if($.trim(splitResp[0])=="ok"){
 				$('#btnSave').show();
 				$('#loader').html('');
 				$('#msj').html(splitResp[1]);
 				$("#ajax").hide();
 				$("#ajax").modal("hide");
-			}else if(splitResp[0]=="fail"){
+			}else if($.trim(splitResp[0])=="fail"){
 				alert(splitResp[1])
 			}
 			

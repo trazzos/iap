@@ -134,14 +134,16 @@ $.ajax({
 	  	data: "type=solicitarReferencia&id="+id,
 		beforeSend: function(){			
 			// $("#td_"+id).html(LOADER3);
+			$("#load").html(LOADER3);
 		},
 	  	success: function(response) {	
 			console.log(response)
 			var splitResponse = response.split("[#]");
 			if($.trim(splitResponse[0]) == "ok"){
-				$("#msj").html(splitResponse[1]);
+				$("#msj5").html(splitResponse[1]);
+				$("#load").html('');
 			}else if ($.trim(splitResponse[0]) == "ok"){
-				$("#msj").html(splitResponse[2]);
+				$("#msj5").html(splitResponse[2]);
 			}
 			  
 

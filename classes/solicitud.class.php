@@ -208,6 +208,8 @@ class Solicitud extends Module
 		
 		
 		
+		
+		
 		 $sqlQuery = 'SELECT 
 					count(*)
 				FROM 
@@ -216,30 +218,48 @@ class Solicitud extends Module
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$countS = $this->Util()->DB()->GetSingle();
 		// exit;
-		if($countS >= 1){
-			echo 'fail[#]';
-			echo '<center><font color="red">Existe una solicitud del mismo tipo en progreso</font></center>';
-			exit;
+		
+		if($this->tipo <> 5){
+			if($countS >= 1){
+				echo 'fail[#]';
+				echo '<center><font color="red">Existe una solicitud del mismo tipo en progreso</font></center>';
+				exit;
+			}
 		}
 		
-		$sqlQuery = 'SELECT 
-					*
-				FROM 
-					course 
-				WHERE  courseId = '.$this->cursoId.'';
-		$this->Util()->DB()->setQuery($sqlQuery);
-		$infocourseId = $this->Util()->DB()->GetRow();
 		
-		$sqlQuery = 'SELECT 
+		
+		$sql = 'SELECT 
 					*
 				FROM 
 					tiposolicitud 
 				WHERE  tiposolicitudId = '.$this->tipo.'';
-		$this->Util()->DB()->setQuery($sqlQuery);
-		$infoSol = $this->Util()->DB()->GetRow();
 		
-		// echo '<pre>'; print_r($infocourseId);
-		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$infoSol =$this->Util()->DB()->GetRow();
+		
+		
+		if($this->cursoId==''){
+			$sql = 'SELECT 
+					*
+				FROM 
+					user_subject as u
+				left join  course as c on c.courseId = u.courseId
+				WHERE  u.status = "activo" and alumnoId = '.$_SESSION['User']['userId'].' order by u.registrationId DESC';
+			$this->Util()->DB()->setQuery($sql);
+			$infoCo = $this->Util()->DB()->GetRow();
+			$this->cursoId = $infoCo['courseId'];
+		}else{
+			$sql = 'SELECT 
+					*
+				FROM 
+					course 
+				WHERE  courseId = '.$this->cursoId.'';
+			$this->Util()->DB()->setQuery($sql);
+			$infoCo =$this->Util()->DB()->GetRow();
+		}
+		
+
 		
 		 $sqlNot="insert into 
 				solicitud(
@@ -253,7 +273,7 @@ class Solicitud extends Module
 				precio
 				)
 			   values(
-			            '".$infocourseId['subjectId']."', 
+			            '".$infoCo['subjectId']."', 
 			            '".$this->cursoId."', 
 			            '".date('Y-m-d')."', 
 			            '".$this->tipo."',
