@@ -790,15 +790,15 @@
 				$this->Util()->DB()->setQuery($sql);
 				$infoCc = $this->Util()->DB()->GetRow();
 				
-				$student->getUserId($res["alumnoId"]);
-				$cali = $student->GetAcumuladoCourseModule($this->coursemoduleId);
 				
-				$cali = $cali / 10;
+				$cali = $student->GetAcumuladoCourseModuleActa($this->coursemoduleId,$res["alumnoId"]);
 				
-				$cali = round($cali, 0, PHP_ROUND_HALF_DOWN);
+				$cali2 = $cali / 10;
 				
-				if($infoCc["calificacion"]==null){
-					$infoCc["calificacion"] = $cali;
+				$cali2 = round($cali2, 0, PHP_ROUND_HALF_DOWN);
+				
+				if($infoCc["calificacion"]==null or $infoCc["calificacion"]==0){
+					$infoCc["calificacion"] = $cali2;
 				}else{
 					$infoCc["calificacion"] = $infoCc["calificacion"];
 				}
@@ -807,6 +807,7 @@
 				$result[$key]["scorePromedio"] = $cali;
 				
 			}
+			// exit;
 			
 			// echo "<pre>"; print_r($result);
 			// exit;

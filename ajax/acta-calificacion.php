@@ -11,6 +11,9 @@
 	$module->setCourseModuleId($_GET["Id"]);
 	$info = $module->InfoCourseModule();
 	
+	// echo '<pre>'; print_r($info);
+	// exit;
+	
 	$course->setCourseId($info["courseId"]);
 	$infoCo = $course->Info();
 	
@@ -66,13 +69,15 @@
 	<body>
 	<br>	
 	<br>
+	<img src='".DOC_ROOT."/images/logo_correo.jpg'>
 	<center>	
 	<b>INSTITUTO DE ADMINISTRACIÓN PÚBLICA DEL ESTADO DE CHIAPAS, A.C.</b>
+	<b>".$info['subjectName']."</b><br>
 	<b>ACTA DE CALIFICACIÓN FINAL</b><br>
 	</center>	
 	<br>
 	<br>
-	<br>
+	
 	
 	<table class='txtTicket' width='100%'>
 	<tr>
@@ -132,7 +137,7 @@
 	<center>
 		
 	
-	<table width=100% align='center' border=0>	
+	<table width=100% align='center' border=0 class='txtTicket'>	
 		<tr>
 			<td colspan='2' align='center'>
 			".$infoPersonal['profesion']." ".$infoPersonal['name']." ".$infoPersonal['lastname_materno']." ".$infoPersonal['lastname_paterno']."<br>

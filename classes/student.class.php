@@ -1795,6 +1795,31 @@ class Student extends User
 		
 	}
 
+	
+	function GetAcumuladoCourseModuleActa($id, $alumnoId)
+	{
+		//actividades
+		$activity = new Activity;
+		$activity->setCourseModuleId($id);
+
+		$activity->setUserId($alumnoId);
+		$actividades = $activity->Enumerate();
+		
+		// echo '<pre>'; print_r ($actividades);
+		// exit;
+		$realScore = 0;
+		$countAc = count($actividades);
+		foreach($actividades as $res)
+		{
+			$totalScore += $res["ponderation"];
+		}
+		// echo $totalScore;
+		// exit;
+		@$total = $totalScore/$countAc;
+		
+		return $total;
+	}
+	
 	function GetAcumuladoCourseModule($id, $alumnoId = 0)
 	{
 		//actividades

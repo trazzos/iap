@@ -44,6 +44,10 @@ $x=0;
 	$smarty->assign("inactiveCourses", $inactiveCourses);	
 
 	$finishedCourses = $student->StudentCourses("finalizado");
+	
+	// echo '<pre>'; print_r($finishedCourses);
+	// exit;
+	
 	$smarty->assign("finishedCourses", $finishedCourses);	
 	
 	$announcements = $announcement->Enumerate(0, 0);
