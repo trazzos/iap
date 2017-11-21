@@ -19,6 +19,19 @@ switch($_POST["type"])
         $smarty->display(DOC_ROOT.'/templates/boxes/view-student.tpl');
 
         break;
+		
+	
+	case "VerSolicitud":
+
+        $group->setCourseId($_POST['id']);
+        $students=$group->DefaultGroup();
+        $smarty->assign("courseId",$_POST['id']);
+        $smarty->assign("DOC_ROOT", DOC_ROOT);
+        $smarty->assign("students", $students);
+		 $smarty->assign("tip",$_POST['tip']);
+        $smarty->display(DOC_ROOT.'/templates/actas.tpl');
+
+       break;
 
     case "StudentAdmin":
 

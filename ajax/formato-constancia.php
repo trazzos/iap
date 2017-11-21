@@ -5,6 +5,14 @@
 
 	session_start();
 
+	// if($_GET['qAdmin']<>''){
+			// $solicitud->setTipo($_GET['qAdmin']);
+			// $solicitud->setCursoId($_GET['cursoId']);
+			// $Id = $solicitud->SaveSolicitud();
+			// $_GET['q'] = $Id;
+	// }
+	
+		
 	
 	// echo '<pre>'; print_r($_GET['q']); 
 	$util = new Util;

@@ -6,7 +6,7 @@
 	
 	
 	$countSol = $solicitud->cursoActivo();
-	$lstSemestres = $solicitud->semestresxSubject($countSol[0]['subjectId']);
+	$lstSemestres = $solicitud->semestresxSubject($countSol[0]['subjectId'],$countSol[0]['courseId']);
 	// echo $countSol[0]['courseId'];
 	// exit;
 	// echo '<pre>'; print_r($lstSemestres);

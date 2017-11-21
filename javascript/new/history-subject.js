@@ -4,6 +4,29 @@ $(document).ready(function() {
 
 });
 
+function descargarConstancias(q){
+	url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&qAdmin='+q;
+	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+}
+
+
+function VerSolicitud(id){
+
+    $.ajax({
+        url : WEB_ROOT+'/ajax/new/studentCurricula.php',
+        type: "POST",
+        data : {type: "VerSolicitud", id:id, tip:"Activo"},
+        success: function(data)
+        {
+            showModal("&nbsp;", data);
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+
+}
 
 function VerGrupo(id){
 

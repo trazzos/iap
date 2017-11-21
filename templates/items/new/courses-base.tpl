@@ -95,6 +95,10 @@
 				<span style="cursor:pointer" class="spanActive" onclick="VerGrupo({$subject.courseId});" title="Alumnos" id="{$subject.courseId}">
 				<i class="fa fa-university" aria-hidden="true"></i>
 				</span>  
+				
+				<span style="cursor:pointer" class="spanActive" onclick="VerSolicitud({$subject.courseId});" title="Alumnos" id="{$subject.courseId}">
+				<i class="fa fa-folder-open" aria-hidden="true"></i>
+				</span>
             </td>
         {/if}
     </tr>

@@ -214,7 +214,9 @@ class Solicitud extends Module
 					count(*)
 				FROM 
 					solicitud 
-				WHERE    estatus <> "completado" and estatus <> "cancelado" and( tiposolicitudId = '.$this->tipo.' and userId = '.$_SESSION['User']['userId'].')';
+				WHERE    estatus <> "completado" and 
+				estatus <> "cancelado"
+				and( tiposolicitudId = '.$this->tipo.' and userId = '.$_SESSION['User']['userId'].')';
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$countS = $this->Util()->DB()->GetSingle();
 		// exit;
@@ -297,7 +299,7 @@ class Solicitud extends Module
 				// $this->Util()->DB()->setQuery($sqlQuery);
 				// $this->Util()->DB()->ExecuteQuery();			  
 			// }
-		return true;
+		return $Id ;
 	}
 	
 	
@@ -429,21 +431,19 @@ class Solicitud extends Module
 		return $result;
 	}
 	
-	public function semestresxSubject($Id)
+	public function semestresxSubject($Id,$courseId)
 	{
 		 $sqlQuery = 'SELECT 
 					*
 				FROM 
 					subject_module as s
 				WHERE  subjectId = '.$Id.' group by semesterId';
-				// exit;
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$result = $this->Util()->DB()->GetResult();
 		
 		$sem = 2;
 		foreach ($result  as $key=>$aux){
 		if($key == 0 or $key == 1){
-			
 				$result2[$key]['semesterId'] = $aux['semesterId'];
 			}
 			else{
@@ -453,8 +453,6 @@ class Solicitud extends Module
 				FROM 
 					confirma_inscripcion as c
 				WHERE  subjectId = '.$Id.' and userId  = '.$_SESSION['User']['userId'].' and nivel = '.$sem.'';
-				// echo '<br>';
-				// echo '<br>';
 				$this->Util()->DB()->setQuery($sqlQuery);
 				$coun1 = $this->Util()->DB()->GetSingle();
 				if($coun1 >= 1){
@@ -464,9 +462,6 @@ class Solicitud extends Module
 			}
 			
 		}
-		
-		// echo '<pre>'; print_r($result2);
-		// exit;
 		foreach ($result2  as $key=>$aux){
 			 $sqlQuery = 'SELECT 
 					count(*)
@@ -475,6 +470,30 @@ class Solicitud extends Module
 				WHERE  subjectId = '.$Id.' and userId  = '.$_SESSION['User']['userId'].' and nivel = '.$aux['semesterId'].'';
 			$this->Util()->DB()->setQuery($sqlQuery);
 			$coun = $this->Util()->DB()->GetSingle();
+			
+			$sql = "
+				SELECT * FROM course_module
+				LEFT JOIN subject_module ON subject_module.subjectModuleId = course_module.subjectModuleId
+				WHERE courseId = '".$info["courseId"]."'
+				ORDER BY semesterId ASC, initialDate ASC";
+			
+			
+			
+			 $sqlQuery = 'SELECT 
+					count(*)
+				FROM 
+					course_module as c
+				left join subject_module as sm on sm.subjectModuleId = c.subjectModuleId
+				WHERE  sm.subjectId = '.$Id.' and sm.semesterId  = '.$aux['semesterId'].' and c.courseId = '.$courseId.' order by finalDate desc';
+			
+			$this->Util()->DB()->setQuery($sqlQuery);
+			$dataCMAc = $this->Util()->DB()->GetSingle();
+			
+			if($dataCMAc['finalDate'] >= 1){
+				$result2[$key]['verFormato'] = 'si';
+			}else{
+				$result2[$key]['verFormato'] = 'no';
+			}
 			
 			if($coun >= 1){
 				$result2[$key]['tiene'] = 'si';
