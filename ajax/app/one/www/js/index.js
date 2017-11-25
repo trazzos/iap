@@ -106,6 +106,7 @@ var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><b
 
 function downloadFile(url){
 
+    console.log(url);
     showFile(url);
 }
 
@@ -118,6 +119,8 @@ function showFile(url) {
 
     inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
 
+    console.log(inAppBrowserRef);
+
     inAppBrowserRef.addEventListener('loadstart', loadStartCallBack);
 
     inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
@@ -127,14 +130,14 @@ function showFile(url) {
 }
 
 function loadStartCallBack() {
-
+    console.log("started");
+    alert('started');
     $.mobile.loading('show');
-    console.log("loading");
-    //$('#status-message').text("loading please wait ...");
-
 }
 
 function loadStopCallBack() {
+    console.log("stop");
+    alert('stop');
 
     if (inAppBrowserRef != undefined) {
 
@@ -150,9 +153,8 @@ function loadStopCallBack() {
 }
 
 function loadErrorCallBack(params) {
-
-    //$('#status-message').text("");
     console.log("errorcallback");
+    alert('error');
     $.mobile.loading('hide');
 
     var scriptErrorMesssage =
