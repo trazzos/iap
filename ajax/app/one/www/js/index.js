@@ -113,8 +113,8 @@ function downloadFile(url){
 var inAppBrowserRef;
 function showFile(url) {
 
-    //window.open(url,'_system','location=yes');
-    //return;
+    window.open(url,'_system','location=yes');
+    return;
     var target = "_system";
 
     var options = "location=yes,hidden=yes";
