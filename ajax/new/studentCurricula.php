@@ -1,5 +1,8 @@
 <?php
-
+// echo 'lled';
+// echo '<pre>'; print_r($_GET);
+// echo '<pre>'; print_r($_POST);
+// exit;
 include_once('../../init.php');
 include_once('../../config.php');
 include_once(DOC_ROOT.'/libraries.php');
@@ -173,6 +176,127 @@ switch($_POST["type"])
 			 echo 'fail[#]';
 		 }
 		
+	break;
+	
+	case 'descargarConstancias':
+	
+		// echo '<pre>'; print_r($_POST);
+		$student->setUserId($_POST["Id"]);
+		$activeCourses = $student->StudentCourses("activo", "si");
+		$finishedCourses = $student->StudentCourses("finalizado");
+		
+		// $finishedCourses = array();
+		
+		// if(count($activeCourses) == 1 and count($finishedCourses) == 0){
+
+			// $solicitud->setTipo($_POST['tipodocId']);
+			// $solicitud->setCursoId($activeCourses[0]['courseId']);
+			// if($solicitud->SaveSolicitud()){
+				// $lstSol = $solicitud->arraySolicitudes();
+				// $registros = $solicitud->enumarateSolicitudesStden();
+				// $smarty->assign('registros', $registros);
+				// $smarty->assign("lstSol", $lstSol);
+				// $smarty->display(DOC_ROOT.'/templates/lists/view-solicitud.tpl');
+			// }else{
+
+			// }
+			// exit;
+		// }
+			
+		
+		
+		
+		$smarty->assign("finishedCourses", $finishedCourses);	
+		$smarty->assign("solicitudId", $_POST['tipodocId']);	
+		$smarty->assign("userId", $_POST['Id']);	
+		
+		// echo 'ok[#]';
+		$smarty->assign("activeCourses", $activeCourses);
+		$smarty->display(DOC_ROOT.'/templates/new/view-curricula-admin.tpl');
+		exit;
+			if($_POST['solicitudId']==''){
+				echo 'fail[#]';
+				echo '<center><font color="red">Por favor, seleccione el tipo de solicitud</font></center>';
+				exit;
+			}
+		
+	
+	break;
+	
+	case 'addSaveSolicitud':
+
+		
+		// echo '<pre>'; print_r($_POST);
+				$activa = 0;
+				$inactiva = 0;
+				foreach($_POST as $key=>$aux){
+					$g = explode('_',$key);
+					if($g[0]=='activa'){
+						if($aux=='on'){
+							$valoractiva = $g[1];
+							$activa++;
+						}
+					}
+					if($g[0]=='finalizada'){
+						if($aux=='on'){
+							$valorinactiva = $g[1];
+							$inactiva++;
+						}
+					}
+				}
+				if(($activa+ $inactiva) <= 0){
+						echo 'fail[#]';
+						echo '<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						Debe seleccionar al menos una curricula
+						</div>';
+					exit;
+				}
+				
+				if(($activa+ $inactiva) > 1){
+						echo 'fail[#]';
+						echo '<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						Solo puede seleccionar una curricula
+						</div>';
+					exit;
+				}
+				
+				// echo $valoractiva.'___'; 
+				// echo $valorinactiva; 
+				// echo '<pre>'; print_r($_POST);
+				// exit;
+				if($valoractiva<>''){
+					$cursoId = $valoractiva;
+				}
+				
+				if($valorinactiva<>''){
+					$cursoId = $valorinactiva;
+				}
+				
+				// echo $cursoId;
+				// exit;
+				
+				$solicitud->setTipo($_POST['solicitudId']);
+				$solicitud->setCursoId($cursoId);
+				// $solicitud->setPrecio($precio);
+				if ($Id = $solicitud->SaveSolicitudAdmin($_POST['userId'])){
+					echo 'ok[#]';
+					echo $Id;
+					// echo '<div class="alert alert-info alert-dismissable">
+					  // <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  // La solicitud se genero correctamente
+					// </div>';
+					// echo '[#]';
+					// $lstSol = $solicitud->arraySolicitudes();
+						// $registros = $solicitud->enumarateSolicitudesStden();
+						// $smarty->assign('registros', $registros);
+					// $smarty->assign("lstSol", $lstSol);
+					// $smarty->display(DOC_ROOT.'/templates/lists/view-solicitud.tpl');
+				}else{
+					echo 'fail[#]';
+				}
+	
 	break;
 
 }

@@ -92,7 +92,7 @@
 						-->
 					</a>
 				</div>
-				<span style="cursor:pointer" class="spanActive" onclick="VerGrupo({$subject.courseId});" title="Alumnos" id="{$subject.courseId}">
+				<span style="cursor:pointer" class="spanActive" onclick="VerGrupo({$subject.courseId});" title="Referencia Bancaria" id="{$subject.courseId}">
 				<i class="fa fa-university" aria-hidden="true"></i>
 				</span>  
 				

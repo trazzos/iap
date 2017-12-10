@@ -8,6 +8,8 @@
 
 
 		$contenido .=	"<center><b>Boleta de Calificaciones</b></center><br><br>";
+		$contenido .=	"<center><b>".$infoSol['name']."</b></center><br>";
+		$contenido .=	"<center><b>".$infoSol['nombreMajor']."</b></center><br><br>";
 	
 		foreach($lstCal8 as $key=>$aux){
 			$contenido .= "<table width='100%'>";
@@ -60,7 +62,7 @@
 	
 	
 	
-		<table align='center' width='100%' border='0'>
+		<table align='center' width='100%' border='0' class ='txtTicket'>
 			<tr>
 				<td  align='right'>
 					<img src='".DOC_ROOT."/images/logo_correo.jpg'>
@@ -68,7 +70,7 @@
 			</tr>
 			<tr>
 				<td align='right'>
-					<table align='right'  border='0'>
+					<table align='right'  border='0' width='40%'>
 							<tr>
 								<td>Area:</td>
 								<td>Dirección Académica</td>

@@ -10,6 +10,8 @@ function sincronizarDB(){
 		},
 	  	success: function(response) {
 
+		
+		console.log(response)
 		$("#loader").html('');
 			console.log(response)
 			var splitResp = response.split("[#]");
@@ -18,7 +20,7 @@ function sincronizarDB(){
 
 		},
 		error:function(){
-			alert(msgError);
+			// alert(msgError);
 		}
     });
 	

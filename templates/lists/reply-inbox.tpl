@@ -34,7 +34,7 @@
 			&nbsp;
 			&nbsp;
 			&nbsp;
-			<b>{$subject}</b><input type="text" name="subject2"  id="subject2" style="border:0px; border-bottom: 1px solid gray" value='' placeholder=''>
+			<input type="text" name="subject2"  id="subject2" style="border:0px; border-bottom: 1px solid gray" value='' placeholder=''>
 		</td>
 	</tr>
 </table>

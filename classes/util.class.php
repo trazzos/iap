@@ -1239,6 +1239,28 @@ function HandleMultipages($page,$total,$link,$items_per_page=0,$pagevar="p"){
 	{
 		return html_entity_decode(htmlspecialchars_decode($string));
 	}
+	
+	function orderMultiDimensionalArray ($toOrderArray, $field, $inverse = false) {
+		
+		$position = array();
+		$newRow = array();
+		foreach ($toOrderArray as $key => $row) {
+				$position[$key]  = $row[$field];
+				$newRow[$key] = $row;
+		}
+		if ($inverse) {
+			arsort($position);
+		}
+		else {
+			asort($position);
+		}
+		$returnArray = array();
+		foreach ($position as $key => $pos) {     
+			$returnArray[] = $newRow[$key];
+		}
+		return $returnArray;
+		
+	}
 
 }
 

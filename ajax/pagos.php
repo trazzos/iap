@@ -22,12 +22,21 @@
 	<title>Calendario de Pagos</title>
 	<style type='text/css'>
 	
-	
+	.txtTicket{
+			font-size:12px;
+			 font-family: sans-serif;
+			text-transform: uppercase;
+			/*font:bold 12px 'Trebuchet MS';*/ 
+		}
+		table,td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
 	.float{
 
 		width: 459px; !important;
 		height: 200px; !important;
-		border: 2px solid;
+		
 		display: inline-block
 	}
 	
@@ -36,24 +45,25 @@
 	</head>
 	<body>
 	<br>	
-	<br>	
-
-	<center>".$infoCar['nombrenivel']."<br>
+<img src='".DOC_ROOT."/images/logo_correo.jpg'>	
+	<center>
+	Estatus Financiero<br>
+	".utf8_encode(utf8_decode($infoCar['nombrenivel']))."<br>
 	".$infoCar['ciclo']."</center><br>
 	<br>
 	<br>
-	<br>
-	<br>
+
 	";
 			
 	foreach($lstPagos as $key=>$aux){
-		$html .= "<div class='float'>".$aux['periodo']."
-			<table width='100%'>
+		$html .= "<div class='float txtTicket'>".$aux['periodo']."
+			<table width='100%' class='txtTicket'>
 			<tr>
 			<td>Fecha de Pago</td>
 			<td>Descripcion</td>
-			<td>Beca</td>
 			<td>Importe</td>
+			<td>Beca</td>
+			<td>Total a pagar</td>
 			<td>Abono</td>
 			<td>Saldo</td>
 			</tr> ";
@@ -62,6 +72,7 @@
 			<tr>
 			<td>".$aux4['inicioPago']."</td> 
 			<td>".$aux4['descripcion']."</td> 
+			<td>$ ".number_format($aux4['importe'],2)."</td>
 			<td>"; 
 			
 			if($aux4['claveconcepto'] <> 9 and $aux4['claveconcepto'] <> 12){
@@ -70,9 +81,9 @@
 				
 			
 			$html .= " </td>
-			<td>$ ".number_format($aux4['total'],2)."</td>
+			<td>$ ".number_format($aux4['totalPagar'],2)."</td>
 			<td>$ ".number_format($aux4['abono'],2)."</td>
-			<td>$ ".number_format($aux4['total']-$aux4['abono'],2)."</td>
+			<td>$ ".number_format($aux4['totalPagar']-$aux4['abono'],2)."</td>
 			</tr> ";
 			}
 			

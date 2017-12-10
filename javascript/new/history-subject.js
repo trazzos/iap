@@ -4,9 +4,33 @@ $(document).ready(function() {
 
 });
 
-function descargarConstancias(q){
-	url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&qAdmin='+q;
-	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+function descargarConstancias(Id,tipodocId){
+	
+	
+	// var resp = confirm("Seguro de generar el documento?");
+	
+	// if(!resp)
+		// return;
+	
+	// url=WEB_ROOT+"/ajax/formato-constancia-admin.php?"+$('#frmfiltro').serialize(true)+'&qAdmin='+q;
+	// open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+	
+	 $.ajax({
+        url : WEB_ROOT+'/ajax/new/studentCurricula.php',
+        type: "POST",
+        data : {type: "descargarConstancias", Id:Id, tip:"Activo",tipodocId:tipodocId},
+        success: function(data)
+        {
+			console.log(data)
+			 $('#tr_'+Id).toggle();
+			 $('#td_'+Id).html(data);
+            // showModal("&nbsp;", data);
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
 }
 
 
@@ -218,3 +242,50 @@ function saveNumReferencia(id,activo){
     });
 	
 }//saveNumReferencia
+
+
+
+function addSaveSolicitud(){
+
+
+	$("#type").val("addSaveSolicitud")
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/new/studentCurricula.php',
+	  	data: $("#frmGral").serialize(true)+'&solicitudId='+$('#solicitudId').val()+'&type=addSaveSolicitud',
+		beforeSend: function(){			
+		},
+	  	success: function(response) {	
+		
+			console.log(response)
+			var splitResp = response.split("[#]");
+			
+		
+			if($.trim(splitResp[0]) == "ok"){
+					
+					// $("#ajax").attr("width","100px");
+					// $("#ajax").attr("top","100px");
+					
+					url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+$.trim(splitResp[1]);
+					open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+	
+					$("#msj").html(splitResp[1]);
+					$("#container").html(splitResp[2]);
+					$("#ajax").html('');
+					$("#ajax").hide();
+					$("#ajax").modal("hide");
+					
+				}
+			else if($.trim(splitResp[0]) == "fail"){
+				
+				$("#msjgg").html(splitResp[1]);
+				// return;
+
+			}
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+	
+}//addSolicitud

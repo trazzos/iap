@@ -18,8 +18,10 @@
 					<tr>
 						<th>Fecha de Pago</th>
 						<th>Descripcion</th>
-						<th>Beca</th>
+						
 						<th>Importe</th>
+						<th>Beca</th>
+						<th>Total a Pagar</th>
 						<th>Abono</th>
 						<th>Saldo</th>
 					</tr>
@@ -27,11 +29,12 @@
 					{foreach from=$aux.pagos item=aux4}
 						<tr>
 						<td>{$aux4.inicioPago}</td> 
-						<td>{$aux4.claveconcepto} _ {$aux4.descripcion} </td> 
+						<td> {$aux4.descripcion} </td> 
+						<td>$ {$aux4.importe|number_format:2:'.':','}</td>
 						<td>{if $aux4.claveconcepto ne 9 and $aux4.claveconcepto ne 12} {$aux4.beca} % {/if}</td>
-						<td>$ {$aux4.total|number_format:2:'.':','}</td>
+						<td>$ {$aux4.totalPagar|number_format:2:'.':','}</td>
 						<td>$ {$aux4.abono|number_format:2:'.':','}</td>
-						<td>$ {$aux4.total - $aux4.abono|number_format:2:'.':','}</td>
+						<td>{if ($aux4.totalPagar - $aux4.abono) > 0} <font color='red'>$ {$aux4.totalPagar - $aux4.abono|number_format:2:'.':','} </font>{else}$  {$aux4.totalPagar - $aux4.abono|number_format:2:'.':','}{/if}</td>
 						</tr>
 					{/foreach}
 					</table>

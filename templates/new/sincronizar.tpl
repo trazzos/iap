@@ -25,11 +25,17 @@
 	</div>
 
         {include file="boxes/status_no_ajax.tpl"}
-		<!--
+		
 		<form id='frmFiltro'>
-			<div style="float:left">Alumno<br>
-				<input type='text' name='alumnoId' class="form-control">
-			</div>
+				<center>
+				<b>Tipo de Actualizacion</b><br>
+				<select class='form-control' style='width:180px' name='tipo'>
+					<option value='1'>Alumnos y Pagos</option>
+					<option value='2'>Porcentaje de Becas a Alumnos existentes</option>
+				</select>
+				</center>
+			
+			<!--
 			<div style="float:left">Fecha Solicitud<br>
 				<input type='text' name='fechaInicio' id='fecha_1'class="form-control" style="width:150px; float:left" onClick='cargaCalendario(1)'>
 				<input type='text' name='fechaFin' id='fecha_2' class="form-control" style="width:150px;  float:left" onClick='cargaCalendario(2)'>
@@ -50,11 +56,9 @@
 				<option>autorizado</option>
 				<option>completado</option>
 				</select>
-			</div>
+			</div>-->
 		</form>
-		<br>
-		
-		<button onClick='buscarSolicitud()' class="btn green submitForm">Buscar</button>-->
+
 		
 		<center>
 		<a  class="btn green" onClick="sincronizarDB()">

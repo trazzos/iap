@@ -9,8 +9,9 @@ switch($_POST["type"])
 {
 	case "sincronizarDB": 
 		
-
-	$student->extraeInfoFire();
+	// echo '<pre>'; print_r($_POST);
+	// exit;
+	$student->extraeInfoFire($_POST['tipo']);
 	$registros = $solicitud->enumerateSincronizacion();
 			
 	break;

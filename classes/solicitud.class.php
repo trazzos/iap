@@ -303,6 +303,120 @@ class Solicitud extends Module
 	}
 	
 	
+	public function SaveSolicitudAdmin($userId)
+	{
+		$status = "";
+		
+		if($this->tipo == 4){
+			$status = "completado";
+		}
+		else if($this->tipo == 3){
+			$status = "completado";
+		}
+		else{
+			$status = "completado";
+		}
+		
+		
+		
+		
+		
+		 $sqlQuery = 'SELECT 
+					count(*)
+				FROM 
+					solicitud 
+				WHERE    estatus <> "completado" and 
+				estatus <> "cancelado"
+				and( tiposolicitudId = '.$this->tipo.' and userId = '.$userId.')';
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$countS = $this->Util()->DB()->GetSingle();
+		// exit;
+		
+		if($this->tipo <> 5){
+			if($countS >= 1){
+				echo 'fail[#]';
+				echo '<center><font color="red">Existe una solicitud del mismo tipo en progreso</font></center>';
+				exit;
+			}
+		}
+		
+		
+		
+		$sql = 'SELECT 
+					*
+				FROM 
+					tiposolicitud 
+				WHERE  tiposolicitudId = '.$this->tipo.'';
+		
+		$this->Util()->DB()->setQuery($sql);
+		$infoSol =$this->Util()->DB()->GetRow();
+		
+		
+		if($this->cursoId==''){
+			$sql = 'SELECT 
+					*
+				FROM 
+					user_subject as u
+				left join  course as c on c.courseId = u.courseId
+				WHERE  u.status = "activo" and alumnoId = '.$userId.' order by u.registrationId DESC';
+			$this->Util()->DB()->setQuery($sql);
+			$infoCo = $this->Util()->DB()->GetRow();
+			$this->cursoId = $infoCo['courseId'];
+		}else{
+			$sql = 'SELECT 
+					*
+				FROM 
+					course 
+				WHERE  courseId = '.$this->cursoId.'';
+			$this->Util()->DB()->setQuery($sql);
+			$infoCo =$this->Util()->DB()->GetRow();
+		}
+		
+
+		
+		 $sqlNot="insert into 
+				solicitud(
+				subjectId,
+				courseId,
+				fechaSolicitud,
+				tiposolicitudId,
+				estatus,
+				motivo,
+				userId,
+				personalId,
+				precio
+				)
+			   values(
+			            '".$infoCo['subjectId']."', 
+			            '".$this->cursoId."', 
+			            '".date('Y-m-d')."', 
+			            '".$this->tipo."',
+			            '".$status."',
+			            '".$this->motivo."',
+			            '".$userId."',
+			            '".$_SESSION['User']['userId']."',
+			            '".$infoSol['precio']."'
+			         )";
+					 
+			$this->Util()->DB()->setQuery($sqlNot);
+			$Id = $this->Util()->DB()->InsertData(); 
+			
+			$this->validarPago($Id);
+			
+			// if($this->tipo ==1 or $this->tipo ==2){ 
+				// $ext = end(explode('.', basename($_FILES['comprobante']['name'])));
+				// $filename  = "comprobante_".$Id.".".$ext;
+				// $target_path = DOC_ROOT."/alumnos/comprobantes/comprobante_".$Id.".".$ext; 
+				
+				// move_uploaded_file($_FILES['comprobante']['tmp_name'], $target_path);
+				
+				// $sqlQuery = "UPDATE solicitud set ruta ='".$filename."'  where solicitudId = '".$Id."'"; 	
+				// $this->Util()->DB()->setQuery($sqlQuery);
+				// $this->Util()->DB()->ExecuteQuery();			  
+			// }
+		return $Id ;
+	}
+	
 	public function buscaBaja()
 	{
 		$sqlQuery = 'SELECT 

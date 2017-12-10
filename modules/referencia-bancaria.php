@@ -9,9 +9,20 @@
 	$student->setUserId($_SESSION['User']['userId']);
 	$infoStudent = $student->GetInfo();
 	
-	if($infoStudent['referenciaBancaria']==''){
+	// echo $infoStudent['referenciaBancaria'];
+	// exit;
+	
+	if($infoStudent['referenciaBancaria']<>''){
+		$countSol = 1;
+	}else{
 		$countSol = 0;
 	} 
+	
+	// if($countSol >= 1){
+		// $countSol = 1;
+	// } 
+	
+	// exit;
 	
 		// echo  $infoStudent['referenciaBancaria'];
 		// exit;

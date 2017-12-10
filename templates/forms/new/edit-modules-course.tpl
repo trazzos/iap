@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="portlet-body">
-		<div id="msj">2</div>
+		<div id="msj"></div>
         {*TODO agregar todas las acciones y javascript*}
         <form id="addMajorForm" name="addMajorForm" action="{$WEB_ROOT}/edit-modules-course/id/{$id}" method="post" enctype="multipart/form-data" class="form-horizontal">
             <input type="hidden" id="type" name="type" value="saveAddMajor"/>

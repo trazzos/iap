@@ -52,14 +52,15 @@
 				{/if}
 				{if $subject.tiposolicitudId ne 3}
 					{if $subject.estatus eq 'pendiente'}
-					<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria&id={$subject.courseId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='REFERENCIA BANCARIA'>
-					<i class="material-icons md-16">account_balance</i>
-					</a>
-					
+						<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria&id={$subject.courseId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='REFERENCIA BANCARIA'>
+						<i class="material-icons md-16">account_balance</i>
+						</a>
 					{/if}
+					{if $subject.tiposolicitudId ne 4}
 					<a href="{$WEB_ROOT}/graybox.php?page=info&id={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
 					<i class="material-icons md-16">info</i>
 					</a>
+					{/if}
 				{/if}
 				{if $subject.tiposolicitudId eq 3}
 					{if $subject.estatus eq 'pendiente'}	
