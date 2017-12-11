@@ -2,6 +2,7 @@
 	<thead>
     	<tr>
 			<th width="">Alumno</th>	 
+			<th width="">Folio</th>	 
 			<th width="">Fecha de Solicitud</th>	 
 			<th width="">Tipo</th>		 
 			<th width="">Estatus</th>		 
@@ -14,6 +15,7 @@
     	{foreach from=$registros item=item}
     	<tr>
 			<td align="center">{$item.names} {$item.lastNamePaterno} {$item.lastNameMaterno}</td>
+			<td align="center">{$item.folio}</td>
 			<td align="center">{$item.fechaSolicitud}</td>
 			<td align="center">{$item.solicitud}</td>
 			<td align="center">{$item.estatus}</td>

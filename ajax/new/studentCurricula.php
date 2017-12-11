@@ -283,6 +283,8 @@ switch($_POST["type"])
 				if ($Id = $solicitud->SaveSolicitudAdmin($_POST['userId'])){
 					echo 'ok[#]';
 					echo $Id;
+					echo '[#]';
+					echo $_POST['userId'];
 					// echo '<div class="alert alert-info alert-dismissable">
 					  // <button type="button" class="close" data-dismiss="alert">&times;</button>
 					  // La solicitud se genero correctamente

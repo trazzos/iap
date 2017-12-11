@@ -80,7 +80,8 @@ class Solicitud extends Module
 					s.*,
 					c.*,
 					s.folio as folioSolicitud,
-					m.name as nombreMajor
+					m.name as nombreMajor,
+					s.horario as imprimeHorario
 				FROM 
 					solicitud as s
 				left join user as u on u.userId = s.userId 
@@ -720,6 +721,15 @@ class Solicitud extends Module
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$coun = $this->Util()->DB()->GetRow();
 		
+		$sqlQuery = 'SELECT 
+					*
+				FROM 
+					course
+				WHERE  courseId = '.$coun['courseId'].'';
+				// exit;
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$infoCo = $this->Util()->DB()->GetRow();
+		
 		 $sqlQuery = 'SELECT 
 					*
 				FROM 
@@ -753,6 +763,7 @@ class Solicitud extends Module
 				nombreFirma ='".$infoFirma['name']." ".$infoFirma['lastname_materno']." ".$infoFirma['lastname_paterno']."',
 				sexoFirma ='".$infoFirma['sexo']."',
 				puestofirmante ='".$puestofirmante."',
+				horario ='".$infoCo['dias']." con un horario de ".$infoCo['horario']."',
 				fechaEntrega ='".date('Y-m-d')."'
 			where 
 				solicitudId = '".$Id."'"; 	

@@ -246,6 +246,11 @@ function saveNumReferencia(id,activo){
 
 
 function addSaveSolicitud(){
+	
+	var resp = confirm("¿Seguro de generar el documento?");
+	
+	if(!resp)
+		return;
 
 
 	$("#type").val("addSaveSolicitud")
@@ -268,12 +273,12 @@ function addSaveSolicitud(){
 					
 					url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+$.trim(splitResp[1]);
 					open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
-	
-					$("#msj").html(splitResp[1]);
-					$("#container").html(splitResp[2]);
-					$("#ajax").html('');
-					$("#ajax").hide();
-					$("#ajax").modal("hide");
+					// $('#tr_'+Id).toggle();
+					$("#tr_"+$.trim(splitResp[2])).hide();
+					// $("#container").html(splitResp[2]);
+					// $("#ajax").html('');
+					// $("#ajax").hide();
+					// $("#ajax").modal("hide");
 					
 				}
 			else if($.trim(splitResp[0]) == "fail"){

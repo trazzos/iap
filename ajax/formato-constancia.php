@@ -44,8 +44,8 @@
 		$lstCal = $solicitud->buscaCalificaciones($infoSol['courseId'],$infoSol['userId']);
 		
 		$contenido .= "<br>
-		Que  el <b>C. ".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b>, concluyó ".$prepo2." <b>".$infoSol['nombreMajor']." en ".$infoSol['name']."</b>,
-		correspondiente a la  generación ".$ii[0]." - ".$if[0].", plan ".$infoSol['tipoPeriodo'].", obteniendo las siguientes calificaciones.<br><br>";
+		<div>Que  el <b>C. ".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b>, concluyó ".$prepo2." <b>".$infoSol['nombreMajor']." en ".$infoSol['name']."</b>,
+		correspondiente a la  generación ".$ii[0]." - ".$if[0].", plan ".$infoSol['tipoPeriodo'].", obteniendo las siguientes calificaciones.</div><br><br>";
 		
 		
 	
@@ -78,9 +78,9 @@
 	
 		
 		$contenido .= "<br>
-		Que  el C. <b>".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b>,
+		<div class='parrafo'>Que  el C. <b>".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b>,
 		está inscrito al <b>".$infoSol['tipoPeriodo']." ".$prepo." ".$infoSol['nombreMajor']." </b>
-		en <b>".$infoSol['name']."</b>, correspondiente a la  generación <b>".$ii[0]." - ".$if[0]."</b>  los días ...";
+		en <b>".$infoSol['name']."</b>, correspondiente a la  generación <b>".$ii[0]." - ".$if[0]."</b>  los días  ".$infoSol['imprimeHorario']."</div>";
 	
 		$contenido .= "<br><br><br>A petición del Interesado  y para los usos legales que mejor convengan, 
 		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$mes." del año ".$fe[0]."";
@@ -97,9 +97,9 @@
 		
 		
 		$contenido .= "<br>
-		Que  el C. <b>".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b> , concluyó los estudios  
+		<div class='parrafo'>Que  el C. <b>".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b> , concluyó los estudios  
 		".$prepo." <b>".$infoSol['nombreMajor']."</b> en <b>".$infoSol['name']."</b>, correspondiente a la  generación ".$ii[0]." - ".$if[0].", así mismo se encuentra 
-		en proceso de certificación de estudios.";
+		en proceso de certificación de estudios.</div>";
 	
 		$contenido .= "<br><br><br>A petición del Interesado  y para los usos legales que mejor convengan, 
 		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$mes." del año ".$fe[0]."";
@@ -118,9 +118,9 @@
 		$if = explode('-',$infoSol['finalDate']);
 		$fe = explode('-',$infoSol['fechaEntrega']);
 				
-		$contenido .= "<br><br><br>Que  se ha solicitado ante la Secretaria de Educación la autorización para realizar 
+		$contenido .= "<br><br><br><div>Que  se ha solicitado ante la Secretaria de Educación la autorización para realizar 
 		los trámites  de titulación del <b>LIC. ".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b>, 
-		quien terminó ".$prepo2."  <b>".$infoSol['nombreMajor']."</b> en <b>".$infoSol['name']."</b> generación ".$ii[0]." - ".$if[0].".";
+		quien terminó ".$prepo2."  <b>".$infoSol['nombreMajor']."</b> en <b>".$infoSol['name']."</b> generación ".$ii[0]." - ".$if[0].".</div>";
 	
 		$contenido .= "<br><br><br>A petición del Interesado  y para los usos legales que mejor convengan, 
 		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$mes." del año ".$fe[0]."";
@@ -146,6 +146,9 @@
 	<head>
 	<title>CONSTANCIA</title>
 	<style type='text/css'>
+	.parrafo{
+		text-align:justify
+	}
 	.txtTicket{
 			font-size:12px;
 			 font-family: sans-serif;
