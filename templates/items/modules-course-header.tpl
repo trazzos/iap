@@ -10,6 +10,7 @@
     {if $User.type == "student"}
 	    <th width="80">Calificación Parcial</th>
 	    <th width="80">Calificación Final</th>
+	    <th width="80">Evaluación Docente</th>
     {/if}
   	<th width="60">Ingresar</th>
 </tr>

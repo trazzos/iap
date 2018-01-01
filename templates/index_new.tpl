@@ -45,6 +45,7 @@
 
 	<link href="{$WEB_ROOT}/GreyBox/greybox/gb_styles.css" rel="stylesheet" type="text/css" />
 	<link href="{$WEB_ROOT}/css/inbox.css" rel="stylesheet" type="text/css"  />
+	<link href="{$WEB_ROOT}/css/radiobutton.css" rel="stylesheet" type="text/css"  />
 {*
 	<link href="{$WEB_ROOT}/css/style_new.css" rel="stylesheet" type="text/css"  />
 *}

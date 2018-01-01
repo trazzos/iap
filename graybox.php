@@ -174,6 +174,7 @@ $pages = array(
 	'nuevo-mensaje',
 	'add-inbox',
 	'confirma-baja',
+	'test-docente',
 
 );
 

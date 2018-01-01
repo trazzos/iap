@@ -16,6 +16,10 @@
 		</td>
 		<td align="center">
 			{$subject.calificacionFinal}
+			
+		</td>
+		<td>
+			<a href="{$WEB_ROOT}/test-docente/id/{$subject.courseModuleId}">Disponible</a>
 		</td>
 		{/if}
 				

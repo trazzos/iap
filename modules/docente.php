@@ -6,6 +6,8 @@
 $module->setCourseModuleId($_GET["id"]);
 $myModule = $module->InfoCourseModule();
 
+// echo $myModule["access"][1];
+// exit;
 $personal->setPersonalId($myModule["access"][1]);
 $docente = $personal->Info();
 

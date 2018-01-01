@@ -75,6 +75,7 @@ include_once(DOC_ROOT."/classes/forum.class.php");
 include_once(DOC_ROOT."/classes/empresa.class.php");
 include_once(DOC_ROOT."/classes/rfc.class.php");
 include_once(DOC_ROOT."/classes/folios.class.php");
+include_once(DOC_ROOT."/classes/encuesta.class.php");
 
 include_once(DOC_ROOT."/classes/sucursal.class.php");
 include_once(DOC_ROOT."/classes/producto.class.php");
@@ -84,6 +85,8 @@ include_once(DOC_ROOT."/classes/notificacion.class.php");
 include_once(DOC_ROOT."/classes/bank.class.php");
 include_once(DOC_ROOT."/classes/solicitud.class.php");
 include_once(DOC_ROOT.'/libs/pdf/dompdf_config.inc.php');
+include_once(DOC_ROOT.'/classes/docente.class.php');
+$docente = new Docente();
 
 $db = new DB;
 $error = new Error;
@@ -139,6 +142,7 @@ $notificacion= new Notificacion;
 $bank= new Bank;
 $solicitud= new Solicitud;
 $dbfire= new Dbfire;
+$encuesta= new Encuesta;
 
 $smarty = new Smarty;
 
