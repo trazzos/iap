@@ -17,10 +17,8 @@
 			$docente->setComentario($_POST['comentario']);
 			if($docente->SaveEncuesta($_POST['courseModuleId'],$_POST['personalId'])){
 				echo 'ok[#]';
-				echo '<div class="alert alert-info">
-				<button type="button" class="close" data-dismiss="alert">×</button>
-				Las preguntas se enviaron satisfactoriamente, Gracias por participar. 
-				</div>';
+				$smarty->display(DOC_ROOT.'/templates/boxes/confirma.tpl');
+				
 			}else{
 				echo 'fail[#]';
 			}

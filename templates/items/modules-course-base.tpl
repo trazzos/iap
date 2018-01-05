@@ -19,7 +19,12 @@
 			
 		</td>
 		<td>
-			<a href="{$WEB_ROOT}/test-docente/id/{$subject.courseModuleId}">Disponible</a>
+			{if $subject.countEval >=1}
+				Completo
+			{else}
+				<a href="{$WEB_ROOT}/test-docente/id/{$subject.courseModuleId}">Disponible</a>
+			{/if}
+			
 		</td>
 		{/if}
 				

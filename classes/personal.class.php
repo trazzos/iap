@@ -27,6 +27,57 @@ class Personal extends Main
 	private $celular;
 	private $semblanza;
 	private $prof;
+	private $ine;
+	private $calle;
+	private $nInterior;
+	private $nExterior;
+	private $colonia;
+	private $estado;
+	private $ciudad;
+	
+	public function setIne($value)
+	{
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 0, "INE");
+		$this->ine = $value;
+	}
+	
+	public function setCalle($value)
+	{
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 0, "Calle");
+		$this->calle = $value;
+	}
+	
+	public function setNInterior($value)
+	{
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 0, "N. Interior");
+		$this->nInterior = $value;
+	}
+	
+	public function setNExterior($value)
+	{
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 0, "N. Exterior");
+		$this->nExterior = $value;
+	}
+	
+	public function setColonia($value)
+	{
+		
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 0, "Colonia");
+		$this->colonia = $value;
+		
+	}
+	
+	public function setEstado($value)
+	{
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 0, "Estado");
+		$this->estado = $value;
+	}
+	
+	public function setCiudad($value)
+	{
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 0, "Ciudad");
+		$this->ciudad = $value;
+	}
 
 	public function setFoto($value)
 	{
@@ -658,6 +709,40 @@ class Personal extends Main
 		$info9 = $this->Util()->DB()->GetResult();
 		
 		return $info9;
+	}
+	
+	
+	public function updateDocente()
+	{
+		
+		if($this->Util()->PrintErrors()){ 
+			return false; 
+		}
+		
+		 $sql = "UPDATE
+					personal 
+					SET 
+				 	name =  '".$this->name."',
+					lastname_paterno = '".$this->lastnamePaterno."',
+					lastname_materno = '".$this->lastnameMaterno."',
+					correo = '".$this->correo."',
+					rfc = '".$this->rfc."',
+					INE = '".$this->ine."',
+					calle = '".$this->calle."',
+					nInterior = '".$this->nInterior."',
+					nExterior = '".$this->nExterior."',
+					colonia = '".$this->colonia."',
+					estado = '".$this->estado."',
+					ciudad = '".$this->ciudad."',
+					fecha_nacimiento = '".$this->fechaNacimiento."'
+				WHERE 
+					personalId = ".$this->personalId;
+					
+		
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
 	}
 }
 

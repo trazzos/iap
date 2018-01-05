@@ -203,6 +203,30 @@
                 <span class="arrow"></span>
             </a>
         </li>
+		 <li class="nav-item  ">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="icon-puzzle"></i>
+                <span class="title">Docente</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/info-docente" class="nav-link ">
+                        <span class="title">Información Personal</span>
+                    </a>
+                </li>
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/concepto" class="nav-link ">
+                        <span class="title">Documentos Docente</span>
+                    </a>
+                </li>
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/concepto" class="nav-link ">
+                        <span class="title">Repositorio Docente</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
 		<!--<li class="nav-item  ">
             <a href="{$WEB_ROOT}/mensaje" class="nav-link nav-toggle">
                 <i class="fa fa-video-camera"></i>

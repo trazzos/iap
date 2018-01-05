@@ -180,6 +180,8 @@ class Util extends Error
 		
 		if(strlen($string)<$minChars)
 		{
+			// echo 'lle';
+			// exit;
 			return $this->setError(10000, "error", "", $field);
 		}
 			
@@ -1262,6 +1264,7 @@ function HandleMultipages($page,$total,$link,$items_per_page=0,$pagevar="p"){
 		
 	}
 
+	
 }
 
 

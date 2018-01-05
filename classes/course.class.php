@@ -700,6 +700,15 @@
 			//print_r($result);exit;
 			foreach($result as $key => $res)
 			{
+				
+				//verifica si el alumno ya completo la encuesta
+				$sql = "
+					SELECT count(*)
+					FROM eval_alumno_docente
+					WHERE courseModuleId = '".$res['courseModuleId']."' and alumnoId = ".$_SESSION["User"]["userId"]."";
+				$this->Util()->DB()->setQuery($sql);
+				$countEval = $this->Util()->DB()->GetSingle();
+					
 				$sql = "
 					SELECT *
 					FROM course_module_score
@@ -719,6 +728,7 @@
 				$student = new Student;
 				$result[$key]["totalScore"] = $student->GetAcumuladoCourseModule($res["courseModuleId"]);
 				$result[$key]["calificacionFinal"] = $infoCc['calificacion'];
+				$result[$key]["countEval"] = $countEval;
 			}
 			
 			return $result;

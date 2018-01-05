@@ -14,9 +14,17 @@ function SaveEncuesta(Id){
 			console.log(response)
 			var splitResp = response.split("[#]");
 									
-			if(splitResp[0] == "ok"){							
-				window.location.href = WEB_ROOT+"/";
+			if(splitResp[0] == "ok"){
 				// $("#msjEncuesta").html(splitResp[1]);
+				// $("#ajax").attr("width","100px");
+				
+				$("#ajax").html(splitResp[1]);
+				
+				$("#ajax").show();
+				$("#ajax").modal("show");
+				$("#ajax").attr("top","500px");
+				window.location.href = WEB_ROOT+"/";
+				// 
 				// $("#div_encuesta").hide();
 				// $(".iniciar").show();
 			}else if(splitResp[0] == "fail"){
