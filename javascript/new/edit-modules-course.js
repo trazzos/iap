@@ -24,10 +24,10 @@ $( document ).ready(function() {
         DeleteActivity($id);
     });
 
-    $(document).on("click",".spanDeleteResource",function() {
-        var $id = $(this).data('id');
+    // $(document).on("click",".spanDeleteResource",function() {
+        // var $id = $(this).data('id');
         // DeleteResource($id);
-    });
+    // });
 
 });
 
@@ -93,7 +93,7 @@ function DeleteResource(id)
 
 
 
-
+/*
 function upFile(Id,reqId,tramiteId){
 	// alert("h")
 		$(".type").val("upFile");
@@ -131,9 +131,9 @@ function upFile(Id,reqId,tramiteId){
 			})
 			
 		}
+*/		
 		
-		
-function SaveCalificacion(alumnoId,courseId){
+function SaveCalificacion(Id){
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/edit-modules-course.php', 
@@ -148,11 +148,8 @@ function SaveCalificacion(alumnoId,courseId){
 			var splitResp = response.split("[#]");
 			
 			if($.trim(splitResp[0])=="ok"){
-				$('#btnSave').show();
-				$('#loader').html('');
-				$('#msj').html(splitResp[1]);
-				$("#ajax").hide();
-				$("#ajax").modal("hide");
+				reloadActa(Id)
+				
 			}else if($.trim(splitResp[0])=="fail"){
 				// alert(splitResp[1])
 				$('#btnSave').show();
@@ -177,9 +174,36 @@ function closeModal(){
 }
 
 
+function habilitarEdicion(Id){
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+	  	data: $("#frmCal").serialize(true)+'&type=habilitarEdicion',
+		beforeSend: function(){			
+			$('#loader').html(LOADER3);
+			$('#btnSave').hide();
+		},
+	  	success: function(response) {	
+		$('divLoading').hide();
+			console.log(response)
+			var splitResp = response.split("[#]");
+			
+			if($.trim(splitResp[0])=="ok"){
+				reloadActa(Id)
+			}else if($.trim(splitResp[0])=="fail"){
+				alert(splitResp[1])
+			}
+			
+				
+		},
+		error:function(){
+			// alert(msgError);
+		}
+    });
+}
 
 
-function validarCal(){
+function validarCal(Id){
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/edit-modules-course.php', 
@@ -216,4 +240,65 @@ function validarCal(){
 function descargarActa(Id){
 	url=WEB_ROOT+"/ajax/acta-calificacion.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id;
 	open(url,"voucher","toolbal=0,width=800,resizable=1");
+}
+
+
+
+function upFile(Id){
+	
+	// En esta var va incluido $_POST y $_FILES
+	var fd = new FormData(document.getElementById("frmFile"));
+	fd.append('type','upFile');
+	$.ajax({
+		url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+		data: fd,
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		xhr: function(){
+				var XHR = $.ajaxSettings.xhr();
+				XHR.upload.addEventListener('progress',function(e){
+					console.log(e)
+					var Progress = ((e.loaded / e.total)*100);
+					Progress = (Progress);
+					console.log(Progress)
+					$('#progress').val(Math.round(Progress));
+					$('#porcentaje').html(Math.round(Progress)+'%');
+					
+					
+				},false);
+			return XHR;
+		},
+		success: function(response){
+			
+			console.log(response);
+			// var splitResp = response.split("[#]");
+			// $("#loader").html("");
+			// alert('llega')
+			reloadActa(Id)
+		},
+	})
+
+}
+
+
+function reloadActa(Id){
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+	  	data: $("#frmCal").serialize(true)+'&type=reloadActa',
+		beforeSend: function(){			
+			$('#tblContentActa').html(LOADER3);
+			$('#btnSave').hide();
+		},
+	  	success: function(response) {	
+			
+			console.log(response)
+			
+			$('#tblContentActa').html(response);
+			
+	
+		},
+
+    });
 }

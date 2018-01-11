@@ -15,7 +15,7 @@
 </div>
 <!-- END PAGE BAR -->
 <!-- BEGIN PAGE TITLE-->
-<h1 class="page-title"> Información del Docente
+<h1 class="page-title"> Información del Asesor
     <small></small>
 </h1>
 <!-- END PAGE TITLE-->
@@ -33,7 +33,7 @@
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name"> {$docente.name} {$docente.lastname_paterno} {$docente.lastname_materno} </div>
-                    <div class="profile-usertitle-job"> Docente </div>
+                    <div class="profile-usertitle-job"> Asesor </div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->

@@ -4,14 +4,15 @@
 	$user->allow_access(3);	
 	/* End Session Control */
 		
-	$personals = $personal->Enumerate('lastname_paterno ASC');
-	$smarty->assign('personals', $personals);
-	$smarty->assign('mnuMain','catalogos');
-	$smarty->assign('mnuSubmain','personal');	
+	
 
-
+// echo '<pre>'; print_r($_FILES);
+		// echo '<pre>'; print_r($_POST);
+		// exit;
 	if($_POST)
 	{
+		
+		
 		if($_POST["type"] == 'saveEditPersonal')
 		{
 
@@ -40,15 +41,27 @@
 			$personal->setProf($_POST['prof']);
 			$personal->setCorreo($_POST['correo']);
 			$personal->setCelular($_POST['celular']);
+			$personal->setFirmaConstancia($_POST['firmaConstancia']);
 
-			if($_FILES)
+			if($_FILES['foto'])
 			{
 				$_POST['foto'] = $personal->UpdateFoto($_POST['id']);
 				$personal->setFoto($_POST['foto']);
 			}
+			
+			// if($_FILES['firma'])
+			// {
+				// $_POST['firma'] = $personal->UpdateFoto($_POST['id']);
+				// $personal->setFirma($_POST['firma']);
+			// }
 
 			$personal->Update();
 		}
 	}
+	
+	$personals = $personal->Enumerate('lastname_paterno ASC');
+	$smarty->assign('personals', $personals);
+	$smarty->assign('mnuMain','catalogos');
+	$smarty->assign('mnuSubmain','personal');	
 
 ?>

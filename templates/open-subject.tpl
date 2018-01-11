@@ -1,8 +1,8 @@
 <ul id="sort-box" class="sorts">
  <li>
     <div class="content-in" id="tab">
-        aaaaa
-        {include file="boxes/status_no_ajax.tpl"}bbbbb
+        
+        {include file="boxes/status_no_ajax.tpl"}
     </div>
    </li>                                                              
  </ul>

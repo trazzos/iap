@@ -7,6 +7,9 @@
 	$module->setCourseModuleId($_GET["id"]);
 	$myModule = $module->InfoCourseModule();
 	
+	// echo '<pre>'; print_r($myModule);
+	// exit;
+	
 	$lstPreguntas = $encuesta->extraeCuestionario();
 	
 	$personal->setPersonalId($myModule["access"][1]);

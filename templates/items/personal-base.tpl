@@ -7,6 +7,10 @@
         <td align="center">           
             <img src="images/icons/16/delete.png" class="spanDelete" id="{$item.personalId}" title="Eliminar" />&nbsp;
           	<img src="images/icons/16/pencil.png" class="spanEdit" id="{$item.personalId}" title="Editar" />
+			
+			{if $item.firmaConstancia eq 'si'}
+			<img src="images/pointer.png?sd"   title="FIRMA CONSTANCIAS" />
+			{/if}
         </td>
     </tr>
 {foreachelse}

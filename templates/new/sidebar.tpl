@@ -151,6 +151,7 @@
 
         {if $User.positionId == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
         {if $vistaPrevia ne 1}
+		 {if !$docente}
 		<li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-video-camera"></i>
@@ -170,6 +171,7 @@
                 </li>
             </ul>
         </li>
+		
 		<li class="nav-item  ">
             <a href="{$WEB_ROOT}/solicitud" class="nav-link nav-toggle">
                 <i class="fa fa-video-camera"></i>
@@ -196,6 +198,7 @@
                 </li>
             </ul>
         </li>
+		{/if}
 		<li class="nav-item  ">
             <a href="{$WEB_ROOT}/inbox" class="nav-link nav-toggle">
                 <i class="fa fa-video-camera"></i>
@@ -280,7 +283,7 @@
         <li class="nav-item {if $page == "docente"} active {/if}">
             <a href="{$WEB_ROOT}/docente/id/{$id}" class="nav-link nav-toggle">
                 <i class="fa fa-user"></i>
-                <span class="title">Docente</span>
+                <span class="title">Asesor</span>
             </a>
         </li>
 

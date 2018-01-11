@@ -439,11 +439,68 @@
 		}
 		
 		
+		public function EnumerateInboxAdmin()
+		{
+			
+
+			$filtro = "";
+			
+			if($this->statusIn){
+				$filtro .= " and estatus = '".$this->statusIn."'";
+			}
+			
+			if($this->cmId){
+				$filtro .= " and c.courseModuleId = ".$this->cmId."";
+			}
+			
+			$sql = "SELECT 
+						c.*,
+						sm.name as nombreMateria
+					FROM
+						chat as c
+					left join course_module as cm on cm.courseModuleId = c.courseModuleId
+					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+					WHERE
+						1 ".$filtro." order by chatId DESC";
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			
+			foreach($result as $key=>$aux){
+				if($aux['quienEnvia']=='alumno'){
+					$sql = "SELECT 
+								*
+							FROM
+								personal
+							WHERE
+								personalId = ".$aux['usuarioId']."";
+					$this->Util()->DB()->setQuery($sql);
+					$infoU = $this->Util()->DB()->GetRow();
+					$result[$key]['nombre'] = $infoU['name'];
+					$result[$key]['paterno'] = $infoU['lastname_paterno'];
+					$result[$key]['materno'] = $infoU['lastname_materno'];
+				}else{
+					$sql = "SELECT 
+								*
+							FROM
+								user
+							WHERE
+								userId = ".$aux['usuarioId']."";
+					$this->Util()->DB()->setQuery($sql);
+					$infoU = $this->Util()->DB()->GetRow();
+					$result[$key]['nombre'] = $infoU['names'];
+					$result[$key]['paterno'] = $infoU['lastNamePaterno'];
+					$result[$key]['materno'] = $infoU['lastNameMaterno'];
+				}
+				
+			}
+			return $result;
+		}
+		
 		public function EnumerateInbox()
 		{
 			
-			// echo $this->tipoReporte;
-			// exit;
+
 			$filtro = "";
 			
 			if($this->statusIn){
@@ -464,9 +521,7 @@
 					$campos .= "p.names as nombre, p.lastNamePaterno as paterno, p.lastNameMaterno as materno";
 					$left .= " left join user as p on p.userId = c.yoId";
 					$leftEnviado .= " left join user as p on p.userId = c.usuarioId";
-				}
-				
-				
+				}	
 			}
 			
 			if($this->recibeId){
@@ -490,7 +545,6 @@
 					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
 					WHERE
 						1 ".$filtro." order by chatId DESC";
-			// exit;
 			}else if($this->tipoReporte=='enviados' or $this->tipoReporte=='borrador' or $this->tipoReporte=='eliminados'){
 				     $sql = "SELECT 
 						p.*,
@@ -504,12 +558,8 @@
 					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
 					WHERE
 						1 ".$filtro." order by chatId DESC";
-						
-					// exit;
 			}
 						 	
-			
-			// exit;
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
 			

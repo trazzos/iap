@@ -24,6 +24,9 @@ function descargarConstancias(Id,tipodocId){
 			console.log(data)
 			 $('#tr_'+Id).toggle();
 			 $('#td_'+Id).html(data);
+			 // $('#td_'+Id).href(data);
+			 
+			 // td_{$item.userId}
             // showModal("&nbsp;", data);
         },
         error: function ()

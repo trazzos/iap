@@ -22,9 +22,11 @@
 			<td align="center">
 				{if $item.tiposolicitudId  ne 3 and $item.tiposolicitudId  ne 4}
 					{if $item.estatus ne 'completado'}
-					<a href="javascript:void(0)" onClick='validarPago({$item.solicitudId})' title='VALIDAR PAGO'>
-						<i class="material-icons md-16">ic_check_box</i>
-					</a>
+						{if $item.estatus ne 'cancelado'}
+							<a href="javascript:void(0)" onClick='validarPago({$item.solicitudId})' title='VALIDAR PAGO'>
+								<i class="material-icons md-16">ic_check_box</i>
+							</a>
+						{/if}
 					{/if}
 				{/if}
 				{if $item.estatus eq 'en progreso'}

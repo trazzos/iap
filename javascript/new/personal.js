@@ -208,3 +208,33 @@ function SendRolesData(listFrom, fieldTo){
     }//for
     fieldTo.value = ResultLine;
 }//SendRolesData*/
+
+
+
+function compruebaFirma()
+{
+	if($("#firmaConstancia").val()=='si'){
+		 $.ajax({
+			url : WEB_ROOT+'/ajax/new/personal.php',
+			type: "POST",
+			data : {type: "compruebaFirma"},
+			success: function(data)
+			{
+				console.log(data);
+				var splitResponse = data.split("[#]");
+				if($.trim(splitResponse[0]) == "fail"){
+					$('#divMsj').html($.trim(splitResponse[1]));
+					$('#btnEdit').hide();
+				}
+				
+			},
+			error: function ()
+			{
+				alert('Algo salio mal, compruebe su conexión a internet');
+			}
+		});
+	}else{
+		$('#btnEdit').show();
+	}
+   
+}

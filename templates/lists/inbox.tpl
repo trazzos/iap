@@ -10,6 +10,7 @@
 				<i class="fa fa-angle-down"></i>
 			</a>
 			<ul class="dropdown-menu">
+				
 				<li>
 					<a href="javascript:;" onclick="accionesEliminar()">
 						<i class="fa fa-share"></i>
@@ -41,12 +42,12 @@
 				&nbsp;
 			{/if}
 			
-			<a href='{$WEB_ROOT}/reply-inbox/id/0/cId/{$subject.chatId}' style =' text-decoration:none'>
+			<a href='{$WEB_ROOT}/view-inbox/id/{$subject.courseModuleId}/cId/{$subject.chatId}' style =' text-decoration:none'>
 			<font style='text-transform:lowercase; color:#777'>{$subject.nombre} {$subject.paterno} {$subject.materno}</font>
 			</a>
 		</td>
         <td align="left">
-			<a href='{$WEB_ROOT}/reply-inbox/id/0/cId/{$subject.chatId}' style =' text-decoration:none'>
+			<a href='{$WEB_ROOT}/view-inbox/id/{$subject.courseModuleId}/cId/{$subject.chatId}' style =' text-decoration:none'>
 				<font style='text-transform:lowercase; color:#777'>{$subject.asunto}</font><br>
 				<i><font style='text-transform:lowercase; color:#777'>{$subject.nombreMateria}</font></i>
 			</a>

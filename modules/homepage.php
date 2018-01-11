@@ -45,8 +45,7 @@ $x=0;
 
 	$finishedCourses = $student->StudentCourses("finalizado");
 	
-	// echo '<pre>'; print_r($finishedCourses);
-	// exit;
+	
 	
 	$smarty->assign("finishedCourses", $finishedCourses);	
 	
@@ -59,7 +58,8 @@ $x=0;
 	
 	$notificaciones=$notificacion->Enumerate();
 	$smarty->assign('notificaciones', $notificaciones);
-	
+	// echo '<pre>'; print_r($notificaciones);
+	// exit;
 	/*
 	$subforos=$forum->Enumeratesubf();
     $smarty->assign('subforos', $subforos);

@@ -74,14 +74,14 @@
                             <a href="{$WEB_ROOT}/alumn-services ">
                                 <i class="icon-settings"></i> Configuración </a>
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="{$WEB_ROOT}/tv ">
                                 <i class="fa fa-video-camera"></i> VideoConferencias </a>
                         </li>
                         <li>
                             <a href="{$WEB_ROOT}/recorded ">
                                 <i class="fa fa-camera"></i> Grabaciones </a>
-                        </li>
+                        </li>-->
 						 <li>
                             <a href="{$WEB_ROOT}/view-solicitud" >
                                <i class="fa fa-folder-open" aria-hidden="true"></i>Solicitudes 

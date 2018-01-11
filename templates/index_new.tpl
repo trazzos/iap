@@ -29,7 +29,7 @@
 	{if ($page == 'homepage' && $User.type == 'student') || $page == 'docente'}
 		<link href="{$WEB_ROOT}/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
 	{/if}
-	{if $page == 'inbox' or $page == 'reply-inbox'}
+	{if $page == 'inbox' or $page == 'reply-inbox' or $page == 'view-inbox'}
 
 	<link href="{$WEB_ROOT}/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"  />
 	{/if}
@@ -78,7 +78,7 @@
 	<link type="text/css" href="{$WEB_ROOT}/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
 	<script type="text/javascript" src="{$WEB_ROOT}/cometchat/cometchatjs.php" charset="utf-8"></script>
 *}
-{if $page == 'reply-inbox'}
+{if $page == 'reply-inbox' or $page == 'view-inbox' or $page == 'edit-modules-course'}
 <style type="text/css">
 
 .btn-file {

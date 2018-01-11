@@ -25,6 +25,8 @@
 		$course->setScholarCicle($_POST["scholarCicle"]);
 		$course->setPonenteText($_POST["ponenteText"]);
 		$course->setFechaDiploma($_POST["fechaDiploma"]);
+		$course->setDias($_POST["dias"]);
+		$course->setHorario($_POST["horario"]);
 		
 		$course->Update();
 	}

@@ -57,6 +57,8 @@ switch($_POST["type"])
             }*/
         }
 
+		// echo '<pre>'; print_r($info);
+		// exit;
         $usrRoles = $personal->EnumerateRoles();
 
         $smarty->assign('lstPd', $lstPd);
@@ -227,7 +229,17 @@ switch($_POST["type"])
             echo 'data';
         }
 
-        break;
+    break;
+	
+	case 'compruebaFirma':
+	
+		$count = $personal->compruebaFirma();
+		if($count >= 1){
+			echo 'fail[#]';
+			echo '<font color="red">Ya existe una persona con la opcion de firmar, por favor desactive todos y vuelva a intentar</font>';
+		}
+
+	break;
 }
 
 ?>

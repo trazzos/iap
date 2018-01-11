@@ -137,13 +137,32 @@
                 <input type="text" name="celular" id="celular" class="form-control" value="{$info.celular}" />
             </div>
         </div>
-
+		
+		 <div class="form-group">
+            <label class="col-md-3 control-label">Firma Constancia:</label>
+            <div class="col-md-8">
+                <select name='firmaConstancia' id='firmaConstancia' class="form-control" onChange='compruebaFirma()'>
+					<option ></option>
+					<option {if $info.firmaConstancia eq 'si'} selected {/if}>si</option>
+					<option {if $info.firmaConstancia eq 'no'} selected {/if}>no</option>
+                </select>
+            </div>
+        </div>
+		<div class="form-group">
+            <label class="col-md-3 control-label">Imagen de Firma:</label>
+            <div class="col-md-8">
+                <input type="file" name="firma" id="firma" class="form-control" />
+                <img src="{$WEB_ROOT}/images/docente/firmas/{$info.rutaFirma}" style="max-width:99px" />
+            </div>
+        </div>
 
     </div>
     <div class="form-actions">
+		<div id='divMsj'>
+		</div>
         <div class="row">
             <div class="col-md-offset-3 col-md-9">
-                <input type="submit" class="btn green" value="Guardar" />
+                <input type="submit" class="btn green" value="Guardar" id='btnEdit'/>
                 <button type="button" class="btn default closeModal">Cancelar</button>
             </div>
         </div>

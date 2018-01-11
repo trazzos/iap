@@ -12,12 +12,20 @@
 		$contenido .=	"<center><b>".$infoSol['nombreMajor']."</b></center><br><br>";
 	
 		foreach($lstCal8 as $key=>$aux){
-			$contenido .= "<table width='100%'>";
-			$contenido .= "<tr><td width='70%'>Materias</td><td colspan='2'>Calificacion</td><td>Creditos</td></tr>";
-			$contenido .= "<tr><td>".$aux['semesterId']."</td><td>Cifra</td><td>Letra</td><td></td></tr>";
+			$contenido .= "<table width='100%' >";
+			$contenido .= "<tr>
+				<td width='70%'><b>Materias</b></td>
+				<td colspan='2' style='text-align:center'><b>Calificacion</b></td>
+				<td style='text-align:center'><b>Creditos</b></td></tr>";
+			$contenido .= "<tr><td>".$aux['semesterId']." ".$aux['tipoPeriodo']."</td><td style='text-align:center'><b>Cifra</b></td><td style='text-align:center'><b>Letra</b></td><td></td></tr>";
 			foreach($aux['materias'] as $key2=>$aux2){
 			$h =  $util->num2letras($aux2['calificacion']);
-			$contenido .= "<tr><td>".$aux2['name']."</td><td>".$aux2['calificacion']."</td><td>".$h."</td><td></td></tr>"; 
+			$contenido .= "
+			<tr>
+			<td>".$aux2['name']."</td>
+			<td style='text-align:center'>".$aux2['calificacion']."</td>
+			<td style='text-align:center'>".$h."</td>
+			<td style='text-align:center'>".$aux2['creditos']."</td></tr>"; 
 			}
 			$contenido .= "</table>
 			<br><br>";
@@ -64,7 +72,7 @@
 	
 		<table align='center' width='100%' border='0' class ='txtTicket'>
 			<tr>
-				<td  align='right'>
+				<td  align='left'>
 					<img src='".DOC_ROOT."/images/logo_correo.jpg'>
 				</td>
 			</tr>
@@ -72,8 +80,12 @@
 				<td align='right'>
 					<table align='right'  border='0' width='40%'>
 							<tr>
-								<td>Area:</td>
+								<td><b>Area:</b></td>
 								<td>Dirección Académica</td>
+							</tr>
+							<tr>
+								<td><b>Nombre del Alumno:</b></td>
+								<td>".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</td>
 							</tr>
 							
 					</table>

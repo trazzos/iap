@@ -34,6 +34,13 @@ class Personal extends Main
 	private $colonia;
 	private $estado;
 	private $ciudad;
+	private $firmaConstancia;
+	
+	public function setFirmaConstancia($value)
+	{
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 0, "Firma Constancia");
+		$this->firmaConstancia = $value;
+	}
 	
 	public function setIne($value)
 	{
@@ -527,7 +534,8 @@ class Personal extends Main
 					celular = '".$this->celular."',
 					semblanza = '".$this->semblanza."',
 					perfil = '".$this->perfil."',
-					profesion = '".$this->prof."'
+					profesion = '".$this->prof."',
+					firmaConstancia = '".$this->firmaConstancia."'
 				WHERE 
 					personalId = ".$this->personalId;
 					
@@ -572,6 +580,33 @@ class Personal extends Main
 					$this->Util()->DB()->InsertData();
 				}
 			}//foreach
+		}
+		
+
+		//actualizamos imagen de firma
+		$url = DOC_ROOT;
+		$archivo = "firma";
+		foreach($_FILES as $key=>$var)
+		{
+		   switch($key)
+		   {
+				   case $archivo:
+					   if($var["name"]<>""){
+							$aux = explode(".",$var["name"]);
+							$extencion=end($aux);
+							$temporal = $var['tmp_name'];
+							$foto_name="firma_".$this->personalId.".".$extencion;		
+							if(move_uploaded_file($temporal,$url."/images/docente/firmas/".$foto_name)){						
+								$sql = "UPDATE personal SET
+										rutaFirma = '".$foto_name."'
+									WHERE
+										personalId = ".$this->personalId;
+								$this->Util()->DB()->setQuery($sql);
+								$this->Util()->DB()->ExecuteQuery();
+							}   
+						}
+					break;
+			}
 		}
 		
 		$this->Util()->setError(10033, "complete");
@@ -743,6 +778,22 @@ class Personal extends Main
 		$this->Util()->DB()->ExecuteQuery();
 		
 		return true;
+	}
+	
+	
+	public function compruebaFirma()
+	{
+	
+		$sql = "SELECT 
+					count(*) 
+				FROM 
+					personal
+				WHERE
+					firmaConstancia = 'si'";
+		$this->Util()->DB()->setQuery($sql);
+		$count = $this->Util()->DB()->GetSingle();
+		
+		return $count;
 	}
 }
 

@@ -754,12 +754,25 @@ class Solicitud extends Module
 			$puestofirmante ='Director Academico';
 		}
 		
+		//busca donde en el moduleCourse donde se encuentra inscrito
+		$sqlQuery = 'SELECT 
+					*
+				FROM 
+					confirma_inscripcion
+				WHERE userId = '.$coun['userId'].' order by confirmaInscripcionId DESC ';
+			$this->Util()->DB()->setQuery($sqlQuery);
+		$infoConfirma = $this->Util()->DB()->GetRow();
+		
+		
+		
 		$sqlQuery = "
 			UPDATE 
 				solicitud 
 			set 
 				estatus = 'completado',
 				folio ='".$folio."',
+				courseModuleId ='".$infoConfirma['courseModuleId']."',
+				nivelInscrito ='".$infoConfirma['nivel']."',
 				nombreFirma ='".$infoFirma['name']." ".$infoFirma['lastname_materno']." ".$infoFirma['lastname_paterno']."',
 				sexoFirma ='".$infoFirma['sexo']."',
 				puestofirmante ='".$puestofirmante."',
@@ -805,10 +818,11 @@ class Solicitud extends Module
 	{
 		// $info = $this->Info();
 			$this->Util()->DB()->setQuery("
-				SELECT semesterId FROM course_module
+				SELECT subject_module.semesterId,tipoPeriodo FROM course_module
 				LEFT JOIN subject_module ON subject_module.subjectModuleId = course_module.subjectModuleId
+				LEFT JOIN subject ON subject.subjectId = subject_module.subjectId
 				WHERE courseId = '".$Id."'
-				group BY semesterId");
+				group BY subject_module.semesterId");
 		$result = $this->Util()->DB()->GetResult();
 			
 		
@@ -819,7 +833,7 @@ class Solicitud extends Module
 				LEFT JOIN subject_module ON subject_module.subjectModuleId = course_module.subjectModuleId
 				LEFT JOIN course_module_score as cms ON cms.courseModuleId = course_module.courseModuleId
 				WHERE course_module.courseId = '".$Id."' and
-				semesterId = ".$aux['semesterId']." and userId = ".$userId." and calificacionValida = 'si'";
+				subject_module.semesterId = ".$aux['semesterId']." and userId = ".$userId." and calificacionValida = 'si'";
 				
 				// exit;
 			$this->Util()->DB()->setQuery($sql);

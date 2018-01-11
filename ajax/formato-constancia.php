@@ -51,18 +51,20 @@
 	
 		foreach($lstCal as $key=>$aux){
 			$contenido .= "<table width='100%'>";
-			$contenido .= "<tr><td width='70%'>Materias</td><td colspan='2'>Calificacion</td><td>Creditos</td></tr>";
-			$contenido .= "<tr><td>".$aux['semesterId']."</td><td>Cifra</td><td>Letra</td><td></td></tr>";
+			$contenido .= "<tr><td width='70%' ><b>Materias</b></td><td colspan='2' style='text-align:center'><b>Calificacion</b></td>
+			<td style='text-align:center'><b>Creditos</b></td></tr>";
+			$contenido .= "<tr><td>".$aux['semesterId']."° ".$aux['tipoPeriodo']."</td><td style='text-align:center'><b>Cifra</b></td>
+			<td style='text-align:center'><b>Letra</b></td><td style='text-align:center'></td></tr>";
 			foreach($aux['materias'] as $key2=>$aux2){
 			$h =  $util->num2letras($aux2['calificacion']);
-			$contenido .= "<tr><td>".$aux2['name']."</td><td>".$aux2['calificacion']."</td><td>".$h."</td><td></td></tr>"; 
+			$contenido .= "<tr><td style='text-align:center'>".$aux2['name']."</td><td style='text-align:center'>".$aux2['calificacion']."</td><td style='text-align:center'>".$h."</td><td style='text-align:center'>".$aux2['creditos']."</td></tr>"; 
 			}
 			$contenido .= "</table>
 			<br><br>";
 		}
 		
 		$contenido .= "<br><br>A petición del Interesado  y para los usos legales que mejor convengan, 
-		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$mes." del año ".$fe[0]."<br><br>";
+		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$mes." del año ".$fe[0].".<br><br>";
 	
 		$contenido .= "<br><br><br>Atentamente
 		<br>
@@ -79,11 +81,11 @@
 		
 		$contenido .= "<br>
 		<div class='parrafo'>Que  el C. <b>".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b>,
-		está inscrito al <b>".$infoSol['tipoPeriodo']." ".$prepo." ".$infoSol['nombreMajor']." </b>
-		en <b>".$infoSol['name']."</b>, correspondiente a la  generación <b>".$ii[0]." - ".$if[0]."</b>  los días  ".$infoSol['imprimeHorario']."</div>";
+		está inscrito al <b>".$infoSol['nivelInscrito']."° ".$infoSol['tipoPeriodo']." ".$prepo." ".$infoSol['nombreMajor']." </b>
+		en <b>".$infoSol['name']."</b>, correspondiente a la  generación <b>".$ii[0]." - ".$if[0]."</b>  los días  ".$infoSol['imprimeHorario'].".</div>";
 	
-		$contenido .= "<br><br><br>A petición del Interesado  y para los usos legales que mejor convengan, 
-		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$mes." del año ".$fe[0]."";
+		$contenido .= "<br><br><br><div class='parrafo'>A petición del Interesado  y para los usos legales que mejor convengan, 
+		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$mes." del año ".$fe[0].".</div>";
 		
 		$contenido .= "<br><br><br>Atentamente
 		<br>
@@ -122,8 +124,8 @@
 		los trámites  de titulación del <b>LIC. ".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b>, 
 		quien terminó ".$prepo2."  <b>".$infoSol['nombreMajor']."</b> en <b>".$infoSol['name']."</b> generación ".$ii[0]." - ".$if[0].".</div>";
 	
-		$contenido .= "<br><br><br>A petición del Interesado  y para los usos legales que mejor convengan, 
-		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$mes." del año ".$fe[0]."";
+		$contenido .= "<br><br><br><div class='parrafo'>A petición del Interesado  y para los usos legales que mejor convengan, 
+		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$mes." del año ".$fe[0].".</div>";
 		
 		$contenido .= "<br><br><br>Atentamente
 		<br>
@@ -182,7 +184,7 @@
 	
 		<table align='center' width='100%' border='0'>
 			<tr>
-				<td  align='right'>
+				<td  align='left'>
 					<img src='".DOC_ROOT."/images/logo_correo.jpg'>
 				</td>
 			</tr>
@@ -190,15 +192,15 @@
 				<td align='right'>
 					<table align='right'  border='0'>
 							<tr>
-								<td>Area:</td>
+								<td><b>Area:</b></td>
 								<td>Dirección Académica</td>
 							</tr>
 							<tr>
-								<td>Constancia:</td>
+								<td><b>Constancia:</b></td>
 								<td>".$infoSol['folioSolicitud']."</td>
 							</tr>
 							<tr>
-								<td>Fecha:</td>
+								<td><b>Fecha:</b></td>
 								<td>".$infoSol['fechaEntrega']."</td>
 							</tr>
 					</table>

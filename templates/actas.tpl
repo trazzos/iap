@@ -32,10 +32,10 @@
 						<td align="center">{$item.controlNumber}</td>
 						<td align="center">
 						
-							<span style="cursor:pointer" class="spanActive" onclick="descargarConstancias('{$item.userId}','1');" title="Constancia de estudios simple" >
+							<span style="cursor:pointer; " class="spanActive" onclick="descargarConstancias('{$item.userId}','1');" title="Constancia de estudios simple" >
 							<i class="fa fa-folder-open" aria-hidden="true"></i>
 							</span>
-							<span style="cursor:pointer" class="spanActive" onclick="descargarConstancias('{$item.userId}','2');" title="Constancia de terminacion con calificaciones" >
+							<span style="cursor:pointer; " class="spanActive" onclick="descargarConstancias('{$item.userId}','2');" title="Constancia de terminacion con calificaciones" >
 							<i class="fa fa-folder-open" aria-hidden="true"></i>
 							</span>
 							<span style="cursor:pointer" class="spanActive" onclick="descargarConstancias('{$item.userId}','4');" title="Boletas de Calificaciones" >
@@ -50,7 +50,7 @@
 						</td>	  
 					</tr>
 					<tr id="tr_{$item.userId}" style="display:none">
-						<td id="td_{$item.userId}" colspan="5">
+						<td id="td_{$item.userId}" colspan="5" style='background:#73b76063'>
 							
 						</td>
 					</tr>

@@ -21,6 +21,8 @@
 		$course->setFolio($_POST["folio"]);
 		$course->setLibro($_POST["libro"]);
 		$course->setScholarCicle($_POST["scholarCicle"]);
+		$course->setDias($_POST["dias"]);
+		$course->setHorario($_POST["horario"]);
 
 		$course->Open();
 

@@ -13,6 +13,8 @@
 		$activeCourses = $student->StudentCourses("activo", "si");
 		$finishedCourses = $student->StudentCourses("finalizado");
 		
+		// echo '<pre>'; print_r($activeCourses);
+		// exit;
 		// $finishedCourses = array();
 		
 		if(count($activeCourses) == 1 and count($finishedCourses) == 0){

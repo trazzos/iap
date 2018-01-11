@@ -179,6 +179,7 @@ $pages = array(
 	'reply-inbox',
 	'test-docente',
 	'info-docente',
+	'view-inbox',
 	
 	
 	

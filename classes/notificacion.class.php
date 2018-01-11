@@ -49,10 +49,11 @@ $visto=$_SESSION['User']['userId'].'p';
 
 $fecha = date("Y-m-d", strtotime(date("Y-m-d")." - ".DAYS_NOTIFICATION." DAY"));
 $sql="select * from notificacion WHERE fecha_aplicacion > '".$fecha."' order by fecha_aplicacion DESC LIMIT 1000";
+
 $this->Util()->DB()->setQuery($sql);
 $notificaciones=$this->Util()->DB()->GetResult();
 
-//print_r($notificaciones); exit;
+
 			foreach($notificaciones as $key=>$result){
 
 				$notificaciones[$key]["actividad"] = str_replace('<label style="color:#ff0000;font-size:200%"><strong>&raquo;</strong></label', "", $notificaciones[$key]["actividad"]);
@@ -90,7 +91,7 @@ $notificaciones=$this->Util()->DB()->GetResult();
 		 }
 
 
-//print_r($notificaciones); exit;
+// print_r($notificaciones); exit;
 
 return $notificaciones;
 }

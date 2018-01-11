@@ -1,8 +1,9 @@
 <hr>
-<a class="btn green submitForm" href="javascript:;" onClick="SaveMsj('{$infoC.courseModuleId}','activo','{$chatId}')" data-title="Trash">Enviar</a>
+<a class="btn green submitForm" href="{$WEB_ROOT}/reply-inbox/id/{$courseMId}/cId/{$chatId}"  data-title="Trash">Responder</a>
 <a class="btn default" href="javascript:;" onClick="SaveMsj('{$infoC.courseModuleId}','borrador','{$chatId}')" data-title="Trash">Descartar</a>
 <a class="btn default" href="javascript:;" onClick="SaveMsj('{$infoC.courseModuleId}','borrar','{$chatId}')" data-title="Trash">Borrar</a>
 <hr>
+<!--
 <table>
 	<tr>
 		<td>
@@ -34,10 +35,10 @@
 			&nbsp;
 			&nbsp;
 			&nbsp;
-			<input type="text" name="subject2"  id="subject2" style="border:0px; border-bottom: 3px solid #32c5d2; width:333px"  value='' placeholder=''>
+			<input type="text" name="subject2"  id="subject2" style="border:0px; border-bottom: 1px solid gray" value='' placeholder=''>
 		</td>
 	</tr>
-</table>
+</table>-->
 <br>
 <form id="frmGral" name="frmGral"  method="post" > 
 <input type="hidden" name="subject1"  id="subject1"  value='{$subject}' >
@@ -53,21 +54,14 @@
 	<br>
 	<br>
 {/if}
-<textarea name="mensaje" id="mensaje" style="width:900px; height:300px;  ">{if $chatId ne 0}<br><br><br><br><br><hr>{$dataEnviado}{/if}</textarea>
+{$dataEnviado}
 <br>
-<span class="btn btn-default btn-file">
-<img src="{$WEB_ROOT}/images/mas.png" style="width:10%">
-<input type="file" name="archivos" id="archivos" class="btn-file" onChange="verArchivo()">
-Agregar Archivo
-</span>
-<div id="divFileAdjunto" style="display:none">Archivo Adjunto...</div>
+
 </form>
 <hr>
 
 <hr>
-<a class="btn green submitForm" href="javascript:;" onClick="SaveMsj('{$infoC.courseModuleId}','activo','{$chatId}')" data-title="Trash">Enviar</a>
-<a class="btn default" href="javascript:;" onClick="SaveMsj('{$infoC.courseModuleId}','borrador','{$chatId}')" data-title="Trash">Descartar</a>
-<a class="btn default" href="javascript:;" onClick="SaveMsj('{$infoC.courseModuleId}','borrar','{$chatId}')" data-title="Trash">Borrar</a>
+
 
 
 <script type="text/javascript">

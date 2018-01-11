@@ -16,7 +16,7 @@
             <label class="col-md-3 control-label">Modalidad:</label>
             <div class="col-md-8">
                 <select name="modality" id="modality" class="form-control">
-                    <option value="Local">Local</option>
+                    <option value="Local">Presencial</option>
                     <option value="Online">Online</option>
                 </select>
             </div>
@@ -97,6 +97,20 @@
             <label class="col-md-3 control-label"> Folio:</label>
             <div class="col-md-8">
                 <input type="text" name="folio" id="folio" value="{$post.folio}"  class="form-control"/>
+            </div>
+        </div>
+		<b>Información para Constancias</b>
+		<div class="form-group">
+            <label class="col-md-3 control-label"> Dias:</label>
+            <div class="col-md-8">
+                <input type="text" name="dias" id="dias" value="{$post.dias}"  class="form-control"/>
+            </div>
+        </div>
+		
+		<div class="form-group">
+            <label class="col-md-3 control-label"> Horario:</label>
+            <div class="col-md-8">
+                <input type="text" name="horario" id="horario" value="{$post.horario}"  class="form-control"/>
             </div>
         </div>
     </div>

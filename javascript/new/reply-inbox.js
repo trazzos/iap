@@ -62,7 +62,8 @@ function SaveMsj(courseMId,status,chatId){
 		
 
 		if (chatId==0){
-			window.location.href = WEB_ROOT+"/docente/id/"+courseMId;
+			// window.location.href = WEB_ROOT+"/docente/id/"+courseMId;
+			window.location.href = WEB_ROOT+"/inbox";
 		}else{
 			window.location.href = WEB_ROOT+"/inbox";
 		}
@@ -96,9 +97,11 @@ function SaveMsj(courseMId,status,chatId){
 			if($.trim(splitResp[0]) == "ok"){
 					closeModal()
 					if (chatId==0){
-						window.location.href = WEB_ROOT+"/docente/id/"+courseMId;
+						// window.location.href = WEB_ROOT+"/docente/id/"+courseMId;
+						window.location.href = WEB_ROOT+"/inbox";
 					}else{
-						window.location.href = WEB_ROOT+"/inbox/id/"+courseMId;
+						// window.location.href = WEB_ROOT+"/inbox/id/"+courseMId;
+						window.location.href = WEB_ROOT+"/inbox";
 					}
 					
 					// $("#contenido").html(splitResp[1]);

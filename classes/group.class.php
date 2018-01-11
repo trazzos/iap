@@ -92,7 +92,8 @@
 							   $vista="1p,".$hecho.",".$key."u";
 							   $tablas="activity_score";
 							   $enlace="/score-activity/id/".$id;
-							   $actividad="Se ha calificado la Actividad ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";;
+							   // $actividad="Se ha calificado la Actividad ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";;
+							   $actividad="Se ha calificado la Actividad ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(".number_format($score,2,'.','').")   Retroalimentación(".$retros[$key].")";;
 									
 
 							
@@ -125,7 +126,8 @@
 							if($activityAnt['ponderation']==number_format($score,2,'.','') &&  $activityAnt['retro']==$retros[$key])
 							$actividad="NO";                       
 							else					   
-							$actividad="Se ha modificado calificación en ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";
+							$actividad="Se ha modificado calificación en ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(".number_format($score,2,'.','').")   Retroalimentación(".$retros[$key].")";
+							// $actividad="Se ha modificado calificación en ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";
 
 						
 						}
@@ -935,6 +937,9 @@
 		function EditCalificacion()
 		{
 			
+			
+			// echo '<pre>'; print_r($_SESSION);nombreCompleto
+			// exit;
 			foreach($_POST as $key=>$aux){ 
 				
 				$e = explode("_",$key);
@@ -1001,7 +1006,59 @@
 					
 				}
 			}
-				return true;
+			// deshabilitamos el calificar otra vez
+			$this->Util()->DB()->setQuery("
+								UPDATE `course_module` SET
+									`habilitarCalificar` = 'no'
+								WHERE
+									`courseModuleId` = '".$this->coursemoduleId."'");
+			$this->Util()->DB()->UpdateData();	
+			
+			
+			$this->Util()->DB()->setQuery("
+					SELECT 
+						*,
+						sm.name as materia,
+						s.name as carrera
+					FROM 
+						course_module as cm
+					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+					left join subject as s on s.subjectId = sm.subjectId
+					left join course as c on c.courseId = cm.courseId
+					WHERE cm.courseModuleId = ".$this->coursemoduleId."");
+			$infoSub = $this->Util()->DB()->GetRow();
+			
+			$this->Util()->DB()->setQuery("
+					SELECT *
+					FROM personal
+					WHERE perfil = 'Administrador'");
+			$lstAdmins = $this->Util()->DB()->GetResult();
+			
+			// echo '<pre>'; print_r($_SESSION);nombreCompleto
+			// exit;
+			$notificacion = new Notificacion;
+			$sendmail = new SendMail;
+			
+			//guardamos notificacion
+			$actividads = "El Docente ".$_SESSION['User']['nombreCompleto']." de la materia ".$infoSub['materia']." del grupo ".$infoSub['group']." del posgrado ".$infoSub['carrera']." actualizo el acta de calificaciones";
+			$vistas = "1p,".$lstAdmins[0]['personalId']."p";
+			
+			$notificacion->setActividad($actividads);
+			$notificacion->setVista($vistas);
+			$notificacion->setHecho($_SESSION["User"]["userId"]."p");
+			$notificacion->setTablas('course_module_score');
+			$notificacion->setEnlace('/edit-modules-course/id/'.$this->coursemoduleId);
+			$notificacion->saveNotificacion();
+			
+			
+			$resposeHtml .= '<br><br><br><br>';
+			$resposeHtml .= $actividads;
+			$sendmail->PrepareAttachment("Actualizacion en Acta de Calificaciones",$resposeHtml, "","", "dacademica@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+			$sendmail->PrepareAttachment("Actualizacion en Acta de Calificaciones",$resposeHtml, "", "", "enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+			
+			
+
+			return true;
 		}
 		
 		function validarCalificacion()
@@ -1015,6 +1072,17 @@
 			return true;
 		}
 		
+		
+		function habilitarEdicion()
+		{
+			$this->Util()->DB()->setQuery("
+								UPDATE `course_module` SET
+									`habilitarCalificar` = 'si'
+								WHERE
+									`courseModuleId` = '".$this->coursemoduleId."'");
+							$this->Util()->DB()->UpdateData();	
+			return true;
+		}
 		
 		function saveNumReferencia()
 		{
@@ -1036,6 +1104,43 @@
 			return true;
 		
 		}
+		
+		
+		function upFile($Id)
+		{
+			
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			$archivo = 'archivos';
+			foreach($_FILES as $key=>$var)
+			{
+			   switch($key)
+			   {
+				   case $archivo:
+				   if($var["name"]<>""){
+						$aux = explode(".",$var["name"]);
+						$extencion=end($aux);
+						$temporal = $var['tmp_name'];
+						$url = DOC_ROOT;				
+						$foto_name="acta_".$Id.".".$extencion;		
+						if(move_uploaded_file($temporal,$url."/docentes/calificaciones/".$foto_name)){									
+							$sql = 'UPDATE 		
+								course_module SET 		
+								rutaActa = "'.$foto_name.'"			      		
+								WHERE courseModuleId = '.$Id.'';		
+							$this->Util()->DB()->setQuery($sql);		
+							$this->Util()->DB()->UpdateData();
+					   }
+					}
+					break;
+				}
+			}
+			
+			unset($_FILES);
+			
+			return true;
+		}	
 		
 	}	
 ?>

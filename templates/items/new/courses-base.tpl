@@ -5,7 +5,7 @@
         <td align="center">{$subject.clave}</td>
         <td align="center">{$subject.majorName}</td>
         <td align="center">{$subject.name}-{$subject.group}</td>
-        <td align="center">{$subject.modality}</td>
+        <td align="center">{if $subject.modality eq 'Local'}Presencial{else}{$subject.modality}{/if}</td>
         <td align="center">{if $subject.initialDate != "0000-00-00"} {$subject.initialDate|date_format:"%d-%m-%Y"}{else} S/F {/if}</td>
         <td align="center">{if $subject.finalDate != "0000-00-00"}  {$subject.finalDate|date_format:"%d-%m-%Y"}  {else} S/F  {/if}   </td>
         <td align="center">{$subject.daysToFinish}</td>
@@ -96,7 +96,7 @@
 				<i class="fa fa-university" aria-hidden="true"></i>
 				</span>  
 				
-				<span style="cursor:pointer" class="spanActive" onclick="VerSolicitud({$subject.courseId});" title="Alumnos" id="{$subject.courseId}">
+				<span style="cursor:pointer" class="spanActive" onclick="VerSolicitud({$subject.courseId});" title="CONSTANCIAS" id="{$subject.courseId}">
 				<i class="fa fa-folder-open" aria-hidden="true"></i>
 				</span>
             </td>

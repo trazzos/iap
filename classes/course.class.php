@@ -7,6 +7,8 @@
 		private $precio;
 		private $idfire;
 		private $id;
+		private $dias;
+		private $horario;
 		
 		public function setId($value)
 		{
@@ -18,6 +20,18 @@
 		{
 			$this->Util()->ValidateString($value, 255, 0, 'Nombre');
 			$this->nombre = $value;
+		}
+		
+		public function setDias($value)
+		{
+			$this->Util()->ValidateString($value, 255, 0, 'Dias');
+			$this->dias = $value;
+		}
+		
+		public function setHorario($value)
+		{
+			$this->Util()->ValidateString($value, 255, 0, 'Horario');
+			$this->horario = $value;
 		}
 		
 		public function setPrecio($value)
@@ -400,7 +414,9 @@
 							modality,
 							libro,
 							folio,
-							access
+							access,
+							dias,
+							horario
 						)
 					VALUES (
 							'" . $this->getSubjectId() . "',
@@ -414,7 +430,10 @@
 							'" . $this->modality . "',
 							'" . $this->libro . "',
 							'" . $this->folio . "',
-							'".$this->personalId."|".$this->teacherId."|".$this->tutorId."|".$this->extraId."')";
+							'".$this->personalId."|".$this->teacherId."|".$this->tutorId."|".$this->extraId."',
+							'".$this->dias."',
+							'".$this->horario."'
+							)";
 			//configuramos la consulta con la cadena de insercion
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
@@ -463,6 +482,8 @@
 						modality='" 	. $this->modality . "',
 						ponenteText='" 	. $this->ponenteText . "',
 						fechaDiploma='" 	. $this->fechaDiploma . "',
+						dias='".$this->dias."',
+						horario='".$this->horario."',
 						access='".$this->personalId."|".$this->teacherId."|".$this->tutorId."|".$this->extraId."'
 						WHERE courseId='" . utf8_decode($this->courseId) . "'";
 			//configuramos la consulta con la cadena de actualizacion

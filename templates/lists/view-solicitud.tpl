@@ -2,6 +2,7 @@
 	<thead>
     	<tr>
 			
+			<th width="">Folio </th>
 			<th width="">Tipo </th>
 			<th width="">Posgrado </th>
 			<th width="">Fecha de Solicitud </th>
@@ -14,6 +15,7 @@
 		{foreach from=$registros item=subject}
     	<tr>
 			
+			<td align="center">{$subject.folio}</td>
 			<td align="center">{$subject.solicitud}</td>
 			<td align="center">{$subject.name}</td>
 			<td align="center">{$subject.fechaSolicitud}</td>
@@ -57,9 +59,11 @@
 						</a>
 					{/if}
 					{if $subject.tiposolicitudId ne 4}
-					<a href="{$WEB_ROOT}/graybox.php?page=info&id={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
-					<i class="material-icons md-16">info</i>
-					</a>
+						{if $subject.estatus ne 'cancelado'}
+							<a href="{$WEB_ROOT}/graybox.php?page=info&id={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
+							<i class="material-icons md-16">info</i>
+							</a>
+						{/if}
 					{/if}
 				{/if}
 				{if $subject.tiposolicitudId eq 3}
