@@ -32,6 +32,8 @@ switch($_POST["type"])
 
     case "editPersonal":
 
+		echo 'llega';
+		exit;
         $states = $util->EnumerateStates();
         $personal->setPersonalId($_POST['id']);
         $info = $personal->Info();
@@ -57,8 +59,8 @@ switch($_POST["type"])
             }*/
         }
 
-		echo '<pre>'; print_r($info);
-		exit;
+		// echo '<pre>'; print_r($info);
+		// exit;
         $usrRoles = $personal->EnumerateRoles();
 
         $smarty->assign('lstPd', $lstPd);
