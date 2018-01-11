@@ -32,8 +32,8 @@ switch($_POST["type"])
 
     case "editPersonal":
 
-		echo 'llega';
-		exit;
+		// echo 'llega';
+		// exit;
         $states = $util->EnumerateStates();
         $personal->setPersonalId($_POST['id']);
         $info = $personal->Info();
