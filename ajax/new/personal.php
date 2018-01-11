@@ -57,8 +57,8 @@ switch($_POST["type"])
             }*/
         }
 
-		// echo '<pre>'; print_r($info);
-		// exit;
+		echo '<pre>'; print_r($info);
+		exit;
         $usrRoles = $personal->EnumerateRoles();
 
         $smarty->assign('lstPd', $lstPd);
