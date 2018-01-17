@@ -480,7 +480,7 @@ $string = utf8_decode($string);
 		 while ( ($num = substr($ent, -3)) != '   ') { 
 				$ent = substr($ent, 0, -3); 
 				if (++$sub < 3 and $fem) { 
-					 $matuni[1] = 'una'; 
+					 $matuni[1] = 'uno'; 
 					 $subcent = 'as'; 
 				}else{ 
 					 $matuni[1] = $neutro ? 'un' : 'uno'; 

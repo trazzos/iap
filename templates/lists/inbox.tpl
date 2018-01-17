@@ -41,15 +41,31 @@
 			{else}
 				&nbsp;
 			{/if}
-			
 			<a href='{$WEB_ROOT}/view-inbox/id/{$subject.courseModuleId}/cId/{$subject.chatId}' style =' text-decoration:none'>
+			{if $subject.leido eq 'no'}
+			<b>
+			{/if}
 			<font style='text-transform:lowercase; color:#777'>{$subject.nombre} {$subject.paterno} {$subject.materno}</font>
+			{if $subject.leido eq 'no'}
+			</b>
+			{/if}
 			</a>
 		</td>
         <td align="left">
 			<a href='{$WEB_ROOT}/view-inbox/id/{$subject.courseModuleId}/cId/{$subject.chatId}' style =' text-decoration:none'>
-				<font style='text-transform:lowercase; color:#777'>{$subject.asunto}</font><br>
-				<i><font style='text-transform:lowercase; color:#777'>{$subject.nombreMateria}</font></i>
+				<i>
+				{if $subject.leido eq 'no'}
+				<font style='text-transform:lowercase; color:#0078D7'>
+				{else}
+				<font style='text-transform:lowercase; color:#777'>
+				{/if}
+				{$subject.asunto}</font><br>
+				{if $subject.leido eq 'no'}
+				<font style='text-transform:lowercase; color:#0078D7'>
+				{else}
+				<font style='text-transform:lowercase; color:#777'>
+				{/if}
+				{$subject.nombreMateria}</font></i>
 			</a>
 			
 			{if $subject.rutaAdjunto ne ''}
@@ -57,7 +73,15 @@
 			<img src="{$WEB_ROOT}/images/clip.png" style="width:19px">
 			{/if}
 		</td>
-        <td align="left">{$subject.fechaEnvio}</td>
+        <td align="left">
+				{if $subject.leido eq 'no'}
+					<font style='text-transform:lowercase; color:#0078D7'>
+				{else}
+					<font>
+				{/if}
+					{$subject.fechaEnvio}
+				</font>
+		</td>
         <td align="center">
 			<a href="javascript:void(0)" onClick='deleteInbox("{$subject.chatId}","{$courseMId}")'  title="ELIMINAR INBOX">			
 				<i class="material-icons md-16">delete_forever</i>

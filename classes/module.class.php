@@ -643,5 +643,19 @@
 			
 			// return ;
 		}
+		
+		public function actualizaALeido($chatId)
+		{
+		
+			$sql = "UPDATE 
+						chat
+					SET
+						leido ='si'
+						WHERE 	chatId = '" . $chatId."'";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->UpdateData();
+			
+			return true;
+		}
 }	
 ?>

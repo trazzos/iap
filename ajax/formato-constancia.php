@@ -18,6 +18,13 @@
 	$if = explode('-',$infoSol['finalDate']);
 	$fe = explode('-',$infoSol['fechaEntrega']);
 	
+	
+	
+	if($fe[1] < 10){
+		$fe[1] = str_replace('0','',$fe[1]);
+		
+	}
+	
 	$mes = $util->ConvertirMes($fe[1]);
 
 	if($infoSol['nombreMajor']=='MAESTRIA'){

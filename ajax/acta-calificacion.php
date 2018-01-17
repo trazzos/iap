@@ -94,7 +94,7 @@
 	</tr>	
 	<tr>
 		<td>Cuatrimestre:</td>
-		<td></td>
+		<td>".$info['semesId']."</td>
 	</tr>
 	<tr>
 		<td>Periodo:</td>
@@ -181,7 +181,7 @@
 	$mipdf ->render();
 	 
 	# Enviamos el fichero PDF al navegador.
-	$mipdf ->stream('certificadodeValidez.pdf',array('Attachment' => 0));
+	$mipdf ->stream('ActaDeCalificaciones.pdf',array('Attachment' => 0));
 			
 
 

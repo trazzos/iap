@@ -13,6 +13,7 @@
 	
 	if ($_GET["cId"]<>0){
 		$infoC = $module->infoChat($_GET["cId"]);
+		$module->actualizaALeido($_GET["cId"]);
 	}
 	
 

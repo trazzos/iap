@@ -965,11 +965,11 @@
 						exit;
 					}
 					
-					// if($this->Util()->ValidateInteger($aux)){
-						// echo 'fail[#]';
-						// echo '<font color="red">La calificacion del alumno '.$e[1].' tiene decimales</font>';
-						// exit;
-					// }
+					if (strpos($aux, '.') !== false) {
+						echo 'fail[#]';
+						echo '<font color="red">La calificacion del alumno '.$e[1].' tiene decimales</font>';
+						exit;
+					}
 				}
 				
 			}
