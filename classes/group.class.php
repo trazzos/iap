@@ -21,7 +21,7 @@
 
 		function EditScore($modality, $id, $scores, $retros)
 		{
-			
+			 $notificacion= new Notificacion;
 			// echo '<pre>'; print_r($scores);
 			// exit;
 			// foreach($scores as $key => $score){
@@ -96,6 +96,16 @@
 							   $actividad="Se ha calificado la Actividad ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(".number_format($score,2,'.','').")   Retroalimentación(".$retros[$key].")";;
 									
 
+
+							 if($score <> '0' or $score <> ''){
+								  $notificacion->setActividad($actividad);
+								  $notificacion->setVista($vista);
+								  $notificacion->setHecho($hecho);
+								  $notificacion->setTablas($tablas);
+								  $notificacion->setEnlace($enlace);
+								  
+								  $notificacion->saveNotificacion();
+							 }
 							
 							
 
@@ -129,7 +139,17 @@
 							$actividad="Se ha modificado calificación en ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(".number_format($score,2,'.','').")   Retroalimentación(".$retros[$key].")";
 							// $actividad="Se ha modificado calificación en ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";
 
-						
+							if($actividad!="NO"){
+
+							  $notificacion->setActividad($actividad);
+							  $notificacion->setVista($vista);
+							  $notificacion->setHecho($hecho);
+							  $notificacion->setTablas($tablas);
+							  $notificacion->setEnlace($enlace);
+							  
+							  $notificacion->saveNotificacion();
+							  
+							}
 						}
 						
 						$arch =  "fileRetro_".$key;
@@ -162,17 +182,11 @@
 						}
 						
 						//crear notificacion de actualizacion de calificaciones
-						if($actividad!="NO"){
-						  $notificacion= new Notificacion;
-						  $notificacion->setActividad($actividad);
-						  $notificacion->setVista($vista);
-						  $notificacion->setHecho($hecho);
-						  $notificacion->setTablas($tablas);
-						  $notificacion->setEnlace($enlace);
-						  
-						  $notificacion->saveNotificacion();
-						  
-						}
+						
+		
+					
+							
+						
 						
 						
 						

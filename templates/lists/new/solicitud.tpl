@@ -24,7 +24,7 @@
 					{if $item.estatus ne 'completado'}
 						{if $item.estatus ne 'cancelado'}
 							<a href="javascript:void(0)" onClick='validarPago({$item.solicitudId})' title='VALIDAR PAGO'>
-								<i class="material-icons md-16">ic_check_box</i>
+								<div style=" float:left; left:-60px; font-size:24px;   position:relative; height: 24px; width: 24px;"><i class="material-icons md-16">ic_check_box</i></div>
 							</a>
 						{/if}
 					{/if}
@@ -39,7 +39,7 @@
 				{if $item.estatus eq 'completado'}
 					
 					{if $item.tiposolicitudId eq 1 or $item.tiposolicitudId eq 6 or $item.tiposolicitudId eq 2 or $item.tiposolicitudId eq 7 or $item.tiposolicitudId eq 4}
-						<a href="javascript:void(0)" onClick='descargarConstancias({$item.solicitudId})'  target='_blank' title='DESCARGAR CONSTANCIA'>
+						<a href="{$WEB_ROOT}/alumnos/solicitud/solicitud_{$item.solicitudId}.pdf"   target='_blank' title='DESCARGAR CONSTANCIA'>
 							<i class="material-icons md-16">cloud_download</i>
 						</a>
 					{/if}

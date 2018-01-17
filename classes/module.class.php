@@ -628,5 +628,20 @@
 			return true;
 		}
 		
+		
+		
+		public function materiaActivas($chatId)
+		{
+			// $sql = "SELECT 
+						// *
+					// FROM
+						// course_module
+					// WHERE
+						// chatId = ".$chatId."";
+			// $this->Util()->DB()->setQuery($sql);
+			// $result = $this->Util()->DB()->GetRow();
+			
+			// return ;
+		}
 }	
 ?>

@@ -10,11 +10,17 @@
 		<div class="row-fluid inbox">
 					<div class="span2">
 						<ul class="inbox-nav margin-bottom-10">
-							<!--<li class="compose-btn">
-								<a href="javascript:;" data-title="Compose" class="btn green"> 
-								<i class="icon-edit"></i> Redactar
+						{if $userType eq 'student'}
+							{if $countCourses >= 1}
+							
+							<li class="compose-btn">
+							
+								<a data-target="#ajax" data-toggle="modal" href="{$WEB_ROOT}/graybox.php?page=nuevo-inbox" data-title="Compose" class="btn green"> 
+								<i class="icon-edit"></i>Nuevo
 								</a>
-							</li>-->
+							</li>
+							{/if}
+						{/if}
 							<li class="inbox active" id="linkEntrada">
 								<a href="javascript:;" class="btn" data-title="Inbox" onClick="cargaInbox('entrada','{$courseMId}')">Entrada</a>
 								<b></b>

@@ -3,13 +3,16 @@
 	/* For Session Control - Don't remove this */
 	//	$user->allow_access(8);	
 
-	// echo '<pre>'; print_r($_SESSION);	
-	// echo '<pre>'; print_r($_POST);	
-	// exit;
-	
 	if ($_SESSION['User']['type']=='student'){
+		
+		$student->setUserId($_SESSION["User"]["userId"]);
+		$activeCourses = $student->StudentCourses("activo", "si");		
 		$module->setQuienEnviaId('personal');
+			
+		$smarty->assign('userType',$_SESSION['User']['type']);
 		$smarty->assign('mnuSubmain','foro');
+		$smarty->assign('activeCourses',$activeCourses);
+		$smarty->assign('countCourses',count($activeCourses));
 	}else{
 		$module->setQuienEnviaId('alumno');
 		$smarty->assign('mnuMain', "cursos");

@@ -53,7 +53,7 @@
 	<br>
 	<br>
 {/if}
-<textarea name="mensaje" id="mensaje" style="width:900px; height:300px;  ">{if $chatId ne 0}<br><br><br><br><br><hr>{$dataEnviado}{/if}</textarea>
+<textarea name="mensaje" id="mensaje" span12 wysihtml5 m-wrap style="width:900px; height:300px;  ">{if $chatId ne 0}<br><br><br><br><br><hr>{$dataEnviado}{/if}</textarea>
 <br>
 <span class="btn btn-default btn-file">
 <img src="{$WEB_ROOT}/images/mas.png" style="width:10%">

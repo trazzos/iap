@@ -1,7 +1,8 @@
 <?php
 	/* For Session Control - Don't remove this */
 $x=0;	
-//print_r($_SESSION);exit;
+// echo '<pre>'; print_r($_SESSION);
+// exit;
 	
 	if ($_GET['id']!=NULL)
 		{

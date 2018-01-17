@@ -7,27 +7,22 @@ $(document).ready(function() {
 function descargarConstancias(Id,tipodocId){
 	
 	
-	// var resp = confirm("Seguro de generar el documento?");
-	
-	// if(!resp)
-		// return;
-	
-	// url=WEB_ROOT+"/ajax/formato-constancia-admin.php?"+$('#frmfiltro').serialize(true)+'&qAdmin='+q;
-	// open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
 	
 	 $.ajax({
         url : WEB_ROOT+'/ajax/new/studentCurricula.php',
         type: "POST",
         data : {type: "descargarConstancias", Id:Id, tip:"Activo",tipodocId:tipodocId},
+		beforeSend: function(){			
+
+			$('#load_'+Id).html(LOADER3);
+		},
         success: function(data)
         {
 			console.log(data)
+			 $('#load_'+Id).html('');
 			 $('#tr_'+Id).toggle();
 			 $('#td_'+Id).html(data);
-			 // $('#td_'+Id).href(data);
-			 
-			 // td_{$item.userId}
-            // showModal("&nbsp;", data);
+
         },
         error: function ()
         {
@@ -271,23 +266,21 @@ function addSaveSolicitud(){
 		
 			if($.trim(splitResp[0]) == "ok"){
 					
-					// $("#ajax").attr("width","100px");
-					// $("#ajax").attr("top","100px");
 					
 					url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+$.trim(splitResp[1]);
-					open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
-					// $('#tr_'+Id).toggle();
+					open(url,"Constancia de Estudios","toolbal=0,width=0,resizable=1");
+					
+
+					
+					window.setTimeout("verDoc("+$.trim(splitResp[1])+")",3000);
 					$("#tr_"+$.trim(splitResp[2])).hide();
-					// $("#container").html(splitResp[2]);
-					// $("#ajax").html('');
-					// $("#ajax").hide();
-					// $("#ajax").modal("hide");
+
 					
 				}
 			else if($.trim(splitResp[0]) == "fail"){
 				
 				$("#msjgg").html(splitResp[1]);
-				// return;
+
 
 			}
 		},
@@ -297,3 +290,9 @@ function addSaveSolicitud(){
     });
 	
 }//addSolicitud
+
+function verDoc(Id){
+	
+window.open(WEB_ROOT+"/alumnos/solicitud/solicitud_"+Id+".pdf", '_blank'); 
+
+}

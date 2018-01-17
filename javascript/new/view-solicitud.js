@@ -68,11 +68,19 @@ function addSaveSolicitud(){
 					
 					// $("#ajax").attr("width","100px");
 					// $("#ajax").attr("top","100px");
+					
+					
 					$("#msj").html(splitResp[1]);
 					$("#container").html(splitResp[2]);
 					$("#ajax").html('');
 					$("#ajax").hide();
 					$("#ajax").modal("hide");
+					
+					if ($('#solicitudId').val()==4){
+						
+						descargarConstancias($.trim(splitResp[3]))
+					}
+					
 					
 				}
 			else if($.trim(splitResp[0]) == "fail"){
@@ -223,6 +231,7 @@ function descargarSolicitud(c,u,s){
 
 
 function descargarConstancias(q){
+
 	url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
-	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+	open(url,"Constancia de Estudios","toolbal=0,width=0,resizable=1");
 }

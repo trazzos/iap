@@ -5,22 +5,13 @@
 
 	session_start();
 
-	// if($_GET['qAdmin']<>''){
-			// $solicitud->setTipo($_GET['qAdmin']);
-			// $solicitud->setCursoId($_GET['cursoId']);
-			// $Id = $solicitud->SaveSolicitud();
-			// $_GET['q'] = $Id;
-	// }
-	
-		
 	
 	
 	$util = new Util;
 	
 
 	$infoSol = $solicitud->Info($_GET['q']);
-	// echo '<pre>'; print_r($infoSol); 
-	// exit;
+
 	$infoIns = $solicitud->buscaDondeIns($infoSol['subjectId']);
 	
 	$ii = explode('-',$infoSol['initialDate']);
@@ -28,9 +19,7 @@
 	$fe = explode('-',$infoSol['fechaEntrega']);
 	
 	$mes = $util->ConvertirMes($fe[1]);
- // $mes;
-	// echo $fe[1];
-	// exit;
+
 	if($infoSol['nombreMajor']=='MAESTRIA'){
 		$prepo = 'de la';
 		$prepo2 = 'la';
@@ -201,7 +190,7 @@
 							</tr>
 							<tr>
 								<td><b>Fecha:</b></td>
-								<td>".$infoSol['fechaEntrega']."</td>
+								<td>".$util->FormatDateMySql($infoSol['fechaEntrega'])."</td>
 							</tr>
 					</table>
 					<br>
@@ -249,8 +238,9 @@
 	$mipdf ->render();
 	 
 	# Enviamos el fichero PDF al navegador.
-	$mipdf ->stream('certificadodeValidez.pdf',array('Attachment' => 0));
-			
+	// $mipdf ->stream(DOC_ROOT.'/alumnos/solicitud/solicitud_'.$_GET['q'].'.pdf',array('Attachment' => 1));
+	$pdf = $mipdf->output();
+	file_put_contents(DOC_ROOT.'/alumnos/solicitud/solicitud_'.$_GET['q'].'.pdf', $pdf);		
 
 
 ?>

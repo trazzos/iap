@@ -35,7 +35,7 @@
 					<!--<a  href="{$WEB_ROOT}/graybox.php?page=view-boleta&id=con" data-target="#ajax" data-toggle="modal" data-width="1000px" title='DESCARGAR BOLETA DE CALIFICACIONES'>
 						<i class="material-icons md-16">cloud_download</i>
 					</a>-->
-					<a href="javascript:void(0)" onClick='descargarConstancias({$subject.solicitudId})'  target='_blank' title='DESCARGAR CONSTANCIA'>
+					<a href="{$WEB_ROOT}/alumnos/solicitud/solicitud_{$subject.solicitudId}.pdf"   target='_blank' title='DESCARGAR CONSTANCIA'>
 							<i class="material-icons md-16">cloud_download</i>
 					</a>
 					<!--<a href="{$WEB_ROOT}/graybox.php?page=info&id=1" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
@@ -103,7 +103,7 @@
 				{/if}
 				{if $subject.estatus eq 'completado'}
 					{if $subject.tiposolicitudId eq 1 or $subject.tiposolicitudId eq 6 or $subject.tiposolicitudId eq 2 or $subject.tiposolicitudId eq 7}
-					<a href="javascript:void(0)" onClick='descargarConstancias({$subject.solicitudId})'  target='_blank' title='DESCARGAR CONSTANCIA'>
+					<a href="{$WEB_ROOT}/alumnos/solicitud/solicitud_{$subject.solicitudId}.pdf"   target='_blank' title='DESCARGAR CONSTANCIA'>
 							<i class="material-icons md-16">cloud_download</i>
 					</a>
 					{/if}

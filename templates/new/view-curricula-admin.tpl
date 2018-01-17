@@ -1,3 +1,12 @@
+<b>{$infoTypeSol.nombre}</b>
+<br>
+<b>
+{$infoStudent.names}
+{$infoStudent.lastNamePaterno}
+{$infoStudent.lastNameMaterno}
+</b>
+<br>
+<br>
 <input  type="hidden" name="solicitudId" id="solicitudId"  value="{$solicitudId}" >
 <input  type="hidden" name="userId" id="userId"  value="{$userId}" >
 <span class="caption-subject font-blue-madison bold uppercase">Activa</span>

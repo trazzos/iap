@@ -135,3 +135,8 @@ function accionesFavoritos(){
     });
 	
 }
+
+function verMateria(Id){
+	
+	$("#td_"+Id).toggle()
+}

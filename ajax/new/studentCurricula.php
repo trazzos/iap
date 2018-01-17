@@ -180,45 +180,31 @@ switch($_POST["type"])
 	
 	case 'descargarConstancias':
 	
-		// echo '<pre>'; print_r($_POST);
+	
+		
+		$infoStudent = $student->InfoEstudiate($_POST["Id"]);
+		$infoTypeSol = $solicitud->infoSolicitud($_POST["tipodocId"]);
+		
+		
+		// echo '<pre>'; print_r($infoTypeSol);
+		// exit;
+		
+
 		$student->setUserId($_POST["Id"]);
 		$activeCourses = $student->StudentCourses("activo", "si");
 		$finishedCourses = $student->StudentCourses("finalizado");
-		
-		// $finishedCourses = array();
-		
-		// if(count($activeCourses) == 1 and count($finishedCourses) == 0){
-
-			// $solicitud->setTipo($_POST['tipodocId']);
-			// $solicitud->setCursoId($activeCourses[0]['courseId']);
-			// if($solicitud->SaveSolicitud()){
-				// $lstSol = $solicitud->arraySolicitudes();
-				// $registros = $solicitud->enumarateSolicitudesStden();
-				// $smarty->assign('registros', $registros);
-				// $smarty->assign("lstSol", $lstSol);
-				// $smarty->display(DOC_ROOT.'/templates/lists/view-solicitud.tpl');
-			// }else{
-
-			// }
-			// exit;
-		// }
-			
-		
 		
 		
 		$smarty->assign("finishedCourses", $finishedCourses);	
 		$smarty->assign("solicitudId", $_POST['tipodocId']);	
 		$smarty->assign("userId", $_POST['Id']);	
 		
-		// echo 'ok[#]';
+
+		$smarty->assign("infoTypeSol", $infoTypeSol);
+		$smarty->assign("infoStudent", $infoStudent);
 		$smarty->assign("activeCourses", $activeCourses);
 		$smarty->display(DOC_ROOT.'/templates/new/view-curricula-admin.tpl');
-		exit;
-			if($_POST['solicitudId']==''){
-				echo 'fail[#]';
-				echo '<center><font color="red">Por favor, seleccione el tipo de solicitud</font></center>';
-				exit;
-			}
+
 		
 	
 	break;

@@ -93,7 +93,7 @@
 		{if $vistaPrevia ne 1}
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-puzzle"></i>
+                <i class="fa fa-book" aria-hidden="true"></i>
                 <span class="title">Cobranza</span>
                 <span class="arrow"></span>
             </a>
@@ -174,14 +174,14 @@
 		
 		<li class="nav-item  ">
             <a href="{$WEB_ROOT}/solicitud" class="nav-link nav-toggle">
-                <i class="fa fa-video-camera"></i>
+                <i class="fa fa-folder-open" aria-hidden="true"></i>
                 <span class="title">Solicitudes</span>
                 <span class="arrow"></span>
             </a>
         </li>
 		 <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-puzzle"></i>
+               <i class="fa fa-money" aria-hidden="true"></i>
                 <span class="title">Finanzas</span>
                 <span class="arrow"></span>
             </a>
@@ -201,14 +201,14 @@
 		{/if}
 		<li class="nav-item  ">
             <a href="{$WEB_ROOT}/inbox" class="nav-link nav-toggle">
-                <i class="fa fa-video-camera"></i>
-                <span class="title">Inbox</span>
+               <i class="fa fa-comments"></i>
+                <span class="title">Inbox</span>  
                 <span class="arrow"></span>
             </a>
         </li>
 		 <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-puzzle"></i>
+                <i class="fa fa-user" aria-hidden="true"></i>
                 <span class="title">Docente</span>
                 <span class="arrow"></span>
             </a>

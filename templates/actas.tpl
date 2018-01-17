@@ -47,10 +47,11 @@
 							<span style="cursor:pointer" class="spanActive" onclick="descargarConstancias('{$item.userId}','7');" title="Constancia tramite de titulación" >
 							<i class="fa fa-folder-open" aria-hidden="true"></i>
 							</span>
+							<div id='load_{$item.userId}'></div>
 						</td>	  
 					</tr>
 					<tr id="tr_{$item.userId}" style="display:none">
-						<td id="td_{$item.userId}" colspan="5" style='background:#73b76063'>
+						<td id="td_{$item.userId}" colspan="5" style='background:#a1a1a142'>
 							
 						</td>
 					</tr>

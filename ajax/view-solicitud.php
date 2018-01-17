@@ -120,7 +120,7 @@
 				$solicitud->setTipo($_POST['solicitudId']);
 				$solicitud->setCursoId($cursoId);
 				// $solicitud->setPrecio($precio);
-				if ($solicitud->SaveSolicitud()){
+				if ($insertId = $solicitud->SaveSolicitud()){
 					echo 'ok[#]';
 					echo '<div class="alert alert-info alert-dismissable">
 					  <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -132,6 +132,8 @@
 						$smarty->assign('registros', $registros);
 					$smarty->assign("lstSol", $lstSol);
 					$smarty->display(DOC_ROOT.'/templates/lists/view-solicitud.tpl');
+					echo '[#]';
+					echo $insertId;
 				}else{
 					echo 'fail[#]';
 				}

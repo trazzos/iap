@@ -128,8 +128,9 @@
 	$mipdf ->render();
 	 
 	# Enviamos el fichero PDF al navegador.
-	$mipdf ->stream('certificadodeValidez.pdf',array('Attachment' => 0));
-			
+	// $mipdf ->stream('certificadodeValidez.pdf',array('Attachment' => 0));
+	$pdf = $mipdf->output();
+	file_put_contents(DOC_ROOT.'/alumnos/solicitud/solicitud_'.$_GET['q'].'.pdf', $pdf);		
 
 
 ?>

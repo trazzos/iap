@@ -139,9 +139,8 @@ function validarPago(Id){
 		$("#loader").html('');
 			console.log(response)
 			var splitResp = response.split("[#]");
-						buscarSolicitud()				
-				// $("#contenido").html(response);
-
+			descargarConstancias(Id);
+			buscarSolicitud();	
 		},
 		error:function(){
 			alert(msgError);
@@ -152,5 +151,11 @@ function validarPago(Id){
 
 function descargarConstancias(q){
 	url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
-	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+	open(url,"Constancia de Estudios","toolbal=0,width=0,resizable=1");
 }
+
+
+// function verConstancia(q){
+	// url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
+	// open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+// }
