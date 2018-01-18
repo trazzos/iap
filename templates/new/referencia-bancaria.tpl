@@ -23,7 +23,7 @@
 		<br>
 		<br>
 		<center>
-		PORCENTAJE DE BECA AUTORIZADO:<b> {$infoStudent.porcentajeBeca} % </b><br>
+		PORCENTAJE DE BECA AUTORIZADO:<b> {$infoPor.becaporcentaje} % </b><br>
 		BANCO: <b>BBVABANCOMER</b><br>
 		N° DE REFERENCIA PERSONAL:<b> {$infoStudent.referenciaBancaria} </b>
 		</center>

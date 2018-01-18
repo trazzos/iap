@@ -2235,9 +2235,16 @@ class Student extends User
 		$this->Util()->DB()->setQuery($sql);
 		$row6 = $this->Util()->DB()->GetRow();
 		
-		 $sql="select periodo from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' and clavenivel = '".$row6['clavenivel']."' GROUP BY periodo  ";
+		// $row6['ciclo'] = '2016-2017';
+		
+		$sql="select periodo,ciclo,clavenivel from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' GROUP BY periodo  ";
 		$this->Util()->DB()->setQuery($sql);
 		$row = $this->Util()->DB()->GetResult();
+		
+		// echo '<pre>'; print_r($row);
+		// exit;
+		// echo '';
+		// exit;
 		// EXIT;
 		//12 es inscripcion
 		//21 materia
@@ -2245,9 +2252,9 @@ class Student extends User
 		$util = New Util;
 		foreach($row as $key=>$aux){
 			  $sql="select  efectivo from pagos where clave  = '".$infoS['referenciaBancaria']."' 
-								and ciclo = '".$row6['ciclo']."' 
+								and ciclo = '".$aux['ciclo']."' 
 								and  periodoesc = '".$aux['periodo']."' 
-								and clavenivel = '".$row6['clavenivel']."'
+								and clavenivel = '".$aux['clavenivel']."'
 								and (claveconcepto = 12 or claveconcepto = 21 or claveconcepto = 9) group by folio";
 							$this->Util()->DB()->setQuery($sql);
 			$rowabono = $this->Util()->DB()->GetResult();
@@ -2258,7 +2265,7 @@ class Student extends User
 			}
 					
 			$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' 
-				and clavenivel = '".$row6['clavenivel']."' 
+				and clavenivel = '".$aux['clavenivel']."' 
 				and  periodo = '".$aux['periodo']."' 
 				and (claveconcepto = 9 or claveconcepto = 12 or claveconcepto = 21) order by claveconcepto asc";
 			$this->Util()->DB()->setQuery($sql);
@@ -2274,8 +2281,8 @@ class Student extends User
 						alumnoshistorial 
 					where 
 						clave  = '".$infoS['referenciaBancaria']."' 
-						and clavenivel = '".$row6['clavenivel']."' 
-						and  ciclo = '".$row6['ciclo']."' 
+						and clavenivel = '".$aux['clavenivel']."' 
+						and  ciclo = '".$aux['ciclo']."' 
 						and gradogrupo  = '".$aux6['gradogrupo']."'";
 				$this->Util()->DB()->setQuery($sql);
 				$rowp8 = $this->Util()->DB()->GetRow();
@@ -2284,7 +2291,7 @@ class Student extends User
 				$rowp[$key6]['numPagos'] = $rowp8['numPagos'];
 				if($aux6['claveconcepto'] == 21){
 					
-					for($i=1;$i<$rowp8['numPagos'];$i++){
+					for($i=1;$i<4;$i++){
 							if($i==2){
 									$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
 									$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
@@ -2330,16 +2337,18 @@ class Student extends User
 					$efectivo =  $efectivo - ($aux6['importe']);
 					if($efectivo >= ($aux6['importe']- $descuento)){
 						$abono = $aux6['importe']; 
+					}else{
+						$abono = $aux6['importe'];
 					}
 					
 					// inscripciones o reinscripciones
-					$sql="select * from pagos where clave  = '".$infoS['referenciaBancaria']."' 
-								and ciclo = '".$row6['ciclo']."' 
-								and  periodoesc = '".$aux['periodo']."' 
-								and clavenivel = '".$row6['clavenivel']."'
-								and claveconcepto = '".$aux6['claveconcepto']."'";
-					$this->Util()->DB()->setQuery($sql);
-					$rowabono = $this->Util()->DB()->GetRow();
+					// $sql="select * from pagos where clave  = '".$infoS['referenciaBancaria']."' 
+								// and ciclo = '".$aux['ciclo']."' 
+								// and  periodoesc = '".$aux['periodo']."' 
+								// and clavenivel = '".$aux['clavenivel']."'
+								// and claveconcepto = '".$aux6['claveconcepto']."'";
+					// $this->Util()->DB()->setQuery($sql);
+					// $rowabono = $this->Util()->DB()->GetRow();
 					$rowp[$key6]['abono'] =  $abono;
 					@$rowp[$key6]['totalPagar'] = $aux6['importe'];					
 				}				
@@ -2787,6 +2796,19 @@ class Student extends User
 		return $result;
 	}
 	
+	
+	
+	public function GetPorcentajeBeca($clave)
+	{
+		
+		 $sql = "
+				SELECT * FROM alumnoshistorial WHERE clave =  ".$clave." order by id DESC";
+				// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+			
+		return $result;
+	}
 	
 }
 

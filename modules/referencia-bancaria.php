@@ -9,6 +9,11 @@
 	$student->setUserId($_SESSION['User']['userId']);
 	$infoStudent = $student->GetInfo();
 	
+	if($infoStudent['referenciaBancaria']<>''){
+		$infoPor = $student->GetPorcentajeBeca($infoStudent['referenciaBancaria']);
+	}
+	
+	
 	// echo $infoStudent['referenciaBancaria'];
 	// exit;
 	
@@ -29,6 +34,7 @@
 	$lstCuentas = $bank->getCuentas();
 	$smarty->assign('courseId', $_GET['id']);
 	$smarty->assign('countSol', $countSol);
+	$smarty->assign('infoPor', $infoPor);
 	$smarty->assign('infoStudent', $infoStudent);
 	
 
