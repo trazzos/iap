@@ -67,10 +67,10 @@
 	
 		case 'saveReply':
 		
-			echo '<pre>'; print_r($_FILES);
-			echo '<pre>'; print_r($_POST);
-			echo '<pre>'; print_r($_GET);
-			exit;
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// echo '<pre>'; print_r($_GET);
+			// exit;
 			// if $_POST['status']
 			
 			$student->setAsunto($_POST['asunto1'].''.$_POST['asunto2']);

@@ -76,7 +76,7 @@
 		<br>
 		<br>
 		<center> 
-		<b>Tus datos de referencia bancaria no existen. Favor de solicitarlos dando click al siguiente botón</b>
+		<b>Tus datos de referencia bancaria no existen. Favor de solicitarlos dando clic al siguiente botón</b>
 		<br>
 		<br>
 		<button onClick="solicitarReferencia({$courseId})" class="btn green submitForm">Solicitar datos de referencia bancaria</button>

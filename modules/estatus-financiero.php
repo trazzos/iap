@@ -2,13 +2,29 @@
 		
 	/* For Session Control - Don't remove this */
 	// $user->allow_access(37);	
+	
+	$student->setUserId($_SESSION['User']['userId']);
+	$infoStudent = $student->GetInfo();
 
+	
+	if($infoStudent['referenciaBancaria']<>''){
+		$countSol = 1;
+	}else{
+		$countSol = 0;
+		if($infoStudent['referenciaBancaria']<>''){
+		$infoPor = $student->GetPorcentajeBeca($infoStudent['referenciaBancaria']);
+		}
+		$smarty->assign('infoPor', $infoPor);
+		header("Location:".WEB_ROOT."/referencia-bancaria");
+		exit;
+	} 
+	
 	$infoCar = $student->infoCarrera();
 	$lstPagos = $student->verCalendarioPagoscxc();
 	
-	// echo '<pre>'; print_r($lstPagos);
-	// exit;
+
 	
+	$smarty->assign('infoStudent', $infoStudent);
 	$smarty->assign('lstPagos', $lstPagos);
 
 ?>

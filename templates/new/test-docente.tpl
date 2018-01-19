@@ -20,7 +20,7 @@
 
 		<br>
 		<br>
-			<div style='text-align:justify; float:left; width:80%; padding: 20px!important;'>
+			<div style='text-align:justify; padding: 20px!important;'>
 			El objetivo de este cuestionario es valorar la calidad de los procesos de enseñanza y aprendizaje desde el punto de vista
 			de los estudiantes de posgrado. Se solicita tu opinión sobre el desempeño de Asesor. Las respuestas son anónimas y los resultados
 			se comunican a los Asesores despues de que han entregado las calificaciones a la coordinación. Por favor conteste reflexivamente
@@ -28,7 +28,7 @@
 			<br>
 			Seleccionar con una <input type='radio' checked name='check_{$itemPregunta.preguntaId}' id='check_{$itemPregunta.preguntaId}' value='{$item2}' class="option-input checkbox" /> el valor que consideres.
 			</div>
-			<div style='float:left; width:20%; padding: 20px!important;'>
+			<div style=' padding: 20px!important; width:40%'>
 			<table width="80% !important" class="tblGral table table-bordered table-striped table-condensed flip-content">
 				<tr><td><b>(6)</b> Deficiente</td></tr>
 				<tr><td><b>(7)</b> Apenas aceptable</td></tr>

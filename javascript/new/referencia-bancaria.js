@@ -1,9 +1,4 @@
 
-function verCalendario(){
-	url=WEB_ROOT+"/ajax/pagos.php?"+$('#frmfiltro').serialize(true);
-	open(url,"voucher","toolbal=0,width=800,resizable=1");
-}
-
 
 function solicitarReferencia(id){
 
@@ -19,7 +14,9 @@ $.ajax({
 			console.log(response)
 			var splitResponse = response.split("[#]");
 			if($.trim(splitResponse[0]) == "ok"){
-				href.location = DOC_ROOT+"/homepage";
+				ShowStatus('La solicitud se envio correctamente');
+				// setTimeout("",3000);
+				location.href = WEB_ROOT+"/homepage";
 			}else if ($.trim(splitResponse[0]) == "ok"){
 				$("#msj5").html(splitResponse[2]);
 			}

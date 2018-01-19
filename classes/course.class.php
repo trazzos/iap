@@ -731,9 +731,16 @@
 				$countEval = $this->Util()->DB()->GetSingle();
 					
 				$sql = "
-					SELECT *
-					FROM course_module_score
-					WHERE courseModuleId = '".$res['courseModuleId']."' and userId = ".$_SESSION["User"]["userId"]." and courseId = ".$info["courseId"]."";
+					SELECT 
+						*
+					FROM 
+						course_module_score as c
+					LEFT JOIN course_module as cm on cm.courseModuleId = c.courseModuleId
+					WHERE 
+						c.courseModuleId = '".$res['courseModuleId']."' 
+						and c.userId = ".$_SESSION["User"]["userId"]." 
+						and c.courseId = ".$info["courseId"]."
+						and cm.calificacionValida = 'si' ";
 
 				$this->Util()->DB()->setQuery($sql);
 				$infoCc = $this->Util()->DB()->GetRow();

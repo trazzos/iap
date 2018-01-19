@@ -40,9 +40,9 @@
 	<link href="{$WEB_ROOT}/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
 	<link href="{$WEB_ROOT}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
 	<link href="{$WEB_ROOT}/assets/global/plugins/jquery-multi-select/css/multi-select.css" rel="stylesheet" type="text/css" />
-	  <link href="{$WEB_ROOT}/assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
+	 <!-- <link href="{$WEB_ROOT}/assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
         <link href="{$WEB_ROOT}/assets/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css" />
-		<link href="{$WEB_ROOT}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+		<link href="{$WEB_ROOT}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />-->
 	<!-- END THEME LAYOUT STYLES -->
 	<link rel="shortcut icon" href="favicon.ico" />
 
@@ -60,13 +60,13 @@
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/AJS_fx.js"></script>
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/gb_scripts.js"></script>
 	<script type="text/javascript" src="{$WEB_ROOT}/javascript/inbox.js"></script>
-	<script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-markdown/lib/markdown.js" type="text/javascript"></script>
+	<!--<script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-markdown/lib/markdown.js" type="text/javascript"></script>
     <script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript"></script>
     <script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>
     <script src="{$WEB_ROOT}/assets/pages/scripts/components-editors.min.js" type="text/javascript"></script>
 	 <script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
         <script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" type="text/javascript"></script>
-<script type="text/javascript" src="{$WEB_ROOT}/assets/plugins/ckeditor/ckeditor.js"></script>  
+<script type="text/javascript" src="{$WEB_ROOT}/assets/plugins/ckeditor/ckeditor.js"></script>  -->
 	<style>
 		.modal-dialog{
 			width: 70%;
@@ -112,6 +112,14 @@
 }
 
 </style>
+{/if}
+{if $page == 'reply-inbox'}<!--
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>-->
 {/if}
 </head>
 <!-- END HEAD -->

@@ -15,16 +15,54 @@
 		<a href="javascript:void(0)" onclick="CalificacionesExa({$subject.courseModuleId});"> Examenes</a>
 		</td>
 		<td align="center">
-			{$subject.calificacionFinal}
 			
+			{if  $timestamp < $subject.initialDateStamp}
+					No Disponible <!-- no iniciada -->
+			{else}
+				{if $subject.finalDateStamp > 0 AND $timestamp > $subject.finalDateStamp}  
+					<!-- materia finalizada -->
+					{if $subject.countEval >=1}
+						{$subject.calificacionFinal} 
+					{else}
+						Contestar Evaluación
+					{/if}
+				{elseif $subject.active == "no"}  
+					 <!-- materia finalizada -->
+					 {if $subject.countEval >=1}
+						{$subject.calificacionFinal} 
+					{else}
+						Contestar Evaluación
+					{/if}
+				{elseif $subject.finalDateStamp <= 0 AND $initialDateStamp < $subject.daysToFinishStamp AND $timestamp > $subject.daysToFinishStamp}  
+					  <!-- materia finalizada -->
+					{if $subject.countEval >=1}
+						{$subject.calificacionFinal} 
+					{else}
+						Contestar Evaluación
+					{/if}
+				{else}
+					Contestar Evaluación<!-- materia activa -->
+				{/if}		
+			{/if}
 		</td>
 		<td>
 			{if $subject.countEval >=1}
-				Completo
+				Contestada
 			{else}
-				<a href="{$WEB_ROOT}/test-docente/id/{$subject.courseModuleId}">Disponible</a>
+					{if  $timestamp < $subject.initialDateStamp}
+						No Disponible
+					{else}
+						{if $subject.finalDateStamp > 0 AND $timestamp > $subject.finalDateStamp}  
+							Disponible
+						{elseif $subject.active == "no"}  
+							Disponible
+						{elseif $subject.finalDateStamp <= 0 AND $initialDateStamp < $subject.daysToFinishStamp AND $timestamp > $subject.daysToFinishStamp}  
+							Disponible
+						{else}
+							No Disponible
+						{/if}		
+				  {/if}
 			{/if}
-			
 		</td>
 		{/if}
 				
@@ -41,9 +79,10 @@
 					Finalizado
 					{else}
 					<br />
-								<a href="{$WEB_ROOT}/view-modules-student/id/{$subject.courseModuleId}" title="Ver Modulo de Curso"  style="color:#000" target="_top" ><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
-								</a>
-				{/if}		
+					<a href="{$WEB_ROOT}/view-modules-student/id/{$subject.courseModuleId}" title="Ver Modulo de Curso"  style="color:#000" target="_top" >
+						<i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+					</a>
+			{/if}		
           {/if}
         {else}
         <a href="{$WEB_ROOT}/edit-modules-course/id/{$subject.courseModuleId}" title="Ver Modulos de Curso"  style="color:#000" target="_top" ><img src="{$WEB_ROOT}/images/arrow.png" title="Configurar Modulo" /></a>
