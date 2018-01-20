@@ -51,8 +51,8 @@ function cargaInbox(tipo,courseMId){
 function SaveMsj(courseMId,status,chatId){
 	
 	
-	// $('#mensaje').html(tinymce.get('mensaje').getContent());
-	//$("#type").val("saveReply")
+	$('#mensaje').html(tinymce.get('mensaje').getContent());
+	$("#type").val("saveReply")
 	
 	if(status=='borrar'){
 		var resp = confirm("Seguro de  eliminar el mensaje?");
