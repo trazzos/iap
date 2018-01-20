@@ -2,7 +2,7 @@
 	/* For Session Control - Don't remove this */
 	// $user->allow_access(8);	
 
-// echo $_GET["id"];
+// echo '<pre>'; print_r($_GET); 
 // exit;
 	$module->setStatusIn('activo');
 	$module->setTipoReporte('entrada');
@@ -82,7 +82,19 @@
 	$smarty->assign('infoC', $infoC);
 	$smarty->assign('courseMId', $_GET["id"]);
 	$smarty->assign('lstMsj', $lstMsj);
-	$smarty->assign('mnuMain', "modulo");
+	
 	$smarty->assign('mnuSubmain','foro');
+	
+	if($_GET["or"]<>'h'){
+		$smarty->assign('mnuMain', "modulo");
+		
+	}
+	
+	if($_GET["or"]=='h'){
+		$smarty->assign('or', "h");
+		
+	}
+	
+	
 
 ?>

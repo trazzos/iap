@@ -80,7 +80,12 @@
 	$smarty->assign('infoC', $infoC);
 	$smarty->assign('courseMId', $_GET["id"]);
 	$smarty->assign('lstMsj', $lstMsj);
-	$smarty->assign('mnuMain', "modulo");
+	// $smarty->assign('mnuMain', "modulo");
 	$smarty->assign('mnuSubmain','foro');
+	
+	if($_GET["or"]<>'h'){
+		$smarty->assign('mnuMain', "modulo");
+		
+	}
 
 ?>

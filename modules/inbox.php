@@ -34,6 +34,7 @@
 	$smarty->assign('infoC', $infoC);
 	$smarty->assign('courseMId', $_GET["id"]);
 	$smarty->assign('lstMsj', $lstMsj);
+	$smarty->assign('or', $_GET['or']);
 	
 
 ?>

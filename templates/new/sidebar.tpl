@@ -200,7 +200,7 @@
         </li>
 		{/if}
 		<li class="nav-item  ">
-            <a href="{$WEB_ROOT}/inbox" class="nav-link nav-toggle">
+            <a href="{$WEB_ROOT}/inbox/or/h" class="nav-link nav-toggle">
                <i class="fa fa-comments"></i>
                 <span class="title">Inbox</span>  
                 <span class="arrow"></span>

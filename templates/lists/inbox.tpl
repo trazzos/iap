@@ -41,7 +41,7 @@
 			{else}
 				&nbsp;
 			{/if}
-			<a href='{$WEB_ROOT}/view-inbox/id/{$subject.courseModuleId}/cId/{$subject.chatId}' style =' text-decoration:none'>
+			<a href='{$WEB_ROOT}/view-inbox/id/{$subject.courseModuleId}/cId/{$subject.chatId}&or={$or}' style =' text-decoration:none'>
 			{if $subject.leido eq 'no'}
 			<b>
 			{/if}

@@ -113,7 +113,7 @@
 						</a>
 						</li>
 						<li>
-						<a href="{$WEB_ROOT}/inbox" >
+						<a href="{$WEB_ROOT}/inbox/or/h" >
 						 <i class="fa fa-comments"></i>Inbox 
 						</a>
 						</li>
