@@ -53,11 +53,11 @@
 						No Disponible
 					{else}
 						{if $subject.finalDateStamp > 0 AND $timestamp > $subject.finalDateStamp}  
-							Disponible
+							<a href="{$WEB_ROOT}/test-docente/id/{$subject.courseModuleId}">Disponible</a>
 						{elseif $subject.active == "no"}  
-							Disponible
+							<a href="{$WEB_ROOT}/test-docente/id/{$subject.courseModuleId}">Disponible</a>
 						{elseif $subject.finalDateStamp <= 0 AND $initialDateStamp < $subject.daysToFinishStamp AND $timestamp > $subject.daysToFinishStamp}  
-							Disponible
+							<a href="{$WEB_ROOT}/test-docente/id/{$subject.courseModuleId}">Disponible</a>
 						{else}
 							No Disponible
 						{/if}		

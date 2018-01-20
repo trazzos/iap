@@ -786,16 +786,13 @@
 		public function actaCalificacion()
 		{
 			
-			
 			$this->Util()->DB()->setQuery("
 				SELECT *, user_subject.status AS status FROM user_subject
 				LEFT JOIN user ON user_subject.alumnoId = user.userId
 				WHERE courseId = '".$this->getCourseId()."'
 				ORDER BY lastNamePaterno ASC, lastNameMaterno ASC, names ASC");
 			$result = $this->Util()->DB()->GetResult();
-			
 			$student = New Student;
-			
 			foreach($result as $key => $res)
 			{
 				 $sql = "
@@ -805,22 +802,54 @@
 
 				$this->Util()->DB()->setQuery($sql);
 				$infoCc = $this->Util()->DB()->GetRow();
+	
+				// CALCULA ACUMULADO
+					$activity = new Activity;
+					$activity->setCourseModuleId($this->coursemoduleId);
+					$actividades = $activity->Enumerate();
+					// $result[$key]["names"] = $this->Util()->DecodeTiny($result[$key]["names"]);
+					// $result[$key]["lastNamePaterno"] = $this->Util()->DecodeTiny($result[$key]["lastNamePaterno"]);
+					// $result[$key]["lastNameMaterno"] = $this->Util()->DecodeTiny($result[$key]["lastNameMaterno"]);
+					$this->Util()->DB()->setQuery("
+						SELECT teamNumber
+						FROM team
+						WHERE courseModuleId = '".$this->coursemoduleId."' AND userId = '".$res["alumnoId"]."'");
+					$result[$key]["equipo"] = $this->Util()->DB()->GetSingle();
+					
+					$result[$key]{"addepUp"} = 0;
+					foreach($actividades as $activity)
+					{
+						if($activity["score"] <= 0)
+						{
+							continue;
+						}
+						//revisar calificacion
+						$this->Util()->DB()->setQuery("
+							SELECT ponderation
+							FROM activity_score
+							WHERE activityId = '".$activity["activityId"]."' AND userId = '".$res["alumnoId"]."'");
+						$score = $this->Util()->DB()->GetSingle();
+
+						$result[$key]{"score"}[] = $score;
+						$realScore = $score * $activity["score"] / 100;
+						$result[$key]{"realScore"}[] = $realScore;
+						
+						$result[$key]{"addepUp"} += $realScore;
+					}
+				//CALCULA EL ACUMULADO
 				
-				
-				$cali = $student->GetAcumuladoCourseModuleActa($this->coursemoduleId,$res["alumnoId"]);
-				
-				$cali2 = $cali / 10;
-				
-				$cali2 = round($cali2, 0, PHP_ROUND_HALF_DOWN);
+				// $cali = $student->GetAcumuladoCourseModuleActa($this->coursemoduleId,$res["alumnoId"]);
+				// $cali2 = $cali / 10;
+				// $cali2 = round($cali2, 0, PHP_ROUND_HALF_DOWN);
 				
 				if($infoCc["calificacion"]==null or $infoCc["calificacion"]==0){
-					$infoCc["calificacion"] = $cali2;
+					$infoCc["calificacion"] = '';
 				}else{
 					$infoCc["calificacion"] = $infoCc["calificacion"];
 				}
 				
 				$result[$key]["score"] = $infoCc["calificacion"];
-				$result[$key]["scorePromedio"] = $cali;
+
 				
 			}
 			// exit;

@@ -745,6 +745,10 @@
 				$this->Util()->DB()->setQuery($sql);
 				$infoCc = $this->Util()->DB()->GetRow();
 				
+				if($infoCc['calificacion']==''){
+					$infoCc['calificacion']='En proceso';
+				}
+				
 				$result[$key]["finalDate"]=$result[$key]["finalDate"]." 23:59:59";
 				$result[$key]["initialDateStamp"] = strtotime($result[$key]["initialDate"]);
 				$result[$key]["finalDateStamp"] = strtotime($result[$key]["finalDate"]);

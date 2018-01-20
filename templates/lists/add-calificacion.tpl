@@ -15,10 +15,10 @@
   {foreach from=$noTeam item=item key=key}
         <tr id="1">
         <td align="center">{$item.alumnoId}</td>
-        <td align="center">{$item.controlNumber}</td>
-        <td align="center">{$item.lastNamePaterno} {$item.lastNameMaterno} {$item.names}</td>
+        <td align="center">{$item.controlNumber}</td> 
+        <td align="center">{$item.lastNamePaterno} {$item.lastNameMaterno} {$item.names}</td> 
 		<td align="center">
-           <input type="text"  readonly name="pro_{$item.alumnoId}" id="pro_{$item.alumnoId}" value="{$item.scorePromedio}" class="form-control" style="width:60px">
+           <input type="text"  readonly name="pro_{$item.alumnoId}" id="pro_{$item.alumnoId}" value="{$item.addepUp}" class="form-control" style="width:60px">
         </td>
         <td align="center">
            <input type="text"  {if $info.habilitarCalificar eq 'no'} readonly {/if} maxlength="2"  onkeypress="return soloLetras(event)" {if $item.score < 7} style="background:#ff00004f; width:60px" {/if} name="cal_{$item.alumnoId}" id="cal_{$item.alumnoId}" value="{$item.score}" class="form-control" style="width:60px">
