@@ -24,6 +24,10 @@ function addSolicitud(){
 				if($.trim(splitResp[1]) == "recarga"){
 					$("#msj").html(splitResp[2]);
 					$("#container").html(splitResp[3]);
+					
+					if ($('#solicitudId').val()==4){
+						descargarConstancias($.trim(splitResp[4]))
+					}
 				}else{
 					$("#ajax").attr("width","100px");
 					$("#ajax").attr("top","100px");

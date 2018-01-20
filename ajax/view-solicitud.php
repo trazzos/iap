@@ -21,7 +21,7 @@
 
 			$solicitud->setTipo($_POST['solicitudId']);
 			$solicitud->setCursoId($activeCourses[0]['courseId']);
-			if($solicitud->SaveSolicitud()){
+			if($Id = $solicitud->SaveSolicitud()){
 				echo 'ok[#]';
 				echo 'recarga';
 				echo '[#]';
@@ -35,6 +35,8 @@
 				$smarty->assign('registros', $registros);
 				$smarty->assign("lstSol", $lstSol);
 				$smarty->display(DOC_ROOT.'/templates/lists/view-solicitud.tpl');
+				echo '[#]';
+				echo $Id;
 			}else{
 				echo 'fail[#]';
 			}
