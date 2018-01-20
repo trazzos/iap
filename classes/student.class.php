@@ -2305,14 +2305,19 @@ class Student extends User
 									$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
 							}
 							
-							
+						$abono  = 0;
 						$descuento = (($aux6['importe']*$rowp8['becaporcentaje'])/100);
-						if($efectivo >= ($aux6['importe']- $descuento)){
-							$abono = ($aux6['importe']- $descuento); 
-						}else{
-							$abono  = 0;
+						if($efectivo >0){
+							$efectivo =  $efectivo - ($aux6['importe']- $descuento);
+							if ($efectivo >=0){
+								$abono = ($aux6['importe']- $descuento);
+							}else{
+								$abono = 0;
+							}
 						}
-						$efectivo =  $efectivo - ($aux6['importe']- $descuento);
+						
+						
+						
 						
 						if($i>=2){
 							 
@@ -2333,22 +2338,16 @@ class Student extends User
 					}//for
 				}else{
 
-					
-					$efectivo =  $efectivo - ($aux6['importe']);
-					if($efectivo >= ($aux6['importe']- $descuento)){
-						$abono = $aux6['importe']; 
-					}else{
-						$abono = $aux6['importe'];
+					$abono  = 0;
+					if($efectivo >0){
+						$efectivo = $efectivo - $aux6['importe'];
+						if ($efectivo >=0){
+							$abono = $aux6['importe'];
+						}else{
+							$abono = 0;
+						}
 					}
-					
-					// inscripciones o reinscripciones
-					// $sql="select * from pagos where clave  = '".$infoS['referenciaBancaria']."' 
-								// and ciclo = '".$aux['ciclo']."' 
-								// and  periodoesc = '".$aux['periodo']."' 
-								// and clavenivel = '".$aux['clavenivel']."'
-								// and claveconcepto = '".$aux6['claveconcepto']."'";
-					// $this->Util()->DB()->setQuery($sql);
-					// $rowabono = $this->Util()->DB()->GetRow();
+
 					$rowp[$key6]['abono'] =  $abono;
 					@$rowp[$key6]['totalPagar'] = $aux6['importe'];					
 				}				

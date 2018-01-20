@@ -152,6 +152,7 @@ function validarPago(Id){
 function descargarConstancias(q){
 	url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
 	open(url,"Constancia de Estudios","toolbal=0,width=0,resizable=1");
+	// window.open(WEB_ROOT+"/alumnos/solicitud/solicitud_"+Id+".pdf", '_blank'); 
 }
 
 
