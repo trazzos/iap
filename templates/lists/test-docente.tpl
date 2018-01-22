@@ -16,6 +16,7 @@
 				<table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 				{foreach from=$item.preguntas item=itemPregunta}
 				<tr>
+					<td width="70%">{$key+1}</td>
 					<td width="70%">{$itemPregunta.pregunta}</td>
 					<td>
 						{foreach from=$itemPregunta.opciones item=item2 key=key}  

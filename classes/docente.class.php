@@ -45,8 +45,12 @@ class Docente extends Empresa{
 					echo 'fail[#]';
 					echo '<div class="alert alert-warning alert-dismissable">
 					  <button type="button" class="close" data-dismiss="alert">&times;</button>
-					 <strong> Para poder enviar su evaluación es necesario asignar calificación en cada una de las preguntas, favor de revisar y completar su evaluación
-					 </strong><br>La pregunta numero '.($key+1).' se encuentra sin respuesta
+					 <strong> Para poder enviar su evaluación es necesario asignar calificación en cada una de las preguntas, favor de revisar
+					 y completar su evaluación.
+					 </strong>
+					 <br>
+					 <br>
+					 Pregunta numero '.($key+1).' sin respuesta
 					</div>';
 					exit;
 				}
