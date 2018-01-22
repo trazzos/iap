@@ -511,18 +511,7 @@
 				$filtro .= " and yoId = ".$this->yoId."";
 			}
 			
-			if($this->quienEnviaId){
-				$filtro .= " and quienEnvia = '".$this->quienEnviaId."'";
-				if($this->quienEnviaId=='personal'){
-					$campos .= "p.name as nombre, p.lastname_paterno as paterno, p.lastname_materno as materno";
-					$left .= " left join personal as p on p.personalId = c.yoId";
-					$leftEnviado .= " left join personal as p on p.personalId = c.usuarioId";
-				}else{
-					$campos .= "p.names as nombre, p.lastNamePaterno as paterno, p.lastNameMaterno as materno";
-					$left .= " left join user as p on p.userId = c.yoId";
-					$leftEnviado .= " left join user as p on p.userId = c.usuarioId";
-				}	
-			}
+			
 			
 			if($this->recibeId){
 				$filtro .= " and c.usuarioId = '".$this->recibeId."'";
@@ -533,6 +522,20 @@
 			}
 			
 			if($this->tipoReporte=='entrada'){
+				
+				if($this->quienEnviaId){
+					$filtro .= " and quienEnvia = '".$this->quienEnviaId."'";
+					if($this->quienEnviaId=='personal'){
+						$campos .= "p.name as nombre, p.lastname_paterno as paterno, p.lastname_materno as materno";
+						$left .= " left join personal as p on p.personalId = c.yoId";
+						// $leftEnviado .= " left join personal as p on p.personalId = c.usuarioId";
+					}else{
+						$campos .= "p.names as nombre, p.lastNamePaterno as paterno, p.lastNameMaterno as materno";
+						$left .= " left join user as p on p.userId = c.yoId";
+						// $leftEnviado .= " left join user as p on p.userId = c.usuarioId";
+					}	
+				}
+				
 				  $sql = "SELECT 
 						p.*,
 						c.*,
@@ -546,6 +549,21 @@
 					WHERE
 						1 ".$filtro." order by chatId DESC";
 			}else if($this->tipoReporte=='enviados' or $this->tipoReporte=='borrador' or $this->tipoReporte=='eliminados'){
+				
+				if($this->quienEnviaId){
+					$filtro .= " and quienEnvia = '".$this->quienEnviaId."'";
+					if($this->quienEnviaId=='personal'){
+						$campos .= "p.names as nombre, p.lastNamePaterno as paterno, p.lastNameMaterno as materno";
+						// $left .= " left join user as p on p.userId = c.yoId";
+						$leftEnviado .= " left join user as p on p.userId = c.usuarioId";
+					}else{
+
+						$campos .= "p.name as nombre, p.lastname_paterno as paterno, p.lastname_materno as materno";
+						// $left .= " left join personal as p on p.personalId = c.usuarioId";
+						$leftEnviado .= " left join personal as p on p.personalId = c.usuarioId";
+					}	
+				}
+				
 				     $sql = "SELECT 
 						p.*,
 						c.*,

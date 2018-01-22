@@ -248,6 +248,7 @@
 	// $mipdf ->stream(DOC_ROOT.'/alumnos/solicitud/solicitud_'.$_GET['q'].'.pdf',array('Attachment' => 1));
 	$pdf = $mipdf->output();
 	file_put_contents(DOC_ROOT.'/alumnos/solicitud/solicitud_'.$_GET['q'].'.pdf', $pdf);		
-
+	header("Location:".WEB_ROOT."/alumnos/solicitud/solicitud_".$_GET["q"].".pdf");
+	exit;
 
 ?>

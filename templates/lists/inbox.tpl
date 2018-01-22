@@ -42,11 +42,11 @@
 				&nbsp;
 			{/if}
 			<a href='{$WEB_ROOT}/view-inbox/id/{$subject.courseModuleId}/cId/{$subject.chatId}&or={$or}' style =' text-decoration:none'>
-			{if $subject.leido eq 'no'}
+			{if $subject.leido eq 'no' and $tipo eq 'entrada'}
 			<b>
 			{/if}
 			<font style='text-transform:lowercase; color:#777'>{$subject.nombre} {$subject.paterno} {$subject.materno}</font>
-			{if $subject.leido eq 'no'}
+			{if $subject.leido eq 'no' and $tipo eq 'entrada'}
 			</b>
 			{/if}
 			</a>
@@ -54,13 +54,13 @@
         <td align="left">
 			<a href='{$WEB_ROOT}/view-inbox/id/{$subject.courseModuleId}/cId/{$subject.chatId}' style =' text-decoration:none'>
 				<i>
-				{if $subject.leido eq 'no'}
+				{if $subject.leido eq 'no' and $tipo eq 'entrada'}
 				<font style='text-transform:lowercase; color:#0078D7'>
 				{else}
 				<font style='text-transform:lowercase; color:#777'>
 				{/if}
 				{$subject.asunto}</font><br>
-				{if $subject.leido eq 'no'}
+				{if $subject.leido eq 'no' and $tipo eq 'entrada'}
 				<font style='text-transform:lowercase; color:#0078D7'>
 				{else}
 				<font style='text-transform:lowercase; color:#777'>
@@ -74,7 +74,7 @@
 			{/if}
 		</td>
         <td align="left">
-				{if $subject.leido eq 'no'}
+				{if $subject.leido eq 'no' and $tipo eq 'entrada'}
 					<font style='text-transform:lowercase; color:#0078D7'>
 				{else}
 					<font>

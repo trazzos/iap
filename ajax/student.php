@@ -820,6 +820,7 @@
 				
 			
 				// echo '<pre>'; print_r($_POST);
+				// exit;
 				if($_POST['tipo']=='entrada'){
 					$module->setStatusIn('activo');
 					$module->setTipoReporte('entrada');
@@ -865,6 +866,7 @@
 				
 				$lstMsj = $module->EnumerateInbox();
 				$smarty->assign("courseMId", $_POST['courseMId']);
+				$smarty->assign("tipo", $_POST['tipo']);
 				$smarty->assign("lstMsj", $lstMsj);
 				$smarty->display(DOC_ROOT.'/templates/lists/inbox.tpl');
 				

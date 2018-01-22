@@ -2728,7 +2728,6 @@ class Student extends User
 				
 		 $sql = "
 		INSERT INTO  chat (
-				`fechaEnvio` ,
 				`courseModuleId` ,
 				`estatus` ,
 				`usuarioId`, 
@@ -2738,7 +2737,6 @@ class Student extends User
 				`asunto` 
 				)
 				VALUES (
-				'".date("Y-m-d")."',
 				'".$this->cmId."',
 				'".$this->statusjj."',
 				'".$this->usuariojjId."',

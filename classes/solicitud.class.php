@@ -734,7 +734,7 @@ class Solicitud extends Module
 					*
 				FROM 
 					folio
-				WHERE  tiposolicitudId = '.$coun['tiposolicitudId'].'';
+				WHERE  folioId = 1';
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$infoFol = $this->Util()->DB()->GetRow();
 		
@@ -790,9 +790,9 @@ class Solicitud extends Module
 				folioSiguiente = '".($infoFol['folioSiguiente']+1)."', 
 				folioActual ='".$infoFol['folioSiguiente']."' 
 			where
-				tiposolicitudId = '".$coun['tiposolicitudId']."' and anio = '".date('Y')."' "; 	
+				folioId = 1 "; 	
 // exit;	
-	$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->setQuery($sqlQuery);
 		$this->Util()->DB()->ExecuteQuery();
 		
 		return true;
