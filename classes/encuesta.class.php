@@ -32,7 +32,7 @@ class Encuesta extends Main
 		$this->Util()->DB()->setQuery("
 		SELECT * FROM categoria_pregunta where encuestaId = 1");
 		$result = $this->Util()->DB()->GetResult();
-		
+		$incr = 0;
 		foreach($result as $key=>$aux){
 			
 			$sql = "SELECT * FROM pregunta where categoriapreguntaId = ".$aux['categoriapreguntaId']."";
@@ -49,7 +49,10 @@ class Encuesta extends Main
 						}
 					}
 					$resultPreguntas[$keyp]["opciones"] = $opciones;
+					
 				}
+				$resultPreguntas[$keyp]["incr"] = $incr;
+				$incr++;
 			}
 			
 			$result[$key]['preguntas'] = $resultPreguntas;
