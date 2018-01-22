@@ -10,9 +10,16 @@
         </div>
     </div>
     <div class="portlet-body" style='width:100% !important'>
+	<center>
+	<b>{$infoCar.nombrenivel|upper}</b><br>
+	{$infoCar.ciclo}<br>
+	Cuatrimestre
+	</center><br>
+	<br>
+	<br>
    
             {foreach from=$lstPagos key=key item=aux}
-				<div style='float:left'><b>{$aux.periodo}</b>
+				<div style='float:left'><b>Grupo:</b>{$aux.gradogrupo|upper}&nbsp;&nbsp;&nbsp; <b>Periodo:</b>{$aux.periodo|upper}
 					<table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 					<thead>
 					<tr>

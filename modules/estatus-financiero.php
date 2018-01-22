@@ -24,6 +24,7 @@
 	
 
 	
+	$smarty->assign('infoCar', $infoCar);
 	$smarty->assign('infoStudent', $infoStudent);
 	$smarty->assign('lstPagos', $lstPagos);
 

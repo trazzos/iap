@@ -2237,7 +2237,7 @@ class Student extends User
 		
 		// $row6['ciclo'] = '2016-2017';
 		
-		$sql="select periodo,ciclo,clavenivel from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' GROUP BY periodo  ";
+		$sql="select periodo,ciclo,clavenivel,gradogrupo,nombrenivel from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' GROUP BY periodo ORDER BY id ASC   ";
 		$this->Util()->DB()->setQuery($sql);
 		$row = $this->Util()->DB()->GetResult();
 		
