@@ -843,7 +843,7 @@
 				// $cali2 = round($cali2, 0, PHP_ROUND_HALF_DOWN);
 				
 				if($infoCc["calificacion"]==null or $infoCc["calificacion"]==0){
-					$infoCc["calificacion"] = '';
+					$infoCc["calificacion"] = $realScore;
 				}else{
 					$infoCc["calificacion"] = $infoCc["calificacion"];
 				}
