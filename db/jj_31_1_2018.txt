@@ -1,0 +1,65 @@
+6CREATE TABLE IF NOT EXISTS `documentosprofesor` (
+  `documentosprofesorId` int(11) NOT NULL AUTO_INCREMENT,
+  `documentoId` int(11) NOT NULL,
+  `personalId` int(11) NOT NULL,
+  PRIMARY KEY (`documentosprofesorId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+ALTER TABLE  `documentosprofesor` ADD  `ruta` VARCHAR( 255 ) NOT NULL AFTER  `personalId` ;
+
+CREATE TABLE IF NOT EXISTS `repositorio` (
+  `repositorioId` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `activo` enum('no','si') NOT NULL,
+  PRIMARY KEY (`repositorioId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `catalogodocumento` (
+  `catalogodocumentoId` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`catalogodocumentoId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `automovilprofesor` (
+  `automovilId` int(11) NOT NULL AUTO_INCREMENT,
+  `modelo` varchar(255) NOT NULL,
+  `color` varchar(255) NOT NULL,
+  `placas` varchar(255) NOT NULL,
+  `personalId` int(11) NOT NULL,
+  PRIMARY KEY (`automovilId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+ALTER TABLE  `estudioprofesor` ADD  `personalId` INT( 11 ) NOT NULL AFTER  `cedula` ;
+
+
+
+CREATE TABLE IF NOT EXISTS `bancoprofesor` (
+  `bancoprofesorId` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreBanco` varchar(255) NOT NULL,
+  `claveInterbancaria` varchar(255) NOT NULL,
+  `sucursal` varchar(255) NOT NULL,
+  `numeroPlaza` varchar(255) NOT NULL,
+  `lugar` varchar(255) NOT NULL,
+  `correo` varchar(255) NOT NULL,
+  PRIMARY KEY (`bancoprofesorId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+ALTER TABLE  `bancoprofesor` ADD  `numCuenta` VARCHAR( 255 ) NOT NULL AFTER  `nombreBanco` ;
+
+
+ALTER TABLE  `bancoprofesor` ADD  `personalId` INT( 11 ) NOT NULL AFTER  `correo` ;
+
+ALTER TABLE  `estudioprofesor` ADD  `tipo` ENUM(  'lic',  'master',  'doc' ) NOT NULL AFTER  `estudioprofesorId` ;
+
+CREATE TABLE IF NOT EXISTS `estudioprofesor` (
+  `estudioprofesorId` int(11) NOT NULL AUTO_INCREMENT,
+  `escuela` varchar(255) NOT NULL,
+  `estudio` int(11) NOT NULL,
+  `titulo` enum('no','si') NOT NULL,
+  `actaExamen` enum('no','si') NOT NULL,
+  `cedula` enum('no','si') NOT NULL,
+  PRIMARY KEY (`estudioprofesorId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+ALTER TABLE  `repositorio` ADD  `ruta` VARCHAR( 255 ) NOT NULL AFTER  `activo` ;

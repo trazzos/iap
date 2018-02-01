@@ -198,6 +198,26 @@
                 </li>
             </ul>
         </li>
+		
+		<li class="nav-item  ">
+            <a href="javascript:;" class="nav-link nav-toggle">
+               <i class="fa fa-user" aria-hidden="true"></i>
+                <span class="title">Docentes</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/alta-docente" class="nav-link ">
+                        <span class="title">Alta</span>
+                    </a>
+                </li>
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/lst-docentes" class="nav-link ">
+                        <span class="title">Lista de Docentes</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
 		{/if}
 		<li class="nav-item  ">
             <a href="{$WEB_ROOT}/inbox/or/h" class="nav-link nav-toggle">

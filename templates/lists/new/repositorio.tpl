@@ -12,8 +12,8 @@
 			<td align="center">{$subject.nombre}</td>
 		  
 			<td align="center">
-				<a  href="{$WEB_ROOT}/graybox.php?page=add-docdocente&id={$subject.catalogodocumentoId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='ENVIAR COMPROBANTE DE PAGO'>
-				<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+				<a  href="{$WEB_ROOT}/docentes/repositorio/{$subject.ruta}"  target='_blank' title='DESCARGAR REPOSITORIO'>
+				<i class="fa fa-cloud-download" aria-hidden="true"></i>
 				</a>
 			</td>
 		 </tr>

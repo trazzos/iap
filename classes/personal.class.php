@@ -36,6 +36,13 @@ class Personal extends Main
 	private $ciudad;
 	private $firmaConstancia;
 	private $documentoId;
+	private $tipo;
+	
+	public function setTipo($value)
+	{
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 0, "Tipo");
+		$this->tipo = $value;
+	}
 	
 	public function setFirmaConstancia($value)
 	{
@@ -1205,6 +1212,46 @@ class Personal extends Main
 			
 		
 		return  true;
+	}
+	
+	public function enumerateRepositorio()
+	{
+		$sql = "SELECT 
+					*
+				FROM 
+					repositorio
+				WHERE
+					1";
+		$this->Util()->DB()->setQuery($sql);
+		$count = $this->Util()->DB()->GetResult();
+		
+		return $count;
+	}
+	
+	public function EnumerateNew()
+	{
+		
+		$filtro = "";
+		
+		if($this->tipo){
+			$filtro .= " and perfil ='".$this->tipo."'";
+		}
+		
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					personal
+				WHERE
+					1
+					".$filtro;
+		
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetResult();
+		
+		
+		
+		return $result;
 	}
 }
 
