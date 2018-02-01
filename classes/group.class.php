@@ -807,9 +807,6 @@
 					$activity = new Activity;
 					$activity->setCourseModuleId($this->coursemoduleId);
 					$actividades = $activity->Enumerate();
-					// $result[$key]["names"] = $this->Util()->DecodeTiny($result[$key]["names"]);
-					// $result[$key]["lastNamePaterno"] = $this->Util()->DecodeTiny($result[$key]["lastNamePaterno"]);
-					// $result[$key]["lastNameMaterno"] = $this->Util()->DecodeTiny($result[$key]["lastNameMaterno"]);
 					$this->Util()->DB()->setQuery("
 						SELECT teamNumber
 						FROM team
@@ -836,14 +833,10 @@
 						
 						$result[$key]{"addepUp"} += $realScore;
 					}
-				//CALCULA EL ACUMULADO
 				
-				// $cali = $student->GetAcumuladoCourseModuleActa($this->coursemoduleId,$res["alumnoId"]);
-				// $cali2 = $cali / 10;
-				// $cali2 = round($cali2, 0, PHP_ROUND_HALF_DOWN);
 				
 				if($infoCc["calificacion"]==null or $infoCc["calificacion"]==0){
-					$infoCc["calificacion"] = $realScore;
+					$infoCc["calificacion"] = $result[$key]{"addepUp"} ;
 				}else{
 					$infoCc["calificacion"] = $infoCc["calificacion"];
 				}
