@@ -180,6 +180,9 @@ $pages = array(
 	'test-docente',
 	'info-docente',
 	'view-inbox',
+	'doc-docente',
+	'add-docdocente',
+	'repositorio',
 	
 	
 	

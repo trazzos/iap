@@ -206,7 +206,11 @@
                 <span class="arrow"></span>
             </a>
         </li>
-		 <li class="nav-item  ">
+		
+		
+	
+		 <li class="nav-item {if $page == "doc-docente" || $page == "info-docente" || $page == "repositorio"} active {/if} ">
+
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <span class="title">Docente</span>
@@ -219,12 +223,12 @@
                     </a>
                 </li>
 				 <li class="nav-item  ">
-                    <a href="{$WEB_ROOT}/concepto" class="nav-link ">
+                    <a href="{$WEB_ROOT}/doc-docente" class="nav-link ">
                         <span class="title">Documentos Docente</span>
                     </a>
                 </li>
 				 <li class="nav-item  ">
-                    <a href="{$WEB_ROOT}/concepto" class="nav-link ">
+                    <a href="{$WEB_ROOT}/repositorio" class="nav-link ">
                         <span class="title">Repositorio Docente</span>
                     </a>
                 </li>

@@ -35,6 +35,7 @@ class Personal extends Main
 	private $estado;
 	private $ciudad;
 	private $firmaConstancia;
+	private $documentoId;
 	
 	public function setFirmaConstancia($value)
 	{
@@ -114,6 +115,12 @@ class Personal extends Main
 	{
 		$this->Util()->ValidateInteger($value);
 		$this->personalId = $value;
+	}
+	
+	public function setDocumentoId($value)
+	{
+		$this->Util()->ValidateInteger($value);
+		$this->documentoId = $value;
 	}
 	
 	public function setProf($value)
@@ -421,6 +428,52 @@ class Personal extends Main
 			$row = $this->Util->EncodeRow($info);
 		
 		return $row;
+	}
+	
+	
+	
+	public function InfoBasica()
+	{
+	
+		$sql = "SELECT 
+					* 
+				FROM 
+					estudioprofesor 
+				WHERE 
+					personalId = '".$this->personalId."'";
+	
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetResult();
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					bancoprofesor 
+				WHERE 
+					personalId = '".$this->personalId."'";
+	
+		$this->Util()->DB()->setQuery($sql);
+		$infoBanco = $this->Util()->DB()->GetResult();
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					automovilprofesor 
+				WHERE 
+					personalId = '".$this->personalId."'";
+	
+		$this->Util()->DB()->setQuery($sql);
+		$infoAuto = $this->Util()->DB()->GetResult();
+		
+		$data['estudios'] = $info;
+		$data['infoBanco'] = $infoBanco;
+		$data['infoAuto'] = $infoAuto;
+		
+		// echo '<pre>'; print_r($data);
+		// exit;
+		
+		return $data;
+		
 	}
 	
 	public function Save(){
@@ -781,6 +834,199 @@ class Personal extends Main
 	}
 	
 	
+	
+	public function updateInfoEscolar()
+	{
+		
+		if($this->Util()->PrintErrors()){ 
+			return false; 
+		}
+		
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+		
+		for($i=0;$i<=2;$i++){
+			
+			$tipo = '';
+			
+			if($i==0){
+				$tipo = 'lic';
+			}else if($i==1){
+				$tipo = 'master';
+			}else{
+				$tipo = 'doc';
+			}
+			
+		if($tipo=='lic'){
+			$msjError = 'Licenciatura';
+		 }else if($tipo=='doc'){
+			 $msjError = 'Doctorado';
+		 }else{
+			 $msjError = 'Maestria';
+		 }
+			
+			if($_POST[$tipo.'_escuela']==''){
+				echo 'fail[#]';	
+				echo '<font color=" red">Campo requerdo:Escuela '.$msjError.'</font>';
+				exit;
+			}
+
+		}
+		
+		for($i=0;$i<=2;$i++){
+			
+		if($i==0){
+			$tipo = 'lic';
+		}else if($i==1){
+			$tipo = 'master';
+		}else{
+			$tipo = 'doc';
+		}
+
+		$escuela = $_POST[$tipo.'_escuela'];
+		$titulo = $_POST[$tipo.'_titulo'];
+		$acta = $_POST[$tipo.'_acta'];
+		$cedula = $_POST[$tipo.'_cedula'];
+				
+				if($titulo){
+					$titulo = 'si';
+				}else{
+					$titulo = 'no';
+				}
+				
+				if($acta){
+					$acta = 'si';
+				}else{
+					$acta = 'no';
+				}
+				
+				if($cedula){
+					$cedula = 'si';
+				}else{
+					$cedula = 'no';
+				}
+				
+			 $sql = "SELECT 
+					count(*) 
+				FROM 
+					estudioprofesor 
+				WHERE 
+					personalId = ".$_SESSION["User"]["userId"]." and tipo = '".$tipo."'";
+			$this->Util()->DB()->setQuery($sql);
+			$count = $this->Util()->DB()->GetSingle();
+			
+			if($count <= 0){
+				 $sql = "INSERT INTO 
+					estudioprofesor 
+					(						
+						tipo, 
+						escuela,
+						titulo,
+						actaExamen, 
+						cedula,
+						personalId
+					)
+				 VALUES 
+					(						
+						'".$tipo."',
+						'".$escuela."',
+						'".$titulo."',
+						'".$acta."',
+						'".$cedula."',
+						'".$_SESSION["User"]["userId"]."'
+					)";
+									
+				$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->InsertData();
+			}else{
+				$sql = '
+					UPDATE 
+						estudioprofesor 
+					SET 
+						escuela = "'.$escuela.'", 
+						titulo = "'.$titulo.'",  
+						actaExamen = "'.$acta.'", 
+						cedula = "'.$cedula.'" 
+					WHERE 
+						personalId  = '.$_SESSION["User"]["userId"].' and tipo = "'.$tipo.'"';
+				$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->UpdateData();
+			}
+				
+			
+
+		}
+		
+		
+		return true;
+	}
+	
+	
+	
+	public function updateInfoBancos(){
+		
+		
+		 $sql = "SELECT 
+					count(*) 
+				FROM 
+					bancoprofesor 
+				WHERE 
+					personalId = ".$_SESSION["User"]["userId"]."";
+			$this->Util()->DB()->setQuery($sql);
+		$count = $this->Util()->DB()->GetSingle();
+		
+		// echo $count;
+		// exit;
+		if($count <= 0){
+			 $sql = "INSERT INTO 
+					bancoprofesor 
+					(						
+						nombreBanco, 
+						numCuenta, 
+						claveInterbancaria,
+						sucursal,
+						numeroPlaza, 
+						lugar,
+						correo,
+						personalId
+					)
+				 VALUES 
+					(						
+						'".$_POST['banco']."',
+						'".$_POST['ncuenta']."',
+						'".$_POST['clabeInter']."',
+						'".$_POST['sucursal']."',
+						'".$_POST['nplaza']."',
+						'".$_POST['lugar']."',
+						'".$_POST['correoNoti']."',
+						'".$_SESSION["User"]["userId"]."'
+					)";
+				// exit;		
+				$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->InsertData();
+		}else{
+			 $sql = "
+					UPDATE 
+						bancoprofesor 
+					SET 
+						numCuenta = '".$_POST['ncuenta']."',
+						nombreBanco = '".$_POST['banco']."',
+						claveInterbancaria =  '".$_POST['clabeInter']."', 
+						sucursal ='".$_POST['sucursal']."',  
+						numeroPlaza = '".$_POST['nplaza']."',
+						correo = '".$_POST['correoNoti']."',
+						lugar = '".$_POST['correoNoti']."' 
+					WHERE 
+						personalId  = ".$_SESSION["User"]["userId"]."";
+						// exit;
+				$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->UpdateData();
+		}
+		
+		return true;
+		
+	}	
+	
 	public function compruebaFirma()
 	{
 	
@@ -794,6 +1040,171 @@ class Personal extends Main
 		$count = $this->Util()->DB()->GetSingle();
 		
 		return $count;
+	}
+	
+	public function updateInfoAutomovil()
+	{
+		
+		 $sql = "SELECT 
+					count(*) 
+				FROM 
+					automovilprofesor
+				WHERE
+					personalId = ".$_SESSION["User"]["userId"]."";
+		$this->Util()->DB()->setQuery($sql);
+		$count = $this->Util()->DB()->GetSingle();
+		
+		if($count <= 0){
+			 $sql = "INSERT INTO 
+					automovilprofesor 
+					(						
+						modelo, 
+						color, 
+						placas,
+						personalId
+					)
+				 VALUES 
+					(						
+						'".$_POST['modeloAuto']."',
+						'".$_POST['colorAuto']."',
+						'".$_POST['placasAuto']."',
+						'".$_SESSION["User"]["userId"]."'
+					)";
+						
+				$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->InsertData();
+		}else{
+			 $sql = "
+					UPDATE 
+						automovilprofesor 
+					SET 
+						modelo = '".$_POST['modeloAuto']."',
+						color = '".$_POST['colorAuto']."',
+						placas =  '".$_POST['placasAuto']."'
+					WHERE 
+						personalId  = ".$_SESSION["User"]["userId"]."";
+						// exit;
+				$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->UpdateData();
+		}
+		
+		
+				
+		return true;
+		
+	}
+	
+	
+	public function enumerateCatProductos()
+	{
+		$sql = "SELECT 
+					*
+				FROM 
+					catalogodocumento
+				WHERE
+					1";
+		$this->Util()->DB()->setQuery($sql);
+		$res = $this->Util()->DB()->GetResult();
+		
+		foreach($res as $key=>$aux){
+			
+			$sql = "SELECT 
+					ruta
+				FROM 
+					documentosprofesor
+				WHERE
+					documentoId = ".$aux['catalogodocumentoId']." and personalId = ".$_SESSION["User"]["userId"]."";
+			$this->Util()->DB()->setQuery($sql);
+			$count = $this->Util()->DB()->GetRow();
+			
+			if($count['ruta'] <> ''){
+				$res[$key]['existArchivo'] = 'si';
+				$res[$key]['ruta'] = $count['ruta'];
+			}else{
+				$res[$key]['existArchivo'] = 'no';
+			}
+			
+		}
+		
+		// echo '<pre>'; print_r($count);
+		// exit;
+		
+		return $res;
+	}
+	
+	
+	
+	
+	public function adjuntarDocDocente()
+	{
+		
+		
+		$sql = "SELECT 
+					*
+				FROM 
+					documentosprofesor
+				WHERE
+					documentoId = ".$this->documentoId." and personalId = ".$this->personalId."";
+		$this->Util()->DB()->setQuery($sql);
+		$count = $this->Util()->DB()->GetSingle();
+		
+		if($count['documentosprofesorId'] == null){
+			
+			$sql = "INSERT INTO 
+					documentosprofesor 
+					(						
+						documentoId, 
+						personalId
+					)
+				 VALUES 
+					(						
+						".$this->documentoId.",
+						'".$this->personalId."'
+					)";
+								
+			$this->Util()->DB()->setQuery($sql);
+			$lastId = $this->Util()->DB()->InsertData();
+		}else{
+			$lastId = $count['documentosprofesorId'];
+		}
+		
+		// echo '<pre>'; print_r($_FILES);
+		// exit;
+		foreach($_FILES as $key=>$var)
+		{
+			
+		   switch($key)
+		   {
+			   case 'comprobante':
+				   if($var["name"]<>""){
+						$aux = explode(".",$var["name"]);
+						$extencion=end($aux);
+						$temporal = $var['tmp_name'];
+						
+						$url = DOC_ROOT;				
+						$foto_name="doc_".$lastId.".".$extencion;
+						
+						if(move_uploaded_file($temporal,$url."/docentes/documentos/".$foto_name)){		
+																	
+											
+							$sql = 'UPDATE 		
+								documentosprofesor SET 		
+								ruta = "'.$foto_name.'"			      		
+								WHERE documentosprofesorId = '.$lastId.'';		
+								
+								$this->Util()->DB()->setQuery($sql);		
+								$this->Util()->DB()->UpdateData();
+
+						}
+					}
+				break;
+		  }
+		}
+		
+		
+			
+		
+		return  true;
 	}
 }
 

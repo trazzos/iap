@@ -1,4 +1,6 @@
 <?php
+// echo '<pre>'; print_r($_POST);
+// exit;
 	include_once('../init.php');
 	include_once('../config.php');
 	include_once(DOC_ROOT.'/libraries.php');
@@ -40,6 +42,58 @@
 			}
 	  break; 
 		
+		
+	  case 2:
+		// echo '<pre>'; print_r($_POST);
+		if($personal->updateInfoEscolar()){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>La Informacion se actualizo correctamente</strong>
+				</div>
+				';
+			}else{
+				echo 'fail[#]';
+			}
+		
+	  break;
+	  
+	  case 3:
+	  
+		// echo '<pre>'; print_r($_POST);
+		if($personal->updateInfoBancos()){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>La Informacion se actualizo correctamente</strong>
+				</div>
+				';
+			}else{
+				echo 'fail[#]';
+			}
+	  
+	  break;
+	  
+	  case 4:
+	  
+		// echo '<pre>'; print_r($_POST);
+		if($personal->updateInfoAutomovil()){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>La Informacion se actualizo correctamente</strong>
+				</div>
+				';
+			}else{
+				echo 'fail[#]';
+			}
+			
+	  break;
+	
+	
 	}
 
 ?>

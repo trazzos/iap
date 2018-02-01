@@ -240,6 +240,35 @@ switch($_POST["type"])
 		}
 
 	break;
+	
+	case 'adjuntarDocDocente':
+	
+		// echo '<pre>'; print_r($_FILES);
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+		$personal->setDocumentoId($_POST['catId']);
+		$personal->setPersonalId($_SESSION["User"]["userId"]);
+		if($personal->adjuntarDocDocente()){
+				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El mensaje se adjunto correctamente</strong>
+				</div>';
+				echo '[#]';
+				$personal->setPersonalId($_SESSION['User']['userId']);
+				$registros = $personal->enumerateCatProductos();
+				$smarty->assign("registros", $registros);
+				$smarty->assign("DOC_ROOT", DOC_ROOT);
+				$smarty->display(DOC_ROOT.'/templates/lists/new/doc-docente.tpl');
+				
+			}else{
+				echo "fail[#]";
+				//$util->ShowErrors();
+			}
+	
+	break;
+	
+	
 }
 
 ?>

@@ -70,7 +70,7 @@
 							<td>RFC
 								<input type="text" name="rfc" class='form-control' value='{$info.rfc}'></td>
 							<td>Fecha Nacimiento
-								<input type="text" name="nacimiento" class='form-control' value='{$info.fecha_nacimiento}'></td>
+								<input type="text" name="nacimiento" id='fecha1' onClick='loadFecha(1)' class='form-control' value='{$info.fecha_nacimiento}'></td>
 						</tr>
 						<tr>
 							<td>Numero INE
@@ -105,65 +105,16 @@
 				</center>
 			</div>
 			<div class="tab-pane " id="portlet_tabp_2" >
-				Licenciatura
-				<br>
-				<br>
-				Escuela Licenciatura
-				<input type="text" name="ciudad" class='form-control'><br>
-				<input type="checkbox" name="" id="">Titulo<br>
-				<input type="checkbox" name="" id="">Acta de Examen<br>
-				<input type="checkbox" name="" id="">Cedula<br>
-				<br>
-				Maestria
-				<br>
-				<br>
-				Escuela Maestria
-				<input type="text" name="ciudad" class='form-control'><br>
-				<input type="checkbox" name="" id="">Titulo<br>
-				<input type="checkbox" name="" id="">Acta de Examen<br>
-				<input type="checkbox" name="" id="">Cedula<br>
-				<br>
-				Doctorado
-				<br>
-				<br>
-				Escuela Doctorado
-				<input type="text" name="ciudad" class='form-control'><br>
-				<input type="checkbox" name="" id="">Titulo<br>
-				<input type="checkbox" name="" id="">Acta de Examen<br>
-				<input type="checkbox" name="" id="">Cedula<br>
+				{include file="{$DOC_ROOT}/templates/forms/informacion-escolar.tpl"}
+				
 			</div>
 			<div class="tab-pane " id="portlet_tabp_3" >
-				Favor de completar todos los campos, sino cuenta con información en alguno de ellos colocar las siglas N/D, una vez completado todos los
-				campos se le habilitará el botón 'Descargar' para que pueda imprimir la 'Carta de Autorización de pago' y lo pueda firmar, este archivo 
-				deberá escanearlo y subirlo en la sección de 'DOCUMENOS DEL DOCENTE'.
-				<br>
-				<br>
-				Institución Bancaria
-				<input type="text" name="banco" class='form-control'><br>
-				No. Cuenta
-				<input type="text" name="ncuenta" class='form-control'><br>
-				CLABE Interbancaria
-				<input type="text" name="clabeInter" class='form-control'><br>
-				Sucursal
-				<input type="text" name="sucursal" class='form-control'><br>
-				Numero de Plaza
-				<input type="text" name="nplaza" class='form-control'><br>
-				Lugar
-				<input type="text" name="lugar" class='form-control'><br>
-				Correo Electrónico para notificación de pago
-				<input type="text" name="correoNoti" class='form-control'><br>
+				{include file="{$DOC_ROOT}/templates/forms/informacion-bancaria.tpl"}
+				
 			</div>
 			<div class="tab-pane " id="portlet_tabp_4" >
-				Si usted impartirá clases presenciales y llevará su automóvil al IAP-Chiapas los dias de clase, le pedimos de favor
-				llenar la siguiente información para poder apartarle un cajón el dia de sus clases
-				<br>
-				<br>
-				Modelo automóvil
-				<input type="text" name="modeloAuto" class='form-control'><br>
-				Color automóvil
-				<input type="text" name="colorAuto" class='form-control'><br>
-				Placas automóvil
-				<input type="text" name="placasAuto" class='form-control'><br>
+				{include file="{$DOC_ROOT}/templates/forms/informacion-automovil.tpl"}
+				
 			</div>
 		</div>
 	</div>

@@ -176,6 +176,7 @@ $pages = array(
 	'confirma-baja',
 	'test-docente',
 	'nuevo-inbox',
+	'add-docdocente',
 
 );
 
