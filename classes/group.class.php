@@ -836,7 +836,12 @@
 				
 				
 				if($infoCc["calificacion"]==null or $infoCc["calificacion"]==0){
+					
+				
+					$result[$key]{"addepUp"} = $result[$key]{"addepUp"} / 10;
+					$result[$key]{"addepUp"} = round($result[$key]{"addepUp"}, 0, PHP_ROUND_HALF_DOWN);
 					$infoCc["calificacion"] = $result[$key]{"addepUp"} ;
+					
 				}else{
 					$infoCc["calificacion"] = $infoCc["calificacion"];
 				}
