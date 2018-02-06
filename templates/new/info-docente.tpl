@@ -54,55 +54,57 @@
 		
 			<div class="tab-pane active" id="portlet_tabp_1">
 				<form  id='frmGral_1'>
-					<input type="hidden" name="personalId" class='form-control' value='{$User.userId}'>
+					<input type="hidden" name="personalId" class='form-control' value='{$info.personalId}'>
 					<table  >
 						<tr>
 							<td>Nombre
-								<input type="text" name="nombre" class='form-control' value='{$info.name}'></td>
+								<input type="text" name="nombre" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.name}'></td>
 							<td>Apellido Paterno
-								<input type="text" name="paterno" class='form-control' value='{$info.lastname_paterno}'></td>
+								<input type="text" name="paterno" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.lastname_paterno}'></td>
 							<td>Apellido Materno
-								<input type="text" name="materno" class='form-control' value='{$info.lastname_materno}'></td>
+								<input type="text" name="materno" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.lastname_materno}'></td>
 						</tr>
 						<tr>
 							<td>Correo Electronico
-								<input type="text" name="correo" class='form-control' value='{$info.correo}'></td>
+								<input type="text" name="correo" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.correo}'></td>
 							<td>RFC
-								<input type="text" name="rfc" class='form-control' value='{$info.rfc}'></td>
+								<input type="text" name="rfc" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.rfc}'></td>
 							<td>Fecha Nacimiento
-								<input type="text" name="nacimiento" id='fecha1' onClick='loadFecha(1)' class='form-control' value='{$info.fecha_nacimiento}'></td>
+								<input type="text" name="nacimiento" id='fecha1' {if $cId eq 'si'} disabled {/if} onClick='loadFecha(1)' class='form-control' value='{$info.fecha_nacimiento}'></td>
 						</tr>
 						<tr>
 							<td>Numero INE
-								<input type="text" name="ine" class='form-control' value='{$info.INE}'></td>
+								<input type="text" name="ine" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.INE}'></td>
 							<td>Curp
-								<input type="text" name="curp" class='form-control' value='{$info.curp}'></td>
+								<input type="text" name="curp" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.curp}'></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td colspan='3'>Domicilio</td>
 						<tr>
 						<tr>
-							<td >Calle:<input type="text" name="calle" class='form-control' value='{$info.calle}'></td>
-							<td >Numero Interior<input type="text" name="interior" class='form-control'  value='{$info.nInterior}'></td>
-							<td >Numero Exterior<input type="text" name="exterior" class='form-control' value='{$info.nExterior}'></td>
+							<td >Calle:<input type="text" name="calle" class='form-control' value='{$info.calle}' {if $cId eq 'si'} disabled {/if}></td>
+							<td >Numero Interior<input type="text" name="interior" class='form-control'  {if $cId eq 'si'} disabled {/if} value='{$info.nInterior}'></td>
+							<td >Numero Exterior<input type="text" name="exterior" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.nExterior}'></td>
 						<tr>
 						<tr>
-							<td >Colonia:<input type="text" name="colonia" class='form-control' value='{$info.colonia}'></td>
-							<td >Estado<input type="text" name="estado" class='form-control' value='{$info.estado}'></td>
-							<td >Ciudad<input type="text" name="ciudad" class='form-control' value='{$info.ciudad}'></td>
+							<td >Colonia:<input type="text" name="colonia" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.colonia}'></td>
+							<td >Estado<input type="text" name="estado" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.estado}'></td>
+							<td >Ciudad<input type="text" name="ciudad" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.ciudad}'></td>
 						<tr>
 					</table>
 				</form>
-				<br>
-				<br>
-				<div id="msj_1">
-				</div>
-				<center>
-				<button onClick='guardarInformacion(1)' class="btn green" >
-				Guardar
-				</button>
-				</center>
+				{if $cId ne 'si'}
+					<br>
+					<br>
+					<div id="msj_1">
+					</div>
+					<center>
+					<button onClick='guardarInformacion(1)' class="btn green" >
+					Guardar
+					</button>
+					</center>
+				{/if}
 			</div>
 			<div class="tab-pane " id="portlet_tabp_2" >
 				{include file="{$DOC_ROOT}/templates/forms/informacion-escolar.tpl"}

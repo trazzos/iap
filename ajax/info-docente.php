@@ -44,7 +44,9 @@
 		
 		
 	  case 2:
-		// echo '<pre>'; print_r($_POST);
+		 // echo '<pre>'; print_r($_POST);
+		// exit;
+		$personal->setPersonalId($_POST['personalId']);
 		if($personal->updateInfoEscolar()){
 				echo 'ok[#]';
 				echo '
@@ -62,6 +64,7 @@
 	  case 3:
 	  
 		// echo '<pre>'; print_r($_POST);
+		$personal->setPersonalId($_POST['personalId']);
 		if($personal->updateInfoBancos()){
 				echo 'ok[#]';
 				echo '
@@ -79,6 +82,7 @@
 	  case 4:
 	  
 		// echo '<pre>'; print_r($_POST);
+		$personal->setPersonalId($_POST['personalId']);
 		if($personal->updateInfoAutomovil()){
 				echo 'ok[#]';
 				echo '

@@ -184,6 +184,8 @@ $pages = array(
 	'add-docdocente',
 	'repositorio',
 	'lst-docentes',
+	'cat-doc-docente',
+	'add-cat-doc-docente',
 	
 	
 	

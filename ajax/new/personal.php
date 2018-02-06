@@ -17,9 +17,7 @@ switch($_POST["type"])
         $roles = $util->EncodeResult($listRoles);
 		
         $lstPd = $personal->enumerateAbreviaciones();
-		
-		// echo '<pre>'; print_r($lstPd);
-		// exit;
+
 
         $smarty->assign('lstPd', $lstPd);
         $smarty->assign('states', $states);
@@ -243,11 +241,9 @@ switch($_POST["type"])
 	
 	case 'adjuntarDocDocente':
 	
-		// echo '<pre>'; print_r($_FILES);
-		// echo '<pre>'; print_r($_POST);
-		// exit;
+		
 		$personal->setDocumentoId($_POST['catId']);
-		$personal->setPersonalId($_SESSION["User"]["userId"]);
+		$personal->setPersonalId($_POST["personalId"]);
 		if($personal->adjuntarDocDocente()){
 				echo "ok[#]";
 				echo '<div class="alert alert-info alert-dismissable">
@@ -255,8 +251,10 @@ switch($_POST["type"])
 				  <strong>El mensaje se adjunto correctamente</strong>
 				</div>';
 				echo '[#]';
-				$personal->setPersonalId($_SESSION['User']['userId']);
+				$personal->setPersonalId($_POST["personalId"]);
 				$registros = $personal->enumerateCatProductos();
+				$smarty->assign("cId", $_POST['cId']);
+				$smarty->assign("personalId", $_POST['personalId']);
 				$smarty->assign("registros", $registros);
 				$smarty->assign("DOC_ROOT", DOC_ROOT);
 				$smarty->display(DOC_ROOT.'/templates/lists/new/doc-docente.tpl');
@@ -268,7 +266,129 @@ switch($_POST["type"])
 	
 	break;
 	
+	case 'onDelete':
+			
+			
+		// echo '<pre>'; print_r($_POST);	
+		$personal->setPersonalId($_POST["Id"]);
+		if($personal->onDelete()){
+				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Docente se elimino correctamente</strong>
+				</div>';
+				echo '[#]';
+				$personal->setPersonalId($_POST["Id"]);
+				$personal->setTipo('Maestro');
+				$personals = $personal->EnumerateNew();
+				$smarty->assign("cId", $_POST['cId']);
+				$smarty->assign("personalId", $_POST['personalId']);
+				$smarty->assign("personals", $personals);
+				$smarty->assign("DOC_ROOT", DOC_ROOT);
+				$smarty->display(DOC_ROOT.'/templates/lists/lst-docentes.tpl');
+				
+			}else{
+				echo "fail[#]";
+				//$util->ShowErrors();
+			}
+			
+	break;
 	
+	case 'onBuscar':
+	
+		// echo '<pre>'; print_r($_POST);
+			$personal->setTipo('Maestro');
+		$personal->setName($_POST['nombre']);
+		$personals = $personal->EnumerateNew();
+		$smarty->assign("personals", $personals);
+		
+		$smarty->display(DOC_ROOT.'/templates/lists/lst-docentes.tpl');
+	
+	break;
+	
+	
+	case 'onSave':
+	
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+			$personal->setPersonalId($_POST['personalId']);
+			$personal->setCorreo($_POST['correo']);
+			$personal->setName($_POST['nombre']);
+			$personal->setLastnamePaterno($_POST['paterno']);
+			$personal->setLastnameMaterno($_POST['materno']);
+			$personal->setRfc($_POST['rfc']);
+			$personal->setFechaNacimiento($_POST['nacimiento']);
+			$personal->setUserName($_POST['usuario']);
+			$personal->setPasswd($_POST['pass']);
+			if($personal->addDocente()){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Docente se agrego correctamente</strong>
+				</div>
+				';
+				echo '[#]';
+					$personal->setName('');
+					$personal->setTipo('Docente');
+					$personals = $personal->EnumerateNew();
+					$smarty->assign("personals", $personals);
+					$smarty->display(DOC_ROOT.'/templates/lists/lst-docentes.tpl');
+			}else{
+				echo 'fail[#]';
+			}
+	break;
+	
+	case 'onSaveDocumento':
+	
+	
+		// echo '<pre>'; print_r($_POST);
+		
+			// $docente->setPersonalId($_POST['personalId']);
+			$docente->setId($_POST['docId']);
+			$docente->setNombre($_POST['nombre']);
+			$docente->setDescripcion($_POST['descripcion']);
+			if($docente->onSaveDocumento()){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Documento se agrego correctamente</strong>
+				</div>
+				';
+				 echo '[#]';
+					$personal->setPersonalId($_SESSION['User']['userId']);
+					$registros = $personal->enumerateCatProductos();
+					$smarty->assign("registros", $registros);
+					$smarty->display(DOC_ROOT.'/templates/lists/new/add-cat-doc-docente.tpl');
+			}else{
+				echo 'fail[#]';
+			}
+	
+	break;
+	
+	case 'onDeleteDocumento':
+	echo '<pre>'; print_r($_POST);	
+	exit;
+		$docente->setPersonalId($_POST["Id"]);
+		if($docente->onDeleteDocumento()){
+				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Documento se elimino correctamente</strong>
+				</div>';
+				// echo '[#]';
+					// $personal->setPersonalId($_SESSION['User']['userId']);
+					// $registros = $personal->enumerateCatProductos();
+					// $smarty->assign("registros", $registros);
+					// $smarty->display(DOC_ROOT.'/templates/lists/new/add-cat-doc-docente.tpl');
+				
+			}else{
+				echo "fail[#]";
+				//$util->ShowErrors();
+			}
+			
+	break;
 }
 
 ?>

@@ -9,18 +9,19 @@
     </div>
     <div class="portlet-body">
          <div class="form-body">
-				<form class="form-horizontal" id="frmGral" method="post"  >
-				<input type="hidden" id="type" name="type" value="adjuntarDocDocente"/>
-				<input type="hidden" id="solicitudId" name="catId" value="{$catId}"/>
-					<div class="form-group">
-						<label class="col-md-3 control-label">Archivo:</label>
-						<div class="col-md-8">
-						   <input type="file" name="comprobante">
-						   <br>
-						   <br>
+					<form class="form-horizontal" id="frmGral" method="post"  >
+					<input type="hidden" id="type" name="type" value="adjuntarDocDocente"/>
+					<input type="hidden"  name="personalId" value="{$personalId}"/>
+					<input type="hidden" id="solicitudId" name="catId" value="{$catId}"/>
+						<div class="form-group">
+							<label class="col-md-3 control-label">Archivo:</label>
+							<div class="col-md-8">
+							   <input type="file" name="comprobante">
+							   <br>
+							   <br>
+							</div>
 						</div>
-					</div>
-			</form>
+					</form>
 					<div class="form-actions">
 						<div class="row">
 							<div class="col-md-offset-3 col-md-9">

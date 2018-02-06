@@ -6,12 +6,15 @@
 	
 	// echo '<pre>'; print_r($_GET);
 	// exit;
-	$personal->setPersonalId($_SESSION['User']['userId']);
-	$registros = $personal->enumerateCatProductos();
+	$docente->setId($_GET['id']);
+	$Info = $docente->infoDocumento();
 	
+	// echo '<pre>'; print_r($registros);
+	// exit;
 	
 	$smarty->assign("catId", $_GET['id']);	
 	$smarty->assign("personalId", $_SESSION['User']['userId']);	
+	$smarty->assign("Info", $Info);	
 	$smarty->assign("registros", $registros);	
 		
 	

@@ -840,6 +840,48 @@ class Personal extends Main
 		return true;
 	}
 	
+	public function addDocente()
+	{
+		
+		if($this->Util()->PrintErrors()){ 
+			return false; 
+		}
+		
+		
+		$sql = "INSERT INTO 
+					personal 
+					(						
+						name, 
+						lastname_paterno,
+						lastname_materno,
+						correo, 
+						rfc,
+						fecha_nacimiento,
+						username,
+						passwd,
+						perfil
+					)
+				 VALUES 
+					(						
+						'".$this->name."',
+						'".$this->lastnamePaterno."',
+						'".$this->lastnameMaterno."',
+						'".$this->correo."',
+						'".$this->rfc."',
+						'".$this->fechaNacimiento."',
+						'".$this->username."',
+						'".$this->passwd."',
+						'Docente'
+					)";
+									
+				$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->InsertData();
+		
+
+		
+		return true;
+	}
+	
 	
 	
 	public function updateInfoEscolar()
@@ -918,7 +960,7 @@ class Personal extends Main
 				FROM 
 					estudioprofesor 
 				WHERE 
-					personalId = ".$_SESSION["User"]["userId"]." and tipo = '".$tipo."'";
+					personalId = ".$this->personalId." and tipo = '".$tipo."'";
 			$this->Util()->DB()->setQuery($sql);
 			$count = $this->Util()->DB()->GetSingle();
 			
@@ -940,13 +982,13 @@ class Personal extends Main
 						'".$titulo."',
 						'".$acta."',
 						'".$cedula."',
-						'".$_SESSION["User"]["userId"]."'
+						'".$this->personalId."'
 					)";
 									
 				$this->Util()->DB()->setQuery($sql);
 				$this->Util()->DB()->InsertData();
 			}else{
-				$sql = '
+				 $sql = '
 					UPDATE 
 						estudioprofesor 
 					SET 
@@ -955,7 +997,7 @@ class Personal extends Main
 						actaExamen = "'.$acta.'", 
 						cedula = "'.$cedula.'" 
 					WHERE 
-						personalId  = '.$_SESSION["User"]["userId"].' and tipo = "'.$tipo.'"';
+						personalId  = '.$this->personalId.' and tipo = "'.$tipo.'"';
 				$this->Util()->DB()->setQuery($sql);
 				$this->Util()->DB()->UpdateData();
 			}
@@ -978,7 +1020,7 @@ class Personal extends Main
 				FROM 
 					bancoprofesor 
 				WHERE 
-					personalId = ".$_SESSION["User"]["userId"]."";
+					personalId = ".$this->personalId."";
 			$this->Util()->DB()->setQuery($sql);
 		$count = $this->Util()->DB()->GetSingle();
 		
@@ -1006,7 +1048,7 @@ class Personal extends Main
 						'".$_POST['nplaza']."',
 						'".$_POST['lugar']."',
 						'".$_POST['correoNoti']."',
-						'".$_SESSION["User"]["userId"]."'
+						'".$this->personalId."'
 					)";
 				// exit;		
 				$this->Util()->DB()->setQuery($sql);
@@ -1024,7 +1066,7 @@ class Personal extends Main
 						correo = '".$_POST['correoNoti']."',
 						lugar = '".$_POST['correoNoti']."' 
 					WHERE 
-						personalId  = ".$_SESSION["User"]["userId"]."";
+						personalId  = ".$this->personalId."";
 						// exit;
 				$this->Util()->DB()->setQuery($sql);
 				$this->Util()->DB()->UpdateData();
@@ -1057,7 +1099,7 @@ class Personal extends Main
 				FROM 
 					automovilprofesor
 				WHERE
-					personalId = ".$_SESSION["User"]["userId"]."";
+					personalId = ".$this->personalId."";
 		$this->Util()->DB()->setQuery($sql);
 		$count = $this->Util()->DB()->GetSingle();
 		
@@ -1075,7 +1117,7 @@ class Personal extends Main
 						'".$_POST['modeloAuto']."',
 						'".$_POST['colorAuto']."',
 						'".$_POST['placasAuto']."',
-						'".$_SESSION["User"]["userId"]."'
+						'".$this->personalId."'
 					)";
 						
 				$this->Util()->DB()->setQuery($sql);
@@ -1089,7 +1131,7 @@ class Personal extends Main
 						color = '".$_POST['colorAuto']."',
 						placas =  '".$_POST['placasAuto']."'
 					WHERE 
-						personalId  = ".$_SESSION["User"]["userId"]."";
+						personalId  = ".$this->personalId."";
 						// exit;
 				$this->Util()->DB()->setQuery($sql);
 				$this->Util()->DB()->UpdateData();
@@ -1120,7 +1162,7 @@ class Personal extends Main
 				FROM 
 					documentosprofesor
 				WHERE
-					documentoId = ".$aux['catalogodocumentoId']." and personalId = ".$_SESSION["User"]["userId"]."";
+					documentoId = ".$aux['catalogodocumentoId']." and personalId = ".$this->personalId."";
 			$this->Util()->DB()->setQuery($sql);
 			$count = $this->Util()->DB()->GetRow();
 			
@@ -1237,6 +1279,13 @@ class Personal extends Main
 			$filtro .= " and perfil ='".$this->tipo."'";
 		}
 		
+		if($this->name){
+			$filtro .= " and name like '%".$this->name."%'";
+		}
+		
+		
+		
+		$filtro .= " and estatus ='activo'";
 		
 		$sql = "SELECT 
 					* 
@@ -1245,7 +1294,7 @@ class Personal extends Main
 				WHERE
 					1
 					".$filtro;
-		
+		// exit;
 		$this->Util()->DB()->setQuery($sql);
 		$result = $this->Util()->DB()->GetResult();
 		
@@ -1253,6 +1302,29 @@ class Personal extends Main
 		
 		return $result;
 	}
+	
+	
+	public function onDelete()
+	{
+		if($this->Util()->PrintErrors()){ 
+			return false; 
+		}
+
+		 $sql = "UPDATE
+					personal SET estatus = 'eliminado'
+				WHERE 
+					personalId = ".$this->personalId;
+					
+		
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}	
+	
+	
+	
+	
 }
 
 

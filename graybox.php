@@ -177,6 +177,12 @@ $pages = array(
 	'test-docente',
 	'nuevo-inbox',
 	'add-docdocente',
+	'info-docente',
+	'doc-docente',
+	'add-docente-admin',
+	'cat-doc-admin',
+	'add-cat-doc-docente',
+	'add-cat-doc-docente-add',
 
 );
 
@@ -186,6 +192,8 @@ if(!in_array($_GET['page'], $pages))
 }
 
 
+// echo '<pre>'; print_r($_GET);
+// exit;
 
 $smarty->assign('positionId', $User['positionId']);
 // echo  "<pre>"; print_r($_GET);

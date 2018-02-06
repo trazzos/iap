@@ -198,7 +198,41 @@
                 </li>
             </ul>
         </li>
+		<!--
+		<li class="nav-item  ">
+            <a href="{$WEB_ROOT}/lst-docentes" class="nav-link nav-toggle">
+                <i class="fa fa-folder-open" aria-hidden="true"></i>
+                <span class="title">Docentes</span>
+               
+            </a>
+        </li>-->
+		 <li class="nav-item {if $page == "doc-docente" || $page == "info-docente" || $page == "repositorio"} active {/if} ">
+
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span class="title">Docentes</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/lst-docentes" class="nav-link ">
+                        <span class="title">Lista de Docentes</span>
+                    </a>
+                </li>
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/add-cat-doc-docente" class="nav-link ">
+                        <span class="title">Documentos Docente</span>
+                    </a>
+                </li>
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/repositorio" class="nav-link ">
+                        <span class="title">Repositorio Docente</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
 		
+		<!--
 		<li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                <i class="fa fa-user" aria-hidden="true"></i>
@@ -217,7 +251,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li>-->
 		{/if}
 		<li class="nav-item  ">
             <a href="{$WEB_ROOT}/inbox/or/h" class="nav-link nav-toggle">

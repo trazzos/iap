@@ -2,7 +2,7 @@
 
 
 // exit;
-	$personal->setTipo('Maestro');
+	$personal->setTipo('Docente');
 	$personals = $personal->EnumerateNew();
 
 	// echo '<pre>'; print_r($personals);

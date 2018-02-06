@@ -1168,7 +1168,7 @@ class User extends Main
 			WHERE 
 				username = '".$this->username."' 
 			AND 
-				MD5(passwd) = '".md5($this->password)."'
+				MD5(passwd) = '".md5($this->password)."' and estatus = 'activo'
 		");
 		$row = $this->Util()->DB()->GetRow();
 		

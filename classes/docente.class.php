@@ -6,6 +6,9 @@ class Docente extends Empresa{
 	private $id_rfc;
 	private $respuesta;
 	private $comentario;
+	private $nombre;
+	private $descripcion;
+	private $Id;
 
 	
 	public function setIdSerie($value){
@@ -13,12 +16,30 @@ class Docente extends Empresa{
 		$this->id_serie = $value;
 	}
 	
+	
+	public function setId($value){
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, '');
+		$this->Id = $value;
+	}
 
 	
 	public function setRespuesta($value){
 		
 		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, 'Respuesta');
 		$this->respuesta = $value;
+	}
+	
+	
+	public function setNombre($value){
+		
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, 'Nombre');
+		$this->nombre = $value;
+	}
+	
+	public function setDescripcion($value){
+		
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, 'Descripcion');
+		$this->descripcion = $value;
 	}
 	
 	public function setComentario($value){
@@ -118,6 +139,76 @@ class Docente extends Empresa{
 
 		
 	}
+	
+	public function onSaveDocumento()
+	{
+		
+		if ($this->Id){
+			 $sql = "
+				UPDATE
+					catalogodocumento 
+				SET 
+					nombre = '".$this->nombre."',
+					descripcion = '".$this->descripcion."'
+				WHERE 
+					catalogodocumentoId = ".$this->Id;
+					
+		
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->ExecuteQuery();
+		}else{
+			
+			$sql = "INSERT INTO 
+			catalogodocumento 
+			(						
+				nombre, 
+				descripcion
+			)
+		 VALUES 
+			(						
+				'".$this->nombre."',
+				'".$this->descripcion."'
+			)";
+								
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
+		}
+		
+					
+		return true;
+	}	
+	
+	public function infoDocumento()
+	{
+		$sql = 'SELECT * 
+				from
+					catalogodocumento 
+				where
+					catalogodocumentoId = '.$this->Id.'';
+		$this->Util()->DB()->setQuery($sql);
+		$lst = $this->Util()->DB()->GetRow();
+		
+		return $lst;
+	}
+	
+	public function onDeleteDocumento()
+	{
+		echo $sql = "
+				UPDATE
+					catalogodocumento 
+				SET 
+					estatus = 'eliminado'
+				WHERE 
+					catalogodocumentoId = ".$this->Id;
+					
+		
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}
+	
+	
 	
 }//Docente
 
