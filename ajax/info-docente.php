@@ -20,6 +20,7 @@
 			$personal->setNExterior($_POST['exterior']);
 			$personal->setNInterior($_POST['interior']);
 			$personal->setColonia($_POST['colonia']);
+			$personal->setCelular($_POST['celular']);
 			$personal->setEstado($_POST['estado']);
 			$personal->setCiudad($_POST['ciudad']);
 			$personal->setCorreo($_POST['correo']);
@@ -95,6 +96,33 @@
 				echo 'fail[#]';
 			}
 			
+	  break;
+	  
+	  
+	  case 'onDelete':
+	  
+		// echo '<pre>'; print_r($_POST);
+		$personal->setPersonalId($_POST['personalId']);
+		if($personal->onDeleteDocumento($_POST['Id'])){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Documento se ha eliminado correctamente</strong>
+				</div>
+				';
+				echo '[#]';
+				$personal->setPersonalId($_POST["personalId"]);
+				$registros = $personal->enumerateCatProductos();
+				// $smarty->assign("cId", $_POST['cId']);
+				$smarty->assign("personalId", $_POST['personalId']);
+				$smarty->assign("registros", $registros);
+				$smarty->assign("DOC_ROOT", DOC_ROOT);
+				$smarty->display(DOC_ROOT.'/templates/lists/new/doc-docente.tpl');
+			}else{
+				echo 'fail[#]';
+			}
+	  
 	  break;
 	
 	

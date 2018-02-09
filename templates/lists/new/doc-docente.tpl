@@ -16,7 +16,7 @@
 				{if $subject.existArchivo eq 'si'}
 						<img src="{$WEB_ROOT}/images/good.png">
 				{else}
-						<img src="{$WEB_ROOT}/images/bad.png">
+						<img src="{$WEB_ROOT}/images/bad.png" style="width:19px">
 				{/if}
 			</td>
 			<td align="center">{$subject.nombre}</td>
@@ -34,8 +34,13 @@
 			
 				{if $cId ne 'admin'}
 					{if $subject.existArchivo ne 'si'}
-						<a  href="{$WEB_ROOT}/graybox.php?page=add-docdocente&id={$subject.catalogodocumentoId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='ENVIAR COMPROBANTE DE PAGO'>
-						<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+						<a  href="{$WEB_ROOT}/graybox.php?page=add-docdocente&id={$subject.catalogodocumentoId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='SUBIR DOCUMENTO'>
+						
+						<i class="material-icons md-16">cloud_upload</i>
+						</a>
+					{else}
+						<a  href="javascript:void(0)" onClick='onDelete("{$subject.catalogodocumentoId}","{$personalId}")'  title='ELIMINAR'>
+						<i class="material-icons md-16">delete_forever</i>
 						</a>
 					{/if}					
 				{else}
@@ -43,6 +48,11 @@
 					{if $subject.existArchivo ne 'si'}
 						<a  href="#"  onClick="loadTR('{$subject.catalogodocumentoId}')" title='SUBIR DOCUMENTO'>
 							<i class="material-icons md-16">cloud_upload</i>
+							
+						</a>
+					{else}
+						<a  href="javascript:void(0)" onClick='onDeleteDoc("{$subject.catalogodocumentoId}","{$personalId}")'  title='ELIMINAR'>
+						<i class="material-icons md-16">delete_forever</i>
 						</a>
 					{/if}
 				{/if}

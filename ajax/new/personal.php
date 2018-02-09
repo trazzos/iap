@@ -248,7 +248,7 @@ switch($_POST["type"])
 				echo "ok[#]";
 				echo '<div class="alert alert-info alert-dismissable">
 				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-				  <strong>El mensaje se adjunto correctamente</strong>
+				  <strong>El Documento se adjunto correctamente</strong>
 				</div>';
 				echo '[#]';
 				$personal->setPersonalId($_POST["personalId"]);
@@ -297,7 +297,7 @@ switch($_POST["type"])
 	case 'onBuscar':
 	
 		// echo '<pre>'; print_r($_POST);
-			$personal->setTipo('Maestro');
+			$personal->setTipo('Docente');
 		$personal->setName($_POST['nombre']);
 		$personals = $personal->EnumerateNew();
 		$smarty->assign("personals", $personals);

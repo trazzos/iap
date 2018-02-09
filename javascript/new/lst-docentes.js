@@ -7,7 +7,7 @@ function guardarInformacion(Id){
 	  	url: WEB_ROOT+'/ajax/info-docente.php',
 	  	data: $("#frmGral_"+Id).serialize(true)+'&Id='+Id+'&type='+Id,
 		beforeSend: function(){			
-			// $('#tblContent').html(LOADER3);
+			
 		},
 	  	success: function(response) {	
 		
@@ -128,6 +128,41 @@ function onDelete(Id){
 
 
 
+function onDeleteDoc(Id,personaId){
+	
+	var resp = confirm("Esta seguro de eliminar el Documento?");
+	
+	if(!resp)
+		return;
+	
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/info-docente.php',
+	  	data: $("#frmGral").serialize(true)+'&Id='+Id+'&type=onDelete&personaId'+personaId,
+		beforeSend: function(){			
+			// $('#tblContent').html(LOADER3);
+		},
+	  	success: function(response) {	
+		
+			console.log(response)
+			var splitResp = response.split("[#]");
+
+			if($.trim(splitResp[0]) == "ok"){
+					$("#msj").html(splitResp[1]);
+					$("#container").html(splitResp[2]);
+				}
+			else if(splitResp[0] == "fail"){
+				$("#msj").html(splitResp[1]);
+			}
+		}
+    });
+	
+}
+
+
+
+
+
 function onBuscar(Id){
 	
 	
@@ -192,3 +227,13 @@ function closeModal(){
 	
 }
 
+function activaEdicion(){
+	
+	
+	$('.yellow').hide()
+	$('#frmGral_1').find('input, textarea, button, select').removeAttr('disabled');
+	$('#frmGral_2').find('input, textarea, button, select').removeAttr('disabled');
+	$('#frmGral_3').find('input, textarea, button, select').removeAttr('disabled');
+	$('#frmGral_4').find('input, textarea, button, select').removeAttr('disabled');
+	$('.divControls').show()
+}

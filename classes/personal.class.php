@@ -821,6 +821,7 @@ class Personal extends Main
 					lastname_paterno = '".$this->lastnamePaterno."',
 					lastname_materno = '".$this->lastnameMaterno."',
 					correo = '".$this->correo."',
+					celular = '".$this->celular."',
 					rfc = '".$this->rfc."',
 					INE = '".$this->ine."',
 					calle = '".$this->calle."',
@@ -1322,6 +1323,22 @@ class Personal extends Main
 		return true;
 	}	
 	
+	public function onDeleteDocumento($Id)
+	{
+		if($this->Util()->PrintErrors()){ 
+			return false; 
+		}
+	
+	
+		
+			$sql = 'delete from documentosprofesor where personalId = '.$this->personalId.' and documentoId = '.$Id.'';
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->ExecuteQuery();
+			
+			return true;
+	
+	
+	}
 	
 	
 	

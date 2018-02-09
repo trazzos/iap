@@ -14,7 +14,7 @@
 		
 		<div style='display:-webkit-inline-box'>
 			<form id='frmFlt'>
-			<b>Nombre</b><input type='text' name='nombre' class='form-control' style='width:230px'>
+			<b>Nombre</b><input type='text' name='nombre' class='form-control' style='width:230px' onKeyUp='onBuscar()' onKeyPress="onBuscar()" >
 			</form>
 			<br>
 			<button onClick='onBuscar()' class='btn green'>Buscar</button>

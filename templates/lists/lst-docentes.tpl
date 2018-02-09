@@ -12,7 +12,7 @@
 		{foreach from=$personals item=subject}
     	<tr>
 			
-			<td align="center">{$subject.name} {$subject.lastname_paterno} {$subject.lastname_materno}</td>
+			<td align="center">{$subject.lastname_paterno} {$subject.lastname_materno} {$subject.name} </td>
 			<td align="center">{$subject.correo}</td>
 			<td align="center">{$subject.celular}</td>
 			
@@ -22,9 +22,10 @@
 					<a href="{$WEB_ROOT}/graybox.php?page=info-docente&id={$subject.personalId}&cId=si" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
 						<i class="material-icons md-16">info</i>
 					</a>
+					<!--
 					<a href="{$WEB_ROOT}/graybox.php?page=info-docente&id={$subject.personalId}&cId=no" data-target="#ajax" data-toggle="modal" data-width="1000px" title='EDITAR INFORMACION'>
 						<i class="material-icons md-16">create</i>
-					</a>
+					</a>-->
 
 					<a href="{$WEB_ROOT}/graybox.php?page=doc-docente&id={$subject.personalId}&cId=admin" data-target="#ajax" data-toggle="modal" data-width="1000px" title='DOCUMENTOS'>
 						<i class="material-icons md-16">folder</i>

@@ -4,19 +4,32 @@ Si usted impartirá clases presenciales y llevará su automóvil al IAP-Chiapas 
 llenar la siguiente información para poder apartarle un cajón el dia de sus clases
 <br>
 <br>
-Modelo automóvil
+<b>Modelo automóvil</b>
 <input type="text" name="modeloAuto" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$infoBasic.infoAuto.0.modelo}'><br>
-Color automóvil
+<b>Color automóvil</b>
 <input type="text" name="colorAuto" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$infoBasic.infoAuto.0.color}'><br>
-Placas automóvil
+<b>Placas automóvil</b>
 <input type="text" name="placasAuto" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$infoBasic.infoAuto.0.placas}'><br>
 </form>
-{if $cId ne 'si'}
 <div id="msj_4">
 </div>
+{if $cId ne 'si'}
+
 <center>
 <button onClick='guardarInformacion(4)' class="btn green" >
 Guardar
 </button>
 </center>
+{else}
+	<center>
+	<button onClick='activaEdicion()' class="btn yellow" >
+						Activar Edicion
+	</button>
+	</center>
 {/if}
+<center>
+<div class="divControls" style="display:none">
+	<button onClick='guardarInformacion(4)' class="btn green" >Guardar</button>
+	<button onClick='guardarInformacion(4)' class="btn blue" >Imprimir</button>
+</div>
+</center>

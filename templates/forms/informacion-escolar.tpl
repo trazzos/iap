@@ -1,6 +1,6 @@
 <form  id='frmGral_2'>
 <input type="hidden" name="personalId" class='form-control' value='{$info.personalId}'>
-Licenciatura
+<b>Licenciatura</b>
 <br>
 <br>
 Escuela Licenciatura
@@ -9,7 +9,7 @@ Escuela Licenciatura
 <input type="checkbox" name="lic_acta" {if $infoBasic.estudios.0.actaExamen eq 'si'} checked {/if} id="" {if $cId eq 'si'} disabled {/if}>Acta de Examen<br>
 <input type="checkbox" name="lic_cedula" {if $infoBasic.estudios.0.cedula eq 'si'} checked {/if} id="" {if $cId eq 'si'} disabled {/if}>Cedula<br>
 <br>
-Maestria
+<b>Maestria</b>
 <br>
 <br>
 Escuela Maestria
@@ -18,7 +18,7 @@ Escuela Maestria
 <input type="checkbox" name="master_acta"  {if $infoBasic.estudios.1.actaExamen eq 'si'} checked {/if} id="" {if $cId eq 'si'} disabled {/if}>Acta de Examen<br>
 <input type="checkbox" name="master_cedula"{if $infoBasic.estudios.1.cedula eq 'si'} checked {/if}  id="" {if $cId eq 'si'} disabled {/if}>Cedula<br>
 <br>
-Doctorado
+<b>Doctorado</b>
 <br>
 <br>
 Escuela Doctorado
@@ -27,13 +27,28 @@ Escuela Doctorado
 <input type="checkbox" name="doc_acta" {if $infoBasic.estudios.2.actaExamen eq 'si'} checked {/if} {if $cId eq 'si'} disabled {/if} id="">Acta de Examen<br>
 <input type="checkbox" name="doc_cedula" {if $infoBasic.estudios.2.cedula eq 'si'} checked {/if}  {if $cId eq 'si'} disabled {/if} id="">Cedula<br>
 </form>
-
-{if $cId ne 'si'}
-	<div id="msj_2">
+<div id="msj_2">
 	</div>
+{if $cId ne 'si'}
+	
 	<center>
 	<button onClick='guardarInformacion(2)' class="btn green" >
 	Guardar
 	</button>
 	</center>
+{else}
+	<center>
+	<button onClick='activaEdicion()' class="btn yellow" >
+						Activar Edicion
+	</button>
+	</center>
 {/if}
+<center>
+<div class="divControls" style="display:none">
+	<button onClick='guardarInformacion(2)' class="btn green" >Guardar</button>
+	<button onClick='guardarInformacion(2)' class="btn blue" >Imprimir</button>
+</div>
+</center>
+
+
+						
