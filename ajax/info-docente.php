@@ -101,6 +101,7 @@
 	  
 	  case 'onDelete':
 	  
+	  
 		// echo '<pre>'; print_r($_POST);
 		$personal->setPersonalId($_POST['personalId']);
 		if($personal->onDeleteDocumento($_POST['Id'])){
