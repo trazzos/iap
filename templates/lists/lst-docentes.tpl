@@ -2,19 +2,19 @@
 	<thead>
     	<tr>
 			
-			<th width="">Nombre </th>
-			<th width="">Correo </th>
-			<th width="">Celular </th>
-			<th width="">Acciones</th>		 
+			<th style="text-align:center">Nombre </th>
+			<th style="text-align:center">Correo </th>
+			<th style="text-align:center">Celular </th>
+			<th style="text-align:center">Acciones</th>		 
 		</tr>
     </thead>
     <tbody>
 		{foreach from=$personals item=subject}
     	<tr>
 			
-			<td align="center">{$subject.lastname_paterno} {$subject.lastname_materno} {$subject.name} </td>
-			<td align="center">{$subject.correo}</td>
-			<td align="center">{$subject.celular}</td>
+			<td align="left">{$subject.lastname_paterno} {$subject.lastname_materno} {$subject.name} </td>
+			<td align="left">{$subject.correo}</td>
+			<td align="left">{$subject.celular}</td>
 			
 			
 			<td align="center" style='width:253px'>

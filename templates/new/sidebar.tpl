@@ -206,31 +206,7 @@
                
             </a>
         </li>-->
-		 <li class="nav-item {if $page == "doc-docente" || $page == "info-docente" || $page == "repositorio"} active {/if} ">
-
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <span class="title">Docentes</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="{$WEB_ROOT}/lst-docentes" class="nav-link ">
-                        <span class="title">Lista de Docentes</span>
-                    </a>
-                </li>
-				 <li class="nav-item  ">
-                    <a href="{$WEB_ROOT}/add-cat-doc-docente" class="nav-link ">
-                        <span class="title">Documentos Docente</span>
-                    </a>
-                </li>
-				 <li class="nav-item  ">
-                    <a href="{$WEB_ROOT}/repositorio" class="nav-link ">
-                        <span class="title">Repositorio Docente</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
+		
 		
 		<!--
 		<li class="nav-item  ">
@@ -263,7 +239,7 @@
 		
 		
 	
-		 <li class="nav-item {if $page == "doc-docente" || $page == "info-docente" || $page == "repositorio"} active {/if} ">
+		 <li class="nav-item {if $page == "doc-docente" || $page == "info-docente" || $page == "repositorio" || $page == "doc-docente" || $page == "info-docente" || $page == "repositorio"} active {/if} ">
 
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-user" aria-hidden="true"></i>
@@ -271,6 +247,7 @@
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
+				{if $docente}
                 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/info-docente" class="nav-link ">
                         <span class="title">Información Personal</span>
@@ -286,6 +263,24 @@
                         <span class="title">Repositorio Docente</span>
                     </a>
                 </li>
+				{/if}
+				{if !$docente}
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/lst-docentes" class="nav-link ">
+                        <span class="title">Lista de Docentes</span>
+                    </a>
+                </li>
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/add-cat-doc-docente" class="nav-link ">
+                        <span class="title">Documentos Docente</span>
+                    </a>
+                </li>
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/repositorio" class="nav-link ">
+                        <span class="title">Repositorio Docente</span>
+                    </a>
+                </li>
+				{/if}
             </ul>
         </li>
 		<!--<li class="nav-item  ">

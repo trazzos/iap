@@ -6,8 +6,7 @@
 $module->setCourseModuleId($_GET["id"]);
 $myModule = $module->InfoCourseModule();
 
-// echo $myModule["access"][1];
-// exit;
+
 $personal->setPersonalId($myModule["access"][1]);
 $docente = $personal->Info();
 
@@ -27,5 +26,8 @@ $smarty->assign('id', $_GET["id"]);
 
 $smarty->assign('mnuMain', "modulo");
 $smarty->assign('mnuSubmain','docente');
+
+// echo '<pre>'; print_r($docente);
+// exit;
 
 ?>

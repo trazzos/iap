@@ -1164,6 +1164,7 @@ class Personal extends Main
 					documentosprofesor
 				WHERE
 					documentoId = ".$aux['catalogodocumentoId']." and personalId = ".$this->personalId."";
+					// exit;
 			$this->Util()->DB()->setQuery($sql);
 			$count = $this->Util()->DB()->GetRow();
 			

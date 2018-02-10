@@ -266,21 +266,23 @@ function addSaveSolicitud(){
 		
 			if($.trim(splitResp[0]) == "ok"){
 					
+					// $("#ajax").attr("width","100px");
+					// $("#ajax").attr("top","100px");
 					
 					url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+$.trim(splitResp[1]);
-					open(url,"Constancia de Estudios","toolbal=0,width=0,resizable=1");
-					
-
-					
-					window.setTimeout("verDoc("+$.trim(splitResp[1])+")",3000);
+					open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+					// $('#tr_'+Id).toggle();
 					$("#tr_"+$.trim(splitResp[2])).hide();
-
+					// $("#container").html(splitResp[2]);
+					// $("#ajax").html('');
+					// $("#ajax").hide();
+					// $("#ajax").modal("hide");
 					
 				}
 			else if($.trim(splitResp[0]) == "fail"){
 				
 				$("#msjgg").html(splitResp[1]);
-
+				// return;
 
 			}
 		},
@@ -290,9 +292,3 @@ function addSaveSolicitud(){
     });
 	
 }//addSolicitud
-
-function verDoc(Id){
-	
-window.open(WEB_ROOT+"/alumnos/solicitud/solicitud_"+Id+".pdf", '_blank'); 
-
-}

@@ -102,7 +102,8 @@
 	  case 'onDelete':
 	  
 	  
-		// echo '<pre>'; print_r($_POST);
+		 // echo '<pre>'; print_r($_POST);
+		// exit;
 		$personal->setPersonalId($_POST['personalId']);
 		if($personal->onDeleteDocumento($_POST['Id'])){
 				echo 'ok[#]';
@@ -115,7 +116,7 @@
 				echo '[#]';
 				$personal->setPersonalId($_POST["personalId"]);
 				$registros = $personal->enumerateCatProductos();
-				// $smarty->assign("cId", $_POST['cId']);
+				$smarty->assign("cId", $_POST['cId']);
 				$smarty->assign("personalId", $_POST['personalId']);
 				$smarty->assign("registros", $registros);
 				$smarty->assign("DOC_ROOT", DOC_ROOT);

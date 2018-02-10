@@ -52,20 +52,34 @@
 	<br>	
 
 	
-		<table align='center' width='100%' border='1'>
+		<table align='center' width='100%' border='1' class='txtTicket'>
 			<tr>
 				<td colspan='2' align='right'>
 					<img src='".DOC_ROOT."/images/logo_correo.jpg'>
 				</td>
 			</tr>
 			<tr>
-				<td align=left colspan='2'>
-				Datos del Docente: ".$info['name']." ".$info['lastname_materno']. " ".$info['lastname_paterno']."
+				<td align=right colspan='2'>
 				
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<img src='".DOC_ROOT."/".$info['foto']."'>
+					
 				</td>
 			</tr>
 			<tr>
-				<td align=left colspan='2'>Datos del Vehiculo		
+				<td align=left colspan='2'>
+				<b>Datos del Docente:</b> ".$info['name']." ".$info['lastname_materno']. " ".$info['lastname_paterno']."
+				<br>
+				<br>
+				</td>
+			</tr>
+			<tr>
+				<td align=left colspan='2'>
+				<b>Datos del Vehiculo</b>
 				</td>
 			</tr>
 			<tr>

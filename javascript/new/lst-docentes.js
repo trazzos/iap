@@ -43,6 +43,8 @@ function loadTR(Id){
 function enviarArchivo(Id){
 
 	var fd = new FormData(document.getElementById("frmDoc_"+Id));
+	fd.append('cId','admin');
+	// +'&cId=admin',
 	$.ajax({
 		url : WEB_ROOT+'/ajax/new/personal.php',
 		data: fd,
@@ -75,7 +77,7 @@ function enviarArchivo(Id){
 			if($.trim(splitResp[0]) == "ok"){
 				$("#msj").html(splitResp[1]);
 				$("#contenido").html(splitResp[2]);
-				closeModal()
+				// closeModal()
 			}else if($.trim(splitResp[0]) == "fail"){
 				$("#txtErrMsg").show();
 	
@@ -126,7 +128,7 @@ function onDelete(Id){
 }
 
 
-
+// onDeleteDoc
 
 function onDeleteDoc(Id,personaId){
 	
@@ -138,7 +140,7 @@ function onDeleteDoc(Id,personaId){
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/info-docente.php',
-	  	data: $("#frmGral").serialize(true)+'&Id='+Id+'&type=onDelete&personaId'+personaId,
+	  	data: $("#frmGral").serialize(true)+'&Id='+Id+'&type=onDelete&personalId='+personaId+'&cId=admin',
 		beforeSend: function(){			
 			// $('#tblContent').html(LOADER3);
 		},
@@ -149,7 +151,7 @@ function onDeleteDoc(Id,personaId){
 
 			if($.trim(splitResp[0]) == "ok"){
 					$("#msj").html(splitResp[1]);
-					$("#container").html(splitResp[2]);
+					$("#contenido").html(splitResp[2]);
 				}
 			else if(splitResp[0] == "fail"){
 				$("#msj").html(splitResp[1]);

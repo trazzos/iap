@@ -14,18 +14,24 @@ function SaveEncuesta(Id){
 			console.log(response)
 			var splitResp = response.split("[#]");
 									
-			if($.trim(splitResp[0]) == "ok"){
+			if(splitResp[0] == "ok"){
+				// $("#msjEncuesta").html(splitResp[1]);
+				// $("#ajax").attr("width","100px");
 				
 				$("#ajax").html(splitResp[1]);
+				
 				$("#ajax").show();
 				$("#ajax").modal("show");
 				$("#ajax").attr("top","500px");
 				window.location.href = WEB_ROOT+"/";
-
-			}else if($.trim(splitResp[0]) == "fail"){
-				console.log(splitResp[1]);
-				$("#msj").html(splitResp[1]);
+				// 
+				// $("#div_encuesta").hide();
+				// $(".iniciar").show();
+			}else if(splitResp[0] == "fail"){
 				
+				console.log(splitResp[1]);
+				// alert(splitResp[1])
+				$("#msj").html(splitResp[1]);
 			}else{
 				alert("Ocurrio un error al cargar los datos.");
 			}
