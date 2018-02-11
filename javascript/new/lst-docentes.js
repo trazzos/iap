@@ -17,7 +17,7 @@ function guardarInformacion(Id){
 			if($.trim(splitResp[0]) == "ok"){
 					$("#msj_"+Id).html(splitResp[1]);
 				}
-			else if(splitResp[0] == "fail"){
+			else if($.trim(splitResp[0]) == "fail"){
 				$("#msj_"+Id).html(splitResp[1]);
 			}
 		}
@@ -119,7 +119,7 @@ function onDelete(Id){
 					$("#msj").html(splitResp[1]);
 					$("#container").html(splitResp[2]);
 				}
-			else if(splitResp[0] == "fail"){
+			else if($.trim(splitResp[0]) == "fail"){
 				$("#msj").html(splitResp[1]);
 			}
 		}
@@ -153,7 +153,7 @@ function onDeleteDoc(Id,personaId){
 					$("#msj").html(splitResp[1]);
 					$("#contenido").html(splitResp[2]);
 				}
-			else if(splitResp[0] == "fail"){
+			else if($.trim(splitResp[0]) == "fail"){
 				$("#msj").html(splitResp[1]);
 			}
 		}
@@ -213,7 +213,7 @@ function onSave(){
 					$("#msj").html(splitResp[1]);
 					$("#container").html(splitResp[2]);
 				}
-			else if(splitResp[0] == "fail"){
+			else if($.trim(splitResp[0]) == "fail"){
 				$("#msj").html(splitResp[1]);
 			}
 		}
