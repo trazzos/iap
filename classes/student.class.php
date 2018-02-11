@@ -2807,6 +2807,20 @@ class Student extends User
 		return $result;
 	}
 	
+	function cargarCiudades($Id)
+	{
+		
+		
+		$sql = "SELECT * FROM municipio WHERE estadoId = '".$Id."'";
+				// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetResult();
+			
+		return $result;
+		
+		
+	}	
+	
 }
 
 ?>

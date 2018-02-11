@@ -30,6 +30,6 @@ Guardar
 <center>
 <div class="divControls" style="display:none">
 	<button onClick='guardarInformacion(4)' class="btn green" >Guardar</button>
-	<button onClick='guardarInformacion(4)' class="btn blue" >Imprimir</button>
+	<button onClick='pdfDatos({$info.personalId})' class="btn blue" >Imprimir</button>
 </div>
 </center>

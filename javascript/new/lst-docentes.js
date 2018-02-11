@@ -239,3 +239,12 @@ function activaEdicion(){
 	$('#frmGral_4').find('input, textarea, button, select').removeAttr('disabled');
 	$('.divControls').show()
 }
+
+
+
+
+
+function pdfDatos(Id){
+	url=WEB_ROOT+"/ajax/docx.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id;
+	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+}

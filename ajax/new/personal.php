@@ -368,26 +368,49 @@ switch($_POST["type"])
 	break;
 	
 	case 'onDeleteDocumento':
-	echo '<pre>'; print_r($_POST);	
-	exit;
-		$docente->setPersonalId($_POST["Id"]);
+	// echo '<pre>'; print_r($_POST);	
+	// exit;
+		$docente->setId($_POST["Id"]);
 		if($docente->onDeleteDocumento()){
 				echo "ok[#]";
 				echo '<div class="alert alert-info alert-dismissable">
 				  <button type="button" class="close" data-dismiss="alert">&times;</button>
 				  <strong>El Documento se elimino correctamente</strong>
 				</div>';
-				// echo '[#]';
-					// $personal->setPersonalId($_SESSION['User']['userId']);
-					// $registros = $personal->enumerateCatProductos();
-					// $smarty->assign("registros", $registros);
-					// $smarty->display(DOC_ROOT.'/templates/lists/new/add-cat-doc-docente.tpl');
+				$personal->setPersonalId($_SESSION['User']['userId']);
+				$registros = $personal->enumerateCatProductos();
+				echo '[#]';
+					
+					$smarty->assign("registros", $registros);
+					$smarty->display(DOC_ROOT.'/templates/lists/new/add-cat-doc-docente.tpl');
 				
 			}else{
 				echo "fail[#]";
 				//$util->ShowErrors();
 			}
 			
+	break;
+	
+	case 'enviarArchivoRepo':
+
+			$docente->setNombre($_POST['nombre']);
+			if($docente->enviarArchivoRepo()){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Documento se agrego correctamente</strong>
+				</div>
+				';
+				
+				 echo '[#]';
+				$registros = $personal->enumerateRepositorio();
+				$smarty->assign("registros", $registros);
+				$smarty->display(DOC_ROOT.'/templates/lists/new/repositorio.tpl');
+			}else{
+				echo 'fail[#]';
+			}
+	
 	break;
 }
 

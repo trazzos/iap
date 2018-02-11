@@ -127,8 +127,39 @@
 	  
 	  break;
 	
+		
+	 case 'loadMunicipio':
+	 
+
+		$registros = $student->cargarCiudades($_POST["Id"]);
+		$smarty->assign("registrosc", $registros);
+		$smarty->display(DOC_ROOT.'/templates/new/ciudades.tpl');
+	 
+	 
+	 break;
+	 
+	 case 'deleteRepositorio':
+	 
+
+		if($docente->deleteRepositorio($_POST['Id'])){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Documento se ha eliminado correctamente</strong>
+				</div>
+				';
+				echo '[#]';
+				$registros = $personal->enumerateRepositorio();
+				$smarty->assign("registros", $registros);
+				$smarty->display(DOC_ROOT.'/templates/lists/new/repositorio.tpl');
+			}else{
+				echo 'fail[#]';
+			}
+	 
+	 break;
 	
-	}
+}
 
 ?>
 

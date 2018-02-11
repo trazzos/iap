@@ -20,10 +20,17 @@
 	$info = $personal->Info();
 	$infoBasic = $personal->InfoBasica();
 	
+	$student->setCountry(1);
+	$estados=$student->EnumerateEstados();
+	
+	$registros = $student->cargarCiudades($info["stateId"]);
+	$smarty->assign("registrosc", $registros);
+	
 	// echo '<pre>'; print_r($infoBasic);
 	// exit;
 
 	$smarty->assign("cId", $_GET['cId']);	
+	$smarty->assign("estados", $estados);	
 	$smarty->assign("infoBasic", $infoBasic);	
 	$smarty->assign("info", $info);	
 	$smarty->assign("registrosStudent", $registrosStudent);	

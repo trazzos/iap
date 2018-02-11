@@ -183,6 +183,7 @@ $pages = array(
 	'cat-doc-admin',
 	'add-cat-doc-docente',
 	'add-cat-doc-docente-add',
+	'add-repositorio',
 
 );
 

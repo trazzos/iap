@@ -92,8 +92,22 @@
 						<tr>
 						<tr>
 							<td ><b>Colonia:</b><input type="text" name="colonia" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.colonia}'></td>
-							<td ><b>Estado</b><input type="text" name="estado" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.estado}'></td>
-							<td ><b>Ciudad</b><input type="text" name="ciudad" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.ciudad}'></td>
+							<td ><b>Estado</b>
+						
+							<select name="estado" id="estado" onChange='loadMunicipio()' class='form-control' {if $cId eq 'si'} disabled {/if}>
+								<option value=""></option>
+								{foreach from=$estados item=item}
+								<option value="{$item.estadoId}" {if $info.stateId eq $item.estadoId} selected {/if}>{$item.nombre}</option>
+								{/foreach}
+							</select>
+							</td>
+							<td >
+								<b>Ciudad</b>
+								<!--<input type="text" name="ciudad" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.ciudad}'-->
+								<div id="divCiudad">
+								 {include file="{$DOC_ROOT}/templates/new/ciudades.tpl"}
+								</div>
+							</td>
 						<tr>
 					</table>
 					</center>
@@ -113,7 +127,7 @@
 						</button>
 						<div class="divControls" style="display:none">
 							<button onClick='guardarInformacion(1)' class="btn green" >Guardar</button>
-							<button onClick='guardarInformacion(1)' class="btn blue" >Imprimir</button>
+							<button onClick='pdfDatos({$info.personalId})' class="btn blue" >Imprimir</button>
 						</div>
 					{/if}
 					</center>

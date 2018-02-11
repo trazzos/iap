@@ -6,10 +6,10 @@
 	
 	// echo '<pre>'; print_r($_GET);
 	// exit;
-	if($_GET['id']){
-			$docente->setId($_GET['id']);
-			$Info = $docente->infoDocumento();
-	}
+	// if($_GET['id']){
+			// $docente->setId($_GET['id']);
+			// $Info = $docente->infoDocumento();
+	// }
 
 	
 	// echo '<pre>'; print_r($registros);

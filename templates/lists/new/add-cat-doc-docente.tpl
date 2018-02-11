@@ -19,7 +19,7 @@
 	            <a   id="" href="{$WEB_ROOT}/graybox.php?page=add-cat-doc-docente-add&id={$subject.catalogodocumentoId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='EDITAR INFORMACION'>
 					<i class="material-icons md-16">create</i>
 				</a>
-				<a  href="javascript:void(0)" onClick='onDelete("{$subject.personalId}")'  title='ELIMINAR'>
+				<a  href="javascript:void(0)" onClick='onDelete("{$subject.catalogodocumentoId}")'  title='ELIMINAR'>
 					<i class="material-icons md-16">delete_forever</i>
 				</a>
 			</td>

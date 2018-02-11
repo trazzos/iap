@@ -10,9 +10,9 @@
 
         </div>
 		<div class="actions">
-            <!--<a href="javascript:;" class="btn green" id="btnAddMajor">
-                <i class="fa fa-plus"></i> Sincronizar School Manager
-            </a>-->
+            <a  class="btn green" id="" href="{$WEB_ROOT}/graybox.php?page=add-repositorio" data-target="#ajax" data-toggle="modal" data-width="1000px" title='ADJUNTAR DOCUMENTO'>
+                <i class="fa fa-plus"></i> Agregar
+            </a>
         </div>
     </div>
     <div class="portlet-body">

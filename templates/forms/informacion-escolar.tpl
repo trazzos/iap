@@ -46,7 +46,7 @@ Escuela Doctorado
 <center>
 <div class="divControls" style="display:none">
 	<button onClick='guardarInformacion(2)' class="btn green" >Guardar</button>
-	<button onClick='guardarInformacion(2)' class="btn blue" >Imprimir</button>
+	<button onClick='pdfDatos({$info.personalId})' class="btn blue" >Imprimir</button>
 </div>
 </center>
 

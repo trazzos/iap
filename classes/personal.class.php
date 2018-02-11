@@ -828,7 +828,7 @@ class Personal extends Main
 					nInterior = '".$this->nInterior."',
 					nExterior = '".$this->nExterior."',
 					colonia = '".$this->colonia."',
-					estado = '".$this->estado."',
+					stateId = '".$this->estado."',
 					ciudad = '".$this->ciudad."',
 					fecha_nacimiento = '".$this->fechaNacimiento."'
 				WHERE 
@@ -1152,7 +1152,7 @@ class Personal extends Main
 				FROM 
 					catalogodocumento
 				WHERE
-					1";
+					estatus = 'activo'";
 		$this->Util()->DB()->setQuery($sql);
 		$res = $this->Util()->DB()->GetResult();
 		

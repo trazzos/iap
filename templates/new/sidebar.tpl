@@ -239,7 +239,15 @@
 		
 		
 	
-		 <li class="nav-item {if $page == "doc-docente" || $page == "info-docente" || $page == "repositorio" || $page == "doc-docente" || $page == "info-docente" || $page == "repositorio"} active {/if} ">
+		 <li class="nav-item {if $page == "doc-docente" 
+		 || $page == "info-docente" 
+		 || $page == "repositorio" 
+		 || $page == "doc-docente" 
+		 || $page == "add-cat-doc-docente" 
+		 || $page == "info-docente" 
+		 || $page == "lst-docentes" 
+		 || $page == "repositorio" 
+		 || $page == "repositorio"} active {/if} ">
 
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-user" aria-hidden="true"></i>

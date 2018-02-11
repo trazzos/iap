@@ -24,7 +24,7 @@
 						<tr>	
 							<td>Descripcion</td>
 							<td>
-								<textarea  name="descripcion" class='form-control' value='{$Info.descripcion}'></textarea>
+								<textarea  name="descripcion" class='form-control' >{$Info.descripcion}</textarea>
 							</td>
 						</tr>
 						
