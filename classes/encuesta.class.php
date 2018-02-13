@@ -63,4 +63,53 @@ class Encuesta extends Main
 		// exit;
 		return $result;
 	}
+	
+	function promedioXRubro($cModuleId)
+	{
+		$this->Util()->DB()->setQuery("
+		SELECT * FROM categoria_pregunta where encuestaId = 1");
+		$result = $this->Util()->DB()->GetResult();
+		
+		// falta pasar el coursemodule
+		
+		 $sql = "
+				SELECT 
+					*
+				FROM 
+					resultado as r
+				left join pregunta as p on p.preguntaId = r.preguntaId
+				where 
+					courseModuleId = ".$cModuleId." group by usuarioId ";
+			
+		$this->Util()->DB()->setQuery($sql);
+		$ta = $this->Util()->DB()->GetSingle();
+
+		$totalAlumnos  = count($ta);
+		// exit;
+		foreach($result as $key=>$aux){
+			
+			 $sql = "
+				SELECT 
+					sum(respuesta)
+				FROM 
+					resultado as r
+				left join pregunta as p on p.preguntaId = r.preguntaId
+				where 
+					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId = ".$cModuleId."";
+			
+			$this->Util()->DB()->setQuery($sql);
+			$sumR = $this->Util()->DB()->GetSingle();
+			
+			
+			
+			$result[$key]['sumR'] = $sumR;
+			@$result[$key]['promedio'] = $sumR/$totalAlumnos;
+		}
+			
+		$data['result']	= $result;
+		$data['totalAlumnos']	= $totalAlumnos;
+			
+		return $data;
+	}
+	
 }

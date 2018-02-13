@@ -3,10 +3,9 @@
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Datos del M&oacute;dulo ::.
         </div>
-        <div class="actions">
-            <a  class="btn green" href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
-              <!-- <a class="btn green" href="{$WEB_ROOT}/graybox.php?page=view-modules-student&id={$myModule.courseModuleId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
+          <!-- <a class="btn green" href="{$WEB_ROOT}/graybox.php?page=view-modules-student&id={$myModule.courseModuleId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
 -->
+             <!-- <a  class="btn green" href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
 			 Vista previa del M&oacute;dulo
             </a>
 			  <a href="{$WEB_ROOT}/graybox.php?page=add-calificacion&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn green">
@@ -14,8 +13,48 @@
             </a>
 			<a href="{$WEB_ROOT}/inbox/id/{$myModule.courseModuleId}" class="btn green">
                 Inbox
-            </a>
-        </div>
+            </a>-->
+        
+		<div class="actions" >
+		<div class="btn-toolbar" style="left:188px !important">
+			<div class="btn-group">
+				<a class="btn btn-primary" href="javascript:;" data-toggle="dropdown" aria-expanded="false">
+				<i class="fa fa-list-alt"></i>
+				 Acciones
+				<i class="fa fa-angle-down"></i>
+			</a>
+			<ul class="dropdown-menu">
+				
+				<li>
+					<a href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
+						<i class="fa fa-share"></i>
+							 Vista previa del M&oacute;dulo
+					</a>
+				</li>
+				<li>
+					<a href="{$WEB_ROOT}/graybox.php?page=add-calificacion&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="fa fa-share-square"></i>
+							 Acta de Calificaciones
+					</a>
+				</li>
+				<li>
+					<a href="{$WEB_ROOT}/inbox/id/{$myModule.courseModuleId}">
+						<i class="fa fa-share-square"></i>
+							Inbox
+					</a>
+				</li>
+				<li>
+					<a href="{$WEB_ROOT}/graybox.php?page=val&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="fa fa-share-square"></i>
+							Valoracion
+					</a>
+				</li>
+			</ul>
+			</div> 	
+		</div>
+
+		</div>
+		
     </div>
     <div class="portlet-body">
 		<div id="msj"></div>
