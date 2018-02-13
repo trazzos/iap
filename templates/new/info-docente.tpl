@@ -13,6 +13,9 @@
             <!--<a href="javascript:;" class="btn green" id="btnAddMajor">
                 <i class="fa fa-plus"></i> Sincronizar School Manager
             </a>-->
+			{if !$docente}
+			<button onClick='pdfDatos({$info.personalId})' class="btn red" >Imprimir</button>
+			{/if}
         </div>
     </div>
     <div class="portlet-body">
@@ -127,8 +130,9 @@
 						</button>
 						<div class="divControls" style="display:none">
 							<button onClick='guardarInformacion(1)' class="btn green" >Guardar</button>
-							<button onClick='pdfDatos({$info.personalId})' class="btn blue" >Imprimir</button>
+							
 						</div>
+						<!--<button onClick='pdfDatos({$info.personalId})' class="btn blue" >Imprimir</button>-->
 					{/if}
 					</center>
 				

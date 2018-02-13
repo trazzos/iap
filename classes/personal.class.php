@@ -822,7 +822,8 @@ class Personal extends Main
 					lastname_materno = '".$this->lastnameMaterno."',
 					correo = '".$this->correo."',
 					celular = '".$this->celular."',
-					rfc = '".$this->rfc."',
+					rfc = '".$this->rfc."', 
+					curp = '".$this->curp."', 
 					INE = '".$this->ine."',
 					calle = '".$this->calle."',
 					nInterior = '".$this->nInterior."',
@@ -895,7 +896,7 @@ class Personal extends Main
 		// echo '<pre>'; print_r($_POST);
 		// exit;
 		
-		for($i=0;$i<=2;$i++){
+		for($i=0;$i<=1;$i++){
 			
 			$tipo = '';
 			
@@ -920,6 +921,12 @@ class Personal extends Main
 				echo '<font color=" red">Campo requerdo:Escuela '.$msjError.'</font>';
 				exit;
 			}
+			
+			if($_POST[$tipo.'_carrera']==''){
+				echo 'fail[#]';	
+				echo '<font color=" red">Campo requerdo:Nombre de  '.$msjError.'</font>';
+				exit;
+			}
 
 		}
 		
@@ -933,6 +940,7 @@ class Personal extends Main
 			$tipo = 'doc';
 		}
 
+		$carrera = $_POST[$tipo.'_carrera'];
 		$escuela = $_POST[$tipo.'_escuela'];
 		$titulo = $_POST[$tipo.'_titulo'];
 		$acta = $_POST[$tipo.'_acta'];
@@ -971,6 +979,7 @@ class Personal extends Main
 					(						
 						tipo, 
 						escuela,
+						carrera,
 						titulo,
 						actaExamen, 
 						cedula,
@@ -980,6 +989,7 @@ class Personal extends Main
 					(						
 						'".$tipo."',
 						'".$escuela."',
+						'".$carrera."',
 						'".$titulo."',
 						'".$acta."',
 						'".$cedula."',
@@ -993,6 +1003,7 @@ class Personal extends Main
 					UPDATE 
 						estudioprofesor 
 					SET 
+						carrera = "'.$carrera.'", 
 						escuela = "'.$escuela.'", 
 						titulo = "'.$titulo.'",  
 						actaExamen = "'.$acta.'", 

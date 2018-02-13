@@ -51,20 +51,20 @@ function enviarArchivo(Id){
 		processData: false,
 		contentType: false,
 		type: 'POST',
-		/*xhr: function(){
+		xhr: function(){
 				var XHR = $.ajaxSettings.xhr();
 				XHR.upload.addEventListener('progress',function(e){
 					console.log(e)
 					var Progress = ((e.loaded / e.total)*100);
 					Progress = (Progress);
 					console.log(Progress)
-					$('#progress_'+reqId).val(Math.round(Progress));
-					$('#porcentaje_'+reqId).html(Math.round(Progress)+'%');
+					$('#progress_'+Id).val(Math.round(Progress));
+					$('#porcentaje_'+Id).html(Math.round(Progress)+'%');
 					
 					
 				},false);
 			return XHR;
-		},*/
+		},
 		beforeSend: function(){		
 			// $("#loader").html(LOADER);
 			// $("#erro_"+reqId).hide(0);

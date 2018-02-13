@@ -69,6 +69,8 @@
 					<input type="hidden" id="solicitudId" name="catId" value="{$subject.catalogodocumentoId}"/>
 							   <input type="file" name="comprobante">
 					</form>
+					<progress id="progress_{$subject.catalogodocumentoId}" value="0" min="0" max="100"></progress>
+					<div id="porcentaje_{$subject.catalogodocumentoId}" >0%</div>
 					<center><button  class="btn green" id="addMajor" name="addMajor" onClick="enviarArchivo('{$subject.catalogodocumentoId}')">Guardar</button></center>
 
 			</td>

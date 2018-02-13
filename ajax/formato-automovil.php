@@ -11,10 +11,17 @@
 	$personal->setPersonalId($_GET['Id']);
 	$infoPerso = $personal->InfoBasica();
 	$info = $personal->Info();
-
-
-	// echo '<pre>'; print_r($infoPerso);
+	
+	// echo $foto = DOC_ROOT."/".$info['foto'];
 	// exit;
+
+	if(file_exists(DOC_ROOT."/".$info['foto'])){
+		$foto = DOC_ROOT."/".$info['foto'];
+	}else{
+		$foto = DOC_ROOT."/alumnos/no_foto.JPG";
+	}
+
+
 	
 
 	$html .= "
@@ -54,8 +61,8 @@
 	
 		<table align='center' width='100%' border='1' class='txtTicket'>
 			<tr>
-				<td colspan='2' align='right'>
-					<img src='".DOC_ROOT."/images/logo_correo.jpg'>
+				<td colspan='2' align='left'>
+					<img src='".DOC_ROOT."/images/logo_correo.jpg' >
 				</td>
 			</tr>
 			<tr>
@@ -64,10 +71,10 @@
 					<br>
 					<br>
 					<br>
+
+					<img src='".$foto."' style='width: 100px !important'>
 					<br>
 					<br>
-					<img src='".DOC_ROOT."/".$info['foto']."'>
-					
 				</td>
 			</tr>
 			<tr>

@@ -10,9 +10,11 @@
 
         </div>
 		<div class="actions">
+		 {if !$docente}
             <a  class="btn green" id="" href="{$WEB_ROOT}/graybox.php?page=add-repositorio" data-target="#ajax" data-toggle="modal" data-width="1000px" title='ADJUNTAR DOCUMENTO'>
                 <i class="fa fa-plus"></i> Agregar
             </a>
+		{/if}
         </div>
     </div>
     <div class="portlet-body">

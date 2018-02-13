@@ -35,11 +35,13 @@ Guardar
 	<button onClick='activaEdicion()' class="btn yellow" >
 						Activar Edicion
 	</button>
+	<!--<button onClick='pdfDatos({$info.personalId})' class="btn blue" >Imprimir</button>-->
 	</center>
 {/if}
 <center>
 <div class="divControls" style="display:none">
 	<button onClick='guardarInformacion(3)' class="btn green" >Guardar</button>
-	<button onClick='pdfDatos({$info.personalId})' class="btn blue" >Imprimir</button>
+	
 </div>
+
 </center>
