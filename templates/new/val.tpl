@@ -10,7 +10,7 @@
 	
     <div class="portlet-body" style='text-align:justify'>
 	
-		<center><h1>Avance {$lstPreguntas.totalAlumnos} /   </h1></center>
+		<center><h1>Avance {$lstPreguntas.totalAlumnos} / {$lstPreguntas.totalGrupo}  </h1></center>
 		<br>
 		<br>
         <div id="tblContentActa">
