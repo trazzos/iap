@@ -117,10 +117,22 @@ class Encuesta extends Main
 			$this->Util()->DB()->setQuery($sql);
 			$sumR = $this->Util()->DB()->GetSingle();
 			
+			 $sql = "
+				SELECT 
+					count(respuesta)
+				FROM 
+					resultado as r
+				left join pregunta as p on p.preguntaId = r.preguntaId
+				where 
+					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId = ".$cModuleId."";
+			
+			$this->Util()->DB()->setQuery($sql);
+			$countR = $this->Util()->DB()->GetSingle();
+			
 			
 			
 			$result[$key]['sumR'] = $sumR;
-			@$result[$key]['promedio'] = $sumR/$totalAlumnos;
+			@$result[$key]['promedio'] = round($sumR/$countR) ;
 		}
 			
 		$data['result']	= $result;

@@ -20,7 +20,7 @@
 					<tr>
 						
 						<th width="">Rubro </th>
-						<th width="">Total </th>	 
+						<th width="">Total de Puntos </th>	 
 						<th width="">Promedio </th>	 
 					</tr>
 				</thead>
