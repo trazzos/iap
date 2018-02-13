@@ -1282,7 +1282,7 @@ class Personal extends Main
 		}
 		
 		if($this->name){
-			$filtro .= " and name like '%".$this->name."%'";
+			$filtro .= " and concat_ws (' ', name,lastname_paterno,lastname_materno)  like '%".$this->name."%'";
 		}
 		
 		
