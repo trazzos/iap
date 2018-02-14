@@ -15,18 +15,21 @@ function SaveEncuesta(Id){
 			var splitResp = response.split("[#]");
 									
 			if(splitResp[0] == "ok"){
-				// $("#msjEncuesta").html(splitResp[1]);
-				// $("#ajax").attr("width","100px");
-				
+				$(".modal fade in").attr("top","89px"); 
+				$("#ajax").attr("top","800px");
+				$("#ajax").attr("padding","0 10px"); 
+				$("#ajax").attr("padding-right","0 17px"); 
 				$("#ajax").html(splitResp[1]);
-				
 				$("#ajax").show();
 				$("#ajax").modal("show");
-				$("#ajax").attr("top","500px");
-				window.location.href = WEB_ROOT+"/";
-				// 
-				// $("#div_encuesta").hide();
-				// $(".iniciar").show();
+				$("#ajax").attr("top","800px");
+				$("#ajax").attr("padding","0 10px"); 
+				$("#ajax").attr("padding-right","0 17px"); 
+				$(".modal fade in").attr("top","89px"); 
+				setTimeout('afterFiveSeconds()',3000)
+				
+				
+
 			}else if(splitResp[0] == "fail"){
 				
 				console.log(splitResp[1]);
@@ -42,3 +45,10 @@ function SaveEncuesta(Id){
     });
 
 }//SaveEncuesta
+
+
+function afterFiveSeconds(){
+	
+window.location.href = WEB_ROOT+"/";
+
+}
