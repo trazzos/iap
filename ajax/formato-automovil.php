@@ -72,7 +72,7 @@
 					<br>
 					<br>
 
-					<img src='".$foto."' style='width: 100px !important'>
+					<img src='".$foto."?".rand()."' style='width: 100px !important'>
 					<br>
 					<br>
 				</td>

@@ -27,25 +27,25 @@
 				
 				<li>
 					<a href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
-						<i class="fa fa-share"></i>
+						<i class="fa fa-laptop"></i>
 							 Vista previa del M&oacute;dulo
 					</a>
 				</li>
 				<li>
 					<a href="{$WEB_ROOT}/graybox.php?page=add-calificacion&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
-						<i class="fa fa-share-square"></i>
+						<i class="fa fa-graduation-cap"></i>
 							 Acta de Calificaciones
 					</a>
 				</li>
 				<li>
 					<a href="{$WEB_ROOT}/inbox/id/{$myModule.courseModuleId}">
-						<i class="fa fa-share-square"></i>
+						<i class="fa fa-envelope"></i>
 							Inbox
 					</a>
 				</li>
 				<li>
 					<a href="{$WEB_ROOT}/graybox.php?page=val&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
-						<i class="fa fa-share-square"></i>
+						<i class="fa fa-line-chart"></i>
 							Valoracion
 					</a>
 				</li>

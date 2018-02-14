@@ -100,9 +100,20 @@ class Encuesta extends Main
 		$this->Util()->DB()->setQuery($sql);
 		$totalGrupo = $this->Util()->DB()->GetSingle();
 		
-		// echo $totalGrupo;
-		// exit;
-		// exit;
+		// comentarios
+		
+		  $sql = "
+				SELECT 
+					*
+				FROM 
+					eval_alumno_docente
+				where 
+					courseModuleId = ".$cModuleId."";
+			
+		$this->Util()->DB()->setQuery($sql);
+		$lstComentarios = $this->Util()->DB()->GetResult();
+		
+
 		foreach($result as $key=>$aux){
 			
 			 $sql = "
@@ -138,6 +149,7 @@ class Encuesta extends Main
 		$data['result']	= $result;
 		$data['totalAlumnos']	= $totalAlumnos;
 		$data['totalGrupo']	= $totalGrupo;
+		$data['lstComentarios']	= $lstComentarios;
 			
 		return $data;
 	}
