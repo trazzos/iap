@@ -14,7 +14,7 @@ function SaveEncuesta(Id){
 			console.log(response)
 			var splitResp = response.split("[#]");
 									
-			if(splitResp[0] == "ok"){
+			if($.trim(splitResp[0]) == "ok"){
 				$(".modal fade in").attr("top","89px"); 
 				$("#ajax").attr("top","800px");
 				$("#ajax").attr("padding","0 10px"); 
@@ -30,7 +30,7 @@ function SaveEncuesta(Id){
 				
 				
 
-			}else if(splitResp[0] == "fail"){
+			}else if($.trim(splitResp[0]) == "fail"){
 				
 				console.log(splitResp[1]);
 				// alert(splitResp[1])
