@@ -1,0 +1,184 @@
+<?php
+	include_once('../initPdf.php');
+	include_once('../config.php');
+	include_once(DOC_ROOT.'/libraries.php');
+
+	session_start();
+
+	$personal->setPersonalId($_SESSION[User][userId]);
+	$infoPerso = $personal->InfoBasica();
+	$infoDoc = $personal->Info();
+	
+	// echo "<pre>"; print_r($info);  
+// exit;
+	
+
+	$html .= "
+	<html>
+	<head>
+	<title>CONTRATO</title>
+	<style type='text/css'>
+	.txtTicket{
+			font-size:12px;
+			 font-family: sans-serif;
+			text-transform: uppercase;
+			/*font:bold 12px 'Trebuchet MS';*/ 
+		}
+		table,td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	.notas{
+			font-size:10px;
+			 font-family: sans-serif;
+			text-transform: uppercase;
+			/*font:bold 12px 'Trebuchet MS';*/ 
+		}
+		table,td {
+		border: 1px solid black;
+		 border-collapse: collapse;
+	}
+	.line{
+		border-bottom: 1px solid; border-left: 0px; border-right: 0px;	
+	}
+		</style>
+	</head>
+	<body>
+		
+		<table align='center' width='100%'  border='0' class='txtTicket'>
+			<tr>
+				<td  align='left' '>
+					<img src='".DOC_ROOT."/images/logo_correo.jpg' >
+				</td>
+			</tr>
+		</table>
+		<br>	
+		<br>	
+		<br>	
+		<br>	
+		<br>	
+		<center><b class='txtTicket'>Datos del Contrato</b></center>
+		<br>	
+		<br>
+		<table align='center' width='100%' border='1' class='txtTicket'>
+			<tr>
+				<td style='width:34%'>Nombre del Docente</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>Numero de INE</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>Registro Federal del Contribuyente</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>Clave Unica de Registro de Poblacion</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>Domicilio Actual:</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>Materia a Impartir:</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>Grupo Designado:</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>Posgrado Academico:</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>Lugar de Imparticion:</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>Total de Horas de Imparticion:</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>No. Cuenta Bancaria:</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>Clave Interbancaria:</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>Institucion Bancaria:</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			<tr>
+				<td>Dias y Modalidad de Imparticion:</td>
+				<td>".$infoDoc['nombre']."</td>
+			</tr>
+			";
+		$html .= "</table>";
+	
+		$html .= "<br>";
+		$html .= "<br>";
+		
+		
+		
+		$html .= "<br>";
+		$html .= "<br>";
+	
+		$html .= "<table align='center' width='100%' border='1' class='txtTicket'>";
+		$html .= "
+		<tr>
+		<td style='width:34%'>No. de Contrato</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Fecha de Elaboracion del Contrato</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Tipo de Contrato</td>
+		<td></td>
+		</tr>
+		<tr>
+			<td colspan='2'>
+				Anexar Copias: Credencial de Elector, curp, hoja del sat, comprobante de domicilio, cedula profesional 
+			</td>
+		</tr>
+		<tr>
+			<td colspan='2'>
+				No. Telefonico Facebook Correo Electronico
+			</td>
+		</tr>
+		";
+		$html .= "</table>";
+
+
+	$html .= "	
+	</body>
+	</html>
+
+	";
+	// echo $html;
+	// exit;
+	# Instanciamos un objeto de la clase DOMPDF.
+	$mipdf = new DOMPDF();
+	 
+	# Definimos el tamaño y orientación del papel que queremos.
+	# O por defecto cogerá el que está en el fichero de configuración.
+	$mipdf ->set_paper("A4", "portrait");
+	 
+	# Cargamos el contenido HTML.
+	$mipdf ->load_html(utf8_decode($html));
+	 
+	# Renderizamos el documento PDF.
+	$mipdf ->render();
+	 
+	# Enviamos el fichero PDF al navegador.
+	$mipdf ->stream('certificadodeValidez.pdf',array('Attachment' => 0));
+			
+
+
+?>
