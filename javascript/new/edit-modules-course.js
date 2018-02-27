@@ -309,3 +309,35 @@ function onContrato(Id){
 	url=WEB_ROOT+"/ajax/contrato.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id;
 	open(url,"voucher","toolbal=0,width=800,resizable=1");
 }
+
+
+
+
+function onImprimirVal(Id,tipo){
+	url=WEB_ROOT+"/ajax/val.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id+'&tipo='+tipo;
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
+}
+
+function onSaveCarta(){
+	
+		
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+	  	data: $("#frmGral").serialize(true)+'&type=onSaveCarta',
+		beforeSend: function(){			
+			$('#tblContentActa').html(LOADER3);
+			$('#btnSave').hide();
+		},
+	  	success: function(response) {	
+			
+			console.log(response)
+			
+			$('#tblContentActa').html(response);
+			
+	
+		},
+
+    });
+	
+}

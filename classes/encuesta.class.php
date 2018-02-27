@@ -74,7 +74,7 @@ class Encuesta extends Main
 		
 		 $sql = "
 				SELECT 
-					*
+					count(*)
 				FROM 
 					resultado as r
 				left join pregunta as p on p.preguntaId = r.preguntaId
@@ -82,10 +82,12 @@ class Encuesta extends Main
 					courseModuleId = ".$cModuleId." group by usuarioId ";
 			
 		$this->Util()->DB()->setQuery($sql);
-		$ta = $this->Util()->DB()->GetSingle();
+		$ta = $this->Util()->DB()->GetResult();
 
-		$totalAlumnos  = count($ta);
+		 $totalAlumnos  = count($ta);
 		
+		
+		// exit;
 		// total de alumnos
 		
 		

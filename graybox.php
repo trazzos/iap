@@ -185,6 +185,7 @@ $pages = array(
 	'add-cat-doc-docente-add',
 	'add-repositorio',
 	'val',
+	'carta',
 
 );
 

@@ -97,6 +97,12 @@ switch($_POST["type"])
 			$smarty->display(DOC_ROOT.'/templates/lists/add-calificacion.tpl');
 		
 		break;
+		
+		case "onSaveCarta":
+		
+			echo '<pre>'; print_r($_POST);
+		
+		break;
 	}
 
 ?>

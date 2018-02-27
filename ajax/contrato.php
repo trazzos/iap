@@ -9,9 +9,13 @@
 	$infoPerso = $personal->InfoBasica();
 	$infoDoc = $personal->Info();
 	
-	// echo "<pre>"; print_r($info);  
-// exit;
 	
+	$module->setCourseModuleId($_GET['Id']);
+	$infoM  = $module->InfoCourseModule();
+
+
+	// echo "<pre>"; print_r($infoM);
+    // exit;
 
 	$html .= "
 	<html>
@@ -63,59 +67,59 @@
 		<table align='center' width='100%' border='1' class='txtTicket'>
 			<tr>
 				<td style='width:34%'>Nombre del Docente</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoDoc['name']."</td>
 			</tr>
 			<tr>
 				<td>Numero de INE</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoDoc['INE']."</td>
 			</tr>
 			<tr>
 				<td>Registro Federal del Contribuyente</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoDoc['rfc']."</td>
 			</tr>
 			<tr>
 				<td>Clave Unica de Registro de Poblacion</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoDoc['curp']."</td>
 			</tr>
 			<tr>
 				<td>Domicilio Actual:</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoDoc['calle']." No. ".$infoDoc['nInterior'].", ".$infoDoc['colonia']." ".$infoDoc['estado']." ".$infoDoc['ciudad']."</td>
 			</tr>
 			<tr>
 				<td>Materia a Impartir:</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoM['name']."</td>
 			</tr>
 			<tr>
 				<td>Grupo Designado:</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoM['nombre']."</td>
 			</tr>
 			<tr>
 				<td>Posgrado Academico:</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoM['subjectName']."</td>
 			</tr>
 			<tr>
 				<td>Lugar de Imparticion:</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoM['nombre']."</td>
 			</tr>
 			<tr>
 				<td>Total de Horas de Imparticion:</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoM['nombre']."</td>
 			</tr>
 			<tr>
 				<td>No. Cuenta Bancaria:</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoPerso['infoBanco'][0]['numCuenta']."</td>
 			</tr>
 			<tr>
 				<td>Clave Interbancaria:</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoPerso['infoBanco'][0]['claveInterbancaria']."</td>
 			</tr>
 			<tr>
 				<td>Institucion Bancaria:</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoPerso['infoBanco'][0]['nombreBanco']."</td>
 			</tr>
 			<tr>
 				<td>Dias y Modalidad de Imparticion:</td>
-				<td>".$infoDoc['nombre']."</td>
+				<td>".$infoPerso['nombre']."</td>
 			</tr>
 			";
 		$html .= "</table>";

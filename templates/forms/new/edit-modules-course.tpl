@@ -24,17 +24,22 @@
 				<i class="fa fa-angle-down"></i>
 			</a>
 			<ul class="dropdown-menu">
-				
-				<li>
-					<a href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
-						<i class="fa fa-laptop"></i>
-							 Vista previa del M&oacute;dulo
-					</a>
-				</li>
 				<li>
 					<a href="{$WEB_ROOT}/graybox.php?page=add-calificacion&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
 						<i class="fa fa-graduation-cap"></i>
 							 Acta de Calificaciones
+					</a>
+				</li>
+				<li>
+					<a href="{$WEB_ROOT}/graybox.php?page=carta&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="fa fa-clone"></i>
+							Carta Descriptiva
+					</a>
+				</li>
+				<li>
+					<a href="#" onClick="onContrato({$myModule.courseModuleId})"    >
+						<i class="	fa fa-file-pdf-o"></i>
+							Contrato
 					</a>
 				</li>
 				<li>
@@ -50,11 +55,15 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" onClick="onContrato({$myModule.courseModuleId})"    >
-						<i class="	fa fa-file-pdf-o"></i>
-							Contrato
+					<a href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
+						<i class="fa fa-laptop"></i>
+							 Vista previa del M&oacute;dulo
 					</a>
 				</li>
+				
+				
+				
+				
 			</ul>
 			</div> 	
 		</div>

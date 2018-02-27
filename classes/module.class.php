@@ -675,5 +675,21 @@
 			
 			return true;
 		}
+		
+		
+		public function infoCourseMol($cMId)
+		{
+		
+				$sql = "SELECT 
+						*
+					FROM
+						course
+					WHERE
+						courseId = ".$cMId."";
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetRow();
+			
+			return $result;
+		}
 }	
 ?>
