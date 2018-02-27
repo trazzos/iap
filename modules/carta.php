@@ -18,6 +18,7 @@
 
 	$smarty->assign('mId', $_GET["id"]);
 	$smarty->assign('lstPreguntas', $lstPreguntas);
+	$smarty->assign('info', $info);
 
 
 ?>

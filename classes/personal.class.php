@@ -1306,7 +1306,7 @@ class Personal extends Main
 					personal
 				WHERE
 					1
-					".$filtro;
+					".$filtro." order by lastname_paterno asc";
 		// exit;
 		$this->Util()->DB()->setQuery($sql);
 		$result = $this->Util()->DB()->GetResult();

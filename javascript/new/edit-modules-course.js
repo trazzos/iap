@@ -331,13 +331,28 @@ function onSaveCarta(){
 		},
 	  	success: function(response) {	
 			
-			console.log(response)
+			var splitResp = response.split("[#]");
 			
-			$('#tblContentActa').html(response);
+			if($.trim(splitResp[0])=="ok"){
+				alert(splitResp[1])
+			}else if($.trim(splitResp[0])=="fail"){
+				alert(splitResp[1])
+			}else{
+				alert('Ocurrio un error....')
+			}
 			
-	
+			
+			
 		},
 
     });
 	
+}
+
+
+
+
+function onImprimirCarta(Id){
+	url=WEB_ROOT+"/ajax/carta.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id+'';
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
 }

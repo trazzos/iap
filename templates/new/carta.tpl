@@ -4,7 +4,7 @@
             <i class="fa fa-bullhorm"></i>Carta Descriptiva
         </div>
         <div class="actions">
-			<a class="btn red" href="#" title="IMPRIMIR" onClick="onImprimirCarta('{$mId}','admin')">
+			<a class="btn red" href="#" title="IMPRIMIR" onClick="onImprimirCarta('{$info.courseModuleId}')">
 			Imprimir
 			</a>
         </div>
@@ -16,11 +16,11 @@
 			<table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 				<tr>
 					<td style="width:280px">Nombre del Curso</td>
-					<td></td>
+					<td>{$info.name}</td>
 				</tr>
 				<tr>
 					<td>Institución</td>
-					<td></td>
+					<td>Instituto de Administración Pública del estado de Chiapas A.C.</td>
 				</tr>
 				<tr>
 					<td>Nombre del Instructor</td>
@@ -37,7 +37,7 @@
 				</tr>
 				<tr>
 					<td>Duracion</td>
-					<td></td>
+					<td><input type="text" name="duracion" class="form-control"></td>
 				</tr>
 				<tr>
 					<td>Num. Participantes</td>

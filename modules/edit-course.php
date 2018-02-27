@@ -34,7 +34,7 @@
 	$cursos = $subject->Enumerate();
 	$smarty->assign('cursos', $cursos);
 
-	$empleados = $personal->Enumerate();
+	$empleados = $personal->Enumerate('lastname_paterno');
 	$smarty->assign('empleados', $empleados);
 
 	$subject->setSubjectId($_GET['id']);
