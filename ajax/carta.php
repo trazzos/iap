@@ -82,30 +82,32 @@
 				</tr>
 				<tr>
 					<td>Nombre del Instructor</td>
-					<td></td>
+					<td>'.$infoP['name'].' '.$infoP['lastname_paterno'].' '.$infoP['lastname_materno'].'</td>
 				</tr>
 			</table>
+			<br>
 			<br>
 			<table width="100%" class="txtTicket">
 				<tr>
 					<td style="width:280px">Perfil del Participante</td>
 					<td>
-					<textarea name="perfilParticipante" class="form-control"></textarea>
+					'.$infoM['perfilParticipante'].'
 					</td>
 				</tr>
 				<tr>
 					<td>Duracion</td>
-					<td><input type="text" name="duracion" class="form-control"></td>
+					<td>'.$infoM['duracion'].'</td>
 				</tr>
 				<tr>
 					<td>Num. Participantes</td>
-					<td><input type="text" name="numParticipante" class="form-control"></td>
+					<td>'.$infoM['numParticipantes'].'</td>
 				</tr>
 				<tr>
 					<td>Horario</td>
-					<td><input type="text" name="horario" class="form-control"></td>
+					<td>'.$infoM['horario'].'</td>
 				</tr>
 			</table>
+			<br>
 			<br>
 			<table width="100%" class="txtTicket">
 				<tr>
@@ -114,21 +116,22 @@
 				</tr>
 				<tr>
 					<td>Objetivos Particulares</td>
-					<td><textarea name="objetivoParticular" class="form-control"></textarea></td>
+					<td>'.$infoM['objetivoParticular'].'</td>
 				</tr>
 				<tr>
 					<td>estructura Tematica</td>
-					<td><textarea name="tematica" class="form-control"></textarea></td>
+					<td>'.$infoM['estructuraTematica'].'</td>
 				</tr>
 				<tr>
 					<td>Criterios de Evaluación</td>
-					<td><textarea name="criterioEvaluacion" class="form-control"></textarea></td>
+					<td>'.$infoM['criteriosEvaluacion'].'</td>
 				</tr>
 				<tr>
 					<td>Tecnicas Instruccionales</td>
-					<td><textarea name="tecnicasInstruccionales" class="form-control"></textarea></td>
+					<td>'.$infoM['tecnicas'].'</td>
 				</tr>
 			</table>
+			<br>
 			<br>
 			<table width="100%" class="txtTicket">
 				<tr>
@@ -151,10 +154,11 @@
 				</tr>
 			</table>
 			<br>
+			<br>
 			<table width="100%" class="txtTicket">
 				<tr>
 					<td colspan="2">Bibliografia<br>
-					<textarea name="bibliografia" class="form-control"></textarea>
+					<td>'.$infoM['bibliografias'].'</td>
 					</td>
 				</tr>
 			</table>

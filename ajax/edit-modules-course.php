@@ -100,7 +100,26 @@ switch($_POST["type"])
 		
 		case "onSaveCarta":
 		
-			echo '<pre>'; print_r($_POST);
+			// echo '<pre>'; print_r($_POST);
+			// $group->setCourseModuleId($_POST["id"]);
+			$group->setPerfilParticipante($_POST["perfilParticipante"]);
+			$group->setDuracion($_POST["duracion"]);
+			$group->setnumParticipantes($_POST["numParticipante"]);
+			$group->setHorario($_POST["horario"]);
+			$group->setobjetivoParticular($_POST["objetivoParticular"]);
+			$group->setestructuraTematica($_POST["tematica"]);
+			$group->setcriteriosEvaluacion($_POST["criterioEvaluacion"]);
+			$group->settecnicas($_POST["tecnicasInstruccionales"]);
+			$group->setbibliografias($_POST["bibliografia"]);
+			if($group->onSaveCarta($_POST['mId'])){
+				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  Los datos se guardaron correctamente
+					</div>';
+			}else{
+				echo "fail[#]";
+			}
 		
 		break;
 	}

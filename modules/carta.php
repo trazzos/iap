@@ -11,13 +11,16 @@
 	$module->setCourseModuleId($_GET["id"]);
 	$info = $module->InfoCourseModule();
 	
+	$personal->setPersonalId($info['access'][1]);
+	$infoP = $personal->Info();
 	// echo '<pre>'; print_r($info);
 	// exit;
 
-	$lstPreguntas = $encuesta->promedioXRubro($info['courseModuleId'],$info['courseId']);       
+	// $lstPreguntas = $encuesta->promedioXRubro($info['courseModuleId'],$info['courseId']);       
 
 	$smarty->assign('mId', $_GET["id"]);
 	$smarty->assign('lstPreguntas', $lstPreguntas);
+	$smarty->assign('infoP', $infoP);
 	$smarty->assign('info', $info);
 
 

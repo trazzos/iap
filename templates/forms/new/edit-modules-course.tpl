@@ -1,3 +1,4 @@
+<div id="msjCourse"></div>
 <div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">

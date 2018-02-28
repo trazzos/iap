@@ -4,6 +4,73 @@
 	{
 		private $teamNumber;
 		private $coursemoduleId;
+		private $perfilParticipante;
+		private $duracion;
+
+		private $numParticipantes;
+		private $horario;
+		private $objetivoParticular;
+		private $estructuraTematica;
+		private $criteriosEvaluacion;
+		private $tecnicas;
+		private $bibliografias;
+		
+		
+		public function setPerfilParticipante($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->perfilParticipante = $value;
+		}
+		
+		public function setDuracion($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->duracion = $value;
+		}
+		
+		public function setnumParticipantes($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->numParticipantes = $value;
+		}
+		
+		public function setHorario($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->horario = $value;
+		}
+		
+		public function setobjetivoParticular($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->objetivoParticular = $value;
+		}
+		
+		public function setestructuraTematica($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->estructuraTematica = $value;
+		}
+		
+		public function setcriteriosEvaluacion($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->criteriosEvaluacion = $value;
+		}
+		
+		
+		public function settecnicas($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->tecnicas = $value;
+		}
+		
+		public function setbibliografias($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->bibliografias = $value;
+		}
+
 
 		
 		public function setCourseModuleId($value)
@@ -1183,5 +1250,28 @@
 			return true;
 		}	
 		
+		
+		
+		function onSaveCarta($Id)
+		{
+			
+			 $sql = 'UPDATE 		
+							course_module SET 		
+							perfilParticipante = "'.$this->perfilParticipante.'",			      		
+							duracion = "'.$this->duracion.'",			      		
+							numParticipantes = "'.$this->numParticipantes.'",			      		
+							horario = "'.$this->horario.'",			      		
+							objetivoParticular = "'.$this->objetivoParticular.'",				      		
+							estructuraTematica = "'.$this->estructuraTematica.'",			      		
+							criteriosEvaluacion = "'.$this->criteriosEvaluacion.'",		      		
+							tecnicas = "'.$this->tecnicas.'",			      		
+							bibliografias = "'.$this->bibliografias.'"			      		
+							WHERE courseModuleId = '.$Id.'';		
+						$this->Util()->DB()->setQuery($sql);		
+						$this->Util()->DB()->UpdateData();
+						
+			return true;
+			
+		}
 	}	
 ?>

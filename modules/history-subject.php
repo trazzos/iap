@@ -22,7 +22,9 @@
 
 	$coursesCount = $course->EnumerateCount();
 	
-	$result = $course->EnumerateByPage($viewPage, $rowsPerPage, $pageVar, WEB_ROOT.'/history-subject', $arrPage);	
+	$result = $course->EnumerateByPage($viewPage, $rowsPerPage, $pageVar, WEB_ROOT.'/history-subject', $arrPage);
+
+	$result = $util->orderMultiDimensionalArray($result,'active',true);
 	
 	//checar a que curriculas tengo permiso
 	if(in_array(2, $info["roles"]))

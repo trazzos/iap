@@ -13,6 +13,7 @@
     <div class="portlet-body" style='text-align:justify'>
 			
 	<form id="frmGral" >
+		<input type="hidden" name="mId" value="{$mId}">
 			<table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 				<tr>
 					<td style="width:280px">Nombre del Curso</td>
@@ -24,7 +25,7 @@
 				</tr>
 				<tr>
 					<td>Nombre del Instructor</td>
-					<td></td>
+					<td>{$infoP.name} {$infoP.lastname_paterno} {$infoP.lastname_materno} </td>
 				</tr>
 			</table>
 			<br>
@@ -32,20 +33,20 @@
 				<tr>
 					<td style="width:280px">Perfil del Participante</td>
 					<td>
-					<textarea name="perfilParticipante" class="form-control"></textarea>
+					<textarea name="perfilParticipante" class="form-control">{$info.perfilParticipante}</textarea>
 					</td>
 				</tr>
 				<tr>
 					<td>Duracion</td>
-					<td><input type="text" name="duracion" class="form-control"></td>
+					<td><input type="text" name="duracion" class="form-control" value="{$info.duracion}"></td>
 				</tr>
 				<tr>
 					<td>Num. Participantes</td>
-					<td><input type="text" name="numParticipante" class="form-control"></td>
+					<td><input type="text" name="numParticipante" class="form-control" value="{$info.numParticipantes}"></td>
 				</tr>
 				<tr>
 					<td>Horario</td>
-					<td><input type="text" name="horario" class="form-control"></td>
+					<td><input type="text" name="horario" class="form-control" value="{$info.horario}"></td>
 				</tr>
 			</table>
 			<br>
@@ -56,19 +57,19 @@
 				</tr>
 				<tr>
 					<td>Objetivos Particulares</td>
-					<td><textarea name="objetivoParticular" class="form-control"></textarea></td>
+					<td><textarea name="objetivoParticular" class="form-control">{$info.objetivoParticular}</textarea></td>
 				</tr>
 				<tr>
 					<td>estructura Tematica</td>
-					<td><textarea name="tematica" class="form-control"></textarea></td>
+					<td><textarea name="tematica" class="form-control">{$info.estructuraTematica}</textarea></td>
 				</tr>
 				<tr>
 					<td>Criterios de Evaluación</td>
-					<td><textarea name="criterioEvaluacion" class="form-control"></textarea></td>
+					<td><textarea name="criterioEvaluacion" class="form-control">{$info.criteriosEvaluacion}</textarea></td>
 				</tr>
 				<tr>
 					<td>Tecnicas Instruccionales</td>
-					<td><textarea name="tecnicasInstruccionales" class="form-control"></textarea></td>
+					<td><textarea name="tecnicasInstruccionales" class="form-control">{$info.tecnicas}</textarea></td>
 				</tr>
 			</table>
 			<br>
@@ -96,7 +97,7 @@
 			<table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 				<tr>
 					<td colspan="2">Bibliografia<br>
-					<textarea name="bibliografia" class="form-control"></textarea>
+					<textarea name="bibliografia" class="form-control">{$info.bibliografias}</textarea>
 					</td>
 				</tr>
 			</table>

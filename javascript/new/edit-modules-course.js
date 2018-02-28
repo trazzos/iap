@@ -330,11 +330,14 @@ function onSaveCarta(){
 			$('#btnSave').hide();
 		},
 	  	success: function(response) {	
+		
+			console.log(response)
 			
 			var splitResp = response.split("[#]");
 			
 			if($.trim(splitResp[0])=="ok"){
-				alert(splitResp[1])
+				closeModal()
+				$('#msjCourse').html(splitResp[1]);
 			}else if($.trim(splitResp[0])=="fail"){
 				alert(splitResp[1])
 			}else{
@@ -355,4 +358,12 @@ function onSaveCarta(){
 function onImprimirCarta(Id){
 	url=WEB_ROOT+"/ajax/carta.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id+'';
 	open(url,"voucher","toolbal=0,width=800,resizable=1");
+}
+
+
+function closeModal(){
+	
+	$("#ajax").hide();
+	$("#ajax").modal("hide");
+	
 }

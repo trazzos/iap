@@ -12,11 +12,11 @@
         <!--<td align="center">{$subject.daysToFinish}</td>-->
         <td align="center">
             {if $docente == 1}
-                {$subject.courseModuleActive}
+                {if !$docente} {$subject.courseModuleActive} {/if}
             {else}
-                {$subject.courseModule}
+               {if !$docente}  {$subject.courseModule} {/if}
             {/if}
-            /{$subject.modules}
+             {if !$docente}  /{$subject.modules} {/if}
 
             {*} Flecha verde {*}
 			<br>
