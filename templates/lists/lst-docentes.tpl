@@ -30,12 +30,15 @@
 					<a href="{$WEB_ROOT}/graybox.php?page=doc-docente&id={$subject.personalId}&cId=admin" data-target="#ajax" data-toggle="modal" data-width="1000px" title='DOCUMENTOS'>
 						<i class="material-icons md-16">folder</i>
 					</a>
-					<a href="{$WEB_ROOT}/alumnos/solicitud/solicitud_{$subject.solicitudId}.pdf"   target='_blank' title='MATERIAS'>
+					<a href="{$WEB_ROOT}/materias&id={$subject.personalId}"  title='MATERIAS'>
 						<i class="material-icons md-16">business_center</i>
 					</a>
 					<a  href="javascript:void(0)" onClick='descargarAutoPdf("{$subject.personalId}")' target='_blank' title='AUTOMOVIL'>
 						<i class="material-icons md-16">local_taxi</i>
-					</a>		
+					</a>
+					<a href="{$WEB_ROOT}/graybox.php?page=val&personalId={$subject.personalId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='VALORACION'>
+						<i class="material-icons md-16">insert_chart</i>
+					</a>	
 					<a  href="javascript:void(0)" onClick='onDelete("{$subject.personalId}")'  title='ELIMINAR'>
 					<i class="material-icons md-16">delete_forever</i>
 					</a>

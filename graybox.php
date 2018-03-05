@@ -186,6 +186,9 @@ $pages = array(
 	'add-repositorio',
 	'val',
 	'carta',
+	'materias',
+	'eval',
+	'editar-contra',
 
 );
 

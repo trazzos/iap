@@ -337,6 +337,20 @@
 			$result = $this->Util()->DB()->InsertData();
 			if($result > 0)
 			{
+				// asignar a nueva tabla 
+				 $sql = "INSERT INTO
+						course_module_personal
+						( 
+							courseModuleId,	
+						 	personalId
+						)
+					VALUES (
+							'" .$result. "',
+							'" .$this->getTeacherId(). "')";
+				// exit;
+			//configuramos la consulta con la cadena de insercion
+			$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->InsertData();
 				//si el resultado es mayor a cero, se inserto el nuevo registro con exito...se regresara true
 				$result = true;
 				$this->Util()->setError(90000, 'complete', "Has activado un nuevo modulo dentro de la curricula");
@@ -691,5 +705,73 @@
 			
 			return $result;
 		}
+		
+		
+		public function materiasProfesores($Id){
+			
+			 $sql = "SELECT 
+						sm.name as name,
+						s.name as nameCar,
+						ce.group as group9,
+						ce.modality as modality,
+						ce.initialDate as initialDate,
+						ce.finalDate as finalDate,
+						cm.*
+					FROM
+						course_module_personal as c
+					left join course_module as cm on cm.courseModuleId = c.courseModuleId
+					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+					left join subject as s on s.subjectId = sm.subjectId
+					left join course as ce on ce.courseId = cm.courseId
+					WHERE
+						c.personalId = ".$Id." order by cm.active asc";
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			
+			return $result;
+			
+		}
+		
+		
+	
+	public function getEvaluacion($Id){
+		
+		 $sql = "SELECT 
+						*
+					FROM
+						course_module
+					WHERE
+						courseModuleId = ".$Id." ";
+						// exit;
+			$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();
+		
+			$sql = "SELECT 
+				*
+			FROM
+				user_subject as us
+			left join user as u on u.userId = us.alumnoId
+			WHERE
+				us.courseId = ".$info['courseId']." order by lastNamePaterno";
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			
+			foreach($result as $key=>$aux){
+				
+				
+				$sql = "SELECT 
+					count(*)
+				FROM
+					eval_alumno_docente
+				WHERE
+					courseModuleId = ".$Id." and alumnoId = ".$aux['alumnoId']."";
+				$this->Util()->DB()->setQuery($sql);
+				$d = $this->Util()->DB()->GetSingle();
+				$result[$key]['eval'] = $d ;
+				
+			}
+			
+			return $result;
+	}
 }	
 ?>
