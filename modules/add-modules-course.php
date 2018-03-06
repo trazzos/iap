@@ -26,7 +26,7 @@
 		$smarty->assign('noModules', 1);
 	}
 	
-	$empleados = $personal->Enumerate();
+	$empleados = $personal->Enumerate('lastname_paterno');
 	$smarty->assign('empleados', $empleados);
 	
 	$date = date("d-m-Y");
