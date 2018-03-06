@@ -189,6 +189,7 @@ $pages = array(
 	'materias',
 	'eval',
 	'editar-contra',
+	'cedula-contra',
 
 );
 

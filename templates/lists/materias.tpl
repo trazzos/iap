@@ -44,10 +44,10 @@
 				<a href="{$WEB_ROOT}/graybox.php?page=eval&id={$subject.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='EVALUACIONES'>
 					<i class="material-icons md-16">star</i>
 				</a>
-				<a href="{$WEB_ROOT}/graybox.php?page=editar-contra&id={$subject.courseModuleId}&cId=no" data-target="#ajax" data-toggle="modal" data-width="1000px" title='EDITAR INFORMACION'>
+				<a href="{$WEB_ROOT}/graybox.php?page=editar-contra&id={$subject.courseModuleId}&personalId={$pId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='EDITAR INFORMACION'>
 						<i class="material-icons md-16">create</i>
 				</a>
-				<a href="{$WEB_ROOT}/graybox.php?page=info-docente&id={$subject.personalId}&cId=no" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CEDULA CONTRATO'>
+				<a href="{$WEB_ROOT}/graybox.php?page=cedula-contra&id={$subject.courseModuleId}&personalId={$pId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CEDULA CONTRATO'>
 						<i class="material-icons md-16">featured_play_list</i>
 				</a>
 				<a href="{$WEB_ROOT}/graybox.php?page=info-docente&id={$subject.personalId}&cId=no" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CONTRATOS'>

@@ -9,7 +9,49 @@ class Docente extends Empresa{
 	private $nombre;
 	private $descripcion;
 	private $Id;
+	private $inicioContrato;
+	private $finContrato;
+	private $noContrato;
+	private $habilitar;
+	private $inicioMateria;
+	private $finMateria;
+	
+	public function setInicioMateria($value){
+		
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, 'Inicio Materia');
+		$this->inicioMateria = $value;
+	}
+	
+	public function setFinMateria($value){
+		
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, 'Fin Materia');
+		$this->finMateria = $value;
+	}
 
+	
+	public function setInicioContrato($value){
+		
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, 'Inicio Contrato');
+		$this->inicioContrato = $value;
+	}
+	
+	public function setFinContrato($value){
+		
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, 'Fin Contrato');
+		$this->finContrato = $value;
+	}
+	
+	public function setNoContrato($value){
+		
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, 'No. Contrato');
+		$this->noContrato = $value;
+	}
+	
+	public function setHabilitar($value){
+		
+		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, 'Respuesta');
+		$this->habilitar = $value;
+	}
 	
 	public function setIdSerie($value){
 		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, 'Serie ID');
@@ -22,6 +64,7 @@ class Docente extends Empresa{
 		$this->Id = $value;
 	}
 
+	
 	
 	public function setRespuesta($value){
 		
@@ -269,6 +312,68 @@ class Docente extends Empresa{
 			$this->Util()->DB()->ExecuteQuery();
 		
 		return true;
+	}
+	
+	public function saveEditContrato(){
+		
+		 $sql = "
+				UPDATE
+					course_module 
+				SET 
+					initialDate = '".$this->inicioMateria."',
+					finalDate = '".$this->finMateria."',
+					inicioContrato = '".$this->inicioContrato."',
+					finContrato = '".$this->finContrato."',
+					noContrato = '".$this->noContrato."',
+					habilitarDescargaContrato = '".$this->habilitar."'
+				WHERE 
+					courseModuleId = ".$this->Id;
+					
+		
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->ExecuteQuery();
+		
+		
+		return true;
+	} 
+	
+	
+	public function onSendDoc(){
+		
+	
+		
+		$url = DOC_ROOT;
+		$archivo = "cedula";
+		
+		foreach($_FILES as $key=>$var)
+		{
+		   switch($key)
+		   {
+				   case $archivo:
+					   if($var["name"]<>""){
+							$aux = explode(".",$var["name"]);
+							$extencion=end($aux);
+							$temporal = $var['tmp_name'];
+							$foto_name="cedula_".$this->Id.".".$extencion;		
+							if(move_uploaded_file($temporal,$url."/docentes/cedula/".$foto_name)){						
+									$sql = "
+											UPDATE
+												course_module 
+											SET 
+												rutaCedula = '".$this->rutaCedula."'
+											WHERE 
+												courseModuleId = ".$this->Id;
+									
+									$this->Util()->DB()->setQuery($sql);
+									$this->Util()->DB()->ExecuteQuery();
+							}   
+						}
+					break;
+			}
+		}
+		
+		return true;
+		
 	}
 	
 	

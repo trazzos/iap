@@ -13,6 +13,7 @@
 	// exit;
 
 
+	$smarty->assign("pId", $_GET['id']);	
 	$smarty->assign("registros", $registros);	
 		
 	

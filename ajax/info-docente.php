@@ -158,6 +158,71 @@
 			}
 	 
 	 break;
+	 
+	 case 'saveEditContrato':
+	 
+		$util = New Util;
+		
+		if($_POST['habilitar']=='on'){
+			$_POST['habilitar'] = 'si';
+		}else{
+			$_POST['habilitar'] = 'no';
+		}
+		
+		
+		
+		
+		$_POST['fechaInicioMateria'] = $util->FormatDateMySql($_POST['fechaInicioMateria']);
+		$_POST['fechaFinMateria'] = $util->FormatDateMySql($_POST['fechaFinMateria']);
+		$_POST['fechaInicioContrato'] = $util->FormatDateMySql($_POST['fechaInicioContrato']);
+		$_POST['fechaFinContrato'] = $util->FormatDateMySql($_POST['fechaFinContrato']);
+	 
+		// echo '<pre>'; print_r($_POST);
+		$docente->setId($_POST['id']);
+		$docente->setInicioMateria($_POST['fechaInicioMateria']);
+		$docente->setFinMateria($_POST['fechaFinMateria']);
+		$docente->setInicioContrato($_POST['fechaInicioContrato']);
+		$docente->setFinContrato($_POST['fechaFinContrato']);
+		$docente->setNoContrato($_POST['noContrato']);
+		$docente->setHabilitar($_POST['habilitar']);
+		if($docente->saveEditContrato()){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>Los Datos se actualizaron correctamente</strong>
+				</div>
+				';
+				echo '[#]';
+				$registros = $module->materiasProfesores($_POST['personalId']);
+				$smarty->assign("pId", $_POST['personalId']);
+				$smarty->assign("registros", $registros);
+				$smarty->display(DOC_ROOT.'/templates/lists/materias.tpl');
+			}else{
+				echo 'fail[#]';
+			}
+	 
+	 break;
+	 
+	 case 'onSendDoc':
+	 
+	 
+		$docente->setId($_POST['id']);
+		if($docente->onSendDoc()){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>La cedula se adjunto correctamente</strong>
+				</div>
+				';
+				echo '[#]';
+
+			}else{
+				echo 'fail[#]';
+			}
+	 
+	 break;
 	
 }
 
