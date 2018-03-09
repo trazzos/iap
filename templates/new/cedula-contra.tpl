@@ -29,7 +29,7 @@
 				</div>
 				<br>
 				<br>
-				<button type="button" class="btn default blue" style="width:211px">Visualizar</button><br>
+				<a type="button" target='_blank' href='{$WEB_ROOT}/docentes/cedula/{$myModule.rutaCedula}' class="btn default blue" style="width:211px">Visualizar</a><br>
 			</center>
 			
 		

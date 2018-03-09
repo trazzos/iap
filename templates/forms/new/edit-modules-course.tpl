@@ -38,7 +38,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" onClick="onContrato({$myModule.courseModuleId})"    >
+					<a href="#" onClick="onContrato({$myModule.courseModuleId},{$usuariologId})"    >
 						<i class="	fa fa-file-pdf-o"></i>
 							Contrato
 					</a>

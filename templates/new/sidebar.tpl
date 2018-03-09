@@ -291,6 +291,29 @@
 				{/if}
             </ul>
         </li>
+		
+		<li class="nav-item {if $page == "vehiculos" || $page == "report-materia"} active {/if} ">
+
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-desktop" aria-hidden="true"></i>
+                <span class="title">Reportes</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+				{if !$docente}
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/vehiculos" class="nav-link ">
+                        <span class="title">Vehiculos</span>
+                    </a>
+                </li>
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/report-materia" class="nav-link ">
+                        <span class="title">Materias</span>
+                    </a>
+                </li>
+				{/if}
+            </ul>
+        </li>
 		<!--<li class="nav-item  ">
             <a href="{$WEB_ROOT}/mensaje" class="nav-link nav-toggle">
                 <i class="fa fa-video-camera"></i>

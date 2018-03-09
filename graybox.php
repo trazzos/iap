@@ -190,6 +190,7 @@ $pages = array(
 	'eval',
 	'editar-contra',
 	'cedula-contra',
+	'down-contrato',
 
 );
 

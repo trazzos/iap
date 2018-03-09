@@ -360,7 +360,7 @@ class Docente extends Empresa{
 											UPDATE
 												course_module 
 											SET 
-												rutaCedula = '".$this->rutaCedula."'
+												rutaCedula = '".$foto_name."'
 											WHERE 
 												courseModuleId = ".$this->Id;
 									
@@ -377,6 +377,43 @@ class Docente extends Empresa{
 	}
 	
 	
+	public function onSendContrato(){
+		
+	
+		
+		$url = DOC_ROOT;
+		$archivo = "cedula";
+		
+		foreach($_FILES as $key=>$var)
+		{
+		   switch($key)
+		   {
+				   case $archivo:
+					   if($var["name"]<>""){
+							$aux = explode(".",$var["name"]);
+							$extencion=end($aux);
+							$temporal = $var['tmp_name'];
+							$foto_name="contrato_".$this->Id.".".$extencion;		
+							if(move_uploaded_file($temporal,$url."/docentes/contrato/".$foto_name)){						
+									$sql = "
+											UPDATE
+												course_module 
+											SET 
+												rutaContrato = '".$foto_name."'
+											WHERE 
+												courseModuleId = ".$this->Id;
+									
+									$this->Util()->DB()->setQuery($sql);
+									$this->Util()->DB()->ExecuteQuery();
+							}   
+						}
+					break;
+			}
+		}
+		
+		return true;
+		
+	}
 	
 }//Docente
 

@@ -206,7 +206,7 @@
 	 
 	 case 'onSendDoc':
 	 
-	 
+		
 		$docente->setId($_POST['id']);
 		if($docente->onSendDoc()){
 				echo 'ok[#]';
@@ -217,7 +217,33 @@
 				</div>
 				';
 				echo '[#]';
-
+				$registros = $module->materiasProfesores($_POST['personalId']);
+				$smarty->assign("pId", $_POST['personalId']);
+				$smarty->assign("registros", $registros);
+				$smarty->display(DOC_ROOT.'/templates/lists/materias.tpl');
+			}else{
+				echo 'fail[#]';
+			}
+	 
+	 break;
+	 
+	 case 'onSendContrato':
+	 
+		// echo '<pre>'; print_r($_POST);
+		$docente->setId($_POST['id']);
+		if($docente->onSendContrato()){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El contrato se adjunto correctamente</strong>
+				</div>
+				';
+				echo '[#]';
+				$registros = $module->materiasProfesores($_POST['personalId']);
+				$smarty->assign("pId", $_POST['personalId']);
+				$smarty->assign("registros", $registros);
+				$smarty->display(DOC_ROOT.'/templates/lists/materias.tpl');
 			}else{
 				echo 'fail[#]';
 			}

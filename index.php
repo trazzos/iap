@@ -187,6 +187,7 @@ $pages = array(
 	'cat-doc-docente',
 	'add-cat-doc-docente',
 	'materias',
+	'vehiculos',
 	
 	
 	

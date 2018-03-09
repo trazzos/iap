@@ -1,23 +1,31 @@
 <?php
-	include_once('../initPdf.php');
-	include_once('../config.php');
-	include_once(DOC_ROOT.'/libraries.php');
+include_once('../initPdf.php');
+include_once('../config.php');
+include_once(DOC_ROOT.'/libraries.php');
 
-	session_start();
+session_start();
 
-	$module->setCourseModuleId($_GET['Id']);
-	$infoM  = $module->InfoCourseModule();
 
-	$personal->setPersonalId($infoM['access'][1]);
-	$infoPerso = $personal->InfoBasica();
-	$infoDoc = $personal->Info();
+$module->setCourseModuleId($_GET['id']);
+$infoM  = $module->InfoCourseModule();
+
+$personal->setPersonalId($infoM['access'][1]);
+$infoPerso = $personal->InfoBasica();
+$infoDoc = $personal->Info();
+
+// echo '<pre>'; print_r($infoM);
+// exit;
 	
-	
-	
+
+header('Content-Transfer-Encoding: binary');
+header('Expires: 0');
+header('Cache-Control: must-revalidate');
+header('Pragma: public');
+header('Content-Disposition: attachment;Filename=contrato_'.$infoM['courseModuleId'].'.doc');
 
 
-	// echo "<pre>"; print_r($infoM);
-    // exit;
+$html .= "<meta http-equiv=\'Content-Type\' content=\'text/html; charset=Windows-1252\'>";
+
 
 	$html .= "
 	<html>
@@ -66,7 +74,7 @@
 		<center><b class='txtTicket'>Datos del Contrato</b></center>
 		<br>	
 		<br>
-		<table align='center' width='100%' border='1' class='txtTicket'>
+		<table align='center' width='100%' border='0' class='txtTicket'>
 			<tr>
 				<td style='width:34%'>Nombre del Docente</td>
 				<td>".$infoDoc['name']."</td>
@@ -134,7 +142,7 @@
 		$html .= "<br>";
 		$html .= "<br>";
 	
-		$html .= "<table align='center' width='100%' border='1' class='txtTicket'>";
+		$html .= "<table align='center' width='100%' border='0' class='txtTicket'>";
 		$html .= "
 		<tr>
 		<td style='width:34%'>No. de Contrato</td>
@@ -167,24 +175,10 @@
 	</html>
 
 	";
-	// echo $html;
-	// exit;
-	# Instanciamos un objeto de la clase DOMPDF.
-	$mipdf = new DOMPDF();
-	 
-	# Definimos el tamaño y orientación del papel que queremos.
-	# O por defecto cogerá el que está en el fichero de configuración.
-	$mipdf ->set_paper("A4", "portrait");
-	 
-	# Cargamos el contenido HTML.
-	$mipdf ->load_html(utf8_decode($html));
-	 
-	# Renderizamos el documento PDF.
-	$mipdf ->render();
-	 
-	# Enviamos el fichero PDF al navegador.
-	$mipdf ->stream('certificadodeValidez.pdf',array('Attachment' => 0));
+	
+
 			
+	echo $html;
 
 
 ?>

@@ -50,7 +50,7 @@
 				<a href="{$WEB_ROOT}/graybox.php?page=cedula-contra&id={$subject.courseModuleId}&personalId={$pId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CEDULA CONTRATO'>
 						<i class="material-icons md-16">featured_play_list</i>
 				</a>
-				<a href="{$WEB_ROOT}/graybox.php?page=info-docente&id={$subject.personalId}&cId=no" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CONTRATOS'>
+				<a href="{$WEB_ROOT}/graybox.php?page=down-contrato&id={$subject.courseModuleId}&personalId={$pId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CONTRATOS'>
 						<i class="material-icons md-16">featured_video</i>
 				</a>
 			</td>

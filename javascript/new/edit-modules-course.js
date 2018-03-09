@@ -305,8 +305,8 @@ function reloadActa(Id){
 
 
 
-function onContrato(Id){
-	url=WEB_ROOT+"/ajax/contrato.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id;
+function onContrato(Id,personalId){
+	url=WEB_ROOT+"/ajax/contrato.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id+'&personalId='+personalId;
 	open(url,"voucher","toolbal=0,width=800,resizable=1");
 }
 
