@@ -905,6 +905,7 @@
 				if($infoCc["calificacion"]==null or $infoCc["calificacion"]==0){
 					
 					$at= round($result[$key]{"addepUp"}, 0, PHP_ROUND_HALF_DOWN);
+					$at= round($at, 0, PHP_ROUND_HALF_DOWN);
 					$at = $at / 10;
 					
 					$infoCc["calificacion"] = $at ;
