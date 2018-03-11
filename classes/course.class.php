@@ -345,12 +345,14 @@
 			//calcular el desplazamiento de los registros a recuperar
 			$rowOffset = $arrPages['rowBegin'] - 1;
 			
-			$this->Util()->DB()->setQuery('
+		echo	$sql = '
 				SELECT *, major.name AS majorName, subject.name AS name  FROM course
 				LEFT JOIN subject ON course.subjectId = subject.subjectId 
 				LEFT JOIN major ON major.majorId = subject.tipo
 				where 1 '.$filtro.'
-				ORDER BY subject.tipo,  subject.name,  course.modality, initialDate LIMIT ' . $rowOffset . ', ' . $rowsPerPage);
+				ORDER BY subject.tipo,  subject.name,  course.modality, initialDate LIMIT ' . $rowOffset . ', ' . $rowsPerPage;
+			exit;
+			$this->Util()->DB()->setQuery($sql);
 			
 			$result = $this->Util()->DB()->GetResult();
 			// echo "<pre>"; print_r($result);
