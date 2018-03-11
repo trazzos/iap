@@ -292,11 +292,11 @@
 			
 			$filtro = "";
 			
-			if($this->aparece){
-				$filtro .= " and course.apareceTabla ='si'";
-			}
+			// if($this->aparece){
+				// $filtro .= " and course.apareceTabla ='si'";
+			// }
 			
-			 $sql =   "SELECT COUNT(*) FROM course where 1 ".$filtro."";
+			 $sql =   "SELECT COUNT(*) FROM course";
 			
 			// exit;
 			$this->Util()->DB()->setQuery($sql);
@@ -320,11 +320,11 @@
 		public function EnumerateByPage($currentPage, $rowsPerPage, $pageVar, $pageLink, &$arrPages)
 		{
 			
-			$filtro = "";
+			// $filtro = "";
 			
-			if($this->aparece){
-				$filtro .= " and course.apareceTabla ='si'";
-			}
+			// if($this->aparece){
+				// $filtro .= " and course.apareceTabla ='si'";
+			// }
 			
 			//variable donde guardaremos los registros de la pagina actual y que se regresara para su visualizacion
 			$result = NULL;
@@ -335,8 +335,8 @@
 
 			//***calculamos el numero total de paginas, si hay fracciones es porque los ultimos 
 			//		registros no completan la pagina ($rowsPerPage) pero se calculan como una pagina mas con ceil()
-			echo @$totalPages = ceil($totalTableRows / $rowsPerPage);
-			exit;
+			@$totalPages = ceil($totalTableRows / $rowsPerPage);
+			// exit;
 			
 			//validamos el valor de la pagina...no puede ser menor a 1 ni mayor al total de las paginas
 			if($currentPage < 1)
@@ -353,7 +353,7 @@
 				SELECT *, major.name AS majorName, subject.name AS name  FROM course
 				LEFT JOIN subject ON course.subjectId = subject.subjectId 
 				LEFT JOIN major ON major.majorId = subject.tipo
-				where 1 '.$filtro.'
+				 
 				ORDER BY subject.tipo,  subject.name,  course.modality, initialDate LIMIT ' . $rowOffset . ', ' . $rowsPerPage;
 			// exit;
 			$this->Util()->DB()->setQuery($sql);

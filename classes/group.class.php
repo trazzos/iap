@@ -856,7 +856,7 @@
 			$this->Util()->DB()->setQuery("
 				SELECT *, user_subject.status AS status FROM user_subject
 				LEFT JOIN user ON user_subject.alumnoId = user.userId
-				WHERE courseId = '".$this->getCourseId()."'
+				WHERE user_subject.status = 'activo' and courseId = '".$this->getCourseId()."'
 				ORDER BY lastNamePaterno ASC, lastNameMaterno ASC, names ASC");
 			$result = $this->Util()->DB()->GetResult();
 			$student = New Student;
@@ -904,9 +904,9 @@
 				
 				if($infoCc["calificacion"]==null or $infoCc["calificacion"]==0){
 					
-				
-					$at = $result[$key]{"addepUp"} / 10;
-					$at= round($at, 0, PHP_ROUND_HALF_DOWN);
+					$at= round($result[$key]{"addepUp"}, 0, PHP_ROUND_HALF_DOWN);
+					$at = $at / 10;
+					
 					$infoCc["calificacion"] = $at ;
 					
 				}else{
