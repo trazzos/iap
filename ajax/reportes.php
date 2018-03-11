@@ -13,17 +13,9 @@ switch($_POST["type"])
 		$course->setHora($_POST['horas']);
 		if($course->editaCosto($_POST['id']))
 		{
-			$arrPage = array();		// ---- arreglo donde guarda los resultados de la paginacion...para usarse en footer-pages-links.tpl
-			$viewPage = 1;			// ---- por default se toma la primera pagina, por si aun no esta definidala en la variable GET
-			$rowsPerPage = 500;		//<<--- se podria tomar este valor de una variable o constante global, o especificarla para un caso particular
-			$pageVar = 'p';	// ---- el nombre de la variable en GET que trae la pagina a mostrar, en este caso se usa viewPage para pasar la pagina a visualizar
-			if(isset($_GET["$pageVar"]))
-				$viewPage = $_GET["$pageVar"];	//si ya esta definida la variable GET['viewPage'] tomar el valor de esta
-			
 			
 			$course->setAparece('si');
-			$coursesCount = $course->EnumerateCount();
-			$result = $course->EnumerateByPage($viewPage, $rowsPerPage, $pageVar, WEB_ROOT.'/history-subject', $arrPage);
+			$result = $course->EnumerateCourse();
 			$result = $util->orderMultiDimensionalArray($result,'active',true);
 			echo 'ok[#]';
 			echo 'exit';

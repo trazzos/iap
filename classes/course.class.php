@@ -296,7 +296,10 @@
 				$filtro .= " and course.apareceTabla ='si'";
 			}
 			
-			$this->Util()->DB()->setQuery("SELECT COUNT(*) FROM course where 1 ".$filtro."");
+			 $sql =   "SELECT COUNT(*) FROM course where 1 ".$filtro."";
+			
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
 			return $this->Util()->DB()->GetSingle();
 		}
 
@@ -332,8 +335,9 @@
 
 			//***calculamos el numero total de paginas, si hay fracciones es porque los ultimos 
 			//		registros no completan la pagina ($rowsPerPage) pero se calculan como una pagina mas con ceil()
-			$totalPages = ceil($totalTableRows / $rowsPerPage);
-
+			echo @$totalPages = ceil($totalTableRows / $rowsPerPage);
+			exit;
+			
 			//validamos el valor de la pagina...no puede ser menor a 1 ni mayor al total de las paginas
 			if($currentPage < 1)
 				$currentPage = 1;
@@ -426,6 +430,60 @@
 			//enlace hacia la misma pagina para poder actualizar los valores de los datos
 			$arrPages['refreshPage'] = $pageLink . '/' . $pageVar . '/' . $currentPage ;
 			//regresamos los registros recuperados de la pagina actual
+			return $result;
+		}
+		
+		public function EnumerateCourse()
+		{
+			
+			$filtro = "";
+			
+			if($this->aparece){
+				$filtro .= " and course.apareceTabla ='si'";
+			}
+			
+			
+			
+			$sql = '
+				SELECT *, major.name AS majorName, subject.name AS name  FROM course
+				LEFT JOIN subject ON course.subjectId = subject.subjectId 
+				LEFT JOIN major ON major.majorId = subject.tipo
+				where 1 '.$filtro.'
+				ORDER BY subject.tipo,  subject.name,  course.modality, initialDate ';
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+			
+			$result = $this->Util()->DB()->GetResult();
+
+			
+			foreach($result as $key => $res)
+			{
+				$this->Util()->DB()->setQuery("
+					SELECT COUNT(*) FROM subject_module WHERE subjectId ='".$res["subjectId"]."'");
+			
+				$result[$key]["modules"] = $this->Util()->DB()->GetSingle();
+
+				$this->Util()->DB()->setQuery("
+					SELECT COUNT(*) FROM user_subject WHERE courseId ='".$res["courseId"]."' AND status = 'inactivo'");
+				$result[$key]["alumnInactive"] = $this->Util()->DB()->GetSingle();
+				
+				$this->Util()->DB()->setQuery("
+					SELECT COUNT(*) FROM user_subject WHERE courseId ='".$res["courseId"]."' AND status = 'activo'");
+			
+				$result[$key]["alumnActive"] = $this->Util()->DB()->GetSingle();
+
+				$this->Util()->DB()->setQuery("
+					SELECT COUNT(*) FROM course_module WHERE courseId ='".$res["courseId"]."' AND active = 'si'");
+				$result[$key]["courseModuleActive"] = $this->Util()->DB()->GetSingle();
+					
+				$this->Util()->DB()->setQuery("
+					SELECT COUNT(*) FROM course_module WHERE courseId ='".$res["courseId"]."'");
+			
+				$result[$key]["courseModule"] = $this->Util()->DB()->GetSingle();
+				
+			}
+			
+			
 			return $result;
 		}
 				
