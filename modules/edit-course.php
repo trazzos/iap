@@ -6,6 +6,13 @@
 	
 	if($_POST)
 	{
+		
+		if($_POST["apareceT"]=="on"){
+			$_POST["apareceT"]  = 'si';
+		}else{
+			$_POST["apareceT"]  = 'no';
+		}
+		
 		$course->setCourseId($_POST["courseId"]);
 		$course->setSubjectId($_POST["subjectId"]);
 		$course->setModality($_POST["modality"]);
@@ -27,6 +34,7 @@
 		$course->setFechaDiploma($_POST["fechaDiploma"]);
 		$course->setDias($_POST["dias"]);
 		$course->setHorario($_POST["horario"]);
+		$course->setAparece($_POST["apareceT"]);
 		
 		$course->Update();
 	}
@@ -43,6 +51,9 @@
 
 	$course->setCourseId($_GET['id']);
 	$post = $course->Info();
+	
+	// echo '<pre>'; print_r($post);
+	// exit;
 	$smarty->assign('post', $post);
 	
 ?>

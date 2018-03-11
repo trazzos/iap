@@ -135,6 +135,13 @@
                 <input type="text" name="horario" id="horario" value="{$post.horario}"  class="form-control"/>
             </div>
         </div>
+		<div class="form-group">
+            <label class="col-md-3 control-label"> Aparece en Tabla:</label>
+            <div class="col-md-8">
+			 
+                <input type="checkbox" name="apareceT" id="apareceT"   {if $post.apareceTabla eq 'si'} checked {/if} class="form-control"/>
+            </div>
+        </div>
     </div>
     <div class="form-actions">
         <div class="row">

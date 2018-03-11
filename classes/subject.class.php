@@ -1369,5 +1369,73 @@ public function Enumerate_p(){
 		
 	}
 			
+			
+	public function getPosgrados(){
+			
+			$sqlQuery = 'SELECT * FROM subject WHERE 1 order by name';
+			$this->Util()->DB()->setQuery($sqlQuery);			
+			$lst = $this->Util()->DB()->GetResult();
+		
+			return $lst;
+			
+		}
+		
+	
+	public function getMaterias($Id){
+			
+			$sqlQuery = 'SELECT * FROM subject_module WHERE subjectId = '.$Id.' order by name';
+			$this->Util()->DB()->setQuery($sqlQuery);			
+			$lst = $this->Util()->DB()->GetResult();
+		
+			return $lst;
+			
+		}
+		
+	
+	public function getMateriasProfesor($Id){
+		
+		$personal = New Personal;
+		
+		$sqlQuery = '
+			SELECT 
+				* 
+			FROM
+				course_module_personal as c
+			left join personal as p on c.personalId = p.personalId
+			WHERE c.courseModuleId = '.$Id.'';
+			$this->Util()->DB()->setQuery($sqlQuery);			
+		$lst = $this->Util()->DB()->GetResult();
+			
+		foreach($lst as $key=>$aux){
+			
+			$personal->setPersonalId($aux['personalId']);
+			$infoPerso = $personal->InfoBasica();
+	
+			$lst[$key]['basica'] = $infoPerso;
+		}
+		
+		return $lst;
+		
+	}
+	
+	public function getMateriasImpartida($Id){
+	
+		$sqlQuery = '
+			SELECT 
+				c.*,
+				sm.*
+			FROM
+				course_module_personal as c
+			left join personal as p on c.personalId = p.personalId
+			left join course_module as cm on cm.courseModuleId = c.courseModuleId
+			left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+			WHERE c.personalId = '.$Id.'';
+			$this->Util()->DB()->setQuery($sqlQuery);			
+		
+			$lst = $this->Util()->DB()->GetResult();
+		
+		return $lst;
+	}
+	
 }	
 ?>

@@ -412,6 +412,124 @@ switch($_POST["type"])
 			}
 	
 	break;
+	
+	
+	case 'onBuscarMacth':
+	
+		
+		$lsReporte = $docente->onBuscarMacth();
+		// echo '<pre>'; print_r($lsReporte);
+		// exit;
+		$smarty->assign("lsReporte", $lsReporte);
+		$smarty->display(DOC_ROOT.'/templates/lists/new/doc-mat.tpl');
+	
+	break;
+	
+	
+	case 'adjuntarPlan':
+	
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+		// $personal->setDocumentoId($_POST['catId']);
+		// $personal->setPersonalId($_POST["personalId"]);
+		if($personal->adjuntarPlan($_POST['id'],$_POST['cmId'])){
+			// echo 'llea';
+			// exit;
+			
+				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Documento se adjunto correctamente</strong>
+				</div>';
+				echo '[#]';
+				$result = $course->getMateriaxCourse($_POST['id']);
+				$smarty->assign('result', $result);
+					$smarty->assign('cmId', $_POST["cmId"]);
+				$smarty->assign('id', $_POST["id"]);
+				$smarty->display(DOC_ROOT.'/templates/lists/new/prog-materia.tpl');
+				
+			}else{
+				echo "fail[#]";
+				//$util->ShowErrors();
+			}
+	
+	break;
+	
+	case 'onDeletePlan':
+	
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+		if($personal->onDeletePlan($_POST['id'])){
+			// echo 'llea';
+			// exit;
+			
+				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Documento se ha eliminado correctamente</strong>
+				</div>';
+				echo '[#]';
+				$result = $course->getMateriaxCourse($_POST['courseId']);
+				$smarty->assign('id', $_POST['id']);
+				$smarty->assign('courseId', $_POST['courseId']);
+				$smarty->assign('result', $result);
+				$smarty->display(DOC_ROOT.'/templates/lists/new/prog-materia.tpl');
+				
+			}else{
+				echo "fail[#]";
+				//$util->ShowErrors();
+			}
+	
+	break;
+	
+	case 'onDeleteCarta':
+	
+		if($personal->onDeleteCarta($_POST['id'])){
+			// echo 'llea';
+			// exit;
+			
+				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Documento se ha eliminado correctamente</strong>
+				</div>';
+				echo '[#]';
+				$result = $course->getMateriaxCourse($_POST['courseId']);
+				$smarty->assign('id', $_POST['id']);
+				$smarty->assign('courseId', $_POST['courseId']);
+				$smarty->assign('result', $result);
+				$smarty->display(DOC_ROOT.'/templates/lists/new/prog-materia.tpl');
+				
+			}else{
+				echo "fail[#]";
+				//$util->ShowErrors();
+			}
+	
+	break;
+	
+	
+	case 'adjuntarActa':
+	
+		// echo '<pre>'; print_r($_POST);
+		if($url = $group->upFile($_POST["cmId"])){
+				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Documento se adjunto correctamente</strong>
+				</div>';
+				echo '[#]';
+				$result = $course->getMateriaxCourse($_POST['id']);
+				$smarty->assign('cmId', $_POST["cmId"]);
+				$smarty->assign('id', $_POST["id"]);
+				$smarty->assign('result', $result);
+				$smarty->display(DOC_ROOT.'/templates/lists/new/prog-materia.tpl');
+			}else{
+				echo "fail[#]";
+				
+			}
+	
+	
+	break;
 }
 
 ?>

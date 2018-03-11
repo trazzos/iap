@@ -518,7 +518,7 @@
 			$filtro = "";
 			
 			if($this->statusIn){
-				$filtro .= " and estatus = '".$this->statusIn."'";
+				$filtro .= " and c.estatus = '".$this->statusIn."'";
 			}
 			
 			if($this->yoId){

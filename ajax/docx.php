@@ -13,6 +13,11 @@
 	$info = $personal->Info();
 
 
+	if(file_exists(DOC_ROOT."/".$info['foto'])){
+		$foto = DOC_ROOT."/".$info['foto'];
+	}else{
+		$foto = DOC_ROOT."/alumnos/no_foto.JPG";
+	}
 	// echo '<pre>'; print_r($info);
 	// exit;
 	
@@ -65,6 +70,7 @@
 		<br>
 		<br>
 		<br>
+		<img src='".$foto."?".rand()."' style='width: 100px !important'><br>
 		<b class='txtTicket'>INFORMACION GENERAL</b>
 		<table  align='center' width='100%' border='1' class='txtTicket'>
 			<tr>

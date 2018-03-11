@@ -247,6 +247,8 @@
 		 || $page == "info-docente" 
 		 || $page == "lst-docentes" 
 		 || $page == "repositorio" 
+		 || $page == "prog-academico" 
+		 || $page == "tabla-costo" 
 		 || $page == "repositorio"} active {/if} ">
 
             <a href="javascript:;" class="nav-link nav-toggle">
@@ -279,8 +281,13 @@
                     </a>
                 </li>
 				 <li class="nav-item  ">
-                    <a href="{$WEB_ROOT}/add-cat-doc-docente" class="nav-link ">
-                        <span class="title">Documentos Docente</span>
+                    <a href="{$WEB_ROOT}/tabla-costo" class="nav-link ">
+                        <span class="title">Tabla de Costos</span>
+                    </a>
+                </li>
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/prog-academico" class="nav-link ">
+                        <span class="title">Programas Académicos</span>
                     </a>
                 </li>
 				 <li class="nav-item  ">
@@ -291,8 +298,8 @@
 				{/if}
             </ul>
         </li>
-		
-		<li class="nav-item {if $page == "vehiculos" || $page == "report-materia"} active {/if} ">
+		{if !$docente}
+		<li class="nav-item {if $page == "vehiculos" || $page == "report-materia" || $page == "doc-mat"  || $page == "report-docentes"} active {/if} "> 
 
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-desktop" aria-hidden="true"></i>
@@ -311,9 +318,20 @@
                         <span class="title">Materias</span>
                     </a>
                 </li>
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/report-docentes" class="nav-link ">
+                        <span class="title">Docentes</span>
+                    </a>
+                </li>
+				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/doc-mat" class="nav-link ">
+                        <span class="title">Docentes/Materias</span>
+                    </a>
+                </li>
 				{/if}
             </ul>
         </li>
+			{/if}
 		<!--<li class="nav-item  ">
             <a href="{$WEB_ROOT}/mensaje" class="nav-link nav-toggle">
                 <i class="fa fa-video-camera"></i>
@@ -409,6 +427,13 @@
                 <a href="{$WEB_ROOT}/resources-modules-student/id/{$id}" class="nav-link nav-toggle">
                     <i class="fa fa-files-o"></i>
                     <span class="title">Recursos de Apoyo</span>
+                </a>
+            </li>
+			
+			<li class="nav-item {if $page == "forum-modules-student"} active {/if} ">
+                <a href="{$WEB_ROOT}/reply-inbox/id/{$id}/cId/0" class="nav-link nav-toggle">
+                    <i class="fa fa-envelope-o"></i>
+                    <span class="title">Inbox</span>
                 </a>
             </li>
 

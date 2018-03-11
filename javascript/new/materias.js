@@ -152,3 +152,9 @@ function onSendContrato(){
 	})
 	
 }
+
+
+function onImprimirVal(Id,tipo){
+	url=WEB_ROOT+"/ajax/val.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id+'&tipo='+tipo;
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
+}

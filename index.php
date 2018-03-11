@@ -188,6 +188,12 @@ $pages = array(
 	'add-cat-doc-docente',
 	'materias',
 	'vehiculos',
+	'report-materia',
+	'report-docentes',
+	'doc-mat',
+	'tabla-costo',
+	'prog-academico',
+	'prog-materia',
 	
 	
 	

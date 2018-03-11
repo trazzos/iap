@@ -8,6 +8,7 @@
 	$module->setQuienEnviaId('personal');
 	$module->setRecibeId($_SESSION['User']['userId']);
 	$module->setCMId($_GET["id"]);
+	// exit;
 	$lstMsj = $module->EnumerateInbox();
 	
 	if ($_GET["cId"]<>0){

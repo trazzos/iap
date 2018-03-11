@@ -57,7 +57,27 @@ switch($_POST["type"])
 			$smarty->display(DOC_ROOT . '/templates/boxes/status.tpl');
 		}
 		
-		break;
+	break;
+	
+	case 'onMaterias':
+	
+		
+		$lstMats = $subject->getMaterias($_POST['Id']);
+		// echo '<pre>'; print_r($lstMats);
+		$smarty->assign("lstMats", $lstMats);
+		$smarty->display(DOC_ROOT . '/templates/boxes/materias.tpl');
+	break;
+	
+	case 'onBuscar':
+	
+		$personals = $subject->getMateriasProfesor($_POST['materia']);
+		// echo '<pre>'; print_r($personals);
+		// exit;
+		$smarty->assign("personals", $personals);
+		$smarty->display(DOC_ROOT . '/templates/lists/report-materia.tpl');
+		
+	
+	break;
 		
 }
 ?>

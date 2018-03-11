@@ -6,6 +6,14 @@
 	
 	if($_POST)
 	{
+	
+		
+		if($_POST["apareceT"]=="on"){
+			$_POST["apareceT"]  = 'si';
+		}else{
+			$_POST["apareceT"]  = 'no';
+		}
+		
 		$course->setSubjectId($_POST["subjectId"]);
 		$course->setModality($_POST["modality"]);
 		$course->setInitialDate($_POST["initialDate"]);
@@ -23,6 +31,7 @@
 		$course->setScholarCicle($_POST["scholarCicle"]);
 		$course->setDias($_POST["dias"]);
 		$course->setHorario($_POST["horario"]);
+		$course->setAparece($_POST["apareceT"]);
 
 		$course->Open();
 

@@ -17,28 +17,9 @@
 	}
 	
 
-	foreach($ayDocentes as $key=>$aux){
-		
-		$personal->setPersonalId($aux['Id']);
-		$infoPerso = $personal->InfoBasica();
-		$info = $personal->Info();
-		
-		$infoUM = $personal->extraeUltimaMateria($info['personalId']);
-		
-		if(file_exists(DOC_ROOT."/".$info['foto'])){
-			$foto = DOC_ROOT."/".$info['foto'];
-		}else{
-			$foto = DOC_ROOT."/alumnos/no_foto.JPG";
-		}
-		
-		$ayDocentes[$key]['info'] = $infoPerso;
-		$ayDocentes[$key]['infoPer'] = $info;
-		$ayDocentes[$key]['foto'] = $foto;
-		$ayDocentes[$key]['materia'] = $infoUM['name'];
-		
-		
-	}
-		// echo '<pre>'; print_r($ayDocentes);
+	$personals = $subject->getMateriasImpartida($_GET['Id']);
+	
+	// echo '<pre>'; print_r($personals);
 	// exit;
 
 	$html .= "
@@ -85,17 +66,14 @@
 		<br>	
 		<br>	
 		<br>	
-		<center><b class='txtTicket'></b></center>
+		<center><b class='txtTicket'>Materias Impartidas</b></center>
 		<br>	
 		<br>
-		<table align='center' width='100%' border='1' class='txtTicket'>
-			<tr>
-				<td style='width:34%'>Periodo:</td>
-				<td>".$_GET['inicio']." - ".$_GET['fin']."</td>
-			</tr>
+	
+
 
 			";
-		$html .= "</table>";
+
 	
 		$html .= "<br>";
 		$html .= "<br>";
@@ -105,22 +83,18 @@
 		$html .= "
 		";
 		$html .= "<tr>";
-		$html .= "<td>Foto</td>";
-		$html .= "<td>Nombre</td>";
+
+		$html .= "<td>Posgrado</td>";
 		$html .= "<td>Materia</td>";
-		$html .= "<td>Vehiculo modelo</td>";
-		$html .= "<td>Vehiculo Color</td>";
-		$html .= "<td>Vehiculo Placas</td>";
 		$html .= "</tr>";
-		foreach($ayDocentes as $key=>$aux){
+		foreach($personals as $key=>$aux){
+			
+			$personal->setPersonalId($aux['personalId']);
+			$infoPerso = $personal->InfoBasica();
 			
 			$html .= "<tr>";
-			$html .= "<td style='text-align:center'><img src='".$aux['foto']."?".rand()."' style='width: 100px !important'></td>";
-			$html .= "<td>".$aux['infoPer']['name']." ".$aux['infoPer']['lastname_paterno']." ".$aux['infoPer']['lastname_materno']."</td>";
-			$html .= "<td>".$aux['materia']."</td>";
-			$html .= "<td>".$aux['info']['infoAuto'][0]['modelo']."</td>";
-			$html .= "<td>".$aux['info']['infoAuto'][0]['color']."</td>";
-			$html .= "<td>".$aux['info']['infoAuto'][0]['placas']."</td>";
+			$html .= "<td>".$aux['name']."</td>";  
+			$html .= "<td>".$aux['name']."</td>";
 
 			$html .= "</tr>";
 		}

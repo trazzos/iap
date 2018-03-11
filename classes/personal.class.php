@@ -1352,8 +1352,99 @@ class Personal extends Main
 	
 	}
 	
+	public function extraeUltimaMateria($Id)
+	{
+		$sql = "SELECT 
+					* 
+				FROM 
+					course_module_personal as c
+				left join course_module as cm on cm.courseModuleId = c.courseModuleId
+				left join subject_module as sm on sm.subjectModuleId =  cm.subjectModuleId
+				WHERE
+					c.personalId = ".$Id." order by courseModPId limit 0,1  ";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+		
+		return $result;
+	}
+	
+	public function adjuntarPlan($lastId,$cmId)
+	{
+		
+		
+		
+		foreach($_FILES as $key=>$var)
+		{
+			
+		   switch($key)
+		   {
+			   case 'comprobante':
+				   if($var["name"]<>""){
+						$aux = explode(".",$var["name"]);
+						$extencion=end($aux);
+						$temporal = $var['tmp_name'];
+						
+						$url = DOC_ROOT;				
+						$foto_name="plan_".$cmId.".".$extencion;
+						
+						if(move_uploaded_file($temporal,$url."/materia/".$foto_name)){		
+																	
+											
+							 $sql = 'UPDATE 		
+								course_module SET 		
+								rutaPlan = "'.$foto_name.'"			      		
+								WHERE courseModuleId = '.$cmId.'';		
+								// exit;
+								$this->Util()->DB()->setQuery($sql);		
+								$this->Util()->DB()->UpdateData();
+
+						}
+					}
+				break;
+		  }
+		}
+		
+		
+			
+		
+		return  true;
+	}
 	
 	
+	public function onDeletePlan($cmId){
+		
+		 $sql = 'UPDATE 		
+				course_module SET 		
+				rutaPlan = ""			      		
+				WHERE courseModuleId = '.$cmId.'';		
+				// exit;
+		$this->Util()->DB()->setQuery($sql);		
+		$this->Util()->DB()->UpdateData();
+		
+		@unlink(DOC_ROOT.'/materia/plan_'.$cmId);
+		
+		return true;
+		
+	}
+	
+	
+	
+	public function onDeleteCarta($cmId){
+		
+		 $sql = 'UPDATE 		
+				course_module SET 		
+				rutaActa = ""			      		
+				WHERE courseModuleId = '.$cmId.'';		
+				// exit;
+		$this->Util()->DB()->setQuery($sql);		
+		$this->Util()->DB()->UpdateData();
+		
+		@unlink(DOC_ROOT.'/docentes/calificaciones/acta_'.$cmId);
+		
+		return true;
+		
+	}
 }
 
 

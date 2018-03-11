@@ -102,6 +102,15 @@ class Docente extends Empresa{
 		$this->Util()->DB()->setQuery($sql);
 		$lst = $this->Util()->DB()->GetResult();
 		
+		if(trim($_POST['comentario'])==''){
+			echo 'fail[#]';
+					echo '<div class="alert alert-warning alert-dismissable">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					 <strong> Campo Requerido: Comentario
+					 </strong>';
+					 exit;
+		}
+		
 		
 		
 		foreach($lst as $key=>$aux){
@@ -414,6 +423,52 @@ class Docente extends Empresa{
 		return true;
 		
 	}
+	
+	
+	public function onBuscarMacth(){
+		
+		$filtro = "";
+		
+		if($_POST['activo']=='on' && $_POST['programado']=='on'){
+			$filtro .= "";
+		}
+		else if($_POST['activo']=='on'){
+			$filtro .= " and cm.initialDate >= '".date('Y-m-d')."' and cm.finalDate <= '".date('Y-m-d')."'";
+		}
+		else if($_POST['programado']=='on'){
+			
+			$filtro .= " and cm.initialDate < '".date('Y-m-d')."'";
+		}
+		
+		
+		if($_POST['linea']=='on' && $_POST['presencial']=='on'){
+			$filtro .= " and  (modality =  'Online' or  modality =  'Local')";
+		}
+		else if($_POST['presencial']=='on'){
+			$filtro .= " and modality =  'Local'";
+		}
+		else if($_POST['linea']=='on'){
+			$filtro .= " and modality =  'Online'";
+		}
+		
+		$sqlQuery = 'SELECT 
+					p.*, 
+					cm.*
+				FROM 
+					course_module_personal AS cmp
+				left join course_module AS cm ON cm.courseModuleId = cmp.courseModuleId 
+				left join course as c ON c.courseId = cm.courseId 
+				left join personal as p ON p.personalId = cmp.personalId 
+				where 1 '.$filtro.'';
+
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$result = $this->Util()->DB()->GetResult();
+		
+		return $result;
+		
+	}
+	
+	
 	
 }//Docente
 

@@ -9,17 +9,37 @@
 		private $id;
 		private $dias;
 		private $horario;
+		private $aparece;
+		private $tarifa;
+		private $hora;
 		
 		public function setId($value)
 		{
 			$this->id = $value;	
 		}
 	
+		public function setAparece($value)
+		{
+			// $this->Util()->ValidateString($value, 255, 0, 'Nombre');
+			$this->aparece = $value;
+		}
 	
 		public function setNombre($value)
 		{
 			$this->Util()->ValidateString($value, 255, 0, 'Nombre');
 			$this->nombre = $value;
+		}
+		
+		public function setTarifa($value)
+		{
+			$this->Util()->ValidateString($value, 255, 0, 'Tarifa');
+			$this->tarifa = $value;
+		}
+		
+		public function setHora($value)
+		{
+			$this->Util()->ValidateString($value, 255, 0, 'Hora');
+			$this->hora = $value;
 		}
 		
 		public function setDias($value)
@@ -269,7 +289,14 @@
 
 		public function EnumerateCount()
 		{
-			$this->Util()->DB()->setQuery("SELECT COUNT(*) FROM course");
+			
+			$filtro = "";
+			
+			if($this->aparece){
+				$filtro .= " and course.apareceTabla ='si'";
+			}
+			
+			$this->Util()->DB()->setQuery("SELECT COUNT(*) FROM course where 1 ".$filtro."");
 			return $this->Util()->DB()->GetSingle();
 		}
 
@@ -289,6 +316,13 @@
 		  		  
 		public function EnumerateByPage($currentPage, $rowsPerPage, $pageVar, $pageLink, &$arrPages)
 		{
+			
+			$filtro = "";
+			
+			if($this->aparece){
+				$filtro .= " and course.apareceTabla ='si'";
+			}
+			
 			//variable donde guardaremos los registros de la pagina actual y que se regresara para su visualizacion
 			$result = NULL;
 
@@ -315,6 +349,7 @@
 				SELECT *, major.name AS majorName, subject.name AS name  FROM course
 				LEFT JOIN subject ON course.subjectId = subject.subjectId 
 				LEFT JOIN major ON major.majorId = subject.tipo
+				where 1 '.$filtro.'
 				ORDER BY subject.tipo,  subject.name,  course.modality, initialDate LIMIT ' . $rowOffset . ', ' . $rowsPerPage);
 			
 			$result = $this->Util()->DB()->GetResult();
@@ -417,7 +452,8 @@
 							folio,
 							access,
 							dias,
-							horario
+							horario,
+							apareceTabla
 						)
 					VALUES (
 							'" . $this->getSubjectId() . "',
@@ -433,7 +469,8 @@
 							'" . $this->folio . "',
 							'".$this->personalId."|".$this->teacherId."|".$this->tutorId."|".$this->extraId."',
 							'".$this->dias."',
-							'".$this->horario."'
+							'".$this->horario."',
+							'".$this->aparece."'
 							)";
 			//configuramos la consulta con la cadena de insercion
 			$this->Util()->DB()->setQuery($sql);
@@ -485,6 +522,7 @@
 						fechaDiploma='" 	. $this->fechaDiploma . "',
 						dias='".$this->dias."',
 						horario='".$this->horario."',
+						apareceTabla='".$this->aparece."',
 						access='".$this->personalId."|".$this->teacherId."|".$this->tutorId."|".$this->extraId."'
 						WHERE courseId='" . utf8_decode($this->courseId) . "'";
 			//configuramos la consulta con la cadena de actualizacion
@@ -902,6 +940,44 @@
 			
 			
 			return true;
+		}
+		
+		function editaCosto($Id)
+		{
+			
+			 $sql = " UPDATE 
+						course
+					SET
+						tarifa='".$this->tarifa."', 
+						hora='".$this->hora."'
+						WHERE courseId ='".$Id."'";
+
+						
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->UpdateData();
+			
+			return true;
+		
+		}
+		
+		function getMateriaxCourse($Id)
+		{
+			 $sql = "
+				SELECT 
+					c.*,
+					sm.*,
+					CONCAT_WS(' ',p.name,lastname_paterno,lastname_materno) as nombrePersonal
+				FROM 
+					course_module as c
+				left join  subject_module as sm on sm.subjectModuleId = c.subjectModuleId 
+				left join  course_module_personal as cm on cm.courseModuleId = c.courseModuleId 
+				left join  personal as p on p.personalId = cm.personalId 
+				WHERE courseId = '".$Id."' ";		
+				// exit;
+				$this->Util()->DB()->setQuery($sql);
+				$cal = $this->Util()->DB()->GetResult();
+				
+			return $cal;
 		}
 		
 		

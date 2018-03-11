@@ -191,6 +191,9 @@ $pages = array(
 	'editar-contra',
 	'cedula-contra',
 	'down-contrato',
+	'edit-costo',
+	'up-plan',
+	'up-acta',
 
 );
 
