@@ -3,9 +3,9 @@
 
 // exit;
 	// $subject->setTipo('Docente');
-	$subject->scriptLLenaMaterias();
+	// $subject->scriptLLenaMaterias();
 	
-	exit;
+	// exit;
 	$lstPosgrados = $subject->getPosgrados();
 
 	// echo '<pre>'; print_r($personals);

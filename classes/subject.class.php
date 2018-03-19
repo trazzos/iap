@@ -1424,6 +1424,7 @@ public function Enumerate_p(){
 	
 	public function scriptLLenaMaterias(){
 		
+		exit;
 		$sqlQuery = '
 			SELECT 
 				* 
