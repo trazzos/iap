@@ -6,8 +6,11 @@
 		<th width="100" style="text-align:center">Tipo</th>
 		<th width="200" style="text-align:center">Nombre</th>
 		<th width="80" style="text-align:center">Modalidad</th>
+		<th width="80" style="text-align:center">Grupo</th>
+		<!--
 		<th width="80" style="text-align:center">Tarifa</th>
 		<th width="80" style="text-align:center">Horas Materia</th>
+		-->
 		<th width="100">Materias</th>
 	</tr>
     </thead>
@@ -20,8 +23,11 @@
 				<td align="center">{$subject.majorName}</td>
 				<td align="center">{$subject.name}</td>
 				<td align="center">{if $subject.modality eq 'Local'}Presencial{else}{$subject.modality}{/if}</td>
+				<td align="center">{$subject.group}</td>
+				<!--
 				<td align="center">{$subject.tarifa}</td>
 				<td align="center">{$subject.hora}</td>
+				-->
 				<td align="center">
 				
 					<a href="{$WEB_ROOT}/prog-materia/m/{$subject.courseId}"  title='MATERIAS'>

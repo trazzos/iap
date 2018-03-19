@@ -16,6 +16,12 @@
 		}
 	}
 	
+	$subject->setSubjectId($_GET['posgrado']);
+	$infoS = $subject->Info();
+	$module->setSubjectModuleId($_GET['materia']);
+	$infoM  = $module->Info();
+	// echo '<pre>'; print_r($infoM);
+	// exit;
 
 	$personals = $subject->getMateriasProfesor($_GET['materia']);
 
@@ -77,8 +83,15 @@
 		
 	
 		$html .= "<table align='center' width='100%' border='1' class='txtTicket'>";
-		$html .= "
-		";
+		$html .= "";
+		$html .= "<tr>";
+		$html .= "<td >Posgrado:</td>";
+		$html .= "<td colspan='4'>".$infoS['name']."</td>";
+		$html .= "</tr>";
+		$html .= "<tr>";
+		$html .= "<td >Materia:</td>";
+		$html .= "<td colspan='4'>".$infoM['name']."</td>";
+		$html .= "</tr>";
 		$html .= "<tr>";
 		$html .= "<td>Foto</td>";
 		$html .= "<td>Nombre</td>";
@@ -91,12 +104,54 @@
 			$personal->setPersonalId($aux['personalId']);
 			$infoPerso = $personal->InfoBasica();
 			
+			if(file_exists(DOC_ROOT."/".$aux['foto'])){
+				$foto = DOC_ROOT."/".$aux['foto'];
+			}else{
+				$foto = DOC_ROOT."/alumnos/no_foto.JPG";
+			}
+			
 			$html .= "<tr>";
-			$html .= "<td style='text-align:center'><img src='".$aux['foto']."?".rand()."' style='width: 100px !important'></td>";
+			$html .= "<td style='text-align:center'><img src='".$foto."?".rand()."' style='width: 100px !important'></td>";
 			$html .= "<td>".$aux['name']." ".$aux['lastname_paterno']." ".$aux['lastname_materno']."</td>";
-			$html .= "<td>".$aux['basica']['estudios'][0]."</td>";  
-			$html .= "<td>".$aux['basica']['estudios'][1]."</td>";
-			$html .= "<td>".$aux['basica']['estudios'][2]."</td>";
+			$html .= "<td>".$aux['basica']['estudios'][0]['carrera']."|".$aux['basica']['estudios'][0]['escuela']."<br><br>";
+			
+			if ($aux['basica']['estudios'][0]['titulo'] == 'si'){
+				$html .= "<li> Titulo";
+			} 
+			if ($aux['basica']['estudios'][0]['actaExamen'] == 'si'){
+				$html .= "<li> Acta de Examen";
+			}
+			if ($aux['basica']['estudios'][0]['cedula'] == 'si'){
+				$html .= "<li> Cedula";
+			}
+			
+			$html .= "</td>";  
+			$html .= "<td>".$aux['basica']['estudios'][1]['carrera']."|".$aux['basica']['estudios'][1]['escuela']."<br><br>";
+			
+			if ($aux['basica']['estudios'][1]['titulo'] == 'si'){
+				$html .= "<li> Titulo";
+			} 
+			if ($aux['basica']['estudios'][1]['actaExamen'] == 'si'){
+				$html .= "<li> Acta de Examen";
+			}
+			if ($aux['basica']['estudios'][1]['cedula'] == 'si'){
+				$html .= "<li> Cedula";
+			}
+			
+			$html .=  "</td>";
+			$html .= "<td>".$aux['basica']['estudios'][2]['carrera']."|".$aux['basica']['estudios'][2]['escuela']."<br><br>";
+			
+			if ($aux['basica']['estudios'][2]['titulo'] == 'si'){
+				$html .= "<li> Titulo";
+			} 
+			if ($aux['basica']['estudios'][2]['actaExamen'] == 'si'){
+				$html .= "<li> Acta de Examen";
+			}
+			if ($aux['basica']['estudios'][2]['cedula'] == 'si'){
+				$html .= "<li> Cedula";
+			}
+			
+			$html .=  "</td>";
 
 			$html .= "</tr>";
 		}

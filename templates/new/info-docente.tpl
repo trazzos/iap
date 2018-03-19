@@ -33,9 +33,12 @@
 			<div class="tabbable portlet-tabs">
 		<ul class="nav nav-tabs">
 			
-			<li class="active">
-				
+			
+			<li class="active">	
 				<a href="#portlet_tabp_1" data-toggle="tab">Información General</a>
+			</li>
+			<li >	
+				<a href="#portlet_tabp_5" data-toggle="tab">Acceso</a>
 			</li>
 			<li >
 				<a href="#portlet_tabp_2" data-toggle="tab">
@@ -54,8 +57,28 @@
 			</li>
 		</ul>
 		<div class="tab-content">
-		
+				
+			
+			
+				
 			<div class="tab-pane active" id="portlet_tabp_1">
+				<center>
+					<form id="frmFoto">
+						<input type="hidden" name="personalId" class='form-control' value='{$info.personalId}'>
+						<div >
+							<img src='{$foto}' style='width: 100px !important'>
+							<div style='position: relative; 
+							bottom:0px; width:100%; margin-right: -100px;'>
+							<span class="btn btn-default btn-file">
+							<input type="file" name="archivos" id="archivos" onChange="onChangePicture({$info.personalId})" class="btn-file" style="border: 0px solid !important">
+							<i class="material-icons md-16 icon-green"  >create</i>
+							</span>
+							
+							</div>
+							</a>
+						</div>
+					</form>
+				</center>
 				<form  id='frmGral_1' align="center">
 					<input type="hidden" name="personalId" class='form-control' value='{$info.personalId}'>
 					<center>
@@ -111,7 +134,17 @@
 								 {include file="{$DOC_ROOT}/templates/new/ciudades.tpl"}
 								</div>
 							</td>
+						</tr>
 						<tr>
+							<td ><b>Facebook:</b><input type="text" name="facebook" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.facebook}'></td>
+							<td ><b>Twitter</b>
+						
+							<input type="text" name="twitter" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.twitter}'>
+							</td>
+							<td >
+								
+							</td>
+						</tr>
 					</table>
 					</center>
 				</form>
@@ -136,6 +169,9 @@
 					{/if}
 					</center>
 				
+			</div>
+			<div class="tab-pane" id="portlet_tabp_5">
+				{include file="{$DOC_ROOT}/templates/forms/informacion-acceso.tpl"}
 			</div>
 			<div class="tab-pane " id="portlet_tabp_2" >
 				{include file="{$DOC_ROOT}/templates/forms/informacion-escolar.tpl"}

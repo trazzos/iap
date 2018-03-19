@@ -37,6 +37,20 @@ class Personal extends Main
 	private $firmaConstancia;
 	private $documentoId;
 	private $tipo;
+	private $face;
+	private $twitter;
+	
+	public function setFace($value)
+	{
+		// $this->Util()->ValidateString($value,  "Tipo");
+		$this->face = $value;
+	}
+	
+	public function setTwitter($value)
+	{
+		// $this->Util()->ValidateString($value, "Tipo");
+		$this->twitter = $value;
+	}
 	
 	public function setTipo($value)
 	{
@@ -807,12 +821,34 @@ class Personal extends Main
 	}
 	
 	
-	public function updateDocente()
+	public function updateAcceso()
 	{
 		
 		if($this->Util()->PrintErrors()){ 
 			return false; 
 		}
+		
+		 $sql = "UPDATE
+					personal 
+					SET 
+				 	username =  '".$this->username."',
+					passwd = '".$this->passwd."'
+				WHERE 
+					personalId = ".$this->personalId;
+					
+		
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}
+	
+	public function updateDocente()
+	{
+		
+		// if($this->Util()->PrintErrors()){ 
+			// return false; 
+		// }
 		
 		 $sql = "UPDATE
 					personal 
@@ -831,7 +867,9 @@ class Personal extends Main
 					colonia = '".$this->colonia."',
 					stateId = '".$this->estado."',
 					ciudad = '".$this->ciudad."',
-					fecha_nacimiento = '".$this->fechaNacimiento."'
+					fecha_nacimiento = '".$this->fechaNacimiento."',
+					facebook = '".$this->face."',
+					twitter = '".$this->twitter."'
 				WHERE 
 					personalId = ".$this->personalId;
 					
@@ -848,6 +886,7 @@ class Personal extends Main
 		if($this->Util()->PrintErrors()){ 
 			return false; 
 		}
+		
 		
 		
 		$sql = "INSERT INTO 
@@ -876,8 +915,24 @@ class Personal extends Main
 						'Docente'
 					)";
 									
-				$this->Util()->DB()->setQuery($sql);
-				$this->Util()->DB()->InsertData();
+			$this->Util()->DB()->setQuery($sql);
+			$Id = $this->Util()->DB()->InsertData();
+				
+				
+			$sql = "INSERT INTO 
+					personal_role 
+					(						
+						personalId, 
+						roleId
+					)
+				 VALUES 
+					(						
+						'".$Id."',
+						'2'
+					)";
+									
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
 		
 
 		
@@ -893,8 +948,7 @@ class Personal extends Main
 			return false; 
 		}
 		
-		// echo '<pre>'; print_r($_POST);
-		// exit;
+	
 		
 		for($i=0;$i<=1;$i++){
 			
@@ -945,6 +999,10 @@ class Personal extends Main
 		$titulo = $_POST[$tipo.'_titulo'];
 		$acta = $_POST[$tipo.'_acta'];
 		$cedula = $_POST[$tipo.'_cedula'];
+		
+		
+		// echo $_POST['lic_carrera'];
+		// exit;
 				
 				if($titulo){
 					$titulo = 'si';
@@ -1027,6 +1085,8 @@ class Personal extends Main
 	public function updateInfoBancos(){
 		
 		
+		
+		
 		 $sql = "SELECT 
 					count(*) 
 				FROM 
@@ -1083,6 +1143,17 @@ class Personal extends Main
 				$this->Util()->DB()->setQuery($sql);
 				$this->Util()->DB()->UpdateData();
 		}
+		
+		
+		$sql = "UPDATE
+					personal 
+					SET 
+				 	tipoContrato =  '".$_POST['tipoContrato']."'
+				WHERE 
+					personalId = ".$this->personalId;
+					
+			$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->UpdateData();
 		
 		return true;
 		

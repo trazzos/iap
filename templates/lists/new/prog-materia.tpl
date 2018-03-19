@@ -26,12 +26,14 @@
 
 				<td align="center">
 				
-					<a href="{$WEB_ROOT}/graybox.php?page=up-plan&id={$subject.courseId}&cmId={$subject.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='SUBIR'>
-						<i class="material-icons md-16">cloud_upload</i>
-					</a>
+					{if $subject.rutaPlan eq ''}
+						<a href="{$WEB_ROOT}/graybox.php?page=up-plan&id={$subject.courseId}&cmId={$subject.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='SUBIR'>
+							<i class="material-icons md-16">cloud_upload</i>
+						</a>
+					{/if}
 					{if $subject.rutaPlan  ne ''}
-					<a href="{$WEB_ROOT}/materia/{$subject.rutaPlan}" target='_blank'  title='DESCARGAR'>
-						<i class="material-icons md-16">cloud_download</i>
+					<a href="{$WEB_ROOT}/materia/{$subject.rutaPlan}" target='_blank'  title='VER PLAN DE ESTUDIOS'>
+						<i class="material-icons md-16">visibility</i>
 					</a>
 					
 					<a href="javascript:void(0)" onClick="onDelete('{$subject.courseModuleId}','{$subject.courseId}')"  title='ELIMINAR PLAN DE ESTUDIOS'>

@@ -37,7 +37,7 @@ function onBuscar(){
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/course.php',
-	  	data: $("#frmGral").serialize(true)+'&Id='+Id+'&type=onBuscar',
+	  	data: $("#frmGral").serialize(true)+'&type=onBuscar',
 		beforeSend: function(){			
 			$('#divContenforo').html(LOADER3);
 		},

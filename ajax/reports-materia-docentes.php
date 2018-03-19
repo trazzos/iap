@@ -19,6 +19,16 @@
 
 	$personals = $subject->getMateriasImpartida($_GET['Id']);
 	
+	$personal->setPersonalId($_GET['Id']);
+	// $infoPerso = $personal->InfoBasica();
+	$info = $personal->Info();
+	
+	if(file_exists(DOC_ROOT."/".$info['foto'])){
+		$foto = DOC_ROOT."/".$info['foto'];
+	}else{
+		$foto = DOC_ROOT."/alumnos/no_foto.JPG";
+	}
+	
 	// echo '<pre>'; print_r($personals);
 	// exit;
 
@@ -66,6 +76,14 @@
 		<br>	
 		<br>	
 		<br>	
+		<br>	
+		<center>
+			<img src='".$foto."?".rand()."' style='width: 100px !important'><br>
+			<b class='txtTicket'>".$info['name']." ".$info['lastname_paterno']." ".$info['lastname_materno']."</b>
+		</center><br>
+		<br>	
+		<br>	
+		<br>	
 		<center><b class='txtTicket'>Materias Impartidas</b></center>
 		<br>	
 		<br>
@@ -86,6 +104,10 @@
 
 		$html .= "<td>Posgrado</td>";
 		$html .= "<td>Materia</td>";
+		$html .= "<td>Grupo</td>";
+		$html .= "<td>Modalidad</td>";
+		$html .= "<td>Fecha Inicio</td>";
+		$html .= "<td>Fecha Fin</td>";
 		$html .= "</tr>";
 		foreach($personals as $key=>$aux){
 			
@@ -93,8 +115,12 @@
 			$infoPerso = $personal->InfoBasica();
 			
 			$html .= "<tr>";
-			$html .= "<td>".$aux['name']."</td>";  
+			$html .= "<td>".$aux['nameS']."</td>";  
 			$html .= "<td>".$aux['name']."</td>";
+			$html .= "<td>".$aux['group']."</td>";
+			$html .= "<td>".$aux['modality']."</td>";
+			$html .= "<td>".$aux['initialDate']."</td>";
+			$html .= "<td>".$aux['finalDate']."</td>";
 
 			$html .= "</tr>";
 		}

@@ -94,7 +94,7 @@ switch($_POST["type"])
         $personal->setFechaDgta($_POST['fecha_dgta']);
         $personal->setClavesPresupuestales($_POST['claves_presupuestales']);
         $personal->setCategoria($_POST['categoria']);
-        $personal->setPerfil($_POST['perfil']);
+        $personal->setPerfil('Docente');
         $personal->setProf($_POST['prof']);
 
         if(!$personal->Save())
@@ -336,6 +336,9 @@ switch($_POST["type"])
 					$smarty->display(DOC_ROOT.'/templates/lists/lst-docentes.tpl');
 			}else{
 				echo 'fail[#]';
+				// $util->PrintErrors();
+				$smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
+				
 			}
 	break;
 	
@@ -528,6 +531,17 @@ switch($_POST["type"])
 				
 			}
 	
+	
+	break;
+	
+	case 'onChangePicture':
+	
+		if($url = $group->onChangePicture($_POST["personalId"])){
+				echo "ok[#]";
+			}else{
+				echo "fail[#]";
+				
+			}
 	
 	break;
 }

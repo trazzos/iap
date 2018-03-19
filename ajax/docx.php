@@ -101,6 +101,11 @@
 				<td><b>Estado:	</b><br>".$info['estado']."</td>
 				<td><b>Ciudad:</b><br> ".$info['ciudad']."</td>
 			</tr>
+			<tr>
+				<td><b>Facebook:</b><br>".$info['facebook']."</td>
+				<td><b>Twitter:	</b><br>".$info['twitter']."</td>
+				<td></td>
+			</tr>
 			";
 		$html .= "</table>";
 

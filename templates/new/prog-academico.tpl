@@ -1,7 +1,7 @@
 <div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-bullhorm"></i>Tabla de costos
+            <i class="fa fa-bullhorm"></i>Programas Académicos
         </div>
         <div class="actions">
             

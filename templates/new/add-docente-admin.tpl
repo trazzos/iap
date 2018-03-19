@@ -54,7 +54,7 @@
 		<br>
 		<br>
 		
-<div id="msj_1">
+					<div id="msj_1">
 					</div>
 					<center>
 					<button onClick='onSave()' class="btn green" >

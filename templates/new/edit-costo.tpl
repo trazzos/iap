@@ -13,9 +13,17 @@
 		<input type="hidden" id="type" name="type" value="saveAddMajor"/>
 		<div class="form-body">
 			<div class="form-group">
-				<label class="col-md-3 control-label">Tarifa:</label>
+				<label class="col-md-3 control-label">Tarifa Mtro:</label>
 				<div class="col-md-8">
-					<input type="text"  id="tarifa" name="tarifa" class="form-control" value="{$info.tarifa}">
+					<input type="text"  id="tarifa" name="tarifaMtro" class="form-control" value="{$info.tarifaMtro}">
+
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-md-3 control-label">Tarifa Dr:</label>
+				<div class="col-md-8">
+					<input type="text"  id="tarifaDr" name="tarifaDr" class="form-control" value="{$info.tarifaDr}">
 
 				</div>
 			</div>

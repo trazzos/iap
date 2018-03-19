@@ -57,20 +57,22 @@
 <br>
 <br>
 {if $info.habilitarCalificar eq 'no'}
-<button  class="btn green submitForm" onClick="descargarActa({$id})">Descargar Acta</button>
-<span class="btn btn-default btn-file">
-<img src="{$WEB_ROOT}/images/mas.png" style="width:10%">
-<form method="post" id="frmFile" >
-<input type="hidden" name="type" id="type" class="type" value="addCalificacion">
-<input type="hidden" name="id" id="id" value="{$id}">
-<input type="file" name="archivos" id="archivos" class="btn-file" onChange="upFile({$id})">
-</form>
-<input type="hidden" name="archivosh" id="archivosh" class="btn-file" >
-Subir Acta
-</span>
+	{if $info.rutaActa eq ''}
+		<button  class="btn green submitForm" onClick="descargarActa({$id})">Descargar Acta</button>
+		<span class="btn btn-default btn-file" style="width:150px; height:35px !important">
+
+		<form method="post" id="frmFile" >
+		<input type="hidden" name="type" id="type" class="type" value="addCalificacion">
+		<input type="hidden" name="id" id="id" value="{$id}">
+		<input type="file" name="archivos" id="archivos" class="btn-file" style="width:888px !important" onChange="upFile({$id})">
+		</form>
+		<input type="hidden" name="archivosh" id="archivosh" class="btn-file" >
+		Subir Acta
+		</span>
+	{/if}
 {/if}
 {if $info.rutaActa ne ''}
- <a href="{$WEB_ROOT}/docentes/calificaciones/{$info.rutaActa}" target='_blank' class="btn green submitForm" >Visualizar Acta</a>
+ <a href="{$WEB_ROOT}/docentes/calificaciones/{$info.rutaActa}" target='_blank' class="btn green submitForm" >Visualizar Acta Final</a>
 {/if}
  <br>
  <progress id='progress' name='progress' {if $info.rutaActa eq ''} value="0" {else} value="100" {/if}  min="0" max="100"></progress>

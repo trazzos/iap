@@ -201,20 +201,21 @@ function onSave(){
 	  	url: WEB_ROOT+'/ajax/new/personal.php',
 	  	data: $("#frmGral").serialize(true)+'&type=onSave',
 		beforeSend: function(){			
-			// $('#tblContent').html(LOADER3);
+			$('#msj_1').html(LOADER3);
 		},
 	  	success: function(response) {	
-		
+
 			console.log(response)
 			var splitResp = response.split("[#]");
-
+			$('#msj_1').html('');
 			if($.trim(splitResp[0]) == "ok"){
 					closeModal();
 					$("#msj").html(splitResp[1]);
 					$("#container").html(splitResp[2]);
 				}
 			else if($.trim(splitResp[0]) == "fail"){
-				$("#msj").html(splitResp[1]);
+				ShowStatusPopUp(splitResp[1]);
+				
 			}
 		}
     });
@@ -246,5 +247,12 @@ function activaEdicion(){
 
 function pdfDatos(Id){
 	url=WEB_ROOT+"/ajax/docx.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id;
+	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+}
+
+
+
+function pdfCarta(Id){
+	url=WEB_ROOT+"/ajax/carta-pago.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id;
 	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
 }

@@ -153,7 +153,7 @@
 					FROM
 						subject_module
 					WHERE
-							subjectModuleId='" . $this->	subjectModuleId . "'";
+							subjectModuleId='" . $this->subjectModuleId . "'";
 			//configuramos la consulta con la cadena de actualizacion
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y obtenemos el resultado
@@ -168,7 +168,10 @@
 		{
 			//creamos la cadena de seleccion
 			$sql = "SELECT 
-						*, subject_module.name AS name, subject.name AS subjectName, major.name AS majorName,
+						course_module.*, 
+						subject.*, 
+						major.*, 
+						subject_module.name AS name, subject.name AS subjectName, major.name AS majorName,
 						subject_module.welcomeText as welcomeText,
 						subject_module.introduction as introduction,
 						subject_module.intentions as intentions,
@@ -180,14 +183,18 @@
 						subject_module.evaluation as evaluation,
 						subject_module.bibliography as bibliography,
 						subject_module.subjectModuleId as Id,
-						subject_module.semesterId as semesId
+						subject_module.semesterId as semesId,
+						c.modality as modality
+						
 					FROM
 						course_module
+					LEFT JOIN course as c ON c.courseId = course_module.courseId
 					LEFT JOIN subject_module ON course_module.subjectModuleId = subject_module.subjectModuleId
 					LEFT JOIN	subject ON subject.subjectId = subject_module.subjectId	
 					LEFT JOIN	major ON major.majorId = subject.tipo	
 					WHERE
 							courseModuleId='" . $this->courseModuleId . "'";
+							// exit;
 			//configuramos la consulta con la cadena de actualizacion
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y obtenemos el resultado
@@ -727,6 +734,18 @@
 						c.personalId = ".$Id." order by cm.active asc";
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
+			
+			foreach($result as $key=>$aux){
+				
+				if($aux['finalDate'] < date('Y-m-d')){
+					
+					$result[$key]['estatusFin'] = "finalizada";
+					
+				}else{
+					$result[$key]['estatusFin'] = "activa";
+				}
+				
+			}
 			
 			return $result;
 			

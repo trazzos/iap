@@ -9,7 +9,8 @@ switch($_POST["type"])
 	case "saveEditContrato": 
 		
 			// echo '<pre>'; print_r($_POST);
-		$course->setTarifa($_POST['tarifa']);
+		$course->setTarifa($_POST['tarifaMtro']);
+		$course->setTarifaDr($_POST['tarifaDr']);
 		$course->setHora($_POST['horas']);
 		if($course->editaCosto($_POST['id']))
 		{

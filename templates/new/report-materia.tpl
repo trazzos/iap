@@ -29,7 +29,9 @@
 				
 			</div>
 		</form>
+		<center>
 		<button onClick='onBuscar()' class='btn green'>Buscar</button>
+		</center>
 		<div id="msj">
 		</div>
 		<div id='container'>

@@ -30,6 +30,8 @@
 			$personal->setCurp($_POST['curp']);
 			$personal->setRfc($_POST['rfc']);
 			$personal->setFechaNacimiento($_POST['nacimiento']);
+			$personal->setFace($_POST['facebook']);
+			$personal->setTwitter($_POST['twitter']);
 			if($personal->updateDocente()){
 				echo 'ok[#]';
 				echo '
@@ -65,6 +67,7 @@
 	  case 3:
 	  
 		// echo '<pre>'; print_r($_POST);
+		// exit;
 		$personal->setPersonalId($_POST['personalId']);
 		if($personal->updateInfoBancos()){
 				echo 'ok[#]';
@@ -96,6 +99,26 @@
 				echo 'fail[#]';
 			}
 			
+	  break;
+	  
+	  
+	  case 5:
+	  
+		$personal->setPersonalId($_POST['personalId']);
+		$personal->setUserName($_POST['user']);
+		$personal->setPasswd($_POST['pass']);
+		if($personal->updateAcceso()){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>La Informacion se actualizo correctamente</strong>
+				</div>
+				';
+			}else{
+				echo 'fail[#]';
+			}
+	  
 	  break;
 	  
 	  
@@ -170,19 +193,19 @@
 		}
 		
 		
-		
+		// echo '<pre>'; print_r($_POST['fechaContrato']);
 		
 		$_POST['fechaInicioMateria'] = $util->FormatDateMySql($_POST['fechaInicioMateria']);
 		$_POST['fechaFinMateria'] = $util->FormatDateMySql($_POST['fechaFinMateria']);
-		$_POST['fechaInicioContrato'] = $util->FormatDateMySql($_POST['fechaInicioContrato']);
+		$_POST['fechaContrato'] = $util->FormatDateMySql($_POST['fechaContrato']);
 		$_POST['fechaFinContrato'] = $util->FormatDateMySql($_POST['fechaFinContrato']);
 	 
 		// echo '<pre>'; print_r($_POST);
 		$docente->setId($_POST['id']);
 		$docente->setInicioMateria($_POST['fechaInicioMateria']);
 		$docente->setFinMateria($_POST['fechaFinMateria']);
-		$docente->setInicioContrato($_POST['fechaInicioContrato']);
-		$docente->setFinContrato($_POST['fechaFinContrato']);
+		$docente->setInicioContrato($_POST['fechaContrato']);
+		$docente->setFinContrato($_POST['fechaMateria']);
 		$docente->setNoContrato($_POST['noContrato']);
 		$docente->setHabilitar($_POST['habilitar']);
 		if($docente->saveEditContrato()){

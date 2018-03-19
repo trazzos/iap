@@ -23,12 +23,16 @@
 	$student->setCountry(1);
 	$estados=$student->EnumerateEstados();
 	
-	$registros = $student->cargarCiudades($info["stateId"]);
-	$smarty->assign("registrosc", $registros);
 	
-	// echo '<pre>'; print_r($infoBasic);
-	// exit;
-
+	if(file_exists(DOC_ROOT."/".$info['foto'])){
+		$foto = WEB_ROOT."/".$info['foto'].'?'.rand();
+	}else{
+		$foto = WEB_ROOT."/alumnos/no_foto.JPG";
+	}
+	
+	$registros = $student->cargarCiudades($info["stateId"]);
+	$smarty->assign("foto", $foto);
+	$smarty->assign("registrosc", $registros);
 	$smarty->assign("cId", $_GET['cId']);	
 	$smarty->assign("estados", $estados);	
 	$smarty->assign("infoBasic", $infoBasic);	

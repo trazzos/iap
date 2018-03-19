@@ -12,9 +12,10 @@
 	$myModule = $module->InfoCourseModule();
 	
 	
-	
+	$personal->setPersonalId($myModule['access'][1]);
+	$infoP = $personal->Info();
 
-	// echo "<pre>"; print_r($myModule);
+	// echo "<pre>"; print_r($infoP);
 	// exit;
 	
 
@@ -58,6 +59,10 @@
 	
 	
 	<table class='txtTicket' width='100%'>
+	<tr>
+		<td>Tipo de Contrato: </td>
+		<td>".$infoP["tipoContrato"]."</td>
+	</tr>
 	<tr>
 		<td>fecha materia: </td>
 		<td>".$myModule['initialDate']." - ".$myModule['finalDate']."</td>

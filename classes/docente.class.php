@@ -331,13 +331,13 @@ class Docente extends Empresa{
 				SET 
 					initialDate = '".$this->inicioMateria."',
 					finalDate = '".$this->finMateria."',
-					inicioContrato = '".$this->inicioContrato."',
-					finContrato = '".$this->finContrato."',
+					fechaContrato = '".$this->inicioContrato."',
+					fechaMateria = '".$this->finContrato."',
 					noContrato = '".$this->noContrato."',
 					habilitarDescargaContrato = '".$this->habilitar."'
 				WHERE 
 					courseModuleId = ".$this->Id;
-					
+					// exit;
 		
 			$this->Util()->DB()->setQuery($sql);
 			$this->Util()->DB()->ExecuteQuery();
@@ -442,27 +442,46 @@ class Docente extends Empresa{
 		
 		
 		if($_POST['linea']=='on' && $_POST['presencial']=='on'){
-			$filtro .= " and  (modality =  'Online' or  modality =  'Local')";
+			$filtro .= " and  (cs.modality =  'Online' or  cs.modality =  'Local')";
 		}
 		else if($_POST['presencial']=='on'){
-			$filtro .= " and modality =  'Local'";
+			$filtro .= " and cs.modality =  'Local'";
 		}
 		else if($_POST['linea']=='on'){
-			$filtro .= " and modality =  'Online'";
+			$filtro .= " and cs.modality =  'Online'";
 		}
 		
-		$sqlQuery = 'SELECT 
+		 $sqlQuery = 'SELECT 
 					p.*, 
-					cm.*
+					cm.*,
+					s.name as nameS,
+					cs.modality,
+					cs.group,
+					sm.name as nameM
 				FROM 
 					course_module_personal AS cmp
 				left join course_module AS cm ON cm.courseModuleId = cmp.courseModuleId 
+				left join course AS cs ON cs.courseId = cm.courseId 
+				left join subject_module AS sm ON sm.subjectmoduleId = cm.subjectmoduleId 
+				left join subject AS s ON s.subjectId = sm.subjectId 
 				left join course as c ON c.courseId = cm.courseId 
 				left join personal as p ON p.personalId = cmp.personalId 
 				where 1 '.$filtro.'';
-
+// exit;
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$result = $this->Util()->DB()->GetResult();
+		
+		foreach($result as $key=>$aux){
+			
+			
+			if($aux['finalDate'] > date('Y-m-d')){
+				$result[$key]['estatusAc'] = 'Activo';
+			}else{
+				$result[$key]['estatusAc'] = 'Finalizada';
+			}
+			
+			
+		}
 		
 		return $result;
 		

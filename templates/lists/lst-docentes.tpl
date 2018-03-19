@@ -13,7 +13,7 @@
     	<tr>
 			
 			<td align="left">{$subject.lastname_paterno} {$subject.lastname_materno} {$subject.name} </td>
-			<td align="left">{$subject.correo}</td>
+			<td align="left"><a href="mailto:{$subject.correo}">{$subject.correo}</a></td>
 			<td align="left">{$subject.celular}</td>
 			
 			

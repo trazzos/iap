@@ -1402,9 +1402,13 @@ public function Enumerate_p(){
 			FROM
 				course_module_personal as c
 			left join personal as p on c.personalId = p.personalId
-			WHERE c.courseModuleId = '.$Id.'';
+			left join course_module as cm on cm.courseModuleId = c.courseModuleId
+			WHERE cm.subjectModuleId = '.$Id.'';
 			$this->Util()->DB()->setQuery($sqlQuery);			
 		$lst = $this->Util()->DB()->GetResult();
+		
+		// echo '<pre>'; print_r($lst);
+		// exit;
 			
 		foreach($lst as $key=>$aux){
 			
@@ -1418,22 +1422,64 @@ public function Enumerate_p(){
 		
 	}
 	
+	public function scriptLLenaMaterias(){
+		
+		$sqlQuery = '
+			SELECT 
+				* 
+			FROM
+				course_module ';
+		$this->Util()->DB()->setQuery($sqlQuery);			
+		$lst = $this->Util()->DB()->GetResult();
+		
+		foreach($lst as $key=>$aux){
+			
+			$a = explode('|',$aux['access']);
+			 $sql = "INSERT INTO
+						course_module_personal
+						( 	
+						 	personalId,
+						 	courseModuleId
+						 	
+						)
+					VALUES (
+							'".$a[1]."', 
+							'".$aux['courseModuleId']."'
+							)";
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->InsertData();
+			
+		}
+		// echo '<pre>'; print_r($lst);
+		// exit;
+		
+	}
+	
+	
 	public function getMateriasImpartida($Id){
 	
 		$sqlQuery = '
 			SELECT 
 				c.*,
-				sm.*
+				cs.modality,
+				cs.group,
+				sm.name,
+				s.name as nameS,
+				cm.*
 			FROM
 				course_module_personal as c
 			left join personal as p on c.personalId = p.personalId
 			left join course_module as cm on cm.courseModuleId = c.courseModuleId
+			left join course as cs on cs.courseId = cm.courseId
 			left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+			left join subject as s on s.subjectId = sm.subjectId
 			WHERE c.personalId = '.$Id.'';
 			$this->Util()->DB()->setQuery($sqlQuery);			
 		
 			$lst = $this->Util()->DB()->GetResult();
-		
+			
+		// echo '<pre>'; print_r($lst);
+		// exit;
 		return $lst;
 	}
 	

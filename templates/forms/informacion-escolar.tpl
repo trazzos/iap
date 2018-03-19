@@ -28,7 +28,7 @@ Nombre de la Maestria
 Escuela Doctorado
 <input type="text" name="doc_escuela" value='{$infoBasic.estudios.2.escuela}' {if $cId eq 'si'} disabled {/if}class='form-control'><br>
 Nombre del Doctorado
-<input type="text" name="doc_doctorado" value='{$infoBasic.estudios.2.doctorado}' {if $cId eq 'si'} disabled {/if}class='form-control'><br>
+<input type="text" name="doc_carrera" value='{$infoBasic.estudios.2.carrera}' {if $cId eq 'si'} disabled {/if}class='form-control'><br>
 <input type="checkbox" name="doc_titulo" {if $infoBasic.estudios.2.titulo eq 'si'} checked {/if} {if $cId eq 'si'} disabled {/if} id="">Titulo<br>
 <input type="checkbox" name="doc_acta" {if $infoBasic.estudios.2.actaExamen eq 'si'} checked {/if} {if $cId eq 'si'} disabled {/if} id="">Acta de Examen<br>
 <input type="checkbox" name="doc_cedula" {if $infoBasic.estudios.2.cedula eq 'si'} checked {/if}  {if $cId eq 'si'} disabled {/if} id="">Cedula<br>

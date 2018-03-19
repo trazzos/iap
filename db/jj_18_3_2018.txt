@@ -1,0 +1,5 @@
+ALTER TABLE  `personal` ADD  `tipoContrato` ENUM(  'fisica',  'moral' ) NOT NULL AFTER  `estatus` ;
+ALTER TABLE  `personal` ADD  `facebook` VARCHAR( 255 ) NOT NULL AFTER  `tipoContrato` ;
+ALTER TABLE  `personal` ADD  `twitter` VARCHAR( 255 ) NOT NULL AFTER  `facebook` ;
+ALTER TABLE  `course` CHANGE  `tarifa`  `tarifaMtro` VARCHAR( 255 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ;
+ALTER TABLE  `course` ADD  `tarifaDr` VARCHAR( 255 ) NOT NULL AFTER  `tarifaMtro` ;

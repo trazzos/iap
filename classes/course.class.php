@@ -11,6 +11,7 @@
 		private $horario;
 		private $aparece;
 		private $tarifa;
+		private $tarifaDr;
 		private $hora;
 		
 		public function setId($value)
@@ -34,6 +35,13 @@
 		{
 			$this->Util()->ValidateString($value, 255, 0, 'Tarifa');
 			$this->tarifa = $value;
+		}
+		
+		
+		public function setTarifaDr($value)
+		{
+			$this->Util()->ValidateString($value, 255, 0, 'Tarifa');
+			$this->tarifaDr = $value;
 		}
 		
 		public function setHora($value)
@@ -1008,7 +1016,8 @@
 			 $sql = " UPDATE 
 						course
 					SET
-						tarifa='".$this->tarifa."', 
+						tarifaMtro='".$this->tarifa."', 
+						tarifaDr='".$this->tarifaDr."', 
 						hora='".$this->hora."'
 						WHERE courseId ='".$Id."'";
 

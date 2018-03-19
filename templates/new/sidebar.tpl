@@ -281,6 +281,11 @@
                     </a>
                 </li>
 				 <li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/cat-doc-docente" class="nav-link ">
+                        <span class="title">Documentos Docente</span>
+                    </a>
+                </li>
+				 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/tabla-costo" class="nav-link ">
                         <span class="title">Tabla de Costos</span>
                     </a>
@@ -328,6 +333,12 @@
                         <span class="title">Docentes/Materias</span>
                     </a>
                 </li>
+				
+				<li class="nav-item  ">
+					<a href="{$WEB_ROOT}/reporte-general" class="nav-link">
+						<span class="title">Reportes General</span>
+					</a>
+				</li>
 				{/if}
             </ul>
         </li>
@@ -344,13 +355,7 @@
 
         {if $User.positionId == 1 || $AccessMod[13] == 1 || $AccessMod[14] == 1  || $AccessMod[15] == 1 || $AccessMod[16] == 1}
 			 {if $vistaPrevia ne 1}
-			<li class="nav-item  ">
-				<a href="{$WEB_ROOT}/reporte-general" class="nav-link">
-					<i class="icon-briefcase"></i>
-					<span class="title">Reportes</span>
-					<span class="arrow"></span>
-				</a>
-			</li>
+			
 			<li class="nav-item  ">
 				<a href="{$WEB_ROOT}/institution" class="nav-link ">
 					<i class="icon-wallet"></i>

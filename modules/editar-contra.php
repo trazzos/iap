@@ -11,9 +11,11 @@
 	
 	// echo '<pre>'; print_r($myModule);
 	// exit;
-// exit;
+
 	$smarty->assign('id', $_GET['id']);
 	$smarty->assign('personalId', $_GET['personalId']);
+	$smarty->assign('hoy', date('d-m-Y'));
+	$smarty->assign('noContrato', $_GET['id'].'/'.date('Y'));
 	$smarty->assign('myModule', $myModule);
 	
 ?>

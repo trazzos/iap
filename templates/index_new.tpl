@@ -71,6 +71,9 @@
 		.modal-dialog{
 			width: 70%;
 		}
+		i.icon-green {
+    color: #32c5d2;
+}
 	</style>
 
 
@@ -86,7 +89,7 @@
 	<link type="text/css" href="{$WEB_ROOT}/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
 	<script type="text/javascript" src="{$WEB_ROOT}/cometchat/cometchatjs.php" charset="utf-8"></script>
 *}
-{if $page == 'reply-inbox' or $page == 'view-inbox' or $page == 'edit-modules-course'}
+{if $page == 'reply-inbox' or $page == 'view-inbox' or $page == 'edit-modules-course' or $page == 'info-docente' or $page == 'lst-docentes'}
 <style type="text/css">
 
 .btn-file {
@@ -172,9 +175,9 @@
 
 <script src="{$WEB_ROOT}/assets/global/plugins/moment.min.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-<script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js?sdf" type="text/javascript"></script>
+<script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js?sdfddasd" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
-<script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js?jj" type="text/javascript"></script>
+<script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js?jjsadasd" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/javascript/config.js?{$timestamp}" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/javascript/new/functions.js?{$timestamp}" type="text/javascript"></script>

@@ -16,12 +16,12 @@
 		<tr>
 		   
 			<td align="center">{$subject.name} {$subject.lastname_paterno} {$subject.lastname_materno}</td>
-			<td align="center">{$subject.namePosgrado}</td>
+			<td align="center">{$subject.nameS}</td>
 			<td align="center">{$subject.modality}</td>
 			<td align="center">{$subject.group}</td>
-			<td align="center">{$subject.nameMateria}</td>
+			<td align="center">{$subject.nameM}</td>
 			<td align="center">{$subject.initialDate} - {$subject.finalDate}</td>
-			<td align="center"></td>
+			<td align="center">{$subject.estatusAc} </td>
 		  
 			
 		 </tr>
