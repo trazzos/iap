@@ -24,3 +24,8 @@ function onBuscar(Id){
 }
 
 
+function printPDF(Id){
+	url=WEB_ROOT+"/ajax/report-doc-mat.php?"+$('#frmFlt').serialize(true)+'&Id='+Id;
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
+}
+

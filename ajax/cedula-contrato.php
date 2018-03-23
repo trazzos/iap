@@ -61,7 +61,7 @@
 	<table class='txtTicket' width='100%'>
 	<tr>
 		<td>Tipo de Contrato: </td>
-		<td>".$infoP["tipoContrato"]."</td>
+		<td>Persona ".$infoP["tipoContrato"]."</td>
 	</tr>
 	<tr>
 		<td>fecha materia: </td>

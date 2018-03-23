@@ -38,7 +38,9 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" onClick="onContrato({$myModule.courseModuleId},{$usuariologId})"    >
+					
+					<!--<a href="{$WEB_ROOT}/docentes/contrato/{$myModule.rutaContrato}"  target="_blank"  >-->
+					<a href="{$WEB_ROOT}/graybox.php?page=down-contrato-doc&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
 						<i class="	fa fa-file-pdf-o"></i>
 							Contrato
 					</a>

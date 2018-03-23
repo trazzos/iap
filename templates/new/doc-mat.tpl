@@ -4,12 +4,14 @@
             <i class="fa fa-bullhorn"></i>Lista de Docentes
         </div>
         <div class="actions">
-			
+			<a  class="btn green" href="javascript:void(0)" onClick="printPDF()" target="_blank" title='AGREGAR'>
+				<i class="fa fa-plus"></i> Imprimir
+			</a>
         </div>
     </div>
     <div class="portlet-body">
 	
-			<form id='frmFlt'>
+		<form id='frmFlt'>
 		<div style='display:-webkit-inline-box'>
 			
 			<table>

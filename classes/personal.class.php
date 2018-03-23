@@ -1503,15 +1503,30 @@ class Personal extends Main
 	
 	public function onDeleteCarta($cmId){
 		
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					course_module
+				WHERE
+					courseModuleId = ".$cmId."";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();
+		
+		 // echo DOC_ROOT.'/docentes/carta/carta_'.$info['rutaCarta'];
+		 @unlink(DOC_ROOT.'/docentes/carta/'.$info['rutaCarta']);
+		
 		 $sql = 'UPDATE 		
 				course_module SET 		
-				rutaActa = ""			      		
+				rutaCarta = ""			      		
 				WHERE courseModuleId = '.$cmId.'';		
 				// exit;
 		$this->Util()->DB()->setQuery($sql);		
 		$this->Util()->DB()->UpdateData();
 		
-		@unlink(DOC_ROOT.'/docentes/calificaciones/acta_'.$cmId);
+	
+		
 		
 		return true;
 		

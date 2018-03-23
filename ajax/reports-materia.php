@@ -116,39 +116,39 @@
 			$html .= "<td>".$aux['basica']['estudios'][0]['carrera']."|".$aux['basica']['estudios'][0]['escuela']."<br><br>";
 			
 			if ($aux['basica']['estudios'][0]['titulo'] == 'si'){
-				$html .= "<li> Titulo";
+				$html .= "<b>*</b> Titulo<br>";
 			} 
 			if ($aux['basica']['estudios'][0]['actaExamen'] == 'si'){
-				$html .= "<li> Acta de Examen";
+				$html .= "<b>*</b>  Acta de Examen<br>";
 			}
 			if ($aux['basica']['estudios'][0]['cedula'] == 'si'){
-				$html .= "<li> Cedula";
+				$html .= "<b>*</b>  Cedula<br>";
 			}
 			
 			$html .= "</td>";  
 			$html .= "<td>".$aux['basica']['estudios'][1]['carrera']."|".$aux['basica']['estudios'][1]['escuela']."<br><br>";
 			
 			if ($aux['basica']['estudios'][1]['titulo'] == 'si'){
-				$html .= "<li> Titulo";
+				$html .= "<b>*</b> Titulo<br>";
 			} 
 			if ($aux['basica']['estudios'][1]['actaExamen'] == 'si'){
-				$html .= "<li> Acta de Examen";
+				$html .= "<b>*</b>  Acta de Examen<br>";
 			}
 			if ($aux['basica']['estudios'][1]['cedula'] == 'si'){
-				$html .= "<li> Cedula";
+				$html .= "<b>*</b>  Cedula<br>";
 			}
 			
 			$html .=  "</td>";
 			$html .= "<td>".$aux['basica']['estudios'][2]['carrera']."|".$aux['basica']['estudios'][2]['escuela']."<br><br>";
 			
 			if ($aux['basica']['estudios'][2]['titulo'] == 'si'){
-				$html .= "<li> Titulo";
+				$html .= "<b>*</b>  Titulo<br>";
 			} 
 			if ($aux['basica']['estudios'][2]['actaExamen'] == 'si'){
-				$html .= "<li> Acta de Examen";
+				$html .= "<b>*</b>  Acta de Examen<br>";
 			}
 			if ($aux['basica']['estudios'][2]['cedula'] == 'si'){
-				$html .= "<li> Cedula";
+				$html .= "<b>*</b>  Cedula<br>";
 			}
 			
 			$html .=  "</td>";

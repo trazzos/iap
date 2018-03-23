@@ -53,14 +53,14 @@
 						{if $myModule.noContrato eq ''} value="{$noContrato}" {else} value="{$myModule.noContrato}" {/if}>
 					</div>
 				</div>
-				
+				<!--
 				<div class="form-group">
 					<label class="col-md-3 control-label">Habilitar:</label>
 					<div class="col-md-8">
 
 						<input type="checkbox"  name="habilitar" class="form-control" {if $myModule.habilitarDescargaContrato eq 'si'} checked {/if}>
 					</div>
-				</div>
+				</div>-->
 		</form>
 </div>
 </div>

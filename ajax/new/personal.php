@@ -419,6 +419,8 @@ switch($_POST["type"])
 	
 	case 'onBuscarMacth':
 	
+	
+		
 		
 		$lsReporte = $docente->onBuscarMacth();
 		// echo '<pre>'; print_r($lsReporte);

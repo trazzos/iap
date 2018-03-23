@@ -25,8 +25,8 @@
 		}
 	}
 	
-	
-	
+	// echo '<pre>'; print_r($result);
+	// exit;
 	$smarty->assign('subjects', $result);
 	$smarty->assign('arrPage', $arrPage);
 	$smarty->assign('coursesCount', $coursesCount);

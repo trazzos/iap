@@ -43,19 +43,20 @@
 				</td>
 				<td align="center">
 				
-					
-					<a href="{$WEB_ROOT}/prog-materia/m/{$subject.courseId}"  title='CARTA DESCRIPTIVA'>
+					{if $subject.rutaCarta  ne ''}
+					<a href="{$WEB_ROOT}/docentes/carta/{$subject.rutaCarta}" target='_blank'  title='CARTA DESCRIPTIVA'>
 						<i class="material-icons md-16">chrome_reader_mode</i>
 					</a>
+					<a href="javascript:void(0)" onClick="onDeleteCarta('{$subject.courseModuleId}','{$subject.courseId}')"  title='ELIMINAR CARTA DESCRIPTIVA'>
+						<i class="material-icons md-16">delete_forever</i>
+					</a>
+					{/if}
 					
 				</td>
 				<td>
 					{if $subject.rutaActa ne ''}
 					<a href="{$WEB_ROOT}/docentes/calificaciones/{$subject.rutaActa}" target='_blank'  title='VER ACTA DE CALIFICACIONES'>
 						<i class="material-icons md-16">description</i>
-					</a>
-					<a href="javascript:void(0)" onClick="onDeleteCarta('{$subject.courseModuleId}','{$subject.courseId}')"  title='ELIMINAR ACTA DE CALIFICACIONES'>
-						<i class="material-icons md-16">delete_forever</i>
 					</a>
 					{else}
 					<a href="{$WEB_ROOT}/graybox.php?page=up-acta&id={$subject.courseId}&cmId={$subject.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='SUBIR'>

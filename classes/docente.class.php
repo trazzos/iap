@@ -425,6 +425,46 @@ class Docente extends Empresa{
 	}
 	
 	
+	
+	public function onSendContratoFirmado(){
+		
+	
+		
+		$url = DOC_ROOT;
+		$archivo = "cedula";
+		
+		foreach($_FILES as $key=>$var)
+		{
+		   switch($key)
+		   {
+				   case $archivo:
+					   if($var["name"]<>""){
+							$aux = explode(".",$var["name"]);
+							$extencion=end($aux);
+							$temporal = $var['tmp_name'];
+							$foto_name="contrato_f_".$this->Id.".".$extencion;		
+							if(move_uploaded_file($temporal,$url."/docentes/contrato/".$foto_name)){						
+									$sql = "
+											UPDATE
+												course_module 
+											SET 
+												rutaContratoFirmado = '".$foto_name."'
+											WHERE 
+												courseModuleId = ".$this->Id;
+									
+									$this->Util()->DB()->setQuery($sql);
+									$this->Util()->DB()->ExecuteQuery();
+							}   
+						}
+					break;
+			}
+		}
+		
+		return true;
+		
+	}
+	
+	
 	public function onBuscarMacth(){
 		
 		$filtro = "";
@@ -486,6 +526,57 @@ class Docente extends Empresa{
 		return $result;
 		
 	}
+	
+	
+	public function onDeleteContra($Id){
+		
+		$sql = "
+				UPDATE
+					course_module 
+				SET 
+					rutaContrato = ''
+				WHERE 
+					courseModuleId = ".$Id;
+		
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		$url = DOC_ROOT."/docentes/contrato/contrato_".$Id.".pdf";
+		unlink($url);
+		
+		return true;
+		
+		
+	}
+	
+	public function onDeleteContraF($Id){
+		
+		$sql = "
+				UPDATE
+					course_module 
+				SET 
+					rutaContratoFirmado = ''
+				WHERE 
+					courseModuleId = ".$Id;
+		
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		 $sqlQuery = 'SELECT 
+					*
+				FROM 
+					course_module
+				where courseModuleId = '.$Id.'';
+// exit;
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$info = $this->Util()->DB()->GetRow();
+		
+		$url = DOC_ROOT."/docentes/contrato/contrato_f_".$info['rutaContratoFirmado'].".pdf";
+		unlink($url);
+		
+		return true;
+	}
+	
 	
 	
 	

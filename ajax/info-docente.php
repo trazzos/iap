@@ -252,6 +252,26 @@
 	 
 	 case 'onSendContrato':
 	 
+
+	 $archivo = "cedula";
+	 foreach($_FILES as $key=>$var)
+		{
+		   switch($key)
+		   {
+				   case $archivo:
+					   if($var["name"]<>""){
+							$aux = explode(".",$var["name"]);
+							if($aux[1]!='pdf'){
+								echo 'fail[#]';
+								echo '<font color="red">Solo se permite archivos con extension .pdf</font>';
+								exit;
+							}  
+						}
+					break;
+		   }
+		}
+
+	 
 		// echo '<pre>'; print_r($_POST);
 		$docente->setId($_POST['id']);
 		if($docente->onSendContrato()){
@@ -270,6 +290,79 @@
 			}else{
 				echo 'fail[#]';
 			}
+	 
+	 break;
+	 
+	 case 'onDeleteContra':
+	 
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+		// $docente->setId($_POST['id']);
+		if($docente->onDeleteContra($_POST['conId'])){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				   <strong>El contrato se ha eliminado correctamente</strong>
+				</div>
+				';
+				echo '[#]';
+				$registros = $module->materiasProfesores($_POST['personalId']);
+				$smarty->assign("pId", $_POST['personalId']);
+				$smarty->assign("registros", $registros);
+				$smarty->display(DOC_ROOT.'/templates/lists/materias.tpl');
+			}else{
+				echo 'fail[#]';
+			}
+	 
+	 break;
+	 
+	 case 'onDeleteContraF':
+	 
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+		if($docente->onDeleteContraF($_POST['conId'])){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El contrato se ha eliminado correctamente</strong>
+				</div>
+				';
+				echo '[#]';
+				$registros = $module->materiasProfesores($_POST['personalId']);
+				$smarty->assign("pId", $_POST['personalId']);
+				$smarty->assign("registros", $registros);
+				$smarty->display(DOC_ROOT.'/templates/lists/materias.tpl');
+			}else{
+				echo 'fail[#]';
+			}
+	 
+	 
+	 break;
+	 
+	 
+	 case 'onSendContratoFirmado':
+	 
+		// echo '<pre>'; print_r($_POST);
+		$docente->setId($_POST['id']);
+		if($docente->onSendContratoFirmado()){
+				echo 'ok[#]';
+				echo '
+				<div class="alert alert-info alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El contrato se adjunto correctamente</strong>
+				</div>
+				';
+				echo '[#]';
+				$registros = $module->materiasProfesores($_POST['personalId']);
+				$smarty->assign("pId", $_POST['personalId']);
+				$smarty->assign("registros", $registros);
+				$smarty->display(DOC_ROOT.'/templates/lists/materias.tpl');
+			}else{
+				echo 'fail[#]';
+			}
+	 
 	 
 	 break;
 	

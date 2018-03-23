@@ -367,3 +367,78 @@ function closeModal(){
 	$("#ajax").modal("hide");
 	
 }
+
+
+
+
+function onSendCarta(Id){
+	
+	// En esta var va incluido $_POST y $_FILES
+	var fd = new FormData(document.getElementById("frmGral"));
+	fd.append('type','onSendCarta');
+	$.ajax({
+		url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+		data: fd,
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		xhr: function(){
+				var XHR = $.ajaxSettings.xhr();
+				XHR.upload.addEventListener('progress',function(e){
+					console.log(e)
+					var Progress = ((e.loaded / e.total)*100);
+					Progress = (Progress);
+					console.log(Progress)
+					$('#progress').val(Math.round(Progress));
+					$('#porcentaje').html(Math.round(Progress)+'%');
+					
+					
+				},false);
+			return XHR;
+		},
+		success: function(response){
+			
+			console.log(response);
+			// var splitResp = response.split("[#]");
+			// $("#loader").html("");
+			// alert('llega')
+			closeModal()
+		},
+	})
+
+}
+
+
+
+
+function onDeleteCarta(id,courseId)
+{
+	
+	var resp = confirm("Seguro de  eliminar el Documento?");
+	
+		if(!resp)
+			return;
+	
+    $.ajax({
+		url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+        type: "POST",
+        data : {type: "onDeleteCarta", id:id,courseId:courseId},
+        success: function(data)
+        {
+           console.log(data);
+		    var splitResp = data.split("[#]");
+			 if(splitResp[0] == "ok")
+            {
+               closeModal()
+            }
+            else
+            {
+               alert('Ocurrio un error');
+            }
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexión a internet');
+        }
+    });
+}

@@ -1251,6 +1251,43 @@
 		}	
 		
 		
+		function onSendCarta($Id)
+		{
+			
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			$archivo = 'cedula';
+			foreach($_FILES as $key=>$var)
+			{
+			   switch($key)
+			   {
+				   case $archivo:
+				   if($var["name"]<>""){
+						$aux = explode(".",$var["name"]);
+						$extencion=end($aux);
+						$temporal = $var['tmp_name'];
+						$url = DOC_ROOT;				
+						$foto_name="carta_".$Id.".".$extencion;		
+						if(move_uploaded_file($temporal,$url."/docentes/carta/".$foto_name)){									
+							$sql = 'UPDATE 		
+								course_module SET 		
+								rutaCarta = "'.$foto_name.'"			      		
+								WHERE courseModuleId = '.$Id.'';		
+							$this->Util()->DB()->setQuery($sql);		
+							$this->Util()->DB()->UpdateData();
+					   }
+					}
+					break;
+				}
+			}
+			
+			unset($_FILES);
+			
+			return true;
+		}	
+		
+		
 		function onChangePicture($Id)
 		{
 			

@@ -10,7 +10,7 @@
 
         </div>
 		<div class="actions">
-             <a  class="btn green" id="" href="{$WEB_ROOT}/graybox.php?page=add-cat-doc-docente" data-target="#ajax" data-toggle="modal" data-width="1000px" title='ADJUNTAR DOCUMENTO'>
+             <a  class="btn green" id="" href="{$WEB_ROOT}/graybox.php?page=add-cat-doc-docente-add" data-target="#ajax" data-toggle="modal" data-width="1000px" title='ADJUNTAR DOCUMENTO'>
                 <i class="fa fa-plus"></i>Agregar
             </a>
         </div>

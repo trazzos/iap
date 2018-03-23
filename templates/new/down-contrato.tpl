@@ -11,30 +11,74 @@
       
 		
 			
-			<center>
-				<a type="button" class="btn default green" style="width:211px" target='_blank' href='{$WEB_ROOT}/ajax/doc.php?id={$id}&pId={$personalId}'>Descargar Word</a>
-				<br>
-				<br>
-				<a type="button" class="btn default red" target='_blank' href='{$WEB_ROOT}/ajax/contrato.php?Id={$id}&pId={$personalId}' style="width:211px" >Descargar PDF</a>
-				<br>
-				<br>
-				<a type="button" class="btn default yellow"  style="width:211px"  onClick="onOpenLoad()">Subir Contrato</a>
-				<div id="divForm" style="display:none">
-					<br>
-					<br>
-					<form class="form-horizontal" id="frmGral" name="frmGral" method="post" onsubmit="return false;">
-					<input type="hidden" name='type' value="onSendContrato">
-					<input type="hidden" id="personalId" name="personalId" value="{$personalId}"/>
-					<input type="hidden" id="id" name="id" value="{$id}"/>
-					<input type="file" name='cedula' id='cedula'>
-					</form>
-					<button type="button" class="btn default " style="width:211px" onClick="onSendContrato()">Enviar</button>
-				</div>
-				<br>
-				<br>
-				<a type="button" target='_blank' href='{$WEB_ROOT}/docentes/contrato/{$myModule.rutaContrato}' class="btn default blue" style="width:211px">Visualizar</a><br>
-			</center>
 			
+			<table align='center'>
+				<tr>
+					<td align='center'><b>Formato de Contrato</b></td>
+					<td align='center'><b>Contrato firmado</b></td>
+				</tr>
+				<tr>
+					<td>
+						<center>
+
+								{if $myModule.rutaContrato eq ''}
+								
+								<div id="divForm" >
+							
+									<form class="form-horizontal" id="frmGral" name="frmGral" method="post" onsubmit="return false;">
+									<input type="hidden" name='type' value="onSendContrato">
+									<input type="hidden" id="personalId" name="personalId" value="{$personalId}"/>
+									<input type="hidden" id="id" name="id" value="{$id}" /> 
+									<div style=''>
+									<span class="btn btn-default btn-file">
+									<input type="file" name='cedula' id='cedula' class="btn-file" onChange="onSendContrato()">
+									Subir Contrato
+									</span>
+									</div>
+									</form>
+								</div>
+								<br>
+								{/if}
+								{if $myModule.rutaContrato ne ''}
+									<br>
+									<br>
+									<a type="button" target='_blank' href='{$WEB_ROOT}/docentes/contrato/{$myModule.rutaContrato}'  class="btn default blue" style="width:211px">Visualizar</a><br>
+									<br>
+									<a type="button" target='#' onClick="onDeleteContra('{$myModule.courseModuleId}','{$personalId}')"  class="btn default red" style="width:211px">Eliminar</a><br>
+								{/if}
+							</center>
+									
+					</td>
+					<td>
+						<center>
+
+								{if $myModule.rutaContratoFirmado eq ''}
+								<div id="divForm" >
+									<form class="form-horizontal" id="frmGral_" name="frmGral_" method="post" onsubmit="return false;">
+									<input type="hidden" name='type' value="onSendContratoFirmado">
+									<input type="hidden" id="personalId" name="personalId" value="{$personalId}"/>
+									<input type="hidden" id="id" name="id" value="{$id}" /> 
+									<div style=''>
+									<span class="btn btn-default btn-file">
+									<input type="file" name='cedula' id='cedula' class="btn-file" onChange="onSendContratoFirmado()">
+									Subir Contrato
+									</span>
+									</div>
+									</form>
+								</div>
+								<br>
+								{/if}
+								{if $myModule.rutaContratoFirmado ne ''}
+									<br>
+									<br>
+									<a type="button" target='_blank' href='{$WEB_ROOT}/docentes/contrato/{$myModule.rutaContratoFirmado}'  class="btn default blue" style="width:211px">Visualizar</a><br>
+									<br>
+									<a type="button" target='#' onClick="onDeleteContraF('{$myModule.courseModuleId}','{$personalId}')"  class="btn default red" style="width:211px">Eliminar</a><br>
+								{/if}
+							</center>
+					</td>
+				</tr>
+			</table>
 		
 	</div>    
 </div>
@@ -43,7 +87,7 @@
 </div>
 <center>
 
-	<button type="button" class="btn default closeModal">Cancelar</button>
+	<button type="button" class="btn default closeModal" onClick ="closeModal()">Cancelar</button>
 
 </center>
 

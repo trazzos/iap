@@ -1403,7 +1403,7 @@ public function Enumerate_p(){
 				course_module_personal as c
 			left join personal as p on c.personalId = p.personalId
 			left join course_module as cm on cm.courseModuleId = c.courseModuleId
-			WHERE cm.subjectModuleId = '.$Id.'';
+			WHERE cm.subjectModuleId = '.$Id.' group by p.personalId';
 			$this->Util()->DB()->setQuery($sqlQuery);			
 		$lst = $this->Util()->DB()->GetResult();
 		

@@ -1,4 +1,5 @@
-<button onClick='pdfCarta({$info.personalId})' class="btn red" >Carta de Pago</button>
+<!--<button onClick='pdfCarta({$info.personalId})' class="btn red" >Carta de Pago</button>-->
+<a href="{$WEB_ROOT}/ajax/carta-pago.php?Id={$info.personalId}" target="_blank" class="btn red" >Carta de Pago</a>
 <br>
 <br>
 <form  id='frmGral_3'>
@@ -24,10 +25,12 @@ deberá escanearlo y subirlo en la sección de 'DOCUMENTOS DEL DOCENTE'.</div>
 <b>Correo Electrónico para notificación de pago</b>
 <input type="text" name="correoNoti" class='form-control' {if $cId eq 'si'} disabled {/if} value="{$infoBasic.infoBanco.0.correo}"><br>
 <b>Tipo de Contrato</b>
-<div style="display:-webkit-inline-box">
-<input type="radio" class='form-control' name="tipoContrato" value="fisica"  {if $info.tipoContrato eq 'fisica'} checked {/if}>Personal Fisica
-<input type="radio" class='form-control' name="tipoContrato" value="moral" {if $info.tipoContrato eq 'moral'} checked {/if}>Personal Moral
-</div>
+<center>
+<b>Personal Fisica</b>
+<input type="radio" class='form-control' name="tipoContrato" value="fisica"  {if $info.tipoContrato eq 'fisica'} checked {/if}>
+<b>Personal Moral</b>
+<input type="radio" class='form-control' name="tipoContrato" value="moral" {if $info.tipoContrato eq 'moral'} checked {/if}>
+</center>
 <br>
 <br>
 </form>

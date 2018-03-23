@@ -122,6 +122,32 @@ switch($_POST["type"])
 			}
 		
 		break;
+		
+		case 'onSendCarta':
+		
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			if($url = $group->onSendCarta($_POST["id"])){
+				echo "ok[#]";
+			}else{
+				echo "fail[#]";
+				
+			}
+		
+		break;
+		
+		case 'onDeleteCarta':
+		
+			// echo '<pre>'; print_r($_POST);
+			if($url = $personal->onDeleteCarta($_POST["id"])){
+				echo "ok[#]";
+			}else{
+				echo "fail[#]";
+				
+			}
+		
+		break;
 	}
 
 ?>

@@ -247,7 +247,7 @@ function activaEdicion(){
 
 function pdfDatos(Id){
 	url=WEB_ROOT+"/ajax/docx.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id;
-	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=0");
 }
 
 
