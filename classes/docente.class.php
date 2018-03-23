@@ -506,7 +506,7 @@ class Docente extends Empresa{
 				left join subject AS s ON s.subjectId = sm.subjectId 
 				left join course as c ON c.courseId = cm.courseId 
 				left join personal as p ON p.personalId = cmp.personalId 
-				where 1 '.$filtro.'';
+				where 1 '.$filtro.' limit 0,50';
 // exit;
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$result = $this->Util()->DB()->GetResult();

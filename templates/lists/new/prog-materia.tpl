@@ -50,6 +50,8 @@
 					<a href="javascript:void(0)" onClick="onDeleteCarta('{$subject.courseModuleId}','{$subject.courseId}')"  title='ELIMINAR CARTA DESCRIPTIVA'>
 						<i class="material-icons md-16">delete_forever</i>
 					</a>
+					{else}
+					<font color="red">S/I</font>
 					{/if}
 					
 				</td>
@@ -62,7 +64,7 @@
 					<a href="{$WEB_ROOT}/graybox.php?page=up-acta&id={$subject.courseId}&cmId={$subject.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='SUBIR'>
 						<i class="material-icons md-16">cloud_upload</i>
 					</a>
-					S/I
+					<font color="red">S/I</font>
 					{/if}
 				</td>
 				

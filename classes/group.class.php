@@ -1189,6 +1189,25 @@
 								WHERE
 									`courseModuleId` = '".$this->coursemoduleId."'");
 							$this->Util()->DB()->UpdateData();	
+							
+			$this->Util()->DB()->setQuery("
+					SELECT 
+						*
+					FROM 
+						course_module
+					WHERE courseModuleId = ".$this->coursemoduleId."");
+			$infoSub = $this->Util()->DB()->GetRow();
+			
+			@unlink(DOC_ROOT."/docentes/calificaciones/".$infoSub['rutaActa']);
+			
+			$this->Util()->DB()->setQuery("
+								UPDATE `course_module` SET
+									`rutaActa` = ''
+								WHERE
+									`courseModuleId` = '".$this->coursemoduleId."'");
+							$this->Util()->DB()->UpdateData();	
+							
+			
 			return true;
 		}
 		

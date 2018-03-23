@@ -73,9 +73,13 @@
 		$html .= "<table align='center' width='100%' border='1' class='txtTicket'>";
 		$html .= "";
 		$html .= "<tr>";
-		$html .= "<td >Nombre:</td>";
-		$html .= "<td >Correo:</td>";
-		$html .= "<td >Celular:</td>";
+		$html .= "<td >Docente</td>";
+		$html .= "<td >Posgrado</td>";
+		$html .= "<td >Modalidad</td>";
+		$html .= "<td >Grupo</td>";
+		$html .= "<td >Materia</td>";
+		$html .= "<td >Vigenia</td>";
+		$html .= "<td >Estatus</td>";
 		$html .= "</tr>";
 
 		foreach($lsReporte as $key=>$aux){

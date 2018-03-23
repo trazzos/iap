@@ -397,10 +397,20 @@ public function Enumerate_p(){
 		{
 			
 			$this->Util()->DB()->setQuery('
-				SELECT *, major.name AS majorName, subject.name AS name FROM subject 
-				LEFT JOIN major ON major.majorId = subject.tipo
-				ORDER BY  subject.subjectId ASC');
+				SELECT 
+					*, 
+					major.name AS majorName, 
+					subject.name AS name 
+				FROM 
+					subject 
+				LEFT JOIN 
+					major ON major.majorId = subject.tipo
+				ORDER BY   
+					FIELD (major.name,"MAESTRIA","DOCTORADO","CURSO","ESPECIALIDAD") ASC, subject.name');
 			$result = $this->Util()->DB()->GetResult();
+			
+			// ECHO '<PRE>'; PRINT_R($result);
+			// EXIT;
 			
 			foreach($result as $key => $res)
 			{

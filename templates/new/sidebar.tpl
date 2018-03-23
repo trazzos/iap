@@ -116,7 +116,7 @@
         {if $AccessMod[11] == 1 || $User.positionId == 1 || $AccessMod[31] == 1 || $AccessMod[8] == 1}
             {if !$docente}
 			{if $vistaPrevia ne 1}
-                <li class="nav-item  ">
+                <li class="nav-item   {if $page == "subject" || $page == "history-subject"} active {/if} ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-settings"></i>
                         <span class="title">Currícula</span>
@@ -137,7 +137,7 @@
                 </li>
 			{/if}
             {else}
-                <li class="nav-item  ">
+                <li class="nav-item ">
                     <a href="{$WEB_ROOT}/history-subject" class="nav-link nav-toggle">
                         <i class="icon-settings"></i>
                         <span class="title">Currícula</span>

@@ -238,6 +238,7 @@ function activaEdicion(){
 	$('#frmGral_2').find('input, textarea, button, select').removeAttr('disabled');
 	$('#frmGral_3').find('input, textarea, button, select').removeAttr('disabled');
 	$('#frmGral_4').find('input, textarea, button, select').removeAttr('disabled');
+	$('#frmGral_5').find('input, textarea, button, select').removeAttr('disabled');
 	$('.divControls').show()
 }
 
@@ -255,4 +256,64 @@ function pdfDatos(Id){
 function pdfCarta(Id){
 	url=WEB_ROOT+"/ajax/carta-pago.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id;
 	open(url,"Constancia de Estudios","toolbal=0,width=800,resizable=1");
+}
+
+
+
+function onChangePicture(Id){
+
+	var fd = new FormData(document.getElementById("frmFoto"));
+	fd.append('type','onChangePicture');
+	fd.append('personalId',Id);
+	// +'&cId=admin',
+	$.ajax({
+		url : WEB_ROOT+'/ajax/new/personal.php',
+		data: fd,
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		xhr: function(){
+				var XHR = $.ajaxSettings.xhr();
+				XHR.upload.addEventListener('progress',function(e){
+					console.log(e)
+					var Progress = ((e.loaded / e.total)*100);
+					Progress = (Progress);
+					console.log(Progress)
+					$('#progress_'+Id).val(Math.round(Progress));
+					$('#porcentaje_'+Id).html(Math.round(Progress)+'%');
+					
+					
+				},false);
+			return XHR;
+		},
+		beforeSend: function(){		
+			// $("#loader").html(LOADER);
+			// $("#erro_"+reqId).hide(0);
+		},
+		success: function(response){
+			
+			console.log(response);
+			var splitResp = response.split("[#]");
+			$("#loader").html("");
+			if($.trim(splitResp[0]) == "ok"){
+				$("#msj").html(splitResp[1]);
+				$("#contenido").html(splitResp[2]);
+				// closeModal()
+				location.reload();
+			}else if($.trim(splitResp[0]) == "fail"){
+				$("#txtErrMsg").show();
+	
+			}else{
+				alert(msgFail);
+			}
+		},
+	})
+}
+
+
+function onVerPass(){
+	
+	$("#pass1").toggle();
+	$("#pass2").toggle();
+	
 }
