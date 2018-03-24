@@ -35,6 +35,8 @@
 									Subir Contrato
 									</span>
 									</div>
+									<progress id="progress_" value="0" min="0" max="100"></progress>
+									<div id="porcentaje_" >0%</div>
 									</form>
 								</div>
 								<br>
@@ -52,7 +54,7 @@
 					<td>
 						<center>
 
-								{if $myModule.rutaContratoFirmado eq ''}
+								{if $myModule.rutaContratoFirmado eq '' and $myModule.rutaContrato ne ''}
 								<div id="divForm" >
 									<form class="form-horizontal" id="frmGral_" name="frmGral_" method="post" onsubmit="return false;">
 									<input type="hidden" name='type' value="onSendContratoFirmado">
@@ -65,6 +67,8 @@
 									</span>
 									</div>
 									</form>
+									<progress id="progress_1" value="0" min="0" max="100"></progress>
+									<div id="porcentaje_1" >0%</div>
 								</div>
 								<br>
 								{/if}

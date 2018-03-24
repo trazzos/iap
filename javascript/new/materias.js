@@ -49,8 +49,9 @@ function saveEditContrato(){
 
 
 function onDownLoadCedula(q){
-	url=WEB_ROOT+"/ajax/cedula-contrato.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
-	open(url,"Cedula Contrato","toolbal=0,width=800,resizable=1");
+	url=WEB_ROOT+"/ajax/contrato.php?"+$('#frmfiltro').serialize(true)+'&Id='+q;
+	// windowopen(url,"_blank ","toolbal=0,width=800,resizable=1");
+	window.open(url, '_blank');
 }
 
 function onOpenLoad(){
@@ -117,20 +118,20 @@ function onSendContrato(){
 		processData: false,
 		contentType: false,
 		type: 'POST',
-		/*xhr: function(){
+		xhr: function(){
 				var XHR = $.ajaxSettings.xhr();
 				XHR.upload.addEventListener('progress',function(e){
 					console.log(e)
 					var Progress = ((e.loaded / e.total)*100);
 					Progress = (Progress);
 					console.log(Progress)
-					$('#progress_'+reqId).val(Math.round(Progress));
-					$('#porcentaje_'+reqId).html(Math.round(Progress)+'%');
+					$('#progress_').val(Math.round(Progress));
+					$('#porcentaje_').html(Math.round(Progress)+'%');
 					
 					
 				},false);
 			return XHR;
-		},*/
+		},
 		beforeSend: function(){		
 			// $("#loader").html(LOADER);
 			// $("#erro_"+reqId).hide(0);
@@ -242,20 +243,20 @@ function onSendContratoFirmado(){
 		processData: false,
 		contentType: false,
 		type: 'POST',
-		/*xhr: function(){
+		xhr: function(){
 				var XHR = $.ajaxSettings.xhr();
 				XHR.upload.addEventListener('progress',function(e){
 					console.log(e)
 					var Progress = ((e.loaded / e.total)*100);
 					Progress = (Progress);
 					console.log(Progress)
-					$('#progress_'+reqId).val(Math.round(Progress));
-					$('#porcentaje_'+reqId).html(Math.round(Progress)+'%');
+					$('#progress_1').val(Math.round(Progress));
+					$('#porcentaje_1').html(Math.round(Progress)+'%');
 					
 					
 				},false);
 			return XHR;
-		},*/
+		},
 		beforeSend: function(){		
 			// $("#loader").html(LOADER);
 			// $("#erro_"+reqId).hide(0);
