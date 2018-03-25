@@ -19,6 +19,7 @@
 	
 	$group->setCourseModuleId($_GET["Id"]);
 	$group->setCourseId($info["courseId"]);
+	$group->setTipoMajor($info["majorName"]);
 	$noTeam = $group->actaCalificacion();
 	
 

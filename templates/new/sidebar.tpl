@@ -248,6 +248,9 @@
 		 || $page == "lst-docentes" 
 		 || $page == "repositorio" 
 		 || $page == "prog-academico" 
+		 || $page == "materias" 
+		 || $page == "cat-doc-docente" 
+		 || $page == "prog-materia" 
 		 || $page == "tabla-costo" 
 		 || $page == "repositorio"} active {/if} ">
 
@@ -304,7 +307,7 @@
             </ul>
         </li>
 		{if !$docente}
-		<li class="nav-item {if $page == "vehiculos" || $page == "report-materia" || $page == "doc-mat"  || $page == "report-docentes"} active {/if} "> 
+		<li class="nav-item {if  $page == "vehiculos" || $page == "report-materia" || $page == "doc-mat"  || $page == "report-docentes"} active {/if} "> 
 
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-desktop" aria-hidden="true"></i>

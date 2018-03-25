@@ -71,8 +71,9 @@
 					<br>
 					<br>
 					<br>
-
+					<center>
 					<img src='".$foto."?".rand()."' style='width: 100px !important'>
+					</center>
 					<br>
 					<br>
 				</td>

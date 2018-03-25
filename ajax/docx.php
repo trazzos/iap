@@ -221,7 +221,7 @@
 			</tr>
 			<tr>
 				<td><b>Correo Electronico para Notificiación:</b><br>".$infoPerso['infoBanco'][0]['correo']."</td>
-				<td></td>
+				<td><b>Tipo de Contrato:</b><br>Persona ".$info['tipoContrato']."</td>
 				<td></td>
 			</tr>
 			";

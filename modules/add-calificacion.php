@@ -13,6 +13,7 @@
 
 	// echo "<pre>"; print_r($info);
 	// exit;
+	$group->setTipoMajor($info["majorName"]);
 	$group->setCourseModuleId($_GET["id"]);
 	$group->setCourseId($info["courseId"]);
 	$noTeam = $group->actaCalificacion();

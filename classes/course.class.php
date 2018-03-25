@@ -13,6 +13,24 @@
 		private $tarifa;
 		private $tarifaDr;
 		private $hora;
+		private $activo;
+		private $modalidad;
+		private $curricula;
+		
+		public function setActivo($value)
+		{
+			$this->activo = $value;	
+		}
+		
+		public function setModalidad($value)
+		{
+			$this->modalidad = $value;	
+		}
+		
+		public function setCurricula($value)
+		{
+			$this->curricula = $value;	
+		}
 		
 		public function setId($value)
 		{
@@ -328,11 +346,25 @@
 		public function EnumerateByPage($currentPage, $rowsPerPage, $pageVar, $pageLink, &$arrPages)
 		{
 			
-			// $filtro = "";
+			$filtro = "";
 			
 			// if($this->aparece){
 				// $filtro .= " and course.apareceTabla ='si'";
 			// }
+			
+			
+			if($this->activo){
+				$filtro .= " and course.active ='".$this->activo."'";
+			}
+			
+			
+			if($this->modalidad){
+				$filtro .= " and course.modality ='".$this->modalidad."'";
+			}
+			
+			if($this->curricula){
+				$filtro .= " and majorId ='".$this->curricula."'";
+			}
 			
 			//variable donde guardaremos los registros de la pagina actual y que se regresara para su visualizacion
 			$result = NULL;
@@ -361,8 +393,11 @@
 				SELECT *, major.name AS majorName, subject.name AS name  FROM course
 				LEFT JOIN subject ON course.subjectId = subject.subjectId 
 				LEFT JOIN major ON major.majorId = subject.tipo
-				 
-				ORDER BY subject.tipo,  subject.name,  course.modality, initialDate LIMIT ' . $rowOffset . ', ' . $rowsPerPage;
+				where 1 '.$filtro.'
+				ORDER BY 
+				FIELD (major.name,"MAESTRIA","DOCTORADO","CURSO","ESPECIALIDAD") asc, subject.name, modality desc, initialDate desc,  active
+				
+				LIMIT ' . $rowOffset . ', ' . $rowsPerPage;
 			// exit;
 			$this->Util()->DB()->setQuery($sql);
 			

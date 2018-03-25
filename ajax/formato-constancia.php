@@ -139,6 +139,47 @@
 		
 	}
 	
+	if($infoSol['tiposolicitudId'] == 8){
+		
+		$lstCal = $solicitud->buscaCalificaciones($infoSol['courseId'],$infoSol['userId']);
+		
+		$contenido .= "<br>
+		<div>Que  el <b>C. ".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</b>, concluyó ".$prepo2." <b>".$infoSol['nombreMajor']." en ".$infoSol['name']."</b>,
+		correspondiente a la  generación ".$ii[0]." - ".$if[0].", plan ".$infoSol['tipoPeriodo'].", obteniendo las siguientes calificaciones.</div><br><br>";
+		
+		
+	
+		foreach($lstCal as $key=>$aux){
+			$contenido .= "<table width='100%'>";
+			$contenido .= "<tr><td width='70%' ><b>Materias</b></td><td colspan='2' style='text-align:center'><b>Calificacion</b></td>
+			<td style='text-align:center'><b>Creditos</b></td></tr>";
+			$contenido .= "<tr><td>".$aux['semesterId']."° ".$aux['tipoPeriodo']."</td><td style='text-align:center'><b>Cifra</b></td>
+			<td style='text-align:center'><b>Letra</b></td><td style='text-align:center'></td></tr>";
+			foreach($aux['materias'] as $key2=>$aux2){
+			$h =  $util->num2letras($aux2['calificacion']);
+			$contenido .= "<tr><td style='text-align:center'>".$aux2['name']."</td><td style='text-align:center'>".$aux2['calificacion']."</td><td style='text-align:center'>".$h."</td><td style='text-align:center'>".$aux2['creditos']."</td></tr>"; 
+			}
+			$contenido .= "</table>
+			<br><br>";
+		}
+		
+		$contenido .= "CUBRIENDO EL 50% DEL TOTAL DE CREDITOS DEL PLAN DE ESTUDIOS  ".strtoupper($prepo)." ".strtoupper($infoSol['name'])."<br><br>";
+		
+		$contenido .= "<br><br>A petición del Interesado  y para los usos legales que mejor convengan, 
+		se extiende la presente en la ciudad de Tuxtla Gutiérrez, Chiapas a los  ".$fe[2]." dias del  mes de ".$mes." del año ".$fe[0].".<br><br>";
+	
+		$contenido .= "<br><br><br>Atentamente
+		<br>
+		<br>
+		<br>
+		".$infoSol['nombreFirma']."<br>
+		".$infoSol['puestofirmante']."<br>
+		";
+
+	}
+	
+	
+	
 	$html .= "
 	<html>
 	<head>

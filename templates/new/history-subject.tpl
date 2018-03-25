@@ -18,6 +18,32 @@
 			 Los datos se guardaron correctamente
 			</div>
 		{/if}
+		<form id="frmFlt1">
+		<div style="display:-webkit-inline-box">
+			<b>Activo</b>
+			<select class="form-control" style="width:88px" onClick="onBuscar()" name="activo">
+				<option></option>
+				<option>si</option>
+				<option>no</option>
+			</select>
+			<b>Modalidad</b>
+			<select class="form-control" style="width:88px" onClick="onBuscar()" name="modalidad">
+				<option></option>
+				<option>Online</option>
+				<option>Presencial</option>
+			</select>
+			<b>Tipo Curricula</b>
+			<select class="form-control" style="width:88px" onClick="onBuscar()" name="curricula">
+				<option></option>
+				{foreach from=$lstMajor item=subject}
+				
+				<option>{$subject.name}</option>
+				{/foreach}
+			</select>
+		</form>
+		</div>
+		<br>
+
         <div id="tblContent">{include file="lists/new/courses.tpl"}</div>
         <br />
         {if $coursesCount}

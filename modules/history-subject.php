@@ -21,10 +21,11 @@
 		$viewPage = $_GET["$pageVar"];	//si ya esta definida la variable GET['viewPage'] tomar el valor de esta
 
 	$coursesCount = $course->EnumerateCount();
+	$lstMajor = $major->Enumerate();
 	
 	$result = $course->EnumerateByPage($viewPage, $rowsPerPage, $pageVar, WEB_ROOT.'/history-subject', $arrPage);
 
-	$result = $util->orderMultiDimensionalArray($result,'active',true);
+	// $result = $util->orderMultiDimensionalArray($result,'active',true);
 	
 	//checar a que curriculas tengo permiso
 	if(in_array(2, $info["roles"]))
@@ -47,6 +48,7 @@
 	}
 	
 	
+	$smarty->assign('lstMajor', $lstMajor);
 	$smarty->assign('subjects', $result);
 	$smarty->assign('arrPage', $arrPage);
 	$smarty->assign('coursesCount', $coursesCount);

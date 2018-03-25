@@ -89,7 +89,13 @@
 	<link type="text/css" href="{$WEB_ROOT}/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
 	<script type="text/javascript" src="{$WEB_ROOT}/cometchat/cometchatjs.php" charset="utf-8"></script>
 *}
-{if $page == 'reply-inbox' or $page == 'view-inbox' or $page == 'edit-modules-course' or $page == 'info-docente' or $page == 'lst-docentes' or $page == 'materias'}
+{if $page == 'reply-inbox' or 
+$page == 'view-inbox' or
+ $page == 'edit-modules-course' or
+ $page == 'info-docente' or 
+ $page == 'lst-docentes' or 
+ $page == 'report-docentes' or 
+ $page == 'materias'}
 <style type="text/css">
 
 .btn-file {

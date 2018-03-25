@@ -9,7 +9,7 @@
     </div>
     <div class="portlet-body">
 		<center>
-			<h3>Cuestionario de opinión del estudiante sobre la asesoría(COEA)</h3>
+			<h3>Cuestionario de opinión estudiantil sobre el desempeño docente(COEDD)</h3>
 		</center>
 		<br>
 		<br>

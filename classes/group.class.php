@@ -14,7 +14,13 @@
 		private $criteriosEvaluacion;
 		private $tecnicas;
 		private $bibliografias;
+		private $tipoMajor;
 		
+		public function setTipoMajor($value)
+		{
+			// $this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "");
+			$this->tipoMajor = $value;
+		}
 		
 		public function setPerfilParticipante($value)
 		{
@@ -853,6 +859,9 @@
 		public function actaCalificacion()
 		{
 			
+			// echo $this->tipoMajor;
+			// exit;
+			
 			$this->Util()->DB()->setQuery("
 				SELECT *, user_subject.status AS status FROM user_subject
 				LEFT JOIN user ON user_subject.alumnoId = user.userId
@@ -888,10 +897,15 @@
 							continue;
 						}
 						//revisar calificacion
-						$this->Util()->DB()->setQuery("
+						 $sqlca = "
 							SELECT ponderation
 							FROM activity_score
-							WHERE activityId = '".$activity["activityId"]."' AND userId = '".$res["alumnoId"]."'");
+							WHERE activityId = '".$activity["activityId"]."' AND userId = '".$res["alumnoId"]."'";
+							
+						// echo '<br>';
+						// echo '<br>';
+						
+						$this->Util()->DB()->setQuery($sqlca);
 						$score = $this->Util()->DB()->GetSingle();
 
 						$result[$key]{"score"}[] = $score;
@@ -904,9 +918,18 @@
 				
 				if($infoCc["calificacion"]==null or $infoCc["calificacion"]==0){
 					
-				
 					$at = $result[$key]{"addepUp"} / 10;
-					$at= round($at, 0, PHP_ROUND_HALF_DOWN);
+					// echo $res["alumnoId"].'__'.$result[$key]{"addepUp"}.'__'.'__'.$at;
+					// echo '<br>';
+					if($this->tipoMajor == "MAESTRIA" and $at < 7){
+						$at= floor ($at);
+					}
+					else if($this->tipoMajor == "DOCTORADO" and $at < 8){
+						$at= floor ($at);
+					}
+					else{
+						$at= round($at, 0, PHP_ROUND_HALF_DOWN);
+					}
 					$infoCc["calificacion"] = $at ;
 					
 				}else{

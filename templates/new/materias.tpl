@@ -1,7 +1,7 @@
 <div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-bullhorm"></i><b>Materias</b> 
+            <i class="fa fa-bullhorm"></i><b>Docente / Materias</b> 
         </div>
 		
          <div class="actions">
