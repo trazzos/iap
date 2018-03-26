@@ -20,6 +20,9 @@
 			<td align="center">{$item.solicitud}</td>
 			<td align="center">{$item.estatus}</td>
 			<td align="center">
+			
+				
+			
 				{if $item.tiposolicitudId  ne 3 and $item.tiposolicitudId  ne 4}
 					{if $item.estatus ne 'completado'}
 						{if $item.estatus ne 'cancelado'}
@@ -55,6 +58,14 @@
 				
 				{/if}
 				
+				{if $item.tiposolicitudId eq 1 or $item.tiposolicitudId eq 2 or $item.tiposolicitudId eq 6 or $item.tiposolicitudId eq 7 or $item.tiposolicitudId eq 8}
+					<a href="{$WEB_ROOT}/graybox.php?page=comentario-solicitud&id={$item.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='COMENTARIOS'>
+						<div ><i class="material-icons md-16">info</i></div>
+					</a>
+					<a href="{$WEB_ROOT}/graybox.php?page=comentario-solicitud&id={$item.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='COMENTARIOS'>
+						<div ><i class="material-icons md-16">cloud_upload</i></div>
+					</a>
+				{/if}
 			</td>
 		</tr>
 	{/foreach}

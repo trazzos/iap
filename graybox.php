@@ -195,6 +195,7 @@ $pages = array(
 	'up-plan',
 	'up-acta',
 	'down-contrato-doc',
+	'comentario-solicitud'
 
 );
 
