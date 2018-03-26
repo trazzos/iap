@@ -821,7 +821,53 @@
 			
 				// echo '<pre>'; print_r($_POST);
 				// exit;
-				if($_POST['tipo']=='entrada'){
+				if($_SESSION['User']['perfil'] == 'Administrador'){
+					if($_POST['tipo']=='entrada'){
+						$module->setStatusIn('activo');
+						$module->setTipoReporte('entrada');
+						$module->setRecibeId($_SESSION['User']['userId']);
+						$module->setCMId($_GET["courseMId"]);
+						if ($_SESSION['User']['type']=='student'){
+							$module->setQuienEnviaId('personal');
+						}else{
+							$module->setQuienEnviaId('alumno');
+						}
+						
+					}else if($_POST['tipo']=='borrador'){
+						$module->setStatusIn('borrador');
+						$module->setTipoReporte($_POST['tipo']);
+						$module->setYoId($_SESSION['User']['userId']);
+						$module->setCMId($_POST['courseMId']);
+						if ($_SESSION['User']['type']=='student'){
+							$module->setQuienEnviaId('alumno');
+						}else{
+							$module->setQuienEnviaId('personal');
+						}
+					}else if($_POST['tipo']=='eliminados'){
+						$module->setStatusIn('eliminado');
+						$module->setTipoReporte($_POST['tipo']);
+						$module->setRecibeId($_SESSION['User']['userId']);
+						$module->setCMId($_POST['courseMId']);
+						if ($_SESSION['User']['type']=='student'){
+							$module->setQuienEnviaId('alumno');
+						}else{
+							$module->setQuienEnviaId('personal');
+						}
+					}else if($_POST['tipo']=='enviados'){
+						$module->setStatusIn('activo');
+						$module->setTipoReporte($_POST['tipo']);
+						$module->setYoId($_SESSION['User']['userId']);
+						$module->setCMId($_POST['courseMId']);
+						
+						$module->setQuienEnviaId('personal');
+						
+					}
+					
+					$lstMsj = $module->EnumerateInboxAdmin();
+				
+				}else{
+					
+					if($_POST['tipo']=='entrada'){
 					$module->setStatusIn('activo');
 					$module->setTipoReporte('entrada');
 					$module->setRecibeId($_SESSION['User']['userId']);
@@ -865,6 +911,11 @@
 				}
 				
 				$lstMsj = $module->EnumerateInbox();
+				
+				}
+				
+				
+				
 				$smarty->assign("courseMId", $_POST['courseMId']);
 				$smarty->assign("tipo", $_POST['tipo']);
 				$smarty->assign("lstMsj", $lstMsj);

@@ -1176,6 +1176,7 @@ class User extends Main
 			
 			$card['userId'] = $row['personalId'];			
 			$card['positionId'] = $row['positionId'];
+			$card['perfil'] = $row['perfil'];
 			$card['username'] = $row['name'];
 			$card['nombreCompleto'] = $row['name'].' '.$row['lastname_materno'].' '.$row['lastname_paterno'];
 			$card['isLogged'] = true;

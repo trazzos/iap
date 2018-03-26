@@ -477,7 +477,7 @@ class Docente extends Empresa{
 		}
 		else if($_POST['programado']=='on'){
 			
-			$filtro .= " and cm.initialDate < '".date('Y-m-d')."'";
+			$filtro .= " and cm.initialDate > '".date('Y-m-d')."'";
 		}
 		
 		
@@ -497,7 +497,8 @@ class Docente extends Empresa{
 					s.name as nameS,
 					cs.modality,
 					cs.group,
-					sm.name as nameM
+					sm.name as nameM,
+					if( cm.finalDate >='.date('Y-m-d').',"Activo","Finalizada") as estatusAc
 				FROM 
 					course_module_personal AS cmp
 				left join course_module AS cm ON cm.courseModuleId = cmp.courseModuleId 
@@ -511,17 +512,17 @@ class Docente extends Empresa{
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$result = $this->Util()->DB()->GetResult();
 		
-		foreach($result as $key=>$aux){
+		// foreach($result as $key=>$aux){
 			
 			
-			if($aux['finalDate'] > date('Y-m-d')){
-				$result[$key]['estatusAc'] = 'Activo';
-			}else{
-				$result[$key]['estatusAc'] = 'Finalizada';
-			}
+			// if($aux['finalDate'] > date('Y-m-d')){
+				// $result[$key]['estatusAc'] = 'Activo';
+			// }else{
+				// $result[$key]['estatusAc'] = 'Finalizada';
+			// }
 			
 			
-		}
+		// }
 		
 		return $result;
 		

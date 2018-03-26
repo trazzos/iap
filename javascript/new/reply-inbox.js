@@ -51,7 +51,7 @@ function cargaInbox(tipo,courseMId){
 function SaveMsj(courseMId,status,chatId){
 	
 	
-	// $('#mensaje').html(tinymce.get('mensaje').getContent());
+	$('#mensaje').html(tinymce.get('mensaje').getContent());
 	//$("#type").val("saveReply")
 	
 	if(status=='borrar'){

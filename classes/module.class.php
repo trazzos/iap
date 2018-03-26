@@ -167,7 +167,7 @@
 		public function InfoCourseModule()
 		{
 			//creamos la cadena de seleccion
-			$sql = "SELECT 
+			 $sql = "SELECT 
 						course_module.*, 
 						subject.*, 
 						major.*, 
@@ -184,7 +184,13 @@
 						subject_module.bibliography as bibliography,
 						subject_module.subjectModuleId as Id,
 						subject_module.semesterId as semesId,
-						c.modality as modality
+						c.courseId as courseId,
+						c.modality as modality,
+						c.group as groupA,
+						c.tarifaMtro as tarifaMtro,
+						c.tarifaDr as tarifaDr,
+						c.hora as hora,
+						c.subtotal as subtotal
 						
 					FROM
 						course_module
@@ -474,7 +480,13 @@
 				$filtro .= " and c.courseModuleId = ".$this->cmId."";
 			}
 			
-			$sql = "SELECT 
+			if($this->quienEnviaId){
+				$filtro .= " and c.quienEnvia = '".$this->quienEnviaId."'";
+			}
+			
+			
+			
+			 $sql = "SELECT 
 						c.*,
 						sm.name as nombreMateria
 					FROM
@@ -483,38 +495,46 @@
 					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
 					WHERE
 						1 ".$filtro." order by chatId DESC";
-			// exit;
+			
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
 			
+			
+			
 			foreach($result as $key=>$aux){
 				if($aux['quienEnvia']=='alumno'){
-					$sql = "SELECT 
-								*
-							FROM
-								personal
-							WHERE
-								personalId = ".$aux['usuarioId']."";
-					$this->Util()->DB()->setQuery($sql);
-					$infoU = $this->Util()->DB()->GetRow();
-					$result[$key]['nombre'] = $infoU['name'];
-					$result[$key]['paterno'] = $infoU['lastname_paterno'];
-					$result[$key]['materno'] = $infoU['lastname_materno'];
-				}else{
+					
 					$sql = "SELECT 
 								*
 							FROM
 								user
 							WHERE
-								userId = ".$aux['usuarioId']."";
+								userId = ".$aux['yoId']."";
 					$this->Util()->DB()->setQuery($sql);
 					$infoU = $this->Util()->DB()->GetRow();
 					$result[$key]['nombre'] = $infoU['names'];
 					$result[$key]['paterno'] = $infoU['lastNamePaterno'];
 					$result[$key]['materno'] = $infoU['lastNameMaterno'];
+					
+					
+				}else{
+					$sql = "SELECT 
+								*
+							FROM
+								personal
+							WHERE
+								personalId = ".$aux['yoId']."";
+					$this->Util()->DB()->setQuery($sql);
+					$infoU = $this->Util()->DB()->GetRow();
+					$result[$key]['nombre'] = $infoU['name'];
+					$result[$key]['paterno'] = $infoU['lastname_paterno'];
+					$result[$key]['materno'] = $infoU['lastname_materno'];
 				}
 				
 			}
+			
+			// echo '<pre>'; print_r($result);
+			// exit;
 			return $result;
 		}
 		

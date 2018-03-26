@@ -12,6 +12,7 @@ switch($_POST["type"])
 		$course->setTarifa($_POST['tarifaMtro']);
 		$course->setTarifaDr($_POST['tarifaDr']);
 		$course->setHora($_POST['horas']);
+		$course->setSubtotal($_POST['subtotal']);
 		if($course->editaCosto($_POST['id']))
 		{
 			

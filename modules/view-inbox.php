@@ -11,7 +11,7 @@
 	$module->setCMId($_GET["id"]);
 	$lstMsj = $module->EnumerateInbox();
 	
-	if ($_GET["cId"]<>0){
+	if ($_GET["cId"]<>0 and $_SESSION['User']['perfil']<>'Administrador'){
 		$infoC = $module->infoChat($_GET["cId"]);
 		$module->actualizaALeido($_GET["cId"]);
 	}

@@ -11,7 +11,13 @@
 	$personal->setPersonalId($infoM['access'][1]);
 	$infoPerso = $personal->InfoBasica();
 	$infoDoc = $personal->Info();
-	
+
+		
+	if($infoM['modality'] == 'Online'){
+		$lugarImparticion = "Sistema de Educacion en Linea";
+	}else{
+		$lugarImparticion = "Ediificio Administrativo";
+	}
 	
 	
 
@@ -93,7 +99,7 @@
 			</tr>
 			<tr>
 				<td>Grupo Designado:</td>
-				<td>".$infoM['nombre']."</td>
+				<td>".$infoM['groupA']."</td>
 			</tr>
 			<tr>
 				<td>Posgrado Academico:</td>
@@ -101,11 +107,11 @@
 			</tr>
 			<tr>
 				<td>Lugar de Imparticion:</td>
-				<td>".$infoM['nombre']."</td>
+				<td>".$lugarImparticion."</td>
 			</tr>
 			<tr>
 				<td>Total de Horas de Imparticion:</td>
-				<td>".$infoM['nombre']."</td>
+				<td>".$infoM['hora']."</td>
 			</tr>
 			<tr>
 				<td>No. Cuenta Bancaria:</td>
@@ -129,6 +135,48 @@
 		$html .= "<br>";
 		$html .= "<br>";
 		
+		$html .= "<div class='txtTicket'>Desglose (".$infoM['hora'].") (".$infoM['tarifaMtro'].") = $  ".number_format(($infoM['tarifaMtro']*$infoM['hora']),2)." iva incluido menos impuestos</div>";
+		
+		$html .= "<br>";
+		$html .= "<br>";
+		
+		$html .= "<table align='center' width='50%' border='1' class='txtTicket'>";
+		$html .= "<tr>";
+		$html .= "<td>Concepto</td>";
+		$html .= "<td>Importe</td>";
+		$html .= "</tr>";
+		
+		$html .= "<tr>";
+		$html .= "<td>Importe</td>";
+		$html .= "<td>".number_format(($infoM['subtotal']/(1.16)),2)."</td>";
+		$html .= "</tr>";
+		
+		$html .= "<tr>";
+		$html .= "<td>IVA</td>";
+		$html .= "<td>".number_format((($infoM['subtotal']/(1.16))*(.16)),2)."</td>";
+		$html .= "</tr>";
+		
+		$html .= "<tr>";
+		$html .= "<td>subtotal</td>";
+		$html .= "<td>".$infoM['subtotal']."</td>";
+		$html .= "</tr>";
+		
+		$html .= "<tr>";
+		$html .= "<td>rendicion isr</td>";
+		$html .= "<td>".number_format(($infoM['subtotal']/(1.16))*(.1),2)."</td>";
+		$html .= "</tr>";
+		
+		$html .= "<tr>";
+		$html .= "<td>rendicion iva</td>";
+		$html .= "<td>".number_format(((($infoM['subtotal']/(1.16))*(.16)))*(2/3),2)."</td>";
+		$html .= "</tr>";
+		
+		$html .= "<tr>";
+		$html .= "<td>total</td>";
+		$html .= "<td>".number_format($infoM['subtotal']+(($infoM['subtotal']/(1.16))*(.1))+(((($infoM['subtotal']/(1.16))*(.16)))*(2/3)),2)."</td>";
+		$html .= "</tr>";
+		
+		$html .= "</table>";
 		
 		
 		$html .= "<br>";
@@ -138,15 +186,15 @@
 		$html .= "
 		<tr>
 		<td style='width:34%'>No. de Contrato</td>
-		<td></td>
+		<td>".$infoM['noContrato']."</td>
 		</tr>
 		<tr>
 		<td>Fecha de Elaboracion del Contrato</td>
-		<td></td>
+		<td>".$infoM['fechaContrato']."</td>    
 		</tr>
 		<tr>
 		<td>Tipo de Contrato</td>
-		<td></td>
+		<td>Persona ".$infoDoc['tipoContrato']."</td>
 		</tr>
 		<tr>
 			<td colspan='2'>
@@ -155,7 +203,12 @@
 		</tr>
 		<tr>
 			<td colspan='2'>
-				No. Telefonico Facebook Correo Electronico
+				No. Telefonico: ".$infoDoc['celular']." Facebook: ".$infoDoc['facebook']."
+				
+				<br>
+				<br>
+				Correo Electronico:
+				".$infoDoc['correo']."
 			</td>
 		</tr>
 		";

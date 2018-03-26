@@ -16,6 +16,12 @@
 		private $activo;
 		private $modalidad;
 		private $curricula;
+		private $subtotal;
+		
+		public function setSubtotal($value)
+		{
+			$this->subtotal = $value;	
+		}
 		
 		public function setActivo($value)
 		{
@@ -1053,7 +1059,8 @@
 					SET
 						tarifaMtro='".$this->tarifa."', 
 						tarifaDr='".$this->tarifaDr."', 
-						hora='".$this->hora."'
+						hora='".$this->hora."',
+						subtotal='".$this->subtotal."'
 						WHERE courseId ='".$Id."'";
 
 						

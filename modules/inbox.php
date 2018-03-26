@@ -2,6 +2,9 @@
 		
 	/* For Session Control - Don't remove this */
 	//	$user->allow_access(8);	
+	
+	// echo '<pre>'; print_r($_SESSION);
+// exit;	
 
 	if ($_SESSION['User']['type']=='student'){
 		
@@ -22,7 +25,8 @@
 	$module->setRecibeId($_SESSION['User']['userId']);
 	$module->setCMId($_GET["id"]);
 	
-	if ($_SESSION['User']['positionId'] == 1){
+	if ($_SESSION['User']['perfil'] == 'Administrador'){
+		$module->setQuienEnviaId('alumno');
 		$lstMsj = $module->EnumerateInboxAdmin();
 	}else{
 		$lstMsj = $module->EnumerateInbox(); 
