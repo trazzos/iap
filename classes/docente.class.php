@@ -473,7 +473,7 @@ class Docente extends Empresa{
 			$filtro .= "";
 		}
 		else if($_POST['activo']=='on'){
-			$filtro .= " and cm.initialDate >= '".date('Y-m-d')."' and cm.finalDate <= '".date('Y-m-d')."'";
+			$filtro .= " and cm.active = 'si'";
 		}
 		else if($_POST['programado']=='on'){
 			

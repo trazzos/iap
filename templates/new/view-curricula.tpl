@@ -10,6 +10,15 @@
         <div id="tblContent">
 			
 			<form id="frmGral">
+			{if $solicitudId eq 1 or $solicitudId eq 2 or $solicitudId eq 6 or $solicitudId eq 7 or $solicitudId eq 8}
+			<b>Favor de indicar a detalle la información que requiere para la generación de su constancia.</b>
+			<br>
+			<center>
+			<textarea class="form-control" name="observacions" id="observacions" style="width:500px"></textarea>
+			</center>
+			<br>
+			<br>
+			{/if}
 			<input  type="hidden" name="solicitudId" id="solicitudId"  value="{$solicitudId}" >
 			<span class="caption-subject font-blue-madison bold uppercase">Activa</span>
 			 <div class="portlet-body">

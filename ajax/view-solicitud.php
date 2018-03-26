@@ -1,14 +1,40 @@
 <?php
+include_once('../init.php');
+include_once('../config.php');
+include_once(DOC_ROOT.'/libraries.php');
 
-	include_once('../init.php');
-	include_once('../config.php');
-	include_once(DOC_ROOT.'/libraries.php');
+session_start();
+
+switch($_POST["type"])
+{
 	
-	session_start();
+		case 'addSaveSolicitudOk':
+		
+			$solicitud->setTipo($_POST['solicitudId']);
+			$solicitud->setCursoId($_POST['courseId']);
+			$solicitud->setObservacion($_POST['observacions']);
+			if($Id = $solicitud->SaveSolicitud()){
+				echo 'ok[#]';
+				echo 'recarga';
+				echo '[#]';
+					echo '<div class="alert alert-info alert-dismissable">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  La solicitud se genero correctamente
+					</div>';
+				echo '[#]';
+				$lstSol = $solicitud->arraySolicitudes();
+				$registros = $solicitud->enumarateSolicitudesStden();
+				$smarty->assign('registros', $registros);
+				$smarty->assign("lstSol", $lstSol);
+				$smarty->display(DOC_ROOT.'/templates/lists/view-solicitud.tpl');
+				echo '[#]';
+				echo $Id;
+			}
+		
+		break;
 	
-	switch($_POST["type"])
-	{
 		case 'addSolicitud':
+		
 		$student->setUserId($_SESSION["User"]["userId"]);
 		$activeCourses = $student->StudentCourses("activo", "si");
 		$finishedCourses = $student->StudentCourses("finalizado");
@@ -18,6 +44,20 @@
 		// $finishedCourses = array();
 		
 		if(count($activeCourses) == 1 and count($finishedCourses) == 0){
+			
+			if($_POST['solicitudId'] == 1  or 
+			$_POST['solicitudId'] == 2 or 
+			$_POST['solicitudId'] == 6 or 
+			$_POST['solicitudId'] == 7 or 
+			$_POST['solicitudId'] == 8){
+				
+				echo 'ok[#]';
+				
+				$smarty->assign('solicitudId', $_POST['solicitudId']);
+				$smarty->assign('courseId', $activeCourses[0]['courseId']);
+				$smarty->display(DOC_ROOT.'/templates/new/add-observacion-solicitud.tpl');
+				exit;
+			}
 
 			$solicitud->setTipo($_POST['solicitudId']);
 			$solicitud->setCursoId($activeCourses[0]['courseId']);
@@ -44,29 +84,27 @@
 			exit;
 		}
 			
-		
-		
+			
 		
 		$smarty->assign("finishedCourses", $finishedCourses);	
 		$smarty->assign("solicitudId", $_POST['solicitudId']);	
-		
+
 		echo 'ok[#]';
 		$smarty->assign("activeCourses", $activeCourses);
 		$smarty->display(DOC_ROOT.'/templates/new/view-curricula.tpl');
 		exit;
-			if($_POST['solicitudId']==''){
-				echo 'fail[#]';
-				echo '<center><font color="red">Por favor, seleccione el tipo de solicitud</font></center>';
-				exit;
-			}
-		
-
-			
+		if($_POST['solicitudId']==''){
+			echo 'fail[#]';
+			echo '<center><font color="red">Por favor, seleccione el tipo de solicitud</font></center>';
+			exit;
+		}
 
 					
-			break;
+	break;
+	
+	
 			
-			case 'addSaveSolicitud';
+	case 'addSaveSolicitud':
 
 				// echo '<pre>'; print_r($_POST);
 				$activa = 0;
@@ -121,6 +159,7 @@
 				
 				$solicitud->setTipo($_POST['solicitudId']);
 				$solicitud->setCursoId($cursoId);
+				$solicitud->setObservacion($_POST['observacions']);
 				// $solicitud->setPrecio($precio);
 				if ($insertId = $solicitud->SaveSolicitud()){
 					echo 'ok[#]';

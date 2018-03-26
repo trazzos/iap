@@ -11,6 +11,7 @@ class Solicitud extends Module
 	private $tiposolicitudId;
 	private $solicitudId;
 	private $cursoId;
+	private $observacion;
 	
 
 	
@@ -57,6 +58,13 @@ class Solicitud extends Module
 	{
 		$this->Util()->ValidateString($value);
 		$this->nombre = $value;
+	}
+	
+	
+	public function setObservacion($value)
+	{
+		$this->Util()->ValidateString($value);
+		$this->observacion = $value;
 	}
 	
 	public function setStatus($value)
@@ -273,7 +281,8 @@ class Solicitud extends Module
 				estatus,
 				motivo,
 				userId,
-				precio
+				precio,
+				observacion
 				)
 			   values(
 			            '".$infoCo['subjectId']."', 
@@ -283,7 +292,8 @@ class Solicitud extends Module
 			            '".$status."',
 			            '".$this->motivo."',
 			            '".$_SESSION['User']['userId']."',
-			            '".$infoSol['precio']."'
+			            '".$infoSol['precio']."',
+			            '".$this->observacion."'
 			         )";
 					 
 			$this->Util()->DB()->setQuery($sqlNot);
