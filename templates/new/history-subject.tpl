@@ -18,6 +18,7 @@
 			 Los datos se guardaron correctamente
 			</div>
 		{/if}
+		{if $perfil eq ''}
 		<form id="frmFlt1">
 		<div style="display:-webkit-inline-box">
 			<b>Activo</b>
@@ -42,6 +43,7 @@
 			</select>
 		</form>
 		</div>
+		{/if}
 		<br>
 
         <div id="tblContent">{include file="lists/new/courses.tpl"}</div>

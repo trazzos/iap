@@ -5,6 +5,10 @@
 	/* End Session Control */
 	//check if docente, 2 == docente
 	
+	
+	// echo '<pre>'; print_r($_SESSION);
+	// exit;
+
 	if($_GET["borrar"])
 	{
 		$module->setCourseModuleId($_GET["borrar"]);
@@ -48,6 +52,7 @@
 	}
 	
 	
+	$smarty->assign('perfil', $_SESSION['User']['perfil']);
 	$smarty->assign('lstMajor', $lstMajor);
 	$smarty->assign('subjects', $result);
 	$smarty->assign('arrPage', $arrPage);
