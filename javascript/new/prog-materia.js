@@ -123,7 +123,7 @@ function onDelete(id,courseId)
         {
            console.log(data);
 		    var splitResp = data.split("[#]");
-			 if(splitResp[0] == "ok")
+			 if($.trim(splitResp[0]) == "ok")
             {
                $("#msj").html(splitResp[1]);
 				$("#tblContent").html(splitResp[2]);

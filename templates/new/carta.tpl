@@ -25,6 +25,8 @@
 			Subir Carta Descriptiva
 			</span>
 			</div>
+			<progress id="progress" value="0" min="0" max="100"></progress>
+			<div id="porcentaje" >0%</div>
 		</form>
 	{else}
 		<a type="button" target='_blank' href='{$WEB_ROOT}/docentes/carta/{$info.rutaCarta}'  class="btn default blue" style="width:211px">Visualizar</a><br>

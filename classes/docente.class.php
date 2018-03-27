@@ -498,6 +498,7 @@ class Docente extends Empresa{
 					cs.modality,
 					cs.group,
 					sm.name as nameM,
+					m.name as tipoC,
 					if( cm.finalDate >='.date('Y-m-d').',"Activo","Finalizada") as estatusAc
 				FROM 
 					course_module_personal AS cmp
@@ -506,6 +507,7 @@ class Docente extends Empresa{
 				left join subject_module AS sm ON sm.subjectmoduleId = cm.subjectmoduleId 
 				left join subject AS s ON s.subjectId = sm.subjectId 
 				left join course as c ON c.courseId = cm.courseId 
+				left join major as m ON m.majorId = s.tipo 
 				left join personal as p ON p.personalId = cmp.personalId 
 				where 1 '.$filtro.' limit 0,50';
 // exit;

@@ -28,7 +28,7 @@
 	$html .= "
 	<html>
 	<head>
-	<title>REPORTE VEHICULO</title>
+	<title>REPORTE MATERIAS</title>
 	<style type='text/css'>
 	.txtTicket{
 			font-size:12px;

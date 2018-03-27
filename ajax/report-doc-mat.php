@@ -20,7 +20,7 @@
 	$html .= "
 	<html>
 	<head>
-	<title>REPORTE VEHICULO</title>
+	<title>REPORTE DOCENTES/MATERIAS</title>
 	<style type='text/css'>
 	.txtTicket{
 			font-size:12px;
@@ -73,6 +73,7 @@
 		$html .= "<table align='center' width='100%' border='1' class='txtTicket'>";
 		$html .= "";
 		$html .= "<tr>";
+		$html .= "<td ></td>";
 		$html .= "<td >Docente</td>";
 		$html .= "<td >Posgrado</td>";
 		$html .= "<td >Modalidad</td>";
@@ -84,9 +85,20 @@
 
 		foreach($lsReporte as $key=>$aux){
 			
+			if(file_exists(DOC_ROOT."/".$aux['foto'])){
+				$foto = DOC_ROOT."/".$aux['foto'];
+			}else{
+				$foto = DOC_ROOT."/alumnos/no_foto.JPG";
+			}
+			
+			if($aux['foto']==''){
+				$foto = DOC_ROOT."/alumnos/no_foto.JPG";
+			}
+			
 			$html .= "<tr>"; 
+			$html .= "<td><img src='".$foto."' style='width: 100px !important'></td>";
 			$html .= "<td>".$aux['name']." ".$aux['lastname_paterno']." ".$aux['lastname_materno']."</td>";
-			$html .= "<td>".$aux['nameS']."</td>";
+			$html .= "<td> ".$aux['tipoC']." EN ".$aux['nameS']."</td>";
 			$html .= "<td>".$aux['modality']."</td>";
 			$html .= "<td>".$aux['group']."</td>";
 			$html .= "<td>".$aux['nameM']."</td>";

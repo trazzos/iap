@@ -130,6 +130,11 @@ switch($_POST["type"])
 			// exit;
 			if($url = $group->onSendCarta($_POST["id"])){
 				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  El archivo se adjunto correctamente
+					</div>';
+				exit;
 			}else{
 				echo "fail[#]";
 				

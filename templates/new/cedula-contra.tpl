@@ -29,7 +29,9 @@
 				</div>
 				<br>
 				<br>
+				{if $myModule.rutaCedula ne ''} 
 				<a type="button" target='_blank' href='{$WEB_ROOT}/docentes/cedula/{$myModule.rutaCedula}' class="btn default blue" style="width:211px">Visualizar</a><br>
+				{/if}
 			</center>
 			
 		

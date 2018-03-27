@@ -400,7 +400,17 @@ function onSendCarta(Id){
 			
 			console.log(response);
 			// var splitResp = response.split("[#]");
-			// $("#loader").html("");
+			// $("#msjCourse").html(response);
+			var splitResp = response.split("[#]");
+			
+			if($.trim(splitResp[0])=="ok"){
+				closeModal()
+				$('#msjCourse').html(splitResp[1]);
+			}else if($.trim(splitResp[0])=="fail"){
+				alert(splitResp[1])
+			}else{
+				alert('Ocurrio un error....')
+			}
 			// alert('llega')
 			closeModal()
 		},
@@ -427,7 +437,7 @@ function onDeleteCarta(id,courseId)
         {
            console.log(data);
 		    var splitResp = data.split("[#]");
-			 if(splitResp[0] == "ok")
+			 if($.trim(splitResp[0]) == "ok")
             {
                closeModal()
             }
