@@ -18,7 +18,7 @@
 			 Los datos se guardaron correctamente
 			</div>
 		{/if}
-		{if $perfil eq ''}
+		{if $perfil eq 'Docente'}
 		<form id="frmFlt1">
 		<div style="display:-webkit-inline-box">
 			<b>Activo</b>
