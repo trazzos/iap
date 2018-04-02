@@ -190,7 +190,7 @@
 						c.tarifaMtro as tarifaMtro,
 						c.tarifaDr as tarifaDr,
 						c.hora as hora,
-						c.subtotal as subtotal
+						course_module.subtotal as subtotal
 						
 					FROM
 						course_module
@@ -495,7 +495,7 @@
 					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
 					WHERE
 						1 ".$filtro." order by chatId DESC";
-			
+			// exit;
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
 			

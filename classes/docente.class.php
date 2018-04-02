@@ -15,6 +15,16 @@ class Docente extends Empresa{
 	private $habilitar;
 	private $inicioMateria;
 	private $finMateria;
+	private $subtotal;
+	
+	
+	
+	
+	public function setSubtotal($value){
+		
+		// $this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, 'Inicio Materia');
+		$this->subtotal = $value;
+	}
 	
 	public function setInicioMateria($value){
 		
@@ -334,6 +344,7 @@ class Docente extends Empresa{
 					fechaContrato = '".$this->inicioContrato."',
 					fechaMateria = '".$this->finContrato."',
 					noContrato = '".$this->noContrato."',
+					subtotal = '".$this->subtotal."',
 					habilitarDescargaContrato = '".$this->habilitar."'
 				WHERE 
 					courseModuleId = ".$this->Id;

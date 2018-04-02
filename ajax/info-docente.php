@@ -208,6 +208,7 @@
 		$docente->setFinContrato($_POST['fechaMateria']);
 		$docente->setNoContrato($_POST['noContrato']);
 		$docente->setHabilitar($_POST['habilitar']);
+		$docente->setSubtotal($_POST['subtotal']);
 		if($docente->saveEditContrato()){
 				echo 'ok[#]';
 				echo '

@@ -53,6 +53,12 @@
 						{if $myModule.noContrato eq ''} value="{$noContrato}" {else} value="{$myModule.noContrato}" {/if}>
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Subtotal:</label>
+					<div class="col-md-8">
+						<input type="text" name="subtotal" class="form-control"  value="{$myModule.subtotal}">
+					</div>
+				</div>
 				<!--
 				<div class="form-group">
 					<label class="col-md-3 control-label">Habilitar:</label>
