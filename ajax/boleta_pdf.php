@@ -10,9 +10,12 @@
 		
 
 		$contenido .=	"<center><b>Instituto de administración pública del estado de chiapas</b></center><br>";
-		$contenido .=	"<center><b>incorporada a la secretaria de educacion pública del estado</b></center><br>";
-		$contenido .=	"<center><b>Clave: 07psu0129j</b></center><br>";
-		$contenido .=	"<center><b>Libramiento norte Pte. No. 2718 Col. ladera de la loma, tuxtla Gutiérrez, chiapas</b></center><br>";
+		$contenido .=	"<font class='titilosmall'>";
+		$contenido .=	"<center>incorporada a la secretaria de educacion pública del estado</center><br>";
+		$contenido .=	"<center>lave: 07psu0129j</center><br>";
+		$contenido .=	"<center>Libramiento norte Pte. No. 2718 Col. ladera de la loma, tuxtla Gutiérrez, chiapas</center>
+		<br><br><br>";
+		$contenido .=	"</font>";
 		$contenido .=	"<center><b>Boleta de Calificaciones</b></center><br><br>";
 
 
@@ -33,18 +36,25 @@
                             <td>Cuatrimestre:</td>
                             <td>".$infoSol['tipoPeriodo']."</td>
                             <td>Periodo</td>
-                            <td>".$infoSol['tipoPeriodo']." Grupo: ".$infoSol['group']."</td>
+                            <td>".$infoSol['periodo']." Grupo: ".$infoSol['group']."</td>
                          </tr>
                         </table>";
 
-
-		foreach($lstCal8 as $key=>$aux){
-			$contenido .= "<table width='100%' >";
-			$contenido .= "<tr>
+		$contenido .= "<table width='100%' >";
+			$contenido .= "
+				<tr>
 				<td width='70%'><b>Materias</b></td>
-				<td colspan='' style='text-align:center'><b>Calificacion</b></td>
+				<td colspan='2' style='text-align:center'><b>Calificacion</b></td>
 				</tr>";
-			$contenido .= "<tr><td>".$aux['semesterId']." ".$aux['tipoPeriodo']."</td><td style='text-align:center'><b>En numero</b></td><td style='text-align:center'><b>En Letra</b></td><td></td></tr>";
+		$contenido .= "
+			<tr>
+				<td></td>
+				<td style='text-align:center'><b>En numero</b></td>
+				<td style='text-align:center'><b>En Letra</b></td></tr>";
+				
+		foreach($lstCal8 as $key=>$aux){
+			
+			
 			foreach($aux['materias'] as $key2=>$aux2){
 			$h =  $util->num2letras($aux2['calificacion']);
 			$contenido .= "
@@ -54,10 +64,24 @@
 			<td style='text-align:center'>".$h."</td>
 			</tr>";
 			}
-			$contenido .= "</table>
-			<br><br>";
+			
 		}
 		
+		$contenido .= "</table>
+			<br><br>";
+		
+		$fee = date('m');
+		if($fee < 10){
+		$fee = str_replace('0','',$fee);
+			
+		}
+		
+		$mes = $util->ConvertirMes($fee);
+		
+		$contenido .= "<center><font class='txtTicket'>Tuxtla Gutiérrez, Chiapas; ".date('d')." ".$mes." de  ".date('Y')."</font></center><br><br>";
+		$contenido .= "<br><br><br><br><center><table width='100%' border='0' align='center' class='txtTicket'>
+		<tr><td><center><b>C.P. y L.D. Orfanel toalá ramos<br>Director Academico</b></center></td>
+		<td><center><b>Lic. ana gloria carvajal cruz<br>Control Escolar</b></center></td></tr></table>";
 
 	
 	
@@ -75,6 +99,9 @@
 		table,td {
 		border: 1px solid black;
 		border-collapse: collapse;
+	}
+	.titilosmall{
+		font-size:5px;
 	}
 	.notas{
 			font-size:10px;

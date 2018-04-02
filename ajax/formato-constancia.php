@@ -201,6 +201,7 @@
 		border: 1px solid black;
 		border-collapse: collapse;
 	}
+	
 	.notas{
 			font-size:10px;
 			 font-family: sans-serif;
