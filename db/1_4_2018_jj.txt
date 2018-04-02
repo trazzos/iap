@@ -1,0 +1,2 @@
+ALTER TABLE  `course_module` ADD  `periodo` TEXT NOT NULL AFTER  `rutaCarta` ;
+ALTER TABLE  `course` ADD  `tipo` ENUM(  'Cuatrimestre',  'Semestre' ) NOT NULL AFTER  `subtotal` ;
