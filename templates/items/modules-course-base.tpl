@@ -12,7 +12,7 @@
 		<td align="center">{$subject.totalScore} <br/>
 		<a href="javascript:void(0)" onclick="CalificacionesAct({$subject.courseModuleId});"> Actividades</a>
 		<br/>
-		<a href="javascript:void(0)" onclick="CalificacionesExa({$subject.courseModuleId});"> Examenes</a>
+		<!--<a href="javascript:void(0)" onclick="CalificacionesExa({$subject.courseModuleId});"> Examenes</a>-->
 		</td>
 		<td align="center">
 			

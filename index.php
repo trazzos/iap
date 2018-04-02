@@ -194,6 +194,7 @@ $pages = array(
 	'tabla-costo',
 	'prog-academico',
 	'prog-materia',
+	'validarpago-adjuntar'
 	
 	
 	
@@ -252,6 +253,7 @@ else if($includedTpl == 'recuperacion'){
 }
 else
 {
+		
 	$smarty->display(DOC_ROOT.'/templates/index_new.tpl');
 }
 

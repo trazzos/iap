@@ -35,9 +35,20 @@
 					<!--<a  href="{$WEB_ROOT}/graybox.php?page=view-boleta&id=con" data-target="#ajax" data-toggle="modal" data-width="1000px" title='DESCARGAR BOLETA DE CALIFICACIONES'>
 						<i class="material-icons md-16">cloud_download</i>
 					</a>-->
-					<a href="{$WEB_ROOT}/alumnos/solicitud/solicitud_{$subject.solicitudId}.pdf"   target='_blank' title='DESCARGAR CONSTANCIA'>
+					{if $subject.existeArchivo eq 'si' and $subject.rutaAdjunto ne ''}
+						<a href="{$WEB_ROOT}/alumnos/solicitud/solicitud_{$subject.solicitudId}.pdf"   target='_blank' title='DESCARGAR CONSTANCIA'>
+								<i class="material-icons md-16">cloud_download</i>
+						</a>
+					{else}
+						<a href="{$WEB_ROOT}/graybox.php?page=view-curricula&id={$subject.tiposolicitudId}&soljId={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='SELECCIONA CUATRIMESTRE'>
+							<i class="material-icons md-16">view_list</i>
+						</a>
+					{/if}
+					
+					
+					<!--<a href="{$WEB_ROOT}/alumnos/solicitud/solicitud_{$subject.solicitudId}.pdf"   target='_blank' title='DESCARGAR CONSTANCIA'>
 							<i class="material-icons md-16">cloud_download</i>
-					</a>
+					</a>-->
 					<!--<a href="{$WEB_ROOT}/graybox.php?page=info&id=1" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INFORMACION'>
 					<i class="material-icons md-16">info</i>
 					</a>-->

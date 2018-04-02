@@ -140,7 +140,12 @@ $page == 'view-inbox' or
 	<div class="page-container">
 		<!-- BEGIN SIDEBAR -->
 		<div class="page-sidebar-wrapper">
+		{if $vistaPrevia eq 1}
+			{include file="new/sidebar_vp.tpl"}
+		{else}
 			{include file="new/sidebar.tpl"}
+		{/if}
+			
 		</div>
 		<!-- END SIDEBAR -->
 		<!-- BEGIN CONTENT -->

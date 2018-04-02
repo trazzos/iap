@@ -155,6 +155,16 @@ class Solicitud extends Module
 	
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$result = $this->Util()->DB()->GetResult();
+		
+		foreach($result as $key=>$aux){
+			
+			if(file_exists(DOC_ROOT."/alumnos/solicitud/".$aux['rutaAdjunto'])){
+				$result[$key]['existeArchivo'] = 'si';
+			}else{
+				$result[$key]['existeArchivo'] = 'no';
+			}
+			
+		}
 		// echo '<pre>'; print_r($result);
 		// exit;
 		return $result;
@@ -719,6 +729,81 @@ class Solicitud extends Module
 	}
 	
 	
+	public function validarPagoAdjunto($Id)
+	{
+		
+		$sqlQuery = 'SELECT 
+					*
+				FROM 
+					solicitud
+				WHERE  solicitudId = '.$Id.'';
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$coun = $this->Util()->DB()->GetRow();
+		
+				
+		//busca donde en el moduleCourse donde se encuentra inscrito
+		$sqlQuery = 'SELECT 
+					*
+				FROM 
+					confirma_inscripcion
+				WHERE userId = '.$coun['userId'].' order by confirmaInscripcionId DESC ';
+			$this->Util()->DB()->setQuery($sqlQuery);
+		$infoConfirma = $this->Util()->DB()->GetRow();
+		
+		$url = DOC_ROOT;
+		$archivo = "archivos";
+		
+		foreach($_FILES as $key=>$var)
+		{
+		   switch($key)
+		   {
+				   case $archivo:
+					   if($var["name"]<>""){
+							$aux = explode(".",$var["name"]);
+							$extencion=end($aux);
+							$temporal = $var['tmp_name'];
+							$foto_name="solicitud_".$Id.".".$extencion;		
+							if(move_uploaded_file($temporal,$url."/alumnos/solicitud/".$foto_name)){						
+									$sql = "
+											UPDATE
+												solicitud 
+											SET 
+												rutaAdjunto = '".$foto_name."'
+											WHERE 
+												solicitudId = ".$Id;
+									
+									$this->Util()->DB()->setQuery($sql);
+									$this->Util()->DB()->ExecuteQuery();
+							}   
+						}
+					break;
+			}
+		}
+		
+		
+		$sqlQuery = "
+			UPDATE 
+				solicitud 
+			set 
+				estatus = 'completado',
+				folio ='',
+				courseModuleId ='".$infoConfirma['courseModuleId']."',
+				nivelInscrito ='".$infoConfirma['nivel']."',
+				nombreFirma ='',
+				sexoFirma ='',
+				puestofirmante ='',
+				horario ='',
+				fechaEntrega ='".date('Y-m-d')."'
+			where 
+				solicitudId = '".$Id."'"; 	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		
+		
+		return true;
+		
+	}
 	
 	public function validarPago($Id)
 	{
@@ -868,6 +953,44 @@ class Solicitud extends Module
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$this->Util()->DB()->ExecuteQuery();
 	}
+	
+	
+	
+	public function actulizarRutaBoleta($Id)
+	{
+		$sqlQuery = "
+			UPDATE 
+				solicitud 
+			set 
+				rutaAdjunto = 'solicitud_".$Id.".pdf'
+			where
+				solicitudId = '".$Id."'"; 	
+	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}
+	
+	
+	
+	public function updateBoleta($Id,$cId)
+	{
+		$sqlQuery = "
+			UPDATE 
+				solicitud 
+			set 
+				courseModuleId = '".$cId."'
+			where
+				solicitudId = '".$Id."'"; 	
+	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}
+	
+	
 	
 }	
 ?>

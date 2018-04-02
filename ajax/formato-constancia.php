@@ -11,6 +11,9 @@
 	
 
 	$infoSol = $solicitud->Info($_GET['q']);
+	
+	// echo '<pre>'; print_r($infoSol);
+	// exit;
 
 	$infoIns = $solicitud->buscaDondeIns($infoSol['subjectId']);
 	

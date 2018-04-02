@@ -35,6 +35,7 @@
 		$course->setDias($_POST["dias"]);
 		$course->setHorario($_POST["horario"]);
 		$course->setAparece($_POST["apareceT"]);
+		$course->setTipoCuatri($_POST["tipoCuatri"]);
 		
 		$course->Update();
 	}

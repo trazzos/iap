@@ -26,9 +26,16 @@
 				{if $item.tiposolicitudId  ne 3 and $item.tiposolicitudId  ne 4}
 					{if $item.estatus ne 'completado'}
 						{if $item.estatus ne 'cancelado'}
+							{if $item.tiposolicitudId  eq 1 or $item.tiposolicitudId  eq 2 or $item.tiposolicitudId  eq 6 or $item.tiposolicitudId  eq 7 or $item.tiposolicitudId  eq 8}
+							
+							<a href="{$WEB_ROOT}/graybox.php?page=validarpago-adjuntar&id={$item.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='VALIDAR PAGO'>
+								<div style=" float:left; left:-60px; font-size:24px;   position:relative; height: 24px; width: 24px;"><i class="material-icons md-16">ic_check_box</i></div>
+							</a>
+							{else}
 							<a href="javascript:void(0)" onClick='validarPago({$item.solicitudId})' title='VALIDAR PAGO'>
 								<div style=" float:left; left:-60px; font-size:24px;   position:relative; height: 24px; width: 24px;"><i class="material-icons md-16">ic_check_box</i></div>
 							</a>
+							{/if}
 						{/if}
 					{/if}
 				{/if}
@@ -41,7 +48,7 @@
 				{/if}
 				{if $item.estatus eq 'completado'}
 					
-					{if $item.tiposolicitudId eq 1 or $item.tiposolicitudId eq 6 or $item.tiposolicitudId eq 2 or $item.tiposolicitudId eq 7 or $item.tiposolicitudId eq 4}
+					{if $item.tiposolicitudId eq 1 or $item.tiposolicitudId eq 6 or $item.tiposolicitudId eq 8 or $item.tiposolicitudId eq 2 or $item.tiposolicitudId eq 7 or $item.tiposolicitudId eq 4}
 						<a href="{$WEB_ROOT}/alumnos/solicitud/solicitud_{$item.solicitudId}.pdf"   target='_blank' title='DESCARGAR CONSTANCIA'>
 							<i class="material-icons md-16">cloud_download</i>
 						</a>
@@ -62,9 +69,10 @@
 					<a href="{$WEB_ROOT}/graybox.php?page=comentario-solicitud&id={$item.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='COMENTARIOS'>
 						<div ><i class="material-icons md-16">info</i></div>
 					</a>
+					<!--
 					<a href="{$WEB_ROOT}/graybox.php?page=comentario-solicitud&id={$item.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='COMENTARIOS'>
 						<div ><i class="material-icons md-16">cloud_upload</i></div>
-					</a>
+					</a>-->
 				{/if}
 			</td>
 		</tr>

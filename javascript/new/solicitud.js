@@ -149,6 +149,59 @@ function validarPago(Id){
 		
 }//validarPago
 
+
+
+
+
+function validarPagoAdjunto(){
+
+// En esta var va incluido $_POST y $_FILES
+	var fd = new FormData(document.getElementById("frmDoc_"));
+	$.ajax({
+		url : WEB_ROOT+'/ajax/solicitud.php',
+		data: fd,
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		xhr: function(){
+				var XHR = $.ajaxSettings.xhr();
+				XHR.upload.addEventListener('progress',function(e){
+					console.log(e)
+					var Progress = ((e.loaded / e.total)*100);
+					Progress = (Progress);
+					console.log(Progress)
+					$('#progress_').val(Math.round(Progress));
+					$('#porcentaje_').html(Math.round(Progress)+'%');
+					
+					
+				},false);
+			return XHR;
+		},
+		beforeSend: function(){		
+			// $("#loader").html(LOADER);
+			// $("#erro_"+reqId).hide(0);
+		},
+		success: function(response){
+			
+			console.log(response)
+			var splitResp = response.split("[#]");
+
+			if($.trim(splitResp[0]) == "ok"){
+				closeModal()
+					$("#loader").html('');
+					console.log(response)
+					var splitResp = response.split("[#]");
+					// descargarConstancias(Id);
+					buscarSolicitud();	
+				}
+			else if($.trim(splitResp[0]) == "fail"){
+				$("#msjErr").html(splitResp[1]);
+			}
+		},
+	})
+	
+}
+
 function descargarConstancias(q){
 	url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
 	open(url,"Constancia de Estudios","toolbal=0,width=0,resizable=1");

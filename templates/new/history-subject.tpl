@@ -30,15 +30,15 @@
 			<b>Modalidad</b>
 			<select class="form-control" style="width:88px" onClick="onBuscar()" name="modalidad">
 				<option></option>
-				<option>Online</option>
-				<option>Presencial</option>
+				<option >Online</option>
+				<option value="Local">Presencial</option>
 			</select>
 			<b>Tipo Curricula</b>
 			<select class="form-control" style="width:88px" onClick="onBuscar()" name="curricula">
 				<option></option>
 				{foreach from=$lstMajor item=subject}
 				
-				<option>{$subject.name}</option>
+				<option value="{$subject.majorId}">{$subject.name}</option>
 				{/foreach}
 			</select>
 		</form>

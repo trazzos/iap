@@ -66,7 +66,10 @@
 
 					{if $subject.majorName=="ESPECIALIDAD" || $subject.majorName=="MAESTRIA"}<!--
 						<img src="{$WEB_ROOT}/images/engrane.png" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="Generar Matriculas"  style="width:16px" />-->
-						<i class="fa fa-cog" aria-hidden="true" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="Generar Matriculas"></i>
+						<!--<i class="fa fa-cog" aria-hidden="true" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="MATRICULAS"></i>-->
+						<span style="cursor:pointer" class="spanActive" onclick="VerGrupo({$subject.courseId},'matricula');" title="MATRICULAS" id="{$subject.courseId}">
+						<i class="fa fa-cog" aria-hidden="true"></i>
+						</span>  
 						&nbsp;
 					{/if}
 
@@ -101,6 +104,10 @@
 				<span style="cursor:pointer" class="spanActive" onclick="VerSolicitud({$subject.courseId});" title="CONSTANCIAS" id="{$subject.courseId}">
 				<i class="fa fa-folder-open" aria-hidden="true"></i>
 				</span>
+				
+				<span style="cursor:pointer" class="spanActive" onclick="editPeriodos({$subject.courseId});" title="PERIODOS" id="{$subject.courseId}">
+				<i class="fa fa-calendar" aria-hidden="true"></i>
+				</span>  
             </td>
         {/if}
     </tr>

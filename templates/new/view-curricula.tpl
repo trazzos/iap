@@ -1,4 +1,4 @@
-<div class="portlet box red" style='margin-top:5% !important; width:70%; margin-left:15% !important'>
+<div class="portlet box red" >
     <div class="portlet-title" >
         <div class="caption">
             <i class="fa fa-bullhorm"></i>Selecciona la curricula
@@ -19,7 +19,9 @@
 			<br>
 			<br>
 			{/if}
+			<input  type="hidden" name="solicitudjjId" id="solicitudjjId"  value="{$solicitudjjId}" >
 			<input  type="hidden" name="solicitudId" id="solicitudId"  value="{$solicitudId}" >
+			<input  type="hidden" name="soljId" id="soljId"  value="{$soljId}" >
 			<span class="caption-subject font-blue-madison bold uppercase">Activa</span>
 			 <div class="portlet-body">
                             <div class="table-scrollable table-scrollable-borderless">

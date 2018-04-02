@@ -22,7 +22,7 @@ function addSaveSolicitudOk(){
 					$("#ajax").attr("width","100px");
 					$("#ajax").attr("top","100px");
 					$("#ajax").html(splitResp[1]);
-					$("#ajax").show();
+					// $("#ajax").show();
 					$("#ajax").modal("show");
 				}
 						closeModal();
@@ -67,11 +67,12 @@ function addSolicitud(){
 				if($.trim(splitResp[1]) == "recarga"){
 					$("#msj").html(splitResp[2]);
 					$("#container").html(splitResp[3]);
+					// descargarConstancias($.trim(splitResp[4]))
 				}else{
 					$("#ajax").attr("width","100px");
 					$("#ajax").attr("top","100px");
 					$("#ajax").html(splitResp[1]);
-					$("#ajax").show();
+					// $("#ajax").show();
 					$("#ajax").modal("show");
 				}
 						
@@ -111,7 +112,7 @@ function addSaveSolicitud(){
 					
 					// $("#ajax").attr("width","100px");
 					// $("#ajax").attr("top","100px");
-					
+				
 					
 					$("#msj").html(splitResp[1]);
 					$("#container").html(splitResp[2]);
@@ -119,13 +120,23 @@ function addSaveSolicitud(){
 					$("#ajax").hide();
 					$("#ajax").modal("hide");
 					
-					if ($('#solicitudId').val()==4){
+					//if ($('#solicitudId').val()==4){
 						
-						descargarConstancias($.trim(splitResp[3]))
-					}
+						//descargarConstancias($.trim(splitResp[3]))
+					//}
 					
 					
 				}
+			else if($.trim(splitResp[0]) == "okBol"){
+				//$("#msj").html(splitResp[1]);
+
+				$("#ajax").html('');
+				$("#ajax").hide();
+				$("#ajax").modal("hide");
+				descargarConstancias($.trim(splitResp[1]));
+                // $("#container").html(splitResp[2]);
+                reload()
+			}
 			else if($.trim(splitResp[0]) == "fail"){
 				
 				$("#msjgg").html(splitResp[1]);
@@ -188,12 +199,16 @@ function enviarArchivo(){
 
 function closeModal(){
 	
+	$("#ajax").html('');
 	$("#ajax").hide();
 	$("#ajax").modal("hide");
 	
+	setTimeout('reload()',2000)
 }
 
-
+function reload(){
+	location.reload();
+}
 
 
 

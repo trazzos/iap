@@ -18,6 +18,7 @@ switch($_POST["type"])
         $smarty->assign("courseId",$_POST['id']);
         $smarty->assign("DOC_ROOT", DOC_ROOT);
         $smarty->assign("students", $students);
+		 $smarty->assign("tipo",$_POST['tipo']);
 		 $smarty->assign("tip",$_POST['tip']);
         $smarty->display(DOC_ROOT.'/templates/boxes/view-student.tpl');
 
@@ -178,6 +179,24 @@ switch($_POST["type"])
 		
 	break;
 	
+	
+	case 'saveMatricula';
+	
+		// echo '<pre>'; print_r($_POST);
+		// exit;
+		 if ($group->saveMatricula()){
+			 echo 'ok[#]';
+			 echo '<div class="alert alert-info alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			 Los datos se guardaron correctamente
+			</div>';
+			echo $_SESSION['msj']='si';
+		 }else{
+			 echo 'fail[#]';
+		 }
+		
+	break;
+	
 	case 'descargarConstancias':
 	
 	
@@ -309,6 +328,56 @@ switch($_POST["type"])
 	
 	break;
 
+	case 'editPeriodos':
+		
+			
+	$course->setCourseId($_POST["id"]);
+	
+	$date = date("d-m-Y");
+	$addedModules = $course->AddedCourseModules();
+	
+	
+	// echo '<pre>'; print_r($addedModules);
+	// exit;
+	
+	//checar a que curriculas tengo permiso
+	if(in_array(2, $info["roles"]))
+	{
+		$smarty->assign('docente', 1);
+		$permisosDocente = $user->PermisosDocente();
+		
+		foreach($addedModules as $key => $value)
+		{
+			if(!in_array($value["courseModuleId"], $permisosDocente["courseModule"]))
+			{
+				unset($addedModules[$key]);
+			}
+		}
+	}
+	//
+	
+	$smarty->assign('date', $date);
+	$smarty->assign('invoiceId', $_GET["id"]);
+	$smarty->assign('subjects', $addedModules);
+		 $smarty->display(DOC_ROOT.'/templates/new/view-periodos.tpl');
+	
+	break;
+	
+	
+	case 'savePeriodos':
+	
+		// echo '<pre>'; print_r($_POST);
+		 if($course->savePeriodos()){
+            // echo "ok[#]";
+            // $smarty->display(DOC_ROOT.'/templates/boxes/status_on_popup.tpl');
+        }
+        else
+        {
+			echo 'fail[#]';
+        }
+
+	
+	break;
 }
 
 ?>

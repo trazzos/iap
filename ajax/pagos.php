@@ -79,11 +79,11 @@
 				$html .= $aux4['beca'].' %';
 			} 
 				
-			
+			$acumulado += ($aux4['totalPagar']-$aux4['abono']);
 			$html .= " </td>
 			<td>$ ".number_format($aux4['totalPagar'],2)."</td>
 			<td>$ ".number_format($aux4['abono'],2)."</td>
-			<td>$ ".number_format($aux4['totalPagar']-$aux4['abono'],2)."</td>
+			<td>$ ".number_format($acumulado,2)."</td>
 			</tr> ";
 			}
 			

@@ -41,7 +41,7 @@
 						<td>{if $aux4.claveconcepto ne 9 and $aux4.claveconcepto ne 12} {$aux4.beca} % {/if}</td>
 						<td>$ {$aux4.totalPagar|number_format:2:'.':','}</td>
 						<td>$ {$aux4.abono|number_format:2:'.':','}</td>
-						<td>{if ($aux4.totalPagar - $aux4.abono) > 0} <font color='red'>$ {$aux4.totalPagar - $aux4.abono|number_format:2:'.':','} </font>{else}$  {$aux4.totalPagar - $aux4.abono|number_format:2:'.':','}{/if}</td>
+						<td>{if ($aux4.totalPagar - $aux4.abono) > 0} {$acumulado  = ($aux4.totalPagar - $aux4.abono)+$acumulado} <font color='red'>$ {$acumulado|number_format:2:'.':','} </font>{else}$  {$aux4.totalPagar - $aux4.abono|number_format:2:'.':','}{/if}</td>
 						</tr>
 					{/foreach}
 					</table>

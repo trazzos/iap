@@ -24,48 +24,40 @@ case "calificaciones":
 		$module->setCourseModuleId($_POST['id']);
 	    $infoModule=$module->InfoCourseModule();
 		$courseId=$infoModule['courseId'];
-	//	print_r($infoModule);
 		$activity->setCourseModuleId($_POST['id']);
 		$activityInfoTask=$activity->Enumerate("Tarea");
+		$activityInfoExa=$activity->Enumerate("Examen");
 		$userId=$_SESSION['User']['userId'];
-		
 		$activity->setUserId($userId);
-		//$ponderation=$activity->Score();
 		
-		foreach($activityInfoTask as $key => $fila){
-		  $activity->setCourseModuleId($_POST['id']);
-		  $activity->setActivityId($fila['activityId']);
-		  $activityInfoTask[$key]['calificacion']=$activity->Score();
-		  $activityInfoTask[$key]['retroTotal']=$activity->Retro();
-		  
-		  }
-		//print_r($activityInfoTask);exit;
-		
-		//print_r($fila['activityId']);
-		
-		//print_r($infoModule);
-		//$students=$group->DefaultGroup();
-		//print_r($_POST);
-		//$smarty->assign("DOC_ROOT", DOC_ROOT);
+		// echo '<pre>'; print_r($activityInfoTask);
+		// exit;
+
+		// foreach($activityInfoTask as $key => $fila){
+		  // $activity->setCourseModuleId($_POST['id']);
+		  // $activity->setActivityId($fila['activityId']);
+		  // $activityInfoTask[$key]['calificacion']=$activity->Score();
+		  // $activityInfoTask[$key]['retroTotal']=$activity->Retro();
+		// }
+
 		$tipo=1;
 		$smarty->assign("tipo", $tipo);
 		$smarty->assign("tareas", $activityInfoTask);
+		$smarty->assign("examen", $activityInfoExa);
 		$smarty->display(DOC_ROOT.'/templates/boxes/view-ponderation-student.tpl');
 				
 		break;
 
 case "calificacionesExa": 
-		$tipo=2;
+
+		
 		$module->setCourseModuleId($_POST['id']);
 	    $infoModule=$module->InfoCourseModule();
 		$courseId=$infoModule['courseId'];
-	//	print_r($infoModule);
 		$activity->setCourseModuleId($_POST['id']);
 		$activityInfoTask=$activity->Enumerate("Examen");
 		$userId=$_SESSION['User']['userId'];
-		
 		$activity->setUserId($userId);
-		//$ponderation=$activity->Score();
 		
 		foreach($activityInfoTask as $key => $fila){
 		  $activity->setCourseModuleId($_POST['id']);
@@ -74,14 +66,8 @@ case "calificacionesExa":
 		  $activityInfoTask[$key]['retroTotal']=$activity->Retro();
 		  
 		  }
-		//print_r($activityInfoTask);exit;
-		
-		//print_r($fila['activityId']);
-		
-		//print_r($infoModule);
-		//$students=$group->DefaultGroup();
-		//print_r($_POST);
-		//$smarty->assign("DOC_ROOT", DOC_ROOT);
+		  
+		$tipo=2;
 		$smarty->assign("tipo", $tipo);
 		$smarty->assign("tareas", $activityInfoTask);
 		$smarty->display(DOC_ROOT.'/templates/boxes/view-ponderation-student.tpl');

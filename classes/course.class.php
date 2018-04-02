@@ -17,6 +17,12 @@
 		private $modalidad;
 		private $curricula;
 		private $subtotal;
+		private $tipoCuatri;
+		
+		public function setTipoCuatri($value)
+		{
+			$this->tipoCuatri = $value;	
+		}
 		
 		public function setSubtotal($value)
 		{
@@ -562,7 +568,8 @@
 							access,
 							dias,
 							horario,
-							apareceTabla
+							apareceTabla,
+							tipo
 						)
 					VALUES (
 							'" . $this->getSubjectId() . "',
@@ -579,7 +586,8 @@
 							'".$this->personalId."|".$this->teacherId."|".$this->tutorId."|".$this->extraId."',
 							'".$this->dias."',
 							'".$this->horario."',
-							'".$this->aparece."'
+							'".$this->aparece."',
+							'".$this->tipoCuatri."'
 							)";
 			//configuramos la consulta con la cadena de insercion
 			$this->Util()->DB()->setQuery($sql);
@@ -631,6 +639,7 @@
 						fechaDiploma='" 	. $this->fechaDiploma . "',
 						dias='".$this->dias."',
 						horario='".$this->horario."',
+						tipo='".$this->tipoCuatri."',
 						apareceTabla='".$this->aparece."',
 						access='".$this->personalId."|".$this->teacherId."|".$this->tutorId."|".$this->extraId."'
 						WHERE courseId='" . utf8_decode($this->courseId) . "'";
@@ -728,7 +737,10 @@
 		{
 			//creamos la cadena de seleccion
 			$sql = "SELECT 
-						*, major.name AS majorName, subject.name AS name 
+						*, 
+						major.name AS majorName, 
+						subject.name AS name,
+						course.tipo as tipoCuatri
 					FROM
 						course
 					LEFT JOIN subject ON subject.subjectId = course.subjectId
@@ -1091,7 +1103,29 @@
 			return $cal;
 		}
 		
-		
+		function savePeriodos()
+		{
+			// echo 'llega';
+			// exit;
+			foreach($_POST as $key=>$aux){
+				
+				$a = explode('_',$key);
+				if($a[0] == "periodo"){
+					$sql = "UPDATE 
+								course_module
+							SET
+								periodo='".$aux."'
+								WHERE courseModuleId='".$a[1]."'";
+					// exit;
+					$this->Util()->DB()->setQuery($sql);
+					$this->Util()->DB()->UpdateData();
+					
+					
+				}
+			}
+			
+			return true;
+		}
 		
 		
 		

@@ -50,12 +50,12 @@ function VerSolicitud(id){
 
 }
 
-function VerGrupo(id){
+function VerGrupo(id,tipo){
 
     $.ajax({
         url : WEB_ROOT+'/ajax/new/studentCurricula.php',
         type: "POST",
-        data : {type: "Student", id:id, tip:"Activo"},
+        data : {type: "Student", id:id, tip:"Activo",tipo:tipo},
         success: function(data)
         {
             showModal("&nbsp;", data);
@@ -85,6 +85,24 @@ function VerGrupo(id){
 
 }
 
+function editPeriodos(id){
+
+    $.ajax({
+        url : WEB_ROOT+'/ajax/new/studentCurricula.php',
+        type: "POST",
+        data : {type: "editPeriodos", id:id, tip:"Activo"},
+        success: function(data)
+        {
+            showModal("&nbsp;", data);
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+
+
+}
 
 
 function verAcciones(id){
@@ -243,6 +261,40 @@ function saveNumReferencia(id,activo){
 
 
 
+function saveMatricula(id,activo){
+	
+	$("#type").val("saveMatricula")
+
+	$.ajax({
+	  	type: "POST",
+	  	url : WEB_ROOT+'/ajax/new/studentCurricula.php',
+	  	data: $("#frmGral").serialize(true)+'&id='+id+'&activo='+activo+'&type=saveMatricula',
+		beforeSend: function(){			
+			// $('#tblContent').html(LOADER3);
+		},
+	  	success: function(response) {	
+		
+			console.log(response)
+			var splitResp = response.split("[#]");
+			
+			// DoSearch()
+			if($.trim(splitResp[0]) == "ok"){
+					$("#msj").html($.trim(splitResp[1]));
+					location.reload();
+				}
+			else if($.trim(splitResp[0]) == "fail"){
+				$("#res_").html(splitResp[1]);
+				$("#centeredDivOnPopup").show();
+			}
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+	
+}//saveNumReferencia
+
+
 function addSaveSolicitud(){
 	
 	var resp = confirm("¿Seguro de generar el documento?");
@@ -315,6 +367,40 @@ function onBuscar(){
 			 // $('#load_'+Id).html('');
 			 // $('#tr_'+Id).toggle();
 			 $('#tblContent').html(data);
+
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexion a internet');
+        }
+    });
+}
+
+
+
+
+
+function savePeriodos(){
+	
+	
+	
+	 $.ajax({
+        url : WEB_ROOT+'/ajax/new/studentCurricula.php',
+        type: "POST",
+       	data: $("#frmGral").serialize(true)+'&type=savePeriodos',
+		beforeSend: function(){			 
+
+			// $('#load_'+Id).html(LOADER3);
+		},
+        success: function(data)
+        {
+			console.log(data)
+			
+			 // $('#load_'+Id).html('');
+			 // $('#tr_'+Id).toggle();
+			 CloseFview();
+			 onBuscar()
+			 // $('#tblContent').html(data);
 
         },
         error: function ()

@@ -119,6 +119,16 @@
                 <input type="checkbox" name="apareceT" id="apareceT"   class="form-control"/>
             </div>
         </div>
+		<div class="form-group">
+            <label class="col-md-3 control-label">Tipo:</label>
+            <div class="col-md-8">
+                <select type="checkbox" name="tipoCuatri" id="tipoCuatri"   class="form-control">
+					<option></option>
+					<option>Cuatrimestre</option>
+					<option>Semestre</option>
+                </select >
+            </div>
+        </div>
     </div>
     <div class="form-actions">
         <div class="row">

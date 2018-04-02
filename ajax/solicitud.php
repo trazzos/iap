@@ -77,6 +77,21 @@ switch($_POST["type"])
 		}
 			
 	break;
+	
+	
+	
+	case 'validarPagoAdjunto';
+	
+		// echo '<pre>'; print_r($_POST);
+		// echo '<pre>'; print_r($_FILES);
+		// exit;
+		if ($solicitud->validarPagoAdjunto($_POST['Id'])){
+			echo 'ok[#]';
+		}else{
+			echo 'fail[#]';
+		}
+			
+	break;
 		
 }
 ?>

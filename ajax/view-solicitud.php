@@ -107,6 +107,7 @@ switch($_POST["type"])
 	case 'addSaveSolicitud':
 
 				// echo '<pre>'; print_r($_POST);
+				// exit;
 				$activa = 0;
 				$inactiva = 0;
 				foreach($_POST as $key=>$aux){
@@ -154,6 +155,27 @@ switch($_POST["type"])
 					$cursoId = $valorinactiva;
 				}
 				
+				
+				if($_POST['solicitudjjId'] == 4){
+					
+					
+					// $solicitud->updateBoleta($_POST["soljId"],$cursoId);
+					
+					echo 'okBol[#]';
+					echo $_POST["soljId"];
+					echo '[#]';
+					$lstSol = $solicitud->arraySolicitudes();
+					$registros = $solicitud->enumarateSolicitudesStden();
+
+//					echo '<pre>'; print_r ($registros);
+//					exit;
+					$smarty->assign('registros', $registros);
+					$smarty->assign("lstSol", $lstSol);
+					$smarty->display(DOC_ROOT.'/templates/lists/view-solicitud.tpl');
+					// header("Location:".WEB_ROOT."/ajax/formato-constancia.php?q=".$_POST["soljId"]."");
+					exit;
+				}
+				
 				// echo $cursoId;
 				// exit;
 				
@@ -169,8 +191,8 @@ switch($_POST["type"])
 					</div>';
 					echo '[#]';
 					$lstSol = $solicitud->arraySolicitudes();
-						$registros = $solicitud->enumarateSolicitudesStden();
-						$smarty->assign('registros', $registros);
+					$registros = $solicitud->enumarateSolicitudesStden();
+					$smarty->assign('registros', $registros);
 					$smarty->assign("lstSol", $lstSol);
 					$smarty->display(DOC_ROOT.'/templates/lists/view-solicitud.tpl');
 					echo '[#]';

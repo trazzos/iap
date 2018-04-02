@@ -4,20 +4,47 @@
 	include_once(DOC_ROOT.'/libraries.php');
 
 	session_start();
-
-
-
-		$contenido .=	"<center><b>Boleta de Calificaciones</b></center><br><br>";
-		$contenido .=	"<center><b>".$infoSol['name']."</b></center><br>";
-		$contenido .=	"<center><b>".$infoSol['nombreMajor']."</b></center><br><br>";
 	
+		// actualizar ruta de documento adjunto
+		$solicitud->actulizarRutaBoleta($_GET['q']);
+		
+
+		$contenido .=	"<center><b>Instituto de administración pública del estado de chiapas</b></center><br>";
+		$contenido .=	"<center><b>incorporada a la secretaria de educacion pública del estado</b></center><br>";
+		$contenido .=	"<center><b>Clave: 07psu0129j</b></center><br>";
+		$contenido .=	"<center><b>Libramiento norte Pte. No. 2718 Col. ladera de la loma, tuxtla Gutiérrez, chiapas</b></center><br>";
+		$contenido .=	"<center><b>Boleta de Calificaciones</b></center><br><br>";
+
+
+		$contenido .=	"<table width='100%' >
+                         <tr>
+                            <td>Nombre del Alumno</td>
+                            <td>".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</td>
+                            <td>Matricula</td>
+                            <td>".$infoSol['controlNumber']." </td>
+                         </tr>
+                         <tr>
+                            <td>Posgrado:</td>
+                            <td>".$infoSol['name']."</td>
+                            <td>Ciclo</td>
+                            <td>".$ii[0]." - ".$if[0]." </td>
+                         </tr>
+                          <tr>
+                            <td>Cuatrimestre:</td>
+                            <td>".$infoSol['tipoPeriodo']."</td>
+                            <td>Periodo</td>
+                            <td>".$infoSol['tipoPeriodo']." Grupo: ".$infoSol['group']."</td>
+                         </tr>
+                        </table>";
+
+
 		foreach($lstCal8 as $key=>$aux){
 			$contenido .= "<table width='100%' >";
 			$contenido .= "<tr>
 				<td width='70%'><b>Materias</b></td>
-				<td colspan='2' style='text-align:center'><b>Calificacion</b></td>
-				<td style='text-align:center'><b>Creditos</b></td></tr>";
-			$contenido .= "<tr><td>".$aux['semesterId']." ".$aux['tipoPeriodo']."</td><td style='text-align:center'><b>Cifra</b></td><td style='text-align:center'><b>Letra</b></td><td></td></tr>";
+				<td colspan='' style='text-align:center'><b>Calificacion</b></td>
+				</tr>";
+			$contenido .= "<tr><td>".$aux['semesterId']." ".$aux['tipoPeriodo']."</td><td style='text-align:center'><b>En numero</b></td><td style='text-align:center'><b>En Letra</b></td><td></td></tr>";
 			foreach($aux['materias'] as $key2=>$aux2){
 			$h =  $util->num2letras($aux2['calificacion']);
 			$contenido .= "
@@ -25,7 +52,7 @@
 			<td>".$aux2['name']."</td>
 			<td style='text-align:center'>".$aux2['calificacion']."</td>
 			<td style='text-align:center'>".$h."</td>
-			<td style='text-align:center'>".$aux2['creditos']."</td></tr>"; 
+			</tr>";
 			}
 			$contenido .= "</table>
 			<br><br>";
@@ -76,30 +103,8 @@
 					<img src='".DOC_ROOT."/images/logo_correo.jpg'>
 				</td>
 			</tr>
-			<tr>
-				<td align='right'>
-					<table align='right'  border='0' width='40%'>
-							<tr>
-								<td><b>Area:</b></td>
-								<td>Dirección Académica</td>
-							</tr>
-							<tr>
-								<td><b>Nombre del Alumno:</b></td>
-								<td>".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</td>
-							</tr>
-							
-					</table>
-					<br>
-					<br>
-					<br>
-					<br>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					
-				</td>
-			</tr>
+		
+			
 			<tr>
 			<td>
 			";

@@ -1256,6 +1256,28 @@
 		}
 		
 		
+		
+		function saveMatricula()
+		{
+			
+			foreach ($_POST as $key=>$aux){
+				
+				$k = explode('_',$key);
+				if($k[0]=='num'){
+					$this->Util()->DB()->setQuery("
+						UPDATE `user` SET
+							`controlNumber` = '".$aux."'
+						WHERE
+							`userId` = '".$k[1]."'");
+						$this->Util()->DB()->UpdateData();
+				}
+			}
+				
+			
+			return true;
+		
+		}
+		
 		function upFile($Id)
 		{
 			
