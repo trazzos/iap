@@ -936,7 +936,16 @@
 					$infoCc["calificacion"] = $infoCc["calificacion"];
 				}
 				
-				$result[$key]["score"] = $infoCc["calificacion"];
+				if($this->tipoMajor == "MAESTRIA" and $infoCc["calificacion"] < 7){
+					$result[$key]["score"] = 6;
+				}
+				else if($this->tipoMajor == "DOCTORADO" and $infoCc["calificacion"] < 8){
+					$result[$key]["score"] = 7;
+				}
+				else{
+					$result[$key]["score"] = $infoCc["calificacion"];
+				}
+				
 
 				
 			}

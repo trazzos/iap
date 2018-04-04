@@ -45,6 +45,7 @@ switch($_POST["type"])
 		
 		case "habilitarEdicion":
 		
+			
 			$group->setCourseModuleId($_POST["id"]);
 			if($group->habilitarEdicion()){
 				echo "ok[#]";
@@ -73,12 +74,16 @@ switch($_POST["type"])
 		
 		case "reloadActa":
 		
+		
+			
+		
 			$user->setUserId($_SESSION['User']['userId']);
 			$infoUser = $user->Info();
 
 			$module->setCourseModuleId($_POST["id"]);
 			$info = $module->InfoCourseModule();
 
+			$group->setTipoMajor($info["majorName"]);
 			$group->setCourseModuleId($_POST["id"]);
 			$group->setCourseId($info["courseId"]);
 			$noTeam = $group->actaCalificacion();
