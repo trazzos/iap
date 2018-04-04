@@ -96,7 +96,7 @@
 		$html .= "<td>Foto</td>";
 		$html .= "<td>Nombre</td>";
 		$html .= "<td>Licenciatura</td>";
-		$html .= "<td>Materia</td>";
+		$html .= "<td>Maestria</td>";
 		$html .= "<td>Doctorado</td>";
 		$html .= "</tr>";
 		foreach($personals as $key=>$aux){
@@ -172,7 +172,7 @@
 	 
 	# Definimos el tamaño y orientación del papel que queremos.
 	# O por defecto cogerá el que está en el fichero de configuración.
-	$mipdf ->set_paper("A4", "portrait");
+	$mipdf ->set_paper("A4", "landscape");
 	 
 	# Cargamos el contenido HTML.
 	$mipdf ->load_html(utf8_decode($html));

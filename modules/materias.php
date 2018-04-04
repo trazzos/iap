@@ -9,6 +9,8 @@
 	
 	$registros = $module->materiasProfesores($_GET['id']);
 	
+	
+	
 	// echo '<pre>'; print_r($registros);
 	// exit;
 

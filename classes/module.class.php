@@ -218,6 +218,7 @@
 			
 			$result["initialDate"] = $this->Util->FormatDateBack($result["initialDate"]);
 			$result["finalDate"] = $this->Util->FormatDateBack($result["finalDate"]);
+			$result["fechaContrato"] = $this->Util->FormatDateBack($result["fechaContrato"]);
 			$result["access"] = explode("|", $result["access"]);
 
 			$result["welcomeTextDecoded"] = html_entity_decode($result["welcomeText"]);
@@ -755,16 +756,27 @@
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
 			
+			// foreach($result as $key=>$aux){
+				
+				// if($aux['finalDate'] < date('Y-m-d')){
+					
+					// $result[$key]['estatusFin'] = "finalizada";
+					
+				// }else{
+					// $result[$key]['estatusFin'] = "activa";
+				// }
+				
+			// }
+			
 			foreach($result as $key=>$aux){
-				
-				if($aux['finalDate'] < date('Y-m-d')){
-					
-					$result[$key]['estatusFin'] = "finalizada";
-					
-				}else{
-					$result[$key]['estatusFin'] = "activa";
-				}
-				
+		
+				$result[$key]['importe'] = number_format(($aux['subtotal']/(1.16)),2);
+				$result[$key]['iva'] = number_format((($aux['subtotal']/(1.16))*(.16)),2);
+				$result[$key]['isr'] = number_format((($aux['subtotal']/(1.16))*(.1)),2);
+				$result[$key]['retIva'] = number_format(((($aux['subtotal']/(1.16))*(.16)))*(2/3),2);
+				$result[$key]['totalPagar'] = number_format($aux['subtotal']+(($aux['subtotal']/(1.16))*(.1))+(((($aux['subtotal']/(1.16))*(.16)))*(2/3)),2);
+			
+
 			}
 			
 			return $result;

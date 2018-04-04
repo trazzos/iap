@@ -9,7 +9,9 @@
 			<th width="">Modalidad </th>
 			<th width="">Fecha Materia </th>
 			<th width="">Fecha Contrato </th>
-			<th width="">Costo Total</th>
+			<th width="">Importe</th>
+			<th width="">IVA</th>
+			<th width="">Subtotal</th>
 			<th width="">ISR</th>
 			<th width="">RET. IVA </th>
 			<th width="">Total a Pagar </th>
@@ -28,10 +30,12 @@
 			<td align="center">{$subject.modality}</td>
 			<td align="center">{if $subject.modality eq 'Online'} {$subject.initialDate} - {$subject.finalDate} {else} {$subject.fechaMateria} {/if}</td>
 			<td align="center">{$subject.fechaContrato}</td>
-			<td align="center">{$subject.fechaSolicitud}</td>
-			<td align="center">{$subject.fechaSolicitud}</td>
-			<td align="center"></td>
-			<td align="center"></td>
+			<td align="center">{$subject.importe}</td>
+			<td align="center">{$subject.iva}</td>
+			<td align="center">{$subject.subtotal}</td>
+			<td align="center">{$subject.isr}</td>
+			<td align="center">{$subject.retIva}</td>
+			<td align="center">{$subject.totalPagar}</td>
 			<td align="center">{$subject.noContrato}</td>
 			<td align="center">
 				<a href="{$WEB_ROOT}/graybox.php?page=val&id={$subject.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='VALORACION'>
