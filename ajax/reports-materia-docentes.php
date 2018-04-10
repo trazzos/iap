@@ -35,7 +35,7 @@
 	$html .= "
 	<html>
 	<head>
-	<title>REPORTE VEHICULO</title>
+	<title>REPORTE DOCENTE-MATERIAS</title>
 	<style type='text/css'>
 	.txtTicket{
 			font-size:12px;
@@ -102,6 +102,7 @@
 		";
 		$html .= "<tr>";
 
+		$html .= "<td>Tipo</td>";
 		$html .= "<td>Posgrado</td>";
 		$html .= "<td>Materia</td>";
 		$html .= "<td>Grupo</td>";
@@ -115,6 +116,7 @@
 			$infoPerso = $personal->InfoBasica();
 			
 			$html .= "<tr>";
+			$html .= "<td>".$aux['tipoc']."</td>";  
 			$html .= "<td>".$aux['nameS']."</td>";  
 			$html .= "<td>".$aux['name']."</td>";
 			$html .= "<td>".$aux['group']."</td>";
@@ -141,7 +143,7 @@
 	 
 	# Definimos el tamaño y orientación del papel que queremos.
 	# O por defecto cogerá el que está en el fichero de configuración.
-	$mipdf ->set_paper("A4", "portrait");
+	$mipdf ->set_paper("A4", "landscape");
 	 
 	# Cargamos el contenido HTML.
 	$mipdf ->load_html(utf8_decode($html));

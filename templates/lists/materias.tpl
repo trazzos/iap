@@ -9,12 +9,13 @@
 			<th width="">Modalidad </th>
 			<th width="">Fecha Materia </th>
 			<th width="">Fecha Contrato </th>
-			<th width="">Importe</th>
+			<th width="">Desglose </th>
+			<!--<th width="">Importe</th>
 			<th width="">IVA</th>
 			<th width="">Subtotal</th>
 			<th width="">ISR</th>
 			<th width="">RET. IVA </th>
-			<th width="">Total a Pagar </th>
+			<th width="">Total a Pagar </th>-->
 			<th width="">No. de Contrato </th>	 
 			<th width=""></th>	 
 		</tr>
@@ -30,12 +31,43 @@
 			<td align="center">{$subject.modality}</td>
 			<td align="center">{if $subject.modality eq 'Online'} {$subject.initialDate} - {$subject.finalDate} {else} {$subject.fechaMateria} {/if}</td>
 			<td align="center">{$subject.fechaContrato}</td>
-			<td align="center">{$subject.importe}</td>
+			<td align="center">
+			{if $subject.totalPagar ne '0.00'}
+			<table>
+				<tr>
+					<td><b>Importe:</b></td>
+					<td>$ {$subject.importe}</td>
+				</tr>
+				<tr>
+					<td><b>IVA:</b></td>
+					<td>$ {$subject.iva}</td>
+				</tr>
+				<tr>
+					<td><b>Subtotal:</b></td>
+					<td><b>$ {$subject.subtotal}</b></td>
+				</tr>
+				<tr>
+					<td><b>ISR:</b></td>
+					<td>$ {$subject.isr}</td>
+				</tr>
+				<tr>
+					<td><b>RET. IVA:</b></td>
+					<td>$ {$subject.retIva}</td>
+				</tr>
+				<tr>
+					<td><b>Total a Pagar: </b></td>
+					<td><b>${$subject.totalPagar}</b></td>
+				</tr>
+			</table>
+			{/if}
+			
+			</td>
+			<!--<td align="center">{$subject.importe}</td>
 			<td align="center">{$subject.iva}</td>
 			<td align="center">{$subject.subtotal}</td>
 			<td align="center">{$subject.isr}</td>
 			<td align="center">{$subject.retIva}</td>
-			<td align="center">{$subject.totalPagar}</td>
+			<td align="center">{$subject.totalPagar}</td>-->
 			<td align="center">{$subject.noContrato}</td>
 			<td align="center">
 				<a href="{$WEB_ROOT}/graybox.php?page=val&id={$subject.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='VALORACION'>

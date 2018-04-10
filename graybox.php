@@ -198,7 +198,8 @@ $pages = array(
 	'comentario-solicitud',
 	'validarpago-adjuntar',
 	'view-curricula',
-	'view-periodos'
+	'view-periodos',
+	'down-plan'
 
 );
 

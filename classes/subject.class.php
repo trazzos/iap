@@ -1476,7 +1476,8 @@ public function Enumerate_p(){
 				cs.group,
 				sm.name,
 				s.name as nameS,
-				cm.*
+				cm.*,
+				m.name as tipoc
 			FROM
 				course_module_personal as c
 			left join personal as p on c.personalId = p.personalId
@@ -1484,6 +1485,7 @@ public function Enumerate_p(){
 			left join course as cs on cs.courseId = cm.courseId
 			left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
 			left join subject as s on s.subjectId = sm.subjectId
+			left join major as m on m.majorId = s.tipo
 			WHERE c.personalId = '.$Id.'';
 			$this->Util()->DB()->setQuery($sqlQuery);			
 		

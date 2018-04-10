@@ -484,11 +484,15 @@ class Docente extends Empresa{
 			$filtro .= "";
 		}
 		else if($_POST['activo']=='on'){
-			$filtro .= " and cm.active = 'si'";
+			$filtro .= ' and IF(  "'.date('Y-m-d').'" >= cm.initialDate
+						AND  "'.date('Y-m-d').'" <= cm.finalDate,  
+						"Activo", IF( cm.initialDate >  "'.date('Y-m-d').'",  "Programado",  "Finalizada" ) ) = "Activo"';
 		}
 		else if($_POST['programado']=='on'){
 			
-			$filtro .= " and cm.initialDate > '".date('Y-m-d')."'";
+			$filtro .= ' and IF(  "'.date('Y-m-d').'" >= cm.initialDate
+						AND  "'.date('Y-m-d').'" <= cm.finalDate,  
+						"Activo", IF( cm.initialDate >  "'.date('Y-m-d').'",  "Programado",  "Finalizada" ) ) = "Programado"';
 		}
 		
 		
@@ -510,7 +514,9 @@ class Docente extends Empresa{
 					cs.group,
 					sm.name as nameM,
 					m.name as tipoC,
-					if( cm.finalDate >='.date('Y-m-d').',"Activo","Finalizada") as estatusAc
+					IF(  "'.date('Y-m-d').'" >= cm.initialDate
+						AND  "'.date('Y-m-d').'" <= cm.finalDate,  
+						"Activo", IF( cm.initialDate >  "'.date('Y-m-d').'",  "Programado",  "Finalizada" ) ) AS estatusMateria
 				FROM 
 					course_module_personal AS cmp
 				left join course_module AS cm ON cm.courseModuleId = cmp.courseModuleId 
@@ -521,6 +527,8 @@ class Docente extends Empresa{
 				left join major as m ON m.majorId = s.tipo 
 				left join personal as p ON p.personalId = cmp.personalId 
 				where 1 '.$filtro.' limit 0,50';
+				
+				// exit;
 // exit;
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$result = $this->Util()->DB()->GetResult();

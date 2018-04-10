@@ -21,7 +21,7 @@
 			<td align="center">{$subject.group}</td>
 			<td align="center">{$subject.nameM}</td>
 			<td align="center">{$subject.initialDate} - {$subject.finalDate}</td>
-			<td align="center">{$subject.estatusAc} </td>
+			<td align="center">{$subject.estatusMateria} </td>
 		  
 			
 		 </tr>

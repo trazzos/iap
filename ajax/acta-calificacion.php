@@ -120,10 +120,15 @@
 		$html .= "<td>".$aux['lastNamePaterno']." ".$aux['lastNameMaterno']." ".$aux['names']."</td>";
 		$h =  $util->num2letras($aux['score']);
 		
-		if($aux['score'] < 7){
+		if($aux['score'] < 7  and $info['majorName'] == 'MAESTRIA'){
 			$html .= "<td><font color='red'>".$aux['score']."</font></td>";
 			$html .= "<td><font color='red'>".$h."</font></td>";
-		}else{
+		}
+		else if($aux['score'] < 8  and $info['majorName'] == 'DOCTORADO'){
+			$html .= "<td><font color='red'>".$aux['score']."</font></td>";
+			$html .= "<td><font color='red'>".$h."</font></td>";
+		}
+		else{
 			$html .= "<td>".$aux['score']."</td>";
 			$html .= "<td>".$h."</td>";
 		}

@@ -27,10 +27,17 @@ function guardarInformacion(Id){
 
 
 function loadFecha(Id){
+	
+	
+		
 	 // $.datepicker.setDefaults( $.datepicker.regional['es'] );
 		$('#fecha'+Id).datepicker({
 		 dateFormat: 'yy-mm-dd',
+		 changeMonth: true,
+		changeYear: true,
+		  
 		}).focus();
+		
 }
 
 

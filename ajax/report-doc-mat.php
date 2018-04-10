@@ -103,7 +103,7 @@
 			$html .= "<td>".$aux['group']."</td>";
 			$html .= "<td>".$aux['nameM']."</td>";
 			$html .= "<td>".$aux['initialDate']." - ".$aux['initialDate']."</td>";
-			$html .= "<td>".$aux['estatusAc']."</td>";
+			$html .= "<td>".$aux['estatusMateria']."</td>";
 
 			$html .= "</tr>";
 		}
@@ -124,7 +124,7 @@
 	 
 	# Definimos el tamaño y orientación del papel que queremos.
 	# O por defecto cogerá el que está en el fichero de configuración.
-	$mipdf ->set_paper("A4", "portrait");
+	$mipdf ->set_paper("A4", "landscape");
 	 
 	# Cargamos el contenido HTML.
 	$mipdf ->load_html(utf8_decode($html));

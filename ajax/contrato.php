@@ -173,7 +173,7 @@
 		
 		$html .= "<tr>";
 		$html .= "<td>total</td>";
-		$html .= "<td>".number_format($infoM['subtotal']+(($infoM['subtotal']/(1.16))*(.1))+(((($infoM['subtotal']/(1.16))*(.16)))*(2/3)),2)."</td>";
+		$html .= "<td>".number_format($infoM['subtotal']-(($infoM['subtotal']/(1.16))*(.1))-(((($infoM['subtotal']/(1.16))*(.16)))*(2/3)),2)."</td>";
 		$html .= "</tr>";
 		
 		$html .= "</table>";

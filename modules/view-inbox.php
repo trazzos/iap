@@ -2,8 +2,6 @@
 	/* For Session Control - Don't remove this */
 	// $user->allow_access(8);	
 
-// echo '<pre>'; print_r($_GET); 
-// exit;
 	$module->setStatusIn('activo');
 	$module->setTipoReporte('entrada');
 	$module->setQuienEnviaId('personal');
@@ -11,10 +9,14 @@
 	$module->setCMId($_GET["id"]);
 	$lstMsj = $module->EnumerateInbox();
 	
-	if ($_GET["cId"]<>0 and $_SESSION['User']['perfil']<>'Administrador'){
+	
+	
+	if ($_GET["cId"]<>0){
 		$infoC = $module->infoChat($_GET["cId"]);
 		$module->actualizaALeido($_GET["cId"]);
 	}
+	
+	
 	
 
 	if($_GET["cId"] == 0){
@@ -25,8 +27,6 @@
 		
 		$module->setCourseModuleId($infoC["courseModuleId"]);
 		$in = $module->InfoCourseModule();
-		// echo $infoC['recibe'];
-		// exit;
 		$dataEnviado = 'De: '.$infoC['envio'].'<br>
 		Enviado: 2017-11-07<br>
 		Para: '.$infoC['recibe'].'<br>
@@ -46,7 +46,7 @@
 		$palabras .= substr($palabra[$i],0,1);
 	}
 	$subject = $palabras.'|'.$infoCourse['group'].'|';
-	// exit;
+
 		
 	if($infoC['yoId']==null){
 		$module->setCourseModuleId($_GET["id"]);
@@ -68,9 +68,7 @@
 		}
 		
 	}
-	
-	// echo '<pre>'; print_r($infoCourse);
-	// exit;
+
 
 	$smarty->assign('de', $_SESSION['User']["nombreCompleto"]);
 	$smarty->assign('subject', $subject);

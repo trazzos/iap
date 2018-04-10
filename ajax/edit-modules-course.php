@@ -98,7 +98,7 @@ switch($_POST["type"])
 			$smarty->assign('infoUser', $infoUser);
 			$smarty->assign('teams', $teams);
 			$smarty->assign('noTeam', $noTeam);
-			
+			$smarty->assign('majorName', $info["majorName"]);
 			$smarty->display(DOC_ROOT.'/templates/lists/add-calificacion.tpl');
 		
 		break;

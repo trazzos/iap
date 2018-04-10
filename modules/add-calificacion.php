@@ -25,6 +25,7 @@
 	$teams = $group->Teams();
 	$smarty->assign('info', $info);
 	$smarty->assign('infoUser', $infoUser);
+	$smarty->assign('majorName', $info["majorName"]);
 	$smarty->assign('teams', $teams);
 
 ?>

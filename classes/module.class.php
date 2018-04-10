@@ -423,6 +423,30 @@
 			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
 			$result = $this->Util()->DB()->UpdateData();
 			
+			//eliminar todos los docentes relacionados
+			$sql = "DELETE FROM course_module_personal
+		 	WHERE courseModuleId = '".$this->courseModuleId."'";
+			//configuramos la consulta con la cadena de insercion
+			$this->Util()->DB()->setQuery($sql);
+			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
+			$result = $this->Util()->DB()->DeleteData();
+			
+			
+			// asignar a nueva tabla 
+				 $sql = "INSERT INTO
+						course_module_personal
+						( 
+							courseModuleId,	
+						 	personalId
+						)
+					VALUES (
+							'" .$this->courseModuleId. "',
+							'" .$this->getTeacherId(). "')";
+				// exit;
+			//configuramos la consulta con la cadena de insercion
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
+			
 			if($_FILES['presentacion'])
 			{
 				$id = $this->getCourseModuleId();
@@ -756,17 +780,7 @@
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
 			
-			// foreach($result as $key=>$aux){
-				
-				// if($aux['finalDate'] < date('Y-m-d')){
-					
-					// $result[$key]['estatusFin'] = "finalizada";
-					
-				// }else{
-					// $result[$key]['estatusFin'] = "activa";
-				// }
-				
-			// }
+			
 			
 			foreach($result as $key=>$aux){
 		
@@ -774,9 +788,15 @@
 				$result[$key]['iva'] = number_format((($aux['subtotal']/(1.16))*(.16)),2);
 				$result[$key]['isr'] = number_format((($aux['subtotal']/(1.16))*(.1)),2);
 				$result[$key]['retIva'] = number_format(((($aux['subtotal']/(1.16))*(.16)))*(2/3),2);
-				$result[$key]['totalPagar'] = number_format($aux['subtotal']+(($aux['subtotal']/(1.16))*(.1))+(((($aux['subtotal']/(1.16))*(.16)))*(2/3)),2);
+				$result[$key]['totalPagar'] = number_format($aux['subtotal']-(($aux['subtotal']/(1.16))*(.1))-(((($aux['subtotal']/(1.16))*(.16)))*(2/3)),2);
 			
-
+				if($aux['finalDate'] < date('Y-m-d')){
+					
+					$result[$key]['estatusFin'] = "finalizada";
+					
+				}else{
+					$result[$key]['estatusFin'] = "activa";
+				}
 			}
 			
 			return $result;
