@@ -293,3 +293,32 @@ function descargarConstancias(q){
 	url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
 	open(url,"Constancia de Estudios","toolbal=0,width=0,resizable=1");
 }
+
+
+
+
+function LoadPage(page){
+
+	$("#type").val("LoadPage")
+	
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/view-solicitud.php',
+	  	data: $("#editStudentForm").serialize(true)+'&type=LoadPage&page='+page,
+		beforeSend: function(){			
+			$("#load").html(LOADER3);
+		},
+	  	success: function(response) {	
+		
+			console.log(response)
+			
+			$("#container").html(response);
+				
+
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+	
+}

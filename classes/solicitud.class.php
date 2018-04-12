@@ -12,10 +12,14 @@ class Solicitud extends Module
 	private $solicitudId;
 	private $cursoId;
 	private $observacion;
+	private $pages;
 	
 
 	
-	
+	public function setPages($value)
+	{
+		$this->pages = $value;
+	}
 	
 	
 	public function setCursoId($value)
@@ -141,9 +145,7 @@ class Solicitud extends Module
 		
 		
 		 $sqlQuery = 'SELECT 
-					*,
-					t.nombre as solicitud,
-					s.precio as costo
+					count(*)
 				FROM 
 					solicitud as s 
 				left join user as u on u.userId = s.userId
@@ -154,7 +156,28 @@ class Solicitud extends Module
 			
 	
 		$this->Util()->DB()->setQuery($sqlQuery);
-		$result = $this->Util()->DB()->GetResult();
+		$total = $this->Util()->DB()->GetSingle();
+		
+		
+		$resPage = $this->Util->HandlePagesAjax($this->pages, $total , '');		
+		$sqlLim = "LIMIT ".$resPage['pages']['start'].", ".$resPage['pages']['items_per_page'];
+		
+		 $sqlQuery = 'SELECT 
+					*,
+					t.nombre as solicitud,
+					s.precio as costo
+				FROM 
+					solicitud as s 
+				left join user as u on u.userId = s.userId
+				left join tiposolicitud as t on t.tiposolicitudId = s.tiposolicitudId
+				left join subject as sb on sb.subjectId = s.subjectId
+				WHERE  1 '.$filtro.' and s.tiposolicitudId <> 5 and s.userId = '.$_SESSION['User']['userId'].' order by orden asc 
+				'.$sqlLim.'';
+// exit;
+			
+	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$result7 = $this->Util()->DB()->GetResult();
 		
 		foreach($result as $key=>$aux){
 			
@@ -165,8 +188,15 @@ class Solicitud extends Module
 			}
 			
 		}
-		// echo '<pre>'; print_r($result);
-		// exit;
+		
+		
+		
+		$result['result'] = $result7;
+		
+		$result['pages'] = $resPage['pages'];
+		$result['info'] = $resPage['info'];
+		
+		
 		return $result;
 	}
 	

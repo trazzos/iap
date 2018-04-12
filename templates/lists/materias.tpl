@@ -9,7 +9,7 @@
 			<th width="">Modalidad </th>
 			<th width="">Fecha Materia </th>
 			<th width="">Fecha Contrato </th>
-			<th width="">Desglose </th>
+			<th width="233px">Desglose </th>
 			<!--<th width="">Importe</th>
 			<th width="">IVA</th>
 			<th width="">Subtotal</th>
@@ -44,7 +44,7 @@
 				</tr>
 				<tr>
 					<td><b>Subtotal:</b></td>
-					<td><b>$ {$subject.subtotal}</b></td>
+					<td><b>$  {$subject.subtotal|number_format:2:'.':','}</b></td>
 				</tr>
 				<tr>
 					<td><b>ISR:</b></td>

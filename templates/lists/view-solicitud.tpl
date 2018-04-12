@@ -12,7 +12,7 @@
 		</tr>
     </thead>
     <tbody>
-		{foreach from=$registros item=subject}
+		{foreach from=$registros.result item=subject}
     	<tr>
 			
 			<td align="center">{$subject.folio}</td>
@@ -124,3 +124,5 @@
 		{/foreach}
 	</tbody>
 </table>
+
+{include file="{$DOC_ROOT}/templates/lists/pages_ok.tpl" pages=$registros.pages info=$registros.info}

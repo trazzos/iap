@@ -276,6 +276,17 @@ switch($_POST["type"])
 				}
 				
 			break;
+			
+			
+			case 'LoadPage':
+			
+					$solicitud->setPages($_POST['page']);
+					$registros = $solicitud->enumarateSolicitudesStden();
+					$smarty->assign('registros', $registros);
+					$smarty->assign("lstSol", $lstSol);
+					$smarty->display(DOC_ROOT.'/templates/lists/view-solicitud.tpl');
+			
+			break;
 	}
 
 ?>
