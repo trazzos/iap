@@ -73,7 +73,7 @@
 	<img src='".DOC_ROOT."/images/logo_correo.jpg'>
 	<center>	
 	<b>INSTITUTO DE ADMINISTRACIÓN PÚBLICA DEL ESTADO DE CHIAPAS, A.C.</b>
-	<b>".$info['subjectName']."</b><br>
+	<b>".$info['majorName'].": ".$info['subjectName']."</b><br>
 	<b>ACTA DE CALIFICACIÓN FINAL</b><br>
 	</center>	
 	<br>
@@ -109,10 +109,10 @@
 
 	$html .= "<table  width='100%' class='txtTicket'>";
 	$html .= "<tr>";
-	$html .= "<td>Numero</td>";
-	$html .= "<td>Nombre</td>";
-	$html .= "<td>Calificación Final</td>";
-	$html .= "<td></td>";
+	$html .= "<td><center>Numero</center></td>";
+	$html .= "<td><center>Nombre</center></td>";
+	$html .= "<td><center>Calificación Final</center></td>";
+	$html .= "<td><center>Letra</center></td>";
 	$html .= "</tr>";
 	foreach($noTeam as $key=>$aux){
 		$html .= "<tr>";
@@ -121,16 +121,16 @@
 		$h =  $util->num2letras($aux['score']);
 		
 		if($aux['score'] < 7  and $info['majorName'] == 'MAESTRIA'){
-			$html .= "<td><font color='red'>".$aux['score']."</font></td>";
-			$html .= "<td><font color='red'>".$h."</font></td>";
+			$html .= "<td><center><font color='red'>".$aux['score']."</font></center></td>";
+			$html .= "<td><center><font color='red'>".$h."</font></center></td>";
 		}
 		else if($aux['score'] < 8  and $info['majorName'] == 'DOCTORADO'){
-			$html .= "<td><font color='red'>".$aux['score']."</font></td>";
-			$html .= "<td><font color='red'>".$h."</font></td>";
+			$html .= "<td><center><font color='red'>".$aux['score']."</font></center></td>";
+			$html .= "<td><center><font color='red'>".$h."</font></center></td>";
 		}
 		else{
-			$html .= "<td>".$aux['score']."</td>";
-			$html .= "<td>".$h."</td>";
+			$html .= "<td><center>".$aux['score']."</center></td>";
+			$html .= "<td><center>".$h."</center></td>";
 		}
 		$html .= "</tr>";
 	}  
@@ -138,6 +138,8 @@
 	
 	$html .= "
 		
+	<br>
+	<br>
 	<br>
 	<br>
 	<center>

@@ -3,20 +3,20 @@
 <input type="hidden" name="id" id="id" value="{$id}">
 <table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
 <thead>      
-   <tr>
-      <th width="100" height="28">ID</th>
-      <th width="80">No. Control</th>
-      <th width="200">Nombre</th>
-      <th width="200">Promedio</th>
-      <th width="200">Calificacion Final</th>
+   <tr><!--
+      <th width="100" height="28">ID</th>-->
+      <th width="80"><center>No. Control</center></th>
+      <th width="200"><center>Nombre</center></th>
+      <th width="200" ><center>Acumulado</center></th>
+      <th width="200" ><center>Calificacion Final</center></th>
 	</tr>
 </thead>
 <tbody>
   {foreach from=$noTeam item=item key=key}
-        <tr id="1">
-        <td align="center">{$item.alumnoId}</td>
+        <tr id="1"><!--
+        <td align="center">{$item.alumnoId}</td>-->
         <td align="center">{$item.controlNumber}</td> 
-        <td align="center">{$item.lastNamePaterno} {$item.lastNameMaterno} {$item.names}</td> 
+        <td align="center">{$item.lastNamePaterno|upper} {$item.lastNameMaterno|upper} {$item.names|upper}</td> 
 		<td align="center">
            <input type="text"  readonly name="pro_{$item.alumnoId}" id="pro_{$item.alumnoId}" value="{$item.addepUp}" class="form-control" style="width:60px">
         </td>

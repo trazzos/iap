@@ -797,7 +797,7 @@ class Personal extends Main
 		$this->Util()->DB()->setQuery($sql);
 		$info = $this->Util()->DB()->GetRow();
 		
-		$data['director'] = $info9['profesion'].' '.$info9['name'].' '.$info9['lastname_paterno'].' '.$info9['lastname_materno'];
+		$data['director'] = $info9['name'].' '.$info9['lastname_paterno'].' '.$info9['lastname_materno'];
 		$data['controlEscolar'] = $info['profesion'].' '.$info['name'].' '.$info['lastname_paterno'].' '.$info['lastname_materno'];
 				
 		return $data;

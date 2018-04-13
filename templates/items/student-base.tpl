@@ -13,9 +13,9 @@
 			</td>       
         
 		
-		<td align="center">{$item.lastNamePaterno}</td>
-        <td align="center">{$item.lastNameMaterno}</td>
-         <td align="center">{$item.names}</td>
+		<td align="center">{$item.lastNamePaterno|upper}</td>
+        <td align="center">{$item.lastNameMaterno|upper}</td>
+         <td align="center">{$item.names|upper}</td>
         <td align="center">{$item.controlNumber}</td>
         <td align="left">
         <form name="{$item.userId}" method="post" enctype="multipart/form-data">

@@ -4,7 +4,7 @@
         <td align="center">{$item.controlNumber}</td>
 		
 		  {if $cursos=="ESPECIALIDAD" || $cursos=="MAESTRIA"} <td align="center">{$item.matricula} </td>{/if}
-        <td align="center">{$item.lastNamePaterno} {$item.lastNameMaterno} {$item.names}</td>
+        <td align="center">{$item.lastNamePaterno|upper} {$item.lastNameMaterno|upper} {$item.names|upper}</td>
         <td align="center">
         	{if !$item.equipo}
         		N/A

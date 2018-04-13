@@ -33,7 +33,7 @@
 								{foreach from=$ls item=subject}
 								<tr>
 									
-									<td align="center">{$subject.lastNamePaterno} {$subject.lastNameMaterno} {$subject.names} </td>
+									<td align="center">{$subject.lastNamePaterno|upper} {$subject.lastNameMaterno|upper} {$subject.names|upper} </td>
 									<td align="center">{if $subject.eval >= 1}<font color="green"> Contestada </font>{else}<font color="red"> No Contestada</font>{/if}</td>
 									
 								</tr>
