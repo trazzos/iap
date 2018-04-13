@@ -147,10 +147,76 @@ switch($_POST["type"])
 		
 		break;
 		
+		
+		case 'onSendEncuadre':
+		
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			if($url = $group->onSendEncuadre($_POST["id"])){
+				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  El archivo se adjunto correctamente
+					</div>';
+				exit;
+			}else{
+				echo "fail[#]";
+				
+			}
+		
+		break;
+		
+		
+		case 'onSendRubrica':
+		
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			if($url = $group->onSendRubrica($_POST["id"])){
+				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  El archivo se adjunto correctamente
+					</div>';
+				exit;
+			}else{
+				echo "fail[#]";
+				
+			}
+		
+		break;
+		
 		case 'onDeleteCarta':
 		
 			// echo '<pre>'; print_r($_POST);
 			if($url = $personal->onDeleteCarta($_POST["id"])){
+				echo "ok[#]";
+			}else{
+				echo "fail[#]";
+				
+			}
+		
+		break;
+		
+		
+		case 'onDeleteRubrica':
+		
+			// echo '<pre>'; print_r($_POST);
+			if($url = $personal->onDeleteRubrica($_POST["id"])){
+				echo "ok[#]";
+			}else{
+				echo "fail[#]";
+				
+			}
+		
+		break;
+		
+		
+		case 'onDeleteEncuadre':
+		
+			// echo '<pre>'; print_r($_POST);
+			if($url = $personal->onDeleteEncuadre($_POST["id"])){
 				echo "ok[#]";
 			}else{
 				echo "fail[#]";

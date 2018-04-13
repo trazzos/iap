@@ -1531,6 +1531,72 @@ class Personal extends Main
 		return true;
 		
 	}
+	
+	
+	
+	public function onDeleteRubrica($cmId){
+		
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					course_module
+				WHERE
+					courseModuleId = ".$cmId."";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();
+		
+		 // echo DOC_ROOT.'/docentes/carta/carta_'.$info['rutaCarta'];
+		 @unlink(DOC_ROOT.'/docentes/rubrica/'.$info['rutaRubrica']);
+		
+		 $sql = 'UPDATE 		
+				course_module SET 		
+				rutaRubrica = ""			      		
+				WHERE courseModuleId = '.$cmId.'';		
+				// exit;
+		$this->Util()->DB()->setQuery($sql);		
+		$this->Util()->DB()->UpdateData();
+		
+	
+		
+		
+		return true;
+		
+	}
+	
+	
+	
+	public function onDeleteEncuadre($cmId){
+		
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					course_module
+				WHERE
+					courseModuleId = ".$cmId."";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();
+		
+		 // echo DOC_ROOT.'/docentes/carta/carta_'.$info['rutaCarta'];
+		 @unlink(DOC_ROOT.'/docentes/encuadre/'.$info['rutaRubrica']);
+		
+		 $sql = 'UPDATE 		
+				course_module SET 		
+				rutaEncuadre = ""			      		
+				WHERE courseModuleId = '.$cmId.'';		
+				// exit;
+		$this->Util()->DB()->setQuery($sql);		
+		$this->Util()->DB()->UpdateData();
+		
+	
+		
+		
+		return true;
+		
+	}
 }
 
 

@@ -199,7 +199,9 @@ $pages = array(
 	'validarpago-adjuntar',
 	'view-curricula',
 	'view-periodos',
-	'down-plan'
+	'down-plan',
+	'encuadre',
+	'rubrica'
 
 );
 

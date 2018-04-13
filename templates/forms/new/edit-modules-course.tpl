@@ -46,6 +46,18 @@
 					</a>
 				</li>
 				<li>
+					<a href="{$WEB_ROOT}/graybox.php?page=encuadre&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="fa fa-object-group"></i>
+							Encuadre
+					</a>
+				</li>
+				<li>
+					<a href="{$WEB_ROOT}/graybox.php?page=rubrica&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="fa fa-pencil"></i>
+							Rúbrica
+					</a>
+				</li>
+				<li>
 					<a href="{$WEB_ROOT}/inbox/id/{$myModule.courseModuleId}">
 						<i class="fa fa-envelope"></i>
 							Inbox

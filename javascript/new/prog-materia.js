@@ -177,3 +177,109 @@ function onDeleteCarta(id,courseId)
     });
 }
 
+
+
+function onDeleteCarta(id,courseId)
+{
+	
+	var resp = confirm("Seguro de  eliminar el Documento?");
+	
+		if(!resp)
+			return;
+	
+    $.ajax({
+        url : WEB_ROOT+'/ajax/new/personal.php',
+        type: "POST",
+        data : {type: "onDeleteCarta", id:id,courseId:courseId},
+        success: function(data)
+        {
+           console.log(data);
+		    var splitResp = data.split("[#]");
+			 if(splitResp[0] == "ok")
+            {
+               $("#msj").html(splitResp[1]);
+				$("#tblContent").html(splitResp[2]);
+            }
+            else
+            {
+               alert('Ocurrio un error');
+            }
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexión a internet');
+        }
+    });
+}
+
+
+
+
+function onDeleteEncuadre(id,courseId)
+{
+	
+	var resp = confirm("Seguro de  eliminar el Documento?");
+	
+		if(!resp)
+			return;
+	
+    $.ajax({
+        url : WEB_ROOT+'/ajax/edit-modules-course.php',
+        type: "POST",
+        data : {type: "onDeleteEncuadre", id:id,courseId:courseId},
+        success: function(data)
+        {
+           console.log(data);
+		    var splitResp = data.split("[#]");
+			 if(splitResp[0] == "ok")
+            {
+               $("#msj").html(splitResp[1]);
+				$("#tblContent").html(splitResp[2]);
+            }
+            else
+            {
+               alert('Ocurrio un error');
+            }
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexión a internet');
+        }
+    });
+}
+
+
+
+
+function onDeleteRubrica(id,courseId)
+{
+	
+	var resp = confirm("Seguro de  eliminar el Documento?");
+	
+		if(!resp)
+			return;
+	
+    $.ajax({
+        url : WEB_ROOT+'/ajax/edit-modules-course.php',
+        type: "POST",
+        data : {type: "onDeleteRubrica", id:id,courseId:courseId},
+        success: function(data)
+        {
+           console.log(data);
+		    var splitResp = data.split("[#]");
+			 if(splitResp[0] == "ok")
+            {
+               $("#msj").html(splitResp[1]);
+				$("#tblContent").html(splitResp[2]);
+            }
+            else
+            {
+               alert('Ocurrio un error');
+            }
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexión a internet');
+        }
+    });
+}

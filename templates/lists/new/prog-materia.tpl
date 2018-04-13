@@ -9,6 +9,8 @@
 		<th width="80" style="text-align:center">Vigencia</th>
 		<th width="80" style="text-align:center">Plan de Estudios</th>
 		<th width="80" style="text-align:center">Carta Descriptiva</th>
+		<th width="80" style="text-align:center">Encuadre</th>
+		<th width="80" style="text-align:center">Rubrica</th>
 		<th width="80" style="text-align:center">Acta de Calificaciones</th>
 
 	
@@ -48,6 +50,34 @@
 						<i class="material-icons md-16">chrome_reader_mode</i>
 					</a>
 					<a href="javascript:void(0)" onClick="onDeleteCarta('{$subject.courseModuleId}','{$subject.courseId}')"  title='ELIMINAR CARTA DESCRIPTIVA'>
+						<i class="material-icons md-16">delete_forever</i>
+					</a>
+					{else}
+					<font color="red">S/I</font>
+					{/if}
+					
+				</td>
+				<td align="center">
+				
+					{if $subject.rutaEncuadre  ne ''}
+					<a href="{$WEB_ROOT}/docentes/encuadre/{$subject.rutaEncuadre}" target='_blank'  title='ENCUADRE'>
+						<i class="material-icons md-16">chrome_reader_mode</i>
+					</a>
+					<a href="javascript:void(0)" onClick="onDeleteEncuadre('{$subject.courseModuleId}','{$subject.courseId}')"  title='ELIMINAR CARTA DESCRIPTIVA'>
+						<i class="material-icons md-16">delete_forever</i>
+					</a>
+					{else}
+					<font color="red">S/I</font>
+					{/if}
+					
+				</td>
+				<td align="center">
+				
+					{if $subject.rutaRubrica  ne ''}
+					<a href="{$WEB_ROOT}/docentes/encuadre/{$subject.rutaRubrica}" target='_blank'  title='RUBRICA'>
+						<i class="material-icons md-16">chrome_reader_mode</i>
+					</a>
+					<a href="javascript:void(0)" onClick="onDeleteRubrica('{$subject.courseModuleId}','{$subject.courseId}')"  title='ELIMINAR CARTA DESCRIPTIVA'>
 						<i class="material-icons md-16">delete_forever</i>
 					</a>
 					{else}
