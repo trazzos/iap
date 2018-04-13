@@ -905,9 +905,21 @@
 				$this->Util()->DB()->setQuery($sql);
 				$infoCc = $this->Util()->DB()->GetRow();
 				
+				// $infoCc['calificacion'] = 8;
+				// echo $info['majorName'];
+				// exit;
+				
 				if($infoCc['calificacion']==''){
 					$infoCc['calificacion']='En proceso';
-				}
+				}else if ($infoCc['calificacion'] < 7 and $info['majorName'] == 'MAESTRIA'){
+					$infoCc['calificacion'] = '<font color="red">'.$infoCc['calificacion'].'</font>';
+				}else if ($infoCc['calificacion'] < 8 and $info['majorName'] == 'DOCTORADO'){
+					$infoCc['calificacion'] = '<font color="red">'.$infoCc['calificacion'].'</font>';
+				}else if ($infoCc['calificacion'] <= 6){
+					$infoCc['calificacion'] = '<font color="red">'.$infoCc['calificacion'].'</font>';
+				}				
+				
+				 
 				
 				$result[$key]["finalDate"]=$result[$key]["finalDate"]." 23:59:59";
 				$result[$key]["initialDateStamp"] = strtotime($result[$key]["initialDate"]);

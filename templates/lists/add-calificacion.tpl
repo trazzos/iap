@@ -25,8 +25,8 @@
 		   onkeypress="return soloLetras(event)"  
 		   {if $item.score < 7 and $majorName eq 'MAESTRIA'} 
 		   style="background:#ff00004f; width:60px" 
-		   {else if $item.score < 8 and $majorName eq 'DOCTORADO'} style="background:#ff00004f; width:60px"   {/if} name="cal_{$item.alumnoId}"
-		   id="cal_{$item.alumnoId}" value="{$item.score}" class="form-control" style="width:60px">
+		   {else if $item.score < 8 and $majorName eq 'DOCTORADO'} style="background:#ff00004f; width:60px"   {/if} 
+		   name="cal_{$item.alumnoId}"   id="cal_{$item.alumnoId}" value="{$item.score}" class="form-control" style="width:60px">
         </td>
     </tr>
 {foreachelse}

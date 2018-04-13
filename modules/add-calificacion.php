@@ -11,7 +11,7 @@
 	$module->setCourseModuleId($_GET["id"]);
 	$info = $module->InfoCourseModule();
 
-	// echo "<pre>"; print_r($info);
+	// echo "<pre>"; print_r($info["majorName"]);
 	// exit;
 	$group->setTipoMajor($info["majorName"]);
 	$group->setCourseModuleId($_GET["id"]);
