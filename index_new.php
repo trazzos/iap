@@ -42,7 +42,6 @@ $pages = array(
 	'speciality',
 	'personal',
 	'position',
-	
 	'schedule',
 	'group',
 	'group-subject',
