@@ -587,7 +587,7 @@ class Personal extends Main
 			return false; 
 		}
 
-		echo $sql = "UPDATE
+		 $sql = "UPDATE
 					personal SET positionId = ".$this->positionId.",
 				 	name =  '".$this->name."',
 					lastname_paterno = '".$this->lastnamePaterno."',
@@ -613,7 +613,7 @@ class Personal extends Main
 				WHERE 
 					personalId = ".$this->personalId;
 					
-		exit;
+		
 		$this->Util()->DB()->setQuery($sql);
 		$this->Util()->DB()->ExecuteQuery();
 
