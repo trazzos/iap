@@ -230,6 +230,8 @@ if($_GET['section'])
 }
 $smarty->assign('includedTpl', $includedTpl);
 
+
+
 //print_r($_GET); exit;
 
 if(isset($_GET['vp'])){
@@ -241,6 +243,9 @@ $smarty->assign("vistaPrevia",0);
 $smarty->assign('lang', $lang);
 $smarty->assign('timestamp', time());
 $smarty->assign('rand', rand());
+
+echo DOC_ROOT.'/modules/'.$_GET['page'].'.php';
+exit;
 
 ini_set("display_errors", "ON"); 
 $showErrors = "E_ALL";

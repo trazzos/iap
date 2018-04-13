@@ -1,5 +1,8 @@
 <?php
 
+echo DOC_ROOT.'/modules/'.$_GET['page'].'.php';
+exit;
+
 include_once('init.php');
 include_once('config.php');
 include_once(DOC_ROOT.'/libraries.php');
@@ -40,8 +43,8 @@ $pages = array(
 	'student',
 	'major',
 	'speciality',
-	'personal',
 	'position',
+	'personal',
 	'schedule',
 	'group',
 	'group-subject',
