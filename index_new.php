@@ -40,8 +40,9 @@ $pages = array(
 	'student',
 	'major',
 	'speciality',
-	'position',
 	'personal',
+	'position',
+	
 	'schedule',
 	'group',
 	'group-subject',
