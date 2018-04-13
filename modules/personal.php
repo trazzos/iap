@@ -6,9 +6,9 @@
 		
 	
 
-echo '<pre>'; print_r($_FILES);
-		echo '<pre>'; print_r($_POST);
-		exit;
+// echo '<pre>'; print_r($_FILES);
+		// echo '<pre>'; print_r($_POST);
+		// exit;
 	if($_POST)
 	{
 		
