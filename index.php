@@ -245,7 +245,7 @@ $smarty->assign('timestamp', time());
 $smarty->assign('rand', rand());
 
 echo DOC_ROOT.'/modules/'.$_GET['page'].'.php';
-exit;
+// exit;
 
 ini_set("display_errors", "ON"); 
 $showErrors = "E_ALL";
