@@ -36,6 +36,7 @@ $User = $_SESSION['User'];
 $pages = array(	
 	'login',
 	'logout',
+	'personal1',
 	'homepage',
 	'student',
 	'major',

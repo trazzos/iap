@@ -1,6 +1,6 @@
 
 
-<form class="form-horizontal" id="editPersonalForm" name="editPersonalForm" method="post" action="{$WEB_ROOT}/personal" enctype="multipart/form-data">
+<form class="form-horizontal" id="editPersonalForm" name="editPersonalForm" method="post" action="{$WEB_ROOT}/personal1" enctype="multipart/form-data">
     <input type="hidden" id="type" name="type" value="saveEditPersonal"/>
     <input type="hidden" id="id" name="id" value="{$info.personalId}" />
     <input type="hidden" id="list_roles" name="list_roles" value="" />
