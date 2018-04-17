@@ -30,7 +30,7 @@
 	
 	$smarty->assign('mnuMain', "modulo");
 
-	$myTeam = $group->MyTeam($_SESSION["User"]["userId"], $_GET["id"]);
+	$myTeam = $group->MyTeamStudent($_SESSION["User"]["userId"], $_GET["id"]);
 	//print_r($myTeam);
 	$smarty->assign('myTeam', $myTeam);
 

@@ -34,14 +34,10 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-
-        console.log(window.device.version);
         if (parseFloat(window.device.version) >= 7.0) {
             document.body.style.marginTop = "20px";
             // OR do whatever layout you need here, to expand a navigation bar etc
         }
-        console.log('Received Device Ready Event');
-        console.log('calling setup push');
 		document.addEventListener("backbutton", onBackKeyDown, false);
         app.setupPush();
 		
@@ -100,17 +96,115 @@ var app = {
     }
 };
 
-
-
-
 var urlLoc = "localhost";
 
   //var WEB_ROOT = "http://" + urlLoc + "/gitiap";
-  var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
-  //var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
+  //var WEB_ROOT = "http://www.iapchiapasenlinea.mx/dev/iap";
+  var WEB_ROOT = "http://www.iapchiapasenlinea.mx/";
 
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/loading.gif'><br>Cargando...</div>";
 
+function downloadFile(url){
+
+    console.log(url);
+    showFile(url);
+}
+
+var inAppBrowserRef;
+function showFile(url) {
+
+    //window.open(url,'_system','location=yes');
+    //return;
+    var target = "_system";
+
+    var options = "location=yes,hidden=yes";
+
+    inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
+
+    console.log(inAppBrowserRef);
+
+    inAppBrowserRef.addEventListener('loadstart', loadStartCallBack);
+
+    inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
+
+    inAppBrowserRef.addEventListener('loaderror', loadErrorCallBack);
+
+}
+
+function loadStartCallBack() {
+    console.log("started");
+    alert('started');
+    $.mobile.loading('show');
+}
+
+function loadStopCallBack() {
+    console.log("stop");
+    alert('stop');
+
+    if (inAppBrowserRef != undefined) {
+
+        inAppBrowserRef.insertCSS({ code: "body{font-size: 25px;" });
+
+        console.log("stopcallback");
+        $.mobile.loading('hide');
+        //$('#status-message').text("");
+
+        inAppBrowserRef.show();
+    }
+
+}
+
+function loadErrorCallBack(params) {
+    console.log("errorcallback");
+    alert('error');
+    $.mobile.loading('hide');
+
+    var scriptErrorMesssage =
+        "alert('Sorry we cannot open that page. Message from the server is : "
+        + params.message + "');"
+
+    inAppBrowserRef.executeScript({ code: scriptErrorMesssage }, executeScriptCallBack);
+
+    inAppBrowserRef.close();
+
+    inAppBrowserRef = undefined;
+
+}
+
+function executeScriptCallBack(params) {
+
+    if (params[0] == null) {
+        console.log(params[0]);
+        /*$('#status-message').text(
+            "Sorry we couldn't open that page. Message from the server is : '"
+            + params.message + "'");*/
+    }
+
+}
+
+/*function downloadFile(url, filename, callback, callback_error) {
+
+    var b = new FileManager();
+    // download a file from a remote location and store it localy
+    b.download_file(url,'filder_a/dwonloads_folder/','target_name.html',Log('downloaded sucess'));
+
+    var fileTransfer = new FileTransfer();
+    fileTransfer.download(url,
+        cordova.file.dataDirectory + "cache/" + filename,
+        function (theFile) {
+            console.log("download complete: " + theFile.toURL());
+            if (callback)
+                callback();
+        },
+        function (error) {
+            console.log("download error source " + error.source);
+            console.log("download error target " + error.target);
+            console.log("upload error code: " + error.code);
+            if (callback_error)
+                callback_error();
+        }
+    );
+}*/
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -130,14 +224,13 @@ function getCookie(cname) {
 	
 function DoLogin()
 {
-// alert(WEB_ROOT)
+    $.mobile.loading( 'show');
     $.ajax({
         url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
         data : $('#frmGral').serialize(),
         success: function(data)
         {
-			console.log(data)
             var splitResponse = data.split("[#]");
 
             if($.trim(splitResponse[0]) == "ok")
@@ -150,9 +243,11 @@ function DoLogin()
             {
                alert('Tu usuario o contraseña son incorrectas. Favor de verificarlas.');
             }
+            $.mobile.loading('hide');
         },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
@@ -161,18 +256,12 @@ function DoLogin()
 
 function iniciaMysql()
 {
-	
-	// alert(getCookie("usuarioId"))
-	
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
         data : 'type=inicio&usuarioId='+getCookie("usuarioId"),
         success: function(data)
         {
-			
-			
-			console.log(data)
            var splitResponse = data.split("[#]");
 		   $("#fotoheader").html(splitResponse[1])
            $("#dataAlumnos").html(splitResponse[2])
@@ -191,6 +280,7 @@ function iniciaMysql()
         },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
@@ -199,7 +289,7 @@ function iniciaMysql()
 
 function viewModules(Id,estatus)
 {
-
+    $.mobile.loading('show');
 	$.mobile.changePage("#divModules");
 	
 	document.cookie = "courseId="+Id;
@@ -210,26 +300,21 @@ function viewModules(Id,estatus)
         data : 'type=viewModules&courseId='+Id+'&estatus='+estatus+'&usuarioId='+getCookie("usuarioId"),
         success: function(data)
         {
-			
-			console.log(data)
-           var splitResponse = data.split("[#]");
-           $("#divModule").html(splitResponse[1])
-            
+            var splitResponse = data.split("[#]");
+            $("#divModule").html(splitResponse[1])
+            $.mobile.loading( 'hide');
         },
         error: function ()
         {
             alert('Algo salio mal, compruebe su conexion a internet');
+            $.mobile.loading('hide');
         }
     });
-	
 }
-
 
 function verDetalle(Id,estatus)
 {
-
-	
-	
+    $.mobile.loading( 'show');
 	document.cookie = "courseId="+Id;
 	  $("#seccion_1").hide()
 	  $("#seccion_4").hide()
@@ -242,7 +327,6 @@ function verDetalle(Id,estatus)
         data : 'type=verDetalle&courseId='+Id+'&estatus='+estatus+'&usuarioId='+getCookie("usuarioId"),
         success: function(data)
         {
-			console.log(data)
 			var splitResponse = data.split("[#]");
 			if(estatus=="Activo"){
 				$.mobile.changePage("#divDetalle");
@@ -281,37 +365,37 @@ function verDetalle(Id,estatus)
 					$("#cal_2").show()
 				}
 			}
-			
-            
+            $.mobile.loading('hide');
         },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
-	
-}	
+}
 
 function miCuenta()
 {
-	$.mobile.changePage("#cuenta");
+    $.mobile.loading('show');
+    $.mobile.changePage("#cuenta");
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
         data : 'type=miCuenta&usuarioId='+getCookie("usuarioId"),
         success: function(data)
         {
-			console.log(data)
            var splitResponse = data.split("[#]");
            $(".fotoher").html(splitResponse[1])
            $("#divPersonal").html(splitResponse[2])
            $("#divDomicilio").html(splitResponse[3])
            $("#divLaborales").html(splitResponse[4])
            $("#divEstudios").html(splitResponse[5])
-            
+           $.mobile.loading('hide');
         },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
@@ -319,52 +403,47 @@ function miCuenta()
 
 function back(id)
 {
+    $.mobile.loading('show');
 	$(".msj").html("")
 	$.mobile.changePage("#"+id);
+    $.mobile.loading('hide');
 }
-
 
 function openAnuncio(Id)
 {
 	$("#divanun_"+Id).toggle();
 }
 
-
-
 function detalleActividad(id,tipo)
 {
-	$.mobile.changePage("#divDetalleActividad");
+    $.mobile.loading('show');
+    $.mobile.changePage("#divDetalleActividad");
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
         data : 'type=detalleActividad&usuarioId='+getCookie("usuarioId")+'&actividadId='+id+'&tipo='+tipo,
         success: function(data)
         {
-			console.log(data)
-			
-			
-           var splitResponse = data.split("[#]");
-		   $("#divDetalleP").html(splitResponse[1])
+            var splitResponse = data.split("[#]");
+  		    $("#divDetalleP").html(splitResponse[1])
 			if(tipo=="actividad"){
 				$("#tituloactividad").html("Actividad")
 			}else{
 				$("#tituloactividad").html("Examenes")
 			}
-
-            
+            $.mobile.loading('hide');
         },
-        error: function ()
+        error: function (request, status, error)
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
 }
 
-
-
-
 function detalleRecurso(id)
 {
+    $.mobile.loading('show');
 	$.mobile.changePage("#divDetaRecurso");
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
@@ -372,14 +451,14 @@ function detalleRecurso(id)
         data : 'type=detalleRecurso&usuarioId='+getCookie("usuarioId")+'&actividadId='+id,
         success: function(data)
         {
-			console.log(data)
-           var splitResponse = data.split("[#]");
-           $("#divDetalleR").html(splitResponse[1])
+            var splitResponse = data.split("[#]");
+            $("#divDetalleR").html(splitResponse[1])
+            $.mobile.loading('hide');
 
-            
         },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
@@ -388,29 +467,31 @@ function detalleRecurso(id)
 
 function openConfig()
 {
+    $.mobile.loading('show');
 	$.mobile.changePage("#divConfig");
+    $.mobile.loading('hide');
 }
 
 function Close()
 {
+    $.mobile.loading('show');
 	$.mobile.changePage("#login");
 	document.cookie = "courseId=''";
 	document.cookie = "usuarioId=''";
 	$("#passwd").val('');
+    $.mobile.loading('hide');
 }
-
 
 function acercaDe()
 {
-	$.mobile.changePage("#divAcerca");
+    $.mobile.loading('show');
+    $.mobile.changePage("#divAcerca");
+    $.mobile.loading('hide');
 }
-
-
-
-
 
 function verSubforo(topicId,courseId)
 {
+    $.mobile.loading('show');
 	$.mobile.changePage("#divSubForo");
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
@@ -418,41 +499,37 @@ function verSubforo(topicId,courseId)
         data : 'type=verSubforo&usuarioId='+getCookie("usuarioId")+'&topicId='+topicId+'&courseId='+courseId,
         success: function(data)
         {
-			console.log(data)
            var splitResponse = data.split("[#]");
            $("#subForo").html(splitResponse[1])
            $("#forotopicId").val(splitResponse[2])
-
-            
-        },
+            $.mobile.loading('hide');        },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
 }
 
-
 function verSubforoDetalle(topicId,courseId)
 {
-	$.mobile.changePage("#divSubForoDetalle");
+    $.mobile.loading('show');
+    $.mobile.changePage("#divSubForoDetalle");
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
         data : 'type=verSubforoDetalle&usuarioId='+getCookie("usuarioId")+'&topicId='+topicId+'&courseId='+courseId,
         success: function(data)
         {
-			console.log(data)
-           var splitResponse = data.split("[#]");
-           $("#subForoDetalle").html(splitResponse[1])
-           $("#dtopicId").val(splitResponse[2])
-           $("#dcourseId").val(splitResponse[3])
-           //$("#forotopicId").val(splitResponse[2])
-
-            
+            var splitResponse = data.split("[#]");
+            $("#subForoDetalle").html(splitResponse[1])
+            $("#dtopicId").val(splitResponse[2])
+            $("#dcourseId").val(splitResponse[3])
+            $.mobile.loading('hide');
         },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
@@ -461,7 +538,7 @@ function verSubforoDetalle(topicId,courseId)
 
 function saveForo(topicId,courseId)
 {
-	
+    $.mobile.loading('show');
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
@@ -473,65 +550,26 @@ function saveForo(topicId,courseId)
 		},
         success: function(data)
         {
-			console.log(data)
 			$(".loader").html("");
 			
-           var splitResponse = data.split("[#]");
-           if($.trim(splitResponse[0])=="ok"){
-			    $("#subForo").html(splitResponse[1])
-				$("#asunto").val('')
-				$("#mensaje").val('')
-		   }else if($.trim(splitResponse[0])=="fail"){
-			    $(".msj").html(splitResponse[1])
-		   }
-		   $("#btnSave").show();
-            
+            var splitResponse = data.split("[#]");
+            if($.trim(splitResponse[0])=="ok"){
+                $("#subForo").html(splitResponse[1])
+                $("#asunto").val('')
+                $("#mensaje").val('')
+            }else if($.trim(splitResponse[0])=="fail"){
+                $(".msj").html(splitResponse[1])
+            }
+            $("#btnSave").show();
+            $.mobile.loading('hide');
         },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
 }
-
-
-
-/*
-function saveAportacion(topicId,courseId)
-{
-	
-	$.ajax({
-		url : WEB_ROOT+'/ajax/app/querys.php',
-        type: "POST",
-        data : 'type=saveAportacion&usuarioId='+getCookie("usuarioId")+'&'+$('#frmAportacion').serialize(),
-        beforeSend: function(){	
-			// alert("lel")
-			$("#btnAportacion").hide();
-			$(".loader").html(LOADER3);
-			$(".msj").html('')
-		},
-		success: function(data)
-        {
-			console.log(data)
-			$(".loader").html("");
-			
-           var splitResponse = data.split("[#]");
-		    if(splitResponse[0]=="ok"){
-			   $("#subForoDetalle").html(splitResponse[1])
-			   $("#aportacion").val('')
-			}else if(splitResponse[0]=="fail"){
-				$(".msj").html(splitResponse[1])
-			}
-			$("#btnAportacion").show();
-            
-        },
-        error: function ()
-        {
-            alert('Algo salio mal, compruebe su conexion a internet');
-        }
-    });
-}
-*/
 
 function saveAportacion(){
 	
@@ -539,6 +577,7 @@ function saveAportacion(){
 	var fd = new FormData(document.getElementById("frmAportacion"));
 	fd.append('type','saveAportacion');
 	fd.append('usuarioId',getCookie("usuarioId"));
+    $.mobile.loading('show');
 
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
@@ -565,7 +604,6 @@ function saveAportacion(){
 		},
 		success: function(response){
 			
-			console.log(response);
 			var splitResp = response.split("[#]");
 
 			$(".loader").html("");
@@ -579,33 +617,28 @@ function saveAportacion(){
 			}else{
 				 alert('Algo salio mal, compruebe su conexion a internet');
 			}
-			
-			
+            $.mobile.loading('hide');
 		},
 	})
 
 }
 
-
-
 function detalleAportacion()
 {
-	$.mobile.changePage("#Aportacion");
+    $.mobile.loading('show');
+    $.mobile.changePage("#Aportacion");
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
         data : 'type=detalleAportacion&usuarioId='+getCookie("usuarioId")+'&topicId='+topicId+'&courseId='+courseId,
         success: function(data)
         {
-			console.log(data)
-
-           $("#divAportacion").html(data)
-
-
-            
+            $("#divAportacion").html(data)
+            $.mobile.loading('show');
         },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
@@ -613,31 +646,27 @@ function detalleAportacion()
 
 function verComentario(Id)
 {
-	$("#div_"+Id).toggle();
+    $.mobile.loading('show');
+    $("#div_"+Id).toggle();
+    $.mobile.loading('hide');
 }
-
-
 
 function addComentario(replyId,topicId,courseId)
 {
-	$.mobile.changePage("#divAddComentario");
+    $.mobile.loading('show');
+    $.mobile.changePage("#divAddComentario");
 	$("#replyId").val(replyId);
 	$("#ccourseId").val(courseId);
 	$("#ctopicId").val(topicId);
 	$("#usuarioId").val(getCookie("usuarioId"));
-
+    $.mobile.loading('hide');
 }
-
-
-
-
-
-
 
 function SaveComentario(){
 	
 	// En esta var va incluido $_POST y $_FILES
-	var fd = new FormData(document.getElementById("frmRetro"));
+    $.mobile.loading('show');
+    var fd = new FormData(document.getElementById("frmRetro"));
 	fd.append('type','SaveComentario');
 	fd.append('usuarioId',getCookie("usuarioId"));
 
@@ -680,33 +709,26 @@ function SaveComentario(){
 			}else{
 				 alert('Algo salio mal, compruebe su conexion a internet');
 			}
-			
-			
+            $.mobile.loading('hide');
 		},
 	})
-
 }
-
-
 
 function verFormUp(Id,modl,tipo)
 {
-
-
-	$.mobile.changePage("#divUp");
+    $.mobile.loading('show');
+    $.mobile.changePage("#divUp");
 	$("#upactividadId").val(Id);
 	$("#upmodalidad").val(modl);
 	$("#tipoactivi").val(tipo);
 	$("#upusuarioId").val(getCookie("usuarioId"));
+    $.mobile.loading('hide');
 }
 
-
-
-
-
 function upActividad(){
-	
-	// En esta var va incluido $_POST y $_FILES
+
+    $.mobile.loading('show');
+    // En esta var va incluido $_POST y $_FILES
 	var fd = new FormData(document.getElementById("frmUpActividad"));
 	fd.append('type','upActividad');
 	fd.append('usuarioId',getCookie("usuarioId"));
@@ -751,21 +773,17 @@ function upActividad(){
 			}else{
 				 alert('Algo salio mal, compruebe su conexion a internet');
 			}
-			
-			
+            $.mobile.loading('hide');
 		},
 	})
 
 }
 
-
-
-
-
 function editFoto(){
 	
 	// En esta var va incluido $_POST y $_FILES
-	var fd = new FormData(document.getElementById("frmAlumno"));
+    $.mobile.loading('show');
+    var fd = new FormData(document.getElementById("frmAlumno"));
 	fd.append('type','editFoto');
 	fd.append('usuarioId',getCookie("usuarioId"));
 
@@ -783,7 +801,6 @@ function editFoto(){
 					Progress = (Progress);
 					console.log(Progress)
 					$('#progress_').val(Math.round(Progress));						
-					
 				},false);
 			return XHR;
 		},
@@ -807,8 +824,7 @@ function editFoto(){
 			}else{
 				 alert('Algo salio mal, compruebe su conexion a internet');
 			}
-			
-			
+            $.mobile.loading('hide');
 		},
 	})
 
@@ -818,11 +834,10 @@ function compruebaExistencia(Id){
 	$("#archiivocargado_"+Id).html('<font color="276e36">Archivo adjunto</font>');
 }
 
-
-
 function verSeccion(Id){
-	
-	$(".menuPrincipal").attr("href", "#myPanel");
+
+    $.mobile.loading('show');
+    $(".menuPrincipal").attr("href", "#myPanel");
 	$.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
@@ -834,49 +849,47 @@ function verSeccion(Id){
 		},
         success: function(data)
         {
-			 console.log(data)
-
-		// $("#myPanel").html(data);
-			
 			$("#divmyPanel").html(data);
-            
+            $.mobile.loading('hide');
         },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
 	
 }
 
-
-
-
-
 function backHome()
 {
 	if($("#auxMenu").val() == 1){
 		clickMenu(13)
 	}else{
-		$.mobile.changePage("#welcome");
+        $.mobile.loading('show');
+        $.mobile.changePage("#welcome");
+        $.mobile.loading('hide');
 	}
-	
 }
 
 function CargaDoLogin()
 {
-	$.mobile.changePage("#login");
+    $.mobile.loading('show');
+    $.mobile.changePage("#login");
+    $.mobile.loading('hide');
 }
 
 function CargaInicio()
 {
+    $.mobile.loading('show');
     $.mobile.changePage("#welcome");
+    $.mobile.loading('hide');
 }
 
 function verSubSeccion(Id){
-	
-	// $(".menuPrincipal").attr("href", "#myPanel");
-	$.ajax({
+
+    $.mobile.loading('show');
+    $.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
         data : 'type=verSubSeccion&Id='+Id,
@@ -887,33 +900,25 @@ function verSubSeccion(Id){
 		},
         success: function(data)
         {
-			 console.log(data)
 			var splitResp = data.split("[#]");
-		// $("#myPanel").html(data);
 			$.mobile.changePage("#pagSubSeccion");
 			$("#divSubSeccion").html(splitResp[1]);
 			$("#divFooter").html(splitResp[2]);
-			
-
-		
-			
-            
+            $.mobile.loading('hide');
         },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
 	
 }
 
-
-
-
 function clickMenu(Id){
-	
-	// $(".menuPrincipal").attr("href", "#myPanel");
-	$.ajax({
+
+    $.mobile.loading('show');
+    $.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
         data : 'type=clickMenu&Id='+Id,
@@ -924,31 +929,23 @@ function clickMenu(Id){
 		},
         success: function(data)
         {
-			 console.log(data)
 			var splitResp = data.split("[#]");
-		// $("#myPanel").html(data);
-			// $.mobile.changePage("#pagSubSeccion");
 			$("#contenidoAjax").html(splitResp[1]);
-			// $("#divFooter").html(splitResp[2]);
-			
-
-		
-			
-            
+            $.mobile.loading('hide');
         },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
 	
 }
 
-
 function saveContacto(topicId,courseId)
 {
-	
-	$.ajax({
+    $.mobile.loading('show');
+    $.ajax({
 		url : WEB_ROOT+'/ajax/app/querys.php',
         type: "POST",
         data : 'type=saveContacto&usuarioId='+getCookie("usuarioId")+'&'+$('#frmContacto').serialize(),
@@ -959,29 +956,29 @@ function saveContacto(topicId,courseId)
 		},
         success: function(data)
         {
-			console.log(data)
-			$(".loader").html("");
-			
-           var splitResponse = data.split("[#]");
-           if($.trim(splitResponse[0])=="ok"){
-			    $("#msjContacto").html(splitResponse[1])
-			    $(".txts").val('')
-		   }else if($.trim(splitResponse[0])=="fail"){
-			    $(".msj").html(splitResponse[1])
-		   }
-		   $("#btnSave").show();
-            
+            $(".loader").html("");
+
+            var splitResponse = data.split("[#]");
+            if($.trim(splitResponse[0])=="ok"){
+                $("#msjContacto").html(splitResponse[1])
+                $(".txts").val('')
+            }else if($.trim(splitResponse[0])=="fail"){
+                $(".msj").html(splitResponse[1])
+            }
+            $("#btnSave").show();
+            $.mobile.loading('hide');
         },
         error: function ()
         {
+            $.mobile.loading('hide');
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
 }
 
-
 function verPortal(Id)
 {
+    $.mobile.loading('show');
 	if(Id == 7){
 		$.mobile.changePage("#portal");
 	}else if(Id == 9){
@@ -993,9 +990,8 @@ function verPortal(Id)
 	}else if(Id == 6){
 		$.mobile.changePage("#portalconta");
 	}
-	
+    $.mobile.loading('hide');
 }
-
 
 function onBackKeyDown()
 {

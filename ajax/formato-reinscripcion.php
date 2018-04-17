@@ -10,9 +10,11 @@
 	
 	$course->setCourseId($_GET['courseId']);
 	$infoCourse = $course->Info();
+
 	
 	$in = explode('-',$infoCourse['initialDate']);
 	$fi = explode('-',$infoCourse['finalDate']);
+
 	// echo '<pre>'; print_r($infoCourse);
 	// exit;
 	$student->setUserId($_SESSION['User']['userId']);

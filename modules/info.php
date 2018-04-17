@@ -1,6 +1,4 @@
-<?php
-		
-	/* For Session Control - Don't remove this */
+/* For Session Control - Don't remove this */
 	// $user->allow_access(37);	
 	
 	
@@ -22,5 +20,3 @@
 	$smarty->assign('infoSol', $infoSol);
 	$smarty->assign('id', $_GET['id']);
 	
-
-?>
