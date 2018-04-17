@@ -4,5 +4,12 @@
     <th width="100">Apellido Materno</th>
     <th width="150">Nombre</th>
     <th width="80">No. Control</th>
-    <th width="20">Acciones</th> 
+    <th width="80">
+	{if $tipo eq 'matricula'}
+		Matricula
+	{else}
+		Referencia Bancaria
+	{/if}
+	</th>
+    <!--<th width="20">Acciones</th> -->
 </tr>

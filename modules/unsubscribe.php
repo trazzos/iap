@@ -1,41 +1,33 @@
-<?php
-		
-	/* For Session Control - Don't remove this */
-	// $user->allow_access(37);	
+<?php		
+/* For Session Control - Don't remove this */
+// $user->allow_access(37);	
+if($_POST){
+	if($_POST['type'] ==  'saveSolicitudBaja'){
 
-
-	if($_POST){
-			
-			
-// echo "<pre>"; print_r($_POST);
-	// exit;
-		if($_POST['type'] ==  'saveSolicitudBaja'){
-
-			if($solicitud->upSolicitudBaja()){
-				$smarty->assign("msj", 'si');	
-			}else{
-				$smarty->assign("msj", 'no');	
-			}
-			
+		if($solicitud->upSolicitudBaja()){
+			$smarty->assign("msj", 'si');	
 		}else{
-			$solicitud->setTipo(3);
-			$solicitud->setMotivo($_POST['motivo']);
-			if($solicitud->SaveSolicitud()){
-				$smarty->assign("msj", 'si');	
-			}else{
-				$smarty->assign("msj", 'no');	
-			}
+			$smarty->assign("msj", 'no');	
 		}
 		
-		
-		
+	}else{
+		$solicitud->setTipo(3);
+		$solicitud->setMotivo($_POST['motivo']);
+		if($solicitud->SaveSolicitud()){
+			$smarty->assign("msj", 'si');	
+		}else{
+			$smarty->assign("msj", 'no');	
+		}
 	}
-
-
-	$infoBaja =  $solicitud->buscaBaja();
+}
+$info =  $solicitud->Info($_GET['sId']);
+$infoBaja =  $solicitud->buscaBaja();
+// echo "<pre>"; print_r($infoBaja);
+// exit;
+$smarty->assign('info', $info);
+$smarty->assign('infoBaja', $infoBaja);
 	
-
-	$smarty->assign('infoBaja', $infoBaja);
-	
+// echo '<pre>'; print_r($info);
+// exit;	
 
 ?>

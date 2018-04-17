@@ -19,7 +19,6 @@ function CalificacionesAct(id){
 			alert(msgError);
 		}
     });
-
 	
 }//AddReg
 
@@ -135,14 +134,16 @@ $.ajax({
 	  	data: "type=solicitarReferencia&id="+id,
 		beforeSend: function(){			
 			// $("#td_"+id).html(LOADER3);
+			$("#load").html(LOADER3);
 		},
 	  	success: function(response) {	
 			console.log(response)
 			var splitResponse = response.split("[#]");
-			if(splitResponse[0] == "ok"){
-				$("#msj").html(splitResponse[1]);
-			}else if (splitResponse[0] == "ok"){
-				$("#msj").html(splitResponse[2]);
+			if($.trim(splitResponse[0]) == "ok"){
+				$("#msj5").html(splitResponse[1]);
+				$("#load").html('');
+			}else if ($.trim(splitResponse[0]) == "ok"){
+				$("#msj5").html(splitResponse[2]);
 			}
 			  
 
@@ -153,4 +154,51 @@ $.ajax({
     });
 
 
+}
+
+
+function descargaFormato(courseId,semestreId){
+	url=WEB_ROOT+"/ajax/formato-reinscripcion.php?"+$('#frmfiltro').serialize(true)+'&courseId='+courseId+'&semestreId='+semestreId;
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
+}
+
+
+
+function abrirReins(subjectId,courseId,semesterId){
+	
+	$("#tabla1").hide();
+	
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/homepage.php',
+	  	data: "type=abrirReins&subjectId="+subjectId+'&courseId='+courseId+'&semesterId='+semesterId,
+		beforeSend: function(){			
+			// $("#td_"+id).html(LOADER3);
+		},
+	  	success: function(response) {	
+			console.log(response)
+			var splitResponse = response.split("[#]");
+			
+				$("#modal1").html(splitResponse[1]);
+	
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+}
+
+
+
+function verCalendario(){
+	url=WEB_ROOT+"/ajax/pagos.php?"+$('#frmfiltro').serialize(true);
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
+}
+
+
+
+
+function printReferencia(){
+	url=WEB_ROOT+"/ajax/referencia_pdf.php?"+$('#frmfiltro').serialize(true);
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
 }

@@ -166,6 +166,7 @@ $cursos = $course->infoCoursem();
 	$smarty->assign('mnuMain', "cursos");
 	
 	$announcements = $announcement->Enumerate($info["courseId"], $_GET["id"]);
+	$smarty->assign('usuariologId', $_SESSION['User']['userId']);
 	$smarty->assign('announcements', $announcements);
 	
 

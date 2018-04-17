@@ -4,6 +4,79 @@
 	{
 		private $teamNumber;
 		private $coursemoduleId;
+		private $perfilParticipante;
+		private $duracion;
+
+		private $numParticipantes;
+		private $horario;
+		private $objetivoParticular;
+		private $estructuraTematica;
+		private $criteriosEvaluacion;
+		private $tecnicas;
+		private $bibliografias;
+		private $tipoMajor;
+		
+		public function setTipoMajor($value)
+		{
+			// $this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "");
+			$this->tipoMajor = $value;
+		}
+		
+		public function setPerfilParticipante($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->perfilParticipante = $value;
+		}
+		
+		public function setDuracion($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->duracion = $value;
+		}
+		
+		public function setnumParticipantes($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->numParticipantes = $value;
+		}
+		
+		public function setHorario($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->horario = $value;
+		}
+		
+		public function setobjetivoParticular($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->objetivoParticular = $value;
+		}
+		
+		public function setestructuraTematica($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->estructuraTematica = $value;
+		}
+		
+		public function setcriteriosEvaluacion($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->criteriosEvaluacion = $value;
+		}
+		
+		
+		public function settecnicas($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->tecnicas = $value;
+		}
+		
+		public function setbibliografias($value)
+		{
+			$this->Util()->ValidateString($value, $max_chars=100000000000, $minChars = 0, "Semblanza");
+			$this->bibliografias = $value;
+		}
+
 
 		
 		public function setCourseModuleId($value)
@@ -21,7 +94,7 @@
 
 		function EditScore($modality, $id, $scores, $retros)
 		{
-			
+			 $notificacion= new Notificacion;
 			// echo '<pre>'; print_r($scores);
 			// exit;
 			// foreach($scores as $key => $score){
@@ -92,9 +165,20 @@
 							   $vista="1p,".$hecho.",".$key."u";
 							   $tablas="activity_score";
 							   $enlace="/score-activity/id/".$id;
-							   $actividad="Se ha calificado la Actividad ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";;
+							   // $actividad="Se ha calificado la Actividad ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";;
+							   $actividad="Se ha calificado la Actividad ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(".number_format($score,2,'.','').")   Retroalimentación(".$retros[$key].")";;
 									
 
+
+							 if($score <> '0' or $score <> ''){
+								  $notificacion->setActividad($actividad);
+								  $notificacion->setVista($vista);
+								  $notificacion->setHecho($hecho);
+								  $notificacion->setTablas($tablas);
+								  $notificacion->setEnlace($enlace);
+								  
+								  $notificacion->saveNotificacion();
+							 }
 							
 							
 
@@ -125,9 +209,20 @@
 							if($activityAnt['ponderation']==number_format($score,2,'.','') &&  $activityAnt['retro']==$retros[$key])
 							$actividad="NO";                       
 							else					   
-							$actividad="Se ha modificado calificación en ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";
+							$actividad="Se ha modificado calificación en ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(".number_format($score,2,'.','').")   Retroalimentación(".$retros[$key].")";
+							// $actividad="Se ha modificado calificación en ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";
 
-						
+							if($actividad!="NO"){
+
+							  $notificacion->setActividad($actividad);
+							  $notificacion->setVista($vista);
+							  $notificacion->setHecho($hecho);
+							  $notificacion->setTablas($tablas);
+							  $notificacion->setEnlace($enlace);
+							  
+							  $notificacion->saveNotificacion();
+							  
+							}
 						}
 						
 						$arch =  "fileRetro_".$key;
@@ -160,17 +255,11 @@
 						}
 						
 						//crear notificacion de actualizacion de calificaciones
-						if($actividad!="NO"){
-						  $notificacion= new Notificacion;
-						  $notificacion->setActividad($actividad);
-						  $notificacion->setVista($vista);
-						  $notificacion->setHecho($hecho);
-						  $notificacion->setTablas($tablas);
-						  $notificacion->setEnlace($enlace);
-						  
-						  $notificacion->saveNotificacion();
-						  
-						}
+						
+		
+					
+							
+						
 						
 						
 						
@@ -805,15 +894,16 @@
 		public function actaCalificacion()
 		{
 			
+			// echo $this->tipoMajor;
+			// exit;
 			
 			$this->Util()->DB()->setQuery("
 				SELECT *, user_subject.status AS status FROM user_subject
 				LEFT JOIN user ON user_subject.alumnoId = user.userId
-				WHERE courseId = '".$this->getCourseId()."'
+				WHERE user_subject.status = 'activo' and courseId = '".$this->getCourseId()."'
 				ORDER BY lastNamePaterno ASC, lastNameMaterno ASC, names ASC");
 			$result = $this->Util()->DB()->GetResult();
-			
-			
+			$student = New Student;
 			foreach($result as $key => $res)
 			{
 				 $sql = "
@@ -823,9 +913,78 @@
 
 				$this->Util()->DB()->setQuery($sql);
 				$infoCc = $this->Util()->DB()->GetRow();
-				$result[$key]["score"] = $infoCc["calificacion"];
+	
+				// CALCULA ACUMULADO
+					$activity = new Activity;
+					$activity->setCourseModuleId($this->coursemoduleId);
+					$actividades = $activity->Enumerate();
+					$this->Util()->DB()->setQuery("
+						SELECT teamNumber
+						FROM team
+						WHERE courseModuleId = '".$this->coursemoduleId."' AND userId = '".$res["alumnoId"]."'");
+					$result[$key]["equipo"] = $this->Util()->DB()->GetSingle();
+					
+					$result[$key]{"addepUp"} = 0;
+					foreach($actividades as $activity)
+					{
+						if($activity["score"] <= 0)
+						{
+							continue;
+						}
+						//revisar calificacion
+						 $sqlca = "
+							SELECT ponderation
+							FROM activity_score
+							WHERE activityId = '".$activity["activityId"]."' AND userId = '".$res["alumnoId"]."'";
+							
+						// echo '<br>';
+						// echo '<br>';
+						
+						$this->Util()->DB()->setQuery($sqlca);
+						$score = $this->Util()->DB()->GetSingle();
+
+						$result[$key]{"score"}[] = $score;
+						$realScore = $score * $activity["score"] / 100;
+						$result[$key]{"realScore"}[] = $realScore;
+						
+						$result[$key]{"addepUp"} += $realScore;
+					}
+				
+				
+				if($infoCc["calificacion"]==null or $infoCc["calificacion"]==0){
+					
+					$at = $result[$key]{"addepUp"} / 10;
+					// echo $res["alumnoId"].'__'.$result[$key]{"addepUp"}.'__'.'__'.$at;
+					// echo '<br>';
+					if($this->tipoMajor == "MAESTRIA" and $at < 7){
+						$at= floor ($at);
+					}
+					else if($this->tipoMajor == "DOCTORADO" and $at < 8){
+						$at= floor ($at);
+					}
+					else{
+						$at= round($at, 0, PHP_ROUND_HALF_DOWN);
+					}
+					$infoCc["calificacion"] = $at ;
+					
+				}else{
+					$infoCc["calificacion"] = $infoCc["calificacion"];
+				}
+				
+				if($this->tipoMajor == "MAESTRIA" and $infoCc["calificacion"] < 7){
+					$result[$key]["score"] = 6;
+				}
+				else if($this->tipoMajor == "DOCTORADO" and $infoCc["calificacion"] < 8){
+					$result[$key]["score"] = 7;
+				}
+				else{
+					$result[$key]["score"] = $infoCc["calificacion"];
+				}
+				
+
 				
 			}
+			// exit;
 			
 			// echo "<pre>"; print_r($result);
 			// exit;
@@ -953,6 +1112,30 @@
 		function EditCalificacion()
 		{
 			
+			
+			// echo '<pre>'; print_r($_SESSION);nombreCompleto
+			// exit;
+			foreach($_POST as $key=>$aux){ 
+				
+				$e = explode("_",$key);
+				if($e[0]=="cal"){
+					
+					if($aux>=11){
+						echo 'fail[#]';
+						echo '<font color="red">La calificacion del alumno '.$e[1].' es mayor a 10</font>';
+						exit;
+					}
+					
+					if (strpos($aux, '.') !== false) {
+						echo 'fail[#]';
+						echo '<font color="red">La calificacion del alumno '.$e[1].' tiene decimales</font>';
+						exit;
+					}
+				}
+				
+			}
+			
+			// exit;
 			$this->Util()->DB()->setQuery("
 					SELECT *
 					FROM course_module
@@ -998,7 +1181,59 @@
 					
 				}
 			}
-				return true;
+			// deshabilitamos el calificar otra vez
+			$this->Util()->DB()->setQuery("
+								UPDATE `course_module` SET
+									`habilitarCalificar` = 'no'
+								WHERE
+									`courseModuleId` = '".$this->coursemoduleId."'");
+			$this->Util()->DB()->UpdateData();	
+			
+			
+			$this->Util()->DB()->setQuery("
+					SELECT 
+						*,
+						sm.name as materia,
+						s.name as carrera
+					FROM 
+						course_module as cm
+					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+					left join subject as s on s.subjectId = sm.subjectId
+					left join course as c on c.courseId = cm.courseId
+					WHERE cm.courseModuleId = ".$this->coursemoduleId."");
+			$infoSub = $this->Util()->DB()->GetRow();
+			
+			$this->Util()->DB()->setQuery("
+					SELECT *
+					FROM personal
+					WHERE perfil = 'Administrador'");
+			$lstAdmins = $this->Util()->DB()->GetResult();
+			
+			// echo '<pre>'; print_r($_SESSION);nombreCompleto
+			// exit;
+			$notificacion = new Notificacion;
+			$sendmail = new SendMail;
+			
+			//guardamos notificacion
+			$actividads = "El Docente ".$_SESSION['User']['nombreCompleto']." de la materia ".$infoSub['materia']." del grupo ".$infoSub['group']." del posgrado ".$infoSub['carrera']." actualizo el acta de calificaciones";
+			$vistas = "1p,".$lstAdmins[0]['personalId']."p";
+			
+			$notificacion->setActividad($actividads);
+			$notificacion->setVista($vistas);
+			$notificacion->setHecho($_SESSION["User"]["userId"]."p");
+			$notificacion->setTablas('course_module_score');
+			$notificacion->setEnlace('/edit-modules-course/id/'.$this->coursemoduleId);
+			$notificacion->saveNotificacion();
+			
+			
+			$resposeHtml .= '<br><br><br><br>';
+			$resposeHtml .= $actividads;
+			$sendmail->PrepareAttachment("Actualizacion en Acta de Calificaciones",$resposeHtml, "","", "dacademica@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+			$sendmail->PrepareAttachment("Actualizacion en Acta de Calificaciones",$resposeHtml, "", "", "enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+			
+			
+
+			return true;
 		}
 		
 		function validarCalificacion()
@@ -1013,5 +1248,285 @@
 		}
 		
 		
+		function habilitarEdicion()
+		{
+			$this->Util()->DB()->setQuery("
+								UPDATE `course_module` SET
+									`habilitarCalificar` = 'si'
+								WHERE
+									`courseModuleId` = '".$this->coursemoduleId."'");
+							$this->Util()->DB()->UpdateData();	
+							
+			$this->Util()->DB()->setQuery("
+					SELECT 
+						*
+					FROM 
+						course_module
+					WHERE courseModuleId = ".$this->coursemoduleId."");
+			$infoSub = $this->Util()->DB()->GetRow();
+			
+			@unlink(DOC_ROOT."/docentes/calificaciones/".$infoSub['rutaActa']);
+			
+			$this->Util()->DB()->setQuery("
+								UPDATE `course_module` SET
+									`rutaActa` = ''
+								WHERE
+									`courseModuleId` = '".$this->coursemoduleId."'");
+							$this->Util()->DB()->UpdateData();	
+							
+			
+			return true;
+		}
+		
+		function saveNumReferencia()
+		{
+			
+			foreach ($_POST as $key=>$aux){
+				
+				$k = explode('_',$key);
+				if($k[0]=='num'){
+					$this->Util()->DB()->setQuery("
+						UPDATE `user` SET
+							`referenciaBancaria` = '".$aux."'
+						WHERE
+							`userId` = '".$k[1]."'");
+						$this->Util()->DB()->UpdateData();
+				}
+			}
+				
+			
+			return true;
+		
+		}
+		
+		
+		
+		function saveMatricula()
+		{
+			
+			foreach ($_POST as $key=>$aux){
+				
+				$k = explode('_',$key);
+				if($k[0]=='num'){
+					$this->Util()->DB()->setQuery("
+						UPDATE `user` SET
+							`controlNumber` = '".$aux."'
+						WHERE
+							`userId` = '".$k[1]."'");
+						$this->Util()->DB()->UpdateData();
+				}
+			}
+				
+			
+			return true;
+		
+		}
+		
+		function upFile($Id)
+		{
+			
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			$archivo = 'archivos';
+			foreach($_FILES as $key=>$var)
+			{
+			   switch($key)
+			   {
+				   case $archivo:
+				   if($var["name"]<>""){
+						$aux = explode(".",$var["name"]);
+						$extencion=end($aux);
+						$temporal = $var['tmp_name'];
+						$url = DOC_ROOT;				
+						$foto_name="acta_".$Id.".".$extencion;		
+						if(move_uploaded_file($temporal,$url."/docentes/calificaciones/".$foto_name)){									
+							$sql = 'UPDATE 		
+								course_module SET 		
+								rutaActa = "'.$foto_name.'"			      		
+								WHERE courseModuleId = '.$Id.'';		
+							$this->Util()->DB()->setQuery($sql);		
+							$this->Util()->DB()->UpdateData();
+					   }
+					}
+					break;
+				}
+			}
+			
+			unset($_FILES);
+			
+			return true;
+		}	
+		
+		
+		function onSendCarta($Id)
+		{
+			
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			$archivo = 'cedula';
+			foreach($_FILES as $key=>$var)
+			{
+			   switch($key)
+			   {
+				   case $archivo:
+				   if($var["name"]<>""){
+						$aux = explode(".",$var["name"]);
+						$extencion=end($aux);
+						$temporal = $var['tmp_name'];
+						$url = DOC_ROOT;				
+						$foto_name="carta_".$Id.".".$extencion;		
+						if(move_uploaded_file($temporal,$url."/docentes/carta/".$foto_name)){									
+							$sql = 'UPDATE 		
+								course_module SET 		
+								rutaCarta = "'.$foto_name.'"			      		
+								WHERE courseModuleId = '.$Id.'';		
+							$this->Util()->DB()->setQuery($sql);		
+							$this->Util()->DB()->UpdateData();
+					   }
+					}
+					break;
+				}
+			}
+			
+			unset($_FILES);
+			
+			return true;
+		}	
+		
+		
+		
+		function onSendEncuadre($Id)
+		{
+			
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			$archivo = 'cedula';
+			foreach($_FILES as $key=>$var)
+			{
+			   switch($key)
+			   {
+				   case $archivo:
+				   if($var["name"]<>""){
+						$aux = explode(".",$var["name"]);
+						$extencion=end($aux);
+						$temporal = $var['tmp_name'];
+						$url = DOC_ROOT;				
+						$foto_name="encuadre_".$Id.".".$extencion;		
+						if(move_uploaded_file($temporal,$url."/docentes/encuadre/".$foto_name)){									
+							$sql = 'UPDATE 		
+								course_module SET 		
+								rutaEncuadre = "'.$foto_name.'"			      		
+								WHERE courseModuleId = '.$Id.'';		
+							$this->Util()->DB()->setQuery($sql);		
+							$this->Util()->DB()->UpdateData();
+					   }
+					}
+					break;
+				}
+			}
+			
+			unset($_FILES);
+			
+			return true;
+		}	
+		
+		
+		function onSendRubrica($Id)
+		{
+			
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			$archivo = 'cedula';
+			foreach($_FILES as $key=>$var)
+			{
+			   switch($key)
+			   {
+				   case $archivo:
+				   if($var["name"]<>""){
+						$aux = explode(".",$var["name"]);
+						$extencion=end($aux);
+						$temporal = $var['tmp_name'];
+						$url = DOC_ROOT;				
+						$foto_name="rubrica_".$Id.".".$extencion;		
+						if(move_uploaded_file($temporal,$url."/docentes/rubrica/".$foto_name)){									
+							$sql = 'UPDATE 		
+								course_module SET 		
+								rutaRubrica = "'.$foto_name.'"			      		
+								WHERE courseModuleId = '.$Id.'';		
+							$this->Util()->DB()->setQuery($sql);		
+							$this->Util()->DB()->UpdateData();
+					   }
+					}
+					break;
+				}
+			}
+			
+			unset($_FILES);
+			
+			return true;
+		}	
+		
+		
+		function onChangePicture($Id)
+		{
+			
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			$archivo = 'archivos';
+			foreach($_FILES as $key=>$var)
+			{
+			   switch($key)
+			   {
+				   case $archivo:
+				   if($var["name"]<>""){
+						$aux = explode(".",$var["name"]);
+						$extencion=end($aux);
+						$temporal = $var['tmp_name'];
+						$url = DOC_ROOT;				
+						$foto_name="personal_foto/".$Id.".".$extencion;		
+						if(move_uploaded_file($temporal,$url."/".$foto_name)){									
+							$sql = 'UPDATE 		
+								personal SET 		
+								foto = "'.$foto_name.'"			      		
+								WHERE personalId = '.$Id.'';		
+							$this->Util()->DB()->setQuery($sql);		
+							$this->Util()->DB()->UpdateData();
+					   }
+					}
+					break;
+				}
+			}
+			
+			unset($_FILES);
+			
+			return true;
+		}
+		
+		function onSaveCarta($Id)
+		{
+			
+			 $sql = 'UPDATE 		
+							course_module SET 		
+							perfilParticipante = "'.$this->perfilParticipante.'",			      		
+							duracion = "'.$this->duracion.'",			      		
+							numParticipantes = "'.$this->numParticipantes.'",			      		
+							horario = "'.$this->horario.'",			      		
+							objetivoParticular = "'.$this->objetivoParticular.'",				      		
+							estructuraTematica = "'.$this->estructuraTematica.'",			      		
+							criteriosEvaluacion = "'.$this->criteriosEvaluacion.'",		      		
+							tecnicas = "'.$this->tecnicas.'",			      		
+							bibliografias = "'.$this->bibliografias.'"			      		
+							WHERE courseModuleId = '.$Id.'';		
+						$this->Util()->DB()->setQuery($sql);		
+						$this->Util()->DB()->UpdateData();
+						
+			return true;
+			
+		}
 	}	
 ?>

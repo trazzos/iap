@@ -8,12 +8,14 @@
       
             <div class="flabel" style="float:left">
             Calificaciones </div>
+			<br>
+			<br>
         </div><!--
             <div class="closePopup" id="closePopUpDiv">
             <a href="javascript:void(0)" title="Cerrar"><img src="{$WEB_ROOT}/images/new/close.png" /></a>
             </div>-->				
        </div>
                
-     {include file="{$DOC_ROOT}/templates/lists/ponderation.tpl"}                      
+     {include file="{$DOC_ROOT}/templates/lists/ponderation_.tpl"}                      
          
 </div>

@@ -5,7 +5,7 @@
 
 
 	$lstSol = $solicitud->arraySolicitudes();
-	$registros = $solicitud->enumarateSolicitudesAdmin();
+	$registros = $solicitud->enumarateSolicitudesStden();
 	
 		
 	// echo "<pre>"; print_r($registros);

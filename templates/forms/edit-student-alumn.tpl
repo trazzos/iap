@@ -50,6 +50,10 @@
     <input type="hidden" id="type" name="type" value="saveEditStudentAlumn"/>
     <input type="hidden" id="id" name="id" value="{$info.userId}"/>
     <input type="hidden" id="tam" name="tam" value="1"/>
+    <input type="hidden" id="semestreId" name="semestreId" value="{$sId}"/>
+    <input type="hidden" id="courseMxId" name="courseMxId" value="{$courseMId}"/>
+    <input type="hidden" id="subjecxtId" name="subjecxtId" value="{$subjectId}"/>
+	 <input type="hidden" id="coursexId" name="coursexId" value="{$courseId}"/>
     <div class="portlet box red">
         <div class="portlet-title">
             <div class="caption">

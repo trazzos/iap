@@ -19,7 +19,7 @@
                 {if $majorModality == "Online"}
                     <a href="{$WEB_ROOT}/configuracion-examen/id/{$subject.activityId}" style="background:#32c5d2; color:white">Configurar</a>
                 {else}
-                    Aplicar Localmente
+                     <a href="{$WEB_ROOT}/configuracion-examen/id/{$subject.activityId}" style="background:#32c5d2; color:white">Configurar</a>
                 {/if}
             {else}
                 N/A

@@ -6,6 +6,13 @@
 	
 	if($_POST)
 	{
+		
+		if($_POST["apareceT"]=="on"){
+			$_POST["apareceT"]  = 'si';
+		}else{
+			$_POST["apareceT"]  = 'no';
+		}
+		
 		$course->setCourseId($_POST["courseId"]);
 		$course->setSubjectId($_POST["subjectId"]);
 		$course->setModality($_POST["modality"]);
@@ -25,6 +32,10 @@
 		$course->setScholarCicle($_POST["scholarCicle"]);
 		$course->setPonenteText($_POST["ponenteText"]);
 		$course->setFechaDiploma($_POST["fechaDiploma"]);
+		$course->setDias($_POST["dias"]);
+		$course->setHorario($_POST["horario"]);
+		$course->setAparece($_POST["apareceT"]);
+		$course->setTipoCuatri($_POST["tipoCuatri"]);
 		
 		$course->Update();
 	}
@@ -32,7 +43,7 @@
 	$cursos = $subject->Enumerate();
 	$smarty->assign('cursos', $cursos);
 
-	$empleados = $personal->Enumerate();
+	$empleados = $personal->Enumerate('lastname_paterno');
 	$smarty->assign('empleados', $empleados);
 
 	$subject->setSubjectId($_GET['id']);
@@ -41,6 +52,9 @@
 
 	$course->setCourseId($_GET['id']);
 	$post = $course->Info();
+	
+	// echo '<pre>'; print_r($post);
+	// exit;
 	$smarty->assign('post', $post);
 	
 ?>

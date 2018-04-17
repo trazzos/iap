@@ -9,12 +9,63 @@ class Student extends User
 	private $nombre;
 	private $noControl;
 	private $estatus;
+	private $tipobaja;
+	private $motivo;
+	private $cmId;
+	private $usuariojjId;
+	private $yoId;
+	private $mensaje;
+	private $statusjj;
+	private $asunto;
+
+	
+	
+	public function setAsunto($value)
+	{
+		$this->asunto = $value;	
+	}
+	
+	public function setStatusjj($value)
+	{
+		$this->statusjj = $value;	
+	}
+	
+	public function setUsuariojjId($value)
+	{
+		$this->usuariojjId = $value;	
+	}
+	
+	public function setYoId($value)
+	{
+		$this->yoId = $value;	
+	}
+	
+	public function setMensaje($value)
+	{
+		$this->mensaje = $value;	
+	}
+	
+	public function setCMId($value)
+	{
+		$this->cmId = $value;	
+	}
 
 		
 	public function setSubjectId($value)
 	{
 		$this->subjectId = $value;	
 	}
+	
+	public function setTipoBaja($value)
+	{
+		$this->tipobaja = $value;	
+	}
+	
+	public function setMotivo($value)
+	{
+		$this->motivo = $value;	
+	}
+	
 	private $alumnoId;
 	
 	public function setAlumnoId($value)
@@ -1744,6 +1795,31 @@ class Student extends User
 		
 	}
 
+	
+	function GetAcumuladoCourseModuleActa($id, $alumnoId)
+	{
+		//actividades
+		$activity = new Activity;
+		$activity->setCourseModuleId($id);
+
+		$activity->setUserId($alumnoId);
+		$actividades = $activity->Enumerate();
+		
+		// echo '<pre>'; print_r ($actividades);
+		// exit;
+		$realScore = 0;
+		$countAc = count($actividades);
+		foreach($actividades as $res)
+		{
+			$totalScore += $res["ponderation"];
+		}
+		// echo $totalScore;
+		// exit;
+		@$total = $totalScore/$countAc;
+		
+		return $total;
+	}
+	
 	function GetAcumuladoCourseModule($id, $alumnoId = 0)
 	{
 		//actividades
@@ -1987,6 +2063,765 @@ class Student extends User
 		return true;
 	}
 	
+	public function ProcesoReinscripcion($courseMId,$subjectId,$courseId,$semestreId)
+	{
+		
+		if($courseMId=='x'){
+			$infoS['semesterId'] = $semestreId;
+		}else{
+			$sql = "
+				SELECT * FROM course_module  as c
+				left join subject_module as s on c.subjectModuleId = s.subjectModuleId
+				WHERE courseModuleId =  ".$courseMId."";
+			$this->Util()->DB()->setQuery($sql);
+			$infoS = $this->Util()->DB()->GetRow();
+		}
+		
+		
+	
+		 $sqlQuery = "INSERT INTO 
+						confirma_inscripcion 
+						(
+							reinscrito,
+							nivel, 
+							userId,
+							subjectId,
+							courseId,
+							courseModuleId
+						)
+							VALUES
+						(
+							'si',
+							'".$infoS['semesterId']."', 
+							'".$_SESSION['User']['userId']."', 
+							'".$subjectId."', 
+							'".$courseId."',
+							'".$courseMId."'
+						)";
+
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->InsertData();
+		
+		return true;
+	}
+	
+	public function confirmaReinscripcion($carreraId,$semestreId)
+	{
+			 $sql = "
+				SELECT count(*) FROM confirma_inscripcion
+				WHERE subjectId =  ".$carreraId." and nivel = ".$semestreId." and userId = ".$_SESSION["User"]["userId"]."";
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$infoS = $this->Util()->DB()->GetSingle();
+			
+		return $infoS;
+	}
+	
+	
+	public function testFire()
+	{
+		$sql="SELECT  *
+			FROM      
+			alumnos";
+		$this->Util()->Dbfire()->setQuery($sql);
+		$row = $this->Util()->Dbfire()->GetResult();
+		// exit;
+		return $row;
+	}
+	
+	
+	public function infoCarrera()
+	{
+		$sql = "
+				SELECT * FROM user
+				WHERE userId = ".$_SESSION["User"]["userId"]."";
+			$this->Util()->DB()->setQuery($sql);
+		$infoS = $this->Util()->DB()->GetRow();  
+			
+		$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' order by id desc ";
+		$this->Util()->DB()->setQuery($sql);
+		$row6 = $this->Util()->DB()->GetRow();
+		
+		return $row6;
+	}
+	public function verCalendarioPagos()
+	{
+		
+		 $sql = "
+				SELECT * FROM user
+				WHERE userId = ".$_SESSION["User"]["userId"]."";
+			$this->Util()->DB()->setQuery($sql);
+		$infoS = $this->Util()->DB()->GetRow();  
+			
+		$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' order by id desc ";
+		$this->Util()->DB()->setQuery($sql);
+		$row6 = $this->Util()->DB()->GetRow();
+		
+		$sql="select periodo from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' and clavenivel = '".$row6['clavenivel']."' GROUP BY periodo  ";
+		$this->Util()->DB()->setQuery($sql);
+		$row = $this->Util()->DB()->GetResult();
+		
+		
+		foreach($row as $key=>$aux){
+			$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' 
+				and clavenivel = '".$row6['clavenivel']."' 
+				and  periodo = '".$aux['periodo']."' 
+				and (claveconcepto = 12 or claveconcepto = 21 or claveconcepto = 9)";
+			$this->Util()->DB()->setQuery($sql);
+			$rowp = $this->Util()->DB()->GetResult();
+			foreach($rowp as $key6=>$aux6){
+				
+				  $sql="select * from alumnoshistorial where clave  = '".$infoS['referenciaBancaria']."' 
+				and clavenivel = '".$row6['clavenivel']."' and  ciclo = '".$row6['ciclo']."' and gradogrupo  = '".$aux6['gradogrupo']."'";
+				$this->Util()->DB()->setQuery($sql);
+				$rowp8 = $this->Util()->DB()->GetRow();
+				$rowp[$key6]['inicioPago'] = $rowp8['fechainiciopagos'];
+				$rowp[$key6]['beca'] = $rowp8['becaporcentaje'];
+				$rowp[$key6]['numPagos'] = $rowp8['numPagos'];
+				
+				if($aux6['claveconcepto'] == 21){
+					
+					for($i=1;$i<=$rowp8['numPagos'];$i++){
+						
+						
+						if($i==2){
+								$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
+								$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
+						}
+						if($i==3){
+								$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
+								$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
+						}
+						if($i==4){
+								$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
+								$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
+						}
+						
+						$rowp[$i]['inicioPago'] = $rowp8['fechainiciopagos'];
+						$rowp[$i]['descripcion'] = 'Materia';
+						$rowp[$i]['numPagos'] = $rowp8['numPagos'];
+						$rowp[$i]['beca'] = $rowp8['becaporcentaje'];
+						@$rowp[$i]['total'] = $aux6['importe'];
+					}
+
+				}else{
+					$rowp[0]['inicioPago'] = $rowp8['fechainiciopagos'];
+					$rowp[0]['descripcion'] = $aux6['descripcion'];
+					$rowp[0]['numPagos'] = $rowp8['numPagos'];
+					$rowp[0]['beca'] = $rowp8['becaporcentaje'];
+					$rowp[0]['total'] = $aux6['importe'];
+				}
+				
+			}
+			
+			$row[$key]['pagos'] = $rowp;
+		}
+
+		return $row;
+		
+	}
+	
+	
+	public function verCalendarioPagoscxc()
+	{
+		
+		 $sql = "
+				SELECT * FROM user
+				WHERE userId = ".$_SESSION["User"]["userId"]."";
+			$this->Util()->DB()->setQuery($sql);
+		$infoS = $this->Util()->DB()->GetRow();  
+			
+		$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' order by id desc ";
+		$this->Util()->DB()->setQuery($sql);
+		$row6 = $this->Util()->DB()->GetRow();
+		
+		// $row6['ciclo'] = '2016-2017';
+		
+		$sql="select periodo,ciclo,clavenivel,gradogrupo,nombrenivel from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' GROUP BY periodo ORDER BY id ASC   ";
+		$this->Util()->DB()->setQuery($sql);
+		$row = $this->Util()->DB()->GetResult();
+		
+		// echo '<pre>'; print_r($row);
+		// exit;
+		// echo '';
+		// exit;
+		// EXIT;
+		//12 es inscripcion
+		//21 materia
+		//9 resinscripcion
+		$util = New Util;
+		foreach($row as $key=>$aux){
+			  $sql="select  efectivo from pagos where clave  = '".$infoS['referenciaBancaria']."' 
+								and ciclo = '".$aux['ciclo']."' 
+								and  periodoesc = '".$aux['periodo']."' 
+								and clavenivel = '".$aux['clavenivel']."'
+								and (claveconcepto = 12 or claveconcepto = 21 or claveconcepto = 9) group by folio";
+							$this->Util()->DB()->setQuery($sql);
+			$rowabono = $this->Util()->DB()->GetResult();
+
+			$efectivo = 0;
+			foreach($rowabono as $keya=>$auxa){
+				$efectivo += $auxa['efectivo'];
+			}
+					
+			$sql="select * from pagosadicio where clavealumno  = '".$infoS['referenciaBancaria']."' 
+				and clavenivel = '".$aux['clavenivel']."' 
+				and  periodo = '".$aux['periodo']."' 
+				and (claveconcepto = 9 or claveconcepto = 12 or claveconcepto = 21) order by claveconcepto asc";
+			$this->Util()->DB()->setQuery($sql);
+			$rowp = $this->Util()->DB()->GetResult();
+			$rowp = $util->orderMultiDimensionalArray($rowp,'claveconcepto',false);
+			foreach($rowp as $key6=>$aux6){
+				
+
+				  $sql="
+					select 
+						* 
+					from 
+						alumnoshistorial 
+					where 
+						clave  = '".$infoS['referenciaBancaria']."' 
+						and clavenivel = '".$aux['clavenivel']."' 
+						and  ciclo = '".$aux['ciclo']."' 
+						and gradogrupo  = '".$aux6['gradogrupo']."'";
+				$this->Util()->DB()->setQuery($sql);
+				$rowp8 = $this->Util()->DB()->GetRow();
+				$rowp[$key6]['inicioPago'] = $rowp8['fechainiciopagos'];
+				$rowp[$key6]['beca'] = $rowp8['becaporcentaje'];
+				$rowp[$key6]['numPagos'] = $rowp8['numPagos'];
+				if($aux6['claveconcepto'] == 21){
+					
+					for($i=1;$i<4;$i++){
+							if($i==2){
+									$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
+									$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
+							}
+							if($i==3){
+									$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
+									$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
+							}
+							if($i==4){
+									$undiantes = strtotime ( '+'.($aux6['pagacada']).' day' , strtotime ( $rowp8['fechainiciopagos'] ) ) ;
+									$rowp8['fechainiciopagos'] = date ( 'Y-m-d' , $undiantes );
+							}
+							
+						$abono  = 0;
+						$descuento = (($aux6['importe']*$rowp8['becaporcentaje'])/100);
+						if($efectivo >0){
+							$efectivo =  $efectivo - ($aux6['importe']- $descuento);
+							if ($efectivo >=0){
+								$abono = ($aux6['importe']- $descuento);
+							}else{
+								$abono = 0;
+							}
+						}
+						
+						
+						
+						
+						if($i>=2){
+							 
+							$rowp[$i]['inicioPago'] = $rowp8['fechainiciopagos'];
+							$rowp[$i]['numPagos'] = $rowp8['numPagos'];
+							$rowp[$i]['beca'] = $rowp8['becaporcentaje'];
+							@$rowp[$i]['abono'] = $abono;
+							@$rowp[$i]['importe'] = $aux6['importe'];
+							$rowp[$i]['descripcion'] = $aux6['descripcion'];
+							$descuento = (($aux6['importe']*$rowp8['becaporcentaje'])/100);
+							@$rowp[$i]['totalPagar'] = $aux6['importe']- $descuento;
+						}
+						else{
+							@$rowp[$i]['abono'] = $abono;
+							$descuento = (($aux6['importe']*$rowp8['becaporcentaje'])/100);
+							@$rowp[$i]['totalPagar'] = $aux6['importe']- $descuento;
+						}
+					}//for
+				}else{
+
+					$abono  = 0;
+					if($efectivo >0){
+						$efectivo = $efectivo - $aux6['importe'];
+						if ($efectivo >=0){
+							$abono = $aux6['importe'];
+						}else{
+							$abono = 0;
+						}
+					}
+
+					$rowp[$key6]['abono'] =  $abono;
+					@$rowp[$key6]['totalPagar'] = $aux6['importe'];					
+				}				
+			}
+
+			$row[$key]['pagos'] = $rowp;
+		}
+		
+		return $row;
+		
+	}
+	
+	public function extraeInfoFire($tipo)
+	{
+		
+		// ECHO $tipo;
+		
+		if($tipo=='2'){
+			
+			$sql="select * from user ";
+			$this->Util()->Db()->setQuery($sql);
+			$lst = $this->Util()->Db()->GetResult();
+			
+			foreach($lst as $key=>$aux){
+				
+				
+				$sql="select * from ALUMNOS where CLAVE = '".$aux['referenciaBancaria']."'";
+				$this->Util()->Dbfire()->setQuery($sql);
+				$infoAl = $this->Util()->Dbfire()->GetResult();
+			
+				 $sql = "UPDATE
+							 user
+					 SET
+						porcentajeBeca = '".$infoAl['PORCBECA']."'
+					 WHERE 
+						referenciaBancaria = '".$aux['referenciaBancaria']."'";
+				$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->UpdateData();
+			}
+			
+		}else{
+			$sql="select max(id) from pagosadicio";
+			$this->Util()->Db()->setQuery($sql);
+			$maxIdPago = $this->Util()->Db()->GetSIngle();
+			
+			$sql="select max(id) from alumnoshistorial";
+			$this->Util()->Db()->setQuery($sql);
+			$maxIdH = $this->Util()->Db()->GetSIngle();
+			
+			$sql="select * from pagosadicio where ID > ".$maxIdPago." order by ID asc";
+			$this->Util()->Dbfire()->setQuery($sql);
+			$row6 = $this->Util()->Dbfire()->GetResult();
+			
+			$sql="select * from alumnoshistorial where ID > ".$maxIdH." order by ID asc";
+			$this->Util()->Dbfire()->setQuery($sql);
+			$lstHistory = $this->Util()->Dbfire()->GetResult();
+			
+			
+			
+
+			foreach($row6 as $key=>$aux){
+				
+				 $sqlNot="insert into pagosadicio(
+					  id,
+					  ciclo,
+					  periodo,
+					  clavenivel,
+					  nombrenivel,
+					  gradogrupo,
+					  clavealumno,
+					  claveconcepto,
+					  descripcion,
+					  periodicidad,
+					  importe,
+					  iva,
+					  formato,
+					  formapago,
+					  aplicabeca,
+					  unidad,
+					  pagaren,
+					  pagacada,
+					  pases,
+					  accesos,
+					  categoria,
+					  usuario,
+					  fechacreacion,
+					  usuariomodificacion,
+					  fechamodificacion
+					)
+				   values(
+							'".$aux['ID']."', 
+							'".$aux['CICLO']."', 
+							'".$aux['PERIODO']."',
+							'".$aux['CLAVENIVEL']."',
+							'".$aux['NOMBRENIVEL']."',
+							'".$aux['GRADOGRUPO']."',
+							'".$aux['CLAVEALUMNO']."',
+							'".$aux['CLAVECONCEPTO']."',
+							'".$aux['DESCRIPCION']."',
+							'".$aux['PERIODICIDAD']."',
+							'".$aux['IMPORTE']."',
+							'".$aux['IVA']."',
+							'".$aux['FORMATO']."',
+							'".$aux['FORMAPAGO']."',
+							'".$aux['APLICABECA']."',
+							'".$aux['UNIDAD']."',
+							'".$aux['PAGAREN']."',
+							'".$aux['PAGACADA']."',
+							'".$aux['PASES']."',
+							'".$aux['ACCESOS']."',
+							'".$aux['CATEGORIA']."',
+							'".$aux['USUARIO']."',
+							'".$aux['FECHACREACION']."',
+							'".$aux['USUARIOMODIFICACION']."',
+							'".$aux['FECHAMODIFICACION']."'
+						 )";
+				$this->Util()->DB()->setQuery($sqlNot);
+				$this->Util()->DB()->InsertData(); 
+			}
+			
+			foreach($lstHistory as $key=>$aux){
+				
+				 $r = explode ('/',$aux['FECHAINICIOPAGOS']);
+				 $fecha = $r[2].$r[1].$r[0];
+				
+				 $sqlNot="insert into alumnoshistorial(
+					  id,
+					  clave,
+					  clavenivel,
+					  nombrenivel,
+					  gradogrupo,
+					  ciclo,
+					  becapesos,
+					  becaporcentaje,
+					  nombre,
+					  apellidop,
+					  apellidom,
+					  periodo,
+					  fechainiciopagos,
+					  infocambio,
+					  activado,
+					  idplan,
+					  idespecialidad,
+					  usuario,
+					  fechacreacion,
+					  usuariomodificacion,
+					  fechamodificacion,
+					  status,
+					  fechastatus,
+					  observaciones
+					  
+					)
+				   values(
+							'".$aux['ID']."', 
+							'".$aux['CLAVE']."', 
+							'".$aux['CLAVENIVEL']."',
+							'".$aux['NOMBRENIVEL']."',
+							'".$aux['GRADOGRUPO']."',
+							'".$aux['CICLO']."',
+							'".$aux['BECAPESOS']."',
+							'".$aux['BECAPORCENTAJE']."',
+							'".$aux['NOMBRE']."',
+							'".$aux['APELLIDOP']."',
+							'".$aux['APELLIDOM']."',
+							'".$aux['PERIODO']."',
+							'".$fecha."',
+							'".$aux['INFOCAMBIO']."',
+							'".$aux['ACTIVADO']."',
+							'".$aux['IDPLAN']."',
+							'".$aux['IDESPECIALIDAD']."',
+							'".$aux['USUARIO']."',
+							'".$aux['FECHACREACION']."',
+							'".$aux['USUARIOMODIFICACION']."',
+							'".$aux['FECHAMODIFICACION']."',
+							'".$aux['STATUS']."',
+							'".$aux['FECHASTATUS']."',
+							'".$aux['OBSERVACIONES']."'
+						 )";
+
+				$this->Util()->DB()->setQuery($sqlNot);
+				$this->Util()->DB()->InsertData(); 
+
+			}
+			
+			$sql="select max(id) from pagosadicio";
+			$this->Util()->Db()->setQuery($sql);
+			$maxIdPago = $this->Util()->Db()->GetSIngle();
+			
+			$sql="select max(id) from alumnoshistorial";
+			$this->Util()->Db()->setQuery($sql);
+			$maxIdH = $this->Util()->Db()->GetSIngle();
+			
+			 $sql = "UPDATE
+							tablasincronizada
+					SET
+						ultimoRegistro = '".$maxIdPago."',
+						fechaSincronizacion = '".date('Y-m-d')."'
+					WHERE nombre = 'pagosadicio'";
+
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->UpdateData();
+			
+			 $sql = "UPDATE
+							tablasincronizada
+					SET
+						ultimoRegistro = '".$maxIdH."',
+						fechaSincronizacion = '".date('Y-m-d')."'
+					WHERE nombre = 'alumnoshistorial'";
+
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->UpdateData();
+		}
+		
+		
+		
+		return true;
+	}
+	
+	
+	public function actualizapago()
+	{
+		
+		
+		$sql="select * from alumnoshistorial where ID >= 1649 and ID < 1749 ";
+		$this->Util()->DB()->setQuery($sql);
+		$rowp = $this->Util()->DB()->GetResult();
+		
+		
+			
+		foreach($rowp as $key=>$aux){
+			
+			
+			
+			$sql="select * from alumnoshistorial where ID = ".$aux['id']." ";
+			$this->Util()->Dbfire()->setQuery($sql);
+			$infoA = $this->Util()->Dbfire()->GetRow();
+			
+			$r = explode ('/',$infoA['FECHAINICIOPAGOS']);
+			
+			 $fecha = $r[2].$r[1].$r[0].'<br>';
+			
+			 $sql = "UPDATE
+						alumnoshistorial
+						SET
+							fechainiciopagos = '".$fecha."'
+						WHERE ID = '".$aux['id']."'";
+						
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->UpdateData();
+		}
+			
+			
+				
+		return true;
+	}
+	
+	
+	public function saveBaja()
+	{
+		$sql = "UPDATE
+				solicitud
+				SET
+					tipobaja = '".$this->tipobaja."',
+					motivo = '".$this->motivo."'
+				WHERE tiposolicitudId = 3 and estatus = 'en progreso' ";
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->UpdateData();
+				
+		return true;
+	}
+	
+	public function miChat(){
+		
+		
+		 $sql = 'SELECT 
+				*
+				FROM chat as c
+				left join user as u on u.userId = c.usuarioId
+				WHERE c.yoId = '.$_SESSION['User']["userId"].' or c.usuarioId = '.$_SESSION['User']["userId"].'
+				group by c.usuarioId,c.yoId ORDER BY  chatId ASC ';
+				
+	$this->Util()->DB()->setQuery($sql);	
+		$data = $this->Util()->DB()->GetResult();
+		foreach($data as $key=>$aux){
+			
+			if($aux["yoId"]==$_SESSION['User']["userId"]){
+				$sql = 'SELECT 
+				*
+				FROM user 
+				WHERE userId = '.$aux["usuarioId"].'';
+			$this->Util()->DB()->setQuery($sql);	
+			$infoU = $this->Util()->DB()->GetRow();
+				$data[$key]["nombre"] = $infoU["names"];
+			}
+			else{
+			$sql = 'SELECT 
+				*
+				FROM user 
+				WHERE userId = '.$aux["yoId"].'';
+			$this->Util()->DB()->setQuery($sql);	
+			$infoU = $this->Util()->DB()->GetRow();
+				$data[$key]["nombre"] = $infoU["names"];
+			}
+			 
+			
+		}
+		
+			
+		return $data;
+		
+	}//Enumerate
+	
+	public function entablandoConversacion($Id){
+
+		 $sql = 'SELECT * FROM chat WHERE chatId = '.$Id.'';
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();
+		
+		 $sql = 'SELECT 
+		* 
+		FROM chat as c
+		left join user as u on u.userId =   c.usuarioId 
+		WHERE (c.usuarioId = '.$info["usuarioId"].' or c.yoId = '.$info["usuarioId"].') and (c.usuarioId = '.$info["yoId"].' or c.yoId = '.$info["yoId"].')';
+	
+		$this->Util()->DB()->setQuery($sql);
+		$lstChat = $this->Util()->DB()->GetResult();
+		
+		// echo '<pre>'; print_r($lstChat);
+		// exit;
+				
+		return $lstChat;
+	}//
+	
+	public function SaveMensaje(){
+	
+		// $sql = 'SELECT * FROM chat WHERE chatId = '.$_POST["chatId"].'';
+		// $this->Util()->DB()->setQuery($sql);
+		// $infoChat = $this->Util()->DB()->GetRow();
+		
+		// if($infoChat["yoId"]<>$_SESSION['User']["userId"]){
+			// $userId = $infoChat["yoId"];
+		// }else{
+			// $userId = $infoChat["usuarioId"];
+		// }
+		
+		 $sql = "
+		INSERT INTO  chat (
+				`fechaEnvio` ,
+				`courseModuleId` ,
+				`usuarioId`, 
+				`yoId`, 
+				`mensaje` 
+				)
+				VALUES (
+				'".date("Y-m-d")."',
+				'".$_POST['c5Id']."',
+				'".$_POST['profId']."',
+				'".$_SESSION['User']["userId"]."',
+				'".$_POST["mensaje"]."'
+				);";
+				
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->InsertData(); 
+				
+		return true;
+	
+	}
+	
+	public function SaveReply(){
+		
+		if ($_SESSION['User']['type']=='student'){
+			$quien = 'alumno';
+		}else{
+			$quien = 'personal';
+		}
+	
+				
+		 $sql = "
+		INSERT INTO  chat (
+				`courseModuleId` ,
+				`fechaEnvio` ,
+				`estatus` ,
+				`usuarioId`, 
+				`yoId`, 
+				`mensaje`, 
+				`quienEnvia`, 
+				`asunto` 
+				)
+				VALUES (
+				'".$this->cmId."',
+				'".date('Y-m-d')."',
+				'".$this->statusjj."',
+				'".$this->usuariojjId."',
+				'".$this->yoId."',
+				'".$this->mensaje."',
+				'".$quien."',
+				'".$this->asunto."'
+				);";
+				
+		$this->Util()->DB()->setQuery($sql);
+		$aId = $this->Util()->DB()->InsertData(); 
+		
+		// echo '<pre>'; print_r($_FILES); 
+		// exit;
+		foreach($_FILES as $key=>$var)
+		{
+		   switch($key)
+		   {
+			   case 'archivos':
+			   if($var["name"]<>""){
+					$aux = explode(".",$var["name"]);
+					$extencion=end($aux);
+					$temporal = $var['tmp_name'];
+					$url = DOC_ROOT;				
+					$foto_name="doc_".$aId.".".$extencion;		
+					if(move_uploaded_file($temporal,$url."/doc_inbox/".$foto_name)){
+						
+						$sql = "UPDATE
+							chat
+							SET
+								rutaAdjunto = '".$foto_name."'
+							WHERE chatId = '".$aId."'";
+								$this->Util()->DB()->setQuery($sql);
+								$this->Util()->DB()->UpdateData();
+							
+					}
+				}
+		   }
+		}
+				
+		return true;
+	
+	}
+	
+	public function InfoEstudiate($Id)
+	{
+		
+		$sql = "
+				SELECT * FROM user WHERE userId =  ".$Id."";
+				// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+			
+		return $result;
+	}
+	
+	
+	
+	public function GetPorcentajeBeca($clave)
+	{
+		
+		 $sql = "
+				SELECT * FROM alumnoshistorial WHERE clave =  ".$clave." order by id DESC";
+				// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+			
+		return $result;
+	}
+	
+	function cargarCiudades($Id)
+	{
+		
+		
+		$sql = "SELECT * FROM municipio WHERE estadoId = '".$Id."'";
+				// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetResult();
+			
+		return $result;
+		
+		
+	}	
 	
 }
 

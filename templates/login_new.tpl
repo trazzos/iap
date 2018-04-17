@@ -450,7 +450,7 @@ License: You must have a valid license purchased only from themeforest(the above
 </div>
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
-<div class="copyright"> 2016 &copy; Instituto de Administraci&oacute;n P&uacute;blica del Estado de Chiapas, A.C.</div>
+<div class="copyright"> {$smarty.now|date_format:"%Y"} &copy; Instituto de Administraci&oacute;n P&uacute;blica del Estado de Chiapas, A.C.</div>
 <!-- END COPYRIGHT -->
 <!--[if lt IE 9]>
 <script src="{$WEB_ROOT}/assets/global/plugins/respond.min.js"></script>

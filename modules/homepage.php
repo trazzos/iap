@@ -1,8 +1,8 @@
 <?php
-
 	/* For Session Control - Don't remove this */
 $x=0;	
-//print_r($_SESSION);exit;
+// echo '<pre>'; print_r($_SESSION);
+// exit;
 	
 	if ($_GET['id']!=NULL)
 		{
@@ -45,6 +45,9 @@ $x=0;
 	$smarty->assign("inactiveCourses", $inactiveCourses);	
 
 	$finishedCourses = $student->StudentCourses("finalizado");
+	
+	
+	
 	$smarty->assign("finishedCourses", $finishedCourses);	
 	
 	$announcements = $announcement->Enumerate(0, 0);
@@ -56,7 +59,8 @@ $x=0;
 	
 	$notificaciones=$notificacion->Enumerate();
 	$smarty->assign('notificaciones', $notificaciones);
-	
+	// echo '<pre>'; print_r($notificaciones);
+	// exit;
 	/*
 	$subforos=$forum->Enumeratesubf();
     $smarty->assign('subforos', $subforos);

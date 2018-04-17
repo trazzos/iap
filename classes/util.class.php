@@ -24,6 +24,15 @@ class Util extends Error
 		$this->DBSelect->setSqlDatabase("iapchiap_cbta");
 		return $this->DBSelect;
 	}
+	
+	public function Dbfire()
+	{
+		if($this->Dbfire == null )
+		{
+			$this->Dbfire = new Dbfire();
+		}
+		return $this->Dbfire;
+	}
 
 	function RoundNumber($number)
 	{
@@ -171,6 +180,8 @@ class Util extends Error
 		
 		if(strlen($string)<$minChars)
 		{
+			// echo 'lle';
+			// exit;
 			return $this->setError(10000, "error", "", $field);
 		}
 			
@@ -469,7 +480,7 @@ $string = utf8_decode($string);
 		 while ( ($num = substr($ent, -3)) != '   ') { 
 				$ent = substr($ent, 0, -3); 
 				if (++$sub < 3 and $fem) { 
-					 $matuni[1] = 'una'; 
+					 $matuni[1] = 'uno'; 
 					 $subcent = 'as'; 
 				}else{ 
 					 $matuni[1] = $neutro ? 'un' : 'uno'; 
@@ -1230,7 +1241,113 @@ function HandleMultipages($page,$total,$link,$items_per_page=0,$pagevar="p"){
 	{
 		return html_entity_decode(htmlspecialchars_decode($string));
 	}
+	
+	function orderMultiDimensionalArray ($toOrderArray, $field, $inverse = false) {
+		
+		$position = array();
+		$newRow = array();
+		foreach ($toOrderArray as $key => $row) {
+				$position[$key]  = $row[$field];
+				$newRow[$key] = $row;
+		}
+		if ($inverse) {
+			arsort($position);
+		}
+		else {
+			asort($position);
+		}
+		$returnArray = array();
+		foreach ($position as $key => $pos) {     
+			$returnArray[] = $newRow[$key];
+		}
+		return $returnArray;
+		
+	}
 
+	
+	function HandlePagesAjax($page,$total,$link,$items_per_page=0,$pagevar="p"){
+
+		if(!$items_per_page)
+			$items_per_page = ITEMS_PER_PAGE;
+	
+		$pages["items_per_page"] = $items_per_page;
+	
+		if(empty($page))
+			$page = 0;
+	
+		$pages["start"] = $page*$items_per_page;
+		$pages["end"]   = $pages["start"] + $items_per_page;
+		if($pages["end"] > $total){
+			$pages["end"] = $total;
+		}//if
+	
+		if($total%$items_per_page == 0){
+			$total_pages = $total/$items_per_page - 1;
+			if($total_pages < 0){
+				$total_pages = 0;
+			}//if
+		}//if
+		else{
+			$total_pages = (int)($total/$items_per_page);
+		}//else
+	
+		if($page > 0)
+			$pages['prev'] = $page - 1;
+	
+		if($total_pages > 0){
+			if($total_pages > 15){
+				$start = $page - 7;
+				if($start < 0)
+					$start = 0;
+				$end = $start + 15;
+				if($end > $total_pages){
+					$end = $total_pages;
+					$start = $end - 15;
+				}//if
+			}//if
+			else{
+				$start = 0;
+				$end = $total_pages;
+			}//else
+			for($i=$start;$i<=$end;$i++){
+				if(!$this->hs_eregi("\|$pagevar\|",$link))
+				$pages["numbers"][$i+1] = $link."/".$pagevar."/".$i;
+				else
+				$pages["numbers"][$i+1] = $this->hs_ereg_replace("\|$pagevar\|",(string)$i,$link);
+			}//for
+		}//if
+		
+		if($page < $total_pages)
+			$pages['next'] = $page + 1;
+		
+		if($start > 0)
+			$pages['first'] = 0;
+				
+		if($end < $total_pages)
+			$pages['last'] = $total_pages;
+			
+		$pages["current"] = $page+1;
+		
+		$x = $pages['current'];
+		$y = $items_per_page * $x;
+		
+		if($pages['current'] > 1){
+			$x = ($x * $items_per_page) - ($items_per_page - 1);
+			$y = $x + ($items_per_page - 1);
+		}
+		
+		if(trim($pages['next']) == '')
+			$y = $total;
+				
+		$info = 'Mostrando '.$x.' a '.$y.' de '.$total;
+		
+		$data['pages'] = $pages;
+		$data['info'] = $info;
+		
+		return $data;
+	
+	}//HandleMultipagesAjax
+	
 }
 
 

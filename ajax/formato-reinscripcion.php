@@ -10,6 +10,11 @@
 	
 	$course->setCourseId($_GET['courseId']);
 	$infoCourse = $course->Info();
+
+	
+	$in = explode('-',$infoCourse['initialDate']);
+	$fi = explode('-',$infoCourse['finalDate']);
+
 	// echo '<pre>'; print_r($infoCourse);
 	// exit;
 	$student->setUserId($_SESSION['User']['userId']);
@@ -65,7 +70,7 @@
 			<tr>
 				<td colspan='3' align='center'>
 					Cedula de Reinscripción<br>
-					Condicional
+					".$infoCourse['majorName']."
 					<br>
 					<br>
 					<br>
@@ -116,7 +121,7 @@
 					Ciclo:
 					<br>
 					<div class='line'>
-					".$infoCourse['initialDate']." -  ".$infoCourse['finalDate']."
+					".$in[0]." -  ".$fi[0]."
 					</div>
 				</td>
 				<td >

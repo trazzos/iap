@@ -4,18 +4,19 @@
         <td align="center" class="id">{$subject.courseId}</td>
         <td align="center">{$subject.clave}</td>
         <td align="center">{$subject.majorName}</td>
-        <td align="center">{$subject.name}-{$subject.group}</td>
-        <td align="center">{$subject.modality}</td>
+        <td align="center">{$subject.name}</td>
+		 <td align="center">{$subject.group}</td>
+        <td align="center">{if $subject.modality eq 'Local'}Presencial{else}{$subject.modality}{/if}</td>
         <td align="center">{if $subject.initialDate != "0000-00-00"} {$subject.initialDate|date_format:"%d-%m-%Y"}{else} S/F {/if}</td>
         <td align="center">{if $subject.finalDate != "0000-00-00"}  {$subject.finalDate|date_format:"%d-%m-%Y"}  {else} S/F  {/if}   </td>
-        <td align="center">{$subject.daysToFinish}</td>
+        <!--<td align="center">{$subject.daysToFinish}</td>-->
         <td align="center">
             {if $docente == 1}
-                {$subject.courseModuleActive}
+                {if !$docente} {$subject.courseModuleActive} {/if}
             {else}
-                {$subject.courseModule}
+               {if !$docente}  {$subject.courseModule} {/if}
             {/if}
-            /{$subject.modules}
+             {if !$docente}  /{$subject.modules} {/if}
 
             {*} Flecha verde {*}
 			<br>
@@ -41,10 +42,11 @@
                 <span style="cursor:pointer" class="spanActive" onclick="VerGrupoAdmin({$subject.courseId});" title="Alumnos" id="{$subject.courseId}">{$subject.alumnActive}</span>             /
                 <span style="cursor:pointer" class="spanInactive" onclick="VerGrupoInactivoAdmin({$subject.courseId});"  id="{$subject.courseId}">{$subject.alumnInactive}</span>
             {else}
-                <span style="cursor:pointer" class="spanActive" onclick="VerGrupo({$subject.courseId});" title="Alumnos" id="{$subject.courseId}">{$subject.alumnActive}</span>             /
-                <span style="cursor:pointer" class="spanInactive" onclick="VerGrupoInactivo({$subject.courseId});"  id="{$subject.courseId}">{$subject.alumnInactive}</span>
+                <!--<span style="cursor:pointer" class="spanActive" onclick="VerGrupo({$subject.courseId});" title="Alumnos" id="{$subject.courseId}">-->
+				{$subject.alumnActive}<!--</span>-->             /
+                <!--<span style="cursor:pointer" class="spanInactive" onclick="VerGrupoInactivo({$subject.courseId});"  id="{$subject.courseId}">-->{$subject.alumnInactive}<!--</span>-->
             {/if}
-
+			
 
 
         </td>
@@ -64,7 +66,10 @@
 
 					{if $subject.majorName=="ESPECIALIDAD" || $subject.majorName=="MAESTRIA"}<!--
 						<img src="{$WEB_ROOT}/images/engrane.png" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="Generar Matriculas"  style="width:16px" />-->
-						<i class="fa fa-cog" aria-hidden="true" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="Generar Matriculas"></i>
+						<!--<i class="fa fa-cog" aria-hidden="true" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="MATRICULAS"></i>-->
+						<span style="cursor:pointer" class="spanActive" onclick="VerGrupo({$subject.courseId},'matricula');" title="MATRICULAS" id="{$subject.courseId}">
+						<i class="fa fa-cog" aria-hidden="true"></i>
+						</span>  
 						&nbsp;
 					{/if}
 
@@ -92,7 +97,17 @@
 						-->
 					</a>
 				</div>
+				<span style="cursor:pointer" class="spanActive" onclick="VerGrupo({$subject.courseId});" title="Referencia Bancaria" id="{$subject.courseId}">
+				<i class="fa fa-university" aria-hidden="true"></i>
+				</span>  
 				
+				<span style="cursor:pointer" class="spanActive" onclick="VerSolicitud({$subject.courseId});" title="CONSTANCIAS" id="{$subject.courseId}">
+				<i class="fa fa-folder-open" aria-hidden="true"></i>
+				</span>
+				
+				<span style="cursor:pointer" class="spanActive" onclick="editPeriodos({$subject.courseId});" title="PERIODOS" id="{$subject.courseId}">
+				<i class="fa fa-calendar" aria-hidden="true"></i>
+				</span>  
             </td>
         {/if}
     </tr>

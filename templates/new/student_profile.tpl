@@ -74,29 +74,50 @@
                             <a href="{$WEB_ROOT}/alumn-services ">
                                 <i class="icon-settings"></i> Configuración </a>
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="{$WEB_ROOT}/tv ">
                                 <i class="fa fa-video-camera"></i> VideoConferencias </a>
                         </li>
                         <li>
                             <a href="{$WEB_ROOT}/recorded ">
                                 <i class="fa fa-camera"></i> Grabaciones </a>
-                        </li>
-						 <li>
+                        </li>-->
+<!--						
+						<li>
                             <a href="{$WEB_ROOT}/view-solicitud" >
                                <i class="fa fa-folder-open" aria-hidden="true"></i>Solicitudes 
 							</a>
-                        </li>
-						 <li>
-                            <a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px">
-                               <i class="fa fa-university" aria-hidden="true"></i>Referencia Bancaria 
-							</a>
-                        </li>
-						 <li>
-                            <a href="{$WEB_ROOT}/constancia.pdf" target="_blank">
-                              <i class="fa fa-file-text" aria-hidden="true"></i>Descargar Formato de Inscripción 
-							</a>
-                        </li>
+                        </li>-->
+						<li>
+						<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px">
+						   <i class="fa fa-university" aria-hidden="true"></i>Referencia Bancaria 
+						</a>
+						</li>
+						<li>
+						<a href="{$WEB_ROOT}/graybox.php?page=formato-reinscripcion" data-target="#ajax" data-toggle="modal" data-width="1000px">
+						  <i class="fa fa-file-text" aria-hidden="true"></i>Descargar Formatos de Inscripción/Reinscripción
+						</a>
+						</li>
+						<li>
+						<!--<a href="{$WEB_ROOT}/ver-calendario" ><onClick="verCalendario()"
+						   <i class="fa fa-calendar"></i>Calendario de Pagos
+						</a>
+						</li>-->
+						<li>
+						<a href="{$WEB_ROOT}/estatus-financiero" ><!--onClick="verCalendario()"-->
+						  <i class="fa fa-file-text" aria-hidden="true"></i>Estatus Financiero
+						</a>
+						</li>
+						<li>
+						<a href="{$WEB_ROOT}/graybox.php?page=concepto-pago" data-target="#ajax" data-toggle="modal" data-width="1000px">
+						   <i class="fa fa-files-o"></i>Conceptos de Pago
+						</a>
+						</li>
+						<li>
+						<a href="{$WEB_ROOT}/inbox/or/h" >
+						 <i class="fa fa-comments"></i>Inbox 
+						</a>
+						</li>
                     </ul>
                 </div>
                 <!-- END MENU -->

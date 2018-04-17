@@ -3,6 +3,44 @@
 	class Module extends Course
 	{
 		private $subjectModuleId;
+		private $yoId;
+		private $quienEnviaId;
+		private $recibeId;
+		private $cmId;
+		private $tipoReporte;
+		private $statusIn;
+		
+		
+		public function setStatusIn($value)
+		{
+			$this->statusIn = $value;
+		}
+		
+		public function setTipoReporte($value)
+		{
+			$this->tipoReporte = $value;
+		}
+		
+		public function setCMId($value)
+		{
+			$this->cmId = $value;
+		}
+		
+		public function setRecibeId($value)
+		{
+			$this->recibeId = $value;
+		}
+		
+		public function setYoId($value)
+		{
+			$this->yoId = $value;
+		}
+		
+		public function setQuienEnviaId($value)
+		{
+			$this->quienEnviaId = $value;
+		}
+		
 		public function setSubjectModuleId($value)
 		{
 			$this->subjectModuleId = $value;
@@ -115,7 +153,7 @@
 					FROM
 						subject_module
 					WHERE
-							subjectModuleId='" . $this->	subjectModuleId . "'";
+							subjectModuleId='" . $this->subjectModuleId . "'";
 			//configuramos la consulta con la cadena de actualizacion
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y obtenemos el resultado
@@ -129,8 +167,11 @@
 		public function InfoCourseModule()
 		{
 			//creamos la cadena de seleccion
-			$sql = "SELECT 
-						*, subject_module.name AS name, subject.name AS subjectName, major.name AS majorName,
+			 $sql = "SELECT 
+						course_module.*, 
+						subject.*, 
+						major.*, 
+						subject_module.name AS name, subject.name AS subjectName, major.name AS majorName,
 						subject_module.welcomeText as welcomeText,
 						subject_module.introduction as introduction,
 						subject_module.intentions as intentions,
@@ -141,14 +182,25 @@
 						subject_module.politics as politics,
 						subject_module.evaluation as evaluation,
 						subject_module.bibliography as bibliography,
-						subject_module.subjectModuleId as Id
+						subject_module.subjectModuleId as Id,
+						subject_module.semesterId as semesId,
+						c.courseId as courseId,
+						c.modality as modality,
+						c.group as groupA,
+						c.tarifaMtro as tarifaMtro,
+						c.tarifaDr as tarifaDr,
+						c.hora as hora,
+						course_module.subtotal as subtotal
+						
 					FROM
 						course_module
+					LEFT JOIN course as c ON c.courseId = course_module.courseId
 					LEFT JOIN subject_module ON course_module.subjectModuleId = subject_module.subjectModuleId
 					LEFT JOIN	subject ON subject.subjectId = subject_module.subjectId	
 					LEFT JOIN	major ON major.majorId = subject.tipo	
 					WHERE
 							courseModuleId='" . $this->courseModuleId . "'";
+							// exit;
 			//configuramos la consulta con la cadena de actualizacion
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y obtenemos el resultado
@@ -166,6 +218,7 @@
 			
 			$result["initialDate"] = $this->Util->FormatDateBack($result["initialDate"]);
 			$result["finalDate"] = $this->Util->FormatDateBack($result["finalDate"]);
+			$result["fechaContrato"] = $this->Util->FormatDateBack($result["fechaContrato"]);
 			$result["access"] = explode("|", $result["access"]);
 
 			$result["welcomeTextDecoded"] = html_entity_decode($result["welcomeText"]);
@@ -298,6 +351,20 @@
 			$result = $this->Util()->DB()->InsertData();
 			if($result > 0)
 			{
+				// asignar a nueva tabla 
+				 $sql = "INSERT INTO
+						course_module_personal
+						( 
+							courseModuleId,	
+						 	personalId
+						)
+					VALUES (
+							'" .$result. "',
+							'" .$this->getTeacherId(). "')";
+				// exit;
+			//configuramos la consulta con la cadena de insercion
+			$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->InsertData();
 				//si el resultado es mayor a cero, se inserto el nuevo registro con exito...se regresara true
 				$result = true;
 				$this->Util()->setError(90000, 'complete', "Has activado un nuevo modulo dentro de la curricula");
@@ -356,6 +423,30 @@
 			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
 			$result = $this->Util()->DB()->UpdateData();
 			
+			//eliminar todos los docentes relacionados
+			$sql = "DELETE FROM course_module_personal
+		 	WHERE courseModuleId = '".$this->courseModuleId."'";
+			//configuramos la consulta con la cadena de insercion
+			$this->Util()->DB()->setQuery($sql);
+			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
+			$result = $this->Util()->DB()->DeleteData();
+			
+			
+			// asignar a nueva tabla 
+				 $sql = "INSERT INTO
+						course_module_personal
+						( 
+							courseModuleId,	
+						 	personalId
+						)
+					VALUES (
+							'" .$this->courseModuleId. "',
+							'" .$this->getTeacherId(). "')";
+				// exit;
+			//configuramos la consulta con la cadena de insercion
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
+			
 			if($_FILES['presentacion'])
 			{
 				$id = $this->getCourseModuleId();
@@ -384,5 +475,374 @@
 			return $result;
 		}				
 		
-	}	
+		public function compruebaInscripcion($semestreId,$courseId,$subjectId)
+		{
+			 $sql = "SELECT 
+						count(*)
+					FROM
+						confirma_inscripcion
+					WHERE
+						subjectId='".$subjectId."' and nivel = ".$semestreId." and userId = ".$_SESSION['User']['userId']."";
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetSingle();
+			
+			return $result;
+		}
+		
+		
+		public function EnumerateInboxAdmin()
+		{
+			
+
+			$filtro = "";
+			
+			if($this->statusIn){
+				$filtro .= " and estatus = '".$this->statusIn."'";
+			}
+			
+			if($this->cmId){
+				$filtro .= " and c.courseModuleId = ".$this->cmId."";
+			}
+			
+			if($this->quienEnviaId){
+				$filtro .= " and c.quienEnvia = '".$this->quienEnviaId."'";
+			}
+			
+			
+			
+			 $sql = "SELECT 
+						c.*,
+						sm.name as nombreMateria
+					FROM
+						chat as c
+					left join course_module as cm on cm.courseModuleId = c.courseModuleId
+					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+					WHERE
+						1 ".$filtro." order by chatId DESC";
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			
+			
+			
+			foreach($result as $key=>$aux){
+				if($aux['quienEnvia']=='alumno'){
+					
+					$sql = "SELECT 
+								*
+							FROM
+								user
+							WHERE
+								userId = ".$aux['yoId']."";
+					$this->Util()->DB()->setQuery($sql);
+					$infoU = $this->Util()->DB()->GetRow();
+					$result[$key]['nombre'] = $infoU['names'];
+					$result[$key]['paterno'] = $infoU['lastNamePaterno'];
+					$result[$key]['materno'] = $infoU['lastNameMaterno'];
+					
+					
+				}else{
+					$sql = "SELECT 
+								*
+							FROM
+								personal
+							WHERE
+								personalId = ".$aux['yoId']."";
+					$this->Util()->DB()->setQuery($sql);
+					$infoU = $this->Util()->DB()->GetRow();
+					$result[$key]['nombre'] = $infoU['name'];
+					$result[$key]['paterno'] = $infoU['lastname_paterno'];
+					$result[$key]['materno'] = $infoU['lastname_materno'];
+				}
+				
+			}
+			
+			// echo '<pre>'; print_r($result);
+			// exit;
+			return $result;
+		}
+		
+		public function EnumerateInbox()
+		{
+			
+
+			$filtro = "";
+			
+			if($this->statusIn){
+				$filtro .= " and c.estatus = '".$this->statusIn."'";
+			}
+			
+			if($this->yoId){
+				$filtro .= " and yoId = ".$this->yoId."";
+			}
+			
+			
+			
+			if($this->recibeId){
+				$filtro .= " and c.usuarioId = '".$this->recibeId."'";
+			}
+			
+			if($this->cmId){
+				$filtro .= " and c.courseModuleId = ".$this->cmId."";
+			}
+			
+			if($this->tipoReporte=='entrada'){
+				
+				if($this->quienEnviaId){
+					$filtro .= " and quienEnvia = '".$this->quienEnviaId."'";
+					if($this->quienEnviaId=='personal'){
+						$campos .= "p.name as nombre, p.lastname_paterno as paterno, p.lastname_materno as materno";
+						$left .= " left join personal as p on p.personalId = c.yoId";
+						// $leftEnviado .= " left join personal as p on p.personalId = c.usuarioId";
+					}else{
+						$campos .= "p.names as nombre, p.lastNamePaterno as paterno, p.lastNameMaterno as materno";
+						$left .= " left join user as p on p.userId = c.yoId";
+						// $leftEnviado .= " left join user as p on p.userId = c.usuarioId";
+					}	
+				}
+				
+				  $sql = "SELECT 
+						p.*,
+						c.*,
+						sm.name as nombreMateria,
+						".$campos."
+					FROM
+						chat as c
+					".$left." 
+					left join course_module as cm on cm.courseModuleId = c.courseModuleId
+					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+					WHERE
+						1 ".$filtro." order by chatId DESC";
+			}else if($this->tipoReporte=='enviados' or $this->tipoReporte=='borrador' or $this->tipoReporte=='eliminados'){
+				
+				if($this->quienEnviaId){
+					$filtro .= " and quienEnvia = '".$this->quienEnviaId."'";
+					if($this->quienEnviaId=='personal'){
+						$campos .= "p.names as nombre, p.lastNamePaterno as paterno, p.lastNameMaterno as materno";
+						// $left .= " left join user as p on p.userId = c.yoId";
+						$leftEnviado .= " left join user as p on p.userId = c.usuarioId";
+					}else{
+
+						$campos .= "p.name as nombre, p.lastname_paterno as paterno, p.lastname_materno as materno";
+						// $left .= " left join personal as p on p.personalId = c.usuarioId";
+						$leftEnviado .= " left join personal as p on p.personalId = c.usuarioId";
+					}	
+				}
+				
+				     $sql = "SELECT 
+						p.*,
+						c.*,
+						sm.name as nombreMateria,
+						".$campos."
+					FROM
+						chat as c
+					".$leftEnviado."
+					left join course_module as cm on cm.courseModuleId = c.courseModuleId
+					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+					WHERE
+						1 ".$filtro." order by chatId DESC";
+			}
+						 	
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			
+			// echo '<pre>'; print_r($result);
+			// exit;
+			return $result;
+		}
+		
+		public function infoChat($chatId)
+		{
+			 $sql = "SELECT 
+						*
+					FROM
+						chat
+					WHERE
+						chatId = ".$chatId."";
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetRow();
+			// exit;
+			$student = New Student;
+			$personal = New Personal;
+			
+			if($result['quienEnvia']=='alumno'){
+				$infouu = $student->InfoEstudiate($result['yoId']);
+				$personal->setPersonalId($result['usuarioId']);
+				$inforr = $personal->Info();
+				$result['envio'] = $infouu['names'].' '.$infouu['lastNamePaterno'].' '.$infouu['lastNameMaterno'];
+				$result['recibe'] = $inforr['name'].' '.$inforr['lastname_paterno'].' '.$inforr['lastname_materno'];
+			}else{
+				$personal->setPersonalId($result['yopId']);
+				$infouu = $personal->Info();
+				$inforr = $student->InfoEstudiate($result['usuarioId']);
+				$result['envio'] = $infouu['name'].' '.$infouu['lastname_paterno'].' '.$infouu['lastname_materno'];
+				$result['recibe'] = $inforr['names'].' '.$inforr['lastNamePaterno'].' '.$inforr['lastNameMaterno'];
+			}
+		
+			return $result;
+		}
+		
+		
+		
+		public function deleteInbox($chatId)
+		{
+			 $sql = "UPDATE 
+						chat
+					SET
+						estatus='eliminado'
+						WHERE 	chatId = '" . $chatId."'";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->UpdateData();
+			
+			return true;
+		}
+		
+		
+		public function addFavorito($chatId)
+		{
+			 $sql = "UPDATE 
+						chat
+					SET
+						favorito='si'
+						WHERE 	chatId = '" . $chatId."'";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->UpdateData();
+			
+			return true;
+		}
+		
+		
+		
+		public function materiaActivas($chatId)
+		{
+			// $sql = "SELECT 
+						// *
+					// FROM
+						// course_module
+					// WHERE
+						// chatId = ".$chatId."";
+			// $this->Util()->DB()->setQuery($sql);
+			// $result = $this->Util()->DB()->GetRow();
+			
+			// return ;
+		}
+		
+		public function actualizaALeido($chatId)
+		{
+		
+			$sql = "UPDATE 
+						chat
+					SET
+						leido ='si'
+						WHERE 	chatId = '" . $chatId."'";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->UpdateData();
+			
+			return true;
+		}
+		
+		
+		public function infoCourseMol($cMId)
+		{
+		
+				$sql = "SELECT 
+						*
+					FROM
+						course
+					WHERE
+						courseId = ".$cMId."";
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetRow();
+			
+			return $result;
+		}
+		
+		
+		public function materiasProfesores($Id){
+			
+			 $sql = "SELECT 
+						sm.name as name,
+						s.name as nameCar,
+						ce.group as group9,
+						ce.modality as modality,
+						ce.initialDate as initialDate,
+						ce.finalDate as finalDate,
+						cm.*
+					FROM
+						course_module_personal as c
+					left join course_module as cm on cm.courseModuleId = c.courseModuleId
+					left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+					left join subject as s on s.subjectId = sm.subjectId
+					left join course as ce on ce.courseId = cm.courseId
+					WHERE
+						c.personalId = ".$Id." order by cm.active asc";
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			
+			
+			
+			foreach($result as $key=>$aux){
+		
+				$result[$key]['importe'] = number_format(($aux['subtotal']/(1.16)),2);
+				$result[$key]['iva'] = number_format((($aux['subtotal']/(1.16))*(.16)),2);
+				$result[$key]['isr'] = number_format((($aux['subtotal']/(1.16))*(.1)),2);
+				$result[$key]['retIva'] = number_format(((($aux['subtotal']/(1.16))*(.16)))*(2/3),2);
+				$result[$key]['totalPagar'] = number_format($aux['subtotal']-(($aux['subtotal']/(1.16))*(.1))-(((($aux['subtotal']/(1.16))*(.16)))*(2/3)),2);
+			
+				if($aux['finalDate'] < date('Y-m-d')){
+					
+					$result[$key]['estatusFin'] = "finalizada";
+					
+				}else{
+					$result[$key]['estatusFin'] = "activa";
+				}
+			}
+			
+			return $result;
+			
+		}
+		
+		
+	
+	public function getEvaluacion($Id){
+		
+		 $sql = "SELECT 
+						*
+					FROM
+						course_module
+					WHERE
+						courseModuleId = ".$Id." ";
+						// exit;
+			$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();
+		
+			$sql = "SELECT 
+				*
+			FROM
+				user_subject as us
+			left join user as u on u.userId = us.alumnoId
+			WHERE
+				us.courseId = ".$info['courseId']." order by lastNamePaterno";
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			
+			foreach($result as $key=>$aux){
+				
+				
+				$sql = "SELECT 
+					count(*)
+				FROM
+					eval_alumno_docente
+				WHERE
+					courseModuleId = ".$Id." and alumnoId = ".$aux['alumnoId']."";
+				$this->Util()->DB()->setQuery($sql);
+				$d = $this->Util()->DB()->GetSingle();
+				$result[$key]['eval'] = $d ;
+				
+			}
+			
+			return $result;
+	}
+}	
 ?>

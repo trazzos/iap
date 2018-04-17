@@ -15,7 +15,7 @@
 </div>
 <!-- END PAGE BAR -->
 <!-- BEGIN PAGE TITLE-->
-<h1 class="page-title"> Información del Docente
+<h1 class="page-title"> Información del Asesor
     <small></small>
 </h1>
 <!-- END PAGE TITLE-->
@@ -33,7 +33,7 @@
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name"> {$docente.name} {$docente.lastname_paterno} {$docente.lastname_materno} </div>
-                    <div class="profile-usertitle-job"> Docente </div>
+                    <div class="profile-usertitle-job"> Asesor </div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->
@@ -48,15 +48,16 @@
                 <div class="profile-usermenu">
                     <ul class="nav">
                         <li class="">
-                            <a href="#">
-                                <i class="fa fa-envelope-o"></i> {$docente.correo}
+                            <a href="{$WEB_ROOT}/reply-inbox/id/{$id}/cId/0" >
+                                <i class="fa fa-envelope-o"></i> 
+								Enviar Inbox
                             </a>
                         </li>
-                        <li>
+                       <!--  <li>
                             <a href="#">
                                 <i class="fa fa-phone"></i> {$docente.celular}
                             </a>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
                 <!-- END MENU -->

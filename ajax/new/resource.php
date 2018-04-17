@@ -1,5 +1,4 @@
 <?php
-
 include_once('../../init.php');
 include_once('../../config.php');
 include_once(DOC_ROOT.'/libraries.php');
@@ -9,6 +8,10 @@ session_start();
 switch($_POST["type"])
 {
     case 'deleteResource':
+	
+		
+// echo '<pre>'; print_r($_POST);
+// exit;
         $resource->setResourceId($_POST['resourceId']);
         $info = $resource->Info();
 

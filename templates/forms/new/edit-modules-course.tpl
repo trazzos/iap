@@ -1,21 +1,99 @@
+<div id="msjCourse"></div>
 <div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Datos del M&oacute;dulo ::.
         </div>
-        <div class="actions">
-            <a  class="btn green" href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
-              <!-- <a class="btn green" href="{$WEB_ROOT}/graybox.php?page=view-modules-student&id={$myModule.courseModuleId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
+          <!-- <a class="btn green" href="{$WEB_ROOT}/graybox.php?page=view-modules-student&id={$myModule.courseModuleId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
 -->
+             <!-- <a  class="btn green" href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
 			 Vista previa del M&oacute;dulo
             </a>
 			  <a href="{$WEB_ROOT}/graybox.php?page=add-calificacion&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn green">
                 Acta de Calificaciones
             </a>
-        </div>
+			<a href="{$WEB_ROOT}/inbox/id/{$myModule.courseModuleId}" class="btn green">
+                Inbox
+            </a>-->
+        
+		<div class="actions" >
+		<div class="btn-toolbar" style="left:188px !important">
+			<div class="btn-group">
+				<a class="btn btn-primary" href="javascript:;" data-toggle="dropdown" aria-expanded="false">
+				<i class="fa fa-list-alt"></i>
+				 Acciones
+				<i class="fa fa-angle-down"></i>
+			</a>
+			<ul class="dropdown-menu">
+				<li>
+					<a href="{$WEB_ROOT}/graybox.php?page=add-calificacion&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="fa fa-graduation-cap"></i>
+							 Acta de Calificaciones
+					</a>
+				</li>
+				<li>
+					<a href="{$WEB_ROOT}/graybox.php?page=carta&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="fa fa-clone"></i>
+							Carta Descriptiva
+					</a>
+				</li>
+				<li>
+					
+					<!--<a href="{$WEB_ROOT}/docentes/contrato/{$myModule.rutaContrato}"  target="_blank"  >-->
+					<a href="{$WEB_ROOT}/graybox.php?page=down-contrato-doc&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="	fa fa-file-pdf-o"></i>
+							Contrato
+					</a>
+				</li>
+				<li>
+					<a href="{$WEB_ROOT}/graybox.php?page=encuadre&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="fa fa-object-group"></i>
+							Encuadre
+					</a>
+				</li>
+				<li>
+					<a href="{$WEB_ROOT}/graybox.php?page=rubrica&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="fa fa-pencil"></i>
+							Rúbrica
+					</a>
+				</li>
+				<li>
+					<a href="{$WEB_ROOT}/inbox/id/{$myModule.courseModuleId}">
+						<i class="fa fa-envelope"></i>
+							Inbox
+					</a>
+				</li>
+				<li>
+					<a href="{$WEB_ROOT}/graybox.php?page=down-plan&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="fa fa-book"></i>
+							Plan de Estudios
+					</a>
+				</li>
+				<li>
+					<a href="{$WEB_ROOT}/graybox.php?page=val&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="fa fa-line-chart"></i>
+							Valoracion
+					</a>
+				</li>
+				<li>
+					<a href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
+						<i class="fa fa-laptop"></i>
+							 Vista previa del M&oacute;dulo
+					</a>
+				</li>
+				
+				
+				
+				
+			</ul>
+			</div> 	
+		</div>
+
+		</div>
+		
     </div>
     <div class="portlet-body">
-		<div id="msj">2</div>
+		<div id="msj"></div>
         {*TODO agregar todas las acciones y javascript*}
         <form id="addMajorForm" name="addMajorForm" action="{$WEB_ROOT}/edit-modules-course/id/{$id}" method="post" enctype="multipart/form-data" class="form-horizontal">
             <input type="hidden" id="type" name="type" value="saveAddMajor"/>

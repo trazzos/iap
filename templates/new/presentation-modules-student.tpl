@@ -5,7 +5,13 @@
         </div>
     </div>
     <div class="portlet-body">
-        <div id="tblContent">
+		<button onClick="verPantallaCompleta()" class="btn green">Pantalla Completa</button>
+		<br>
+		<br>
+		
+		
+		
+        <div id="tblContent" style='text-align:center'>
             <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="1050" HEIGHT="600" id="Presentacion" ALIGN="">
                 <PARAM NAME=movie VALUE="{$WEB_ROOT}/flash/flash_{$id}.swf">
                 <PARAM NAME=quality VALUE=high> <PARAM NAME=bgcolor VALUE=#333399>

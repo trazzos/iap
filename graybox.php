@@ -165,6 +165,43 @@ $pages = array(
     'add-calificacion',
 	'referencia-bancaria',
 	'view-boleta',
+	'formato-reinscripcion',
+	'add-documento',
+	'add-concepto',
+	'info',
+	'cancelar-solicitud',
+	'concepto-pago',
+	'nuevo-mensaje',
+	'add-inbox',
+	'confirma-baja',
+	'test-docente',
+	'nuevo-inbox',
+	'add-docdocente',
+	'info-docente',
+	'doc-docente',
+	'add-docente-admin',
+	'cat-doc-admin',
+	'add-cat-doc-docente',
+	'add-cat-doc-docente-add',
+	'add-repositorio',
+	'val',
+	'carta',
+	'materias',
+	'eval',
+	'editar-contra',
+	'cedula-contra',
+	'down-contrato',
+	'edit-costo',
+	'up-plan',
+	'up-acta',
+	'down-contrato-doc',
+	'comentario-solicitud',
+	'validarpago-adjuntar',
+	'view-curricula',
+	'view-periodos',
+	'down-plan',
+	'encuadre',
+	'rubrica'
 
 );
 
@@ -174,6 +211,8 @@ if(!in_array($_GET['page'], $pages))
 }
 
 
+// echo '<pre>'; print_r($_GET);
+// exit;
 
 $smarty->assign('positionId', $User['positionId']);
 // echo  "<pre>"; print_r($_GET);

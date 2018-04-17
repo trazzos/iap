@@ -36,6 +36,7 @@ $User = $_SESSION['User'];
 $pages = array(	
 	'login',
 	'logout',
+	'personal1',
 	'homepage',
 	'student',
 	'major',
@@ -167,7 +168,34 @@ $pages = array(
 	'solicitud',
 	'view-solicitud',
 	'referencia-bancaria',
-	'score-activity-new'
+	'score-activity-new',
+	'reinscripcion',
+	'concepto',
+	'sincronizar',
+	'ver-calendario',
+	'estatus-financiero',
+	'mensaje',
+	'add-mensaje',
+	'inbox',
+	'reply-inbox',
+	'test-docente',
+	'info-docente',
+	'view-inbox',
+	'doc-docente',
+	'add-docdocente',
+	'repositorio',
+	'lst-docentes',
+	'cat-doc-docente',
+	'add-cat-doc-docente',
+	'materias',
+	'vehiculos',
+	'report-materia',
+	'report-docentes',
+	'doc-mat',
+	'tabla-costo',
+	'prog-academico',
+	'prog-materia',
+	'validarpago-adjuntar'
 	
 	
 	
@@ -226,6 +254,7 @@ else if($includedTpl == 'recuperacion'){
 }
 else
 {
+		
 	$smarty->display(DOC_ROOT.'/templates/index_new.tpl');
 }
 

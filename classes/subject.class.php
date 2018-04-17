@@ -23,8 +23,17 @@
 		private $tipo;
 		private $claveGroupId;
 		private $payments;
+		private $fechaRvoe;
 		
 		//new
+		public function setFechaRvoe($value)
+		{
+			// $this->Util()->ValidateFloat($value);
+			$util = new Util;
+			$value = $util->FormatDateMySql($value);
+			$this->fechaRvoe = $value;
+		}
+		
 		public function setPayments($value)
 		{
 			$this->Util()->ValidateFloat($value);
@@ -388,10 +397,20 @@ public function Enumerate_p(){
 		{
 			
 			$this->Util()->DB()->setQuery('
-				SELECT *, major.name AS majorName, subject.name AS name FROM subject 
-				LEFT JOIN major ON major.majorId = subject.tipo
-				ORDER BY  subject.subjectId ASC');
+				SELECT 
+					*, 
+					major.name AS majorName, 
+					subject.name AS name 
+				FROM 
+					subject 
+				LEFT JOIN 
+					major ON major.majorId = subject.tipo
+				ORDER BY   
+					FIELD (major.name,"MAESTRIA","DOCTORADO","CURSO","ESPECIALIDAD") ASC, subject.name');
 			$result = $this->Util()->DB()->GetResult();
+			
+			// ECHO '<PRE>'; PRINT_R($result);
+			// EXIT;
 			
 			foreach($result as $key => $res)
 			{
@@ -610,11 +629,12 @@ public function Enumerate_p(){
 			}
 			//si no hay errores
 			//creamos la cadena de insercion
-			$sql = "INSERT INTO
+			 $sql = "INSERT INTO
 						subject
 						( 	
 						 	clave,
 						 	rvoe,
+						 	fechaRvoe,
 							name,
 							welcomeText,
 							introduction,
@@ -633,6 +653,7 @@ public function Enumerate_p(){
 					VALUES (
 							'" . $this->rvoe . "', 
 							'" . $this->clave . "', 
+							'" . $this->fechaRvoe . "', 
 							'" . $this->name . "',
 							'" . $this->welcomeText . "',
 							'" . $this->introduction . "',
@@ -889,6 +910,7 @@ public function Enumerate_p(){
 					SET
 						rvoe='" 	. $this->rvoe . "', 
 						clave='" 	. $this->clave . "', 
+						fechaRvoe='" 	. $this->fechaRvoe . "', 
 						name='" 	. $this->name . "',
 						welcomeText='" 	. $this->welcomeText . "',
 						introduction='" 	. $this->introduction . "',
@@ -1357,5 +1379,122 @@ public function Enumerate_p(){
 		
 	}
 			
+			
+	public function getPosgrados(){
+			
+			$sqlQuery = 'SELECT * FROM subject WHERE 1 order by name';
+			$this->Util()->DB()->setQuery($sqlQuery);			
+			$lst = $this->Util()->DB()->GetResult();
+		
+			return $lst;
+			
+		}
+		
+	
+	public function getMaterias($Id){
+			
+			$sqlQuery = 'SELECT * FROM subject_module WHERE subjectId = '.$Id.' order by name';
+			$this->Util()->DB()->setQuery($sqlQuery);			
+			$lst = $this->Util()->DB()->GetResult();
+		
+			return $lst;
+			
+		}
+		
+	
+	public function getMateriasProfesor($Id){
+		
+		$personal = New Personal;
+		
+		$sqlQuery = '
+			SELECT 
+				* 
+			FROM
+				course_module_personal as c
+			left join personal as p on c.personalId = p.personalId
+			left join course_module as cm on cm.courseModuleId = c.courseModuleId
+			WHERE cm.subjectModuleId = '.$Id.' group by p.personalId';
+			$this->Util()->DB()->setQuery($sqlQuery);			
+		$lst = $this->Util()->DB()->GetResult();
+		
+		// echo '<pre>'; print_r($lst);
+		// exit;
+			
+		foreach($lst as $key=>$aux){
+			
+			$personal->setPersonalId($aux['personalId']);
+			$infoPerso = $personal->InfoBasica();
+	
+			$lst[$key]['basica'] = $infoPerso;
+		}
+		
+		return $lst;
+		
+	}
+	
+	public function scriptLLenaMaterias(){
+		
+		exit;
+		$sqlQuery = '
+			SELECT 
+				* 
+			FROM
+				course_module ';
+		$this->Util()->DB()->setQuery($sqlQuery);			
+		$lst = $this->Util()->DB()->GetResult();
+		
+		foreach($lst as $key=>$aux){
+			
+			$a = explode('|',$aux['access']);
+			 $sql = "INSERT INTO
+						course_module_personal
+						( 	
+						 	personalId,
+						 	courseModuleId
+						 	
+						)
+					VALUES (
+							'".$a[1]."', 
+							'".$aux['courseModuleId']."'
+							)";
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->InsertData();
+			
+		}
+		// echo '<pre>'; print_r($lst);
+		// exit;
+		
+	}
+	
+	
+	public function getMateriasImpartida($Id){
+	
+		$sqlQuery = '
+			SELECT 
+				c.*,
+				cs.modality,
+				cs.group,
+				sm.name,
+				s.name as nameS,
+				cm.*,
+				m.name as tipoc
+			FROM
+				course_module_personal as c
+			left join personal as p on c.personalId = p.personalId
+			left join course_module as cm on cm.courseModuleId = c.courseModuleId
+			left join course as cs on cs.courseId = cm.courseId
+			left join subject_module as sm on sm.subjectModuleId = cm.subjectModuleId
+			left join subject as s on s.subjectId = sm.subjectId
+			left join major as m on m.majorId = s.tipo
+			WHERE c.personalId = '.$Id.'';
+			$this->Util()->DB()->setQuery($sqlQuery);			
+		
+			$lst = $this->Util()->DB()->GetResult();
+			
+		// echo '<pre>'; print_r($lst);
+		// exit;
+		return $lst;
+	}
+	
 }	
 ?>

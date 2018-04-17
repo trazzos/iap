@@ -166,3 +166,6 @@ function EditSubject()
 
            // parameters : 'type=saveEditSubject&' + $('editSubjectForm').serialize() + '&viewPage=' + $('viewPage').value,
 }
+
+
+

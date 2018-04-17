@@ -790,6 +790,138 @@
 				// }
 				
 			break;
+			
+			case 'saveConcepto';
+			
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+				
+				$course->setId($_POST['solicitudId']);
+				$course->setNombre($_POST['nombre']);
+				$course->setPrecio($_POST['precio']);
+				$course->setFire($_POST['id']);
+				if($course->saveConcepto5()){
+					echo 'ok[#]';
+					$registros = $solicitud->enumerateTiposSolicitud();
+					$smarty->assign("DOC_ROOT", DOC_ROOT);
+					$smarty->assign("registros", $registros);
+					$smarty->display(DOC_ROOT.'/templates/lists/new/concepto.tpl');
+				}else{
+					echo 'fail[#]';
+				}
+				// echo '<pre>'; 
+				// echo "<pre>"; print_r($courseInfo);
+				
+			break;
+			
+			
+			case "cargaInbox":
+			
+				
+			
+				// echo '<pre>'; print_r($_POST);
+				// exit;
+				if($_SESSION['User']['perfil'] == 'Administrador'){
+					if($_POST['tipo']=='entrada'){
+						$module->setStatusIn('activo');
+						$module->setTipoReporte('entrada');
+						$module->setRecibeId($_SESSION['User']['userId']);
+						$module->setCMId($_GET["courseMId"]);
+						if ($_SESSION['User']['type']=='student'){
+							$module->setQuienEnviaId('personal');
+						}else{
+							$module->setQuienEnviaId('alumno');
+						}
+						
+					}else if($_POST['tipo']=='borrador'){
+						$module->setStatusIn('borrador');
+						$module->setTipoReporte($_POST['tipo']);
+						$module->setYoId($_SESSION['User']['userId']);
+						$module->setCMId($_POST['courseMId']);
+						if ($_SESSION['User']['type']=='student'){
+							$module->setQuienEnviaId('alumno');
+						}else{
+							$module->setQuienEnviaId('personal');
+						}
+					}else if($_POST['tipo']=='eliminados'){
+						$module->setStatusIn('eliminado');
+						$module->setTipoReporte($_POST['tipo']);
+						$module->setRecibeId($_SESSION['User']['userId']);
+						$module->setCMId($_POST['courseMId']);
+						if ($_SESSION['User']['type']=='student'){
+							$module->setQuienEnviaId('alumno');
+						}else{
+							$module->setQuienEnviaId('personal');
+						}
+					}else if($_POST['tipo']=='enviados'){
+						$module->setStatusIn('activo');
+						$module->setTipoReporte($_POST['tipo']);
+						$module->setYoId($_SESSION['User']['userId']);
+						$module->setCMId($_POST['courseMId']);
+						
+						$module->setQuienEnviaId('personal');
+						
+					}
+					
+					$lstMsj = $module->EnumerateInboxAdmin();
+				
+				}else{
+					
+					if($_POST['tipo']=='entrada'){
+					$module->setStatusIn('activo');
+					$module->setTipoReporte('entrada');
+					$module->setRecibeId($_SESSION['User']['userId']);
+					$module->setCMId($_GET["courseMId"]);
+					if ($_SESSION['User']['type']=='student'){
+						$module->setQuienEnviaId('personal');
+					}else{
+						$module->setQuienEnviaId('alumno');
+					}
+					
+				}else if($_POST['tipo']=='borrador'){
+					$module->setStatusIn('borrador');
+					$module->setTipoReporte($_POST['tipo']);
+					$module->setYoId($_SESSION['User']['userId']);
+					$module->setCMId($_POST['courseMId']);
+					if ($_SESSION['User']['type']=='student'){
+						$module->setQuienEnviaId('alumno');
+					}else{
+						$module->setQuienEnviaId('personal');
+					}
+				}else if($_POST['tipo']=='eliminados'){
+					$module->setStatusIn('eliminado');
+					$module->setTipoReporte($_POST['tipo']);
+					$module->setRecibeId($_SESSION['User']['userId']);
+					$module->setCMId($_POST['courseMId']);
+					if ($_SESSION['User']['type']=='student'){
+						$module->setQuienEnviaId('alumno');
+					}else{
+						$module->setQuienEnviaId('personal');
+					}
+				}else if($_POST['tipo']=='enviados'){
+					$module->setStatusIn('activo');
+					$module->setTipoReporte($_POST['tipo']);
+					$module->setYoId($_SESSION['User']['userId']);
+					$module->setCMId($_POST['courseMId']);
+					if ($_SESSION['User']['type']=='student'){
+						$module->setQuienEnviaId('alumno');
+					}else{
+						$module->setQuienEnviaId('personal');
+					}
+				}
+				
+				$lstMsj = $module->EnumerateInbox();
+				
+				}
+				
+				
+				
+				$smarty->assign("courseMId", $_POST['courseMId']);
+				$smarty->assign("tipo", $_POST['tipo']);
+				$smarty->assign("lstMsj", $lstMsj);
+				$smarty->display(DOC_ROOT.'/templates/lists/inbox.tpl');
+				
+			break;
 	}
 
 ?>

@@ -5,6 +5,10 @@
 	/* End Session Control */
 	//check if docente, 2 == docente
 	
+	
+	// echo '<pre>'; print_r($_SESSION);
+	// exit;
+
 	if($_GET["borrar"])
 	{
 		$module->setCourseModuleId($_GET["borrar"]);
@@ -21,8 +25,11 @@
 		$viewPage = $_GET["$pageVar"];	//si ya esta definida la variable GET['viewPage'] tomar el valor de esta
 
 	$coursesCount = $course->EnumerateCount();
+	$lstMajor = $major->Enumerate();
 	
-	$result = $course->EnumerateByPage($viewPage, $rowsPerPage, $pageVar, WEB_ROOT.'/history-subject', $arrPage);	
+	$result = $course->EnumerateByPage($viewPage, $rowsPerPage, $pageVar, WEB_ROOT.'/history-subject', $arrPage);
+
+	// $result = $util->orderMultiDimensionalArray($result,'active',true);
 	
 	//checar a que curriculas tengo permiso
 	if(in_array(2, $info["roles"]))
@@ -39,6 +46,14 @@
 		}
 	}
 	
+	if($_SESSION['msj']=='si'){
+		unset($_SESSION['msj']);
+		$smarty->assign('msj', 'si');
+	}
+	
+	
+	$smarty->assign('perfil', $_SESSION['User']['perfil']);
+	$smarty->assign('lstMajor', $lstMajor);
 	$smarty->assign('subjects', $result);
 	$smarty->assign('arrPage', $arrPage);
 	$smarty->assign('coursesCount', $coursesCount);
