@@ -14,6 +14,11 @@
       case 1:
 			// echo '<pre>'; print_r($_POST);
 			// exit;
+			if(strlen($_POST['mes'])==1){
+				$_POST['mes']= '0'.$_POST['mes'];
+			}
+			$_POST['nacimiento'] = $_POST['dia'].'-'.$_POST['mes'].'-'.$_POST['anio'];
+			
 			$personal->setPersonalId($_POST['personalId']);
 			$personal->setIne($_POST['ine']);
 			$personal->setCalle($_POST['calle']);

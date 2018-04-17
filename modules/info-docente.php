@@ -30,6 +30,8 @@
 		$foto = WEB_ROOT."/alumnos/no_foto.JPG";
 	}
 	
+	$f1 = explode('-',$info['fecha_nacimiento']);
+	
 	$registros = $student->cargarCiudades($info["stateId"]);
 	$smarty->assign("foto", $foto);
 	$smarty->assign("registrosc", $registros);
@@ -39,6 +41,9 @@
 	$smarty->assign("info", $info);	
 	$smarty->assign("registrosStudent", $registrosStudent);	
 	$smarty->assign("registros", $registros);	
+	$smarty->assign("f1", $f1[0]);	
+	$smarty->assign("f2", $f1[1]);	
+	$smarty->assign("f3", $f1[2]);	
 		
 	
 

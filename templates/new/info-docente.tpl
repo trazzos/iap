@@ -101,8 +101,36 @@
 								<input type="text" name="rfc" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.rfc}'></td>
 						</tr>
 						<tr>
-							<td><b>Fecha Nacimiento</b>
-								<input type="text" name="nacimiento" id='fecha1' {if $cId eq 'si'} disabled {/if} onClick='loadFecha(1)' class='form-control' value='{$info.fecha_nacimiento}'></td>
+							<td><b>Fecha Nacimiento</b><br>
+								<div style="float:left">
+								
+								<select name="dia" value="{$dia}" {if $cId eq 'si'} disabled {/if} class='form-control' style="width:100px">
+									<option></option>
+									{for $i=1 to 31}
+									<option {if $i eq $f1} selected {/if}>{$i}</option>
+									{/for}
+								</select>
+								</div>
+								<div style="float:left">						
+								<select name="mes" value="{$mes}" {if $cId eq 'si'} disabled {/if} class='form-control' style="width:100px">
+									<option></option>
+									{for $i=1 to 12}
+									<option {if $i eq $f2} selected {/if}>{$i}</option>
+									{/for}
+								</select>
+								</div>
+								<div style="float:left">
+								<select name="anio" value="{$anio}" {if $cId eq 'si'} disabled {/if} class='form-control' style="width:100px">
+									<option></option>
+									{for $i=1938 to 2000}
+									<option {if $i eq $f3} selected {/if}>{$i}</option>
+									{/for}
+								</select>
+								</div>
+								<!--<input type="text" name="nacimiento" id='fecha1'  onClick='loadFecha(1)'  value='{$info.fecha_nacimiento}'>
+								-->
+								</td>
+								
 							<td><b>Numero INE</b>
 								<input type="text" name="ine" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.INE}'></td>
 							<td><b>Curp</b>

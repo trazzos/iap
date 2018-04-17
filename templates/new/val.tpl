@@ -14,15 +14,15 @@
 	
 		<center><h1>Avance {$lstPreguntas.totalAlumnos} / {$lstPreguntas.totalGrupo}  </h1>
 
-		<div style=' padding: 20px!important; width:40%'>
+	
 			<table width="80% !important" class="tblGral table table-bordered table-striped table-condensed flip-content">
-				<tr><td><b>(6)</b> Deficiente</td></tr>
-				<tr><td><b>(7)</b> Apenas aceptable</td></tr>
-				<tr><td><b>(8)</b> Aceptable</td></tr>
-				<tr><td><b>(9)</b> Satisfactorio</td></tr>
-				<tr><td><b>(10)</b> Muy Satisfactorio</td></tr>
+				<tr><td width="20%"><b>(6)</b> Deficiente</td>
+				<td width="20%"><b>(7)</b> Apenas aceptable</td>
+				<td width="20%"><b>(8)</b> Aceptable</td>
+				<td width="20%"><b>(9)</b> Satisfactorio</td>
+				<td width="20%"><b>(10)</b> Muy Satisfactorio</td></tr>
 			</table>
-		</div>
+		
 		</center>
 
         <div id="tblContentActa">
