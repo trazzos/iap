@@ -39,7 +39,7 @@
 						{/if}
 					{/if}
 				{/if}
-				{if $item.estatus eq 'en progreso'}
+				{if $item.estatus eq 'en progreso' or $item.estatus eq 'completado'}
 					{if $item.tiposolicitudId ne 3}
 					<a href="{$WEB_ROOT}/alumnos/comprobantes/{$item.ruta}" target='_blank' title='COMPROBANTE DE PAGO'>
 						<i class="material-icons md-16">description</i>
