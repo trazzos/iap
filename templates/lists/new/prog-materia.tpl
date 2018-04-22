@@ -74,7 +74,7 @@
 				<td align="center">
 				
 					{if $subject.rutaRubrica  ne ''}
-					<a href="{$WEB_ROOT}/docentes/encuadre/{$subject.rutaRubrica}" target='_blank'  title='RUBRICA'>
+					<a href="{$WEB_ROOT}/docentes/rubrica/{$subject.rutaRubrica}" target='_blank'  title='RUBRICA'>
 						<i class="material-icons md-16">chrome_reader_mode</i>
 					</a>
 					<a href="javascript:void(0)" onClick="onDeleteRubrica('{$subject.courseModuleId}','{$subject.courseId}')"  title='ELIMINAR CARTA DESCRIPTIVA'>

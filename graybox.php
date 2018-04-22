@@ -201,7 +201,8 @@ $pages = array(
 	'view-periodos',
 	'down-plan',
 	'encuadre',
-	'rubrica'
+	'rubrica',
+	'view-cuatri'
 
 );
 

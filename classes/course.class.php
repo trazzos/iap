@@ -866,6 +866,104 @@
 			return $result;
 		}
 		
+		function StudentCourseModulesInbox()
+		{
+			$info = $this->Info();
+
+			$sql = "
+				SELECT * FROM course_module
+				LEFT JOIN subject_module ON subject_module.subjectModuleId = course_module.subjectModuleId
+				WHERE courseId = '".$info["courseId"]."'
+				ORDER BY semesterId ASC, initialDate ASC";
+			
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			//print_r($result);exit;
+			foreach($result as $key => $res)
+			{
+				
+				//verifica si el alumno ya completo la encuesta
+				$sql = "
+					SELECT count(*)
+					FROM eval_alumno_docente
+					WHERE courseModuleId = '".$res['courseModuleId']."' and alumnoId = ".$_SESSION["User"]["userId"]."";
+				$this->Util()->DB()->setQuery($sql);
+				$countEval = $this->Util()->DB()->GetSingle();
+					
+				$sql = "
+					SELECT 
+						*
+					FROM 
+						course_module_score as c
+					LEFT JOIN course_module as cm on cm.courseModuleId = c.courseModuleId
+					WHERE 
+						c.courseModuleId = '".$res['courseModuleId']."' 
+						and c.userId = ".$_SESSION["User"]["userId"]." 
+						and c.courseId = ".$info["courseId"]."
+						and cm.calificacionValida = 'si' ";
+
+				$this->Util()->DB()->setQuery($sql);
+				$infoCc = $this->Util()->DB()->GetRow();
+				
+				// $infoCc['calificacion'] = 8;
+				// echo $info['majorName'];
+				// exit;
+				
+				if($infoCc['calificacion']==''){
+					$infoCc['calificacion']='En proceso';
+				}else if ($infoCc['calificacion'] < 7 and $info['majorName'] == 'MAESTRIA'){
+					$infoCc['calificacion'] = '<font color="red">'.$infoCc['calificacion'].'</font>';
+				}else if ($infoCc['calificacion'] < 8 and $info['majorName'] == 'DOCTORADO'){
+					$infoCc['calificacion'] = '<font color="red">'.$infoCc['calificacion'].'</font>';
+				}else if ($infoCc['calificacion'] <= 6){
+					$infoCc['calificacion'] = '<font color="red">'.$infoCc['calificacion'].'</font>';
+				}				
+				
+				 
+				
+				$result[$key]["finalDate"]=$result[$key]["finalDate"]." 23:59:59";
+				$result[$key]["initialDateStamp"] = strtotime($result[$key]["initialDate"]);
+				$result[$key]["finalDateStamp"] = strtotime($result[$key]["finalDate"]);
+				
+				$toFinishSeconds = $result[$key]["daysToFinish"] * 3600 * 24;
+				
+				$result[$key]["daysToFinishStamp"] = strtotime($result[$key]["initialDate"]) + $toFinishSeconds;
+				//echo $result[$key]["finalDateStamp"]."+".$toFinishSeconds."=".$result[$key]["daysToFinishStamp"]."<br/>" ;
+				$student = new Student;
+				$result[$key]["totalScore"] = $student->GetAcumuladoCourseModule($res["courseModuleId"]);
+				$result[$key]["calificacionFinal"] = $infoCc['calificacion'];
+				$result[$key]["countEval"] = $countEval;
+				
+				$timestamp = time();
+				
+				if ($timestamp < $result[$key]["initialDateStamp"]){
+					$statusCCi = 'No iniciado';
+				}
+				else{
+					if ($result[$key]["finalDateStamp"] > 0 AND $timestamp > $result[$key]["finalDateStamp"]){
+						$statusCCi = 'Finalizado';
+					}
+					else if ($res['active'] == "no"){
+						$statusCCi = 'Finalizado';
+					}  
+					else if ($result[$key]["finalDateStamp"] <= 0 AND $initialDateStamp < $result[$key]["daysToFinishStamp"] AND $timestamp > $result[$key]["daysToFinishStamp"]) { 
+							$statusCCi = 'Finalizado';
+					}
+					else{
+							$statusCCi = 'Activo';
+					}		
+				}
+					
+				$result[$key]["statusCCi"] = $statusCCi;
+			}
+			
+			return $result;
+		}
+
+		
+		// StudentCourseModulesCuatri
+		
+		
 		function StudentCourseModules()
 		{
 			$info = $this->Info();

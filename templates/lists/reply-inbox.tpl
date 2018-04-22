@@ -45,13 +45,13 @@
 <input type="hidden" name="yoId" id="yoId" value='{$infoC.yoId}' >
 <input type="hidden" name="type" id="type">
 {if $infoC.rutaAdjunto ne ''}
-	<font color="#447d98">Archivo Adjunto</font>
+	<!--<font color="#447d98">Archivo Adjunto</font>
 	<br>
 	<a href="{$WEB_ROOT}/doc_inbox/{$infoC.rutaAdjunto}" target='blank_'>
 		<img src="{$WEB_ROOT}/images/adjuntofile.jpg" style="width:5%">
 	</a>
 	<br>
-	<br>
+	<br>-->
 {/if}
 <textarea name="mensaje" id="mensaje"  style="width:900px; height:300px;  ">{if $chatId ne 0}<br><br><br><br><br><hr>{$dataEnviado}{/if}</textarea>
 <br>
