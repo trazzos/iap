@@ -10,6 +10,7 @@
 		private $dias;
 		private $horario;
 		private $aparece;
+		private $listar;
 		private $tarifa;
 		private $tarifaDr;
 		private $hora;
@@ -53,6 +54,12 @@
 		{
 			// $this->Util()->ValidateString($value, 255, 0, 'Nombre');
 			$this->aparece = $value;
+		}
+		
+		public function setListar($value)
+		{
+			// $this->Util()->ValidateString($value, 255, 0, 'Nombre');
+			$this->listar = $value;
 		}
 	
 		public function setNombre($value)
@@ -569,6 +576,7 @@
 							dias,
 							horario,
 							apareceTabla,
+							listar,
 							tipo
 						)
 					VALUES (
@@ -587,6 +595,7 @@
 							'".$this->dias."',
 							'".$this->horario."',
 							'".$this->aparece."',
+							'".$this->listar."',
 							'".$this->tipoCuatri."'
 							)";
 			//configuramos la consulta con la cadena de insercion
@@ -641,6 +650,7 @@
 						horario='".$this->horario."',
 						tipo='".$this->tipoCuatri."',
 						apareceTabla='".$this->aparece."',
+						listar='".$this->listar."',
 						access='".$this->personalId."|".$this->teacherId."|".$this->tutorId."|".$this->extraId."'
 						WHERE courseId='" . utf8_decode($this->courseId) . "'";
 			//configuramos la consulta con la cadena de actualizacion
@@ -789,7 +799,7 @@
 				SELECT *, major.name AS majorName, subject.name AS name FROM course
 				LEFT JOIN subject ON course.subjectId = subject.subjectId 
 				LEFT JOIN major ON major.majorId = subject.tipo
-				WHERE course.active = 'si' AND courseId IN (89,80,59,82,81,93,94,95)
+				WHERE course.active = 'si' AND listar = 'si'
 				ORDER BY subject.tipo, subject.name, course.group");
 				//echo $this->Util()->DB()->query;
 			$result = $this->Util()->DB()->GetResult();

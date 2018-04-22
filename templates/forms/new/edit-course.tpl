@@ -143,6 +143,12 @@
             </div>
         </div>
 		<div class="form-group">
+            <label class="col-md-3 control-label">Listar:</label>
+            <div class="col-md-8">
+                <input type="checkbox" name="listar" id="listar"  {if $post.listar eq 'si'} checked {/if}  class="form-control"/>
+            </div>
+        </div>
+		<div class="form-group">
             <label class="col-md-3 control-label">Tipo:</label>
             <div class="col-md-8">
                 <select type="checkbox" name="tipoCuatri" id="tipoCuatri"   class="form-control">

@@ -16,6 +16,7 @@
                     <option value="Lectura">Lectura</option>
                     <option value="Tarea">Tarea</option>
                     <option value="Examen">Examen</option>
+                    <option value="Foro">Foro</option>
                     <option value="Otro">Otro</option>
                 </select>
             </div>
