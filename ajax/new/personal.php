@@ -74,6 +74,10 @@ switch($_POST["type"])
 
 	// echo '<pre>'; print_r($_POST);
 	// exit;
+		if($_POST['mostrarP']=='on'){
+			$_POST['mostrarP'] = 'si';
+		}
+	
         $personal->setPositionId($_POST['positionId']);
         $personal->setName($_POST['name']);
         $personal->setLastnamePaterno($_POST['lastname_paterno']);
@@ -96,6 +100,9 @@ switch($_POST["type"])
         $personal->setCategoria($_POST['categoria']);
         $personal->setPerfil('Docente');
         $personal->setProf($_POST['prof']);
+		
+		$personal->setMostrar($_POST['mostrarP']);
+        $personal->setNumero($_POST['numeroP']);
 
         if(!$personal->Save())
         {

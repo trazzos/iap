@@ -3,7 +3,7 @@
         <td align="center">{$item.teamId}</td>
         <td align="center">{$item.teamNumber}</td>
         <td align="center">
-        {if $item.homework}
+        {if $item.homework.path ne ''} 
         	<a href="{$item.homework}" target='_blank'>{$item.nombre}</a>
         {else}
         	Sin Entregar

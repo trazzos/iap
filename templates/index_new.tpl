@@ -88,7 +88,9 @@
 
 	<link type="text/css" href="{$WEB_ROOT}/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
 	<script type="text/javascript" src="{$WEB_ROOT}/cometchat/cometchatjs.php" charset="utf-8"></script>
+	
 *}
+<script src="{$WEB_ROOT}/assets/jquery.multiple.select.js"></script>
 {if $page == 'reply-inbox' or 
 $page == 'view-inbox' or
  $page == 'edit-modules-course' or
@@ -130,6 +132,15 @@ $page == 'view-inbox' or
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>-->
 {/if}
+<script>
+ $(function() {
+        $('#ms').change(function() {
+            console.log($(this).val());
+        }).multipleSelect({
+            width: '100%'
+        });
+    });
+</script>
 </head>
 <!-- END HEAD -->
 

@@ -20,6 +20,7 @@
 		$activity->setDescription($_POST["description"]);
 		$activity->setRequiredActivity($_POST["requiredActivity"]);
 		$activity->setPonderation($_POST["ponderation"]);
+		$activity->setHoraInicial($_POST["horaInicial"]);
 		$activity->Edit();
 		
 		if($_POST["auxTpl"]=="admin"){

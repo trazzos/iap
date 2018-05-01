@@ -248,6 +248,7 @@
 		 || $page == "lst-docentes" 
 		 || $page == "repositorio" 
 		 || $page == "prog-academico" 
+		 || $page == "msj" 
 		 || $page == "materias" 
 		 || $page == "cat-doc-docente" 
 		 || $page == "prog-materia" 
@@ -281,6 +282,11 @@
 				 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/lst-docentes" class="nav-link ">
                         <span class="title">Lista de Docentes</span>
+                    </a>
+                </li>
+				<li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/msj" class="nav-link ">
+                        <span class="title">Mensajes</span>
                     </a>
                 </li>
 				 <li class="nav-item  ">
@@ -397,7 +403,12 @@
             </a>
         </li>
 
-
+		<li class="nav-item {if $page == "personal-academico"} active {/if}">
+            <a href="{$WEB_ROOT}/personal-academico/id/{$id}" class="nav-link nav-toggle">
+                <i class="fa fa-sitemap"></i>
+                <span class="title">Personal Académico</span>
+            </a>
+        </li>
 
         {if $mnuMain == "modulo"}
             <li class="nav-item {if $page == "calendar-image-modules-student"} active {/if} ">

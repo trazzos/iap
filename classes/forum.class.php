@@ -3,7 +3,12 @@
 	class Forum extends Main
 	{
 		private $topicId;
+		private $courseModuleId;
 	
+		public function setCourseModuleId($value)
+		{
+			$this->courseModuleId = $value;
+		}
 		
 		public function setTopicId($value)
 		{
@@ -449,7 +454,7 @@ public function TopicsubInfo()
 			 $sql = "
 				SELECT * FROM topic
 				LEFT JOIN user ON user.userId = topic.userId
-				WHERE courseId = ".$this->courseId." 
+				WHERE courseId = ".$this->courseId." and courseModuleId = ".$this->courseModuleId."
 				ORDER BY topicDate DESC";
 			$this->Util()->DB()->setQuery($sql);
 			// exit;
@@ -640,6 +645,15 @@ public function TopicsubInfo()
 			 else
 			 $hecho=$this->userId."u";
 		
+		
+		if($this->userId){
+			 $sql = "
+						SELECT * FROM user	WHERE userId = ".$this->userId."";
+			$this->Util()->DB()->setQuery($sql);
+			$infoAlumno = $this->Util()->DB()->GetRow();
+			
+		}
+		
 		$visto=$visto.",".$hecho;
 		//$visto = explode(",", $visto);
 		
@@ -750,7 +764,25 @@ public function TopicsubInfo()
 			$this->Util()->DB()->InsertData();
 				
 			$sendmail = new SendMail;	
-				
+			
+			$concatMsj = 
+			'<table>
+			<tr>
+				<td>Alumno:</td><td>'.$infoAlumno['names'].' '.$infoAlumno['lastNamePaterno'].' '.$infoAlumno['lastNameMaterno'].'</td>
+			</tr>
+			<tr>
+				<td>Materia:</td><td>'.$infoCourse['name'].'</td>
+			</tr>
+			<tr>
+				<td>Grupo:</td><td>'.$infoCourse['group'].'</td>
+			</tr>
+			<tr>			
+				<td>Foro:</td><td>'.$datTop['subject'].'</td>
+			</tr>
+			</table><br><br>';
+			
+			
+		if( $_SESSION['User']['perfil']<>'Administrador')	{
 			if($datTop["tipo"] == "dudas"){
 				
 				 $sql = "
@@ -761,23 +793,25 @@ public function TopicsubInfo()
 					WHERE topicId = ".$datSub['topicId']."";
 				$this->Util()->DB()->setQuery($sql);
 				$infoDu = $this->Util()->DB()->GetRow();
-				// echo "<pre>"; print_r($infoDu );
+				// echo "<pre>"; print_r($concatMsj );
 				// exit;
 				//admin docente
-				$sendmail->PrepareAttachment("Dudas para el Docente", $this->reply, "","", $infoDu["correo"], $infoDu["name"], $attachment, $fileName);
+				$sendmail->PrepareAttachment("Dudas para el Docente", $concatMsj.$this->reply, "","", $infoDu["correo"], $infoDu["name"], $attachment, $fileName);
 				$sendmail->PrepareAttachment("Asesoria Academica",$this->reply, "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
 			}
 			
 			if($datTop["tipo"] == "asesoria"){
 				//admin 
+					// echo "<pre>"; print_r($concatMsj );
+				// exit;
 				 $sql = "
 					SELECT * FROM personal
 					WHERE perfil = 'Administrador'";
 				$this->Util()->DB()->setQuery($sql);
 				$infoDu = $this->Util()->DB()->GetRow();
-				$sendmail->PrepareAttachment("Asesoria Academica",$this->reply, "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+				$sendmail->PrepareAttachment("Asesoria Academica",$concatMsj.$this->reply, "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
 			}
-			
+		}	
 			$this->Util()->setError(90000, 'complete', "Has respondido al Topico");
 			$this->Util()->PrintErrors();
 			return true;

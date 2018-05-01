@@ -9,7 +9,24 @@
 		private $cmId;
 		private $tipoReporte;
 		private $statusIn;
+		private $mensaje;
+		private $enviaId;
+		private $titulo;
 		
+		public function setTitulo($value)
+		{
+			$this->titulo = $value;
+		}
+		
+		public function setEnviaId($value)
+		{
+			$this->enviaId = $value;
+		}
+		
+		public function setMensaje($value)
+		{
+			$this->mensaje = $value;
+		}
 		
 		public function setStatusIn($value)
 		{
@@ -349,6 +366,7 @@
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
 			$result = $this->Util()->DB()->InsertData();
+			$Id = $result;
 			if($result > 0)
 			{
 				// asignar a nueva tabla 
@@ -375,7 +393,97 @@
 				$result = false;
 				$this->Util()->setError(90010, 'error');
 			}
+			
+			
+			 $sql = "INSERT INTO
+						topic
+						( 
+							subject,	
+						 	tipo,
+						 	topicDate,
+						 	descripcion,
+						 	courseId,
+						 	courseModuleId
+						)
+					VALUES (
+							'Dudas para el Docente',
+							'dudas',
+							'".date('Y-m-d h:i:s')."',
+							'En este foro podrán realizar preguntas referentes al contenido del curso y el docente asignado se las responderá.',
+							'".$this->getCourseId()."',
+							'" .$Id."'
+							)";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
+			
+			
+			
+			$sql = "INSERT INTO
+						topic
+						( 
+							subject,	
+						 	tipo,
+						 	topicDate,
+						 	descripcion,
+						 	courseId,
+						 	courseModuleId
+						)
+					VALUES (
+							'Asesoria Academica',
+							'asesoria',
+							'".date('Y-m-d h:i:s')."',
+							'En este foro podrás incluir dudas referentes al curso y nuestro personal académico los resolverá.',
+							'".$this->getCourseId()."',
+							'" .$Id."'
+							)";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
+			
+			
+			$sql = "INSERT INTO
+						topic
+						( 
+							subject,	
+						 	tipo,
+						 	topicDate,
+						 	descripcion,
+						 	courseId,
+						 	courseModuleId
+						)
+					VALUES (
+							'Presentacion Personal',
+							'presentacion',
+							'".date('Y-m-d h:i:s')."',
+							'Este foro les permitirá conocer a los demás alumnos del curso, dando una breve descripción personal, que puede incluir su nombre completo, estudios, información laboral, pasatiempos, etc.',
+							'".$this->getCourseId()."',
+							'" .$Id."'
+							)";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
+			
+			$sql = "INSERT INTO
+						topic
+						( 
+							subject,	
+						 	tipo,
+						 	topicDate,
+						 	descripcion,
+						 	courseId,
+						 	courseModuleId
+						)
+					VALUES (
+							'Foro de Discusion',
+							'discucion',
+							'".date('Y-m-d h:i:s')."',
+							'Foro dedicado a expresar opiniones acerca de algún tema que el profesor o tutor haya creado.',
+							'".$this->getCourseId()."',
+							'" .$Id."'
+							)";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
+			// exit;
 			$this->Util()->PrintErrors();
+			
 			return $result;
 		}				
 		
@@ -844,5 +952,44 @@
 			
 			return $result;
 	}
+	
+	public function onEnviaMsj(){
+		
+
+			$sql = "INSERT INTO
+						mensaje
+						( 	
+						 	mensaje,
+						 	titulo,
+							enviarId
+						)
+					VALUES (
+							'".$this->mensaje."', 
+							'".$this->titulo."', 
+							'".$this->enviaId."'
+							)";
+		$this->Util()->DB()->setQuery($sql);
+		$id = $this->Util()->DB()->InsertData();
+			
+		foreach($_POST['profesores'] as $key=>$aux){
+
+			$sql = "INSERT INTO
+							mensaje_personal
+							( 	
+								personalId,
+								mensajeId
+							)
+						VALUES (
+								'".$aux."', 
+								'".$id."'
+								)";
+				$this->Util()->DB()->setQuery($sql);
+				$result = $this->Util()->DB()->InsertData();
+		}
+
+			
+		return true;
+	}
+	
 }	
 ?>

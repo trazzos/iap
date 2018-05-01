@@ -129,6 +129,23 @@
 			
 		
 		break;
+		
+		case 'onEnviaMsj':
+		
+		// echo '<pre>'; print_r($_SESSION);
+		// exit;
+			// echo '<pre>'; print_r($_POST);
+			// $module->setPerId($_POST['mensaje']);
+			$module->setTitulo($_POST['titulo']);
+			$module->setEnviaId($_SESSION['User']['userId']);
+			$module->setMensaje($_POST['description']);
+			if( $module->onEnviaMsj($_POST['Id'])){
+				echo 'ok[#]';
+			}else{
+				echo 'fail[#]';
+			}
+		
+		break;
 	}
 
 ?>

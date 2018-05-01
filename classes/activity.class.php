@@ -12,6 +12,13 @@
 		private $opcionE;
 		private $hora;
 		private $usuarioId;
+		private $horaInicial;
+		
+		public function setHoraInicial($value)
+		{
+			// $this->Util()->ValidateInteger($value);
+			$this->horaInicial = $value;
+		}
 		
 		public function setUsuarioId($value)
 		{
@@ -182,6 +189,7 @@
 						 	courseModuleId,
 							activityType,
 							initialDate,
+							horaInicial,
 							finalDate,
 							modality,
 							description,
@@ -193,6 +201,7 @@
 							'" . $this->getCourseModuleId() . "', 
 							'" . $this->activityType . "',
 							'" . $this->getInitialDate() . "',
+							'" . $this->horaInicial. "',
 							'" . $final . "',
 							'" . $this->getModality() . "',
 							'" . $this->getDescription() . "',
@@ -237,6 +246,7 @@
 						SET
 							activityType = '".$this->activityType."',
 							initialDate = '".$this->getInitialDate()."',
+							horaInicial = '".$this->horaInicial."',
 							finalDate = '".$fechaFinal."',
 							modality = '".$this->getModality()."',
 							description = '".$this->getDescription()."',
@@ -292,7 +302,7 @@
 		
 			 $sql = "
 				SELECT *,@rownum:=@rownum+1 AS rownum  FROM (SELECT @rownum:=0) r,activity
-				WHERE courseModuleId = '".$this->getCourseModuleId()."' ".$add."
+				WHERE courseModuleId = '".$this->getCourseModuleId()."'  and ponderation <> 0".$add."
 				ORDER BY initialDate ASC, activityId ASC";
 				
 				// exit;
@@ -692,5 +702,32 @@
 			return $result;
 			
 		}	
+		
+		function deleteActividad($Id)
+		{
+			
+			 $sql ="
+				SELECT * FROM homework
+				WHERE activityId = '".$Id."' AND userId = '".$_SESSION['User']['userId']."'";
+			$this->Util()->DB()->setQuery($sql);
+			$count = $this->Util()->DB()->GetRow();	
+			
+			@unlink(DOC_ROOT."/homework/".$count['path']);	
+			
+			$sql = "UPDATE
+							homework
+							SET
+								path = ''
+							WHERE activityId = '".$Id."'  AND userId = '".$_SESSION['User']['userId']."'";
+			
+
+			$this->Util()->DB()->setQuery($sql);
+
+			$result = $this->Util()->DB()->DeleteData();
+			$this->Util()->setError(90000, 'complete', "Se ha eliminado la actividad");
+			$this->Util()->PrintErrors();
+			return true;
+		}
+		
 	}	
 ?>

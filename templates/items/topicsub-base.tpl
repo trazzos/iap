@@ -7,7 +7,10 @@
         </td>
         <td align="center" id="etitl1">{$topicsub.answers}</td>
         <td align="center">
-          	<a href="{$WEB_ROOT}/add-reply/id/{$id}/topicsubId/{$topicsub.topicsubId}"><img src="{$WEB_ROOT}/images/arrow.png" class="spanEdit" id="e-{$position.positionId}" name="e-{$position.name}" title="Ver respuestas" /></a>
+          	<a href="{$WEB_ROOT}/add-reply/id/{$id}/topicsubId/{$topicsub.topicsubId}">
+			<i class="material-icons md-16">forum</i>
+			<!--<img src="{$WEB_ROOT}/images/arrow.png" class="spanEdit" id="e-{$position.positionId}" name="e-{$position.name}" title="Ver respuestas" />
+			--></a>
         </td>
     </tr>
 {foreachelse}

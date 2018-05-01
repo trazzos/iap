@@ -42,6 +42,9 @@
 			$personal->setCorreo($_POST['correo']);
 			$personal->setCelular($_POST['celular']);
 			$personal->setFirmaConstancia($_POST['firmaConstancia']);
+			
+			$personal->setMostrar($_POST['mostrarP']);
+			$personal->setNumero($_POST['numeroP']);
 
 			if($_FILES['foto'])
 			{

@@ -3,7 +3,8 @@
 	/* For Session Control - Don't remove this */
 //	$user->allow_access(8);	
 
-
+// echo '<pre>'; print_r($_SESSION);	
+// exit;
 	$empleados = $personal->Enumerate();
 	$smarty->assign('empleados', $empleados);
 
@@ -47,6 +48,7 @@
 	else
 	$smarty->assign('mnuMain', "modulo");
 
+	$smarty->assign('UserType',$_SESSION['User']['type']);
 	$smarty->assign('mnuSubmain','anuncios');
 
 ?>

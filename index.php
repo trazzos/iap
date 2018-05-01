@@ -195,7 +195,9 @@ $pages = array(
 	'tabla-costo',
 	'prog-academico',
 	'prog-materia',
-	'validarpago-adjuntar'
+	'validarpago-adjuntar',
+	'msj',
+	'personal-academico'
 	
 	
 	

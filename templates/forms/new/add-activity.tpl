@@ -28,13 +28,29 @@
                 <input type="text" name="initialDate" id="initialDate" value="{$date}"  class="form-control  date-picker"/>
             </div>
         </div>
-
+		<div class="form-group">
+            <label class="col-md-3 control-label">Hora Inicial:</label>
+            <div class="col-md-8">
+                <input type="time" name="horaInicial" id="horaInicial" value=""   style="width:200px" class="form-control "/>
+               
+            </div>
+        </div>
+		
+		
         <div class="form-group">
             <label class="col-md-3 control-label">Fecha Final:</label>
             <div class="col-md-8">
                 <input type="text" name="finalDate" id="finalDate" value="{$date}"  class="form-control  date-picker"/>
             </div>
         </div>
+		<!--
+		<div class="form-group">
+            <label class="col-md-3 control-label">Hora Final:</label>
+            <div class="col-md-8">
+                <input type="time" name="hora" id="hora" value="{$actividad.horaFinal}"   style="width:200px" class="form-control "/>
+               
+            </div>
+        </div>-->
 
         <div class="form-group">
             <label class="col-md-3 control-label">Modalidad:</label>

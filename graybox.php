@@ -202,7 +202,8 @@ $pages = array(
 	'down-plan',
 	'encuadre',
 	'rubrica',
-	'view-cuatri'
+	'view-cuatri',
+	'add-msj'
 
 );
 

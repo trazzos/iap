@@ -73,6 +73,7 @@ $smarty->assign('existecal',0);
 }
 	
 	//verificando foro!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	$forum->setCourseModuleId($myModule["courseModuleId"]);
 	$forum->setCourseId($myModule["courseId"]);
 	$forum = $forum->Enumerate();
 $course->setCourseId($myModule["courseId"]);

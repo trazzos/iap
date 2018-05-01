@@ -2,7 +2,11 @@
     <input type="hidden" name="modality" id="modality" value="{$actividad.modality}"/>
     <input type="hidden" name="courseId" id="courseId" value="{$actividad.courseModuleId}"/>
     <input type="hidden" id="type" name="type" value="saveAddMajor"/>
-
+	<div style="text-align:justify">
+	Únicamente se puede subir un solo archivo por actividad, 
+	por lo que si necesita subir varios archivos le recomendamos los comprima 
+	en .rar y los suba por este medio
+	</div>
     <div class="form-body">
         <div class="form-group">
             {if $homework}

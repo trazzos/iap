@@ -39,6 +39,20 @@ class Personal extends Main
 	private $tipo;
 	private $face;
 	private $twitter;
+	private $mostrar;
+	private $numero;
+	
+	public function setMostrar($value)
+	{
+		// $this->Util()->ValidateString($value,  "Tipo");
+		$this->mostrar = $value;
+	}
+	
+	public function setNumero($value)
+	{
+		// $this->Util()->ValidateString($value,  "Tipo");
+		$this->numero = $value;
+	}
 	
 	public function setFace($value)
 	{
@@ -523,7 +537,9 @@ class Personal extends Main
 						claves_presupuestales,
 						categoria,
 						perfil,
-						profesion
+						profesion,
+						mostrar,
+						numero
 					)
 				 VALUES 
 					(						
@@ -544,7 +560,9 @@ class Personal extends Main
 						'".$this->clavesPresupuestales."',
 						'".$this->categoria."',
 						'".$this->perfil."',
-						'".$this->prof."'
+						'".$this->prof."',
+						'".$this->mostrar."',
+						'".$this->numero."'
 					)";
 								
 		$this->Util()->DB()->setQuery($sql);
@@ -609,7 +627,9 @@ class Personal extends Main
 					semblanza = '".$this->semblanza."',
 					perfil = '".$this->perfil."',
 					profesion = '".$this->prof."',
-					firmaConstancia = '".$this->firmaConstancia."'
+					firmaConstancia = '".$this->firmaConstancia."',
+					mostrar = '".$this->mostrar."',
+					numero = '".$this->numero."'
 				WHERE 
 					personalId = ".$this->personalId;
 					
@@ -1597,6 +1617,22 @@ class Personal extends Main
 		return true;
 		
 	}
+	
+	public function EnumerateMsj(){
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					mensaje
+				WHERE
+					1 ";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetResult();
+		
+		return $result;
+	}
+	
 }
 
 

@@ -8,7 +8,7 @@
 			</div>
 		{/if}
 	{/if}
-	<!--
+<!--
    <a href="{$WEB_ROOT}/graybox.php?page=upload-homework&id={$item.activityId}" title="Subir Tarea" data-target="#ajax" data-toggle="modal" style="color:#000" class="btn btn-xs green-jungle"> Subir Actividad al Sistema de Tareas <i class="fa fa-upload "></i></a>
 -->
 	{if $timestamp > $item.initialDateTimestamp && $timestamp < $item.finalDateTimestamp}
@@ -80,8 +80,15 @@
         <br />
         <b>Tarea entregada</b><!--
 		<a href="{$WEB_ROOT}/download.php?file=homework/{$item.homework.path}&mime={$item.homework.mime}" style="color:#000">Ver Tarea</a>-->
+		{if $item.homework.path ne ''}
 		<button class="btn blue" onclick="window.location.href='{$WEB_ROOT}/download.php?file=homework/{$item.homework.path}&mime={$item.homework.mime}'" class="bb" style="width:90px">VER TAREA</button>
-    {/if}
+		
+			{if $timestamp < $item.finalDateTimestamp}
+					<button class="btn red" onclick="deleteActividad('{$item.activityId}')" class="bb" style="width:90px">Eliminar</button>
+
+			{/if}
+		{/if}
+	{/if}
     {if $item.ponderation}
         <br />
         <b>Calificación:</b> {$item.ponderation}
@@ -90,7 +97,17 @@
 
     {if $item.retro}
         <br />
-        <b>Retroalimentación:</b> {$item.retro}
+        <b>Retroalimentación:</b> 
+		<a href="javascript:void(0)" onClick='verRetro("{$item.activityId}")'>
+		<div style=" float:left; left:-80px; font-size:24px;   position:relative; height: 24px; width: 24px;">
+		<i class="material-icons md-16">ic_visibility</i>
+		</div>
+		</a>
+		<div style="display:none" id="divRetro_{$item.activityId}">
+			{$item.retro}
+		</div>
+		
+
     {/if}
 	 {if $item.retroFile ne ""}
         <br />
