@@ -26,7 +26,7 @@
 	<link href="{$WEB_ROOT}/assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
 	<!-- END THEME GLOBAL STYLES -->
 
-	{if ($page == 'homepage' && $User.type == 'student') || $page == 'docente'}
+	{if ($page == 'homepage' && $User.type == 'student') || ($page == 'homepage' && $User.type == 'Docente') || $page == 'docente'}
 		<link href="{$WEB_ROOT}/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
 	{/if}
 	{if $page == 'inbox' or $page == 'reply-inbox' or $page == 'view-inbox'}
@@ -144,7 +144,7 @@ $page == 'view-inbox' or
 </head>
 <!-- END HEAD -->
 
-<body class="page-header-fixed page-sidebar-closed-hide-logo {if $User.type == "student"} page-sidebar-closed {/if} page-content-white page-md {if $page == 'homepage' && $User.type == 'student'} page-container-bg-solid {/if}">
+<body class="page-header-fixed page-sidebar-closed-hide-logo {if $User.type == "student" || $User.type == "Docente"} page-sidebar-closed {/if} page-content-white page-md {if ($page == 'homepage' && $User.type == 'student') || ($page == 'homepage' && $User.type == 'Docente')} page-container-bg-solid {/if}">
 <div class="page-wrapper">
 	{include file="new/header.tpl"}
 	<!-- BEGIN CONTAINER -->

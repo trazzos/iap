@@ -1633,6 +1633,38 @@ class Personal extends Main
 		return $result;
 	}
 	
+	
+	public function enumeratePersonalAcademico(){
+		
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					personal
+				WHERE
+					mostrar ='si' order by numero asc";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetResult();
+		
+		foreach($result as $key=>$aux){
+			
+			if(file_exists(DOC_ROOT."/".$aux['foto'])){
+				$foto = WEB_ROOT."/".$aux['foto'];
+			}else{
+				$foto = WEB_ROOT."/alumnos/no_foto.JPG";
+			}
+			$result[$key]['foto'] = $foto; 
+		}
+		
+		
+		
+		return $result;
+		
+		
+	}
+	
+	
 }
 
 

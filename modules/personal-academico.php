@@ -7,9 +7,14 @@ $module->setCourseModuleId($_GET["id"]);
 $myModule = $module->InfoCourseModule();
 
 
-$personal->setPersonalId($myModule["access"][1]);
-$docente = $personal->Info();
+// $personal->setPersonalId($myModule["access"][1]);
+$docente = $personal->enumeratePersonalAcademico();
 
+
+
+
+// echo '<pre>'; print_r($docente);
+// exit;
 $smarty->assign('docente', $docente);
 
 

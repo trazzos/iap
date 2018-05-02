@@ -1,5 +1,7 @@
 {if $User.type == 'student'}
     {include file='templates/new/student_profile.tpl'}
+{else if $User.type == 'Docente'}	
+	{include file='templates/new/docente_profile.tpl'}
 {else}
 
 
