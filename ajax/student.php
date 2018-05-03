@@ -922,6 +922,22 @@
 				$smarty->display(DOC_ROOT.'/templates/lists/inbox.tpl');
 				
 			break;
+			
+			
+			
+			
+			case 'onChangePicture':
+
+				if($url = $student->onChangePicture($_POST["userId"])){
+				echo "ok[#]";
+				}else{
+				echo "fail[#]";
+
+				}
+
+			break;
+			
+		
 	}
 
 ?>

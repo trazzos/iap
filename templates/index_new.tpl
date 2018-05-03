@@ -97,6 +97,7 @@ $page == 'view-inbox' or
  $page == 'info-docente' or 
  $page == 'lst-docentes' or 
  $page == 'report-docentes' or 
+ $page == 'perfil' or 
  $page == 'materias'}
 <style type="text/css">
 

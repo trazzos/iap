@@ -999,11 +999,11 @@ class User extends Main
 		$row = $this->Util()->DB()->GetRow();
 		
 		
-		if(file_exists(DOC_ROOT."/alumnos/".$row["userId"].".jpg"))
+		if(file_exists(DOC_ROOT."/alumnos/".$row["rutaFoto"].""))
 			{
 				$row["foto"] = '
-					<img src="'.WEB_ROOT.'/alumnos/'.$row["userId"].'.jpg" width="110" height="110"/>';
-				$row["imagen"] = WEB_ROOT.'/alumnos/'.$row["userId"].'.jpg';
+					<img src="'.WEB_ROOT.'/alumnos/'.$row["rutaFoto"].'" width="110" height="110"/>';
+				$row["imagen"] = WEB_ROOT.'/alumnos/'.$row["rutaFoto"].'';
 			}
 			else
 			{

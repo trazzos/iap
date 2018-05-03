@@ -1,6 +1,6 @@
 
 {if $auxImagen ne 1}
-<div class="portlet box red">
+<!--<div class="portlet box red">
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-bullhorm"></i>Cambiar foto de perfil
@@ -40,7 +40,7 @@
 			{/if}
         </div>
     </div>
-</div>
+</div>-->
 {/if}
 
 

@@ -2823,6 +2823,42 @@ class Student extends User
 		
 	}	
 	
+	function onChangePicture($Id)
+		{
+			
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			$archivo = 'archivos';
+			foreach($_FILES as $key=>$var)
+			{
+			   switch($key)
+			   {
+				   case $archivo:
+				   if($var["name"]<>""){
+						$aux = explode(".",$var["name"]);
+						$extencion=end($aux);
+						$temporal = $var['tmp_name'];
+						$url = DOC_ROOT;				
+						$foto_name=$Id.".".$extencion;	
+						if(move_uploaded_file($temporal,$url."/alumnos/".$foto_name)){									
+							$sql = 'UPDATE 		
+								user SET 		
+								rutaFoto = "'.$foto_name.'"			      		
+								WHERE userId = '.$Id.'';		
+							$this->Util()->DB()->setQuery($sql);		
+							$this->Util()->DB()->UpdateData();
+					   }
+					}
+					break;
+				}
+			}
+			
+			unset($_FILES);
+			
+			return true;
+		}
+	
 }
 
 ?>

@@ -1528,5 +1528,26 @@
 			return true;
 			
 		}
+		
+		public function  getGrupo($Id)
+		{
+			
+			$this->Util()->DB()->setQuery("
+				SELECT *
+				FROM course_module
+				WHERE courseModuleId = '".$Id."'");
+			$info = $this->Util()->DB()->GetRow();
+			
+			$this->Util()->DB()->setQuery("
+				SELECT *, user_subject.status AS status FROM user_subject
+				LEFT JOIN user ON user_subject.alumnoId = user.userId
+				WHERE user_subject.status = 'activo' and courseId = '".$info['courseId']."'
+				ORDER BY lastNamePaterno ASC, lastNameMaterno ASC, names ASC");
+			$result = $this->Util()->DB()->GetResult();
+			
+			return $result;
+	
+		}
+		
 	}	
 ?>

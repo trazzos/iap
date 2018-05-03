@@ -395,6 +395,13 @@
                     <span class="title">Información</span>
                 </a>
             </li>
+			
+		 <li class="nav-item {if $page == "grupo"} active {/if}">
+            <a href="{$WEB_ROOT}/grupo/id/{$id}" class="nav-link nav-toggle">
+                <i class="fa fa-graduation-cap"></i>
+                <span class="title">Grupo</span>
+            </a>
+        </li>	
 
         <li class="nav-item {if $page == "docente"} active {/if}">
             <a href="{$WEB_ROOT}/docente/id/{$id}" class="nav-link nav-toggle">

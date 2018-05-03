@@ -203,7 +203,8 @@ $pages = array(
 	'encuadre',
 	'rubrica',
 	'view-cuatri',
-	'add-msj'
+	'add-msj',
+	'contra'
 
 );
 

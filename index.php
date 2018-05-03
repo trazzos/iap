@@ -197,7 +197,9 @@ $pages = array(
 	'prog-materia',
 	'validarpago-adjuntar',
 	'msj',
-	'personal-academico'
+	'personal-academico',
+	'perfil',
+	'grupo'
 	
 	
 	

@@ -72,7 +72,7 @@
                     <ul class="nav">
                         <li class="">
                             <a href="{$WEB_ROOT}/alumn-services ">
-                                <i class="icon-settings"></i> Configuración </a>
+                                <i class="icon-settings"></i> Actualizar </a>
                         </li>
                         <!--<li>
                             <a href="{$WEB_ROOT}/tv ">
@@ -82,7 +82,11 @@
                             <a href="{$WEB_ROOT}/recorded ">
                                 <i class="fa fa-camera"></i> Grabaciones </a>
                         </li>-->
-						
+						<li>
+                            <a href="{$WEB_ROOT}/perfil" >
+                               <i class="fa fa-user" aria-hidden="true"></i>Perfil 
+							</a>
+                        </li>
 						<li>
                             <a href="{$WEB_ROOT}/view-solicitud" >
                                <i class="fa fa-folder-open" aria-hidden="true"></i>Solicitudes 
@@ -116,6 +120,11 @@
 						<li>
 						<a href="{$WEB_ROOT}/inbox/or/h" >
 						 <i class="fa fa-comments"></i>Inbox 
+						</a>
+						</li>
+						<li>
+						<a href="{$WEB_ROOT}/graybox.php?page=contra" data-target="#ajax" data-toggle="modal" data-width="1000px">
+						   <i class="fa fa-unlock-alt"></i>Cambiar Contraseña
 						</a>
 						</li>
                     </ul>
