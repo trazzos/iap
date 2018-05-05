@@ -16,6 +16,10 @@
 		if($_POST["type"] == 'saveEditPersonal')
 		{
 
+				if($_POST['mostrarP']=='on'){
+					$_POST['mostrarP'] = 'si';
+				}
+	
 			$personal->setPositionId($_POST['positionId']);
 			$personal->setPersonalId($_POST['id']);
 			$personal->setName($_POST['name']);

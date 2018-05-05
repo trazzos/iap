@@ -43,6 +43,13 @@
                 <input type="text" name="finalDate" id="finalDate" value="{$date}"  class="form-control  date-picker"/>
             </div>
         </div>
+		<div class="form-group">
+            <label class="col-md-3 control-label">Hora Final:</label>
+            <div class="col-md-8">
+                <input type="time" name="hora" id="hora" {if $actividad.horaFinal eq ''} value="23:59:00" {else} value="{$actividad.horaFinal}" {/if}   style="width:200px" class="form-control "/>
+               
+            </div>
+        </div>
 		<!--
 		<div class="form-group">
             <label class="col-md-3 control-label">Hora Final:</label>

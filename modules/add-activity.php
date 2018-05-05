@@ -13,7 +13,7 @@
 
 		$activity->setInitialDate($_POST["initialDate"]);
 		$activity->setFinalDate($_POST["finalDate"]);
-
+		$activity->setHora($_POST["hora"]);
 		$activity->setModality($_POST["modality"]);
 		$activity->setResumen($_POST["resumen"]);
 		$activity->setDescription($_POST["description"]);

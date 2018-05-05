@@ -8,5 +8,6 @@
 	
 	$smarty->assign("lstGrupo", $lstGrupo);
 	
-	
+	$smarty->assign('mnuMain', "modulo");
+$smarty->assign('mnuSubmain','docente');
 ?>

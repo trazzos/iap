@@ -86,7 +86,7 @@
           {/if}
         {else}
         <a href="{$WEB_ROOT}/edit-modules-course/id/{$subject.courseModuleId}" title="Ver Modulos de Curso"  style="color:#000" target="_top" >
-		<i class="material-icons md-16">settings</i>
+			<i class="fa fa-sign-in fa-2x" aria-hidden="true" style='color:black'></i>
         {/if}
         </td>
 		

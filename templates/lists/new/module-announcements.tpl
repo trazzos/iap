@@ -3,7 +3,7 @@
     <div class="portlet-title">
         <!-- TODO Poner al centro el título-->
         <div class="caption" >
-				{if $UserType.type eq 'student'}
+				{if $UserType.type ne 'student'}
 				<a href="{$WEB_ROOT}/graybox.php?page=add-noticia&id={$item.announcementId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='INICIAR PROCESO'>
 				<i class="material-icons md-16">ic_create</i>
 				</a>

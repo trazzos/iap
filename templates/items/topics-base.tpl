@@ -9,11 +9,11 @@
 		  <a href="{$WEB_ROOT}/forumsub-modules-student/id/{$id}/topicId/{$topic.topicId}">
 		<!--  <img src="{$WEB_ROOT}/images/arrow.png" class="spanEdit" id="e-{$position.positionId}" name="e-{$position.name}" title="Entrar al Foro" />
 		-->
-		  <i class="material-icons md-16">forum</i>
+		 <i class="fa fa-sign-in fa-2x" aria-hidden="true" style='color:black'></i>
 		  
 		  </a>
 		  {else}
-			<i class="material-icons md-16">forum</i>
+			 <i class="fa fa-sign-in fa-2x" aria-hidden="true" style='color:black'></i>
 		{/if}
 		  
         </td>

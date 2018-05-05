@@ -25,6 +25,7 @@ case "calificaciones":
 	    $infoModule=$module->InfoCourseModule();
 		$courseId=$infoModule['courseId'];
 		$activity->setCourseModuleId($_POST['id']);
+		$activity->setVerponderation("no");
 		$activityInfoTask=$activity->Enumerate("Tarea");
 		$activityInfoExa=$activity->Enumerate("Examen");
 		$userId=$_SESSION['User']['userId'];
@@ -32,7 +33,6 @@ case "calificaciones":
 		
 		// echo '<pre>'; print_r($activityInfoTask);
 		// exit;
-
 		// foreach($activityInfoTask as $key => $fila){
 		  // $activity->setCourseModuleId($_POST['id']);
 		  // $activity->setActivityId($fila['activityId']);

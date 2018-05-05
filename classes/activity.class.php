@@ -13,6 +13,13 @@
 		private $hora;
 		private $usuarioId;
 		private $horaInicial;
+		private $verponderation;
+		
+		public function setVerponderation($value)
+		{
+			// $this->Util()->ValidateInteger($value);
+			$this->verponderation = $value;
+		}
 		
 		public function setHoraInicial($value)
 		{
@@ -180,7 +187,9 @@
 				// si hay errores regresa false
 				return false;
 			}
-			$final= $this->getFinalDate() . " 23:59:59";
+			$final= $this->getFinalDate()." ".$this->hora;
+			
+			// $fechaFinal = $this->getFinalDate()." ".$this->hora;
 			//si no hay errores
 			//creamos la cadena de insercion
 			$sql = "INSERT INTO
@@ -299,10 +308,16 @@
 			{
 				$add = " AND activityType != 'Examen'";
 			}
+			$pond = "";
+			
+			if($this->verponderation == 'no')
+			{
+				$pond = " and ponderation <> 0";
+			}
 		
 			 $sql = "
 				SELECT *,@rownum:=@rownum+1 AS rownum  FROM (SELECT @rownum:=0) r,activity
-				WHERE courseModuleId = '".$this->getCourseModuleId()."'  and ponderation <> 0".$add."
+				WHERE courseModuleId = '".$this->getCourseModuleId()."' ".$pond."  ".$add."
 				ORDER BY initialDate ASC, activityId ASC";
 				
 				// exit;

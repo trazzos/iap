@@ -16,7 +16,16 @@ else
 $infoStudent = $student->InfoStudent();
 $smarty->assign("infoStudent", $infoStudent);
 
-
+if($_SESSION["User"]["type"] == "Docente"){
+	$personal->setPersonalId($_SESSION['User']['userId']);
+	$infoPj = $personal->Info();
+	if(file_exists(DOC_ROOT."/".$infoPj['foto'])){
+		$fotoPj = WEB_ROOT."/".$infoPj['foto'].'?'.rand();
+	}else{
+		$fotoPj = WEB_ROOT."/alumnos/no_foto.JPG";
+	}
+	$smarty->assign('fotoPj', $fotoPj);
+}
 
 $info = $user->Info();
 $smarty->assign("info", $info);

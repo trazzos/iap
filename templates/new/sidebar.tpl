@@ -456,7 +456,7 @@
                 </a>
             </li>
 			
-			<li class="nav-item {if $page == "forum-modules-student"} active {/if} ">
+			<li class="nav-item {if $page == "reply-inbox"} active {/if} ">
                 <a href="{$WEB_ROOT}/reply-inbox/id/{$id}/cId/0" class="nav-link nav-toggle">
                     <i class="fa fa-envelope-o"></i>
                     <span class="title">Inbox</span>
