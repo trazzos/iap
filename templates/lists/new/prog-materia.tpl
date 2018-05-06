@@ -7,7 +7,7 @@
 		<th width="200" style="text-align:center">Nombre materia</th>
 		<th width="80" style="text-align:center">Docente</th>
 		<th width="80" style="text-align:center">Vigencia</th>
-		<th width="80" style="text-align:center">Plan de Estudios</th>
+		<th width="80" style="text-align:center">Programa de la asignatura</th>
 		<th width="80" style="text-align:center">Carta Descriptiva</th>
 		<th width="80" style="text-align:center">Encuadre</th>
 		<th width="80" style="text-align:center">Rubrica</th>

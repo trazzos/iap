@@ -72,7 +72,7 @@
 				<li>
 					<a href="{$WEB_ROOT}/graybox.php?page=down-plan&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
 						<i class="fa fa-book"></i>
-							Plan de Estudios
+							Programa de la Asignatura
 					</a>
 				</li>
 				<li>

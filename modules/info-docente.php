@@ -3,7 +3,7 @@
 	/* For Session Control - Don't remove this */
 	// $user->allow_access(37);	
 	
-	// echo '<pre>'; print_r($_GET);
+	// echo '<pre>'; print_r($_SESSION);
 	// exit;
 	
 	if($_GET['cId']=='si'){
@@ -33,7 +33,7 @@
 	$f1 = explode('-',$info['fecha_nacimiento']);
 	
 	$registros = $student->cargarCiudades($info["stateId"]);
-	$smarty->assign("foto", $foto);
+	$smarty->assign("Usertype", $_SESSION['User']['perfil']);
 	$smarty->assign("registrosc", $registros);
 	$smarty->assign("cId", $_GET['cId']);	
 	$smarty->assign("estados", $estados);	

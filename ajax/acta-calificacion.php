@@ -73,6 +73,7 @@
 	<img src='".DOC_ROOT."/images/logo_correo.jpg'>
 	<center>	
 	<b>INSTITUTO DE ADMINISTRACIÓN PÚBLICA DEL ESTADO DE CHIAPAS, A.C.</b>
+	<br>
 	<b>".$info['majorName'].": ".$info['subjectName']."</b><br>
 	<b>ACTA DE CALIFICACIÓN FINAL</b><br>
 	</center>	

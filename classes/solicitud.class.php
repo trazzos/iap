@@ -762,6 +762,16 @@ class Solicitud extends Module
 	public function validarPagoAdjunto($Id)
 	{
 		
+		 $sqlQuery = 'SELECT 
+					*
+				FROM 
+					folio
+				WHERE  folioId = 1';
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$infoFol = $this->Util()->DB()->GetRow();
+		
+		$folio = $infoFol['nomenclatura'].'/'.$infoFol['folioSiguiente'];
+		
 		$sqlQuery = 'SELECT 
 					*
 				FROM 
@@ -816,7 +826,7 @@ class Solicitud extends Module
 				solicitud 
 			set 
 				estatus = 'completado',
-				folio ='',
+				folio ='".$folio."',
 				courseModuleId ='".$infoConfirma['courseModuleId']."',
 				nivelInscrito ='".$infoConfirma['nivel']."',
 				nombreFirma ='',
@@ -829,7 +839,17 @@ class Solicitud extends Module
 		$this->Util()->DB()->setQuery($sqlQuery);
 		$this->Util()->DB()->ExecuteQuery();
 		
-		
+		$sqlQuery = "
+			UPDATE 
+				folio 
+			set 
+				folioSiguiente = '".($infoFol['folioSiguiente']+1)."', 
+				folioActual ='".$infoFol['folioSiguiente']."' 
+			where
+				folioId = 1 "; 	
+// exit;	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
 		
 		return true;
 		
