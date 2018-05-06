@@ -204,7 +204,8 @@ $pages = array(
 	'rubrica',
 	'view-cuatri',
 	'add-msj',
-	'contra'
+	'contra',
+	'view-perfil'
 
 );
 

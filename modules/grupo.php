@@ -4,10 +4,15 @@
 	$lstGrupo = $group->getGrupo($_GET['id']);
 	
 	
-	// echo '<pre>'; print_r($lstGrupo);
-	
+	// echo '<pre>'; print_r($_SESSION);
+	// exit;
 	$smarty->assign("lstGrupo", $lstGrupo);
 	
-	$smarty->assign('mnuMain', "modulo");
-$smarty->assign('mnuSubmain','docente');
+	if($_SESSION['User']['perfil'] == 'Administrador' or $_SESSION['User']['perfil'] == 'Docente'){
+		$smarty->assign('mnuMain', "cursos");
+	}else{
+		$smarty->assign('mnuMain', "modulo");
+		$smarty->assign('mnuSubmain','docente');
+	}
+	
 ?>

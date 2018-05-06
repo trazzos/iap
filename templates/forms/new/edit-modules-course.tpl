@@ -52,6 +52,12 @@
 					</a>
 				</li>
 				<li>
+					<a href="{$WEB_ROOT}/grupo/id/{$myModule.courseModuleId}">
+						<i class="fa fa-graduation-cap"></i>
+							Grupo
+					</a>
+				</li>
+				<li>
 					<a href="{$WEB_ROOT}/graybox.php?page=rubrica&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
 						<i class="fa fa-pencil"></i>
 							Rúbrica

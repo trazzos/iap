@@ -47,3 +47,36 @@ function onChangePicture(Id){
 		},
 	})
 }
+
+
+
+function onSavePerfil()
+{
+	
+	
+	$('#desc').html(tinymce.get('desc').getContent());
+	
+    $.ajax({
+        url : WEB_ROOT+'/ajax/student.php',
+        type: "POST",
+        data :  $('#frmGral').serialize(),
+        success: function(data)
+        {
+            var splitResponse = data.split("[#]");
+
+			console.log(data);
+            if($.trim(splitResponse[0]) == "fail")
+            {
+                alert('Algo salio mal, compruebe su conexión a internet');
+            }
+            else
+            {
+                 location.href=WEB_ROOT;
+            }
+        },
+        error: function ()
+        {
+            alert('Algo salio mal, compruebe su conexión a internet');
+        }
+    });
+}

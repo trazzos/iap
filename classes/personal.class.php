@@ -1664,6 +1664,42 @@ class Personal extends Main
 		
 	}
 	
+	public function InfoMsjs($Id){
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					mensaje
+				WHERE
+					mensajeId  = ".$Id."";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+		
+		return $result;
+		
+	}
+	
+	public function enumerateDocentesMsj($Id){
+		
+		
+		$sql = "SELECT 
+					p.* 
+				FROM 
+					mensaje_personal as m
+				left join personal as p on p.personalId = m.personalId
+				WHERE
+					mensajeId  = ".$Id."";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetResult();
+		
+		return $result;
+		
+	}
+	
+	
+	
 	
 }
 

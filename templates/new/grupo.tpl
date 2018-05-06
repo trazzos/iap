@@ -9,7 +9,7 @@
     </div>
     <div class="portlet-body">
 	
-		<center>
+		<div style="left:15% !important; position:relative">
 			
 		{foreach from=$lstGrupo item=item key=key}
 		
@@ -22,7 +22,8 @@
 			-webkit-border-radius: 10%!important;
 			-moz-border-radius: 10%!important;
 			border-radius: 10%!important;">
-				<a href="{$WEB_ROOT}/perfil/id/{$id}">
+
+				<a href="{$WEB_ROOT}/graybox.php?page=view-perfil&id={$item.userId}" data-target="#ajax" data-toggle="modal" data-width="1000px">
 				{if $item.rutaFoto eq ''}
 				       <img src="{$WEB_ROOT}/alumnos/no_foto.JPG" class="img-responsive" alt="" style="border-radius: 60%;  width: 60%;height: 60%;"> 
 
@@ -32,17 +33,23 @@
 				<font style="font-size:11px; color:#73b760 ">Ver Perfil</font>
 				</a>
 			</div>
-			<div style=" float:left;">
+			<div style=" float:left; width: 194px;">
 			<br>
 			<font style="font-size:11px">{$item.names|upper} {$item.lastNamePaterno|upper}  {$item.lastNameMaterno|upper}</font>
 			</div>
-			<div style=" float:left;">
-			<br>
 			
-			</div>
-			<div style=" clear:both;"></div>
+			{if ($key+1) % 3  eq 0}
+				<div style="clear:both">
+				</div>
+				
+					<br>	
+					<br>	
+					<br>	
+
+				{/if}
+			
 		{/foreach}
-		</center>
+		</div>
     </div>
 </div>
 

@@ -1,4 +1,37 @@
 
+function onSavePass(){
+	
+	$("#type").val("onSavePass")
+
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/student.php',
+	  	data: $("#frmPass").serialize(true)+'&type=onSavePass',
+		beforeSend: function(){			
+			$("#res_").html('Cargando..');
+		},
+	  	success: function(response) {	
+			$("#res_").html('');
+			console.log(response)
+			var splitResp = response.split("[#]");
+			
+			if(splitResp[0] == "ok"){
+					location.reload();
+				}
+			else if(splitResp[0] == "fail"){
+
+				$("#res_").html(splitResp[1]);
+			
+			}
+			
+
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+	
+}//activar
 
 function CalificacionesAct(id){
 	$.ajax({
@@ -21,6 +54,14 @@ function CalificacionesAct(id){
     });
 	
 }//AddReg
+
+
+function closeModal(){
+	
+	$("#ajax").hide();
+	$("#ajax").modal("hide");
+	
+}
 
 
 // function CalificacionesAct(id){

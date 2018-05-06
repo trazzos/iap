@@ -12,21 +12,27 @@
 		<br>
 		<br>
 
-		<table>
-			<tr>
-				<td>Contraseña Anterior</td>
-				<td><input type="text" class="form-control" style="width:188px"></td>
-			</tr>
-			<tr>
-				<td>Nueva Contraseña</td>
-				<td><input type="text" class="form-control" style="width:188px"></td>
-			</tr>
+		<form id="frmPass">
+			<table>
 				<tr>
-				<td>Repite la nueva contraseña</td>
-				<td><input type="text" class="form-control" style="width:188px"></td>
-			</tr>
-		</table>
-		<center><button class="btn green" type="button">Actualizar</button></center>
+					<td>Contraseña Anterior</td>
+					<td><input name='anterior' type="password" class="form-control" style="width:188px"></td>
+				</tr>
+				<tr>
+					<td>Nueva Contraseña</td>
+					<td><input name='nuevo' type="password" class="form-control" style="width:188px"></td>
+				</tr>
+					<tr>
+					<td>Repite la nueva contraseña</td>
+					<td><input name='repite' type="password" class="form-control" style="width:188px"></td>
+				</tr>
+			</table>
+		</form>
+		<center>
+		<div id="res_"></div>
+		<button class="btn green" type="button" onClick="onSavePass()">Actualizar</button>
+		 <button type="button" class="btn default closeModal" onClick="closeModal()">Cancelar</button>
+		</center>
 		<br>
 		<br>
 	

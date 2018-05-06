@@ -40,9 +40,9 @@
 	
 	// echo '<pre>'; print_r($_GET);
 	// exit;
-	if($_GET['id'])
+	if($_GET['cId'])
 	{
-		$infos = $announcement->Info($_GET['id']);
+		$infos = $announcement->Info($_GET['cId']);
 		$smarty->assign('infos', $infos);
 		// $smarty->assign('id', $infos['courseModuleId']);
 		// echo '<pre>'; print_r($infos);

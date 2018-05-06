@@ -11,12 +11,18 @@ function onEnviaMsj(id,activo){
 	
 	$('#description').html(tinymce.get('description').getContent());
 	
-	$("#type").val("onEnviaMsj")
-
+	
+	
+	var fd = new FormData(document.getElementById("frmGral"));
+	fd.append('type',"onEnviaMsj");
+	
+	
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/foro.php',
-	  	data: $("#frmGral").serialize(true)+'&id='+id+'&activo='+activo+'&type=onEnviaMsj',
+		processData: false,
+		contentType: false,
+	  	data: fd,
 		beforeSend: function(){			
 			$('#divContenforo').html(LOADER3);
 		},

@@ -76,7 +76,7 @@
         {/if}
 
     {/if}
-    {if $item.homework}
+    {if $item.homework.path ne ''}
         <br />
         <b>Tarea entregada</b><!--
 		<a href="{$WEB_ROOT}/download.php?file=homework/{$item.homework.path}&mime={$item.homework.mime}" style="color:#000">Ver Tarea</a>-->

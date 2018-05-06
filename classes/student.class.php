@@ -17,7 +17,31 @@ class Student extends User
 	private $mensaje;
 	private $statusjj;
 	private $asunto;
+	private $perfil;
+	private $anterior;
+	private $nuevo;
+	private $repite;
+	
+	
+	public function setAnterior($value)
+	{
+		$this->anterior = $value;	
+	}
+	
+	public function setNuevo($value)
+	{
+		$this->nuevo = $value;	
+	}
+	
+	public function setRepite($value)
+	{
+		$this->repite = $value;	
+	}
 
+	public function setPerfil($value)
+	{
+		$this->perfil = $value;	
+	}
 	
 	
 	public function setAsunto($value)
@@ -2858,6 +2882,59 @@ class Student extends User
 			
 			return true;
 		}
+		
+	public function onSavePerfil($Id)
+	{
+		
+		$sql = 'UPDATE 		
+					user SET 		
+					perfil = "'.$this->perfil.'"			      		
+					WHERE userId = '.$Id.'';		
+				$this->Util()->DB()->setQuery($sql);		
+				$this->Util()->DB()->UpdateData();
+							
+			return true;
+	}
+	
+	public function onSavePass($Id)
+	{
+		 
+		$sql = "SELECT count(*) FROM user WHERE password = '".$this->anterior."' and userId='".$_SESSION["User"]["userId"]."'";
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetSingle();
+		
+		if($result <= 0){
+			echo 'fail[#]';
+			echo '<font color="red">La contraseña anterior no es correcta</font>';
+			exit;
+		}
+		
+		if($this->nuevo != $this->repite){
+			echo 'fail[#]';
+			echo '<font color="red">Las contraseñas no coinciden</font>';
+			exit;
+		} 
+		
+		if($this->nuevo == ''){
+			echo 'fail[#]';
+			echo '<font color="red">La nueva contraseña no puede estar vacia</font>';
+			exit;
+		}
+		
+		 $sqlQuery = "
+			UPDATE 
+				user 
+			set 
+				password='".$this->nuevo."'
+			where userId='".$_SESSION["User"]["userId"]."'"; 			
+		
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}
+	
+		
 	
 }
 

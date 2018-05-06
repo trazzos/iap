@@ -16,7 +16,7 @@
 						<div ><!--
 							<img src='{$foto}' style='width: 100px !important'>-->
 							<div class="profile-userpic">
-                    <img src="{{$infoStudent.imagen}}" class="img-responsive" alt=""> </div>
+							<img src="{{$infoStudent.imagen}}" class="img-responsive" alt=""> </div>
 							<div style='position: relative; 
 							bottom:0px; width:100%; margin-right: -100px;'>
 							<span class="btn btn-default btn-file">
@@ -30,16 +30,19 @@
 					</form>
 					<br>
 					<br>
+
+					<b>Cuéntanos mas acerca de ti, incluye datos como edad, formación académica y profesional, intereses personales y algunos aspectos que permitan a tus compañeros conocerte 
+					</b>
+					<br>
+					<b>(Esta información será visible para tu asesor y demás compañeros)</b>
+					<br><br><br><br>
 					<form id="frmGral">
-					<textarea name='desc'></textarea>
+					<input type="hidden" name="type" value="onSavePerfil">
+					<textarea name='desc' id='desc'>{$info.perfil}</textarea>
 					<br>
 					</form>
-					<button class="btn green" type="button">Guardar</button>
-					<br>
-					<br>
-					Cuéntanos mas acerca de ti, incluye datos como edad, formación académica y profesional, intereses personales y algunos aspectos que permitan a tus compañeros conocerte 
-					<br>
-					(Esta información será visible para tu asesor y demás compañeros)
+					<button class="btn green" type="button" onClick="onSavePerfil()">Guardar</button>
+					
 				</center>
     </div>
 </div>

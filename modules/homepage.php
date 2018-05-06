@@ -55,10 +55,14 @@ $x=0;
 	
 	
 	
-	
-	
+	// echo '_'.$_SESSION['msjC'];
+// exit;
 	$notificaciones=$notificacion->Enumerate();
 	$smarty->assign('notificaciones', $notificaciones);
+	$smarty->assign('msjC', $_SESSION['msjC']);
+	$smarty->assign('msjCc', $_SESSION['msjCc']);
+		unset($_SESSION['msjC']);
+		unset($_SESSION['msjCc']);
 	// echo '<pre>'; print_r($notificaciones);
 	// exit;
 	/*

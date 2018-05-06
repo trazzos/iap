@@ -132,7 +132,8 @@
 		
 		case 'onEnviaMsj':
 		
-		// echo '<pre>'; print_r($_SESSION);
+		// echo '<pre>'; print_r($_POST);
+		// echo '<pre>'; print_r($_FILES);
 		// exit;
 			// echo '<pre>'; print_r($_POST);
 			// $module->setPerId($_POST['mensaje']);
