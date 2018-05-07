@@ -617,3 +617,10 @@ function onSendRubrica(Id){
 	})
 
 }
+
+
+function verTr(Id){
+	
+	
+	$('#tr_'+Id).toggle();
+}

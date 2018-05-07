@@ -42,6 +42,7 @@
 							<thead>
 								<tr>
 									
+									<th style="text-align:center"><b></b></th>
 									<th style="text-align:center"><b>Rubro</b></th>
 									<!--<th align="center">Total de Puntos </th>-->	 
 									<th style="text-align:center"><b>Promedio </b></th>	 
@@ -51,10 +52,27 @@
 								{foreach from=$lstPreguntas.result item=subject}
 								<tr>
 									
+									<td align="center"><a href="javascript:void(0)" onClick="verTr('{$subject.categoriapreguntaId}')">[+]</a></td>
 									<td align="center">{$subject.nombre}</td>
 									<!--<td align="center">{$subject.sumR}</td>-->
 									<td align="center">{$subject.promedio}</td>
 									
+								</tr>
+								<tr style="display:none" id="tr_{$subject.categoriapreguntaId}">
+									<td colspan="3">
+										<table width="100%" class="tblGral table table-bordered table-striped table-condensed flip-content">
+											<tr>
+												<td><b>Pregunta</b></td>
+												<td><b>Promedio</b></td>
+											</tr>
+											{foreach from=$subject.lstPreguntas item=item}
+											<tr>
+												<td>{$item.pregunta}</td>
+												<td>{$item.totalPp}</td>
+											</tr>
+											{/foreach}
+										</table>
+									</td>
 								</tr>
 								{/foreach}
 							</tbody>

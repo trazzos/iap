@@ -86,11 +86,6 @@ class Encuesta extends Main
 
 		 $totalAlumnos  = count($ta);
 		
-		
-		// exit;
-		// total de alumnos
-		
-		
 		  $sql = "
 				SELECT 
 					count(*)
@@ -143,7 +138,51 @@ class Encuesta extends Main
 			$countR = $this->Util()->DB()->GetSingle();
 			
 			
+			 $sql = "
+				SELECT 
+					*
+				FROM 
+					resultado as r
+				left join pregunta as p on p.preguntaId = r.preguntaId
+				where 
+					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId = ".$cModuleId."";
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$lstPreguntas = $this->Util()->DB()->GetResult();
 			
+			foreach($lstPreguntas as $keyp=>$auxp){
+				
+				$sql = "
+				SELECT 
+					sum(respuesta)
+				FROM 
+					resultado as r
+				left join pregunta as p on p.preguntaId = r.preguntaId
+				where 
+					p.preguntaId = ".$auxp['preguntaId']." and courseModuleId = ".$cModuleId."";
+
+				$this->Util()->DB()->setQuery($sql);
+				$totalPp = $this->Util()->DB()->GetSingle();
+				
+				$sql = "
+				SELECT 
+					count(respuesta)
+				FROM 
+					resultado as r
+				left join pregunta as p on p.preguntaId = r.preguntaId
+				where 
+					p.preguntaId = ".$auxp['preguntaId']." and courseModuleId = ".$cModuleId."";
+
+				$this->Util()->DB()->setQuery($sql);
+				$countPj = $this->Util()->DB()->GetSingle();
+				
+				
+				$lstPreguntas[$keyp]['totalPp'] = round( $totalPp/$countPj);
+			}
+			
+			
+			
+			$result[$key]['lstPreguntas'] = $lstPreguntas;
 			$result[$key]['sumR'] = $sumR;
 			@$result[$key]['promedio'] = round($sumR/$countR) ;
 		}
@@ -286,8 +325,51 @@ class Encuesta extends Main
 			$this->Util()->DB()->setQuery($sql);
 			$countR = $this->Util()->DB()->GetSingle();
 			
+			$sql = "
+				SELECT 
+					*
+				FROM 
+					resultado as r
+				left join pregunta as p on p.preguntaId = r.preguntaId
+				where 
+					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId = ".$cModuleId."";
+			// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$lstPreguntas = $this->Util()->DB()->GetResult();
+			
+			foreach($lstPreguntas as $keyp=>$auxp){
+				
+				$sql = "
+				SELECT 
+					sum(respuesta)
+				FROM 
+					resultado as r
+				left join pregunta as p on p.preguntaId = r.preguntaId
+				where 
+					p.preguntaId = ".$auxp['preguntaId']." and 	courseModuleId in  ".$modul."";
+
+				$this->Util()->DB()->setQuery($sql);
+				$totalPp = $this->Util()->DB()->GetSingle();
+				
+				$sql = "
+				SELECT 
+					count(respuesta)
+				FROM 
+					resultado as r
+				left join pregunta as p on p.preguntaId = r.preguntaId
+				where 
+					p.preguntaId = ".$auxp['preguntaId']." and 	courseModuleId in  ".$modul."";
+
+				$this->Util()->DB()->setQuery($sql);
+				$countPj = $this->Util()->DB()->GetSingle();
+				
+				
+				$lstPreguntas[$keyp]['totalPp'] = round( $totalPp/$countPj);
+			}
 			
 			
+			
+			$result[$key]['lstPreguntas'] = $lstPreguntas;
 			$result[$key]['sumR'] = $sumR;
 			@$result[$key]['promedio'] = round($sumR/$countR) ;
 		}
