@@ -1,7 +1,7 @@
 <form class="form-horizontal" id="editRoleForm" name="editRoleForm" method="post">
     <input type="hidden" id="type" name="type" value="saveEditRole"/>
     <input type="hidden" id="id" name="id" value="{$info.roleId}" />
-    <input type="hidden" id="list_roles" name="list_roles" value="" />
+    <input type="hidden" id="list_modules" name="list_modules" value="" />
 
     <div class="form-body">
         <div class="form-group">

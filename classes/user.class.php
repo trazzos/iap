@@ -1184,7 +1184,7 @@ class User extends Main
 		
 		foreach($result as $res){
 			
-			$sqlQuery = 'SELECT moduleId FROM role_modules WHERE roleId = '.$res['roleId'];
+			$sqlQuery = 'SELECT moduleId FROM role_modules WHERE roleId = 39';
 			$this->Util()->DB()->setQuery($sqlQuery);
 			$result2 = $this->Util()->DB()->GetResult();
 			foreach($result2 as $val){

@@ -38,6 +38,10 @@ function AddRoleDiv()
 
 function AddRole()
 {
+	
+	SendModulesData(document.addRoleForm.module_to,document.addRoleForm.list_modules);
+	
+	
     $.ajax({
         url : WEB_ROOT+'/ajax/new/role.php',
         type: "POST",
@@ -45,7 +49,7 @@ function AddRole()
         success: function(data)
         {
             var splitResponse = data.split("[#]");
-
+console.log(data)
             if(splitResponse[0] == "fail")
             {
                 ShowStatusPopUp($(splitResponse[1]));
@@ -114,12 +118,15 @@ function EditRolePopup(id)
 
 function EditRole()
 {
+	SendModulesData(document.editRoleForm.module_to,document.editRoleForm.list_modules);
+	
     $.ajax({
         url : WEB_ROOT+'/ajax/new/role.php',
         type: "POST",
         data :  $('#editRoleForm').serialize(),
         success: function(data)
         {
+			console.log(data)
             var splitResponse = data.split("[#]");
 
             if(splitResponse[0] == "fail")
@@ -159,16 +166,11 @@ function MoveModule(From, To){
     }//for
 }//MoveOptions
 
-/*
-
-
-
 function SendModulesData(listFrom, fieldTo){
-    var ResultLine = "";
-    OptionsHandlerSrc = listFrom.options;
-    for(i=0;i<OptionsHandlerSrc.length;i++){
-        ResultLine+= OptionsHandlerSrc[i].value + ",";
-    }//for
-    fieldTo.value = ResultLine;
+	var ResultLine = "";
+	OptionsHandlerSrc = listFrom.options;
+	for(i=0;i<OptionsHandlerSrc.length;i++){
+		ResultLine+= OptionsHandlerSrc[i].value + ",";
+	}//for
+	fieldTo.value = ResultLine;		
 }//SendModulesData
-*/

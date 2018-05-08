@@ -38,9 +38,7 @@
         {/if}
 
 
-        {if $User.positionId == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
-        {if !$docente}
-        {if $vistaPrevia ne 1}
+        
         <li class="nav-item {if  $page == "personal1"} active {/if} ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-diamond"></i>
@@ -48,6 +46,10 @@
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
+			{if $User.positionId == 1 || $AccessMod[38] == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
+			{if !$docente}
+			{if $vistaPrevia ne 1}
+				{if $AccessMod[38] != 1}
                 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/major" class="nav-link ">
                         <span class="title">Programas Académicos</span>
@@ -58,11 +60,13 @@
                         <span class="title">Personal</span>
                     </a>
                 </li>
+				{/if}
                 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/student" class="nav-link ">
                         <span class="title">Alumnos</span>
                     </a>
                 </li>
+				{if $AccessMod[38] != 1}
                 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/position" class="nav-link ">
                         <span class="title">Puestos</span>
@@ -83,9 +87,11 @@
                         <span class="title">Videoconferencias</span>
                     </a>
                 </li>
+				{/if}
+			 {/if}
             </ul>
         </li>
-        {/if}
+       
         {/if}
         {/if}
 
@@ -113,7 +119,7 @@
         {/if}
         {/if}
 
-        {if $AccessMod[11] == 1 || $User.positionId == 1 || $AccessMod[31] == 1 || $AccessMod[8] == 1}
+        {if $AccessMod[11] == 1 || $User.positionId == 1 || $AccessMod[31] == 1 || $AccessMod[8] == 1 ||  $AccessMod[39] == 1}
             {if !$docente}
 			{if $vistaPrevia ne 1}
                 <li class="nav-item   {if $page == "subject" || $page == "history-subject"} active {/if} ">
@@ -123,11 +129,13 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
+						{if $AccessMod[39] != 1}
                         <li class="nav-item  ">
                             <a href="{$WEB_ROOT}/subject" class="nav-link ">
                                 <span class="title">Currícula</span>
                             </a>
                         </li>
+						{/if}
                         <li class="nav-item  ">
                             <a href="{$WEB_ROOT}/history-subject" class="nav-link ">
                                 <span class="title">Historial</span>
@@ -149,9 +157,10 @@
         {/if}
 
 
-        {if $User.positionId == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
+        {if $User.positionId == 1 || $AccessMod[40] == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
         {if $vistaPrevia ne 1}
 		 {if !$docente}
+		 {if $AccessMod[40] != 1}
 		<li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-video-camera"></i>
@@ -171,7 +180,7 @@
                 </li>
             </ul>
         </li>
-		
+		{/if}
 		<li class="nav-item  ">
             <a href="{$WEB_ROOT}/solicitud" class="nav-link nav-toggle">
                 <i class="fa fa-folder-open" aria-hidden="true"></i>
@@ -179,6 +188,7 @@
                 <span class="arrow"></span>
             </a>
         </li>
+		{if $AccessMod[40] != 1}
 		 <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                <i class="fa fa-money" aria-hidden="true"></i>
@@ -198,6 +208,7 @@
                 </li>
             </ul>
         </li>
+		{/if}
 		<!--
 		<li class="nav-item  ">
             <a href="{$WEB_ROOT}/lst-docentes" class="nav-link nav-toggle">

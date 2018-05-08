@@ -155,6 +155,8 @@ class Role extends Main
 			return false; 
 		}
 		
+		
+		
 		$sql = "INSERT INTO 
 					role 
 					(	
@@ -174,6 +176,9 @@ class Role extends Main
 		
 		$listModules = explode(',',$this->modulesId);
 		
+		
+		// echo '<pre>'; print_r($listModules);
+		// exit;
 		if($listModules){
 		
 			foreach($listModules as $val){
@@ -208,6 +213,8 @@ class Role extends Main
 		if($this->Util()->PrintErrors()){ 
 			return false; 
 		}
+		
+		
 		
 		$sql = "UPDATE 
 					role SET clave =  '".$this->clave."', 
