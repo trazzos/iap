@@ -1017,7 +1017,7 @@
 			
 		if ($vas == 1){
 			
-		sleep(7)
+		sleep(7);
 			
 		$sendmail = new SendMail;	
 		
