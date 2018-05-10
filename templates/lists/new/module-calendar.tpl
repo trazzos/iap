@@ -23,7 +23,7 @@
     <br />
 
     <br />
-    <b>Fecha Inicial:</b> {$item.initialDate|date_format:"%d-%m-%Y"}
+    <b>Fecha Inicial:</b> {$item.initialDate|date_format:"%d-%m-%Y"} {$item.horaInicial}
     <br />
     <b>Fecha Final:  </b> {$item.finalDate|date_format:"%d-%m-%Y %H:%M:%S"}
     <br /><br />

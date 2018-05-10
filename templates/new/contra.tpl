@@ -12,7 +12,7 @@
 		<br>
 		<br>
 
-		<form id="frmPass">
+		<form id="frmPass" onsubmit="return false;">
 			<table>
 				<tr>
 					<td>Contraseña Anterior</td>
@@ -20,7 +20,9 @@
 				</tr>
 				<tr>
 					<td>Nueva Contraseña</td>
-					<td><input name='nuevo' type="password" class="form-control" style="width:188px"></td>
+					<td><input name='nuevo' id='nuevo' type="password" class="form-control" style="width:188px">
+					<!--<input type="checkbox" name="show" id="show" onClick="onVerPass()">-->
+					</td>
 				</tr>
 					<tr>
 					<td>Repite la nueva contraseña</td>

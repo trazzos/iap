@@ -142,6 +142,11 @@
 						   <i class="fa fa-unlock-alt"></i>Cambiar Contraseña
 						</a>
 						</li>
+						<li>
+						<a href="{$WEB_ROOT}/personal-academico" >
+						   <i class="fa fa-sitemap"></i>Personal Academico
+						</a>
+						</li>
                     </ul>
                 </div>
                 <!-- END MENU -->

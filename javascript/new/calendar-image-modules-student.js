@@ -1,5 +1,5 @@
 window.onload = function() {
-	alert('lety') 
+	 
 		   App.init(); // initlayout and core plugins
 		   Index.init();
 		   // Index.initJQVMAP(); // init index page's custom scripts

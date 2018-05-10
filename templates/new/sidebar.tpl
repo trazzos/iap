@@ -420,13 +420,13 @@
                 <span class="title">Asesor</span>
             </a>
         </li>
-
+<!--
 		<li class="nav-item {if $page == "personal-academico"} active {/if}">
             <a href="{$WEB_ROOT}/personal-academico/id/{$id}" class="nav-link nav-toggle">
                 <i class="fa fa-sitemap"></i>
                 <span class="title">Personal Académico</span>
             </a>
-        </li>
+        </li>-->
 
         {if $mnuMain == "modulo"}
             <li class="nav-item {if $page == "calendar-image-modules-student"} active {/if} ">

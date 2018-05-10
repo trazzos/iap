@@ -7,7 +7,7 @@
     </div>
     <div class="portlet-body">
         <div id="tblContent">
-			<div style="left:30%; position:relative">
+			<div style="left:20%; position:relative">
 			{**include file="lists/new/resources.tpl"**}
 
 
@@ -24,11 +24,11 @@
 								{$item.name|upper} {$item.lastname_materno|upper} {$item.lastname_paterno|upper} </font><br>
 								{if $item.correo eq ''}SIN INFORMACIÓN{else} {$item.correo|upper} {/if}<br>
 								{if $item.puesto eq ''}SIN INFORMACIÓN{else} {$item.puesto|upper} {/if}<br>
-								{$item.descripcion|upper}<br>
+								{$item.description|upper}<br>
 								</div>
 					</div>
 					
-				{if ($key+1) % 2  eq 0}
+				{if ($key+1) % 3  eq 0}
 				<div style="clear:both">
 				</div>
 				

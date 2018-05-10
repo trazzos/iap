@@ -1,4 +1,30 @@
 
+
+
+
+
+  
+function onVerPass(){
+	 // $('#show').attr('checked', false);
+
+      name = $('#nuevo').attr('name'); 
+      value = $('#nuevo').attr('value');
+
+      if($('#nuevo').attr('checked'))
+      {
+         html = '<input type="text" name="'+ name + '" value="' + value + '" id="nuevo"/>';
+         $('#nuevo').after(html).remove();
+      }
+
+      else
+      {
+         html = '<input type="nuevo" name="'+ name + '" value="' + value + '" id="nuevo"/>';
+         $('#nuevo').after(html).remove();
+      }
+  
+}
+
+
 function onSavePass(){
 	
 	$("#type").val("onSavePass")
@@ -15,10 +41,10 @@ function onSavePass(){
 			console.log(response)
 			var splitResp = response.split("[#]");
 			
-			if(splitResp[0] == "ok"){
+			if($.trim(splitResp[0]) == "ok"){
 					location.reload();
 				}
-			else if(splitResp[0] == "fail"){
+			else if($.trim(splitResp[0]) == "fail"){
 
 				$("#res_").html(splitResp[1]);
 			

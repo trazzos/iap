@@ -17,7 +17,7 @@
 			<td align="left">{$subject.fecha}</td>
 			<td align="left">
 				<a  href="{$WEB_ROOT}/graybox.php?page=add-msj&id={$subject.mensajeId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='SUBIR DOCUMENTO'>				
-				<i class="material-icons md-16">create</i>
+				<i class="material-icons md-16">search</i>
 				</a>
 			</td>
 		</tr>
