@@ -998,7 +998,9 @@
 					$extencion=end($aux);
 					$temporal = $var['tmp_name'];
 					$url = DOC_ROOT;				
-					$foto_name="doc_".$id.".".$extencion;		
+					$foto_name="doc_".$id.".".$extencion;	
+// echo $var['tmp_name'];
+// exit;					
 					if(move_uploaded_file($temporal,$url."/docentes/msj/".$foto_name)){
 						
 						$sql = "UPDATE
@@ -1016,8 +1018,12 @@
 			
 		$sendmail = new SendMail;	
 		
-		 $attachment[0] = $url."/docentes/msj/".$foto_name;
-		 $fileName[0] = $this->titulo;
+		
+		// echo $url."/docentes/msj/".$foto_name;
+		// exit;
+		
+		 $attachment[0] = $var['tmp_name'];
+		 $fileName[0] = utf8_decode($this->titulo);
 		
 		
 		$personal = New Personal;

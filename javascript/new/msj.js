@@ -31,7 +31,7 @@ function onEnviaMsj(id,activo){
 			console.log(response)
 			var splitResp = response.split("[#]");
 			
-			 location.reload();
+			 // location.reload();
 					
 			
 
