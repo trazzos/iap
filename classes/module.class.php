@@ -1022,8 +1022,10 @@
 		$sendmail = new SendMail;	
 		
 		 $attachment[0] = $url."/docentes/msj/".$foto_name;
-		 $fileName[0] = $this->titulo;
+		 $fileName[0] = $foto_name;
 		
+		// echo '<pre>'; print_r($attachment);
+		// exit;
 		
 		$personal = New Personal;
 		$lstPeso = $personal->enumerateDocentesMsj($id);
@@ -1031,15 +1033,15 @@
 		foreach($lstPeso as $key=>$aux){
 			
 				if($aux['correo']<>''){
-					$sendmail->PrepareAttachment("Mensaje Para el Docente", $this->mensaje,"","", $aux['correo'], 'Docente', $attachment, $fileName);
+					$sendmail->PrepareAttachment("Mensaje Para el Docente", utf8_decode($this->mensaje),"","", $aux['correo'], 'Docente', $attachment, $fileName);
 				}
 		}
 		
 		
-		 $sendmail->PrepareAttachment("Mensaje Para el Docente", $this->mensaje, "","", 'juanjosepm@live.com', 'Docente', $attachment, $fileName);
-		$sendmail->PrepareAttachment("Mensaje Para el Docente",$this->mensaje, "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
-		$sendmail->PrepareAttachment("Mensaje Para el Docente",$this->mensaje, "", "", " tutor@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
-		$sendmail->PrepareAttachment("Mensaje Para el Docente",$this->mensaje, "", "", " dacademica@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+		 $sendmail->PrepareAttachment("Mensaje Para el Docente", utf8_decode($this->mensaje), "","", 'juanjosepm@live.com', 'Docente', $attachment, $fileName);
+		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " tutor@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " dacademica@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
 
 		}	
 		return true;
