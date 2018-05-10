@@ -987,7 +987,7 @@
 				$result = $this->Util()->DB()->InsertData();
 		}
 		
-		
+		$vas = 0;
 		foreach($_FILES as $key=>$var)
 		{
 		   switch($key)
@@ -998,9 +998,7 @@
 					$extencion=end($aux);
 					$temporal = $var['tmp_name'];
 					$url = DOC_ROOT;				
-					$foto_name="doc_".$id.".".$extencion;	
-// echo $var['tmp_name'];
-// exit;					
+					$foto_name="doc_".$id.".".$extencion;		
 					if(move_uploaded_file($temporal,$url."/docentes/msj/".$foto_name)){
 						
 						$sql = "UPDATE
@@ -1010,20 +1008,21 @@
 							WHERE mensajeId = '".$id."'";
 								$this->Util()->DB()->setQuery($sql);
 								$this->Util()->DB()->UpdateData();
-							
+							$vas = 1;
 					}
 				}
 		   }
 		}
 			
+			
+		if ($vas == 1){
+			
+		sleep(7)
+			
 		$sendmail = new SendMail;	
 		
-		
-		// echo $url."/docentes/msj/".$foto_name;
-		// exit;
-		
-		 $attachment[0] = $var['tmp_name'];
-		 $fileName[0] = utf8_decode($this->titulo);
+		 $attachment[0] = $url."/docentes/msj/".$foto_name;
+		 $fileName[0] = $this->titulo;
 		
 		
 		$personal = New Personal;
@@ -1037,12 +1036,12 @@
 		}
 		
 		
-		 $sendmail->PrepareAttachment("Mensaje Para el Docente", utf8_decode($this->mensaje), "","", 'juanjosepm@live.com', 'Docente', $attachment, $fileName);
-		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
-		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " tutor@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
-		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " dacademica@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+		 $sendmail->PrepareAttachment("Mensaje Para el Docente", $this->mensaje, "","", 'juanjosepm@live.com', 'Docente', $attachment, $fileName);
+		$sendmail->PrepareAttachment("Mensaje Para el Docente",$this->mensaje, "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+		$sendmail->PrepareAttachment("Mensaje Para el Docente",$this->mensaje, "", "", " tutor@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+		$sendmail->PrepareAttachment("Mensaje Para el Docente",$this->mensaje, "", "", " dacademica@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
 
-
+		}	
 		return true;
 	}
 	
