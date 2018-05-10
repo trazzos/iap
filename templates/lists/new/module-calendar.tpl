@@ -48,8 +48,11 @@
         {/if}
         {if $item.activityType == "Tarea"}
             {if $vistaPrevia==0}
-        <a href="{$WEB_ROOT}/graybox.php?page=upload-homework&id={$item.activityId}" title="Subir Tarea" data-target="#ajax" data-toggle="modal" style="color:#000" class="btn btn-xs green-jungle"> Subir Actividad al Sistema de Tareas <i class="fa fa-upload "></i></a>
-            {else} Subir Tarea al Sistema de Tareas.
+				{if $item.homework.path ne ''}
+					<a href="{$WEB_ROOT}/graybox.php?page=upload-homework&id={$item.activityId}" title="Subir Tarea" data-target="#ajax" data-toggle="modal" style="color:#000" class="btn btn-xs green-jungle"> Subir Actividad al Sistema de Tareas <i class="fa fa-upload "></i></a>
+				 {/if}
+		   {else}
+				Subir Tarea al Sistema de Tareas.
             {/if}
         {/if}
         {if $item.activityType == "Examen"}
@@ -84,8 +87,10 @@
 		<button class="btn blue" onclick="window.location.href='{$WEB_ROOT}/download.php?file=homework/{$item.homework.path}&mime={$item.homework.mime}'" class="bb" style="width:90px">VER TAREA</button>
 		
 			{if $timestamp < $item.finalDateTimestamp}
+				{if $homework.countUpdate eq 0}
 					<button class="btn red" onclick="deleteActividad('{$item.activityId}')" class="bb" style="width:90px">Eliminar</button>
 
+				{/if}
 			{/if}
 		{/if}
 	{/if}

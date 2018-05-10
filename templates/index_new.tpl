@@ -91,6 +91,8 @@
 	
 *}
 <script src="{$WEB_ROOT}/assets/jquery.multiple.select.js"></script>
+
+<link href="{$WEB_ROOT}/assets/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
 {if $page == 'reply-inbox' or 
 $page == 'view-inbox' or
  $page == 'edit-modules-course' or
@@ -187,6 +189,7 @@ $page == 'view-inbox' or
 <script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
+
 <script>
 	//$j = jQuery.noConflict();
 	//$.noConflict(true);
@@ -214,6 +217,10 @@ $page == 'view-inbox' or
 
 <script src="{$WEB_ROOT}/assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<!-- jj
+<script src="{$WEB_ROOT}/assets/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+<script src="{$WEB_ROOT}/assets/fullcalendar/app.js" type="text/javascript"></script>
+-->
 
 <script src="{$WEB_ROOT}/javascript/new/{$page}.js?{$timestamp}" type="text/javascript"></script>
 

@@ -8,9 +8,10 @@
         </div>
     </div>
     <div class="portlet-body">
-        {include file="boxes/status_no_ajax.tpl"}
-        <div style="text-align:center">
-            <img src="{$WEB_ROOT}/calendario/calendario_{$id}.jpg" width="900" height="600" />
-        </div>
+        
+		<div id="calendar" >
+									
+		
+		</div>
     </div>
 </div>
