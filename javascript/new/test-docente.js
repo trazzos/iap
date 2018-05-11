@@ -6,7 +6,8 @@ function SaveEncuesta(Id){
 	  	url: WEB_ROOT+'/ajax/test-docente.php',
 	  	data: "type=SaveEncuesta&Id="+Id+'&'+$("#frmGral").serialize(true),
 		beforeSend: function(){			
-			// $(".loader").html(LOADER);
+			$("#msj").html('Cargando....');
+			$("#btnSaveEncuesta").hide();
 			// $(".txtErrMsg").hide(0);
 		},		
 	  	success: function(response) {		
@@ -31,11 +32,12 @@ function SaveEncuesta(Id){
 				
 
 			}else if($.trim(splitResp[0]) == "fail"){
-				
+				$("#btnSaveEncuesta").show();
 				console.log(splitResp[1]);
 				// alert(splitResp[1])
 				$("#msj").html(splitResp[1]);
 			}else{
+				$("#btnSaveEncuesta").show();
 				alert("Ocurrio un error al cargar los datos.");
 			}
 		},

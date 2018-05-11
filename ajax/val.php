@@ -4,6 +4,8 @@
 	include_once(DOC_ROOT.'/libraries.php');
 
 	session_start();
+// echo "<pre>"; print_r($lstPreguntas);
+    // exit;
 
 	
 	$module->setCourseModuleId($_GET['Id']);
@@ -14,9 +16,7 @@
 
 	
 	$lstPreguntas = $encuesta->promedioXRubro($_GET['Id'],$infoM['courseId']);     
-	// echo "<pre>"; print_r($lstPreguntas);
-    // exit;
-
+	
 	$html .= "
 	<html>
 	<head>
@@ -87,10 +87,23 @@
 		$html .= "<br><font class='txtTicket'><b>Resultados</b>  </font>";
 		$html .= "<br>";
 		$html .= "<table align='center' width='100%' border='1' class='txtTicket'>";
-		$html .= "<tr><td>Rubro</td><td>Promedio</td></tr>";
+		$html .= "<tr><td >Rubro</td><td width='44px'>Promedio</td></tr>";
 		
 		foreach($lstPreguntas['result'] as $key=>$aux){
-			$html .= "<tr><td>".$aux['nombre']."</td><td>".$aux['promedio']."</td></tr>";
+			$html .= "<tr><td><b>".$aux['nombre']."</b></td><td width='44px'>".$aux['promedio']."</td></tr>";
+			$html .= "<tr><td colspan='2'>"; 
+			
+			$html .= "
+				<table class='txtTicket' width='100%'>
+				<tr>
+					<td>Pregunta</td>
+					<td width='94px'>Promedio</td>
+				</tr>"; 		
+			foreach($aux['lstPreguntas'] as $keyp=>$auxp){
+				$html .= "<tr><td>".$auxp['pregunta']."</td><td width='94px'>".$auxp['totalPp']."</td></tr>"; 	
+			}
+			$html .= "</table>"; 
+			$html .= "<br><br><br></td></tr>";
 		}
 		$html .= "</table>";
 		$html .= "<br>";

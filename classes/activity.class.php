@@ -375,7 +375,7 @@
 				$result[$key]["available"] = true;
 				//if requerida checamos si ya entregamos la tarea
 				
-				$result[$key]["initialDateTimestamp"] = strtotime($res["initialDate"]);
+				$result[$key]["initialDateTimestamp"] = strtotime($res["initialDate"].' '.$res["horaInicial"]);
 				$result[$key]["finalDateTimestamp"] = strtotime($res["finalDate"]);
 				
 				$explodedInitialDate = explode("-", $res["initialDate"]);

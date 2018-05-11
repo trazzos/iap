@@ -47,8 +47,10 @@
             Ninguno.
         {/if}
         {if $item.activityType == "Tarea"}
+		
             {if $vistaPrevia==0}
-				{if $item.homework.path ne ''}
+			
+				{if $item.homework.path eq ''}
 					<a href="{$WEB_ROOT}/graybox.php?page=upload-homework&id={$item.activityId}" title="Subir Tarea" data-target="#ajax" data-toggle="modal" style="color:#000" class="btn btn-xs green-jungle"> Subir Actividad al Sistema de Tareas <i class="fa fa-upload "></i></a>
 				 {/if}
 		   {else}
