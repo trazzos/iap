@@ -5,8 +5,12 @@
         </div>
 		
          <div class="actions">
-		 
-	
+		 {if $docente}
+			<a class="btn green" href="{$WEB_ROOT}/graybox.php?page=aviso" data-target="#ajax" data-toggle="modal" data-width="1000px" title='AVISO DE PRIVACIDAD'>
+					Aviso de Privacidad
+		
+			</a>
+			{/if}
 
         </div>
 		<div class="actions">

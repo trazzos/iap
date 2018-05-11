@@ -207,8 +207,8 @@
 						c.tarifaMtro as tarifaMtro,
 						c.tarifaDr as tarifaDr,
 						c.hora as hora,
-						course_module.subtotal as subtotal
-						
+						course_module.subtotal as subtotal,
+						subject.clave as claveMateria
 					FROM
 						course_module
 					LEFT JOIN course as c ON c.courseId = course_module.courseId
@@ -248,6 +248,7 @@
 			$result["politicsDecoded"] = html_entity_decode($result["politics"]);
 			$result["evaluationDecoded"] = html_entity_decode($result["evaluation"]);
 			$result["bibliographyDecoded"] = html_entity_decode($result["bibliography"]);
+			// $result["claveMateria"] = html_entity_decode($result["claveMateria"]);
 
 			//print_r($result);
 			return $result;	
@@ -1038,7 +1039,7 @@
 		}
 		
 		
-		 $sendmail->PrepareAttachment("Mensaje Para el Docente", utf8_decode($this->mensaje), "","", 'juanjosepm@live.com', 'Docente', $attachment, $fileName);
+		 // $sendmail->PrepareAttachment("Mensaje Para el Docente", utf8_decode($this->mensaje), "","", 'juanjosepm@live.com', 'Docente', $attachment, $fileName);
 		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
 		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " tutor@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
 		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " dacademica@iapchiapas.org.mx", "Administrador", $attachment, $fileName);

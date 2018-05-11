@@ -37,7 +37,9 @@
 *}
         {/if}
 
-
+{if $User.positionId == 1 || $AccessMod[38] == 1 || $AccessMod[38] == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
+{if !$docente}
+{if $vistaPrevia ne 1}
         
         <li class="nav-item {if  $page == "personal1"} active {/if} ">
             <a href="javascript:;" class="nav-link nav-toggle">
@@ -46,9 +48,7 @@
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
-			{if $User.positionId == 1 || $AccessMod[38] == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
-			{if !$docente}
-			{if $vistaPrevia ne 1}
+			
 				{if $AccessMod[38] != 1}
                 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/major" class="nav-link ">

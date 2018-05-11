@@ -12,6 +12,7 @@
 		<th width="80" style="text-align:center">Encuadre</th>
 		<th width="80" style="text-align:center">Rubrica</th>
 		<th width="80" style="text-align:center">Acta de Calificaciones</th>
+		<th width="80" style="text-align:center">Acciones</th>
 
 	
 	</tr>
@@ -96,6 +97,17 @@
 					</a>
 					<font color="red">S/I</font>
 					{/if}
+				</td>
+				<td>
+					<a href="{$WEB_ROOT}/graybox.php?page=val&id={$subject.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='VALORACION'>
+					<i class="material-icons md-16">insert_chart</i>
+					</a>	
+					<a href="{$WEB_ROOT}/graybox.php?page=eval&id={$subject.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='EVALUACIONES'>
+						<i class="material-icons md-16">star</i>
+					</a>
+					<a href="{$WEB_ROOT}/graybox.php?page=down-contrato&id={$subject.courseModuleId}&personalId={$pId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CONTRATOS'>
+							<i class="material-icons md-16">featured_video</i>
+					</a>
 				</td>
 				
 

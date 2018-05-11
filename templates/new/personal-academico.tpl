@@ -23,7 +23,7 @@
 								<font style="font-weight: bold; font-size:11px">
 								{$item.name|upper} {$item.lastname_materno|upper} {$item.lastname_paterno|upper} </font><br>
 								{if $item.correo eq ''}SIN INFORMACIÓN{else} {$item.correo|upper} {/if}<br>
-								{if $item.puesto eq ''}SIN INFORMACIÓN{else} {$item.puesto|upper} {/if}<br>
+								{if $item.perfil eq ''}SIN INFORMACIÓN{else} {$item.puesto|upper} {/if}<br>
 								{$item.description|upper}<br>
 								</div>
 					</div>

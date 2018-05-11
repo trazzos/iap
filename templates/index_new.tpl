@@ -98,6 +98,7 @@ $page == 'view-inbox' or
  $page == 'edit-modules-course' or
  $page == 'info-docente' or 
  $page == 'lst-docentes' or 
+ $page == 'prog-materia' or 
  $page == 'report-docentes' or 
  $page == 'perfil' or 
  $page == 'materias'}

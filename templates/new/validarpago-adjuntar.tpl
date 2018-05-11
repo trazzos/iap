@@ -29,10 +29,12 @@
 			<input type="hidden" id="type" name="type" value="validarPagoAdjunto"/>
 			<input type="hidden"  name="Id" value="{$id}"/>
 			<input type="hidden"  name="cmId" value="{$cmId}"/>
-				   <input type="file" name="archivos">
+				   <input type="file" name="archivos" id="archivos">
 			</form>
 			<progress id="progress_" value="0" min="0" max="100"></progress>
 			<div id="porcentaje_" >0%</div>
+			<br>
+			<font color="red">*Solo se permiten adjuntar archivos con extención .PDF</font><br>
 			<center><button  class="btn green" id="addMajor" name="addMajor" onClick="validarPagoAdjunto()">Guardar</button></center>
 
 		</div>

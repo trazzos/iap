@@ -82,8 +82,28 @@ switch($_POST["type"])
 	
 	case 'validarPagoAdjunto';
 	
+	// $archivo = "archivos";
+		// foreach($_FILES as $key=>$var)
+		// {
+		   // switch($key)
+		   // {
+				   // case $archivo:
+				   
+				   // exit;
+					   // if($var["name"]<>""){
+							// $aux = explode(".",$var["name"]);
+							// $extencion=end($aux);
+							// if($extencion <> 'pdf'){
+								// echo 'fail[#]';
+								// echo '<font color="red">La extención del archivo es incorrecta</font>';
+								// exit;
+							// }
+					   // }
+		   // }
+		// }
 		// echo '<pre>'; print_r($_POST);
 		// echo '<pre>'; print_r($_FILES);
+		// echo 'llega';
 		// exit;
 		if ($solicitud->validarPagoAdjunto($_POST['Id'])){
 			echo 'ok[#]';

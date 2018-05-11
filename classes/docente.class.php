@@ -91,13 +91,13 @@ class Docente extends Empresa{
 	
 	public function setDescripcion($value){
 		
-		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 1, 'Descripcion');
+		$this->Util()->ValidateString($value, $max_chars=2555555555555555, $minChars = 1, 'Descripcion');
 		$this->descripcion = $value;
 	}
 	
 	public function setComentario($value){
 		
-		$this->Util()->ValidateString($value, $max_chars=255, $minChars = 0, '');
+		$this->Util()->ValidateString($value, $max_chars=2555555555555555, $minChars = 0, '');
 		$this->comentario = $value;
 	}
 	

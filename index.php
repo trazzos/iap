@@ -199,7 +199,8 @@ $pages = array(
 	'msj',
 	'personal-academico',
 	'perfil',
-	'grupo'
+	'grupo',
+	'aviso'
 	
 	
 	
