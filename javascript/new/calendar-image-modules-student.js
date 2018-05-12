@@ -30,92 +30,37 @@ var Index = function () {
             });
         },
 
-        // initJQVMAP: function () {
-
-            // var showMap = function (name) {
-                // jQuery('.vmaps').hide();
-                // jQuery('#vmap_' + name).show();
-            // }
-
-            // var setMap = function (name) {
-                // var data = {
-                    // map: 'world_en',
-                    // backgroundColor: null,
-                    // borderColor: '#333333',
-                    // borderOpacity: 0.5,
-                    // borderWidth: 1,
-                    // color: '#c6c6c6',
-                    // enableZoom: true,
-                    // hoverColor: '#c9dfaf',
-                    // hoverOpacity: null,
-                    // values: sample_data,
-                    // normalizeFunction: 'linear',
-                    // scaleColors: ['#b6da93', '#909cae'],
-                    // selectedColor: '#c9dfaf',
-                    // selectedRegion: null,
-                    // showTooltip: true,
-                    // onLabelShow: function (event, label, code) {
-
-                    // },
-                    // onRegionOver: function (event, code) {
-                        // if (code == 'ca') {
-                            // event.preventDefault();
-                        // }
-                    // },
-                    // onRegionClick: function (element, code, region) {
-                        // var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
-                        // alert(message);
-                    // }
-                // };
-
-                // data.map = name + '_en';
-                // var map = jQuery('#vmap_' + name);
-                // if (!map) {
-                    // return;
-                // }
-                // map.width(map.parent().parent().width());
-                // map.show();
-                // map.vectorMap(data);
-                // map.hide();
-            // }
-
-            // setMap("world");
-            // setMap("usa");
-            // setMap("europe");
-            // setMap("russia");
-            // setMap("germany");
-            // showMap("world");
-
-            // jQuery('#regional_stat_world').click(function () {
-                // showMap("world");
-            // });
-
-            // jQuery('#regional_stat_usa').click(function () {
-                // showMap("usa");
-            // });
-
-            // jQuery('#regional_stat_europe').click(function () {
-                // showMap("europe");
-            // });
-            // jQuery('#regional_stat_russia').click(function () {
-                // showMap("russia");
-            // });
-            // jQuery('#regional_stat_germany').click(function () {
-                // showMap("germany");
-            // });
-
-            // $('#region_statistics_loading').hide();
-            // $('#region_statistics_content').show();
-        // },
-
+       
+		
+			
+			
+			
         initCalendar: function () {
 			
+		
 			
+
 			
             if (!jQuery().fullCalendar) {
                 return;
             }
 
+			
+		$.ajax({
+		dataType: 'json',
+	  	url: WEB_ROOT + '/ajax/grafica-data.php',
+		data: $("#frmGral").serialize(true),		
+	  	success: function(response) {
+			console.log(response)
+
+			// var eventsArray = [];
+			// for(i=0;i<response.length; i++){
+				// eventsArray.push({
+						// title:response[i].title,
+						// start:response[i].start
+				 // },)
+			// }
+			// console.log(eventsArray)
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
@@ -152,51 +97,10 @@ var Index = function () {
                 disableDragging: false,
                 header: h,
                 editable: true,
-                events: [{
-                        title: 'All Day Event',                        
-                        start: new Date(y, m, 1),
-                        backgroundColor: App.getLayoutColorCode('yellow')
-                    }, {
-                        title: 'Long Event',
-                        start: new Date(y, m, d - 5),
-                        end: new Date(y, m, d - 2),
-                        backgroundColor: App.getLayoutColorCode('green')
-                    }, {
-                        title: 'Repeating Event',
-                        start: new Date(y, m, d - 3, 16, 0),
-                        allDay: false,
-                        backgroundColor: App.getLayoutColorCode('red')
-                    }, {
-                        title: 'Repeating Event',
-                        start: new Date(y, m, d + 4, 16, 0),
-                        allDay: false,
-                        backgroundColor: App.getLayoutColorCode('green')
-                    }, {
-                        title: 'Meeting',
-                        start: new Date(y, m, d, 10, 30),
-                        allDay: false,
-                    }, {
-                        title: 'Lunch',
-                        start: new Date(y, m, d, 12, 0),
-                        end: new Date(y, m, d, 14, 0),
-                        backgroundColor: App.getLayoutColorCode('grey'),
-                        allDay: false,
-                    }, {
-                        title: 'Birthday Party',
-                        start: new Date(y, m, d + 1, 19, 0),
-                        end: new Date(y, m, d + 1, 22, 30),
-                        backgroundColor: App.getLayoutColorCode('purple'),
-                        allDay: false,
-                    }, {
-                        title: 'Click for Google',
-                        start: new Date(y, m, 28),
-                        end: new Date(y, m, 29),
-                        backgroundColor: App.getLayoutColorCode('yellow'),
-                        url: 'http://google.com/',
-                    }
-                ]
+                eventSources: [response]
             });
-        },
+			}});
+		},
 
         initCharts: function () {
             if (!jQuery.plot) {

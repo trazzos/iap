@@ -212,7 +212,7 @@ if(!in_array($_GET['page'], $pages))
 	$_GET['page'] = "homepage";
 }
 
-// echo $_GET['page'];
+// echo $_GET['id'];
 // exit;
 
 $smarty->assign('positionId', $User['positionId']);

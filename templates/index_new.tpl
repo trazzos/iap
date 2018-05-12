@@ -218,10 +218,11 @@ $page == 'view-inbox' or
 
 <script src="{$WEB_ROOT}/assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-<!-- jj
+
+{if $page eq "calendar-image-modules-student"}
 <script src="{$WEB_ROOT}/assets/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/fullcalendar/app.js" type="text/javascript"></script>
--->
+{/if}
 
 <script src="{$WEB_ROOT}/javascript/new/{$page}.js?{$timestamp}" type="text/javascript"></script>
 

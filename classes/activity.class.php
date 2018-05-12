@@ -744,5 +744,16 @@
 			return true;
 		}
 		
+		function enumerateActividadCalendario($Id)
+		{
+			 $sql ="
+				SELECT * FROM activity
+				WHERE courseModuleId = ".$Id."";
+			$this->Util()->DB()->setQuery($sql);
+			$count = $this->Util()->DB()->GetResult();	
+
+			return $count;
+		}
+		
 	}	
 ?>

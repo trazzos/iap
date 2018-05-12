@@ -86,8 +86,8 @@
 		$html .= "<br>";
 		$html .= "<br><font class='txtTicket'><b>Resultados</b>  </font>";
 		$html .= "<br>";
-		$html .= "<table align='center' width='100%' border='1' class='txtTicket'>";
-		$html .= "<tr><td >Rubro</td><td width='44px'>Promedio</td></tr>";
+		$html .= "<table align='center' width='90%' border='1' class='txtTicket'>";
+		$html .= "<tr><td >Rubro</td><td width='44px'>Prom.</td></tr>";
 		
 		foreach($lstPreguntas['result'] as $key=>$aux){
 			$html .= "<tr><td><b>".$aux['nombre']."</b></td><td width='44px'>".$aux['promedio']."</td></tr>";
@@ -97,7 +97,7 @@
 				<table class='txtTicket' width='100%'>
 				<tr>
 					<td>Pregunta</td>
-					<td width='94px'>Promedio</td>
+					<td width='94px'>Prom.</td>
 				</tr>"; 		
 			foreach($aux['lstPreguntas'] as $keyp=>$auxp){
 				$html .= "<tr><td>".$auxp['pregunta']."</td><td width='94px'>".$auxp['totalPp']."</td></tr>"; 	

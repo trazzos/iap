@@ -29,8 +29,8 @@ $smarty->assign('majorModality', $majorModality);
 
 $smarty->assign('id', $_GET["id"]);
 
-$smarty->assign('mnuMain', "modulo");
-$smarty->assign('mnuSubmain','docente');
+// $smarty->assign('mnuMain', "modulo");
+	$smarty->assign('mnuMain', "cursos");
 
 // echo '<pre>'; print_r($docente);
 // exit;

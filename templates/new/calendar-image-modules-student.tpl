@@ -8,7 +8,9 @@
         </div>
     </div>
     <div class="portlet-body">
-        
+        <form id="frmGral">
+			<input type="hidden" value={$id} id="courseModuleId" name="courseModuleId">
+        </form>
 		<div id="calendar" >
 									
 		

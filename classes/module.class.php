@@ -208,7 +208,7 @@
 						c.tarifaDr as tarifaDr,
 						c.hora as hora,
 						course_module.subtotal as subtotal,
-						subject.clave as claveMateria
+						subject_module.clave as claveMateria
 					FROM
 						course_module
 					LEFT JOIN course as c ON c.courseId = course_module.courseId

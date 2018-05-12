@@ -1654,6 +1654,7 @@ class Personal extends Main
 			}else{
 				$foto = WEB_ROOT."/alumnos/no_foto.JPG";
 			}
+			$result[$key]['description'] = htmlspecialchars_decode($aux['description']);   
 			$result[$key]['foto'] = $foto; 
 		}
 		
