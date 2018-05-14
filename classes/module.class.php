@@ -483,6 +483,124 @@
 			$this->Util()->DB()->setQuery($sql);
 			$this->Util()->DB()->InsertData();
 			// exit;
+			
+			if($_POST['copia']=="on"){
+				
+			
+			
+				// copiamos curricula
+				 
+				$sql = "
+	
+				SELECT 
+						activityType,
+						initialDate,
+						horaInicial,
+						finalDate,
+						modality,
+						description,
+						resumen,
+						requiredActivity,
+						ponderation,
+						timeLimit,
+						noQuestions,
+						tries
+						FROM
+							activity_config
+						WHERE
+							subject_moduleId ='".$this->getSubjectModuleId()."' ";
+				
+				
+				$this->Util()->DB()->setQuery($sql);
+				$result = $this->Util()->DB()->GetResult();
+				
+					'" . $this->getInitialDate() . "',
+				'" . $this->getFinalDate() . "',
+				
+				
+				
+				foreach($result as $key=>$aux){
+					
+					$initialDate = strtotime ( '+'.$aux['diaInicial'].'' , strtotime ( $this->getInitialDate() ) ) ;
+					$initialDate = date ( 'Y-m-d' , $initialDate );
+					
+					$finalDate = strtotime ( '+'.$aux['diaFinal'].'' , strtotime ( $initialDate ) ) ;
+					$finalDate = date ( 'Y-m-d' , $finalDate );
+					
+					$sql = "INSERT INTO
+						activity
+						( 
+							courseModuleId,	
+							activityConfigId,	
+						 	activityType,
+						 	initialDate,
+							horaInicial,
+						 	finalDate,
+						 	modality,
+						 	description,
+						 	resumen,
+						 	requiredActivity,
+						 	ponderation,
+						 	timeLimit,
+						 	noQuestions,
+						 	tries
+						)
+					VALUES (
+							'".$Id."',
+							'".$aux['activityConfigId']."',
+							'".$aux['activityType']."',
+							'".$initialDate."',
+							'".$aux['horaInicial']."',
+							'".$finalDate."',
+							'".$aux['modality']."',
+							'".$aux['description']."',
+							'".$aux['resumen']."',
+							'".$aux['requiredActivity']."',
+							'".$aux['ponderation']."',
+							'".$aux['timeLimit']."',
+							'".$aux['noQuestions']."',
+							'".$aux['tries']."'
+							)";
+						$this->Util()->DB()->setQuery($sql);
+						$this->Util()->DB()->InsertData();
+				}
+				
+				$sql = "
+	
+				SELECT 
+						*
+						FROM
+							resource_config
+						WHERE
+							subject_moduleId ='".$this->getSubjectModuleId()."' ";
+				// exit;
+				$this->Util()->DB()->setQuery($sql);
+				$this->Util()->DB()->InsertData();
+				
+				$this->Util()->DB()->setQuery($sql);
+				$result5 = $this->Util()->DB()->GetResult();
+				
+				foreach($result5 as $key=>$aux){
+					
+					$sql = "INSERT INTO
+						resource
+						( 
+							courseModuleId,	
+							resourceConfigId,	
+							name,	
+						 	descripcion,
+						 	path
+						)
+					VALUES (
+							'".$Id."',
+							'".$aux['resourceConfigId']."',
+							'".$aux['descripcion']."',
+							'".$aux['path']."''
+							)";
+						$this->Util()->DB()->setQuery($sql);
+						$this->Util()->DB()->InsertData();
+				}
+			}
 			$this->Util()->PrintErrors();
 			
 			return $result;

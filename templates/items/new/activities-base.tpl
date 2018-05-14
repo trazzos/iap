@@ -25,19 +25,30 @@
                 N/A
             {/if}</td>
         <td align="center">
+		
+			{if $configMateria ne 'si'}
             <img src="{$WEB_ROOT}/images/icons/16/delete.png" class="spanDelete" data-id="{$subject.activityId}" id="d-{$subject.activityId}" name="d-{$subject.name}" title="Eliminar" />&nbsp;
 
             <a href="{$WEB_ROOT}/graybox.php?page=edit-activity&id={$subject.activityId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
                 <img src="{$WEB_ROOT}/images/icons/16/pencil.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Editar" />
             </a>
-
+			{else}	
+				<a href="javascript:void(0)"  onClick="deleteAct('{$subject.activityConfigId}')">
+				<img src="{$WEB_ROOT}/images/icons/16/delete.png"  title="Eliminar" />&nbsp;
+				</a>
+				<a href="{$WEB_ROOT}/graybox.php?page=add-activity-c&id={$subject.activityConfigId}&auxTpl=admin&cId={$courseModuleId}" data-target="#ajax" data-toggle="modal">
+					<img src="{$WEB_ROOT}/images/icons/16/pencil.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Editar" />
+				</a>
+			{/if}
             {if $subject.score > 0}
                 <!--<a href="{$WEB_ROOT}/graybox.php?page=score-activity&id={$subject.activityId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
                     <img src="{$WEB_ROOT}/images/icons/16/score.gif" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Calificar" />
                 </a>-->
+				{if $configMateria ne 'si'}
 				<a href="{$WEB_ROOT}/score-activity-new&id={$subject.activityId}&auxTpl=admin&cId={$myModule.courseModuleId}" >
                     <img src="{$WEB_ROOT}/images/icons/16/score.gif" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Calificar" />
                 </a>
+				{/if}
             {/if}
         </td>
     </tr>

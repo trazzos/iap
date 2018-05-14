@@ -206,7 +206,9 @@ $pages = array(
 	'add-msj',
 	'contra',
 	'view-perfil',
-	'aviso'
+	'aviso',
+	'add-activity-c',
+	'add-resource-c'
 
 );
 

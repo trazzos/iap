@@ -3,8 +3,7 @@
 	/* For Session Control - Don't remove this */
 	$user->allow_access(37);	
 	
-	// echo "<pre>"; print_r($_POST);
-	// exit;
+
 
 	if($_POST)
 	{
@@ -20,10 +19,20 @@
 			exit;
 		}
 	}
-$smarty->assign('id', $_GET["id"]);
-
-
+	
+	if($_GET['cId'])
+	{
+			// $resource->set();
+			$infoT =	$resource->infoResource($_GET["id"]);
+			$smarty->assign('resourceId', $_GET["id"]);
+				// echo "<pre>"; print_r($infoT);
+	// exit;
+	}
+	
+	
+	$smarty->assign('id', $_GET["id"]);
 	$date = date("d-m-Y");
+	$smarty->assign('infoT', $infoT);
 	$smarty->assign('date', $date);
 	
 	
