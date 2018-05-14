@@ -514,8 +514,8 @@
 				$this->Util()->DB()->setQuery($sql);
 				$result = $this->Util()->DB()->GetResult();
 				
-					'" . $this->getInitialDate() . "',
-				'" . $this->getFinalDate() . "',
+					// '" . $this->getInitialDate() . "',
+				// '" . $this->getFinalDate() . "',
 				
 				
 				
