@@ -2888,7 +2888,7 @@ class Student extends User
 		
 		$sql = 'UPDATE 		
 					user SET 		
-					perfil = "'.$this->perfil.'"			      		
+					perfil = "'.strip_tags($this->perfil).'"			      		
 					WHERE userId = '.$Id.'';		
 				$this->Util()->DB()->setQuery($sql);		
 				$this->Util()->DB()->UpdateData();

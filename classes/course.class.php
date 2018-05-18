@@ -876,6 +876,24 @@
 			return $result;
 		}
 		
+		
+		function cuatriSolicitudes()
+		{
+			
+			$info = $this->Info();
+
+			$sql = "
+				SELECT semesterId FROM course_module
+				LEFT JOIN subject_module ON subject_module.subjectModuleId = course_module.subjectModuleId
+				WHERE courseId = '".$info["courseId"]."'
+				group BY semesterId ASC";
+			
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			
+			return $result;
+		}
+		
 		function StudentCourseModulesInbox()
 		{
 			$info = $this->Info();

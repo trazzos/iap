@@ -493,18 +493,7 @@
 				$sql = "
 	
 				SELECT 
-						activityType,
-						initialDate,
-						horaInicial,
-						finalDate,
-						modality,
-						description,
-						resumen,
-						requiredActivity,
-						ponderation,
-						timeLimit,
-						noQuestions,
-						tries
+						*
 						FROM
 							activity_config
 						WHERE
@@ -515,18 +504,32 @@
 				$result = $this->Util()->DB()->GetResult();
 				
 					// '" . $this->getInitialDate() . "',
-				// '" . $this->getFinalDate() . "',
+				// '" . $this->getFinalDate($result) . "',
 				
-				
+			
+			// echo '<pre>'; print_r  ($result);
+			
+			// echo  'initialDay '.$this->getInitialDate();
+			// echo  'finalDay '.$this->getInitialDate();
 				
 				foreach($result as $key=>$aux){
 					
-					$initialDate = strtotime ( '+'.$aux['diaInicial'].'' , strtotime ( $this->getInitialDate() ) ) ;
+					$aux['diaInicial']  = $aux['diaInicial'] - 1;
+					
+					$initialDate = strtotime ( '+'.$aux['diaInicial'].' day' , strtotime ( $this->getInitialDate() ) ) ;
 					$initialDate = date ( 'Y-m-d' , $initialDate );
 					
-					$finalDate = strtotime ( '+'.$aux['diaFinal'].'' , strtotime ( $initialDate ) ) ;
+					$finalDate = strtotime ( '+'.$aux['diaFinal'].' day' , strtotime ( $this->getInitialDate() ) ) ;
 					$finalDate = date ( 'Y-m-d' , $finalDate );
 					
+					// echo 'dentro';
+					// echo '<br>';
+					// echo $initialDate;
+					
+					// echo $aux['diaInicial'];
+					// echo '';
+					// echo $this->getInitialDate();
+					// exit;
 					$sql = "INSERT INTO
 						activity
 						( 
@@ -551,7 +554,7 @@
 							'".$aux['activityType']."',
 							'".$initialDate."',
 							'".$aux['horaInicial']."',
-							'".$finalDate."',
+							'".$finalDate." 23:00:00',
 							'".$aux['modality']."',
 							'".$aux['description']."',
 							'".$aux['resumen']."',
@@ -572,30 +575,31 @@
 						FROM
 							resource_config
 						WHERE
-							subject_moduleId ='".$this->getSubjectModuleId()."' ";
+							subjectModuleId ='".$this->getSubjectModuleId()."' ";
 				// exit;
-				$this->Util()->DB()->setQuery($sql);
-				$this->Util()->DB()->InsertData();
-				
+				// $this->Util()->DB()->setQuery($sql);
+				// $this->Util()->DB()->InsertData();
+					// exit;
 				$this->Util()->DB()->setQuery($sql);
 				$result5 = $this->Util()->DB()->GetResult();
-				
+			// exit;
 				foreach($result5 as $key=>$aux){
 					
-					$sql = "INSERT INTO
+					 $sql = "INSERT INTO
 						resource
 						( 
 							courseModuleId,	
 							resourceConfigId,	
 							name,	
-						 	descripcion,
+						 	description,
 						 	path
 						)
 					VALUES (
 							'".$Id."',
 							'".$aux['resourceConfigId']."',
-							'".$aux['descripcion']."',
-							'".$aux['path']."''
+							'".$aux['name']."',
+							'".$aux['description']."',
+							'".$aux['path']."'
 							)";
 						$this->Util()->DB()->setQuery($sql);
 						$this->Util()->DB()->InsertData();

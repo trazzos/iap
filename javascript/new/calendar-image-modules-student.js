@@ -94,6 +94,8 @@ var Index = function () {
 
             $('#calendar').fullCalendar('destroy'); // destroy the calendar
             $('#calendar').fullCalendar({ //re-initialize the calendar
+				// width: 350,
+				height: 450,
                 disableDragging: false,
                 header: h,
                 editable: true,
@@ -816,3 +818,10 @@ var Index = function () {
     };
 
 }();
+
+
+
+function onImprimir(Id){
+	url=WEB_ROOT+"/ajax/calendario.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id;
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
+}

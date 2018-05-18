@@ -10,11 +10,12 @@
 		$activeCourses = $student->StudentCourses("activo", "si");
 		
 		$course->setCourseId($activeCourses[0]["courseId"]);
-		$addedModules = $course->StudentCourseModulesInbox();
+		$addedModules = $course->cuatriSolicitudes();
+		// $addedModules = $course->StudentCourseModulesInbox();
 		$activeCourses['materias'] = $addedModules;
 		
 		
-		// echo '<pre>'; print_r($activeCourses);
+		// echo '<pre>'; print_r($addedModules);
 		// exit;
 		// $finishedCourses = $student->StudentCourses("finalizado");
 

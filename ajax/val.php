@@ -86,10 +86,11 @@
 		$html .= "<br>";
 		$html .= "<br><font class='txtTicket'><b>Resultados</b>  </font>";
 		$html .= "<br>";
-		$html .= "<table align='center' width='90%' border='1' class='txtTicket'>";
-		$html .= "<tr><td >Rubro</td><td width='44px'>Prom.</td></tr>";
+	
 		
 		foreach($lstPreguntas['result'] as $key=>$aux){
+			$html .= "<table align='center' width='90%' border='1' class='txtTicket'>";
+			$html .= "<tr><td >Rubro</td><td width='44px'>Prom.</td></tr>";
 			$html .= "<tr><td><b>".$aux['nombre']."</b></td><td width='44px'>".$aux['promedio']."</td></tr>";
 			$html .= "<tr><td colspan='2'>"; 
 			
@@ -103,14 +104,17 @@
 				$html .= "<tr><td>".$auxp['pregunta']."</td><td width='94px'>".$auxp['totalPp']."</td></tr>"; 	
 			}
 			$html .= "</table>"; 
-			$html .= "<br><br><br></td></tr>";
+			$html .= "</td></tr>";
+			$html .= "</table><div style='page-break-after:always;'></div>";
+			
 		}
-		$html .= "</table>";
-		$html .= "<br>";
+		
+		
+		$html .= "<br><div style='page-break-after:always;'></div>";
 		$html .= "<br><font class='txtTicket'><b>Comentarios</b> </font>";
 		
 		$html .= "<br>";
-		$html .= "<table align='center' width='100%' border='1' class='txtTicket'>";
+		$html .= "<table align='center' width='77%' border='1' class='txtTicket'>";
 
 		
 		foreach($lstPreguntas['lstComentarios'] as $key=>$aux){

@@ -90,7 +90,9 @@
 		
 			{if $timestamp < $item.finalDateTimestamp}  
 				{if $item.homework.countUpdate ne 1}
+					{if $item.modality eq 'Individual'}
 					<button class="btn red" onclick="deleteActividad('{$item.activityId}')" class="bb" style="width:90px">Eliminar</button>
+					{/if}
 
 				{/if}
 			{/if}

@@ -934,7 +934,7 @@
 		function enumerateActividadCalendario($Id)
 		{
 			 $sql ="
-				SELECT * FROM activity
+				SELECT *,DATE( finalDate ) as fechaFinal FROM activity
 				WHERE courseModuleId = ".$Id."";
 			$this->Util()->DB()->setQuery($sql);
 			$count = $this->Util()->DB()->GetResult();	

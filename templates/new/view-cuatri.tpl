@@ -31,7 +31,6 @@
                                         
                                        
                                         <th style="text-align: center"> Semestre / Cuatrimestre</th>
-										 <th style="text-align: center"> Materia </th>
                                         <th style="text-align: center"> Calificacion </th>
                                          <th style="text-align: center"> Selecciona </th>
                                     </tr>
@@ -40,7 +39,6 @@
                                     <tr>
                                        
                                         <td align="center">{$subject.semesterId}</td>
-                                        <td align="center">{$subject.name}</td>
                                         <td align="center">{$subject.statusCCi}</td>
 
                                         <td align="center">
