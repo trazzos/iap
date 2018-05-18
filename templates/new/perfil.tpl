@@ -16,7 +16,7 @@
 						<div ><!--
 							<img src='{$foto}' style='width: 100px !important'>-->
 							<div class="profile-userpic">
-							<img src="{{$infoStudent.imagen}}" class="img-responsive" alt=""> </div>
+							<img src="{{$infoStudent.imagen}}?{$rand}" class="img-responsive" alt=""> </div>
 							<div style='position: relative; 
 							bottom:0px; width:100%; margin-right: -100px;'>
 							<span class="btn btn-default btn-file">
