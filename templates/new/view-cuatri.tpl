@@ -39,10 +39,10 @@
                                     <tr>
                                        
                                         <td align="center">{$subject.semesterId}</td>
-                                        <td align="center">{$subject.statusCCi}</td>
+                                        <td align="center">{$subject.promedio}</td>
 
                                         <td align="center">
-                                           <input type="checkbox" name="activa_{$subject.courseId}" id="">
+                                           <input type="checkbox" name="activa_{$subject.semesterId}" id="">
                                         </td>
                                      </tr>
                                         {foreachelse}
@@ -58,8 +58,11 @@
 						
 				
              </form>
-			 <div id="msjgg"></div>
-			<center><button onClick='addSaveSolicitud()' class="btn green submitForm" >Solicitar</button> </center>
+			 <div class="msjError"></div>
+			<center>
+				<button onClick='addSaveSolicitud()' class="btn green submitForm" >Solicitar</button> <!--
+				<button type="button"  onClick='closeModal()'  class="btn default closeModal">Cancelar</button>-->
+			</center>
         </div>
     </div>
 </div>

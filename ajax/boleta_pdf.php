@@ -47,26 +47,27 @@
 				<td colspan='2' style='text-align:center'><b>Calificacion</b></td>
 				</tr>";
 		$contenido .= "
+		
 			<tr>
 				<td></td>
 				<td style='text-align:center'><b>En numero</b></td>
 				<td style='text-align:center'><b>En Letra</b></td></tr>";
 				
-		foreach($lstCal8 as $key=>$aux){
+	
 			
 			
-			foreach($aux['materias'] as $key2=>$aux2){
-			$h =  $util->num2letras($aux2['calificacion']);
-			$contenido .= "
-			<tr>
-			<td>".$aux2['name']."</td>
-			<td style='text-align:center'>".$aux2['calificacion']."</td>
-			<td style='text-align:center'>".$h."</td>
-			</tr>";
+			foreach($lstCal8 as $key2=>$aux2){
+					if( $aux2['calificacionValida'] > 0){
+						$h =  $util->num2letras($aux2['calificacionValida']);
+						$contenido .= "
+						<tr>
+						<td>".$aux2['name']."</td>
+						<td style='text-align:center'>".$aux2['calificacionValida']."</td>
+						<td style='text-align:center'>".$h."</td>
+						</tr>";
+					}	
 			}
 			
-		}
-		
 		$contenido .= "</table>
 			<br><br>";
 		

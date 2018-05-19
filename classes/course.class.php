@@ -891,6 +891,27 @@
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
 			
+			foreach($result as $key=>$aux){
+				$materias = 0;
+				 $sql = "
+					SELECT 
+						sum(cms.calificacion) as cl,
+						count(cms.calificacion) as c
+					FROM course_module
+					LEFT JOIN subject_module ON subject_module.subjectModuleId = course_module.subjectModuleId
+					LEFT JOIN course_module_score as cms ON cms.courseModuleId = course_module.courseModuleId
+					WHERE 
+						subject_module.semesterId = ".$aux['semesterId']." and 
+						userId = ".$_SESSION["User"]["userId"]." and 
+						calificacionValida = 'si'";
+
+				$this->Util()->DB()->setQuery($sql);
+				$materias = $this->Util()->DB()->GetRow();
+				
+				$result[$key]['promedio'] = $materias['cl']/ $materias['c'];
+			}
+			
+			
 			return $result;
 		}
 		

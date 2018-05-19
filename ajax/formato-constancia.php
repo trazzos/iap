@@ -136,6 +136,8 @@
 	
 	if($infoSol['tiposolicitudId'] == 4){
 		
+					
+					$solicitud->setSemestrejId($infoSol['nivelInscrito']);
 		$lstCal8 = $solicitud->buscaCalificaciones($infoSol['courseId'],$infoSol['userId']);
 		include('boleta_pdf.php');
 		exit;

@@ -13,8 +13,13 @@ class Solicitud extends Module
 	private $cursoId;
 	private $observacion;
 	private $pages;
+	private $semestrejId;
 	
 
+	public function setSemestrejId($value)
+	{
+		$this->semestrejId = $value;
+	}
 	
 	public function setPages($value)
 	{
@@ -961,29 +966,39 @@ class Solicitud extends Module
 	
 	public function buscaCalificaciones($Id,$userId)
 	{
-		// $info = $this->Info();
-			$this->Util()->DB()->setQuery("
-				SELECT subject_module.semesterId,tipoPeriodo FROM course_module
+		
+
+		$this->Util()->DB()->setQuery("
+				SELECT 
+					course_module.courseId,
+					subject_module.name,
+					subject_module.semesterId,
+					course_module.courseModuleId
+				FROM 
+					course_module
 				LEFT JOIN subject_module ON subject_module.subjectModuleId = course_module.subjectModuleId
 				LEFT JOIN subject ON subject.subjectId = subject_module.subjectId
-				WHERE courseId = '".$Id."'
-				group BY subject_module.semesterId");
+				WHERE courseId = '".$Id."' and subject_module.semesterId = ".$this->semestrejId."
+				group BY subject_module.semesterId, initialDate asc");
 		$result = $this->Util()->DB()->GetResult();
 			
-		
 		foreach($result as $key=>$aux){
-			
-			$sql = "
-				SELECT * FROM course_module
+			$materias = 0;
+			 $sql = "
+				SELECT 
+					cms.calificacion
+				FROM course_module
 				LEFT JOIN subject_module ON subject_module.subjectModuleId = course_module.subjectModuleId
 				LEFT JOIN course_module_score as cms ON cms.courseModuleId = course_module.courseModuleId
-				WHERE course_module.courseId = '".$Id."' and
-				subject_module.semesterId = ".$aux['semesterId']." and userId = ".$userId." and calificacionValida = 'si'";
-				
-				// exit;
+				WHERE 
+					course_module.courseModuleId = '".$aux['courseModuleId']."' and
+					subject_module.semesterId = ".$aux['semesterId']." and 
+					userId = ".$userId." and 
+					calificacionValida = 'si'";
+
 			$this->Util()->DB()->setQuery($sql);
-			$materias = $this->Util()->DB()->GetResult();
-			$result[$key]['materias'] = $materias;
+			$materias = $this->Util()->DB()->GetSingle();
+			$result[$key]['calificacionValida'] = $materias;
 		}
 		
 		
@@ -1040,6 +1055,46 @@ class Solicitud extends Module
 		return true;
 	}
 	
+	
+	public function updateSemestre($Id,$cursoId)
+	{
+		
+		 $sqlQuery = 'SELECT 
+					*
+				FROM 
+					folio
+				WHERE  folioId = 1';
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$infoFol = $this->Util()->DB()->GetRow();
+		
+		$folio = $infoFol['nomenclatura'].'/'.$infoFol['folioSiguiente'];
+		
+			$sqlQuery = "
+			UPDATE 
+				solicitud
+			set 
+				nivelInscrito = '".$cursoId ."',
+				folio ='".$folio."'
+			where
+				solicitudId = '".$Id."'"; 	
+	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		$sqlQuery = "
+			UPDATE 
+				folio 
+			set 
+				folioSiguiente = '".($infoFol['folioSiguiente']+1)."', 
+				folioActual ='".$infoFol['folioSiguiente']."' 
+			where
+				folioId = 1 "; 	
+// exit;	
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}
 	
 	
 }	
