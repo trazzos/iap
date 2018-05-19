@@ -89,13 +89,12 @@
 	
 		
 		foreach($lstPreguntas['result'] as $key=>$aux){
-			$html .= "<table align='center' width='90%' border='1' class='txtTicket'>";
+			$html .= "<table align='center' width='700px' border='1' class='txtTicket'>";
 			$html .= "<tr><td >Rubro</td><td width='44px'>Prom.</td></tr>";
 			$html .= "<tr><td><b>".$aux['nombre']."</b></td><td width='44px'>".$aux['promedio']."</td></tr>";
-			$html .= "<tr><td colspan='2'>"; 
+			$html .= ""; 
 			
 			$html .= "
-				<table class='txtTicket' width='100%'>
 				<tr>
 					<td>Pregunta</td>
 					<td width='94px'>Prom.</td>
@@ -103,9 +102,11 @@
 			foreach($aux['lstPreguntas'] as $keyp=>$auxp){
 				$html .= "<tr><td>".$auxp['pregunta']."</td><td width='94px'>".$auxp['totalPp']."</td></tr>"; 	
 			}
-			$html .= "</table>"; 
-			$html .= "</td></tr>";
-			$html .= "</table><div style='page-break-after:always;'></div>";
+
+			$html .= "</table>
+			<br>
+			<br>
+			";
 			
 		}
 		
@@ -128,6 +129,8 @@
 	</html>
 
 	";
+	
+	// <div style='page-break-after:always;'>
 	// echo $html;
 	// exit;
 	# Instanciamos un objeto de la clase DOMPDF.

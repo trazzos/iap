@@ -1233,7 +1233,7 @@
 				left join  subject_module as sm on sm.subjectModuleId = c.subjectModuleId 
 				left join  course_module_personal as cm on cm.courseModuleId = c.courseModuleId 
 				left join  personal as p on p.personalId = cm.personalId 
-				WHERE courseId = '".$Id."' ";		
+				WHERE courseId = '".$Id."' group by courseModuleId";		
 				// exit;
 				$this->Util()->DB()->setQuery($sql);
 				$cal = $this->Util()->DB()->GetResult();
