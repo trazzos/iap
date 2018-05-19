@@ -50,6 +50,12 @@
 					</a>
 				</li>
 				<li>
+					<a href="{$WEB_ROOT}/graybox.php?page=informe&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
+						<i class="fa fa-folder-open"></i>
+							Informe Final
+					</a>
+				</li>
+				<li>
 					<a href="{$WEB_ROOT}/graybox.php?page=down-plan&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
 						<i class="fa fa-book"></i>
 							Programa de la Asignatura

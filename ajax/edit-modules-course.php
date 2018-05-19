@@ -252,7 +252,7 @@ switch($_POST["type"])
 			}
 			
 		}else{
-			// echo 'lety';
+			
 			$activity->setCourseModuleId($_POST["courseModuleId"]);
 			$activity->setActivityType($_POST["activityType"]);
 
@@ -331,6 +331,38 @@ switch($_POST["type"])
 				}else{
 					echo 'fail[#]';
 				}
+		
+		break;
+		
+		
+		
+		
+		case 'onDeleteInforme':
+		
+			// echo '<pre>'; print_r($_POST);
+			if($url = $personal->onDeleteInforme($_POST["id"])){
+				echo "ok[#]";
+			}else{
+				echo "fail[#]";
+				
+			}
+		
+		break;
+		
+		
+		case 'onSendInforme':
+		
+			if($url = $group->onSendInforme($_POST["id"])){
+				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  El archivo se adjunto correctamente
+					</div>';
+				exit;
+			}else{
+				echo "fail[#]";
+				
+			}
 		
 		break;
 	}

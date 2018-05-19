@@ -1554,6 +1554,38 @@ class Personal extends Main
 	
 	
 	
+	public function onDeleteInforme($cmId){
+		
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					course_module
+				WHERE
+					courseModuleId = ".$cmId."";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();
+		
+		 // echo DOC_ROOT.'/docentes/carta/carta_'.$info['rutaCarta'];
+		 @unlink(DOC_ROOT.'/docentes/informe/'.$info['rutaInforme']);
+		
+		 $sql = 'UPDATE 		
+				course_module SET 		
+				rutaInforme = ""			      		
+				WHERE courseModuleId = '.$cmId.'';		
+				// exit;
+		$this->Util()->DB()->setQuery($sql);		
+		$this->Util()->DB()->UpdateData();
+		
+	
+		
+		
+		return true;
+		
+	}
+	
+	
 	public function onDeleteRubrica($cmId){
 		
 		

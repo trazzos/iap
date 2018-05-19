@@ -28,7 +28,7 @@
 				       <img src="{$WEB_ROOT}/alumnos/no_foto.JPG" class="img-responsive" alt="" style="border-radius: 60%;  width: 60%;height: 60%;"> 
 
 				{else}
-				       <img src="{$WEB_ROOT}/alumnos/{$item.rutaFoto}" class="img-responsive" alt="" style="border-radius: 60%;  width: 60%;height: 60%;"> 
+				       <img src="{$WEB_ROOT}/alumnos/{$item.rutaFoto}?{$rand}" class="img-responsive" alt="" style="border-radius: 60%;  width: 60%;height: 60%;"> 
 				{/if}
 				<font style="font-size:11px; color:#73b760 ">Ver Perfil</font>
 				</a>

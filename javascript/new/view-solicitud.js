@@ -1,4 +1,23 @@
-
+$(document).ready(function(){
+	$(".open").click(function(){
+		
+		
+		var elemento = document.querySelectorAll(".page-header-fixed");
+		for (var i = 0; i < elemento.length; i++) {
+		  elemento[i].classList.add("modal-open");
+		}
+		
+		
+		var elemento = document.querySelectorAll(".page-header-fixed");
+		for (var i = 0; i < elemento.length; i++) {
+		  elemento[i].classList.add("modal-open");
+		}
+	
+	});
+   
+});
+	
+	
 function addSaveSolicitudOk(){
 	
 	$.ajax({
@@ -69,11 +88,12 @@ function addSolicitud(){
 					$("#container").html(splitResp[3]);
 					// descargarConstancias($.trim(splitResp[4]))
 				}else{
-					$("#ajax").attr("width","100px");
-					$("#ajax").attr("top","100px");
-					$("#ajax").html(splitResp[1]);
+					showModal("", splitResp[1]);
+					// $("#ajax").attr("width","100px");
+					// $("#ajax").attr("top","100px");
+					// $("#ajax").html(splitResp[1]);
 					// $("#ajax").show();
-					$("#ajax").modal("show");
+					// $("#ajax").modal("show");
 				}
 						
 			}
@@ -112,13 +132,12 @@ function addSaveSolicitud(){
 					
 					// $("#ajax").attr("width","100px");
 					// $("#ajax").attr("top","100px");
-				
-					
+				closeModal()
+				alert	('cerrar')
 					$("#msj").html(splitResp[1]);
 					$("#container").html(splitResp[2]);
-					$("#ajax").html('');
-					$("#ajax").hide();
-					$("#ajax").modal("hide");
+					
+					
 					
 					//if ($('#solicitudId').val()==4){
 						
@@ -130,9 +149,7 @@ function addSaveSolicitud(){
 			else if($.trim(splitResp[0]) == "okBol"){
 				//$("#msj").html(splitResp[1]);
 
-				$("#ajax").html('');
-				$("#ajax").hide();
-				$("#ajax").modal("hide");
+				closeModal()
 				descargarConstancias($.trim(splitResp[1]));
                 // $("#container").html(splitResp[2]);
                 reload()
@@ -199,11 +216,22 @@ function enviarArchivo(){
 
 function closeModal(){
 	
-	$("#ajax").html('');
-	$("#ajax").hide();
-	$("#ajax").modal("hide");
 	
-	setTimeout('reload()',2000)
+
+	
+	var elemento = document.querySelectorAll(".bootbox");
+	for (var i = 0; i < elemento.length; i++) {
+
+		$(elemento).remove('div')
+	  elemento[i].classList.remove("in");
+	}
+	
+	var elemento = document.querySelectorAll(".modal-backdrop");
+	for (var i = 0; i < elemento.length; i++) {
+		$(elemento).remove('div')
+	  elemento[i].classList.remove("in");
+	}
+
 }
 
 function reload(){

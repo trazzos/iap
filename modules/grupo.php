@@ -15,6 +15,7 @@
 		$smarty->assign('mnuSubmain','docente');
 	}
 	
+	$smarty->assign('rand', rand());
 	$smarty->assign('id', $_GET["id"]);
 	
 ?>

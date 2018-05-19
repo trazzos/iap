@@ -208,6 +208,7 @@ $pages = array(
 	'view-perfil',
 	'aviso',
 	'add-activity-c',
+	'informe',
 	'add-resource-c'
 
 );

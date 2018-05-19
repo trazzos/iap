@@ -1238,6 +1238,8 @@
 				$this->Util()->DB()->setQuery($sql);
 				$cal = $this->Util()->DB()->GetResult();
 				
+				// echo '<pre>'; print_r($cal );
+				// exit;
 			return $cal;
 		}
 		
