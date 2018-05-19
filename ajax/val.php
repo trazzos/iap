@@ -97,7 +97,7 @@
 			$html .= "
 				<tr>
 					<td>Pregunta</td>
-					<td width='94px'>Prom.</td>
+					<td width='94px'></td>
 				</tr>"; 		
 			foreach($aux['lstPreguntas'] as $keyp=>$auxp){
 				$html .= "<tr><td>".$auxp['pregunta']."</td><td width='94px'>".$auxp['totalPp']."</td></tr>"; 	
