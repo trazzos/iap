@@ -935,7 +935,7 @@
 		{
 			 $sql ="
 				SELECT *,DATE( finalDate ) as fechaFinal FROM activity
-				WHERE courseModuleId = ".$Id."";
+				WHERE courseModuleId = ".$Id." order by initialDate,horaInicial ASC";
 			$this->Util()->DB()->setQuery($sql);
 			$count = $this->Util()->DB()->GetResult();	
 

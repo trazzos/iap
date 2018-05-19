@@ -10,7 +10,7 @@
 	$lst = $activity->enumerateActividadCalendario($_GET['courseModuleId']);
 	foreach($lst as $key=>$aux){
 		$aux['description'] = htmlspecialchars_decode($aux['description']);   
-		$resources[] = array('title'=>utf8_encode($aux['resumen'].':<br> '.$aux['description']), 'start' => $aux["initialDate"],'end' => $aux["fechaFinal"]);
+		$resources[] = array('title'=>($aux['resumen']), 'start' => $aux["initialDate"],'end' => $aux["fechaFinal"]);
 	}
 
 	// echo 'dd';
