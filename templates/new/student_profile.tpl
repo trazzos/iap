@@ -101,12 +101,12 @@
                             <a href="{$WEB_ROOT}/recorded ">
                                 <i class="fa fa-camera"></i> Grabaciones </a>
                         </li>-->
-						
+						<!--
 						<li>
                             <a href="{$WEB_ROOT}/view-solicitud" >
                                <i class="fa fa-folder-open" aria-hidden="true"></i>Solicitudes 
 							</a>
-                        </li>
+                        </li>-->
 						<li>
 						<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px">
 						   <i class="fa fa-university" aria-hidden="true"></i>Referencia Bancaria 

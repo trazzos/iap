@@ -1,0 +1,46 @@
+ALTER TABLE  `activity` ADD  `activityConfigId` INT( 11 ) NOT NULL AFTER  `activityId` ;
+ALTER TABLE  `resource` ADD  `resourceConfigId` INT( 11 ) NOT NULL AFTER  `courseModuleId` ;
+
+ALTER TABLE  `activity_config` ADD  `diaInicial` VARCHAR( 255 ) NOT NULL AFTER  `tries` ;
+
+ALTER TABLE  `activity_config` ADD  `diaFinal` VARCHAR( 255 ) NOT NULL AFTER  `diaInicial` ;
+
+ALTER TABLE  `activity_config` ADD  `subject_moduleId` INT( 11 ) NOT NULL AFTER  `courseModuleId` ;
+
+CREATE TABLE IF NOT EXISTS `activity_config` (
+  `activityConfigId` int(11) NOT NULL AUTO_INCREMENT,
+  `courseModuleId` int(11) NOT NULL,
+  `activityType` enum('Lectura','Tarea','Examen','Otro','Foro') CHARACTER SET latin1 NOT NULL,
+  `initialDate` date NOT NULL,
+  `horaInicial` time NOT NULL,
+  `finalDate` datetime NOT NULL,
+  `modality` enum('Individual','Por Equipo') CHARACTER SET latin1 NOT NULL,
+  `description` text CHARACTER SET latin1 NOT NULL,
+  `resumen` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `requiredActivity` int(11) NOT NULL,
+  `ponderation` int(3) NOT NULL DEFAULT '0',
+  `timeLimit` int(3) NOT NULL,
+  `noQuestions` int(2) NOT NULL,
+  `tries` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`activityConfigId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1066 ;
+
+
+CREATE TABLE IF NOT EXISTS `resource_config` (
+  `resourceConfigId` int(11) NOT NULL AUTO_INCREMENT,
+  `subjectModuleId` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`resourceConfigId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1402 ;
+
+
+ALTER TABLE  `subject` ADD  `rvoeLinea` VARCHAR( 255 ) NOT NULL AFTER  `rvoe` ;
+
+ALTER TABLE  `subject` ADD  `fechaRvoeLinea` DATE NOT NULL AFTER  `fechaRvoe` ;
+
+ALTER TABLE  `course` CHANGE  `scholarCicle`  `scholarCicle` VARCHAR( 255 ) NOT NULL ;
+
+
+ALTER TABLE  `user` ADD  `rutaFoto` VARCHAR( 255 ) NOT NULL AFTER  `porcentajeBeca` ;

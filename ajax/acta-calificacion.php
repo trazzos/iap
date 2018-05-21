@@ -165,7 +165,7 @@
 	<table width=100% align='center' border=0 class='txtTicket'>	
 		<tr>
 			<td colspan='2' align='center'>
-			".$infoPersonal['profesion']." ".$infoPersonal['name']." ".$infoPersonal['lastname_materno']." ".$infoPersonal['lastname_paterno']."<br>
+			".$infoPersonal['profesion']." ".$infoPersonal['name']." ".$infoPersonal['lastname_paterno']." ".$infoPersonal['lastname_materno']."<br>
 			Catedratico
 			<br>
 			<br>
