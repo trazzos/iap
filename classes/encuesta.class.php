@@ -145,7 +145,7 @@ class Encuesta extends Main
 					resultado as r
 				left join pregunta as p on p.preguntaId = r.preguntaId
 				where 
-					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId = ".$cModuleId." ";
+					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId = ".$cModuleId." group by p.preguntaId";
 			// exit;
 			$this->Util()->DB()->setQuery($sql);
 			$lstPreguntas = $this->Util()->DB()->GetResult();
