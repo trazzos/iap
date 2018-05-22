@@ -33,6 +33,9 @@
 	$homework->setActivityId($_GET["id"]);
 	$homework->setUserId($_SESSION["User"]["userId"]);
 	$homework = $homework->Uploaded();
+	
+	// echo '<pre>'; print_r($homework);
+	// exit;
 	$smarty->assign('homework', $homework);
 	
 ?>

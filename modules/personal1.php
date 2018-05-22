@@ -16,6 +16,10 @@
 		if($_POST["type"] == 'saveEditPersonal')
 		{
 
+				if($_POST['mostrarP']=='on'){
+					$_POST['mostrarP'] = 'si';
+				}
+	
 			$personal->setPositionId($_POST['positionId']);
 			$personal->setPersonalId($_POST['id']);
 			$personal->setName($_POST['name']);
@@ -42,6 +46,9 @@
 			$personal->setCorreo($_POST['correo']);
 			$personal->setCelular($_POST['celular']);
 			$personal->setFirmaConstancia($_POST['firmaConstancia']);
+			
+			$personal->setMostrar($_POST['mostrarP']);
+			$personal->setNumero($_POST['numeroP']);
 
 			if($_FILES['foto'])
 			{

@@ -27,15 +27,28 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-3 control-label">RVOE:</label>
+            <label class="col-md-3 control-label">RVOE Presencial:</label>
             <div class="col-md-8">
                 <input type="text" name="rvoe" id="rvoe"   class="form-control" value="{$post.rvoe}" />
             </div>
         </div>
 		 <div class="form-group">
-            <label class="col-md-3 control-label">Fecha de RVOE:</label>
+            <label class="col-md-3 control-label">Fecha de RVOE Presencial:</label>
             <div class="col-md-8">
                 <input type="text" name="fechaRvoe" id="fechaRvoe"  value="{$post.fechaRvoe}"  class="form-control  date-picker" />
+            </div>
+        </div>
+		
+		 <div class="form-group">
+            <label class="col-md-3 control-label">RVOE en Linea:</label>
+            <div class="col-md-8">
+                <input type="text" name="rvoeLinea" id="rvoeLinea"   class="form-control" value="{$post.rvoeLinea}" />
+            </div>
+        </div>
+		 <div class="form-group">
+            <label class="col-md-3 control-label">Fecha de RVOE en Linea:</label>
+            <div class="col-md-8">
+                <input type="text" name="fechaRvoeLinea" id="fechaRvoeLinea"  value="{$post.fechaRvoeLinea}"  class="form-control  date-picker" />
             </div>
         </div>
         <div class="form-group">
@@ -98,3 +111,14 @@
         </div>
     </div>
 </form>
+
+
+
+<script type="text/javascript">
+    tinyMCE.init({
+        mode : "textareas",
+        theme : "advanced",
+        skin : "o2k7"
+
+    });
+</script>

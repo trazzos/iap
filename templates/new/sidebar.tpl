@@ -9,7 +9,7 @@
     <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
     <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
     <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-    <ul class="page-sidebar-menu  page-header-fixed {if $User.type == "student"} page-sidebar-menu-closed {/if}" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+    <ul class="page-sidebar-menu  page-header-fixed {if $User.type == "student" ||  $User.type == "Docente"} page-sidebar-menu-closed {/if}" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
         <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
         <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
         <li class="sidebar-toggler-wrapper hide">
@@ -37,10 +37,10 @@
 *}
         {/if}
 
-
-        {if $User.positionId == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
-        {if !$docente}
-        {if $vistaPrevia ne 1}
+{if $User.positionId == 1 || $AccessMod[38] == 1 || $AccessMod[38] == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
+{if !$docente}
+{if $vistaPrevia ne 1}
+        
         <li class="nav-item {if  $page == "personal1"} active {/if} ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-diamond"></i>
@@ -48,6 +48,8 @@
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
+			
+				{if $AccessMod[38] != 1}
                 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/major" class="nav-link ">
                         <span class="title">Programas Académicos</span>
@@ -58,11 +60,13 @@
                         <span class="title">Personal</span>
                     </a>
                 </li>
+				{/if}
                 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/student" class="nav-link ">
                         <span class="title">Alumnos</span>
                     </a>
                 </li>
+				{if $AccessMod[38] != 1}
                 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/position" class="nav-link ">
                         <span class="title">Puestos</span>
@@ -83,9 +87,11 @@
                         <span class="title">Videoconferencias</span>
                     </a>
                 </li>
+				{/if}
+			 {/if}
             </ul>
         </li>
-        {/if}
+       
         {/if}
         {/if}
 
@@ -113,7 +119,7 @@
         {/if}
         {/if}
 
-        {if $AccessMod[11] == 1 || $User.positionId == 1 || $AccessMod[31] == 1 || $AccessMod[8] == 1}
+        {if $AccessMod[11] == 1 || $User.positionId == 1 || $AccessMod[31] == 1 || $AccessMod[8] == 1 ||  $AccessMod[39] == 1}
             {if !$docente}
 			{if $vistaPrevia ne 1}
                 <li class="nav-item   {if $page == "subject" || $page == "history-subject"} active {/if} ">
@@ -123,11 +129,13 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
+						{if $AccessMod[39] != 1}
                         <li class="nav-item  ">
                             <a href="{$WEB_ROOT}/subject" class="nav-link ">
                                 <span class="title">Currícula</span>
                             </a>
                         </li>
+						{/if}
                         <li class="nav-item  ">
                             <a href="{$WEB_ROOT}/history-subject" class="nav-link ">
                                 <span class="title">Historial</span>
@@ -149,9 +157,10 @@
         {/if}
 
 
-        {if $User.positionId == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
+        {if $User.positionId == 1 || $AccessMod[40] == 1 || $AccessMod[1] == 1 || $AccessMod[2] == 1  || $AccessMod[3] == 1 || $AccessMod[4] == 1 || $AccessMod[5] == 1 || $AccessMod[6] == 1 || $AccessMod[7] == 1 || $AccessMod[9] == 1 || $AccessMod[10] == 1}
         {if $vistaPrevia ne 1}
 		 {if !$docente}
+		 {if $AccessMod[40] != 1}
 		<li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-video-camera"></i>
@@ -171,7 +180,7 @@
                 </li>
             </ul>
         </li>
-		
+		{/if}
 		<li class="nav-item  ">
             <a href="{$WEB_ROOT}/solicitud" class="nav-link nav-toggle">
                 <i class="fa fa-folder-open" aria-hidden="true"></i>
@@ -179,6 +188,7 @@
                 <span class="arrow"></span>
             </a>
         </li>
+		{if $AccessMod[40] != 1}
 		 <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                <i class="fa fa-money" aria-hidden="true"></i>
@@ -198,6 +208,7 @@
                 </li>
             </ul>
         </li>
+		{/if}
 		<!--
 		<li class="nav-item  ">
             <a href="{$WEB_ROOT}/lst-docentes" class="nav-link nav-toggle">
@@ -248,6 +259,7 @@
 		 || $page == "lst-docentes" 
 		 || $page == "repositorio" 
 		 || $page == "prog-academico" 
+		 || $page == "msj" 
 		 || $page == "materias" 
 		 || $page == "cat-doc-docente" 
 		 || $page == "prog-materia" 
@@ -281,6 +293,11 @@
 				 <li class="nav-item  ">
                     <a href="{$WEB_ROOT}/lst-docentes" class="nav-link ">
                         <span class="title">Lista de Docentes</span>
+                    </a>
+                </li>
+				<li class="nav-item  ">
+                    <a href="{$WEB_ROOT}/msj" class="nav-link ">
+                        <span class="title">Mensajes</span>
                     </a>
                 </li>
 				 <li class="nav-item  ">
@@ -389,6 +406,13 @@
                     <span class="title">Información</span>
                 </a>
             </li>
+			
+		 <li class="nav-item {if $page == "grupo"} active {/if}">
+            <a href="{$WEB_ROOT}/grupo/id/{$id}" class="nav-link nav-toggle">
+                <i class="fa fa-graduation-cap"></i>
+                <span class="title">Grupo</span>
+            </a>
+        </li>	
 
         <li class="nav-item {if $page == "docente"} active {/if}">
             <a href="{$WEB_ROOT}/docente/id/{$id}" class="nav-link nav-toggle">
@@ -396,8 +420,13 @@
                 <span class="title">Asesor</span>
             </a>
         </li>
-
-
+<!--
+		<li class="nav-item {if $page == "personal-academico"} active {/if}">
+            <a href="{$WEB_ROOT}/personal-academico/id/{$id}" class="nav-link nav-toggle">
+                <i class="fa fa-sitemap"></i>
+                <span class="title">Personal Académico</span>
+            </a>
+        </li>-->
 
         {if $mnuMain == "modulo"}
             <li class="nav-item {if $page == "calendar-image-modules-student"} active {/if} ">
@@ -438,7 +467,7 @@
                 </a>
             </li>
 			
-			<li class="nav-item {if $page == "forum-modules-student"} active {/if} ">
+			<li class="nav-item {if $page == "reply-inbox"} active {/if} ">
                 <a href="{$WEB_ROOT}/reply-inbox/id/{$id}/cId/0" class="nav-link nav-toggle">
                     <i class="fa fa-envelope-o"></i>
                     <span class="title">Inbox</span>

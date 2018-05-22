@@ -995,15 +995,19 @@ class User extends Main
 		{
 			$this->userId = $_SESSION["User"]["userId"];
 		}
-		$this->Util()->DB()->setQuery("SELECT * FROM user WHERE userId = '".$this->userId."'");
+		
+		 $sql = "SELECT * FROM user WHERE userId = '".$this->userId."'";
+		$this->Util()->DB()->setQuery($sql);
 		$row = $this->Util()->DB()->GetRow();
 		
 		
-		if(file_exists(DOC_ROOT."/alumnos/".$row["userId"].".jpg"))
+		if(file_exists(DOC_ROOT."/alumnos/".$row["rutaFoto"].""))
 			{
+				// echo DOC_ROOT."/alumnos/".$row["rutaFoto"]."";
+				// exit;
 				$row["foto"] = '
-					<img src="'.WEB_ROOT.'/alumnos/'.$row["userId"].'.jpg" width="110" height="110"/>';
-				$row["imagen"] = WEB_ROOT.'/alumnos/'.$row["userId"].'.jpg';
+					<img src="'.WEB_ROOT.'/alumnos/'.$row["rutaFoto"].'" width="110" height="110"/>';
+				$row["imagen"] = WEB_ROOT.'/alumnos/'.$row["rutaFoto"].'';
 			}
 			else
 			{
@@ -1015,7 +1019,51 @@ class User extends Main
 	
 	
 	
-	
+	function InfoStudent8()
+	{
+		// if(!$this->userId)
+		// {
+			// $this->userId = $_SESSION["User"]["userId"];
+		// }
+		
+		 $sql = "
+			SELECT 
+				u.*,
+				p.nombre as paisTrabajo,
+				e.nombre as estadoTrabajo,
+				m.nombre as municipioTrabajo,
+				pr.profesionName as profesionName
+			FROM 
+				user as u
+			left join pais as p on p.paisId = u.paist
+			left join estado as e on e.estadoId = u.estado
+			left join municipio as m on m.municipioId = u.ciudadt
+			left join profesion as pr on pr.profesionId = u.profesion
+			WHERE u.userId = '".$this->userId."'";
+		$this->Util()->DB()->setQuery($sql);
+		$row = $this->Util()->DB()->GetRow();
+		
+		if ($row["rutaFoto"]==null){
+			
+			$row["rutaFoto"] = 's';
+		}
+		
+		
+		if(file_exists(DOC_ROOT."/alumnos/".$row["rutaFoto"].""))
+			{
+				// echo DOC_ROOT."/alumnos/".$row["rutaFoto"]."";
+				// exit;
+				$row["foto"] = '
+					<img src="'.WEB_ROOT.'/alumnos/'.$row["rutaFoto"].'" width="110" height="110"/>';
+				$row["imagen"] = WEB_ROOT.'/alumnos/'.$row["rutaFoto"].'';
+			}
+			else
+			{
+				$row["foto"] = '<img src="'.WEB_ROOT.'/alumnos/no_foto.JPG" width="110" height="110"/>';
+				$row["imagen"] = WEB_ROOT.'/alumnos/no_foto.JPG';
+			}
+			return $row;
+	}
 	
 	
 	
@@ -1180,7 +1228,7 @@ class User extends Main
 			$card['username'] = $row['name'];
 			$card['nombreCompleto'] = $row['name'].' '.$row['lastname_materno'].' '.$row['lastname_paterno'];
 			$card['isLogged'] = true;
-			
+			$card['type'] =  $row['perfil'];
 			$_SESSION['User'] = $card;
 			$_SESSION['empresaId'] = 15;
 			$_SESSION["lastClick"] = time();			

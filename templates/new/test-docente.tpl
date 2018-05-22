@@ -57,7 +57,8 @@
 			</div>
 		</form>
 		<center>
-			<a href="javascript:void(0)" onclick="SaveEncuesta()" class="btn green submitForm">Enviar Evaluación</a>
+			
+			<a href="javascript:void(0)" id="btnSaveEncuesta" onclick="SaveEncuesta()" class="btn green submitForm">Enviar Evaluación</a>
 		</center>
 		
     </div>

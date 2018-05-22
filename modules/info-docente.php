@@ -3,7 +3,7 @@
 	/* For Session Control - Don't remove this */
 	// $user->allow_access(37);	
 	
-	// echo '<pre>'; print_r($_GET);
+	// echo '<pre>'; print_r($_SESSION);
 	// exit;
 	
 	if($_GET['cId']=='si'){
@@ -23,7 +23,8 @@
 	$student->setCountry(1);
 	$estados=$student->EnumerateEstados();
 	
-	
+	// echo '<pre>'; print_r($info);
+	// exit;
 	if(file_exists(DOC_ROOT."/".$info['foto'])){
 		$foto = WEB_ROOT."/".$info['foto'].'?'.rand();
 	}else{
@@ -33,6 +34,7 @@
 	$f1 = explode('-',$info['fecha_nacimiento']);
 	
 	$registros = $student->cargarCiudades($info["stateId"]);
+	$smarty->assign("Usertype", $_SESSION['User']['perfil']);
 	$smarty->assign("foto", $foto);
 	$smarty->assign("registrosc", $registros);
 	$smarty->assign("cId", $_GET['cId']);	

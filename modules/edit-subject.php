@@ -10,6 +10,7 @@
 		$subject->setTipo($_POST['tipo']);
 		$subject->setClave(strtoupper($_POST['frmClave']));
 		$subject->setRvoe(strtoupper($_POST['rvoe']));
+		$subject->setRvoeLinea(strtoupper($_POST['rvoeLinea']));
 		$subject->setName(strtoupper($_POST['frmName']));
 		$subject->setWelcomeText($_POST['welcomeText']);
 		$subject->setIntroduction($_POST['introduction']);
@@ -24,6 +25,7 @@
 		$subject->setCost($_POST['cost']);
 		$subject->setPayments($_POST['payments']);
 		$subject->setFechaRvoe($_POST['fechaRvoe']);
+		$subject->setFechaRvoeLinea($_POST['fechaRvoeLinea']);
 		
 		$subject->Update();
 	}

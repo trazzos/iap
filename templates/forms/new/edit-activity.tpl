@@ -17,6 +17,7 @@
                     <option value="Lectura" {if $actividad.activityType == "Lectura"} selected="selected"{/if}>Lectura</option>
                     <option value="Tarea" {if $actividad.activityType == "Tarea"} selected="selected"{/if}>Tarea</option>
                     <option value="Examen" {if $actividad.activityType == "Examen"} selected="selected"{/if}>Examen</option>
+                    <option value="Foro" {if $actividad.activityType == "Foro"} selected="selected"{/if}>Foro</option>
                     <option value="Otro" {if $actividad.activityType == "Otro"} selected="selected"{/if}>Otro</option>
                 </select>
             </div>
@@ -26,6 +27,13 @@
             <label class="col-md-3 control-label">Fecha Inicial:</label>
             <div class="col-md-8">
                 <input type="text" name="initialDate" id="initialDate" value="{$actividad.initialDate}"  class="form-control  date-picker"/>
+            </div>
+        </div>
+		<div class="form-group">
+            <label class="col-md-3 control-label">Hora Inicial:</label>
+            <div class="col-md-8">
+                <input type="time" name="horaInicial" id="horaInicial" value="{$actividad.horaInicial}"   style="width:200px" class="form-control "/>
+               
             </div>
         </div>
 

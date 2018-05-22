@@ -17,7 +17,31 @@ class Student extends User
 	private $mensaje;
 	private $statusjj;
 	private $asunto;
+	private $perfil;
+	private $anterior;
+	private $nuevo;
+	private $repite;
+	
+	
+	public function setAnterior($value)
+	{
+		$this->anterior = $value;	
+	}
+	
+	public function setNuevo($value)
+	{
+		$this->nuevo = $value;	
+	}
+	
+	public function setRepite($value)
+	{
+		$this->repite = $value;	
+	}
 
+	public function setPerfil($value)
+	{
+		$this->perfil = $value;	
+	}
 	
 	
 	public function setAsunto($value)
@@ -2822,6 +2846,135 @@ class Student extends User
 		
 		
 	}	
+	
+	function onChangePicture($Id)
+		{
+			
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			$archivo = 'archivos';
+			foreach($_FILES as $key=>$var)
+			{
+			   switch($key)
+			   {
+				   case $archivo:
+				   if($var["name"]<>""){
+						$aux = explode(".",$var["name"]);
+						$extencion=end($aux);
+						$temporal = $var['tmp_name'];
+						$url = DOC_ROOT;				
+						$foto_name=$Id.".".$extencion;	
+						if(move_uploaded_file($temporal,$url."/alumnos/".$foto_name)){
+							
+							$minFoto = $foto_name;
+							$this->resizeImagen($url.'/alumnos/', $foto_name, 340, 340,$minFoto,$extencion);
+						
+							$sql = 'UPDATE 		
+								user SET 		
+								rutaFoto = "'.$foto_name.'"			      		
+								WHERE userId = '.$Id.'';		
+							$this->Util()->DB()->setQuery($sql);		
+							$this->Util()->DB()->UpdateData();
+					   }
+					}
+					break;
+				}
+			}
+			
+			unset($_FILES);
+			
+			return true;
+		}
+		
+	public function onSavePerfil($Id)
+	{
+		
+		$sql = 'UPDATE 		
+					user SET 		
+					perfil = "'.strip_tags($this->perfil).'"			      		
+					WHERE userId = '.$Id.'';		
+				$this->Util()->DB()->setQuery($sql);		
+				$this->Util()->DB()->UpdateData();
+							
+			return true;
+	}
+	
+	public function onSavePass($Id)
+	{
+		 
+		$sql = "SELECT count(*) FROM user WHERE password = '".$this->anterior."' and userId='".$_SESSION["User"]["userId"]."'";
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetSingle();
+		
+		if($result <= 0){
+			echo 'fail[#]';
+			echo '<font color="red">La contraseña anterior no es correcta</font>';
+			exit;
+		}
+		
+		if($this->nuevo != $this->repite){
+			echo 'fail[#]';
+			echo '<font color="red">Las contraseñas no coinciden</font>';
+			exit;
+		} 
+		
+		if($this->nuevo == ''){
+			echo 'fail[#]';
+			echo '<font color="red">La nueva contraseña no puede estar vacia</font>';
+			exit;
+		}
+		
+		 $sqlQuery = "
+			UPDATE 
+				user 
+			set 
+				password='".$this->nuevo."'
+			where userId='".$_SESSION["User"]["userId"]."'"; 			
+		
+		$this->Util()->DB()->setQuery($sqlQuery);
+		$this->Util()->DB()->ExecuteQuery();
+		
+		return true;
+	}
+	
+	
+	function resizeImagen($ruta, $nombre, $alto, $ancho,$nombreN,$extension){
+		
+		$rutaImagenOriginal = $ruta.$nombre;
+		if($extension == 'GIF' || $extension == 'gif'){
+		$img_original = imagecreatefromgif($rutaImagenOriginal);
+		}
+		if($extension == 'jpg' || $extension == 'JPG'){
+		$img_original = imagecreatefromjpeg($rutaImagenOriginal);
+		}
+		if($extension == 'png' || $extension == 'PNG'){
+		$img_original = imagecreatefrompng($rutaImagenOriginal);
+		}
+		$max_ancho = $ancho;
+		$max_alto = $alto;
+		list($ancho,$alto)=getimagesize($rutaImagenOriginal);
+		$x_ratio = $max_ancho / $ancho;
+		$y_ratio = $max_alto / $alto;
+		if( ($ancho <= $max_ancho) && ($alto <= $max_alto) ){//Si ancho 
+		$ancho_final = $ancho;
+			$alto_final = $alto;
+		} elseif (($x_ratio * $alto) < $max_alto){
+			$alto_final = ceil($x_ratio * $alto);
+			$ancho_final = $max_ancho;
+		} else{
+			$ancho_final = ceil($y_ratio * $ancho);
+			$alto_final = $max_alto;
+		}
+		$tmp=imagecreatetruecolor($ancho_final,$alto_final);
+		imagecopyresampled($tmp,$img_original,0,0,0,0,$ancho_final, $alto_final,$ancho,$alto);
+		imagedestroy($img_original);
+		$calidad=70;
+		imagejpeg($tmp,$ruta.$nombreN,$calidad);
+    
+	}
+	
+		
 	
 }
 

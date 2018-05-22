@@ -7,11 +7,13 @@
 		<th width="200" style="text-align:center">Nombre materia</th>
 		<th width="80" style="text-align:center">Docente</th>
 		<th width="80" style="text-align:center">Vigencia</th>
-		<th width="80" style="text-align:center">Plan de Estudios</th>
+		<th width="80" style="text-align:center">Programa de la asignatura</th>
 		<th width="80" style="text-align:center">Carta Descriptiva</th>
 		<th width="80" style="text-align:center">Encuadre</th>
 		<th width="80" style="text-align:center">Rubrica</th>
+		<th width="80" style="text-align:center">Informe Final</th>
 		<th width="80" style="text-align:center">Acta de Calificaciones</th>
+		<th width="80" style="text-align:center">Acciones</th>
 
 	
 	</tr>
@@ -74,13 +76,30 @@
 				<td align="center">
 				
 					{if $subject.rutaRubrica  ne ''}
-					<a href="{$WEB_ROOT}/docentes/encuadre/{$subject.rutaRubrica}" target='_blank'  title='RUBRICA'>
+					<a href="{$WEB_ROOT}/docentes/rubrica/{$subject.rutaRubrica}" target='_blank'  title='RUBRICA'>
 						<i class="material-icons md-16">chrome_reader_mode</i>
 					</a>
 					<a href="javascript:void(0)" onClick="onDeleteRubrica('{$subject.courseModuleId}','{$subject.courseId}')"  title='ELIMINAR CARTA DESCRIPTIVA'>
 						<i class="material-icons md-16">delete_forever</i>
 					</a>
 					{else}
+					<font color="red">S/I</font>
+					{/if}
+					
+				</td>
+				<td align="center">
+				
+					{if $subject.rutaInforme  ne ''}
+					<a href="{$WEB_ROOT}/docentes/informe/{$subject.rutaInforme}" target='_blank'  title='Informe'>
+						<i class="material-icons md-16">chrome_reader_mode</i>
+					</a>
+					<a href="javascript:void(0)" onClick="onDeleteInforme('{$subject.courseModuleId}','{$subject.courseId}')"  title='ELIMINAR INFORME'>
+						<i class="material-icons md-16">delete_forever</i>
+					</a>
+					{else}
+					<a href="{$WEB_ROOT}/graybox.php?page=informe&id={$subject.courseModuleId}&cmId={$subject.courseId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='SUBIR'>
+							<i class="material-icons md-16">cloud_upload</i>
+						</a>
 					<font color="red">S/I</font>
 					{/if}
 					
@@ -96,6 +115,17 @@
 					</a>
 					<font color="red">S/I</font>
 					{/if}
+				</td>
+				<td>
+					<a href="{$WEB_ROOT}/graybox.php?page=val&id={$subject.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='VALORACION'>
+					<i class="material-icons md-16">insert_chart</i>
+					</a>	
+					<a href="{$WEB_ROOT}/graybox.php?page=eval&id={$subject.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='EVALUACIONES'>
+						<i class="material-icons md-16">star</i>
+					</a>
+					<a href="{$WEB_ROOT}/graybox.php?page=down-contrato&id={$subject.courseModuleId}&personalId={$pId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CONTRATOS'>
+							<i class="material-icons md-16">featured_video</i>
+					</a>
 				</td>
 				
 

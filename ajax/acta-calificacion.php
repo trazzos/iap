@@ -11,11 +11,22 @@
 	$module->setCourseModuleId($_GET["Id"]);
 	$info = $module->InfoCourseModule();
 	
-	// echo '<pre>'; print_r($info);
-	// exit;
+	
+	if ($info['modality'] == 'Online'){
+		$rov = $info['rvoeLinea'];
+		$fecharov = $info['fechaRvoeLinea']; 
+	}else{
+		
+		$rov = $info['rvoe'];
+		$fecharov = $info['fechaRvoe'];
+	}
 	
 	$course->setCourseId($info["courseId"]);
 	$infoCo = $course->Info();
+	
+	// echo '<pre>'; print_r($info);
+	// exit;
+	
 	
 	$group->setCourseModuleId($_GET["Id"]);
 	$group->setCourseId($info["courseId"]);
@@ -73,6 +84,7 @@
 	<img src='".DOC_ROOT."/images/logo_correo.jpg'>
 	<center>	
 	<b>INSTITUTO DE ADMINISTRACIÓN PÚBLICA DEL ESTADO DE CHIAPAS, A.C.</b>
+	<br>
 	<b>".$info['majorName'].": ".$info['subjectName']."</b><br>
 	<b>ACTA DE CALIFICACIÓN FINAL</b><br>
 	</center>	
@@ -83,7 +95,7 @@
 	<table class='txtTicket' width='100%'>
 	<tr>
 		<td>Acuerdo: No.: </td>
-		<td>".$info['rvoe']." de fecha ".$info['fechaRvoe']."</td>
+		<td>".$rov." de fecha ".$fecharov."</td>
 	</tr>
 	<tr>
 		<td>Ciclo: </td>
@@ -91,16 +103,21 @@
 	</tr>
 	<tr>
 		<td>Materia:</td>
-		<td>".$info['clave']." ".$info['name']."</td>
+		<td>".$info['claveMateria']." ".$info['name']."</td>
 	</tr>	
 	<tr>
 		<td>Cuatrimestre:</td>
 		<td>".$info['semesId']."</td>
 	</tr>
 	<tr>
+		<td>Grupo:</td>
+		<td>".$info['groupA']."</td>
+	</tr>
+	<tr>
 		<td>Periodo:</td>
 		<td>".$info['initialDate']." - ".$info['finalDate']."</td>
 	</tr>
+	
 	</table>
 	<br>
 	<br>
@@ -109,10 +126,10 @@
 
 	$html .= "<table  width='100%' class='txtTicket'>";
 	$html .= "<tr>";
-	$html .= "<td><center>Numero</center></td>";
-	$html .= "<td><center>Nombre</center></td>";
-	$html .= "<td><center>Calificación Final</center></td>";
-	$html .= "<td><center>Letra</center></td>";
+	$html .= "<td style='width:11px'><center>Num.</center></td>";
+	$html .= "<td ><center>Nombre</center></td>";
+	$html .= "<td style='width:100px'><center>Calificación Final</center></td>";
+	$html .= "<td style='width:100px'><center>Letra</center></td>";
 	$html .= "</tr>";
 	foreach($noTeam as $key=>$aux){
 		$html .= "<tr>";
@@ -148,7 +165,7 @@
 	<table width=100% align='center' border=0 class='txtTicket'>	
 		<tr>
 			<td colspan='2' align='center'>
-			".$infoPersonal['profesion']." ".$infoPersonal['name']." ".$infoPersonal['lastname_materno']." ".$infoPersonal['lastname_paterno']."<br>
+			".$infoPersonal['profesion']." ".$infoPersonal['name']." ".$infoPersonal['lastname_paterno']." ".$infoPersonal['lastname_materno']."<br>
 			Catedratico
 			<br>
 			<br>

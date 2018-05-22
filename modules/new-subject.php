@@ -24,6 +24,9 @@
         $subject->setPayments($_POST['payments']);
         $subject->setFechaRvoe($_POST['fechaRvoe']);
 		
+		$subject->setRvoeLinea(strtoupper($_POST['rvoeLinea']));
+		$subject->setFechaRvoeLinea($_POST['fechaRvoeLinea']);
+		
 		$subject->Save();
 	}
 

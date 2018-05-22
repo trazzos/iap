@@ -4,6 +4,8 @@
 	include_once(DOC_ROOT.'/libraries.php');
 
 	session_start();
+// echo "<pre>"; print_r($lstPreguntas);
+    // exit;
 
 	
 	$module->setCourseModuleId($_GET['Id']);
@@ -14,9 +16,7 @@
 
 	
 	$lstPreguntas = $encuesta->promedioXRubro($_GET['Id'],$infoM['courseId']);     
-	// echo "<pre>"; print_r($lstPreguntas);
-    // exit;
-
+	
 	$html .= "
 	<html>
 	<head>
@@ -86,18 +86,36 @@
 		$html .= "<br>";
 		$html .= "<br><font class='txtTicket'><b>Resultados</b>  </font>";
 		$html .= "<br>";
-		$html .= "<table align='center' width='100%' border='1' class='txtTicket'>";
-		$html .= "<tr><td>Rubro</td><td>Promedio</td></tr>";
+	
 		
 		foreach($lstPreguntas['result'] as $key=>$aux){
-			$html .= "<tr><td>".$aux['nombre']."</td><td>".$aux['promedio']."</td></tr>";
+			$html .= "<table align='center' width='700px' border='1' class='txtTicket'>";
+			$html .= "<tr><td >Rubro</td><td width='44px'>Prom.</td></tr>";
+			$html .= "<tr><td><b>".$aux['nombre']."</b></td><td width='44px'>".$aux['promedio']."</td></tr>";
+			$html .= ""; 
+			
+			$html .= "
+				<tr>
+					<td>Pregunta</td>
+					<td width='94px'></td>
+				</tr>"; 		
+			foreach($aux['lstPreguntas'] as $keyp=>$auxp){
+				$html .= "<tr><td>".$auxp['pregunta']."</td><td width='94px'>".$auxp['totalPp']."</td></tr>"; 	
+			}
+
+			$html .= "</table>
+			<br>
+			<br>
+			";
+			
 		}
-		$html .= "</table>";
-		$html .= "<br>";
+		
+		
+		$html .= "<br><div style='page-break-after:always;'></div>";
 		$html .= "<br><font class='txtTicket'><b>Comentarios</b> </font>";
 		
 		$html .= "<br>";
-		$html .= "<table align='center' width='100%' border='1' class='txtTicket'>";
+		$html .= "<table align='center' width='77%' border='1' class='txtTicket'>";
 
 		
 		foreach($lstPreguntas['lstComentarios'] as $key=>$aux){
@@ -111,6 +129,8 @@
 	</html>
 
 	";
+	
+	// <div style='page-break-after:always;'>
 	// echo $html;
 	// exit;
 	# Instanciamos un objeto de la clase DOMPDF.

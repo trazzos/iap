@@ -5,6 +5,7 @@
 		private $subjectId;
 		private $clave;
 		private $rvoe;
+		private $rvoeLinea;
 		private $name;
 		private $specialityId;
 		private $semesterId;
@@ -24,6 +25,7 @@
 		private $claveGroupId;
 		private $payments;
 		private $fechaRvoe;
+		private $fechaRvoeLinea;
 		
 		//new
 		public function setFechaRvoe($value)
@@ -33,6 +35,15 @@
 			$value = $util->FormatDateMySql($value);
 			$this->fechaRvoe = $value;
 		}
+		
+		public function setFechaRvoeLinea($value)
+		{
+			// $this->Util()->ValidateFloat($value);
+			$util = new Util;
+			$value = $util->FormatDateMySql($value);
+			$this->fechaRvoeLinea = $value;
+		}
+		
 		
 		public function setPayments($value)
 		{
@@ -228,6 +239,13 @@
 		{
 			$this->Util()->ValidateString($value, 255, 0, 'Rvoe');
 			$this->rvoe = $value;
+		}
+		
+		
+		public function setRvoeLinea($value)
+		{
+			$this->Util()->ValidateString($value, 255, 0, 'Rvoe');
+			$this->rvoeLinea = $value;
 		}
 		
 		
@@ -908,8 +926,10 @@ public function Enumerate_p(){
 			$sql = "UPDATE 
 						subject
 					SET
+						rvoeLinea='" 	. $this->rvoeLinea. "', 
 						rvoe='" 	. $this->rvoe . "', 
 						clave='" 	. $this->clave . "', 
+						fechaRvoeLinea='" 	. $this->fechaRvoeLinea . "', 
 						fechaRvoe='" 	. $this->fechaRvoe . "', 
 						name='" 	. $this->name . "',
 						welcomeText='" 	. $this->welcomeText . "',
@@ -1434,7 +1454,7 @@ public function Enumerate_p(){
 	
 	public function scriptLLenaMaterias(){
 		
-		exit;
+		// exit;
 		$sqlQuery = '
 			SELECT 
 				* 

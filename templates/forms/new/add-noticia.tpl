@@ -7,19 +7,21 @@
     <input type="hidden" id="type" name="type" value="saveAddMajor"/>
     <input type="hidden" id="auxTpl" name="auxTpl" value="{$auxTpl}"/>
     <input type="hidden" id="courseModuleId" name="courseModuleId" value="{$id}"/>
+    <input type="hidden" id="courseModuleId2" name="courseModuleId2" value="{$infos.courseModuleId}"/>
+    <input type="hidden" id="announcementId" name="announcementId" value="{$infos.announcementId}"/>
 
     <div class="form-body">
         <div class="form-group">
             <label class="col-md-3 control-label">Noticia:</label>
             <div class="col-md-8">
-                <input type="text" name="title" id="title" value="{$title}" class="form-control" />
+                <input type="text" name="title" id="title" value="{$infos.title}" class="form-control" />
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-3 control-label">Descripcion:</label>
             <div class="col-md-8">
-                <textarea name="description" id="description" value="{$description}" cols="30" class="form-control"></textarea>
+                <textarea name="description" id="description" value="" cols="30" class="form-control">{$infos.description}</textarea>
             </div>
         </div>
 

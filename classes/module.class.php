@@ -9,7 +9,24 @@
 		private $cmId;
 		private $tipoReporte;
 		private $statusIn;
+		private $mensaje;
+		private $enviaId;
+		private $titulo;
 		
+		public function setTitulo($value)
+		{
+			$this->titulo = $value;
+		}
+		
+		public function setEnviaId($value)
+		{
+			$this->enviaId = $value;
+		}
+		
+		public function setMensaje($value)
+		{
+			$this->mensaje = $value;
+		}
 		
 		public function setStatusIn($value)
 		{
@@ -190,8 +207,8 @@
 						c.tarifaMtro as tarifaMtro,
 						c.tarifaDr as tarifaDr,
 						c.hora as hora,
-						course_module.subtotal as subtotal
-						
+						course_module.subtotal as subtotal,
+						subject_module.clave as claveMateria
 					FROM
 						course_module
 					LEFT JOIN course as c ON c.courseId = course_module.courseId
@@ -231,6 +248,7 @@
 			$result["politicsDecoded"] = html_entity_decode($result["politics"]);
 			$result["evaluationDecoded"] = html_entity_decode($result["evaluation"]);
 			$result["bibliographyDecoded"] = html_entity_decode($result["bibliography"]);
+			// $result["claveMateria"] = html_entity_decode($result["claveMateria"]);
 
 			//print_r($result);
 			return $result;	
@@ -349,6 +367,7 @@
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
 			$result = $this->Util()->DB()->InsertData();
+			$Id = $result;
 			if($result > 0)
 			{
 				// asignar a nueva tabla 
@@ -375,7 +394,219 @@
 				$result = false;
 				$this->Util()->setError(90010, 'error');
 			}
+			
+			
+			 $sql = "INSERT INTO
+						topic
+						( 
+							subject,	
+						 	tipo,
+						 	topicDate,
+						 	descripcion,
+						 	courseId,
+						 	courseModuleId
+						)
+					VALUES (
+							'Dudas para el Docente',
+							'dudas',
+							'".date('Y-m-d h:i:s')."',
+							'En este foro podrán realizar preguntas referentes al contenido del curso y el docente asignado se las responderá.',
+							'".$this->getCourseId()."',
+							'" .$Id."'
+							)";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
+			
+			
+			
+			$sql = "INSERT INTO
+						topic
+						( 
+							subject,	
+						 	tipo,
+						 	topicDate,
+						 	descripcion,
+						 	courseId,
+						 	courseModuleId
+						)
+					VALUES (
+							'Asesoria Academica',
+							'asesoria',
+							'".date('Y-m-d h:i:s')."',
+							'En este foro podrás incluir dudas referentes al curso y nuestro personal académico los resolverá.',
+							'".$this->getCourseId()."',
+							'" .$Id."'
+							)";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
+			
+			
+			$sql = "INSERT INTO
+						topic
+						( 
+							subject,	
+						 	tipo,
+						 	topicDate,
+						 	descripcion,
+						 	courseId,
+						 	courseModuleId
+						)
+					VALUES (
+							'Presentacion Personal',
+							'presentacion',
+							'".date('Y-m-d h:i:s')."',
+							'Este foro les permitirá conocer a los demás alumnos del curso, dando una breve descripción personal, que puede incluir su nombre completo, estudios, información laboral, pasatiempos, etc.',
+							'".$this->getCourseId()."',
+							'" .$Id."'
+							)";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
+			
+			$sql = "INSERT INTO
+						topic
+						( 
+							subject,	
+						 	tipo,
+						 	topicDate,
+						 	descripcion,
+						 	courseId,
+						 	courseModuleId
+						)
+					VALUES (
+							'Foro de Discusion',
+							'discucion',
+							'".date('Y-m-d h:i:s')."',
+							'Foro dedicado a expresar opiniones acerca de algún tema que el profesor o tutor haya creado.',
+							'".$this->getCourseId()."',
+							'" .$Id."'
+							)";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
+			// exit;
+			
+			if($_POST['copia']=="on"){
+				
+			
+			
+				// copiamos curricula
+				 
+				$sql = "
+	
+				SELECT 
+						*
+						FROM
+							activity_config
+						WHERE
+							subject_moduleId ='".$this->getSubjectModuleId()."' ";
+				
+				
+				$this->Util()->DB()->setQuery($sql);
+				$result = $this->Util()->DB()->GetResult();
+				
+					// '" . $this->getInitialDate() . "',
+				// '" . $this->getFinalDate($result) . "',
+				
+			
+			// echo '<pre>'; print_r  ($result);
+			
+			// echo  'initialDay '.$this->getInitialDate();
+			// echo  'finalDay '.$this->getInitialDate();
+				
+				foreach($result as $key=>$aux){
+					
+					$aux['diaInicial']  = $aux['diaInicial'] - 1;
+					
+					$initialDate = strtotime ( '+'.$aux['diaInicial'].' day' , strtotime ( $this->getInitialDate() ) ) ;
+					$initialDate = date ( 'Y-m-d' , $initialDate );
+					
+					$finalDate = strtotime ( '+'.$aux['diaFinal'].' day' , strtotime ( $this->getInitialDate() ) ) ;
+					$finalDate = date ( 'Y-m-d' , $finalDate );
+					
+					// echo 'dentro';
+					// echo '<br>';
+					// echo $initialDate;
+					
+					// echo $aux['diaInicial'];
+					// echo '';
+					// echo $this->getInitialDate();
+					// exit;
+					$sql = "INSERT INTO
+						activity
+						( 
+							courseModuleId,	
+							activityConfigId,	
+						 	activityType,
+						 	initialDate,
+							horaInicial,
+						 	finalDate,
+						 	modality,
+						 	description,
+						 	resumen,
+						 	requiredActivity,
+						 	ponderation,
+						 	timeLimit,
+						 	noQuestions,
+						 	tries
+						)
+					VALUES (
+							'".$Id."',
+							'".$aux['activityConfigId']."',
+							'".$aux['activityType']."',
+							'".$initialDate."',
+							'".$aux['horaInicial']."',
+							'".$finalDate." 23:00:00',
+							'".$aux['modality']."',
+							'".$aux['description']."',
+							'".$aux['resumen']."',
+							'".$aux['requiredActivity']."',
+							'".$aux['ponderation']."',
+							'".$aux['timeLimit']."',
+							'".$aux['noQuestions']."',
+							'".$aux['tries']."'
+							)";
+						$this->Util()->DB()->setQuery($sql);
+						$this->Util()->DB()->InsertData();
+				}
+				
+				$sql = "
+	
+				SELECT 
+						*
+						FROM
+							resource_config
+						WHERE
+							subjectModuleId ='".$this->getSubjectModuleId()."' ";
+				// exit;
+				// $this->Util()->DB()->setQuery($sql);
+				// $this->Util()->DB()->InsertData();
+					// exit;
+				$this->Util()->DB()->setQuery($sql);
+				$result5 = $this->Util()->DB()->GetResult();
+			// exit;
+				foreach($result5 as $key=>$aux){
+					
+					 $sql = "INSERT INTO
+						resource
+						( 
+							courseModuleId,	
+							resourceConfigId,	
+							name,	
+						 	description,
+						 	path
+						)
+					VALUES (
+							'".$Id."',
+							'".$aux['resourceConfigId']."',
+							'".$aux['name']."',
+							'".$aux['description']."',
+							'".$aux['path']."'
+							)";
+						$this->Util()->DB()->setQuery($sql);
+						$this->Util()->DB()->InsertData();
+				}
+			}
 			$this->Util()->PrintErrors();
+			
 			return $result;
 		}				
 		
@@ -844,5 +1075,100 @@
 			
 			return $result;
 	}
+	
+	public function onEnviaMsj(){
+		
+
+			$sql = "INSERT INTO
+						mensaje
+						( 	
+						 	mensaje,
+						 	titulo,
+							enviarId
+						)
+					VALUES (
+							'".$this->mensaje."', 
+							'".$this->titulo."', 
+							'".$this->enviaId."'
+							)";
+		$this->Util()->DB()->setQuery($sql);
+		$id = $this->Util()->DB()->InsertData();
+			
+		foreach($_POST['profesores'] as $key=>$aux){
+
+			$sql = "INSERT INTO
+							mensaje_personal
+							( 	
+								personalId,
+								mensajeId
+							)
+						VALUES (
+								'".$aux."', 
+								'".$id."'
+								)";
+				$this->Util()->DB()->setQuery($sql);
+				$result = $this->Util()->DB()->InsertData();
+		}
+		
+		$vas = 0;
+		foreach($_FILES as $key=>$var)
+		{
+		   switch($key)
+		   {
+			   case 'path':
+			   if($var["name"]<>""){
+					$aux = explode(".",$var["name"]);
+					$extencion=end($aux);
+					$temporal = $var['tmp_name'];
+					$url = DOC_ROOT;				
+					$foto_name="doc_".$id.".".$extencion;		
+					if(move_uploaded_file($temporal,$url."/docentes/msj/".$foto_name)){
+						
+						$sql = "UPDATE
+							mensaje
+							SET
+								ruta = '".$foto_name."'
+							WHERE mensajeId = '".$id."'";
+								$this->Util()->DB()->setQuery($sql);
+								$this->Util()->DB()->UpdateData();
+							$vas = 1;
+					}
+				}
+		   }
+		}
+			
+			
+		if ($vas == 1){
+			
+		sleep(7);
+			
+		$sendmail = new SendMail;	
+		
+		 $attachment[0] = $url."/docentes/msj/".$foto_name;
+		 $fileName[0] = $foto_name;
+		
+		// echo '<pre>'; print_r($attachment);
+		// exit;
+		
+		$personal = New Personal;
+		$lstPeso = $personal->enumerateDocentesMsj($id);
+		
+		foreach($lstPeso as $key=>$aux){
+			
+				if($aux['correo']<>''){
+					$sendmail->PrepareAttachment("Mensaje Para el Docente", utf8_decode($this->mensaje),"","", $aux['correo'], 'Docente', $attachment, $fileName);
+				}
+		}
+		
+		
+		 // $sendmail->PrepareAttachment("Mensaje Para el Docente", utf8_decode($this->mensaje), "","", 'juanjosepm@live.com', 'Docente', $attachment, $fileName);
+		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " tutor@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " dacademica@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+
+		}	
+		return true;
+	}
+	
 }	
 ?>

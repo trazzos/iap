@@ -1,0 +1,13 @@
+ALTER TABLE  `user` ADD  `perfil` TEXT NOT NULL AFTER  `rutaFoto` ;
+ALTER TABLE  `mensaje` ADD  `ruta` VARCHAR( 255 ) NOT NULL AFTER  `enviarId` ;
+
+
+CREATE TABLE IF NOT EXISTS `mensaje` (
+  `mensajeId` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `mensaje` text NOT NULL,
+  `enviarId` int(11) NOT NULL,
+  `ruta` varchar(255) NOT NULL,
+  PRIMARY KEY (`mensajeId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;

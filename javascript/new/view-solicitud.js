@@ -1,4 +1,23 @@
-
+$(document).ready(function(){
+	$(".open").click(function(){
+		
+		
+		var elemento = document.querySelectorAll(".page-header-fixed");
+		for (var i = 0; i < elemento.length; i++) {
+		  elemento[i].classList.add("modal-open");
+		}
+		
+		
+		var elemento = document.querySelectorAll(".page-header-fixed");
+		for (var i = 0; i < elemento.length; i++) {
+		  elemento[i].classList.add("modal-open");
+		}
+	
+	});
+   
+});
+	
+	
 function addSaveSolicitudOk(){
 	
 	$.ajax({
@@ -67,18 +86,13 @@ function addSolicitud(){
 				if($.trim(splitResp[1]) == "recarga"){
 					$("#msj").html(splitResp[2]);
 					$("#container").html(splitResp[3]);
-					// descargarConstancias($.trim(splitResp[4]))
 				}else{
-					$("#ajax").attr("width","100px");
-					$("#ajax").attr("top","100px");
-					$("#ajax").html(splitResp[1]);
-					// $("#ajax").show();
-					$("#ajax").modal("show");
+					showModal("", splitResp[1]);
 				}
 						
 			}
 			else if($.trim(splitResp[0]) == "fail"){
-				
+				$(".msjError").html(splitResp[1]);
 				ShowStatusPopUp(splitResp[1])
 				return;
 
@@ -110,38 +124,22 @@ function addSaveSolicitud(){
 		
 			if($.trim(splitResp[0]) == "ok"){
 					
-					// $("#ajax").attr("width","100px");
-					// $("#ajax").attr("top","100px");
-				
-					
+				closeModal()
 					$("#msj").html(splitResp[1]);
 					$("#container").html(splitResp[2]);
-					$("#ajax").html('');
-					$("#ajax").hide();
-					$("#ajax").modal("hide");
-					
-					//if ($('#solicitudId').val()==4){
-						
-						//descargarConstancias($.trim(splitResp[3]))
-					//}
-					
 					
 				}
 			else if($.trim(splitResp[0]) == "okBol"){
-				//$("#msj").html(splitResp[1]);
-
-				$("#ajax").html('');
-				$("#ajax").hide();
-				$("#ajax").modal("hide");
+				// closeModal()
+				
 				descargarConstancias($.trim(splitResp[1]));
-                // $("#container").html(splitResp[2]);
-                reload()
+                // reload()
 			}
 			else if($.trim(splitResp[0]) == "fail"){
-				
-				$("#msjgg").html(splitResp[1]);
-				// return;
-
+			
+				// $("#msjgg").show();
+				$(".msjError").html(splitResp[1]);
+				// $("msjgg").html(splitResp[1]);
 			}
 		},
 		error:function(){
@@ -199,11 +197,22 @@ function enviarArchivo(){
 
 function closeModal(){
 	
-	$("#ajax").html('');
-	$("#ajax").hide();
-	$("#ajax").modal("hide");
 	
-	setTimeout('reload()',2000)
+	
+	$('#ajax').hide();
+	var elemento = document.querySelectorAll(".bootbox");
+	for (var i = 0; i < elemento.length; i++) {
+
+		$(elemento).remove('div')
+	  elemento[i].classList.remove("in");
+	}
+	
+	var elemento = document.querySelectorAll(".modal-backdrop");
+	for (var i = 0; i < elemento.length; i++) {
+		$(elemento).remove('div')
+	  elemento[i].classList.remove("in");
+	}
+
 }
 
 function reload(){
@@ -292,6 +301,7 @@ function descargarConstancias(q){
 
 	url=WEB_ROOT+"/ajax/formato-constancia.php?"+$('#frmfiltro').serialize(true)+'&q='+q;
 	open(url,"Constancia de Estudios","toolbal=0,width=0,resizable=1");
+	location.reload();
 }
 
 

@@ -41,6 +41,20 @@
 <h1 class="page-title"> Bienvenido
     <small></small>
 </h1>
+{if $msjC eq 'si'}
+<div class="alert alert-info alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>El perfil se actualizo correctamente</strong>
+</div>
+{/if}
+
+{if $msjCc eq 'si'}
+<div class="alert alert-info alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>La contrasela se actualizo correctamente</strong>
+</div>
+{/if}
+
 <!-- END PAGE TITLE-->
 <!-- END PAGE HEADER-->
 <div class="row">
@@ -70,9 +84,14 @@
                 <!-- SIDEBAR MENU -->
                 <div class="profile-usermenu">
                     <ul class="nav">
+						<li>
+                            <a href="{$WEB_ROOT}/perfil" >
+                               <i class="fa fa-user" aria-hidden="true"></i>Perfil 
+							</a>
+                        </li>
                         <li class="">
                             <a href="{$WEB_ROOT}/alumn-services ">
-                                <i class="icon-settings"></i> Configuración </a>
+                                <i class="icon-settings"></i> Actualizar Información</a>
                         </li>
                         <!--<li>
                             <a href="{$WEB_ROOT}/tv ">
@@ -82,7 +101,7 @@
                             <a href="{$WEB_ROOT}/recorded ">
                                 <i class="fa fa-camera"></i> Grabaciones </a>
                         </li>-->
-<!--						
+						<!--
 						<li>
                             <a href="{$WEB_ROOT}/view-solicitud" >
                                <i class="fa fa-folder-open" aria-hidden="true"></i>Solicitudes 
@@ -116,6 +135,16 @@
 						<li>
 						<a href="{$WEB_ROOT}/inbox/or/h" >
 						 <i class="fa fa-comments"></i>Inbox 
+						</a>
+						</li>
+						<li>
+						<a href="{$WEB_ROOT}/graybox.php?page=contra" data-target="#ajax" data-toggle="modal" data-width="1000px">
+						   <i class="fa fa-unlock-alt"></i>Cambiar Contraseña
+						</a>
+						</li>
+						<li>
+						<a href="{$WEB_ROOT}/personal-academico" >
+						   <i class="fa fa-sitemap"></i>Personal Academico
 						</a>
 						</li>
                     </ul>

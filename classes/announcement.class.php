@@ -105,6 +105,10 @@
 				$courseModuleId = 0;		
 			}
 
+			
+			
+			
+
 			$this->Util()->DB()->setQuery("
 			INSERT INTO  `announcement` (
 				`courseId` ,
@@ -130,6 +134,59 @@
 		}
 		
 		
+	public function Edit($Id)
+		{
+			$module = new Module;
+			if($this->getCourseModuleId())
+			{
+				$module->setCourseModuleId($this->getCourseModuleId());
+				$myModule = $module->InfoCourseModule();
+				$courseId = $myModule["courseId"];
+				$courseModuleId = $this->getCourseModuleId();
+				$group = new Group;
+				$group->setCourseModuleId($this->getCourseModuleId());
+				$group->setCourseId($myModule["courseId"]);
+				$theGroup = $group->DefaultGroup();
+				$modulo=$this->Util()->acento($myModule["name"]);
+                $titulo=$this->Util()->acento($this->title);
+				//echo $modulo;
+				$message[3]["subject"] = "Nuevo anuncio disponible en el modulo ".$modulo." | ".$titulo;
+				$message[3]["body"] = $this->Util()->DecodeTiny($this->description);
+				
+				$details_body = array();
+				$details_subject = array();
+				$sendmail = new Sendmail;
+				 foreach($theGroup as $key => $value)
+				{
+                $nombremail=$this->Util()->acento($value["names"]);
+				 $sendmail->Prepare($message[3]["subject"], $message[3]["body"], $details_body, $details_subject, $value["email"], $nombremail); 		
+					
+				}
+						
+			}
+			else
+			{
+				$courseId = 0;		
+				$courseModuleId = 0;		
+			}
+
+			
+			 $sql = "UPDATE
+						announcement
+						SET
+							title = '".$this->title."',
+							description = '".$this->description."'
+						WHERE announcementId = '".$Id."'";
+						
+				// exit;
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->UpdateData();
+			
+			return true;
+
+		}
+
+		
 	public function Delete(){
 		
 		 $sql = "DELETE FROM 
@@ -147,7 +204,19 @@
 				
 	}
 	
-	
+	public function Info($Id){
+		
+		
+		$sql = "
+			SELECT * FROM announcement
+			WHERE announcementId = '".$Id."'";
+// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRoW();
+		
+		return $result;
+
+	}
 	
 	
 		

@@ -224,6 +224,147 @@ switch($_POST["type"])
 			}
 		
 		break;
+		
+		
+		case 'SaveActividad':
+		
+			// echo '<pre>'; print_r($_POST);
+			
+		if($_POST['activitycId']<>'' or $_POST['activitycId']<>null){
+			
+			// $activity->setCourseModuleId($_POST["courseModuleId"]);
+			$activity->setActivityId($_POST["activitycId"]);
+			$activity->setActivityType($_POST["activityType"]);
+
+			// $activity->setInitialDate($_POST["initialDate"]);
+			// $activity->setFinalDate($_POST["finalDate"]);
+			$activity->setHora($_POST["hora"]);
+			$activity->setModality($_POST["modality"]);
+			$activity->setResumen($_POST["resumen"]);
+			$activity->setDescription($_POST["description"]);
+			$activity->setRequiredActivity($_POST["requiredActivity"]);
+			$activity->setPonderation($_POST["ponderation"]);
+			$activity->setHoraInicial($_POST["horaInicial"]);
+			if ($activity->EditModule()){
+				echo 'ok[#]';
+			}else{
+				echo 'fail[#]';
+			}
+			
+		}else{
+			
+			$activity->setCourseModuleId($_POST["courseModuleId"]);
+			$activity->setActivityType($_POST["activityType"]);
+
+			// $activity->setInitialDate($_POST["initialDate"]);
+			// $activity->setFinalDate($_POST["finalDate"]);
+			$activity->setHora($_POST["hora"]);
+			$activity->setModality($_POST["modality"]);
+			$activity->setResumen($_POST["resumen"]);
+			$activity->setDescription($_POST["description"]);
+			$activity->setRequiredActivity($_POST["requiredActivity"]);
+			$activity->setPonderation($_POST["ponderation"]);
+			$activity->setHoraInicial($_POST["horaInicial"]);
+			if ($activity->SaveModule()){
+				echo 'ok[#]';
+			}else{
+				echo 'fail[#]';
+			}
+		}
+			
+			
+		
+		break;
+		
+		
+		case 'deleteAct':
+		
+				if ($activity->deleteAct($_POST['Id'])){
+					echo 'ok[#]';
+				}else{
+					echo 'fail[#]';
+				}
+		break;
+		
+		case 'saveRecursos':
+		
+		
+		if($_POST['resourceId']){
+			
+			// $resource->setCourseModuleId($_POST["cId"]);
+			$resource->setName($_POST["name"]);
+			$resource->setDescription($_POST["description"]);
+		
+			
+			if($resource->updateResource($_POST['resourceId'])){
+				echo 'ok[#]';
+				
+			}else{
+				
+				echo 'fail[#]';			
+			}
+			
+		}else{
+			
+			$resource->setCourseModuleId($_POST["cId"]);
+			$resource->setName($_POST["name"]);
+			$resource->setDescription($_POST["description"]);
+		
+			
+			if($resource->SaveResource()){
+				echo 'ok[#]';
+				
+			}else{
+				
+				echo 'fail[#]';			
+			}
+		}
+		
+			
+		
+		break;
+		
+		case 'deleteResource':
+		
+			if ($resource->deleteResource($_POST['Id'])){
+					echo 'ok[#]';
+				}else{
+					echo 'fail[#]';
+				}
+		
+		break;
+		
+		
+		
+		
+		case 'onDeleteInforme':
+		
+			// echo '<pre>'; print_r($_POST);
+			if($url = $personal->onDeleteInforme($_POST["id"])){
+				echo "ok[#]";
+			}else{
+				echo "fail[#]";
+				
+			}
+		
+		break;
+		
+		
+		case 'onSendInforme':
+		
+			if($url = $group->onSendInforme($_POST["id"])){
+				echo "ok[#]";
+				echo '<div class="alert alert-info alert-dismissable">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  El archivo se adjunto correctamente
+					</div>';
+				exit;
+			}else{
+				echo "fail[#]";
+				
+			}
+		
+		break;
 	}
 
 ?>

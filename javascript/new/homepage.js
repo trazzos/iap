@@ -1,5 +1,64 @@
 
 
+
+
+
+  
+function onVerPass(){
+	 // $('#show').attr('checked', false);
+
+      name = $('#nuevo').attr('name'); 
+      value = $('#nuevo').attr('value');
+
+      if($('#nuevo').attr('checked'))
+      {
+         html = '<input type="text" name="'+ name + '" value="' + value + '" id="nuevo"/>';
+         $('#nuevo').after(html).remove();
+      }
+
+      else
+      {
+         html = '<input type="nuevo" name="'+ name + '" value="' + value + '" id="nuevo"/>';
+         $('#nuevo').after(html).remove();
+      }
+  
+}
+
+
+function onSavePass(){
+	
+	$("#type").val("onSavePass")
+
+	$.ajax({
+	  	type: "POST",
+	  	url: WEB_ROOT+'/ajax/student.php',
+	  	data: $("#frmPass").serialize(true)+'&type=onSavePass',
+		beforeSend: function(){			
+			$("#res_").html('Cargando..');
+		},
+	  	success: function(response) {	
+			$("#res_").html('');
+			console.log(response)
+			var splitResp = response.split("[#]");
+			
+			if($.trim(splitResp[0]) == "ok"){
+					location.reload();
+				}
+			else if($.trim(splitResp[0]) == "fail"){
+
+				$("#res_").html(splitResp[1]);
+			
+			}
+			
+
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+	
+}//activar
+
 function CalificacionesAct(id){
 	$.ajax({
 	  	type: "POST",
@@ -21,6 +80,14 @@ function CalificacionesAct(id){
     });
 	
 }//AddReg
+
+
+function closeModal(){
+	
+	$("#ajax").hide();
+	$("#ajax").modal("hide");
+	
+}
 
 
 // function CalificacionesAct(id){

@@ -1397,6 +1397,42 @@
 		
 		
 		
+		function onSendInforme($Id)
+		{
+			
+			// echo '<pre>'; print_r($_FILES);
+			// echo '<pre>'; print_r($_POST);
+			// exit;
+			$archivo = 'cedula';
+			foreach($_FILES as $key=>$var)
+			{
+			   switch($key)
+			   {
+				   case $archivo:
+				   if($var["name"]<>""){
+						$aux = explode(".",$var["name"]);
+						$extencion=end($aux);
+						$temporal = $var['tmp_name'];
+						$url = DOC_ROOT;				
+						$foto_name="info_".$Id.".".$extencion;		
+						if(move_uploaded_file($temporal,$url."/docentes/informe/".$foto_name)){									
+							$sql = 'UPDATE 		
+								course_module SET 		
+								rutaInforme = "'.$foto_name.'"			      		
+								WHERE courseModuleId = '.$Id.'';		
+							$this->Util()->DB()->setQuery($sql);		
+							$this->Util()->DB()->UpdateData();
+					   }
+					}
+					break;
+				}
+			}
+			
+			unset($_FILES);
+			
+			return true;
+		}	
+		
 		function onSendEncuadre($Id)
 		{
 			
@@ -1489,7 +1525,12 @@
 						$temporal = $var['tmp_name'];
 						$url = DOC_ROOT;				
 						$foto_name="personal_foto/".$Id.".".$extencion;		
-						if(move_uploaded_file($temporal,$url."/".$foto_name)){									
+						if(move_uploaded_file($temporal,$url."/".$foto_name)){	
+							
+							$foto_names = $Id.".".$extencion;
+							$minFoto = $foto_names;
+							$this->resizeImagen($url.'/personal_foto/', $foto_names, 340, 340,$minFoto,$extencion);
+							
 							$sql = 'UPDATE 		
 								personal SET 		
 								foto = "'.$foto_name.'"			      		
@@ -1528,5 +1569,64 @@
 			return true;
 			
 		}
+		
+		public function  getGrupo($Id)
+		{
+			
+			$this->Util()->DB()->setQuery("
+				SELECT *
+				FROM course_module
+				WHERE courseModuleId = '".$Id."'");
+			$info = $this->Util()->DB()->GetRow();
+			
+			$this->Util()->DB()->setQuery("
+				SELECT *, user_subject.status AS status FROM user_subject
+				LEFT JOIN user ON user_subject.alumnoId = user.userId
+				WHERE user_subject.status = 'activo' and courseId = '".$info['courseId']."'
+				ORDER BY lastNamePaterno ASC, lastNameMaterno ASC, names ASC");
+			$result = $this->Util()->DB()->GetResult();
+			
+			return $result;
+	
+		}
+		
+		
+		
+	
+	function resizeImagen($ruta, $nombre, $alto, $ancho,$nombreN,$extension){
+		
+		$rutaImagenOriginal = $ruta.$nombre;
+		if($extension == 'GIF' || $extension == 'gif'){
+		$img_original = imagecreatefromgif($rutaImagenOriginal);
+		}
+		if($extension == 'jpg' || $extension == 'JPG'){
+		$img_original = imagecreatefromjpeg($rutaImagenOriginal);
+		}
+		if($extension == 'png' || $extension == 'PNG'){
+		$img_original = imagecreatefrompng($rutaImagenOriginal);
+		}
+		$max_ancho = $ancho;
+		$max_alto = $alto;
+		list($ancho,$alto)=getimagesize($rutaImagenOriginal);
+		$x_ratio = $max_ancho / $ancho;
+		$y_ratio = $max_alto / $alto;
+		if( ($ancho <= $max_ancho) && ($alto <= $max_alto) ){//Si ancho 
+		$ancho_final = $ancho;
+			$alto_final = $alto;
+		} elseif (($x_ratio * $alto) < $max_alto){
+			$alto_final = ceil($x_ratio * $alto);
+			$ancho_final = $max_ancho;
+		} else{
+			$ancho_final = ceil($y_ratio * $ancho);
+			$alto_final = $max_alto;
+		}
+		$tmp=imagecreatetruecolor($ancho_final,$alto_final);
+		imagecopyresampled($tmp,$img_original,0,0,0,0,$ancho_final, $alto_final,$ancho,$alto);
+		imagedestroy($img_original);
+		$calidad=70;
+		imagejpeg($tmp,$ruta.$nombreN,$calidad);
+    
+	}
+		
 	}	
 ?>

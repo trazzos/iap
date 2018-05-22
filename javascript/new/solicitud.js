@@ -1,3 +1,22 @@
+function extensionpdf(archivo) { 
+   extensiones_permitidas = new Array(".pdf");  
+      extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase(); 
+      permitida = false; 
+      for (var i = 0; i < extensiones_permitidas.length; i++) { 
+         if (extensiones_permitidas[i] == extension) { 
+         permitida = true; 
+         break; 
+         } 
+      } 
+      if (!permitida) { 
+         return 1;
+      	}else{ 
+         return 2; 
+      	} 
+   return 0; 
+}
+
+
 function cargaCalendario(Id){
 	// $.datepicker.setDefaults( $.datepicker.regional['es'] );
 		$('#fecha_'+Id).datepicker({
@@ -154,6 +173,19 @@ function validarPago(Id){
 
 
 function validarPagoAdjunto(){
+	
+	
+	
+	
+	var comporbante = $("#archivos").val();
+	var error = extensionpdf(comporbante);
+	
+	if (error == 1)
+	{
+	alert ("Campo Comprobante(PDF): Requiere Extension .PDF");
+	return;
+	}
+	
 
 // En esta var va incluido $_POST y $_FILES
 	var fd = new FormData(document.getElementById("frmDoc_"));
@@ -180,9 +212,10 @@ function validarPagoAdjunto(){
 		beforeSend: function(){		
 			// $("#loader").html(LOADER);
 			// $("#erro_"+reqId).hide(0);
+			$("#msjErr").html('Cargando ...');
 		},
 		success: function(response){
-			
+			$("#msjErr").html('');
 			console.log(response)
 			var splitResp = response.split("[#]");
 

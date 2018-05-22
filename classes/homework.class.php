@@ -191,10 +191,10 @@
 			 $this->getUserId();
 			
 			$sql ="
-				SELECT COUNT(*) FROM homework
+				SELECT * FROM homework
 				WHERE activityId = '".$this->getActivityId()."' AND userId = '".$_SESSION['User']['userId']."'";
 			$this->Util()->DB()->setQuery($sql);
-			$count = $this->Util()->DB()->GetSingle();			
+			$count = $this->Util()->DB()->GetRow();			
 			// exit;
 			$nombre = $this->getNombre();
 			
@@ -202,7 +202,7 @@
 				$nombre = "Actividad";
 			}
 			
-			if($count <= 0)
+			if($count['homeworkId'] == null)
 			{
 				$sql = "INSERT INTO
 							homework
@@ -226,7 +226,9 @@
 				$sql = "UPDATE 
 							homework
 							SET
-								nombre = '".$nombre."'
+								nombre = '".$nombre."',
+								dateUpdate = '".date('Y-m-d')."',
+								countUpdate = '".($count['countUpdate']+1)."'
 							WHERE activityId = '".$this->getActivityId()."' AND userId = '".$_SESSION['User']['userId']."'";		
 				$this->Util()->DB()->setQuery($sql);
 				$this->Util()->DB()->UpdateData();
@@ -277,7 +279,7 @@
 			
 			if(move_uploaded_file($file['tmp_name'], $target_path)) 
 			{
-				$sql = "UPDATE 
+				 $sql = "UPDATE 
 							homework
 							SET
 								path = '".$relative_path."',
@@ -286,6 +288,7 @@
 							WHERE activityId = '".$this->getActivityId()."' AND userId = '".$_SESSION['User']['userId']."'";		
 				$this->Util()->DB()->setQuery($sql);
 				$this->Util()->DB()->UpdateData();
+				// exit;
 			}
 			
 			$user= new Student;

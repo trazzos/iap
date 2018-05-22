@@ -4,13 +4,19 @@
             <i class="fa fa-bullhorm"></i><b>Calendario de actividades</b> {$myModule.name|truncate:65:"..."} &raquo;
         </div>
         <div class="actions">
-
+				<a class="btn green" href="javascript:void(0)" onClick="onImprimir({$id})" title='IMPRIMIR'>
+					Imprimir
+		
+			</a>
         </div>
     </div>
     <div class="portlet-body">
-        {include file="boxes/status_no_ajax.tpl"}
-        <div style="text-align:center">
-            <img src="{$WEB_ROOT}/calendario/calendario_{$id}.jpg" width="900" height="600" />
-        </div>
+        <form id="frmGral">
+			<input type="hidden" value={$id} id="courseModuleId" name="courseModuleId">
+        </form>
+		<div id="calendar" >
+									
+		
+		</div>
     </div>
 </div>

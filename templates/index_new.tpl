@@ -26,7 +26,7 @@
 	<link href="{$WEB_ROOT}/assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
 	<!-- END THEME GLOBAL STYLES -->
 
-	{if ($page == 'homepage' && $User.type == 'student') || $page == 'docente'}
+	{if ($page == 'homepage' && $User.type == 'student') || ($page == 'homepage' && $User.type == 'Docente') || $page == 'docente'}
 		<link href="{$WEB_ROOT}/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
 	{/if}
 	{if $page == 'inbox' or $page == 'reply-inbox' or $page == 'view-inbox'}
@@ -88,13 +88,19 @@
 
 	<link type="text/css" href="{$WEB_ROOT}/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
 	<script type="text/javascript" src="{$WEB_ROOT}/cometchat/cometchatjs.php" charset="utf-8"></script>
+	
 *}
+<script src="{$WEB_ROOT}/assets/jquery.multiple.select.js"></script>
+
+<link href="{$WEB_ROOT}/assets/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
 {if $page == 'reply-inbox' or 
 $page == 'view-inbox' or
  $page == 'edit-modules-course' or
  $page == 'info-docente' or 
  $page == 'lst-docentes' or 
+ $page == 'prog-materia' or 
  $page == 'report-docentes' or 
+ $page == 'perfil' or 
  $page == 'materias'}
 <style type="text/css">
 
@@ -130,10 +136,19 @@ $page == 'view-inbox' or
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>-->
 {/if}
+<script>
+ $(function() {
+        $('#ms').change(function() {
+            console.log($(this).val());
+        }).multipleSelect({
+            width: '100%'
+        });
+    });
+</script>
 </head>
 <!-- END HEAD -->
 
-<body class="page-header-fixed page-sidebar-closed-hide-logo {if $User.type == "student"} page-sidebar-closed {/if} page-content-white page-md {if $page == 'homepage' && $User.type == 'student'} page-container-bg-solid {/if}">
+<body class="page-header-fixed page-sidebar-closed-hide-logo {if $User.type == "student" || $User.type == "Docente" || $vistaPrevia eq 1} page-sidebar-closed {/if} page-content-white page-md {if ($page == 'homepage' && $User.type == 'student') || ($page == 'homepage' && $User.type == 'Docente') || $vistaPrevia eq 1} page-container-bg-solid {/if}">
 <div class="page-wrapper">
 	{include file="new/header.tpl"}
 	<!-- BEGIN CONTAINER -->
@@ -143,7 +158,9 @@ $page == 'view-inbox' or
 		{if $vistaPrevia eq 1}
 			{include file="new/sidebar_vp.tpl"}
 		{else}
-			{include file="new/sidebar.tpl"}
+			{if ($User.type ne "Docente" or $page ne 'homepage')}
+				{include file="new/sidebar.tpl"}
+			{/if}
 		{/if}
 			
 		</div>
@@ -173,6 +190,7 @@ $page == 'view-inbox' or
 <script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
+
 <script>
 	//$j = jQuery.noConflict();
 	//$.noConflict(true);
@@ -200,6 +218,11 @@ $page == 'view-inbox' or
 
 <script src="{$WEB_ROOT}/assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+
+{if $page eq "calendar-image-modules-student"}
+<script src="{$WEB_ROOT}/assets/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+<script src="{$WEB_ROOT}/assets/fullcalendar/app.js" type="text/javascript"></script>
+{/if}
 
 <script src="{$WEB_ROOT}/javascript/new/{$page}.js?{$timestamp}" type="text/javascript"></script>
 

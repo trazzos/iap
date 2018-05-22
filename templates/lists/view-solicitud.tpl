@@ -40,9 +40,16 @@
 								<i class="material-icons md-16">cloud_download</i>
 						</a>
 					{else}
-						<a href="{$WEB_ROOT}/graybox.php?page=view-curricula&id={$subject.tiposolicitudId}&soljId={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='SELECCIONA CUATRIMESTRE'>
-							<i class="material-icons md-16">view_list</i>
-						</a>
+						 {if $subject.rutaAdjunto ne ''}
+							<a  href="{$WEB_ROOT}/alumnos/solicitud/{$subject.rutaAdjunto}" target="_blank" title='VER BOLETA'>
+								<i class="material-icons md-16">cloud_download</i>
+							</a>
+						 {else}
+							 <a class="open" href="{$WEB_ROOT}/graybox.php?page=view-cuatri&id={$subject.tiposolicitudId}&soljId={$subject.solicitudId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='SELECCIONA CUATRIMESTRE'>
+								<i class="material-icons md-16">view_list</i>
+							</a>
+						 {/if}
+						
 					{/if}
 					
 					

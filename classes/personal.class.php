@@ -39,6 +39,20 @@ class Personal extends Main
 	private $tipo;
 	private $face;
 	private $twitter;
+	private $mostrar;
+	private $numero;
+	
+	public function setMostrar($value)
+	{
+		// $this->Util()->ValidateString($value,  "Tipo");
+		$this->mostrar = $value;
+	}
+	
+	public function setNumero($value)
+	{
+		// $this->Util()->ValidateString($value,  "Tipo");
+		$this->numero = $value;
+	}
 	
 	public function setFace($value)
 	{
@@ -523,7 +537,9 @@ class Personal extends Main
 						claves_presupuestales,
 						categoria,
 						perfil,
-						profesion
+						profesion,
+						mostrar,
+						numero
 					)
 				 VALUES 
 					(						
@@ -544,7 +560,9 @@ class Personal extends Main
 						'".$this->clavesPresupuestales."',
 						'".$this->categoria."',
 						'".$this->perfil."',
-						'".$this->prof."'
+						'".$this->prof."',
+						'".$this->mostrar."',
+						'".$this->numero."'
 					)";
 								
 		$this->Util()->DB()->setQuery($sql);
@@ -609,7 +627,9 @@ class Personal extends Main
 					semblanza = '".$this->semblanza."',
 					perfil = '".$this->perfil."',
 					profesion = '".$this->prof."',
-					firmaConstancia = '".$this->firmaConstancia."'
+					firmaConstancia = '".$this->firmaConstancia."',
+					mostrar = '".$this->mostrar."',
+					numero = '".$this->numero."'
 				WHERE 
 					personalId = ".$this->personalId;
 					
@@ -1534,6 +1554,38 @@ class Personal extends Main
 	
 	
 	
+	public function onDeleteInforme($cmId){
+		
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					course_module
+				WHERE
+					courseModuleId = ".$cmId."";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();
+		
+		 // echo DOC_ROOT.'/docentes/carta/carta_'.$info['rutaCarta'];
+		 @unlink(DOC_ROOT.'/docentes/informe/'.$info['rutaInforme']);
+		
+		 $sql = 'UPDATE 		
+				course_module SET 		
+				rutaInforme = ""			      		
+				WHERE courseModuleId = '.$cmId.'';		
+				// exit;
+		$this->Util()->DB()->setQuery($sql);		
+		$this->Util()->DB()->UpdateData();
+		
+	
+		
+		
+		return true;
+		
+	}
+	
+	
 	public function onDeleteRubrica($cmId){
 		
 		
@@ -1597,6 +1649,91 @@ class Personal extends Main
 		return true;
 		
 	}
+	
+	public function EnumerateMsj(){
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					mensaje
+				WHERE
+					1 ";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetResult();
+		
+		return $result;
+	}
+	
+	
+	public function enumeratePersonalAcademico(){
+		
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					personal
+				WHERE
+					mostrar ='si' order by numero asc";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetResult();
+		
+		foreach($result as $key=>$aux){
+			
+			if(file_exists(DOC_ROOT."/".$aux['foto'])){
+				$foto = WEB_ROOT."/".$aux['foto'];
+			}else{
+				$foto = WEB_ROOT."/alumnos/no_foto.JPG";
+			}
+			$result[$key]['description'] = htmlspecialchars_decode($aux['description']);   
+			$result[$key]['foto'] = $foto; 
+		}
+		
+		
+		
+		return $result;
+		
+		
+	}
+	
+	public function InfoMsjs($Id){
+		
+		$sql = "SELECT 
+					* 
+				FROM 
+					mensaje
+				WHERE
+					mensajeId  = ".$Id."";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetRow();
+		
+		return $result;
+		
+	}
+	
+	public function enumerateDocentesMsj($Id){
+		
+		
+		$sql = "SELECT 
+					p.* 
+				FROM 
+					mensaje_personal as m
+				left join personal as p on p.personalId = m.personalId
+				WHERE
+					mensajeId  = ".$Id."";
+		// exit;
+		$this->Util()->DB()->setQuery($sql);
+		$result = $this->Util()->DB()->GetResult();
+		
+		return $result;
+		
+	}
+	
+	
+	
+	
 }
 
 

@@ -12,6 +12,20 @@
 		private $opcionE;
 		private $hora;
 		private $usuarioId;
+		private $horaInicial;
+		private $verponderation;
+		
+		public function setVerponderation($value)
+		{
+			// $this->Util()->ValidateInteger($value);
+			$this->verponderation = $value;
+		}
+		
+		public function setHoraInicial($value)
+		{
+			// $this->Util()->ValidateInteger($value);
+			$this->horaInicial = $value;
+		}
 		
 		public function setUsuarioId($value)
 		{
@@ -163,7 +177,69 @@
 			$this->hora = $value;
 		}
 		
-		
+		public function SaveModule()
+		{
+			if($this->Util()->PrintErrors())
+			{
+				// si hay errores regresa false
+				// return false;
+			}
+			$final= $this->getFinalDate()." ".$this->hora;
+			
+			// $fechaFinal = $this->getFinalDate()." ".$this->hora;
+			//si no hay errores
+			//creamos la cadena de insercion
+			$sql = "INSERT INTO
+						activity_config
+						( 	
+							diaInicial ,
+							diaFinal ,
+						 	subject_moduleId,
+							activityType,
+							initialDate,
+							horaInicial,
+							finalDate,
+							modality,
+							description,
+							resumen,
+							ponderation,
+							requiredActivity
+						)
+					VALUES (
+							'".$_POST['diaInicial']."',
+							'".$_POST['diaFinal']."',
+							'" . $this->getCourseModuleId() . "', 
+							'" . $this->activityType . "',
+							'" . $this->getInitialDate() . "',
+							'" . $this->horaInicial. "',
+							'" . $final . "',
+							'" . $this->getModality() . "',
+							'" . $this->getDescription() . "',
+							'" . $this->resumen . "',
+							'" . $this->ponderation . "',
+							'" . $this->requiredActivity . "'
+							)";
+							
+							// exit;
+			//configuramos la consulta con la cadena de insercion
+			$this->Util()->DB()->setQuery($sql);
+			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
+			$result = $this->Util()->DB()->InsertData();
+			if($result > 0)
+			{
+				//si el resultado es mayor a cero, se inserto el nuevo registro con exito...se regresara true
+				$result = true;
+				$this->Util()->setError(90000, 'complete', "Se ha creado un nueva actividad");
+			}
+			else
+			{
+				//si el resultado es cero, no se pudo insertar el nuevo registro...se regresara false
+				$result = false;
+				$this->Util()->setError(90010, 'error');
+			}
+			$this->Util()->PrintErrors();
+			return $result;
+		}
 		
 		
 		public function Save()
@@ -173,7 +249,9 @@
 				// si hay errores regresa false
 				return false;
 			}
-			$final= $this->getFinalDate() . " 23:59:59";
+			$final= $this->getFinalDate()." ".$this->hora;
+			
+			// $fechaFinal = $this->getFinalDate()." ".$this->hora;
 			//si no hay errores
 			//creamos la cadena de insercion
 			$sql = "INSERT INTO
@@ -182,6 +260,7 @@
 						 	courseModuleId,
 							activityType,
 							initialDate,
+							horaInicial,
 							finalDate,
 							modality,
 							description,
@@ -193,6 +272,7 @@
 							'" . $this->getCourseModuleId() . "', 
 							'" . $this->activityType . "',
 							'" . $this->getInitialDate() . "',
+							'" . $this->horaInicial. "',
 							'" . $final . "',
 							'" . $this->getModality() . "',
 							'" . $this->getDescription() . "',
@@ -237,6 +317,7 @@
 						SET
 							activityType = '".$this->activityType."',
 							initialDate = '".$this->getInitialDate()."',
+							horaInicial = '".$this->horaInicial."',
 							finalDate = '".$fechaFinal."',
 							modality = '".$this->getModality()."',
 							description = '".$this->getDescription()."',
@@ -272,6 +353,131 @@
 			return $result;
 		}
 				
+				
+		public function enumerateActivityModule($tipo = NULL)
+		{
+			if(!$this->getUserId())
+			{
+				$this->setUserId($_SESSION["User"]["userId"]);
+			}
+			
+			if($tipo == "Examen")
+			{
+				$add = " AND activityType = 'Examen'";
+			}
+			elseif($tipo == "Tarea")
+			{
+				$add = " AND activityType != 'Examen'";
+			}
+			$pond = "";
+			
+			if($this->verponderation == 'no')
+			{
+				$pond = " and ponderation <> 0";
+			}
+		
+			 $sql = "
+				SELECT *,@rownum:=@rownum+1 AS rownum  FROM (SELECT @rownum:=0) r,activity_config
+				WHERE subject_moduleId = '".$this->getCourseModuleId()."' ".$pond."  ".$add."
+				ORDER BY initialDate ASC, activityConfigId ASC";
+				
+				
+		
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->GetResult();
+			// exit;
+			$module = new Module;
+			$module->setCourseModuleId($this->getCourseModuleId());
+			$myModule = $module->InfoCourseModule();
+			//print_r($myModule);
+			
+			$count = 1;
+			//print_r($result);exit;
+			foreach($result as $key => $res)
+			{
+				$result[$key]["count"] = $count;
+				$count++;
+				$result[$key]["descriptionShort"] = substr($result[$key]["description"], 0, 30);
+				$this->setActivityId($res["requiredActivity"]);
+				  
+				  if($tipo == "Tarea"){
+				  
+				  foreach($result as $keys=> $resultado){
+				         if($res["requiredActivity"]==$resultado["activityId"])
+						    $result[$key]["numreq"]=$resultado["rownum"];
+				          	$result[$key]["tipo"]="Examen";
+						  }
+				
+				 
+				}
+				else{
+							$adds = " AND activityType != 'Examen'";
+							$this->Util()->DB()->setQuery("
+							SELECT *,@rownum:=@rownum+1 AS rownum  FROM (SELECT @rownum:=0) r,activity
+							WHERE courseModuleId = '".$this->getCourseModuleId()."' ".$adds."
+							ORDER BY initialDate ASC");
+							$datosExa = $this->Util()->DB()->GetResult();
+					
+							foreach($datosExa as $keys=>$dat){
+							    if($res["requiredActivity"]==$dat["activityId"])
+						        $result[$key]["numreq"]=$dat["rownum"];
+								$result[$key]["tipo"]="Examen";
+							 }
+
+				
+						//	print_r($resultado);
+			   }
+			   
+			   
+			   
+				$result[$key]["requerida"] = $this->Info();
+				//$result[$key]["req"]=$this->ver("Tarea");
+
+				$result[$key]["available"] = true;
+				//if requerida checamos si ya entregamos la tarea
+				
+				$result[$key]["initialDateTimestamp"] = strtotime($res["initialDate"].' '.$res["horaInicial"]);
+				$result[$key]["finalDateTimestamp"] = strtotime($res["finalDate"]);
+				
+				$explodedInitialDate = explode("-", $res["initialDate"]);
+				$date = mktime(0, 0, 0, $explodedInitialDate[1], $explodedInitialDate[2], $explodedInitialDate[0]); 
+				$result[$key]["week"] = date('W', $date) - $myModule["week"] + 1; 
+				
+				//checar tareas
+				$homework = new Homework;
+				$homework->setActivityId($res["activityId"]);
+				$homework->setUserId($this->getUserId());
+				$result[$key]["homework"] = $homework->Uploaded();
+				
+				if($result[$key]["requerida"]["activityId"])
+				{
+					$homework->setActivityId($result[$key]["requerida"]["activityId"]);
+					$entregada = $homework->Uploaded();
+					if(!$entregada)
+					{
+						$result[$key]["available"] = false;
+					}
+				}
+			
+			
+
+				$result[$key]["score"] = $result[$key]["ponderation"];
+				$this->setActivityId($res["activityId"]);
+				$this->setUserId($this->getUserId());
+				$result[$key]["ponderation"] = $this->Score();
+				$result[$key]["retro"] = $this->Retro();
+				
+				$result[$key]["retroFile"] = $this->RetroFile();
+				
+				$realScore = $result[$key]["ponderation"] * $result[$key]["score"] / 100;
+				$result[$key]{"realScore"} = $realScore;
+				
+			}
+			
+			// echo "<pre>"; print_r($result);
+			// exit;
+			return $result;
+		}		
 		
 				
 		public function Enumerate($tipo = NULL)
@@ -289,10 +495,16 @@
 			{
 				$add = " AND activityType != 'Examen'";
 			}
+			$pond = "";
+			
+			if($this->verponderation == 'no')
+			{
+				$pond = " and ponderation <> 0";
+			}
 		
 			 $sql = "
 				SELECT *,@rownum:=@rownum+1 AS rownum  FROM (SELECT @rownum:=0) r,activity
-				WHERE courseModuleId = '".$this->getCourseModuleId()."' ".$add."
+				WHERE courseModuleId = '".$this->getCourseModuleId()."' ".$pond."  ".$add."
 				ORDER BY initialDate ASC, activityId ASC";
 				
 				// exit;
@@ -350,7 +562,7 @@
 				$result[$key]["available"] = true;
 				//if requerida checamos si ya entregamos la tarea
 				
-				$result[$key]["initialDateTimestamp"] = strtotime($res["initialDate"]);
+				$result[$key]["initialDateTimestamp"] = strtotime($res["initialDate"].' '.$res["horaInicial"]);
 				$result[$key]["finalDateTimestamp"] = strtotime($res["finalDate"]);
 				
 				$explodedInitialDate = explode("-", $res["initialDate"]);
@@ -692,5 +904,124 @@
 			return $result;
 			
 		}	
+		
+		function deleteActividad($Id)
+		{
+			
+			 $sql ="
+				SELECT * FROM homework
+				WHERE activityId = '".$Id."' AND userId = '".$_SESSION['User']['userId']."'";
+			$this->Util()->DB()->setQuery($sql);
+			$count = $this->Util()->DB()->GetRow();	
+			
+			@unlink(DOC_ROOT."/homework/".$count['path']);	
+			
+			$sql = "UPDATE
+							homework
+							SET
+								path = ''
+							WHERE activityId = '".$Id."'  AND userId = '".$_SESSION['User']['userId']."'";
+			
+
+			$this->Util()->DB()->setQuery($sql);
+
+			$result = $this->Util()->DB()->DeleteData();
+			$this->Util()->setError(90000, 'complete', "Se ha eliminado la actividad");
+			$this->Util()->PrintErrors();
+			return true;
+		}
+		
+		function enumerateActividadCalendario($Id)
+		{
+			 $sql ="
+				SELECT *,DATE( finalDate ) as fechaFinal FROM activity
+				WHERE courseModuleId = ".$Id." order by initialDate,horaInicial ASC";
+			$this->Util()->DB()->setQuery($sql);
+			$count = $this->Util()->DB()->GetResult();	
+
+			return $count;
+		}
+		
+		public function infoActivityConfig($Id)
+		{
+			//creamos la cadena de seleccion
+			 $sql = "SELECT 
+						* 
+					FROM
+						activity_config
+					WHERE
+							activityConfigId='" . $Id . "'";
+						// exit;
+			//configuramos la consulta con la cadena de actualizacion
+			$this->Util()->DB()->setQuery($sql);
+			//ejecutamos la consulta y obtenemos el resultado
+			$result = $this->Util()->DB()->GetRow();
+			
+			// ECHO "<PRE>"; print_r($result );
+			// EXIT;
+			$f = explode(" ",$result["finalDate"]);
+
+			$result["initialDate"] = $this->Util()->FormatDateBack($result["initialDate"]);
+			$result["finalDateNoFormat"] = $result["finalDate"];
+			$result["finalDate"] = $this->Util()->FormatDateBack($f[0]);
+			$result["horaFinal"] = $f[1];
+			if($result)
+				$result = $this->Util->EncodeRow($result);
+
+			// echo "<pre>"; print_r($result);
+			// exit;
+			return $result;	
+		}
+		
+		
+		public function EditModule()
+		{
+			if($this->Util()->PrintErrors())
+			{
+				// si hay errores regresa false
+				// return false;
+			}
+			
+			$fechaFinal = $this->getFinalDate()." ".$this->hora;
+			
+			//si no hay errores
+			//creamos la cadena de insercion
+			$sql = "UPDATE
+						activity_config
+						SET
+							diaInicial = '".$_POST['diaInicial']."',
+							diaFinal = '".$_POST['diaFinal']."',
+							activityType = '".$this->activityType."',
+							initialDate = '".$this->getInitialDate()."',
+							horaInicial = '".$this->horaInicial."',
+							finalDate = '".$fechaFinal."',
+							modality = '".$this->getModality()."',
+							description = '".$this->getDescription()."',
+							resumen = '".$this->resumen."',
+							ponderation = '".$this->ponderation."',
+							requiredActivity = '".$this->requiredActivity."'
+						WHERE activityConfigId = '".$this->activityId."'";
+			//configuramos la consulta con la cadena de insercion
+			$this->Util()->DB()->setQuery($sql);
+			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
+			$result = $this->Util()->DB()->UpdateData();
+			$this->Util()->setError(90000, 'complete', "Se ha editado la actividad");
+			$this->Util()->PrintErrors();
+			return true;
+		}
+		
+		
+		
+		public function deleteAct($Id)
+		{
+				$sql = "DELETE FROM activity_config
+						WHERE activityConfigId = '".$Id."'";
+						
+				$this->Util()->DB()->setQuery($sql);
+			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
+			$result = $this->Util()->DB()->DeleteData();
+			
+			return true;
+		}
 	}	
 ?>

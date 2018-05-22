@@ -5,9 +5,9 @@
       <!--  <td align="center" id="etitl1">{$topic.names} {$topic.lastNamePaterno} {$topic.lastNameMaterno}</td>-->
       <!--  <td align="center" id="etitl1">{*$topic.answers*}</td>-->
         <td align="center">
-		  {if $docente || $typeUser==1 || $typeUser==4}
+		  {**if $docente || $typeUser==1 || $typeUser==4**}
 		     <a href="{$WEB_ROOT}/forumsub-modules-student/id/{$id}/topicId/{$topic.topicId}"><img src="{$WEB_ROOT}/images/arrow.png" class="spanEdit" id="e-{$position.positionId}" name="e-{$position.name}" title="Entrar al Foro" /></a>
-		 {/if}
+		 {**/if**}
 		</td>
     </tr>
 {foreachelse}

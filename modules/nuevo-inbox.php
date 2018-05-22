@@ -14,9 +14,11 @@
 	foreach($activeCourses as $key=>$aux){
 		
 		$course->setCourseId($aux["courseId"]);
-		$addedModules = $course->StudentCourseModules();
+		$addedModules = $course->StudentCourseModulesInbox();
 		$activeCourses[$key]['materias'] = $addedModules;
 	}
+	
+	
 	
 	// echo "<pre>"; print_r($activeCourses );
 	// exit;

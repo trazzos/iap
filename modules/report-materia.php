@@ -2,8 +2,8 @@
 
 
 // exit;
-	// $subject->setTipo('Docente');
-	// $subject->scriptLLenaMaterias();
+	$subject->setTipo('Docente');
+	$subject->scriptLLenaMaterias();
 	
 	// exit;
 	$lstPosgrados = $subject->getPosgrados();

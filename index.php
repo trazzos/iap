@@ -195,7 +195,12 @@ $pages = array(
 	'tabla-costo',
 	'prog-academico',
 	'prog-materia',
-	'validarpago-adjuntar'
+	'validarpago-adjuntar',
+	'msj',
+	'personal-academico',
+	'perfil',
+	'grupo',
+	'aviso'
 	
 	
 	
@@ -207,7 +212,7 @@ if(!in_array($_GET['page'], $pages))
 	$_GET['page'] = "homepage";
 }
 
-// echo $_GET['page'];
+// echo $_GET['id'];
 // exit;
 
 $smarty->assign('positionId', $User['positionId']);

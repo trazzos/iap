@@ -374,3 +374,11 @@
             </div>
         </div>
     </div>
+	<br>
+	<br>
+	<div>
+	<a href="{$WEB_ROOT}/graybox.php?page=aviso" data-target="#ajax" data-toggle="modal" data-width="1000px" title='AVISO DE PRIVACIDAD'>
+	<font style="color:#73b760; font-weight: bold;">Aviso de Privacidad
+	</font>
+	</a>
+	</div>

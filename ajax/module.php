@@ -93,5 +93,17 @@ switch($_POST["type"])
 		
 		break;
 		
+	case 'deleteActividad':
+	
+		// echo '<pre>'; print_r($_POST);
+		if($activity->deleteActividad($_POST['Id']))
+		{
+			echo 'ok[#]';
+		}else{
+			echo 'fail[#]';
+		}
+	
+	break;
+		
 }
 ?>

@@ -13,6 +13,12 @@
 			$_POST["apareceT"]  = 'no';
 		}
 		
+		if($_POST["listar"]=="on"){
+			$_POST["listar"]  = 'si';
+		}else{
+			$_POST["listar"]  = 'no';
+		}
+		
 		$course->setCourseId($_POST["courseId"]);
 		$course->setSubjectId($_POST["subjectId"]);
 		$course->setModality($_POST["modality"]);
@@ -36,7 +42,7 @@
 		$course->setHorario($_POST["horario"]);
 		$course->setAparece($_POST["apareceT"]);
 		$course->setTipoCuatri($_POST["tipoCuatri"]);
-		
+		$course->setListar($_POST["listar"]);
 		$course->Update();
 	}
 

@@ -12,7 +12,7 @@
 		{foreach from=$personals item=subject}
     	<tr>
 			
-			<td align="left">{$subject.lastname_paterno} {$subject.lastname_materno} {$subject.name} </td>
+			<td align="left">{$subject.lastname_paterno|upper} {$subject.lastname_materno|upper} {$subject.name|upper} </td>
 			<td align="left"><a href="mailto:{$subject.correo}">{$subject.correo}</a></td>
 			<td align="left">{$subject.celular}</td>
 			

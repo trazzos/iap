@@ -42,10 +42,18 @@
 	
 	$subject->setSubjectId($myModule["subjectId"]);
 	$mySubject = $subject->Info();
+	
+	$activity->setCourseModuleId($_GET["id"]);
+	$actividades = $activity->enumerateActivityModule();
+	$resources = $resource->enumerateResource($_GET["id"]);
 	$smarty->assign('subject', $mySubject);
 
+	$smarty->assign('resources',$resources);
+	$smarty->assign('actividades',$actividades);
 	$smarty->assign('mnuMain','cursos');
-	$smarty->assign('courseId',$_GET["course"]);
+	$smarty->assign('mnuMain','cursos');
+	$smarty->assign('courseModuleId',$_GET['id']);
+	$smarty->assign('configMateria','si');
 
 	//$smarty->assign('major',$major->Enumerate());	
 ?>

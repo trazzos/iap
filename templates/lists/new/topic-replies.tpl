@@ -7,7 +7,21 @@
             return false
     }
 </script>
+<style type="text/css">
 
+.primero, .segundo, .tercero {
+/*atributos en común en los 3 divs. Toma el valor overflow por defecto.*/
+   display: inline;
+   float: left;
+   margin: 1em;
+   padding: .3em;
+   border: 0px solid #555;
+   width: 95%;
+   height: 150px;
+   font: 1em Arial, Helvetica, sans-serif;
+}
+.tercero{ overflow: scroll;}
+</style>
 
 	<div class="portlet-title">
 		<div class="caption"><i class="icon-reorder"></i></div>
@@ -32,7 +46,7 @@
 						<tr   >
 					{/if}  
 					
-						<td>
+						<td style='width:115px'>
 								
 								{$item.foto}
 								<br>
@@ -55,9 +69,11 @@
 								</font>
 						</td>
 						<td valign="bottom">
-							<font style="font-size:12px; color:#585858" >{$item.content}</font>
+							<font style="font-size:12px; color:#585858" >
+								<div  style="width:95%; height:155px;  overflow:scroll" class="showScroll lion">{$item.content}</div>
+							</font>
+							<div style="clear: both"></div>
 							
-							<br>
 							
 							{if $item.formato eq "imagen"}
 								<hr>

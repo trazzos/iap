@@ -922,6 +922,51 @@
 				$smarty->display(DOC_ROOT.'/templates/lists/inbox.tpl');
 				
 			break;
+			
+			
+			
+			
+			case 'onChangePicture':
+
+				if($url = $student->onChangePicture($_POST["userId"])){
+				echo "ok[#]";
+				}else{
+				echo "fail[#]";
+
+				}
+
+			break;
+			
+		
+		
+		case 'onSavePerfil':
+		
+			// echo '<pre>'; print_r($_SESSION);
+			// exit;
+			$student->setPerfil($_POST["desc"]);
+				if($url = $student->onSavePerfil($_SESSION['User']['userId'])){
+				$_SESSION['msjC'] = 'si';
+				echo "ok[#]";
+			}else{
+				echo "fail[#]";
+			}
+		
+		break;
+		
+		case 'onSavePass':
+		
+			// echo '<pre>'; print_r($_POST);
+			$student->setAnterior($_POST["anterior"]);
+			$student->setNuevo($_POST["nuevo"]);
+			$student->setRepite($_POST["repite"]);
+				if($url = $student->onSavePass()){
+				$_SESSION['msjCc'] = 'si';
+				echo "ok[#]";
+			}else{
+				echo "fail[#]";
+			}
+		
+		break;
 	}
 
 ?>

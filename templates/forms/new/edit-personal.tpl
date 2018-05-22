@@ -116,7 +116,28 @@
                 </select>
             </div>
         </div>
-
+		<div class="form-group">
+            <label class="col-md-3 control-label">Mostrar personal:</label>
+            <div class="col-md-8" >
+				<div style="float:left">
+				
+					<input type="checkbox" name="mostrarP" id="mostrarP" {if $info.mostrar eq 'si'} checked {/if}  class="form-control" >
+					&nbsp;
+					&nbsp;
+					&nbsp;
+				</div>
+				
+            </div>
+        </div>
+		 <div class="form-group">
+            <label class="col-md-3 control-label">número:</label>
+            <div class="col-md-8" >
+				<div style="float:left">
+					<input type="text" name="numeroP" id="numeroP"  class="form-control" value="{$info.numero}">
+				</div>
+				
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Foto:</label>
             <div class="col-md-8">

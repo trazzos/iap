@@ -14,6 +14,12 @@
 			$_POST["apareceT"]  = 'no';
 		}
 		
+		if($_POST["listar"]=="on"){
+			$_POST["listar"]  = 'si';
+		}else{
+			$_POST["listar"]  = 'no';
+		}
+		
 		$course->setSubjectId($_POST["subjectId"]);
 		$course->setModality($_POST["modality"]);
 		$course->setInitialDate($_POST["initialDate"]);
@@ -32,6 +38,7 @@
 		$course->setDias($_POST["dias"]);
 		$course->setHorario($_POST["horario"]);
 		$course->setAparece($_POST["apareceT"]);
+		$course->setListar($_POST["listar"]);
 		$course->setTipoCuatri($_POST["tipoCuatri"]);
 
 		$course->Open();

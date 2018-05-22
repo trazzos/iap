@@ -158,7 +158,7 @@ switch($_POST["type"])
 				
 				if($_POST['solicitudjjId'] == 4){
 					
-					
+					$solicitud->updateSemestre($_POST['soljId'],$cursoId);
 					// $solicitud->updateBoleta($_POST["soljId"],$cursoId);
 					
 					echo 'okBol[#]';
