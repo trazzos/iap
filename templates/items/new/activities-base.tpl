@@ -2,7 +2,7 @@
     <tr>
         <td align="center" class="id">{$subject.activityId}</td>
         <td align="center">{$subject.activityType}</td>
-        <td align="center">{$subject.initialDate} {$subject.horaInicial}</td>
+        <td align="center">{$subject.initialDate|date_format:"%d-%m-%Y"} {$subject.horaInicial}</td>
         <td align="center">{$subject.finalDate|date_format:"%d-%m-%Y %H:%M:%S"}</td>
         <td align="center">{$subject.modality}</td>
         <td align="center">
