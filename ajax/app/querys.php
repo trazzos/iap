@@ -186,6 +186,7 @@
 			$resource->setCourseModuleId($_POST["courseId"]);
 			$resources = $resource->Enumerate();
 			//foro
+            $forum->setCourseModuleId($_POST["courseId"]);
 			$forum->setCourseId($myModule["courseId"]);
 			$forums = $forum->Enumerate();
 			//docente
