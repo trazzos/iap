@@ -25,10 +25,13 @@
 		
 	}else{
 		
+		// echo '<pre>'; print_r($infoC); 
+		// exit;
+		$util = New Util;
 		$module->setCourseModuleId($infoC["courseModuleId"]);
 		$in = $module->InfoCourseModule();
 		$dataEnviado = 'De: '.$infoC['envio'].'<br>
-		Enviado: 2017-11-07<br>
+		Enviado: '.$util->FormatDateMySql($infoC['fechaEnvio']).'<br>
 		Para: '.$infoC['recibe'].'<br>
 		Asunto: '.$infoC['asunto'].'<br>
 		<br>
