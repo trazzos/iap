@@ -143,6 +143,9 @@ $cursos = $course->infoCoursem();
 	//recursos
 	$resource->setCourseModuleId($_GET["id"]);
 	$resources = $resource->Enumerate();
+	
+	// echo '<pre>'; print_r($resources );
+	// exit;
 	$smarty->assign('resources', $resources);
 
 	$module->setCourseModuleId($_GET["id"]);

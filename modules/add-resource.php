@@ -11,7 +11,7 @@
 		$resource->setCourseModuleId($_GET["id"]);
 		$resource->setName($_POST["name"]);
 		$resource->setDescription($_POST["description"]);
-		$resource->SaveResource();
+		$resource->Save();
 		
 		//segun la varible redireccionamos
 		if($_POST["auxTpl"] == "admin"){
