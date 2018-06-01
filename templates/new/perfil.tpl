@@ -52,16 +52,6 @@
         mode : "textareas",
         theme : "advanced",
         skin : "o2k7"
-		plugins : "paste",
-		theme_advanced_buttons3_add : "pastetext,pasteword,selectall",
-		paste_auto_cleanup_on_paste : true,
-		paste_preprocess : function(pl, o) {
-			// Content string containing the HTML from the clipboard
-			o.content = "-: CLEANED :-\n" + o.content;
-		},
-		paste_postprocess : function(pl, o) {
-			// Content DOM node containing the DOM structure of the clipboard
-			o.node.innerHTML = o.node.innerHTML + "\n-: CLEANED :-";
-		}
+
     });
 </script>
