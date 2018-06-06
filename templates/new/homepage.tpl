@@ -30,7 +30,7 @@
                 El <b>Instituto de Administración Pública del Estado de Chiapas, A. C.</b><br />te da la mas cordial bienvenida a nuestro Sistema de Educación en Línea
             </p>
             <p class="right">
-                El <b>IAP Chiapas</b> coadyuva desde hace 39 años en el fortalecimiento de la gestión pública de los tres órdenes de gobierno, así como con la realización de investigación, consultoría y difusión del desarrollo de las ciencias administrativas, en beneficio de la sociedad
+                El <b>IAP Chiapas</b> coadyuva desde 1977 en el fortalecimiento de la gestión pública de los tres órdenes de gobierno, así como con la realización de investigación, consultoría y difusión del desarrollo de las ciencias administrativas, en beneficio de la sociedad
             </p>
         </div>
     </div>
