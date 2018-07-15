@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.iap.sisel" version="3.1.5" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.iap.sisel" version="3.1.8" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>IAP Chiapas</name>
     <description>
         Aplicacion para el Instituto de Administracion Publica del estado de Chiapas.
@@ -71,6 +71,7 @@
         <icon height="29" platform="ios" src="www/res/icon/ios/iap29.png" width="29" />
         <icon height="58" platform="ios" src="www/res/icon/ios/iap58.png" width="58" />
         <icon height="87" platform="ios" src="www/res/icon/ios/iap87.png" width="87" />
+        <icon height="1024" platform="ios" src="www/res/icon/ios/iap1024.png" width="1024" />
         <splash height="1136" platform="ios" src="www/res/screen/ios/iap1.png" width="640" />
         <splash height="1334" platform="ios" src="www/res/screen/ios/2.png" width="750" />
         <splash height="2208" platform="ios" src="www/res/screen/ios/3.png" width="1242" />
