@@ -204,7 +204,7 @@ use Dompdf\Exception;
 	$mipdf ->set_paper("A4", "");
 	 
 	# Cargamos el contenido HTML.
-	$mipdf ->load_html(utf8_decode($html));
+	$mipdf ->load_html($html);
 	 
 	# Renderizamos el documento PDF.
 	$mipdf ->render();
