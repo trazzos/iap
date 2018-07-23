@@ -25,3 +25,4 @@ config.php
 /ajax/app/one/platforms
 /ajax/app/one/node_modules/
 /tripticos
+/vendor

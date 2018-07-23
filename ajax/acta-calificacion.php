@@ -3,6 +3,10 @@
 	include_once('../config.php');
 	include_once(DOC_ROOT.'/libraries.php');
 
+use Dompdf\Adapter\CPDF;
+use Dompdf\Dompdf;
+use Dompdf\Exception;
+
 	session_start();
 
 	$util = new Util;
