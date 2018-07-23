@@ -38,7 +38,7 @@
             "PACKAGE_NAME": "com.iap.sisel"
         },
         "cordova-plugin-globalization": {
-            "PACKAGE_NAME": "com.iap.sisel"
+            "PACKAGE_NAME": "io.cordova.hellocordova"
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.iap.sisel"

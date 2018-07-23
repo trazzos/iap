@@ -150,11 +150,11 @@ a.login {
 
 /*A partir de aqui solo se necesita para iphone quitar en android*/
 .ui-header {
-    /*
     margin-top: 20px;
+    /*
+    position: fixed;
+    top:0px;
     */
-/*    position: fixed;
-    top:0px;*/
 }
 
 
