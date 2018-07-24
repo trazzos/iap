@@ -5,6 +5,10 @@
 	include_once('../config.php');
 	include_once(DOC_ROOT.'/libraries.php');
 
+use Dompdf\Adapter\CPDF;
+use Dompdf\Dompdf;
+use Dompdf\Exception;
+
 	session_start();
 
 	
@@ -101,7 +105,7 @@
 	$mipdf ->set_paper("A4", "landscape");
 	 
 	# Cargamos el contenido HTML.
-	$mipdf ->load_html(utf8_decode($html));
+	$mipdf ->load_html($html);
 	 
 	# Renderizamos el documento PDF.
 	$mipdf ->render();
