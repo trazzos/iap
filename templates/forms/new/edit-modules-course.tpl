@@ -15,7 +15,7 @@
 			<a href="{$WEB_ROOT}/inbox/id/{$myModule.courseModuleId}" class="btn green">
                 Inbox
             </a>-->
-        
+
 		<div class="actions" >
 		<div class="btn-toolbar" style="left:188px !important">
 			<div class="btn-group">
@@ -62,28 +62,28 @@
 					</a>
 				</li>
 				<li>
-					
+
 					<!--<a href="{$WEB_ROOT}/docentes/contrato/{$myModule.rutaContrato}"  target="_blank"  >-->
 					<a href="{$WEB_ROOT}/graybox.php?page=down-contrato-doc&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
 						<i class="	fa fa-file-pdf-o"></i>
 							Contrato
 					</a>
 				</li>
-				
+
 				<li>
 					<a href="{$WEB_ROOT}/grupo/id/{$myModule.courseModuleId}">
 						<i class="fa fa-graduation-cap"></i>
 							Grupo
 					</a>
 				</li>
-				
+
 				<li>
 					<a href="{$WEB_ROOT}/inbox/id/{$myModule.courseModuleId}">
 						<i class="fa fa-envelope"></i>
 							Inbox
 					</a>
 				</li>
-				
+
 				<li>
 					<a href="{$WEB_ROOT}/graybox.php?page=val&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
 						<i class="fa fa-line-chart"></i>
@@ -96,16 +96,16 @@
 							 Vista previa del M&oacute;dulo
 					</a>
 				</li>
-				
-				
-				
-				
+
+
+
+
 			</ul>
-			</div> 	
+			</div>
 		</div>
 
 		</div>
-		
+
     </div>
     <div class="portlet-body">
 		<div id="msj"></div>
