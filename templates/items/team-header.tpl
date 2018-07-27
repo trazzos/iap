@@ -1,7 +1,6 @@
 <tr>
-      <th width="100" height="28">ID</th>
       <th width="80">No. Equipo</th>
-      <th width="80">No. Control</th>
-      <th width="200">Nombre</th>
-      <th width="200">Acciones</th>
+      <th width="80">Usuario</th>
+      <th width="300">Nombre</th>
+      <th width="100">Acciones</th>
 </tr>

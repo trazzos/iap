@@ -1,10 +1,9 @@
 {foreach from=$theGroup item=item key=key}
         <tr id="1">
-        <td align="center">{$item.alumnoId}</td>
         <td align="center">{$item.controlNumber}</td>
 		
 		  {if $cursos=="ESPECIALIDAD" || $cursos=="MAESTRIA"} <td align="center">{$item.matricula} </td>{/if}
-        <td align="center">{$item.lastNamePaterno|upper} {$item.lastNameMaterno|upper} {$item.names|upper}</td>
+        <td align="left">{$item.lastNamePaterno|upper} {$item.lastNameMaterno|upper} {$item.names|upper}</td>
         <td align="center">
         	{if !$item.equipo}
         		N/A

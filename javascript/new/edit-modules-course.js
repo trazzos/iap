@@ -62,7 +62,7 @@ function DeleteActivity(id)
 
 function DeleteResource(id)
 {
-	
+
 	// alert(id)
     var $message = "¿Está seguro de eliminar este recurso?";
     bootbox.confirm($message, function(result) {
@@ -107,57 +107,57 @@ function upFile(Id,reqId,tramiteId){
 				processData: false,
 				contentType: false,
 				type: 'POST',
-				beforeSend: function(){		
+				beforeSend: function(){
 					$("#loader").html(LOADER);
 					$("#txtErrMsg").hide(0);
 				},
 				success: function(response){
-					
+
 					console.log(response);
 					var splitResp = response.split("[#]");
 
 					$("#loader").html("");
-					
+
 					if(splitResp[0] == "ok"){
-						$("#preLoad_"+reqId).html(splitResp[1]);		
+						$("#preLoad_"+reqId).html(splitResp[1]);
 					}else if(splitResp[0] == "fail"){
 						$("#txtErrMsg").show();
 						$("#txtErrMsg").show();
-						$("#txtErrMsg").html(splitResp[1]);				
+						$("#txtErrMsg").html(splitResp[1]);
 					}else{
 						alert(msgFail);
 					}
 				},
 			})
-			
+
 		}
-*/		
-		
+*/
+
 function SaveCalificacion(Id){
 	$.ajax({
 	  	type: "POST",
-	  	url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+	  	url: WEB_ROOT+'/ajax/edit-modules-course.php',
 	  	data: $("#frmCal").serialize(true)+'&type=SaveCalificacion',
-		beforeSend: function(){			
+		beforeSend: function(){
 			$('#loader').html(LOADER3);
 			$('#btnSave').hide();
 		},
-	  	success: function(response) {	
+	  	success: function(response) {
 		$('divLoading').hide();
 			console.log(response)
 			var splitResp = response.split("[#]");
-			
+
 			if($.trim(splitResp[0])=="ok"){
 				reloadActa(Id)
-				
+
 			}else if($.trim(splitResp[0])=="fail"){
 				// alert(splitResp[1])
 				$('#btnSave').show();
 				$('#loader').html('');
 				$('#msjd').html(splitResp[1]);
 			}
-			
-				
+
+
 		},
 		error:function(){
 			// alert(msgError);
@@ -167,34 +167,34 @@ function SaveCalificacion(Id){
 
 
 function closeModal(){
-	
+
 	$("#ajax").hide();
 	$("#ajax").modal("hide");
-	
+
 }
 
 
 function habilitarEdicion(Id){
 	$.ajax({
 	  	type: "POST",
-	  	url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+	  	url: WEB_ROOT+'/ajax/edit-modules-course.php',
 	  	data: $("#frmCal").serialize(true)+'&type=habilitarEdicion',
-		beforeSend: function(){			
+		beforeSend: function(){
 			$('#loader').html(LOADER3);
 			$('#btnSave').hide();
 		},
-	  	success: function(response) {	
+	  	success: function(response) {
 		$('divLoading').hide();
 			console.log(response)
 			var splitResp = response.split("[#]");
-			
+
 			if($.trim(splitResp[0])=="ok"){
 				reloadActa(Id)
 			}else if($.trim(splitResp[0])=="fail"){
 				alert(splitResp[1])
 			}
-			
-				
+
+
 		},
 		error:function(){
 			// alert(msgError);
@@ -206,17 +206,17 @@ function habilitarEdicion(Id){
 function validarCal(Id){
 	$.ajax({
 	  	type: "POST",
-	  	url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+	  	url: WEB_ROOT+'/ajax/edit-modules-course.php',
 	  	data: $("#frmCal").serialize(true)+'&type=validarCal',
-		beforeSend: function(){			
+		beforeSend: function(){
 			$('#loader').html(LOADER3);
 			$('#btnSave').hide();
 		},
-	  	success: function(response) {	
+	  	success: function(response) {
 		$('divLoading').hide();
 			console.log(response)
 			var splitResp = response.split("[#]");
-			
+
 			if($.trim(splitResp[0])=="ok"){
 				$('#btnSave').show();
 				$('#loader').html('');
@@ -226,8 +226,8 @@ function validarCal(Id){
 			}else if($.trim(splitResp[0])=="fail"){
 				alert(splitResp[1])
 			}
-			
-				
+
+
 		},
 		error:function(){
 			// alert(msgError);
@@ -245,12 +245,12 @@ function descargarActa(Id){
 
 
 function upFile(Id){
-	
+
 	// En esta var va incluido $_POST y $_FILES
 	var fd = new FormData(document.getElementById("frmFile"));
 	fd.append('type','upFile');
 	$.ajax({
-		url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+		url: WEB_ROOT+'/ajax/edit-modules-course.php',
 		data: fd,
 		processData: false,
 		contentType: false,
@@ -264,13 +264,13 @@ function upFile(Id){
 					console.log(Progress)
 					$('#progress').val(Math.round(Progress));
 					$('#porcentaje').html(Math.round(Progress)+'%');
-					
-					
+
+
 				},false);
 			return XHR;
 		},
 		success: function(response){
-			
+
 			console.log(response);
 			// var splitResp = response.split("[#]");
 			// $("#loader").html("");
@@ -285,19 +285,19 @@ function upFile(Id){
 function reloadActa(Id){
 	$.ajax({
 	  	type: "POST",
-	  	url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+	  	url: WEB_ROOT+'/ajax/edit-modules-course.php',
 	  	data: $("#frmCal").serialize(true)+'&type=reloadActa',
-		beforeSend: function(){			
+		beforeSend: function(){
 			$('#tblContentActa').html(LOADER3);
 			$('#btnSave').hide();
 		},
-	  	success: function(response) {	
-			
+	  	success: function(response) {
+
 			console.log(response)
-			
+
 			$('#tblContentActa').html(response);
-			
-	
+
+
 		},
 
     });
@@ -319,22 +319,22 @@ function onImprimirVal(Id,tipo){
 }
 
 function onSaveCarta(){
-	
-		
+
+
 	$.ajax({
 	  	type: "POST",
-	  	url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+	  	url: WEB_ROOT+'/ajax/edit-modules-course.php',
 	  	data: $("#frmGral").serialize(true)+'&type=onSaveCarta',
-		beforeSend: function(){			
+		beforeSend: function(){
 			$('#tblContentActa').html(LOADER3);
 			$('#btnSave').hide();
 		},
-	  	success: function(response) {	
-		
+	  	success: function(response) {
+
 			console.log(response)
-			
+
 			var splitResp = response.split("[#]");
-			
+
 			if($.trim(splitResp[0])=="ok"){
 				closeModal()
 				$('#msjCourse').html(splitResp[1]);
@@ -343,13 +343,13 @@ function onSaveCarta(){
 			}else{
 				alert('Ocurrio un error....')
 			}
-			
-			
-			
+
+
+
 		},
 
     });
-	
+
 }
 
 
@@ -362,22 +362,22 @@ function onImprimirCarta(Id){
 
 
 function closeModal(){
-	
+
 	$("#ajax").hide();
 	$("#ajax").modal("hide");
-	
+
 }
 
 
 
 
 function onSendCarta(Id){
-	
+
 	// En esta var va incluido $_POST y $_FILES
 	var fd = new FormData(document.getElementById("frmGral"));
 	fd.append('type','onSendCarta');
 	$.ajax({
-		url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+		url: WEB_ROOT+'/ajax/edit-modules-course.php',
 		data: fd,
 		processData: false,
 		contentType: false,
@@ -391,18 +391,18 @@ function onSendCarta(Id){
 					console.log(Progress)
 					$('#progress').val(Math.round(Progress));
 					$('#porcentaje').html(Math.round(Progress)+'%');
-					
-					
+
+
 				},false);
 			return XHR;
 		},
 		success: function(response){
-			
+
 			console.log(response);
 			// var splitResp = response.split("[#]");
 			// $("#msjCourse").html(response);
 			var splitResp = response.split("[#]");
-			
+
 			if($.trim(splitResp[0])=="ok"){
 				closeModal()
 				$('#msjCourse').html(splitResp[1]);
@@ -421,12 +421,12 @@ function onSendCarta(Id){
 
 
 function onSendInforme(Id){
-	
+
 	// En esta var va incluido $_POST y $_FILES
 	var fd = new FormData(document.getElementById("frmGral"));
 	fd.append('type','onSendInforme');
 	$.ajax({
-		url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+		url: WEB_ROOT+'/ajax/edit-modules-course.php',
 		data: fd,
 		processData: false,
 		contentType: false,
@@ -440,18 +440,18 @@ function onSendInforme(Id){
 					console.log(Progress)
 					$('#progress').val(Math.round(Progress));
 					$('#porcentaje').html(Math.round(Progress)+'%');
-					
-					
+
+
 				},false);
 			return XHR;
 		},
 		success: function(response){
-			
+
 			console.log(response);
 			// var splitResp = response.split("[#]");
 			// $("#msjCourse").html(response);
 			var splitResp = response.split("[#]");
-			
+
 			if($.trim(splitResp[0])=="ok"){
 				closeModal()
 				$('#msjCourse').html(splitResp[1]);
@@ -471,14 +471,14 @@ function onSendInforme(Id){
 
 function onDeleteCarta(id,courseId)
 {
-	
+
 	var resp = confirm("Seguro de  eliminar el Documento?");
-	
+
 		if(!resp)
 			return;
-	
+
     $.ajax({
-		url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+		url: WEB_ROOT+'/ajax/edit-modules-course.php',
         type: "POST",
         data : {type: "onDeleteCarta", id:id,courseId:courseId},
         success: function(data)
@@ -504,14 +504,14 @@ function onDeleteCarta(id,courseId)
 
 function onDeleteInforme(id,courseId)
 {
-	
+
 	var resp = confirm("Seguro de  eliminar el Documento?");
-	
+
 		if(!resp)
 			return;
-	
+
     $.ajax({
-		url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+		url: WEB_ROOT+'/ajax/edit-modules-course.php',
         type: "POST",
         data : {type: "onDeleteInforme", id:id,courseId:courseId},
         success: function(data)
@@ -536,14 +536,14 @@ function onDeleteInforme(id,courseId)
 
 function onDeleteRubrica(id,courseId)
 {
-	
+
 	var resp = confirm("Seguro de  eliminar el Documento?");
-	
+
 		if(!resp)
 			return;
-	
+
     $.ajax({
-		url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+		url: WEB_ROOT+'/ajax/edit-modules-course.php',
         type: "POST",
         data : {type: "onDeleteRubrica", id:id,courseId:courseId},
         success: function(data)
@@ -571,14 +571,14 @@ function onDeleteRubrica(id,courseId)
 
 function onDeleteEncuadre(id,courseId)
 {
-	
+
 	var resp = confirm("Seguro de  eliminar el Documento?");
-	
+
 		if(!resp)
 			return;
-	
+
     $.ajax({
-		url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+		url: WEB_ROOT+'/ajax/edit-modules-course.php',
         type: "POST",
         data : {type: "onDeleteEncuadre", id:id,courseId:courseId},
         success: function(data)
@@ -602,12 +602,12 @@ function onDeleteEncuadre(id,courseId)
 }
 
 function onSendEncuadre(Id){
-	
+
 	// En esta var va incluido $_POST y $_FILES
 	var fd = new FormData(document.getElementById("frmGral"));
 	fd.append('type','onSendEncuadre');
 	$.ajax({
-		url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+		url: WEB_ROOT+'/ajax/edit-modules-course.php',
 		data: fd,
 		processData: false,
 		contentType: false,
@@ -621,18 +621,18 @@ function onSendEncuadre(Id){
 					console.log(Progress)
 					$('#progress').val(Math.round(Progress));
 					$('#porcentaje').html(Math.round(Progress)+'%');
-					
-					
+
+
 				},false);
 			return XHR;
 		},
 		success: function(response){
-			
+
 			console.log(response);
 			// var splitResp = response.split("[#]");
 			// $("#msjCourse").html(response);
 			var splitResp = response.split("[#]");
-			
+
 			if($.trim(splitResp[0])=="ok"){
 				closeModal()
 				$('#msjCourse').html(splitResp[1]);
@@ -651,12 +651,12 @@ function onSendEncuadre(Id){
 
 
 function onSendRubrica(Id){
-	
+
 	// En esta var va incluido $_POST y $_FILES
 	var fd = new FormData(document.getElementById("frmGral"));
 	fd.append('type','onSendRubrica');
 	$.ajax({
-		url: WEB_ROOT+'/ajax/edit-modules-course.php', 
+		url: WEB_ROOT+'/ajax/edit-modules-course.php',
 		data: fd,
 		processData: false,
 		contentType: false,
@@ -670,18 +670,18 @@ function onSendRubrica(Id){
 					console.log(Progress)
 					$('#progress').val(Math.round(Progress));
 					$('#porcentaje').html(Math.round(Progress)+'%');
-					
-					
+
+
 				},false);
 			return XHR;
 		},
 		success: function(response){
-			
+
 			console.log(response);
 			// var splitResp = response.split("[#]");
 			// $("#msjCourse").html(response);
 			var splitResp = response.split("[#]");
-			
+
 			if($.trim(splitResp[0])=="ok"){
 				closeModal()
 				$('#msjCourse').html(splitResp[1]);
@@ -699,7 +699,7 @@ function onSendRubrica(Id){
 
 
 function verTr(Id){
-	
-	
+
+
 	$('#tr_'+Id).toggle();
 }

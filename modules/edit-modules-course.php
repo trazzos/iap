@@ -1,8 +1,8 @@
 <?php
-		
+
 	/* For Session Control - Don't remove this */
-	$user->allow_access(37);	
-	
+	$user->allow_access(37);
+
 
 
 	if($_POST)
@@ -19,7 +19,7 @@
 		$module->EditModuleToCourse();
 	}
 	if($_GET['e']){
-	     
+
 				$calendario=DOC_ROOT."/calendario/calendario_".$_GET['id'].".jpg";
 				$calendario1=DOC_ROOT."/calendario/calendario_".$_GET['id'].".JPG";
 				if($_GET['e']==1){
@@ -28,17 +28,17 @@
 				}else if(file_exists($calendario1)){
 				    @unlink($calendario1);}
 				}
-				
+
 				$swf=DOC_ROOT."/flash/flash_".$_GET["id"].".swf";
 				if($_GET['e']==2)
 				@unlink($swf);
-	
-	}
-	
 
-	
+	}
+
+
+
 //print_r($_GET);exit;
-	
+
 	$module->setCourseModuleId($_GET["id"]);
 	$myModule = $module->InfoCourseModule();
 //print_r($_GET);exit;
@@ -71,7 +71,7 @@ $smarty->assign('nombreCal', $nombreCal1);
 } else {
 $smarty->assign('existecal',0);
 }
-	
+
 	//verificando foro!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	$forum->setCourseModuleId($myModule["courseModuleId"]);
 	$forum->setCourseId($myModule["courseId"]);
@@ -82,30 +82,30 @@ $cursos = $course->infoCoursem();
 	$smarty->assign('cursos', $cursos);
 
 	$smarty->assign('forum', $forum);
-	
+
 	$smarty->assign('id', $_GET["id"]);
-	
+
 	$smarty->assign('typeUser',$User["positionId"]);
-	
-//*************************************************************************************************************	
-	
+
+//*************************************************************************************************************
+
 	//checar a que curriculas tengo permiso
 	// if(in_array(2, $info["roles"]))
 	// {
 		// $smarty->assign('docente', 1);
 		// $permisosDocente = $user->PermisosDocente();
-		
+
 		// if(!in_array($myModule["courseModuleId"], $permisosDocente["courseModule"]))
 		// {
 			// header("Location: ".WEB_ROOT);
 		// }
 	// }
-	
+
 	$smarty->assign('algo', 1);
-	
+
 	$empleados = $personal->Enumerate();
 	$smarty->assign('empleados', $empleados);
-	
+
 	$date = date("d-m-Y");
 	$smarty->assign('date', $date);
 
@@ -116,7 +116,7 @@ $cursos = $course->infoCoursem();
 	$activity->setCourseModuleId($_GET["id"]);
 	$actividades = $activity->Enumerate();
 	$smarty->assign('actividades', $actividades);
-	
+
 	$totalActividades = 0;
 	foreach($actividades as $value)
 	{
@@ -125,17 +125,17 @@ $cursos = $course->infoCoursem();
 			$totalActividades++;
 		}
 	}
-	
+
 	// echo $totalActividades;
 	// exit;
 	$smarty->assign('totalActividades', $totalActividades);
-	
+
 
 	$totalPonderation = $activity->TotalPonderation();
 	$smarty->assign('totalPonderation', $totalPonderation);
 
 	$majorModality = $activity->GetMajorModality();
-	
+
 	// echo ""; print_r($majorModality);
 	// exit;
 	$smarty->assign('majorModality', $majorModality);
@@ -143,7 +143,7 @@ $cursos = $course->infoCoursem();
 	//recursos
 	$resource->setCourseModuleId($_GET["id"]);
 	$resources = $resource->Enumerate();
-	
+
 	// echo '<pre>'; print_r($resources );
 	// exit;
 	$smarty->assign('resources', $resources);
@@ -151,27 +151,14 @@ $cursos = $course->infoCoursem();
 	$module->setCourseModuleId($_GET["id"]);
 	$info = $module->InfoCourseModule();
 
-	
-	
-	//grupo
-	$group->setCourseModuleId($_GET["id"]);
-	$group->setCourseId($info["courseId"]);
-	$theGroup = $group->DefaultGroup();
 
-	// echo '<pre>'; print_r($theGroup);
-	// exit;
-	//print_r($theGroup);
-	$smarty->assign('theGroup', $theGroup);
-	
-	
-	
-	
-	
+
+
 	$smarty->assign('mnuMain', "cursos");
-	
+
 	$announcements = $announcement->Enumerate($info["courseId"], $_GET["id"]);
 	$smarty->assign('usuariologId', $_SESSION['User']['userId']);
 	$smarty->assign('announcements', $announcements);
-	
+
 
 ?>

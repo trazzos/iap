@@ -61,25 +61,23 @@ use Dompdf\Exception;
 	</head>
 	<body>
 		
-		<table align='center' width='100%'  border='0' class='txtTicket'>
+		<table align='center' width='100%'  style='border: none'>
 			<tr>
-				<td  align='left' '>
+				<td  align='left' style='border: none'>
 					<img src='".DOC_ROOT."/images/logo_correo.jpg' >
 				</td>
 			</tr>
 		</table>
-		<br>	
-		<br>	
-		<br>	
-		<br>	
-		<br>	
+	
+	
 		<center><b class='txtTicket'>Datos del Contrato</b></center>
 		<br>	
 		<br>
 		<table align='center' width='100%' border='1' class='txtTicket'>
 			<tr>
 				<td style='width:34%'>Nombre del Docente</td>
-				<td>".$infoDoc['name']."</td>
+				<td>".$infoDoc['name']." ".$infoDoc['lastname_paterno']." ".$infoDoc['lastname_materno'] ."</td>
+
 			</tr>
 			<tr>
 				<td>Numero de INE</td>
@@ -107,7 +105,7 @@ use Dompdf\Exception;
 			</tr>
 			<tr>
 				<td>Posgrado Academico:</td>
-				<td>".$infoM['subjectName']."</td>
+				<td>".$infoM['majorName'].": ".$infoM['subjectName']."</td>
 			</tr>
 			<tr>
 				<td>Lugar de Imparticion:</td>

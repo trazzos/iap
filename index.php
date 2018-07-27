@@ -200,7 +200,8 @@ $pages = array(
 	'personal-academico',
 	'perfil',
 	'grupo',
-	'aviso'
+	'aviso',
+    'calification'
 	
 	
 	

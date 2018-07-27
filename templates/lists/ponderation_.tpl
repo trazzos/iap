@@ -16,7 +16,13 @@
 			<td>{$home.resumen} </td>
 			<td>{$home.ponderation}</td>
 			<td>{$home.ponderation*($home.score/100)}</td>
-			<td>{$home.retro}</td>
+			<td>{$home.retro}
+                {if $home.retroFile ne ""}
+					<br />
+					<b>Archivo Adjunto:</b>
+					<a href='{$WEB_ROOT}/file_retro/{$home.retroFile}' target="_blank" >Descargar</a>
+                {/if}
+			</td>
 			  
 		</tr>
 	{foreachelse}

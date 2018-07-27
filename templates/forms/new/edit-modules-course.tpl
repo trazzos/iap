@@ -311,13 +311,26 @@
             <i class="fa fa-gift"></i>.:: Grupo ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=config-teams&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn green">
-                &raquo; Configurar Equipos
-            </a>
+
         </div>
     </div>
-    <div class="portlet-body">
-        <div id="tblContent">{include file="lists/group.tpl"}</div>
+
+    <div class="portlet-body" align="center">
+
+        <div class="clearfix margin-bottom-10"> </div>
+        <div class="btn-group btn-group-circle btn-group btn-group-justified">
+        <a href="{$WEB_ROOT}/grupo/id/{$myModule.courseModuleId}" target="_blank" data-toggle="modal" class="btn blue">
+            &raquo; Ver Alumnos
+        </a>
+
+        <a href="{$WEB_ROOT}/calification/id/{$myModule.courseModuleId}" target="_blank" data-toggle="modal" class="btn green">
+            &raquo; Ver Calificaciones
+        </a>
+
+        <a href="{$WEB_ROOT}/graybox.php?page=config-teams&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn blue">
+            &raquo; Configurar Equipos
+        </a>
+        </div>
     </div>
 </div>
 
@@ -326,11 +339,12 @@
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Actividades ::.
         </div>
-        <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=add-activity&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal" class="btn green">
+           <div class="actions">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-activity&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal" class="btn btn-circle blue">
                 &raquo; Agregar actividad
             </a>
         </div>
+
     </div>
     <div class="portlet-body">
         <div style="text-align:left">Ponderaci&oacute;n Total del Modulo: <b>{$totalPonderation}%</b>
@@ -352,7 +366,7 @@
             <i class="fa fa-gift"></i>.:: Recursos de Apoyo ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=add-resource&id={$myModule.courseModuleId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" class="btn green">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-resource&id={$myModule.courseModuleId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" class="btn btn-circle blue">
                 &raquo; Agregar Recurso de Apoyo
             </a>
         </div>
@@ -386,7 +400,7 @@
             <i class="fa fa-gift"></i>.:: Avisos ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=add-noticia&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn green">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-noticia&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn btn-circle blue">
                 &raquo; Agregar Aviso
             </a>
         </div>
