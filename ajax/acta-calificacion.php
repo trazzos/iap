@@ -83,8 +83,6 @@ use Dompdf\Exception;
 	}
 	</head>
 	<body>
-	<br>	
-	<br>
 	<img src='".DOC_ROOT."/images/logo_correo.jpg'>
 	<center>	
 	<b>INSTITUTO DE ADMINISTRACIÓN PÚBLICA DEL ESTADO DE CHIAPAS, A.C.</b>
@@ -93,8 +91,6 @@ use Dompdf\Exception;
 	<b>ACTA DE CALIFICACIÓN FINAL</b><br>
 	</center>	
 	<br>
-	<br>
-	
 	
 	<table class='txtTicket' width='100%'>
 	<tr>
@@ -123,7 +119,6 @@ use Dompdf\Exception;
 	</tr>
 	
 	</table>
-	<br>
 	<br>
 
 	";
@@ -162,27 +157,26 @@ use Dompdf\Exception;
 	<br>
 	<br>
 	<br>
-	<br>
 	<center>
 		
 	
-	<table width=100% align='center' border=0 class='txtTicket'>	
+	<table width=100% align='center' style='border: none' class='txtTicket'>	
 		<tr>
-			<td colspan='2' align='center'>
+			<td colspan='2' align='center' style='border: none'>
 			".$infoPersonal['profesion']." ".$infoPersonal['name']." ".$infoPersonal['lastname_paterno']." ".$infoPersonal['lastname_materno']."<br>
 			Catedratico
-			<br>
+			
 			<br>
 			<br>
 			<br>
 			</td>
 		</tr>
 		<tr>
-			<td align='center'>
+			<td align='center' style='border: none'>
 				".$infoFirma['director']."<br>
 				Director Academico
 			</td>
-			<td align='center'> 
+			<td align='center' style='border: none'> 
 				".$infoFirma['controlEscolar']."<br>
 				Servicios Escolares
 			</td>
