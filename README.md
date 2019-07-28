@@ -12,6 +12,10 @@
 - En la carpeta lms corre "composer install"
   - Eso instalara las dependencias que necesitamos
   - Si no tienes composer lo puedes instalar en https://getcomposer.org/doc/00-intro.md#installation-windows
+  
+#PHP y APACHE  
+- Version PHP 7.2
+- Apache, Activar modulo mod_rewrite
 
 TODO folders
     
