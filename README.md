@@ -9,6 +9,9 @@
 - Modificar el archivo .envexample
     - Cambiar el nombre a .env
     - Cambiar los valores que apliquen a nuestro proyecto (Si estamos usando wamp existe la posibilidad de no cambiar nada)
+- En la carpeta lms corre "composer install"
+  - Eso instalara las dependencias que necesitamos
+  - Si no tienes composer lo puedes instalar en https://getcomposer.org/doc/00-intro.md#installation-windows
 
 TODO folders
     
