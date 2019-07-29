@@ -12,6 +12,11 @@
 - En la carpeta lms corre "composer install"
   - Eso instalara las dependencias que necesitamos
   - Si no tienes composer lo puedes instalar en https://getcomposer.org/doc/00-intro.md#installation-windows
+- Permisos
+  - En localhost (wamp) no es necesario cambiar permisos pero en el servidor real es posible que haya que dar permisos a algunas carpetas, ejecutar lo siguiente
+    - chmod 777 templates_c 
+    - chmod 777 ajax/templates_c
+    - chmod 777 ajax/new/templates_c
   
 #PHP y APACHE  
 - Version PHP 7.2
