@@ -41,4 +41,5 @@
 !/ajax/templates_c/.gitkeep
 /ajax/new/templates_c/*
 !/ajax/new/templates_c/.gitkeep
-
+/assets/pages/media/bg/*
+!/assets/pages/media/bg/.gitkeep
