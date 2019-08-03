@@ -59,6 +59,10 @@
   
  - Si se necesita crear otra carpeta para subir archivos en el servidor la manera correcta es usando symlinks. Favor de no crearlo directo. 
  
+ #Imagenes Login
+  - las imagenes del login estan en /assets/pages/media/bg. Cualquier imagen aqui va a aparecer en tu pantalla de login
+  - Si quieres usar las de default simplemente copia los archivos de /configuration/login_bg a /assets/pages/media/bg
+ 
  
  #Errores
  - Cuando se trata de guardar algo aparece: Field doesn't have a default value in
