@@ -5,3 +5,37 @@ SQL_HOST=localhost
 SQL_NAME=lms
 SQL_USER=root
 SQL_PASSWORD=
+
+#Select a theme. Possible values blue, darkblue, default, grey, light, light2
+THEME=blue
+
+#Select a login page. Possible values login, login-2, login-3, login-4
+LOGIN_PAGE="login-2"
+
+#Select a color for the portlets. Possible values red, blue, green. For a full list go to http://keenthemes.com/preview/metronic/theme/admin_1/ui_colors.html
+PORTLET_COLOR=blue
+
+#Select a color for the buttons. Possible values red, blue, green. For a full list go to http://keenthemes.com/preview/metronic/theme/admin_1/ui_colors.html
+BUTTON_COLOR=blue-chambray
+
+COPYRIGHT=Trazzos
+
+#Add logos in /images/logos/ that matches the name, PNG format (transparent backgroud)
+LOGO=logo.png
+
+#120x45
+LOGO_SMALL=logo.png
+
+#Don't forget the double ticks (")
+INTRODUCTION="Introduccion de la escuela o empresa"
+
+#Sidebar (Show menu with 1, hide with 0). Not all menus have options, we can add more later
+VIDEO_CONFERENCES_CATALOG=0
+FINANCES=0
+VIDEO_CONFERENCES=0
+REQUESTS=0
+MESSAGES_INSTRUCTOR=0
+COST_TABLE_INSTRUCTOR=0
+VEHICLES_REPORT=0
+SUBJECTS_REPORT=0
+INSTRUCTORS_REPORT=0

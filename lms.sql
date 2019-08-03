@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jul 28, 2019 at 07:41 PM
--- Server version: 5.7.27
--- PHP Version: 7.2.7
+-- Host: 127.0.0.1:3306
+-- Generation Time: Aug 03, 2019 at 08:31 PM
+-- Server version: 5.7.21
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ihjaimes_app`
+-- Database: `lms`
 --
 
 -- --------------------------------------------------------
@@ -28,10 +28,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `abreviacion`
 --
 
-CREATE TABLE `abreviacion` (
-  `abreviacionId` int(11) NOT NULL,
-  `abreviacion` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `abreviacion`;
+CREATE TABLE IF NOT EXISTS `abreviacion` (
+  `abreviacionId` int(11) NOT NULL AUTO_INCREMENT,
+  `abreviacion` varchar(255) NOT NULL,
+  PRIMARY KEY (`abreviacionId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `abreviacion`
@@ -47,23 +49,25 @@ INSERT INTO `abreviacion` (`abreviacionId`, `abreviacion`) VALUES
 -- Table structure for table `activity`
 --
 
-CREATE TABLE `activity` (
-  `activityId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `activity`;
+CREATE TABLE IF NOT EXISTS `activity` (
+  `activityId` int(11) NOT NULL AUTO_INCREMENT,
   `activityConfigId` int(11) NOT NULL,
   `courseModuleId` int(11) NOT NULL,
-  `activityType` enum('Lectura','Tarea','Examen','Otro','Foro') CHARACTER SET latin1 NOT NULL,
+  `activityType` enum('Lectura','Tarea','Examen','Otro','Foro') NOT NULL,
   `initialDate` date NOT NULL,
   `horaInicial` time NOT NULL,
   `finalDate` datetime NOT NULL,
-  `modality` enum('Individual','Por Equipo') CHARACTER SET latin1 NOT NULL,
-  `description` text CHARACTER SET latin1 NOT NULL,
-  `resumen` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `modality` enum('Individual','Por Equipo') NOT NULL,
+  `description` mediumtext NOT NULL,
+  `resumen` varchar(30) NOT NULL,
   `requiredActivity` int(11) NOT NULL,
   `ponderation` int(3) NOT NULL DEFAULT '0',
   `timeLimit` int(3) NOT NULL,
   `noQuestions` int(2) NOT NULL,
-  `tries` int(11) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `tries` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`activityId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -71,25 +75,27 @@ CREATE TABLE `activity` (
 -- Table structure for table `activity_config`
 --
 
-CREATE TABLE `activity_config` (
-  `activityConfigId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `activity_config`;
+CREATE TABLE IF NOT EXISTS `activity_config` (
+  `activityConfigId` int(11) NOT NULL AUTO_INCREMENT,
   `courseModuleId` int(11) NOT NULL,
   `subject_moduleId` int(11) NOT NULL,
-  `activityType` enum('Lectura','Tarea','Examen','Otro','Foro') CHARACTER SET latin1 NOT NULL,
+  `activityType` enum('Lectura','Tarea','Examen','Otro','Foro') NOT NULL,
   `initialDate` date NOT NULL,
   `horaInicial` time NOT NULL,
   `finalDate` datetime NOT NULL,
-  `modality` enum('Individual','Por Equipo') CHARACTER SET latin1 NOT NULL,
-  `description` text CHARACTER SET latin1 NOT NULL,
-  `resumen` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `modality` enum('Individual','Por Equipo') NOT NULL,
+  `description` mediumtext NOT NULL,
+  `resumen` varchar(30) NOT NULL,
   `requiredActivity` int(11) NOT NULL,
   `ponderation` int(3) NOT NULL DEFAULT '0',
   `timeLimit` int(3) NOT NULL,
   `noQuestions` int(2) NOT NULL,
   `tries` int(11) NOT NULL DEFAULT '1',
-  `diaInicial` varchar(255) COLLATE utf8_bin NOT NULL,
-  `diaFinal` varchar(255) COLLATE utf8_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `diaInicial` varchar(255) NOT NULL,
+  `diaFinal` varchar(255) NOT NULL,
+  PRIMARY KEY (`activityConfigId`)
+) ENGINE=InnoDB AUTO_INCREMENT=1069 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -97,15 +103,17 @@ CREATE TABLE `activity_config` (
 -- Table structure for table `activity_score`
 --
 
-CREATE TABLE `activity_score` (
-  `activityScoreId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `activity_score`;
+CREATE TABLE IF NOT EXISTS `activity_score` (
+  `activityScoreId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `activityId` int(11) NOT NULL,
   `ponderation` float(5,2) NOT NULL,
   `try` int(11) NOT NULL DEFAULT '0',
-  `retro` text NOT NULL,
-  `rutaArchivoRetro` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `retro` mediumtext NOT NULL,
+  `rutaArchivoRetro` varchar(255) NOT NULL,
+  PRIMARY KEY (`activityScoreId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -113,17 +121,19 @@ CREATE TABLE `activity_score` (
 -- Table structure for table `activity_test`
 --
 
-CREATE TABLE `activity_test` (
-  `testId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `activity_test`;
+CREATE TABLE IF NOT EXISTS `activity_test` (
+  `testId` int(11) NOT NULL AUTO_INCREMENT,
   `activityId` int(11) NOT NULL,
-  `question` text NOT NULL,
-  `opcionA` text NOT NULL,
-  `opcionB` text NOT NULL,
-  `opcionC` text NOT NULL,
-  `opcionD` text NOT NULL,
-  `opcionE` text NOT NULL,
-  `answer` enum('opcionA','opcionB','opcionC','opcionD','opcionE') NOT NULL DEFAULT 'opcionA'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `question` mediumtext NOT NULL,
+  `opcionA` mediumtext NOT NULL,
+  `opcionB` mediumtext NOT NULL,
+  `opcionC` mediumtext NOT NULL,
+  `opcionD` mediumtext NOT NULL,
+  `opcionE` mediumtext NOT NULL,
+  `answer` enum('opcionA','opcionB','opcionC','opcionD','opcionE') NOT NULL DEFAULT 'opcionA',
+  PRIMARY KEY (`testId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -131,8 +141,9 @@ CREATE TABLE `activity_test` (
 -- Table structure for table `alumnoshistorial`
 --
 
-CREATE TABLE `alumnoshistorial` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `alumnoshistorial`;
+CREATE TABLE IF NOT EXISTS `alumnoshistorial` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `clave` varchar(20) NOT NULL,
   `clavenivel` varchar(100) NOT NULL,
   `nombrenivel` varchar(255) NOT NULL,
@@ -155,9 +166,10 @@ CREATE TABLE `alumnoshistorial` (
   `fechamodificacion` date DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `fechastatus` date DEFAULT NULL,
-  `observaciones` text,
-  `numPagos` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `observaciones` mediumtext,
+  `numPagos` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -165,15 +177,17 @@ CREATE TABLE `alumnoshistorial` (
 -- Table structure for table `announcement`
 --
 
-CREATE TABLE `announcement` (
-  `announcementId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `announcement`;
+CREATE TABLE IF NOT EXISTS `announcement` (
+  `announcementId` int(11) NOT NULL AUTO_INCREMENT,
   `courseId` int(11) NOT NULL,
   `courseModuleId` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) NOT NULL,
   `date` datetime NOT NULL,
   `personalId` int(11) NOT NULL,
-  `description` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `description` mediumtext NOT NULL,
+  PRIMARY KEY (`announcementId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -181,13 +195,15 @@ CREATE TABLE `announcement` (
 -- Table structure for table `automovilprofesor`
 --
 
-CREATE TABLE `automovilprofesor` (
-  `automovilId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `automovilprofesor`;
+CREATE TABLE IF NOT EXISTS `automovilprofesor` (
+  `automovilId` int(11) NOT NULL AUTO_INCREMENT,
   `modelo` varchar(255) NOT NULL,
   `color` varchar(255) NOT NULL,
   `placas` varchar(255) NOT NULL,
-  `personalId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `personalId` int(11) NOT NULL,
+  PRIMARY KEY (`automovilId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -195,8 +211,9 @@ CREATE TABLE `automovilprofesor` (
 -- Table structure for table `bancoprofesor`
 --
 
-CREATE TABLE `bancoprofesor` (
-  `bancoprofesorId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `bancoprofesor`;
+CREATE TABLE IF NOT EXISTS `bancoprofesor` (
+  `bancoprofesorId` int(11) NOT NULL AUTO_INCREMENT,
   `nombreBanco` varchar(255) NOT NULL,
   `numCuenta` varchar(255) NOT NULL,
   `claveInterbancaria` varchar(255) NOT NULL,
@@ -204,8 +221,9 @@ CREATE TABLE `bancoprofesor` (
   `numeroPlaza` varchar(255) NOT NULL,
   `lugar` varchar(255) NOT NULL,
   `correo` varchar(255) NOT NULL,
-  `personalId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `personalId` int(11) NOT NULL,
+  PRIMARY KEY (`bancoprofesorId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -213,10 +231,12 @@ CREATE TABLE `bancoprofesor` (
 -- Table structure for table `bank`
 --
 
-CREATE TABLE `bank` (
-  `bankId` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `bank`;
+CREATE TABLE IF NOT EXISTS `bank` (
+  `bankId` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`bankId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -224,11 +244,13 @@ CREATE TABLE `bank` (
 -- Table structure for table `bank_account`
 --
 
-CREATE TABLE `bank_account` (
-  `bank_accountId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `bank_account`;
+CREATE TABLE IF NOT EXISTS `bank_account` (
+  `bank_accountId` int(11) NOT NULL AUTO_INCREMENT,
   `numCuenta` varchar(255) NOT NULL,
-  `bankId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `bankId` int(11) NOT NULL,
+  PRIMARY KEY (`bank_accountId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -236,11 +258,13 @@ CREATE TABLE `bank_account` (
 -- Table structure for table `cancel_code`
 --
 
-CREATE TABLE `cancel_code` (
-  `codeId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `cancel_code`;
+CREATE TABLE IF NOT EXISTS `cancel_code` (
+  `codeId` int(11) NOT NULL AUTO_INCREMENT,
   `clave` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`codeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cancel_code`
@@ -260,12 +284,14 @@ INSERT INTO `cancel_code` (`codeId`, `clave`, `name`) VALUES
 -- Table structure for table `catalogodocumento`
 --
 
-CREATE TABLE `catalogodocumento` (
-  `catalogodocumentoId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `catalogodocumento`;
+CREATE TABLE IF NOT EXISTS `catalogodocumento` (
+  `catalogodocumentoId` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
-  `descripcion` text NOT NULL,
-  `estatus` enum('activo','eliminado') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `descripcion` mediumtext NOT NULL,
+  `estatus` enum('activo','eliminado') NOT NULL,
+  PRIMARY KEY (`catalogodocumentoId`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `catalogodocumento`
@@ -298,11 +324,13 @@ INSERT INTO `catalogodocumento` (`catalogodocumentoId`, `nombre`, `descripcion`,
 -- Table structure for table `categoria_pregunta`
 --
 
-CREATE TABLE `categoria_pregunta` (
-  `categoriapreguntaId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `categoria_pregunta`;
+CREATE TABLE IF NOT EXISTS `categoria_pregunta` (
+  `categoriapreguntaId` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
-  `encuestaId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `encuestaId` int(11) NOT NULL,
+  PRIMARY KEY (`categoriapreguntaId`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `categoria_pregunta`
@@ -323,20 +351,22 @@ INSERT INTO `categoria_pregunta` (`categoriapreguntaId`, `nombre`, `encuestaId`)
 -- Table structure for table `chat`
 --
 
-CREATE TABLE `chat` (
-  `chatId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `chat`;
+CREATE TABLE IF NOT EXISTS `chat` (
+  `chatId` int(11) NOT NULL AUTO_INCREMENT,
   `yoId` int(11) NOT NULL,
   `quienEnvia` enum('alumno','personal') NOT NULL,
   `usuarioId` int(11) NOT NULL,
-  `asunto` text NOT NULL,
-  `mensaje` text NOT NULL,
+  `asunto` mediumtext NOT NULL,
+  `mensaje` mediumtext NOT NULL,
   `fechaEnvio` date NOT NULL,
   `courseModuleId` int(11) NOT NULL,
   `estatus` enum('activo','eliminado','borrador') NOT NULL,
   `rutaAdjunto` varchar(255) NOT NULL,
   `favorito` enum('no','si') NOT NULL,
-  `leido` enum('no','si') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `leido` enum('no','si') NOT NULL,
+  PRIMARY KEY (`chatId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -344,12 +374,14 @@ CREATE TABLE `chat` (
 -- Table structure for table `classroom`
 --
 
-CREATE TABLE `classroom` (
-  `classroomId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `classroom`;
+CREATE TABLE IF NOT EXISTS `classroom` (
+  `classroomId` int(11) NOT NULL AUTO_INCREMENT,
   `clave` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `description` mediumtext NOT NULL,
+  PRIMARY KEY (`classroomId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -357,15 +389,22 @@ CREATE TABLE `classroom` (
 -- Table structure for table `cometchat`
 --
 
-CREATE TABLE `cometchat` (
-  `id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `cometchat`;
+CREATE TABLE IF NOT EXISTS `cometchat` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `from` int(10) UNSIGNED NOT NULL,
   `to` int(10) UNSIGNED NOT NULL,
   `message` text NOT NULL,
   `sent` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `read` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `direction` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `direction` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `to` (`to`),
+  KEY `from` (`from`),
+  KEY `direction` (`direction`),
+  KEY `read` (`read`),
+  KEY `sent` (`sent`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -373,12 +412,16 @@ CREATE TABLE `cometchat` (
 -- Table structure for table `cometchat_announcements`
 --
 
-CREATE TABLE `cometchat_announcements` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `announcement` text CHARACTER SET latin1 NOT NULL,
+DROP TABLE IF EXISTS `cometchat_announcements`;
+CREATE TABLE IF NOT EXISTS `cometchat_announcements` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `announcement` mediumtext NOT NULL,
   `time` int(10) UNSIGNED NOT NULL,
-  `to` int(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `to` int(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `to` (`to`),
+  KEY `time` (`time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -386,13 +429,18 @@ CREATE TABLE `cometchat_announcements` (
 -- Table structure for table `cometchat_chatroommessages`
 --
 
-CREATE TABLE `cometchat_chatroommessages` (
-  `id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `cometchat_chatroommessages`;
+CREATE TABLE IF NOT EXISTS `cometchat_chatroommessages` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `userid` int(10) UNSIGNED NOT NULL,
   `chatroomid` int(10) UNSIGNED NOT NULL,
   `message` text NOT NULL,
-  `sent` int(10) UNSIGNED NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `sent` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userid` (`userid`),
+  KEY `chatroomid` (`chatroomid`),
+  KEY `sent` (`sent`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cometchat_chatroommessages`
@@ -407,14 +455,19 @@ INSERT INTO `cometchat_chatroommessages` (`id`, `userid`, `chatroomid`, `message
 -- Table structure for table `cometchat_chatrooms`
 --
 
-CREATE TABLE `cometchat_chatrooms` (
-  `id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `cometchat_chatrooms`;
+CREATE TABLE IF NOT EXISTS `cometchat_chatrooms` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `lastactivity` int(10) UNSIGNED NOT NULL,
   `createdby` int(10) UNSIGNED NOT NULL,
   `password` varchar(255) NOT NULL,
-  `type` tinyint(1) UNSIGNED NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `type` tinyint(1) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `lastactivity` (`lastactivity`),
+  KEY `createdby` (`createdby`),
+  KEY `type` (`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cometchat_chatrooms`
@@ -436,11 +489,15 @@ INSERT INTO `cometchat_chatrooms` (`id`, `name`, `lastactivity`, `createdby`, `p
 -- Table structure for table `cometchat_chatrooms_users`
 --
 
-CREATE TABLE `cometchat_chatrooms_users` (
+DROP TABLE IF EXISTS `cometchat_chatrooms_users`;
+CREATE TABLE IF NOT EXISTS `cometchat_chatrooms_users` (
   `userid` int(10) UNSIGNED NOT NULL,
   `chatroomid` int(10) UNSIGNED NOT NULL,
-  `lastactivity` int(10) UNSIGNED NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `lastactivity` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`userid`),
+  KEY `chatroomid` (`chatroomid`),
+  KEY `lastactivity` (`lastactivity`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cometchat_chatrooms_users`
@@ -459,13 +516,17 @@ INSERT INTO `cometchat_chatrooms_users` (`userid`, `chatroomid`, `lastactivity`)
 -- Table structure for table `cometchat_status`
 --
 
-CREATE TABLE `cometchat_status` (
+DROP TABLE IF EXISTS `cometchat_status`;
+CREATE TABLE IF NOT EXISTS `cometchat_status` (
   `userid` int(10) UNSIGNED NOT NULL,
   `message` text,
   `status` enum('available','away','busy','invisible','offline') DEFAULT NULL,
   `typingto` int(10) UNSIGNED DEFAULT NULL,
-  `typingtime` int(10) UNSIGNED DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `typingtime` int(10) UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (`userid`),
+  KEY `typingto` (`typingto`),
+  KEY `typingtime` (`typingtime`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -473,35 +534,44 @@ CREATE TABLE `cometchat_status` (
 -- Table structure for table `cometchat_videochatsessions`
 --
 
-CREATE TABLE `cometchat_videochatsessions` (
+DROP TABLE IF EXISTS `cometchat_videochatsessions`;
+CREATE TABLE IF NOT EXISTS `cometchat_videochatsessions` (
   `username` varchar(255) NOT NULL,
   `identity` varchar(255) NOT NULL,
-  `timestamp` int(10) UNSIGNED DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `timestamp` int(10) UNSIGNED DEFAULT '0',
+  PRIMARY KEY (`username`),
+  KEY `username` (`username`),
+  KEY `identity` (`identity`),
+  KEY `timestamp` (`timestamp`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `complementoConcepto`
+-- Table structure for table `complementoconcepto`
 --
 
-CREATE TABLE `complementoConcepto` (
-  `complementoConceptoId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `complementoconcepto`;
+CREATE TABLE IF NOT EXISTS `complementoconcepto` (
+  `complementoConceptoId` int(11) NOT NULL AUTO_INCREMENT,
   `conceptoId` int(11) NOT NULL,
-  `any` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `any` mediumtext NOT NULL,
+  PRIMARY KEY (`complementoConceptoId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `complementoConceptoParte`
+-- Table structure for table `complementoconceptoparte`
 --
 
-CREATE TABLE `complementoConceptoParte` (
-  `complementoConceptoParteId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `complementoconceptoparte`;
+CREATE TABLE IF NOT EXISTS `complementoconceptoparte` (
+  `complementoConceptoParteId` int(11) NOT NULL AUTO_INCREMENT,
   `conceptoId` int(11) NOT NULL,
-  `any` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `any` mediumtext NOT NULL,
+  PRIMARY KEY (`complementoConceptoParteId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -509,8 +579,9 @@ CREATE TABLE `complementoConceptoParte` (
 -- Table structure for table `comprobante`
 --
 
-CREATE TABLE `comprobante` (
-  `comprobanteId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `comprobante`;
+CREATE TABLE IF NOT EXISTS `comprobante` (
+  `comprobanteId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `formaDePago` varchar(255) NOT NULL DEFAULT 'Pago En Una Sola Exhibicion',
   `condicionesDePago` varchar(255) NOT NULL,
@@ -525,23 +596,23 @@ CREATE TABLE `comprobante` (
   `porcentajeDescuento` int(3) NOT NULL DEFAULT '0',
   `empresaId` int(11) NOT NULL,
   `sucursalId` int(11) NOT NULL,
-  `observaciones` text,
+  `observaciones` mediumtext,
   `version` varchar(10) NOT NULL DEFAULT '2.0',
   `serie` varchar(10) NOT NULL,
   `folio` bigint(20) NOT NULL,
   `fecha` datetime NOT NULL,
-  `sello` text NOT NULL,
+  `sello` mediumtext NOT NULL,
   `noAprobacion` int(11) NOT NULL,
   `anoAprobacion` int(4) NOT NULL,
   `noCertificado` varchar(20) NOT NULL,
-  `certificado` text,
+  `certificado` mediumtext,
   `subTotal` float(20,6) NOT NULL,
   `descuento` float(20,6) DEFAULT NULL,
-  `motivoDescuento` text,
+  `motivoDescuento` mediumtext,
   `total` float(20,6) NOT NULL,
   `tipoDeComprobante` enum('ingreso','egreso','traslado') NOT NULL,
-  `cadenaOriginal` text NOT NULL,
-  `xml` text,
+  `cadenaOriginal` mediumtext NOT NULL,
+  `xml` mediumtext,
   `rfcId` int(11) NOT NULL DEFAULT '1',
   `status` enum('1','0') NOT NULL DEFAULT '1',
   `ivaTotal` float(20,6) NOT NULL,
@@ -549,13 +620,14 @@ CREATE TABLE `comprobante` (
   `pedimento` varchar(300) DEFAULT NULL,
   `fechaPedimento` date DEFAULT NULL,
   `aduana` varchar(600) DEFAULT NULL,
-  `data` text,
-  `motivoCancelacion` text,
-  `motivoNotaCredito` text,
-  `conceptos` text,
-  `impuestos` text,
-  `timbreFiscal` text
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `data` mediumtext,
+  `motivoCancelacion` mediumtext,
+  `motivoNotaCredito` mediumtext,
+  `conceptos` mediumtext,
+  `impuestos` mediumtext,
+  `timbreFiscal` mediumtext,
+  PRIMARY KEY (`comprobanteId`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `comprobante`
@@ -577,19 +649,21 @@ INSERT INTO `comprobante` (`comprobanteId`, `userId`, `formaDePago`, `condicione
 -- Table structure for table `concepto`
 --
 
-CREATE TABLE `concepto` (
+DROP TABLE IF EXISTS `concepto`;
+CREATE TABLE IF NOT EXISTS `concepto` (
   `comprobanteId` int(11) NOT NULL,
   `cantidad` float(10,2) NOT NULL,
   `unidad` varchar(255) DEFAULT NULL,
   `noIdentificacion` varchar(255) DEFAULT NULL,
-  `descripcion` text NOT NULL,
+  `descripcion` mediumtext NOT NULL,
   `valorUnitario` float(10,2) NOT NULL,
   `excentoIva` enum('no','si') NOT NULL DEFAULT 'no',
   `importe` float(10,2) NOT NULL,
   `userId` int(11) NOT NULL,
   `empresaId` int(11) NOT NULL,
-  `conceptoId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `conceptoId` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`conceptoId`)
+) ENGINE=InnoDB AUTO_INCREMENT=12912 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -597,7 +671,8 @@ CREATE TABLE `concepto` (
 -- Table structure for table `config`
 --
 
-CREATE TABLE `config` (
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE IF NOT EXISTS `config` (
   `escuela` varchar(255) NOT NULL DEFAULT 'INSTITUTO DE ADMINISTRACION PUBLICA DEL ESTADO DE CHIAPAS',
   `localidad` varchar(255) NOT NULL DEFAULT 'TUXTLA GUTIERREZ',
   `clave` varchar(255) NOT NULL DEFAULT 'TUXTLA GUTIERREZ',
@@ -606,7 +681,7 @@ CREATE TABLE `config` (
   `jefeOficina` varchar(255) NOT NULL DEFAULT 'ARQ. CARLOS VAZQUEZ LOZADA',
   `presidente` varchar(255) NOT NULL DEFAULT 'LIC. ADRIANA CAMACHO PIMIENTA',
   `directorAcademico` varchar(255) NOT NULL DEFAULT 'LIC. HELENA JIMENEZ MARTINEZ'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `config`
@@ -621,11 +696,13 @@ INSERT INTO `config` (`escuela`, `localidad`, `clave`, `municipio`, `respServici
 -- Table structure for table `configuracion`
 --
 
-CREATE TABLE `configuracion` (
-  `configId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `configuracion`;
+CREATE TABLE IF NOT EXISTS `configuracion` (
+  `configId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `valor` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `valor` varchar(255) NOT NULL,
+  PRIMARY KEY (`configId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -633,15 +710,17 @@ CREATE TABLE `configuracion` (
 -- Table structure for table `confirma_inscripcion`
 --
 
-CREATE TABLE `confirma_inscripcion` (
-  `confirmaInscripcionId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `confirma_inscripcion`;
+CREATE TABLE IF NOT EXISTS `confirma_inscripcion` (
+  `confirmaInscripcionId` int(11) NOT NULL AUTO_INCREMENT,
   `courseModuleId` int(11) NOT NULL,
   `reinscrito` enum('no','si') NOT NULL,
   `nivel` int(11) NOT NULL,
   `subjectId` int(11) NOT NULL,
   `courseId` int(11) NOT NULL,
-  `userId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `userId` int(11) NOT NULL,
+  PRIMARY KEY (`confirmaInscripcionId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -649,15 +728,16 @@ CREATE TABLE `confirma_inscripcion` (
 -- Table structure for table `course`
 --
 
-CREATE TABLE `course` (
-  `courseId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `course`;
+CREATE TABLE IF NOT EXISTS `course` (
+  `courseId` int(11) NOT NULL AUTO_INCREMENT,
   `subjectId` int(11) NOT NULL,
   `initialDate` date NOT NULL,
   `finalDate` date NOT NULL,
   `daysToFinish` int(4) NOT NULL,
   `active` enum('si','no') NOT NULL DEFAULT 'si',
   `modality` enum('Local','Online') NOT NULL DEFAULT 'Local',
-  `access` text NOT NULL,
+  `access` mediumtext NOT NULL,
   `group` varchar(5) NOT NULL DEFAULT 'A',
   `turn` varchar(255) NOT NULL DEFAULT 'Matutino',
   `scholarCicle` varchar(255) NOT NULL,
@@ -674,8 +754,9 @@ CREATE TABLE `course` (
   `hora` varchar(255) NOT NULL,
   `subtotal` decimal(15,2) NOT NULL,
   `tipo` enum('Cuatrimestre','Semestre') NOT NULL,
-  `listar` enum('no','si') NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `listar` enum('no','si') NOT NULL,
+  PRIMARY KEY (`courseId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -683,8 +764,9 @@ CREATE TABLE `course` (
 -- Table structure for table `course_module`
 --
 
-CREATE TABLE `course_module` (
-  `courseModuleId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `course_module`;
+CREATE TABLE IF NOT EXISTS `course_module` (
+  `courseModuleId` int(11) NOT NULL AUTO_INCREMENT,
   `courseId` int(11) NOT NULL,
   `subjectModuleId` int(11) NOT NULL,
   `initialDate` date NOT NULL,
@@ -703,27 +785,28 @@ CREATE TABLE `course_module` (
   `creditos` varchar(255) NOT NULL,
   `habilitarCalificar` enum('si','no') NOT NULL,
   `rutaActa` varchar(255) NOT NULL,
-  `perfilParticipante` text NOT NULL,
+  `perfilParticipante` mediumtext NOT NULL,
   `duracion` varchar(255) NOT NULL,
   `numParticipantes` varchar(255) NOT NULL,
   `horario` varchar(255) NOT NULL,
-  `objetivoParticular` text NOT NULL,
-  `estructutaTematica` text NOT NULL,
-  `estructuraTematica` text NOT NULL,
-  `criteriosEvaluacion` text NOT NULL,
-  `tecnicas` text NOT NULL,
-  `bibliografias` text NOT NULL,
+  `objetivoParticular` mediumtext NOT NULL,
+  `estructutaTematica` mediumtext NOT NULL,
+  `estructuraTematica` mediumtext NOT NULL,
+  `criteriosEvaluacion` mediumtext NOT NULL,
+  `tecnicas` mediumtext NOT NULL,
+  `bibliografias` mediumtext NOT NULL,
   `rutaCedula` varchar(255) NOT NULL,
   `rutaContrato` varchar(255) NOT NULL,
   `rutaContratoFirmado` varchar(255) NOT NULL,
   `rutaPlan` varchar(255) NOT NULL,
   `rutaCarta` varchar(255) NOT NULL,
-  `periodo` text NOT NULL,
+  `periodo` mediumtext NOT NULL,
   `subtotal` decimal(15,2) NOT NULL,
   `rutaEncuadre` varchar(255) NOT NULL,
   `rutaRubrica` varchar(255) NOT NULL,
-  `rutaInforme` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `rutaInforme` varchar(255) NOT NULL,
+  PRIMARY KEY (`courseModuleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -731,11 +814,13 @@ CREATE TABLE `course_module` (
 -- Table structure for table `course_module_personal`
 --
 
-CREATE TABLE `course_module_personal` (
+DROP TABLE IF EXISTS `course_module_personal`;
+CREATE TABLE IF NOT EXISTS `course_module_personal` (
   `personalId` int(11) NOT NULL,
-  `courseModPId` int(11) NOT NULL,
-  `courseModuleId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `courseModPId` int(11) NOT NULL AUTO_INCREMENT,
+  `courseModuleId` int(11) NOT NULL,
+  PRIMARY KEY (`courseModPId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -743,37 +828,43 @@ CREATE TABLE `course_module_personal` (
 -- Table structure for table `course_module_score`
 --
 
-CREATE TABLE `course_module_score` (
-  `courseModuleScoreId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `course_module_score`;
+CREATE TABLE IF NOT EXISTS `course_module_score` (
+  `courseModuleScoreId` int(11) NOT NULL AUTO_INCREMENT,
   `courseModuleId` int(11) NOT NULL,
   `courseId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
-  `calificacion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `calificacion` int(11) NOT NULL,
+  PRIMARY KEY (`courseModuleScoreId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cuentaPredialConcepto`
+-- Table structure for table `cuentapredialconcepto`
 --
 
-CREATE TABLE `cuentaPredialConcepto` (
+DROP TABLE IF EXISTS `cuentapredialconcepto`;
+CREATE TABLE IF NOT EXISTS `cuentapredialconcepto` (
   `conceptoId` int(11) NOT NULL,
   `numero` varchar(255) NOT NULL,
-  `cuentaPredialConceptoId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `cuentaPredialConceptoId` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`cuentaPredialConceptoId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cuentaPredialParte`
+-- Table structure for table `cuentapredialparte`
 --
 
-CREATE TABLE `cuentaPredialParte` (
+DROP TABLE IF EXISTS `cuentapredialparte`;
+CREATE TABLE IF NOT EXISTS `cuentapredialparte` (
   `conceptoId` int(11) NOT NULL,
   `numero` varchar(255) NOT NULL,
-  `cuentaPredialParteId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `cuentaPredialParteId` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`cuentaPredialParteId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -781,12 +872,14 @@ CREATE TABLE `cuentaPredialParte` (
 -- Table structure for table `documentosprofesor`
 --
 
-CREATE TABLE `documentosprofesor` (
-  `documentosprofesorId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `documentosprofesor`;
+CREATE TABLE IF NOT EXISTS `documentosprofesor` (
+  `documentosprofesorId` int(11) NOT NULL AUTO_INCREMENT,
   `documentoId` int(11) NOT NULL,
   `personalId` int(11) NOT NULL,
-  `ruta` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ruta` varchar(255) NOT NULL,
+  PRIMARY KEY (`documentosprofesorId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -794,13 +887,15 @@ CREATE TABLE `documentosprofesor` (
 -- Table structure for table `estado`
 --
 
-CREATE TABLE `estado` (
-  `estadoId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `estado`;
+CREATE TABLE IF NOT EXISTS `estado` (
+  `estadoId` int(11) NOT NULL AUTO_INCREMENT,
   `clave` varchar(2) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `abrev` varchar(16) NOT NULL,
-  `paisId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Tabla de Estados de la Rep??ca Mexicana';
+  `paisId` int(11) NOT NULL,
+  PRIMARY KEY (`estadoId`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='Tabla de Estados de la Rep??ca Mexicana';
 
 --
 -- Dumping data for table `estado`
@@ -846,8 +941,9 @@ INSERT INTO `estado` (`estadoId`, `clave`, `nombre`, `abrev`, `paisId`) VALUES
 -- Table structure for table `estudioprofesor`
 --
 
-CREATE TABLE `estudioprofesor` (
-  `estudioprofesorId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `estudioprofesor`;
+CREATE TABLE IF NOT EXISTS `estudioprofesor` (
+  `estudioprofesorId` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` enum('lic','master','doc') NOT NULL,
   `escuela` varchar(255) NOT NULL,
   `carrera` varchar(255) NOT NULL,
@@ -855,8 +951,9 @@ CREATE TABLE `estudioprofesor` (
   `titulo` enum('no','si') NOT NULL,
   `actaExamen` enum('no','si') NOT NULL,
   `cedula` enum('no','si') NOT NULL,
-  `personalId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `personalId` int(11) NOT NULL,
+  PRIMARY KEY (`estudioprofesorId`)
+) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `estudioprofesor`
@@ -1002,14 +1099,16 @@ INSERT INTO `estudioprofesor` (`estudioprofesorId`, `tipo`, `escuela`, `carrera`
 -- Table structure for table `eval_alumno_docente`
 --
 
-CREATE TABLE `eval_alumno_docente` (
-  `evalalumnodocenteId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `eval_alumno_docente`;
+CREATE TABLE IF NOT EXISTS `eval_alumno_docente` (
+  `evalalumnodocenteId` int(11) NOT NULL AUTO_INCREMENT,
   `courseModuleId` int(11) NOT NULL,
   `docenteId` int(11) NOT NULL,
   `alumnoId` int(11) NOT NULL,
   `fechaRegistro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `comentario` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `comentario` mediumtext NOT NULL,
+  PRIMARY KEY (`evalalumnodocenteId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1017,8 +1116,9 @@ CREATE TABLE `eval_alumno_docente` (
 -- Table structure for table `ficha`
 --
 
-CREATE TABLE `ficha` (
-  `idFicha` int(10) NOT NULL,
+DROP TABLE IF EXISTS `ficha`;
+CREATE TABLE IF NOT EXISTS `ficha` (
+  `idFicha` int(10) NOT NULL AUTO_INCREMENT,
   `folioFicha` int(10) NOT NULL,
   `carrera` int(11) NOT NULL DEFAULT '1',
   `carrera2` int(11) NOT NULL DEFAULT '1',
@@ -1054,8 +1154,9 @@ CREATE TABLE `ficha` (
   `municipioSec` varchar(255) NOT NULL,
   `promedio` float(10,2) NOT NULL,
   `certificado` enum('si','no') NOT NULL DEFAULT 'no',
-  `modalidadSec` enum('escolarizado','semiescolarizado','otro') NOT NULL DEFAULT 'escolarizado'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `modalidadSec` enum('escolarizado','semiescolarizado','otro') NOT NULL DEFAULT 'escolarizado',
+  PRIMARY KEY (`idFicha`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1063,14 +1164,16 @@ CREATE TABLE `ficha` (
 -- Table structure for table `folio`
 --
 
-CREATE TABLE `folio` (
-  `folioId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `folio`;
+CREATE TABLE IF NOT EXISTS `folio` (
+  `folioId` int(11) NOT NULL AUTO_INCREMENT,
   `folioActual` varchar(255) NOT NULL,
   `folioSiguiente` varchar(255) NOT NULL,
   `nomenclatura` varchar(255) NOT NULL,
   `tiposolicitudId` int(11) NOT NULL,
-  `anio` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `anio` varchar(255) NOT NULL,
+  PRIMARY KEY (`folioId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1078,14 +1181,16 @@ CREATE TABLE `folio` (
 -- Table structure for table `gradereport`
 --
 
-CREATE TABLE `gradereport` (
-  `gradereportId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `gradereport`;
+CREATE TABLE IF NOT EXISTS `gradereport` (
+  `gradereportId` int(11) NOT NULL AUTO_INCREMENT,
   `groupId` int(11) NOT NULL,
   `generation` varchar(10) NOT NULL,
   `periodoId` int(11) NOT NULL,
   `semesterId` int(11) NOT NULL,
-  `regularization` char(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `regularization` char(1) NOT NULL,
+  PRIMARY KEY (`gradereportId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1093,15 +1198,18 @@ CREATE TABLE `gradereport` (
 -- Table structure for table `gradereport_inter`
 --
 
-CREATE TABLE `gradereport_inter` (
-  `gradereportInterId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `gradereport_inter`;
+CREATE TABLE IF NOT EXISTS `gradereport_inter` (
+  `gradereportInterId` int(11) NOT NULL AUTO_INCREMENT,
   `alumnoId` int(11) NOT NULL,
   `subjectId` int(11) NOT NULL,
   `datetest` date NOT NULL,
   `scheduletestId` int(11) NOT NULL,
   `periodoId` int(11) NOT NULL,
-  `semesterId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `semesterId` int(11) NOT NULL,
+  PRIMARY KEY (`gradereportInterId`),
+  KEY `alumnoId` (`alumnoId`,`subjectId`,`scheduletestId`,`periodoId`,`semesterId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1109,13 +1217,16 @@ CREATE TABLE `gradereport_inter` (
 -- Table structure for table `gradereport_recur`
 --
 
-CREATE TABLE `gradereport_recur` (
-  `gradereportRecurId` int(11) NOT NULL COMMENT 'id del registro',
+DROP TABLE IF EXISTS `gradereport_recur`;
+CREATE TABLE IF NOT EXISTS `gradereport_recur` (
+  `gradereportRecurId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del registro',
   `alumnoId` int(11) NOT NULL COMMENT 'id del alumno',
   `subjectId` int(11) NOT NULL COMMENT 'id de la materia reprobada',
   `periodoId` int(11) NOT NULL COMMENT 'id del perido en el que se reprobo la materia',
-  `semesterId` int(11) NOT NULL COMMENT 'id del semestre en el que se reprobo la materia'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='registro de alumnos de recursamiento';
+  `semesterId` int(11) NOT NULL COMMENT 'id del semestre en el que se reprobo la materia',
+  PRIMARY KEY (`gradereportRecurId`),
+  KEY `alumnoId` (`alumnoId`,`subjectId`,`periodoId`,`semesterId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='registro de alumnos de recursamiento';
 
 -- --------------------------------------------------------
 
@@ -1123,16 +1234,19 @@ CREATE TABLE `gradereport_recur` (
 -- Table structure for table `gradereport_user`
 --
 
-CREATE TABLE `gradereport_user` (
-  `gradReportUserId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `gradereport_user`;
+CREATE TABLE IF NOT EXISTS `gradereport_user` (
+  `gradReportUserId` int(11) NOT NULL AUTO_INCREMENT,
   `gradereportId` int(11) NOT NULL,
   `alumnoId` int(11) NOT NULL,
   `testIdentifier` varchar(50) NOT NULL,
   `datetest` date NOT NULL,
   `gradescore` decimal(5,2) NOT NULL,
   `scheduletestId` int(11) NOT NULL,
-  `attendance` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `attendance` int(11) NOT NULL,
+  PRIMARY KEY (`gradReportUserId`),
+  KEY `gradereportId` (`gradereportId`,`alumnoId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1140,11 +1254,13 @@ CREATE TABLE `gradereport_user` (
 -- Table structure for table `group`
 --
 
-CREATE TABLE `group` (
-  `groupId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `group`;
+CREATE TABLE IF NOT EXISTS `group` (
+  `groupId` int(11) NOT NULL AUTO_INCREMENT,
   `clave` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`groupId`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `group`
@@ -1168,18 +1284,20 @@ INSERT INTO `group` (`groupId`, `clave`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `groupDEL`
+-- Table structure for table `groupdel`
 --
 
-CREATE TABLE `groupDEL` (
-  `groupId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `groupdel`;
+CREATE TABLE IF NOT EXISTS `groupdel` (
+  `groupId` int(11) NOT NULL AUTO_INCREMENT,
   `majorId` int(11) NOT NULL,
   `specialityId` int(11) NOT NULL,
   `semesterId` int(11) NOT NULL,
   `clave` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `periodoId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `periodoId` int(11) NOT NULL,
+  PRIMARY KEY (`groupId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1187,11 +1305,13 @@ CREATE TABLE `groupDEL` (
 -- Table structure for table `group_subject`
 --
 
-CREATE TABLE `group_subject` (
-  `gposubId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `group_subject`;
+CREATE TABLE IF NOT EXISTS `group_subject` (
+  `gposubId` int(11) NOT NULL AUTO_INCREMENT,
   `groupId` int(11) NOT NULL,
-  `subjectId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `subjectId` int(11) NOT NULL,
+  PRIMARY KEY (`gposubId`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1199,46 +1319,52 @@ CREATE TABLE `group_subject` (
 -- Table structure for table `homework`
 --
 
-CREATE TABLE `homework` (
-  `homeworkId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `homework`;
+CREATE TABLE IF NOT EXISTS `homework` (
+  `homeworkId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `activityId` int(11) NOT NULL,
-  `nombre` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `path` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `path` varchar(255) NOT NULL,
   `date` datetime NOT NULL,
-  `mime` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `confirmacion` varchar(255) COLLATE utf8_bin NOT NULL,
+  `mime` varchar(255) NOT NULL,
+  `confirmacion` varchar(255) NOT NULL,
   `dateUpdate` date NOT NULL,
-  `countUpdate` varchar(255) COLLATE utf8_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `countUpdate` varchar(255) NOT NULL,
+  PRIMARY KEY (`homeworkId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `informacionAduaneraConcepto`
+-- Table structure for table `informacionaduaneraconcepto`
 --
 
-CREATE TABLE `informacionAduaneraConcepto` (
+DROP TABLE IF EXISTS `informacionaduaneraconcepto`;
+CREATE TABLE IF NOT EXISTS `informacionaduaneraconcepto` (
   `conceptoId` int(11) NOT NULL,
   `numero` varchar(255) NOT NULL,
   `fecha` date NOT NULL,
   `aduana` varchar(255) NOT NULL,
-  `informacionAduaneraConceptoId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `informacionAduaneraConceptoId` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`informacionAduaneraConceptoId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `informacionAduaneraParte`
+-- Table structure for table `informacionaduaneraparte`
 --
 
-CREATE TABLE `informacionAduaneraParte` (
+DROP TABLE IF EXISTS `informacionaduaneraparte`;
+CREATE TABLE IF NOT EXISTS `informacionaduaneraparte` (
   `conceptoId` int(11) NOT NULL,
   `numero` varchar(255) NOT NULL,
   `fecha` date NOT NULL,
   `aduana` varchar(255) NOT NULL,
-  `informacionAduaneraParteId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `informacionAduaneraParteId` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`informacionAduaneraParteId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1246,28 +1372,30 @@ CREATE TABLE `informacionAduaneraParte` (
 -- Table structure for table `institution`
 --
 
-CREATE TABLE `institution` (
-  `institutionId` int(11) NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `name_long` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci DEFAULT NULL,
-  `identifier` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
-  `ubication` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
-  `ubication_long` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci DEFAULT NULL,
-  `phone` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci DEFAULT NULL,
-  `fax` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci DEFAULT NULL,
-  `jefeOficina` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `presidente` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `respServiciosEscolares` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `directorAcademico` varchar(255) CHARACTER SET latin1 NOT NULL DEFAULT 'LIC. HELENA MARGARITA JIMENEZ JIMENEZ',
-  `jefeServiciosEscolares` varchar(255) CHARACTER SET latin1 NOT NULL DEFAULT 'ING. JULIO MONTERO MEDEROS'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+DROP TABLE IF EXISTS `institution`;
+CREATE TABLE IF NOT EXISTS `institution` (
+  `institutionId` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `name_long` varchar(255) DEFAULT NULL,
+  `identifier` varchar(255) NOT NULL,
+  `ubication` varchar(255) NOT NULL,
+  `ubication_long` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `fax` varchar(255) DEFAULT NULL,
+  `jefeOficina` varchar(255) NOT NULL,
+  `presidente` varchar(255) NOT NULL,
+  `respServiciosEscolares` varchar(255) NOT NULL,
+  `directorAcademico` varchar(255) NOT NULL DEFAULT 'LIC. HELENA MARGARITA JIMENEZ JIMENEZ',
+  `jefeServiciosEscolares` varchar(255) NOT NULL DEFAULT 'ING. JULIO MONTERO MEDEROS',
+  PRIMARY KEY (`institutionId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `institution`
 --
 
 INSERT INTO `institution` (`institutionId`, `name`, `name_long`, `identifier`, `ubication`, `ubication_long`, `phone`, `fax`, `jefeOficina`, `presidente`, `respServiciosEscolares`, `directorAcademico`, `jefeServiciosEscolares`) VALUES
-(1, 'IAP', 'INSTITUTO DE ADMINISTRACION PUBLICA DEL ESTADO DE CHIAPAS, A.C.', '07PSU0129J', 'TUXTLA GUTIERREZ, CHIAPAS.', 'LIBRAMIENTO NORTE PONINETE NO. 2718, COL. LADERA DE LA LOMA.', '961-12-5-15-08', '961-12-5-15-08', 'ARQ. CARLOS VAZQUEZ LOZADA', 'M.A. HARVEY GUTIÉRREZ ÁLVAREZ', 'LIC. ANA GLORIA CARVAJAL CRUZ', 'director', 'jefe');
+(1, 'IAP', 'TRAZZOS', '07PSU0129J', 'TUXTLA GUTIERREZ, CHIAPAS.', 'LIBRAMIENTO NORTE PONINETE NO. 2718, COL. LADERA DE LA LOMA.', '961-12-5-15-08', '961-12-5-15-08', 'ARQ. CARLOS VAZQUEZ LOZADA', 'M.A. HARVEY GUTIÉRREZ ÁLVAREZ', 'LIC. ANA GLORIA CARVAJAL CRUZ', 'director', 'jefe');
 
 -- --------------------------------------------------------
 
@@ -1275,15 +1403,17 @@ INSERT INTO `institution` (`institutionId`, `name`, `name_long`, `identifier`, `
 -- Table structure for table `invoice`
 --
 
-CREATE TABLE `invoice` (
-  `invoiceId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `invoice`;
+CREATE TABLE IF NOT EXISTS `invoice` (
+  `invoiceId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `courseId` int(11) NOT NULL,
   `dueDate` date NOT NULL,
   `amount` float NOT NULL,
   `status` enum('Pagado','Por Pagar','Cancelado') NOT NULL DEFAULT 'Por Pagar',
-  `Facturado` enum('si','no') NOT NULL DEFAULT 'no'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Facturado` enum('si','no') NOT NULL DEFAULT 'no',
+  PRIMARY KEY (`invoiceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1291,8 +1421,9 @@ CREATE TABLE `invoice` (
 -- Table structure for table `ipn`
 --
 
-CREATE TABLE `ipn` (
-  `ipnid` int(11) NOT NULL,
+DROP TABLE IF EXISTS `ipn`;
+CREATE TABLE IF NOT EXISTS `ipn` (
+  `ipnid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '',
   `user` bigint(21) NOT NULL DEFAULT '0',
   `points` int(11) NOT NULL DEFAULT '0',
@@ -1302,8 +1433,9 @@ CREATE TABLE `ipn` (
   `ipnstatus` tinyint(1) NOT NULL DEFAULT '0',
   `verified` varchar(15) NOT NULL DEFAULT '',
   `time` bigint(15) NOT NULL DEFAULT '0',
-  `given` enum('0','1') NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `given` enum('0','1') NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ipnid`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ipn`
@@ -1328,16 +1460,18 @@ INSERT INTO `ipn` (`ipnid`, `name`, `user`, `points`, `trans`, `before`, `after`
 -- Table structure for table `kardex_calificacion`
 --
 
-CREATE TABLE `kardex_calificacion` (
-  `karCalId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `kardex_calificacion`;
+CREATE TABLE IF NOT EXISTS `kardex_calificacion` (
+  `karCalId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `semesterId` int(11) NOT NULL,
   `majorId` int(11) NOT NULL,
   `subjectId` int(11) NOT NULL,
   `calif` decimal(10,2) NOT NULL,
   `typeCalifId` int(11) NOT NULL,
-  `periodoId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `periodoId` int(11) NOT NULL,
+  PRIMARY KEY (`karCalId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1345,11 +1479,13 @@ CREATE TABLE `kardex_calificacion` (
 -- Table structure for table `major`
 --
 
-CREATE TABLE `major` (
-  `majorId` int(11) NOT NULL,
-  `name` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `description` text CHARACTER SET latin1
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+DROP TABLE IF EXISTS `major`;
+CREATE TABLE IF NOT EXISTS `major` (
+  `majorId` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` mediumtext,
+  PRIMARY KEY (`majorId`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `major`
@@ -1359,9 +1495,9 @@ INSERT INTO `major` (`majorId`, `name`, `description`) VALUES
 (1, 'MAESTRIA', 'Maestria'),
 (2, 'SEMINARIO', 'SEMINARIO'),
 (3, 'DIPLOMADO', ''),
-(17, 'CURSO - TALLER', ''),
 (4, 'ESPECIALIDAD', ''),
 (5, 'CURSO', ''),
+(17, 'CURSO - TALLER', ''),
 (18, 'DOCTORADO', ''),
 (34, 'LICENCIATURA', '');
 
@@ -1371,14 +1507,16 @@ INSERT INTO `major` (`majorId`, `name`, `description`) VALUES
 -- Table structure for table `mensaje`
 --
 
-CREATE TABLE `mensaje` (
-  `mensajeId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `mensaje`;
+CREATE TABLE IF NOT EXISTS `mensaje` (
+  `mensajeId` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(255) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `mensaje` text NOT NULL,
+  `mensaje` mediumtext NOT NULL,
   `enviarId` int(11) NOT NULL,
-  `ruta` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ruta` varchar(255) NOT NULL,
+  PRIMARY KEY (`mensajeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1386,10 +1524,11 @@ CREATE TABLE `mensaje` (
 -- Table structure for table `mensaje_personal`
 --
 
-CREATE TABLE `mensaje_personal` (
+DROP TABLE IF EXISTS `mensaje_personal`;
+CREATE TABLE IF NOT EXISTS `mensaje_personal` (
   `personalId` int(11) NOT NULL,
   `mensajeId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1397,12 +1536,14 @@ CREATE TABLE `mensaje_personal` (
 -- Table structure for table `menu_app`
 --
 
-CREATE TABLE `menu_app` (
-  `menuAppId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `menu_app`;
+CREATE TABLE IF NOT EXISTS `menu_app` (
+  `menuAppId` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   `menuId` int(11) NOT NULL,
-  `contenido` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `contenido` mediumtext NOT NULL,
+  PRIMARY KEY (`menuAppId`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `menu_app`
@@ -1460,10 +1601,12 @@ INSERT INTO `menu_app` (`menuAppId`, `nombre`, `menuId`, `contenido`) VALUES
 -- Table structure for table `module`
 --
 
-CREATE TABLE `module` (
-  `moduleId` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `module`;
+CREATE TABLE IF NOT EXISTS `module` (
+  `moduleId` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`moduleId`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `module`
@@ -1476,13 +1619,13 @@ INSERT INTO `module` (`moduleId`, `name`) VALUES
 (5, 'Puestos'),
 (8, 'Materias'),
 (9, 'Roles'),
-(37, 'Curriculas-Detalle'),
 (11, 'Cursos'),
 (13, 'Conf. Escuela'),
-(36, 'videoconferencias'),
-(35, 'Profesiones'),
 (17, 'Salones'),
 (34, 'Pagos'),
+(35, 'Profesiones'),
+(36, 'videoconferencias'),
+(37, 'Curriculas-Detalle'),
 (38, 'Inf. Alumnos'),
 (39, 'Grupos'),
 (40, 'Solicitudes'),
@@ -1496,13 +1639,16 @@ INSERT INTO `module` (`moduleId`, `name`) VALUES
 -- Table structure for table `municipio`
 --
 
-CREATE TABLE `municipio` (
-  `municipioId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `municipio`;
+CREATE TABLE IF NOT EXISTS `municipio` (
+  `municipioId` int(11) NOT NULL AUTO_INCREMENT,
   `estadoId` int(11) NOT NULL COMMENT 'Relaci??on estados',
   `clave` varchar(3) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `sigla` varchar(4) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Tabla de Municipios de la Republica Mexicana';
+  `sigla` varchar(4) NOT NULL,
+  PRIMARY KEY (`municipioId`),
+  KEY `estadoId` (`estadoId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2496 DEFAULT CHARSET=utf8 COMMENT='Tabla de Municipios de la Republica Mexicana';
 
 --
 -- Dumping data for table `municipio`
@@ -4012,15 +4158,17 @@ INSERT INTO `municipio` (`municipioId`, `estadoId`, `clave`, `nombre`, `sigla`) 
 -- Table structure for table `notificacion`
 --
 
-CREATE TABLE `notificacion` (
-  `notificacionId` int(11) NOT NULL,
-  `actividad` text,
+DROP TABLE IF EXISTS `notificacion`;
+CREATE TABLE IF NOT EXISTS `notificacion` (
+  `notificacionId` int(11) NOT NULL AUTO_INCREMENT,
+  `actividad` mediumtext,
   `vista` varchar(255) DEFAULT NULL,
   `hecho` varchar(255) DEFAULT NULL,
   `fecha_aplicacion` datetime DEFAULT NULL,
   `tablas` varchar(255) DEFAULT NULL,
-  `enlace` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `enlace` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`notificacionId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4028,8 +4176,9 @@ CREATE TABLE `notificacion` (
 -- Table structure for table `pagos`
 --
 
-CREATE TABLE `pagos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `pagos`;
+CREATE TABLE IF NOT EXISTS `pagos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `folio` varchar(20) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
@@ -4049,7 +4198,7 @@ CREATE TABLE `pagos` (
   `concepto` varchar(255) NOT NULL,
   `periodo` varchar(10) DEFAULT NULL,
   `periodoletra` varchar(50) DEFAULT NULL,
-  `descripcion` text,
+  `descripcion` mediumtext,
   `unidad` varchar(50) DEFAULT NULL,
   `importe` decimal(12,2) NOT NULL,
   `cantidad` decimal(12,2) NOT NULL,
@@ -4070,12 +4219,12 @@ CREATE TABLE `pagos` (
   `cuenta` varchar(20) DEFAULT NULL,
   `rfcemisor` varchar(13) DEFAULT NULL,
   `uuid` varchar(50) DEFAULT NULL,
-  `cadenaxml` text,
+  `cadenaxml` mediumtext,
   `usuario` varchar(50) NOT NULL,
-  `observaciongeneral` text,
+  `observaciongeneral` mediumtext,
   `fechacancelacion` date DEFAULT NULL,
   `usuariocancelacion` varchar(50) DEFAULT NULL,
-  `motivocancelacion` text,
+  `motivocancelacion` mediumtext,
   `status` varchar(20) DEFAULT NULL,
   `convertidoa` varchar(20) DEFAULT NULL,
   `usuariomodfecha` varchar(15) DEFAULT NULL,
@@ -4094,10 +4243,11 @@ CREATE TABLE `pagos` (
   `fechacreacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `usuariomodificacion` varchar(50) DEFAULT NULL,
   `fechamodificacion` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `cadenaoriginal` text,
+  `cadenaoriginal` mediumtext,
   `fechatimbrado` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `saldo` decimal(12,2) NOT NULL DEFAULT '0.00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `saldo` decimal(12,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4105,8 +4255,9 @@ CREATE TABLE `pagos` (
 -- Table structure for table `pagosadicio`
 --
 
-CREATE TABLE `pagosadicio` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `pagosadicio`;
+CREATE TABLE IF NOT EXISTS `pagosadicio` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `ciclo` varchar(10) NOT NULL,
   `periodo` varchar(50) NOT NULL,
   `clavenivel` varchar(100) NOT NULL,
@@ -4130,8 +4281,9 @@ CREATE TABLE `pagosadicio` (
   `usuario` varchar(50) NOT NULL DEFAULT 'admin',
   `fechacreacion` date DEFAULT NULL,
   `usuariomodificacion` varchar(50) DEFAULT NULL,
-  `fechamodificacion` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `fechamodificacion` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4139,10 +4291,12 @@ CREATE TABLE `pagosadicio` (
 -- Table structure for table `pais`
 --
 
-CREATE TABLE `pais` (
+DROP TABLE IF EXISTS `pais`;
+CREATE TABLE IF NOT EXISTS `pais` (
   `paisId` int(11) NOT NULL DEFAULT '0',
-  `nombre` varchar(100) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `nombre` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`paisId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `pais`
@@ -4158,19 +4312,21 @@ INSERT INTO `pais` (`paisId`, `nombre`) VALUES
 -- Table structure for table `parte`
 --
 
-CREATE TABLE `parte` (
+DROP TABLE IF EXISTS `parte`;
+CREATE TABLE IF NOT EXISTS `parte` (
   `conceptoId` int(11) NOT NULL,
   `cantidad` float(10,2) NOT NULL,
   `unidad` varchar(255) DEFAULT NULL,
   `noIdentificacion` varchar(255) DEFAULT NULL,
-  `descripcion` text NOT NULL,
+  `descripcion` mediumtext NOT NULL,
   `valorUnitario` float(10,2) NOT NULL,
   `excentoIva` tinyint(1) NOT NULL DEFAULT '0',
   `importe` float(10,2) NOT NULL,
   `userId` int(11) NOT NULL,
   `empresaId` int(11) NOT NULL,
-  `parteId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `parteId` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`parteId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4178,20 +4334,22 @@ CREATE TABLE `parte` (
 -- Table structure for table `payment`
 --
 
-CREATE TABLE `payment` (
-  `paymentId` int(10) NOT NULL,
+DROP TABLE IF EXISTS `payment`;
+CREATE TABLE IF NOT EXISTS `payment` (
+  `paymentId` int(10) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   `invoiceId` int(10) NOT NULL,
   `amount` double NOT NULL,
-  `paymentMethod` enum('Efectivo','Transferencia','Convenio','Saldo Favor') COLLATE utf8_spanish_ci NOT NULL DEFAULT 'Efectivo',
-  `comments` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `status` enum('activo','cancelado') COLLATE utf8_spanish_ci NOT NULL DEFAULT 'activo',
+  `paymentMethod` enum('Efectivo','Transferencia','Convenio','Saldo Favor') NOT NULL DEFAULT 'Efectivo',
+  `comments` varchar(255) NOT NULL,
+  `status` enum('activo','cancelado') NOT NULL DEFAULT 'activo',
   `credit` double NOT NULL,
   `amountApplied` double NOT NULL,
   `account` int(4) DEFAULT NULL,
   `anticipo` double NOT NULL,
-  `autorize` varchar(255) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `autorize` varchar(255) NOT NULL,
+  PRIMARY KEY (`paymentId`)
+) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `payment`
@@ -4222,24 +4380,18 @@ INSERT INTO `payment` (`paymentId`, `date`, `invoiceId`, `amount`, `paymentMetho
 (26, '2014-09-26', 5098, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (27, '2014-09-26', 5116, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (28, '2014-09-26', 5134, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
-(77, '2015-03-05', 5656, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (30, '2014-09-26', 4345, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (31, '2014-09-26', 4327, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (32, '2014-09-26', 4849, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (33, '2014-09-26', 4867, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (34, '2014-09-26', 4885, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (35, '2014-09-26', 4903, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
-(72, '2015-01-12', 5121, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
-(124, '2015-03-30', 6214, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (38, '2014-09-26', 4309, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
-(133, '2015-09-19', 6376, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (40, '2014-09-26', 4291, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (41, '2014-09-26', 4273, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
-(126, '2015-04-06', 6196, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (43, '2014-09-26', 4255, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (44, '2014-09-26', 4381, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (46, '2014-09-26', 4183, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
-(168, '2015-10-06', 7024, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (48, '2014-09-26', 4363, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (49, '2014-09-26', 4399, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (51, '2014-09-26', 4579, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
@@ -4257,11 +4409,12 @@ INSERT INTO `payment` (`paymentId`, `date`, `invoiceId`, `amount`, `paymentMetho
 (63, '2014-09-26', 4435, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (64, '2014-09-26', 4453, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (65, '2014-09-26', 4471, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
-(125, '2015-04-06', 6232, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (67, '2014-09-26', 4525, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (68, '2014-09-26', 4507, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
-(73, '2015-03-02', 5332, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (71, '2014-10-08', 5243, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
+(72, '2015-01-12', 5121, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
+(73, '2015-03-02', 5332, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
+(77, '2015-03-05', 5656, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (83, '2015-03-08', 5638, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (86, '2015-03-08', 5692, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (87, '2015-03-08', 5944, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
@@ -4280,16 +4433,17 @@ INSERT INTO `payment` (`paymentId`, `date`, `invoiceId`, `amount`, `paymentMetho
 (119, '2015-03-08', 5764, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (120, '2015-03-08', 5800, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (123, '2015-03-08', 5908, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
+(124, '2015-03-30', 6214, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
+(125, '2015-04-06', 6232, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
+(126, '2015-04-06', 6196, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (129, '2015-04-13', 6286, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (130, '2015-04-15', 6304, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
+(133, '2015-09-19', 6376, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (136, '2015-09-19', 6466, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (139, '2015-09-19', 6520, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (141, '2015-09-19', 6574, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
-(173, '2016-01-12', 7150, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
-(174, '2016-01-12', 7114, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
 (144, '2015-09-19', 6538, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (145, '2015-09-19', 6682, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
-(169, '2015-10-07', 7042, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (148, '2015-09-19', 6916, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (150, '2015-09-19', 6844, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (153, '2015-09-19', 6880, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
@@ -4304,7 +4458,11 @@ INSERT INTO `payment` (`paymentId`, `date`, `invoiceId`, `amount`, `paymentMetho
 (163, '2015-09-19', 6628, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (166, '2015-09-30', 6988, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
 (167, '2015-09-30', 7006, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
-(170, '2015-10-07', 7060, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, '');
+(168, '2015-10-06', 7024, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
+(169, '2015-10-07', 7042, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
+(170, '2015-10-07', 7060, 5500, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 5500, 0, 0, ''),
+(173, '2016-01-12', 7150, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, ''),
+(174, '2016-01-12', 7114, 1100, 'Efectivo', 'Pago de Colegiatura', 'activo', 0, 1100, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -4312,18 +4470,20 @@ INSERT INTO `payment` (`paymentId`, `date`, `invoiceId`, `amount`, `paymentMetho
 -- Table structure for table `periodo`
 --
 
-CREATE TABLE `periodo` (
-  `periodoId` int(11) NOT NULL,
-  `identifier` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+DROP TABLE IF EXISTS `periodo`;
+CREATE TABLE IF NOT EXISTS `periodo` (
+  `periodoId` int(11) NOT NULL AUTO_INCREMENT,
+  `identifier` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `starts` date NOT NULL,
   `ends` date NOT NULL,
   `fichasStarts` date NOT NULL,
   `fichasEnds` date NOT NULL,
   `vacationsStarts` date NOT NULL COMMENT 'inicio periodo vacacional',
   `vacationsEnds` date NOT NULL COMMENT 'fin periodo vacional',
-  `active` enum('yes','no') NOT NULL DEFAULT 'no'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `active` enum('yes','no') NOT NULL DEFAULT 'no',
+  PRIMARY KEY (`periodoId`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4331,54 +4491,57 @@ CREATE TABLE `periodo` (
 -- Table structure for table `personal`
 --
 
-CREATE TABLE `personal` (
-  `personalId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `personal`;
+CREATE TABLE IF NOT EXISTS `personal` (
+  `personalId` int(11) NOT NULL AUTO_INCREMENT,
   `positionId` int(11) NOT NULL,
-  `name` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `lastname_materno` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `lastname_paterno` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `username` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `passwd` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `description` longtext CHARACTER SET latin1 NOT NULL,
-  `curp` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `rfc` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `fecha_nacimiento` varchar(10) CHARACTER SET latin1 NOT NULL,
-  `fecha_sep` varchar(10) CHARACTER SET latin1 NOT NULL,
-  `sexo` enum('h','m') CHARACTER SET latin1 NOT NULL,
-  `fecha_dgta` varchar(10) CHARACTER SET latin1 NOT NULL,
-  `claves_presupuestales` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `categoria` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `perfil` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `lastname_materno` varchar(255) NOT NULL,
+  `lastname_paterno` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `passwd` varchar(255) NOT NULL,
+  `description` longtext NOT NULL,
+  `curp` varchar(255) NOT NULL,
+  `rfc` varchar(255) NOT NULL,
+  `fecha_nacimiento` varchar(10) NOT NULL,
+  `fecha_sep` varchar(10) NOT NULL,
+  `sexo` enum('h','m') NOT NULL,
+  `fecha_dgta` varchar(10) NOT NULL,
+  `claves_presupuestales` varchar(255) NOT NULL,
+  `categoria` varchar(255) NOT NULL,
+  `perfil` varchar(255) NOT NULL,
   `stateId` int(11) NOT NULL,
   `lastActivity` int(11) NOT NULL,
-  `foto` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT 'alumnos/no_foto.JPG',
-  `correo` varchar(255) COLLATE utf8_bin NOT NULL,
-  `celular` varchar(255) COLLATE utf8_bin NOT NULL,
-  `semblanza` text COLLATE utf8_bin NOT NULL,
-  `firmaConstancia` enum('no','si') COLLATE utf8_bin NOT NULL,
-  `profesion` varchar(255) COLLATE utf8_bin NOT NULL,
-  `INE` varchar(255) COLLATE utf8_bin NOT NULL,
-  `calle` varchar(255) COLLATE utf8_bin NOT NULL,
-  `nInterior` varchar(255) COLLATE utf8_bin NOT NULL,
-  `nExterior` varchar(255) COLLATE utf8_bin NOT NULL,
-  `colonia` varchar(255) COLLATE utf8_bin NOT NULL,
-  `estado` varchar(255) COLLATE utf8_bin NOT NULL,
+  `foto` varchar(255) NOT NULL DEFAULT 'alumnos/no_foto.JPG',
+  `correo` varchar(255) NOT NULL,
+  `celular` varchar(255) NOT NULL,
+  `semblanza` text NOT NULL,
+  `firmaConstancia` enum('no','si') NOT NULL,
+  `profesion` varchar(255) NOT NULL,
+  `INE` varchar(255) NOT NULL,
+  `calle` varchar(255) NOT NULL,
+  `nInterior` varchar(255) NOT NULL,
+  `nExterior` varchar(255) NOT NULL,
+  `colonia` varchar(255) NOT NULL,
+  `estado` varchar(255) NOT NULL,
   `ciudad` int(11) NOT NULL,
-  `rutaFirma` varchar(255) COLLATE utf8_bin NOT NULL,
-  `estatus` enum('activo','eliminado') COLLATE utf8_bin NOT NULL,
-  `tipoContrato` enum('fisica','moral') COLLATE utf8_bin NOT NULL,
-  `facebook` varchar(255) COLLATE utf8_bin NOT NULL,
-  `twitter` varchar(255) COLLATE utf8_bin NOT NULL,
-  `mostrar` enum('no','si') COLLATE utf8_bin NOT NULL,
-  `numero` varchar(255) COLLATE utf8_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `rutaFirma` varchar(255) NOT NULL,
+  `estatus` enum('activo','eliminado') NOT NULL,
+  `tipoContrato` enum('fisica','moral') NOT NULL,
+  `facebook` varchar(255) NOT NULL,
+  `twitter` varchar(255) NOT NULL,
+  `mostrar` enum('no','si') NOT NULL,
+  `numero` varchar(255) NOT NULL,
+  PRIMARY KEY (`personalId`)
+) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `personal`
 --
 
 INSERT INTO `personal` (`personalId`, `positionId`, `name`, `lastname_materno`, `lastname_paterno`, `username`, `passwd`, `description`, `curp`, `rfc`, `fecha_nacimiento`, `fecha_sep`, `sexo`, `fecha_dgta`, `claves_presupuestales`, `categoria`, `perfil`, `stateId`, `lastActivity`, `foto`, `correo`, `celular`, `semblanza`, `firmaConstancia`, `profesion`, `INE`, `calle`, `nInterior`, `nExterior`, `colonia`, `estado`, `ciudad`, `rutaFirma`, `estatus`, `tipoContrato`, `facebook`, `twitter`, `mostrar`, `numero`) VALUES
-(1, 1, 'Admin', '', '', 'admin', 'enlinea*2016.', '', '', '', '', '', 'h', '', '', '', 'Administrador', 0, 1564325300, 'alumnos/no_foto.JPG', '', '', '', 'no', '', '', '', '', '', '', '', 0, '', 'activo', 'fisica', '', '', 'no', '');
+(1, 1, 'Admin', '', '', 'admin', 'admin', '', '', '', '', '', 'h', '', '', '', 'Administrador', 0, 1564863699, 'alumnos/no_foto.JPG', '', '', '', 'no', '', '', '', '', '', '', '', 0, '', 'activo', 'fisica', '', '', 'no', ''),
+(200, 2, 'Daniel', 'Lopez', 'Angel', '', '', '', '', '', '11-05-1985', '', 'h', '', '', '', 'Docente', 1, 0, 'alumnos/no_foto.JPG', '', '', '', 'no', '', '', '', '', '', '', '', 0, '', 'activo', 'fisica', '', '', 'si', '');
 
 -- --------------------------------------------------------
 
@@ -4386,10 +4549,11 @@ INSERT INTO `personal` (`personalId`, `positionId`, `name`, `lastname_materno`, 
 -- Table structure for table `personal_role`
 --
 
-CREATE TABLE `personal_role` (
+DROP TABLE IF EXISTS `personal_role`;
+CREATE TABLE IF NOT EXISTS `personal_role` (
   `personalId` int(11) NOT NULL,
   `roleId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `personal_role`
@@ -4487,7 +4651,8 @@ INSERT INTO `personal_role` (`personalId`, `roleId`) VALUES
 (196, 2),
 (197, 2),
 (198, 2),
-(199, 2);
+(199, 2),
+(200, 3);
 
 -- --------------------------------------------------------
 
@@ -4495,23 +4660,26 @@ INSERT INTO `personal_role` (`personalId`, `roleId`) VALUES
 -- Table structure for table `position`
 --
 
-CREATE TABLE `position` (
-  `positionId` int(11) NOT NULL,
-  `clave` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `name` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `description` text CHARACTER SET latin1
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+DROP TABLE IF EXISTS `position`;
+CREATE TABLE IF NOT EXISTS `position` (
+  `positionId` int(11) NOT NULL AUTO_INCREMENT,
+  `clave` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` mediumtext,
+  PRIMARY KEY (`positionId`),
+  KEY `clave` (`clave`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `position`
 --
 
 INSERT INTO `position` (`positionId`, `clave`, `name`, `description`) VALUES
-(4, 'DOC', 'DOCENTE', 'DOCENTE'),
+(1, 'ADMIN', 'ADMINISTRADOR GENERAL', 'ADMINISTRADOR GENERAL'),
 (2, 'CE', 'CONTROL ESCOLAR', 'CONTROL ESCOLAR'),
 (3, 'CE', 'JEFE CONTROL ESCOLAR', 'JEFE DE CONTROL ESCOLAR'),
+(4, 'DOC', 'DOCENTE', 'DOCENTE'),
 (5, 'JDEPTO', 'JEFE DEPARTAMENTO', ''),
-(1, 'ADMIN', 'ADMINISTRADOR GENERAL', 'ADMINISTRADOR GENERAL'),
 (23, 'CA', 'COORDINADOR ADMINISTRATIVO', ''),
 (24, 'AEE', 'ADMINISTRADOR EDUCACIóN EN LíNEA', '');
 
@@ -4521,15 +4689,17 @@ INSERT INTO `position` (`positionId`, `clave`, `name`, `description`) VALUES
 -- Table structure for table `pregunta`
 --
 
-CREATE TABLE `pregunta` (
-  `preguntaId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `pregunta`;
+CREATE TABLE IF NOT EXISTS `pregunta` (
+  `preguntaId` int(11) NOT NULL AUTO_INCREMENT,
   `pregunta` text NOT NULL,
   `tiporespuesta` enum('punto','opcional','abierta') NOT NULL,
   `encuestaId` int(11) NOT NULL,
   `categoriapreguntaId` int(11) NOT NULL,
   `rango` varchar(255) NOT NULL,
   `opcional` text NOT NULL,
-  `numCaracter` varchar(255) NOT NULL
+  `numCaracter` varchar(255) NOT NULL,
+  PRIMARY KEY (`preguntaId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4538,10 +4708,12 @@ CREATE TABLE `pregunta` (
 -- Table structure for table `profesion`
 --
 
-CREATE TABLE `profesion` (
-  `profesionId` int(11) NOT NULL,
-  `profesionName` varchar(255) CHARACTER SET latin1 NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+DROP TABLE IF EXISTS `profesion`;
+CREATE TABLE IF NOT EXISTS `profesion` (
+  `profesionId` int(11) NOT NULL AUTO_INCREMENT,
+  `profesionName` varchar(255) NOT NULL,
+  PRIMARY KEY (`profesionId`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `profesion`
@@ -4556,25 +4728,25 @@ INSERT INTO `profesion` (`profesionId`, `profesionName`) VALUES
 (7, 'DERECHO'),
 (8, 'TURISMO'),
 (9, 'ADMINISTRACIÓN'),
-(15, 'INGENIERÍA'),
-(14, 'PEDAGOGIA'),
 (13, 'ODONTOLOGIA'),
+(14, 'PEDAGOGIA'),
+(15, 'INGENIERÍA'),
 (16, 'CRIMINOLOGIA'),
 (17, 'PSICOLOGIA'),
 (18, 'DISEÑO GRAFICO'),
 (19, 'SOCIOLOGIA'),
 (20, 'MERCADOTECNIA'),
 (21, 'ECONOMÍA'),
-(34, 'VETERINARIA'),
 (23, 'RELACIONES INTERNACIONALES'),
 (24, 'COMUNICACION'),
 (25, 'SISTEMAS COMPUTACIONALES'),
-(33, 'CIENCIAS DE LA EDUCACIÓN'),
 (27, 'CIENCIAS POLITICAS'),
 (28, 'SIN PROFESION'),
 (29, 'ADMINISTRACIÓN DE EMPRESAS'),
 (30, 'ADMINISTRACION TURISTICA'),
 (32, 'INGENIERÍA CIVIL'),
+(33, 'CIENCIAS DE LA EDUCACIÓN'),
+(34, 'VETERINARIA'),
 (35, 'INFORMÁTICA'),
 (36, 'MEDICINA'),
 (37, 'NEGOCIOS INTERNACIONALES'),
@@ -4590,12 +4762,14 @@ INSERT INTO `profesion` (`profesionId`, `profesionName`) VALUES
 -- Table structure for table `recording`
 --
 
-CREATE TABLE `recording` (
-  `recordingId` int(11) NOT NULL,
-  `embed` text NOT NULL,
+DROP TABLE IF EXISTS `recording`;
+CREATE TABLE IF NOT EXISTS `recording` (
+  `recordingId` int(11) NOT NULL AUTO_INCREMENT,
+  `embed` mediumtext NOT NULL,
   `title` varchar(255) NOT NULL,
-  `date` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `date` date NOT NULL,
+  PRIMARY KEY (`recordingId`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4603,13 +4777,15 @@ CREATE TABLE `recording` (
 -- Table structure for table `registration`
 --
 
-CREATE TABLE `registration` (
-  `registrationId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `registration`;
+CREATE TABLE IF NOT EXISTS `registration` (
+  `registrationId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `periodoId` int(11) NOT NULL,
   `dateRegister` varchar(10) NOT NULL,
-  `confirmed` enum('0','1') NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `confirmed` enum('0','1') NOT NULL,
+  PRIMARY KEY (`registrationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4617,12 +4793,14 @@ CREATE TABLE `registration` (
 -- Table structure for table `registration_v1`
 --
 
-CREATE TABLE `registration_v1` (
-  `registrationId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `registration_v1`;
+CREATE TABLE IF NOT EXISTS `registration_v1` (
+  `registrationId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `periodoId` int(11) NOT NULL,
-  `dateRegister` varchar(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `dateRegister` varchar(10) NOT NULL,
+  PRIMARY KEY (`registrationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4630,18 +4808,20 @@ CREATE TABLE `registration_v1` (
 -- Table structure for table `reply`
 --
 
-CREATE TABLE `reply` (
-  `replyId` int(11) NOT NULL,
-  `content` longtext CHARACTER SET latin1 NOT NULL,
+DROP TABLE IF EXISTS `reply`;
+CREATE TABLE IF NOT EXISTS `reply` (
+  `replyId` int(11) NOT NULL AUTO_INCREMENT,
+  `content` longtext NOT NULL,
   `replyDate` datetime NOT NULL,
   `topicId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `personalId` int(11) NOT NULL DEFAULT '0',
-  `notificado` text COLLATE utf8_bin NOT NULL,
-  `path` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `mime` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `son` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `notificado` text NOT NULL,
+  `path` varchar(255) NOT NULL,
+  `mime` varchar(255) NOT NULL,
+  `son` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`replyId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4649,12 +4829,14 @@ CREATE TABLE `reply` (
 -- Table structure for table `repositorio`
 --
 
-CREATE TABLE `repositorio` (
-  `repositorioId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `repositorio`;
+CREATE TABLE IF NOT EXISTS `repositorio` (
+  `repositorioId` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   `activo` enum('no','si') NOT NULL,
-  `ruta` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ruta` varchar(255) NOT NULL,
+  PRIMARY KEY (`repositorioId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4662,14 +4844,16 @@ CREATE TABLE `repositorio` (
 -- Table structure for table `resource`
 --
 
-CREATE TABLE `resource` (
-  `resourceId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `resource`;
+CREATE TABLE IF NOT EXISTS `resource` (
+  `resourceId` int(11) NOT NULL AUTO_INCREMENT,
   `courseModuleId` int(11) NOT NULL DEFAULT '0',
   `resourceConfigId` int(11) NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `description` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `path` varchar(255) NOT NULL,
+  PRIMARY KEY (`resourceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4677,13 +4861,15 @@ CREATE TABLE `resource` (
 -- Table structure for table `resource_config`
 --
 
-CREATE TABLE `resource_config` (
-  `resourceConfigId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `resource_config`;
+CREATE TABLE IF NOT EXISTS `resource_config` (
+  `resourceConfigId` int(11) NOT NULL AUTO_INCREMENT,
   `subjectModuleId` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `description` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `path` varchar(255) NOT NULL,
+  PRIMARY KEY (`resourceConfigId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4691,15 +4877,17 @@ CREATE TABLE `resource_config` (
 -- Table structure for table `resultado`
 --
 
-CREATE TABLE `resultado` (
-  `resultadoId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `resultado`;
+CREATE TABLE IF NOT EXISTS `resultado` (
+  `resultadoId` int(11) NOT NULL AUTO_INCREMENT,
   `preguntaId` int(11) NOT NULL,
-  `respuesta` text NOT NULL,
+  `respuesta` mediumtext NOT NULL,
   `usuarioId` int(11) NOT NULL,
   `courseModuleId` int(11) NOT NULL,
   `encuestaId` int(11) NOT NULL,
-  `profesorId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `profesorId` int(11) NOT NULL,
+  PRIMARY KEY (`resultadoId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4707,8 +4895,9 @@ CREATE TABLE `resultado` (
 -- Table structure for table `rfc`
 --
 
-CREATE TABLE `rfc` (
-  `rfcId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `rfc`;
+CREATE TABLE IF NOT EXISTS `rfc` (
+  `rfcId` int(11) NOT NULL AUTO_INCREMENT,
   `empresaId` int(11) NOT NULL,
   `rfc` varchar(13) NOT NULL,
   `razonSocial` varchar(255) NOT NULL,
@@ -4726,8 +4915,9 @@ CREATE TABLE `rfc` (
   `activo` enum('si','no') NOT NULL DEFAULT 'no',
   `main` enum('no','si') NOT NULL,
   `regimenFiscal` varchar(255) NOT NULL,
-  `iva` int(3) NOT NULL DEFAULT '16'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `iva` int(3) NOT NULL DEFAULT '16',
+  PRIMARY KEY (`rfcId`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `rfc`
@@ -4742,12 +4932,14 @@ INSERT INTO `rfc` (`rfcId`, `empresaId`, `rfc`, `razonSocial`, `pais`, `calle`, 
 -- Table structure for table `role`
 --
 
-CREATE TABLE `role` (
-  `roleId` int(11) NOT NULL,
-  `clave` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `name` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `description` text CHARACTER SET latin1 NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE IF NOT EXISTS `role` (
+  `roleId` int(11) NOT NULL AUTO_INCREMENT,
+  `clave` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` mediumtext NOT NULL,
+  PRIMARY KEY (`roleId`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `role`
@@ -4756,9 +4948,9 @@ CREATE TABLE `role` (
 INSERT INTO `role` (`roleId`, `clave`, `name`, `description`) VALUES
 (1, 'Admin', 'Administrador General', 'Administrador General del Sistema'),
 (2, 'RDOC', 'DOCENTE', ''),
-(28, 'CE', 'CONTROL ESCOLAR', ''),
 (3, 'Dir', 'DIRECTIVO', ''),
 (23, 'JDEPTO', 'JEFE DE DEPARTAMENTO', ''),
+(28, 'CE', 'CONTROL ESCOLAR', ''),
 (29, 'ALAT', 'ALTA DE ALUMNOS', 'PERFIL PARA AGREGAR ?NICAMENTE ALUMNOS'),
 (30, 'CA', 'COORDINADOR ADMINISTRATIVO', ''),
 (32, 'AEE', 'Administrador Educación en Línea', 'Persona encargada de la Admnistración del Sistema de Educación en Línea'),
@@ -4775,10 +4967,11 @@ INSERT INTO `role` (`roleId`, `clave`, `name`, `description`) VALUES
 -- Table structure for table `role_modules`
 --
 
-CREATE TABLE `role_modules` (
+DROP TABLE IF EXISTS `role_modules`;
+CREATE TABLE IF NOT EXISTS `role_modules` (
   `roleId` int(11) NOT NULL,
   `moduleId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `role_modules`
@@ -4858,11 +5051,13 @@ INSERT INTO `role_modules` (`roleId`, `moduleId`) VALUES
 -- Table structure for table `schedule`
 --
 
-CREATE TABLE `schedule` (
-  `scheduleId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `schedule`;
+CREATE TABLE IF NOT EXISTS `schedule` (
+  `scheduleId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `description` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `description` mediumtext NOT NULL,
+  PRIMARY KEY (`scheduleId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4870,12 +5065,14 @@ CREATE TABLE `schedule` (
 -- Table structure for table `schedule_group`
 --
 
-CREATE TABLE `schedule_group` (
-  `scheduleGroupId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `schedule_group`;
+CREATE TABLE IF NOT EXISTS `schedule_group` (
+  `scheduleGroupId` int(11) NOT NULL AUTO_INCREMENT,
   `majorId` int(11) NOT NULL,
   `semesterId` int(11) NOT NULL,
-  `groupId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `groupId` int(11) NOT NULL,
+  PRIMARY KEY (`scheduleGroupId`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4883,13 +5080,15 @@ CREATE TABLE `schedule_group` (
 -- Table structure for table `schedule_test`
 --
 
-CREATE TABLE `schedule_test` (
-  `scheduletestId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `schedule_test`;
+CREATE TABLE IF NOT EXISTS `schedule_test` (
+  `scheduletestId` int(11) NOT NULL AUTO_INCREMENT,
   `typetestId` int(11) NOT NULL,
   `datetest` date NOT NULL,
   `comments` varchar(60) NOT NULL,
-  `periodoId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='calendario de ex?menes parciales, globales, etc.';
+  `periodoId` int(11) NOT NULL,
+  PRIMARY KEY (`scheduletestId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='calendario de ex?menes parciales, globales, etc.';
 
 -- --------------------------------------------------------
 
@@ -4897,16 +5096,18 @@ CREATE TABLE `schedule_test` (
 -- Table structure for table `schedule_time`
 --
 
-CREATE TABLE `schedule_time` (
-  `schtimeId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `schedule_time`;
+CREATE TABLE IF NOT EXISTS `schedule_time` (
+  `schtimeId` int(11) NOT NULL AUTO_INCREMENT,
   `hr_start` int(11) NOT NULL,
   `min_start` int(11) NOT NULL,
   `hr_end` int(11) NOT NULL,
   `min_end` int(11) NOT NULL,
   `periodoId` int(11) NOT NULL,
   `free_time` enum('0','1') NOT NULL,
-  `description` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `description` mediumtext NOT NULL,
+  PRIMARY KEY (`schtimeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4914,14 +5115,16 @@ CREATE TABLE `schedule_time` (
 -- Table structure for table `schgpo_subject`
 --
 
-CREATE TABLE `schgpo_subject` (
-  `schGpoSubjectId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `schgpo_subject`;
+CREATE TABLE IF NOT EXISTS `schgpo_subject` (
+  `schGpoSubjectId` int(11) NOT NULL AUTO_INCREMENT,
   `scheduleGroupId` int(11) NOT NULL,
   `subgpoId` int(11) NOT NULL,
   `subjectId` int(11) NOT NULL,
   `semesterId` int(11) NOT NULL,
-  `periodoId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `periodoId` int(11) NOT NULL,
+  UNIQUE KEY `schGpoSubjectId` (`schGpoSubjectId`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4929,11 +5132,13 @@ CREATE TABLE `schgpo_subject` (
 -- Table structure for table `school_type`
 --
 
-CREATE TABLE `school_type` (
-  `schtypId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `school_type`;
+CREATE TABLE IF NOT EXISTS `school_type` (
+  `schtypId` int(11) NOT NULL AUTO_INCREMENT,
   `clave` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`schtypId`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `school_type`
@@ -4956,11 +5161,13 @@ INSERT INTO `school_type` (`schtypId`, `clave`, `name`) VALUES
 -- Table structure for table `semester`
 --
 
-CREATE TABLE `semester` (
-  `semesterId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `semester`;
+CREATE TABLE IF NOT EXISTS `semester` (
+  `semesterId` int(11) NOT NULL AUTO_INCREMENT,
   `clave` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`semesterId`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `semester`
@@ -4980,8 +5187,9 @@ INSERT INTO `semester` (`semesterId`, `clave`, `name`) VALUES
 -- Table structure for table `serie`
 --
 
-CREATE TABLE `serie` (
-  `serieId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `serie`;
+CREATE TABLE IF NOT EXISTS `serie` (
+  `serieId` int(11) NOT NULL AUTO_INCREMENT,
   `empresaId` int(11) NOT NULL,
   `sucursalId` int(11) NOT NULL,
   `serie` varchar(16) NOT NULL,
@@ -4994,8 +5202,9 @@ CREATE TABLE `serie` (
   `noCertificado` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `consecutivo` int(11) NOT NULL,
-  `rfcId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `rfcId` int(11) NOT NULL,
+  PRIMARY KEY (`serieId`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `serie`
@@ -5010,9 +5219,10 @@ INSERT INTO `serie` (`serieId`, `empresaId`, `sucursalId`, `serie`, `folioInicia
 -- Table structure for table `solicitud`
 --
 
-CREATE TABLE `solicitud` (
-  `solicitudId` int(11) NOT NULL,
-  `motivo` text NOT NULL,
+DROP TABLE IF EXISTS `solicitud`;
+CREATE TABLE IF NOT EXISTS `solicitud` (
+  `solicitudId` int(11) NOT NULL AUTO_INCREMENT,
+  `motivo` mediumtext NOT NULL,
   `fechaSolicitud` date NOT NULL,
   `tiposolicitudId` int(11) NOT NULL,
   `estatus` enum('pendiente','autorizado','completado','en progreso','cancelado') NOT NULL,
@@ -5032,8 +5242,9 @@ CREATE TABLE `solicitud` (
   `sexoFirma` varchar(255) NOT NULL,
   `precio` decimal(15,2) NOT NULL,
   `horario` varchar(255) NOT NULL,
-  `observacion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `observacion` mediumtext NOT NULL,
+  PRIMARY KEY (`solicitudId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5041,11 +5252,13 @@ CREATE TABLE `solicitud` (
 -- Table structure for table `speciality`
 --
 
-CREATE TABLE `speciality` (
-  `specialityId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `speciality`;
+CREATE TABLE IF NOT EXISTS `speciality` (
+  `specialityId` int(11) NOT NULL AUTO_INCREMENT,
   `clave` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`specialityId`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `speciality`
@@ -5055,13 +5268,13 @@ INSERT INTO `speciality` (`specialityId`, `clave`, `name`) VALUES
 (1, 'F-M', 'FISICO MATEM?TICA'),
 (2, 'Q-B', 'QU?MICO BIOL?GICA'),
 (3, 'E-A', 'ECON?MICO ADMINISTRATIVA'),
-(15, 'AGROPECUARIO', 'T?CNICO AGROPECUARIO'),
 (13, 'C-B?SICO', 'COMPONENTE B?SICO'),
-(20, 'OPT', 'OPTATIVA'),
+(15, 'AGROPECUARIO', 'T?CNICO AGROPECUARIO'),
 (16, 'AGRONEGOCIOS', 'T?CNICO EN AGRONEGOCIOS'),
 (17, 'INFORM?TICA', 'T?CNICO EN INFORM?TICA'),
 (18, 'DESARROLLO', 'T?CNICO EN DESARROLLO COMUNITARIO'),
 (19, 'AGROINDUSTRIAS', 'T?CNICO EN AGROINDUSTRIAS'),
+(20, 'OPT', 'OPTATIVA'),
 (22, 'ADMINISTRACI?N', 'TECNICO EN ADMINISTRCI?N Y CONTABILIDAD');
 
 -- --------------------------------------------------------
@@ -5070,11 +5283,13 @@ INSERT INTO `speciality` (`specialityId`, `clave`, `name`) VALUES
 -- Table structure for table `state`
 --
 
-CREATE TABLE `state` (
-  `stateId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `state`;
+CREATE TABLE IF NOT EXISTS `state` (
+  `stateId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `clave` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `clave` varchar(255) NOT NULL,
+  PRIMARY KEY (`stateId`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `state`
@@ -5122,11 +5337,12 @@ INSERT INTO `state` (`stateId`, `name`, `clave`) VALUES
 -- Table structure for table `subgpo_schedule`
 --
 
-CREATE TABLE `subgpo_schedule` (
+DROP TABLE IF EXISTS `subgpo_schedule`;
+CREATE TABLE IF NOT EXISTS `subgpo_schedule` (
   `subgpoId` int(11) NOT NULL,
   `schtimeId` int(11) NOT NULL,
   `day` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5134,36 +5350,38 @@ CREATE TABLE `subgpo_schedule` (
 -- Table structure for table `subject`
 --
 
-CREATE TABLE `subject` (
-  `subjectId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `subject`;
+CREATE TABLE IF NOT EXISTS `subject` (
+  `subjectId` int(11) NOT NULL AUTO_INCREMENT,
   `specialityId` int(11) NOT NULL,
   `semesterId` int(11) NOT NULL,
-  `tipoPeriodo` enum('Cuatrimestre','Semestre') COLLATE utf8_bin NOT NULL,
-  `clave` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `tipoPeriodo` enum('Cuatrimestre','Semestre') NOT NULL,
+  `clave` varchar(255) NOT NULL,
   `fechaRvoe` date NOT NULL,
   `fechaRvoeLinea` date NOT NULL,
-  `fechaRevoe` varchar(255) CHARACTER SET latin1 NOT NULL DEFAULT '24 DE ENERO DEL 2011',
-  `name` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `fechaRevoe` varchar(255) NOT NULL DEFAULT '24 DE ENERO DEL 2011',
+  `name` varchar(255) NOT NULL,
   `credits` int(11) NOT NULL,
   `group_qty` int(11) NOT NULL,
   `student_limit` int(11) NOT NULL,
-  `welcomeText` text CHARACTER SET latin1 NOT NULL,
-  `introduction` text CHARACTER SET latin1 NOT NULL,
-  `intentions` text CHARACTER SET latin1 NOT NULL,
-  `objectives` text CHARACTER SET latin1 NOT NULL,
-  `themes` text CHARACTER SET latin1 NOT NULL,
-  `scheme` text CHARACTER SET latin1 NOT NULL,
-  `methodology` text CHARACTER SET latin1 NOT NULL,
-  `politics` text CHARACTER SET latin1 NOT NULL,
-  `evaluation` text CHARACTER SET latin1 NOT NULL,
-  `bibliography` text CHARACTER SET latin1 NOT NULL,
+  `welcomeText` mediumtext NOT NULL,
+  `introduction` mediumtext NOT NULL,
+  `intentions` mediumtext NOT NULL,
+  `objectives` mediumtext NOT NULL,
+  `themes` mediumtext NOT NULL,
+  `scheme` mediumtext NOT NULL,
+  `methodology` mediumtext NOT NULL,
+  `politics` mediumtext NOT NULL,
+  `evaluation` mediumtext NOT NULL,
+  `bibliography` mediumtext NOT NULL,
   `tipo` int(11) NOT NULL,
-  `assignedTo` text CHARACTER SET latin1 NOT NULL,
+  `assignedTo` mediumtext NOT NULL,
   `cost` float(10,2) NOT NULL,
   `payments` int(11) NOT NULL DEFAULT '1',
-  `rvoe` varchar(255) COLLATE utf8_bin NOT NULL,
-  `rvoeLinea` varchar(255) COLLATE utf8_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `rvoe` varchar(255) NOT NULL,
+  `rvoeLinea` varchar(255) NOT NULL,
+  PRIMARY KEY (`subjectId`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5171,18 +5389,21 @@ CREATE TABLE `subject` (
 -- Table structure for table `subject_group`
 --
 
-CREATE TABLE `subject_group` (
-  `subgpoId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `subject_group`;
+CREATE TABLE IF NOT EXISTS `subject_group` (
+  `subgpoId` int(11) NOT NULL AUTO_INCREMENT,
   `subjectId` int(11) NOT NULL,
   `groupId` int(11) NOT NULL,
   `personalId` int(11) NOT NULL,
   `classroomId` int(11) NOT NULL,
   `clave` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `description` mediumtext NOT NULL,
   `recursamiento` enum('0','1') NOT NULL,
-  `periodoId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `periodoId` int(11) NOT NULL,
+  PRIMARY KEY (`subgpoId`),
+  KEY `periodoId` (`periodoId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5190,8 +5411,9 @@ CREATE TABLE `subject_group` (
 -- Table structure for table `subject_module`
 --
 
-CREATE TABLE `subject_module` (
-  `subjectModuleId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `subject_module`;
+CREATE TABLE IF NOT EXISTS `subject_module` (
+  `subjectModuleId` int(11) NOT NULL AUTO_INCREMENT,
   `subjectId` int(11) NOT NULL,
   `specialityId` int(11) NOT NULL,
   `semesterId` int(11) NOT NULL,
@@ -5200,20 +5422,21 @@ CREATE TABLE `subject_module` (
   `credits` int(11) NOT NULL,
   `group_qty` int(11) NOT NULL,
   `student_limit` int(11) NOT NULL,
-  `welcomeText` text NOT NULL,
-  `introduction` text NOT NULL,
-  `intentions` text NOT NULL,
-  `objectives` text NOT NULL,
-  `themes` text NOT NULL,
-  `scheme` text NOT NULL,
-  `methodology` text NOT NULL,
-  `politics` text NOT NULL,
-  `evaluation` text NOT NULL,
-  `bibliography` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `welcomeText` mediumtext NOT NULL,
+  `introduction` mediumtext NOT NULL,
+  `intentions` mediumtext NOT NULL,
+  `objectives` mediumtext NOT NULL,
+  `themes` mediumtext NOT NULL,
+  `scheme` mediumtext NOT NULL,
+  `methodology` mediumtext NOT NULL,
+  `politics` mediumtext NOT NULL,
+  `evaluation` mediumtext NOT NULL,
+  `bibliography` text NOT NULL,
   `tipo` int(11) NOT NULL,
-  `assignedTo` text NOT NULL,
-  `cost` float(10,2) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `assignedTo` mediumtext NOT NULL,
+  `cost` float(10,2) NOT NULL,
+  PRIMARY KEY (`subjectModuleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5221,8 +5444,9 @@ CREATE TABLE `subject_module` (
 -- Table structure for table `sucursal`
 --
 
-CREATE TABLE `sucursal` (
-  `sucursalId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `sucursal`;
+CREATE TABLE IF NOT EXISTS `sucursal` (
+  `sucursalId` int(11) NOT NULL AUTO_INCREMENT,
   `empresaId` int(11) NOT NULL,
   `rfcId` int(11) NOT NULL,
   `identificador` varchar(255) NOT NULL,
@@ -5238,8 +5462,9 @@ CREATE TABLE `sucursal` (
   `ciudad` varchar(255) NOT NULL,
   `referencia` varchar(255) NOT NULL,
   `estado` varchar(255) NOT NULL,
-  `cp` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `cp` varchar(255) NOT NULL,
+  PRIMARY KEY (`sucursalId`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sucursal`
@@ -5254,12 +5479,14 @@ INSERT INTO `sucursal` (`sucursalId`, `empresaId`, `rfcId`, `identificador`, `su
 -- Table structure for table `team`
 --
 
-CREATE TABLE `team` (
-  `teamId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `team`;
+CREATE TABLE IF NOT EXISTS `team` (
+  `teamId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `courseModuleId` int(11) NOT NULL,
-  `teamNumber` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `teamNumber` int(11) NOT NULL,
+  PRIMARY KEY (`teamId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5267,35 +5494,39 @@ CREATE TABLE `team` (
 -- Table structure for table `test`
 --
 
-CREATE TABLE `test` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `test`;
+CREATE TABLE IF NOT EXISTS `test` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `description` mediumtext NOT NULL,
   `number` int(11) NOT NULL,
   `float` float NOT NULL,
   `date` date NOT NULL,
   `double` double NOT NULL,
   `enum` enum('si','no') NOT NULL,
-  `maxTries` int(11) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `maxTries` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiposComprobante`
+-- Table structure for table `tiposcomprobante`
 --
 
-CREATE TABLE `tiposComprobante` (
-  `tiposComprobanteId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tiposcomprobante`;
+CREATE TABLE IF NOT EXISTS `tiposcomprobante` (
+  `tiposComprobanteId` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
-  `tipoDeComprobante` enum('ingreso','egreso','traslado') NOT NULL DEFAULT 'ingreso'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `tipoDeComprobante` enum('ingreso','egreso','traslado') NOT NULL DEFAULT 'ingreso',
+  PRIMARY KEY (`tiposComprobanteId`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tiposComprobante`
+-- Dumping data for table `tiposcomprobante`
 --
 
-INSERT INTO `tiposComprobante` (`tiposComprobanteId`, `nombre`, `tipoDeComprobante`) VALUES
+INSERT INTO `tiposcomprobante` (`tiposComprobanteId`, `nombre`, `tipoDeComprobante`) VALUES
 (1, 'Factura', 'ingreso'),
 (2, 'Nota de Credito', 'egreso'),
 (3, 'Nota de Debito', 'ingreso'),
@@ -5307,13 +5538,15 @@ INSERT INTO `tiposComprobante` (`tiposComprobanteId`, `nombre`, `tipoDeComproban
 -- Table structure for table `tiposolicitud`
 --
 
-CREATE TABLE `tiposolicitud` (
-  `tiposolicitudId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tiposolicitud`;
+CREATE TABLE IF NOT EXISTS `tiposolicitud` (
+  `tiposolicitudId` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   `precio` decimal(15,2) NOT NULL,
   `idfire` int(11) NOT NULL,
-  `orden` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `orden` varchar(255) NOT NULL,
+  PRIMARY KEY (`tiposolicitudId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5321,16 +5554,18 @@ CREATE TABLE `tiposolicitud` (
 -- Table structure for table `topic`
 --
 
-CREATE TABLE `topic` (
-  `topicId` int(11) NOT NULL,
-  `subject` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `tipo` enum('dudas','asesoria','presentacion','discucion') COLLATE utf8_bin DEFAULT NULL,
-  `descripcion` text CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+DROP TABLE IF EXISTS `topic`;
+CREATE TABLE IF NOT EXISTS `topic` (
+  `topicId` int(11) NOT NULL AUTO_INCREMENT,
+  `subject` varchar(255) NOT NULL,
+  `tipo` enum('dudas','asesoria','presentacion','discucion') DEFAULT NULL,
+  `descripcion` mediumtext NOT NULL,
   `topicDate` datetime NOT NULL,
   `courseId` int(11) NOT NULL DEFAULT '0',
   `courseModuleId` int(11) NOT NULL,
-  `userId` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `userId` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`topicId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5338,14 +5573,16 @@ CREATE TABLE `topic` (
 -- Table structure for table `topicsub`
 --
 
-CREATE TABLE `topicsub` (
-  `topicsubId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `topicsub`;
+CREATE TABLE IF NOT EXISTS `topicsub` (
+  `topicsubId` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
-  `descripcion` text NOT NULL,
+  `descripcion` mediumtext NOT NULL,
   `topicId` int(11) NOT NULL,
   `topicsubDate` datetime NOT NULL,
-  `userId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `userId` int(11) NOT NULL,
+  PRIMARY KEY (`topicsubId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5353,23 +5590,25 @@ CREATE TABLE `topicsub` (
 -- Table structure for table `typetest`
 --
 
-CREATE TABLE `typetest` (
-  `testId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `typetest`;
+CREATE TABLE IF NOT EXISTS `typetest` (
+  `testId` int(11) NOT NULL AUTO_INCREMENT,
   `identifier` varchar(255) NOT NULL,
   `typetest` varchar(255) NOT NULL,
-  `regularization` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `regularization` varchar(255) NOT NULL,
+  PRIMARY KEY (`testId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `typetest`
 --
 
 INSERT INTO `typetest` (`testId`, `identifier`, `typetest`, `regularization`) VALUES
+(1, 'PAR', 'PARCIAL', 'no'),
+(2, 'GBL', 'GLOBAL', 'no'),
 (3, 'R1', 'RECUPERACION', 'yes'),
 (4, 'INT', 'INTERSEMESTRAL', 'yes'),
-(5, 'REC', 'RECURSAMIENTO', 'yes'),
-(1, 'PAR', 'PARCIAL', 'no'),
-(2, 'GBL', 'GLOBAL', 'no');
+(5, 'REC', 'RECURSAMIENTO', 'yes');
 
 -- --------------------------------------------------------
 
@@ -5377,11 +5616,13 @@ INSERT INTO `typetest` (`testId`, `identifier`, `typetest`, `regularization`) VA
 -- Table structure for table `type_calif`
 --
 
-CREATE TABLE `type_calif` (
-  `typeCalifId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `type_calif`;
+CREATE TABLE IF NOT EXISTS `type_calif` (
+  `typeCalifId` int(11) NOT NULL AUTO_INCREMENT,
   `identifier` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`typeCalifId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `type_calif`
@@ -5399,88 +5640,90 @@ INSERT INTO `type_calif` (`typeCalifId`, `identifier`, `name`) VALUES
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
-  `userId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
   `folioFicha` int(11) NOT NULL,
-  `controlNumber` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `names` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `lastNamePaterno` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `lastNameMaterno` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `birthdate` varchar(10) CHARACTER SET latin1 NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `phone` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `type` enum('user','student','maestro','admin') CHARACTER SET utf8 NOT NULL DEFAULT 'user',
-  `street` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `number` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `colony` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `city` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `state` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `country` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `controlNumber` varchar(255) NOT NULL,
+  `names` varchar(255) NOT NULL,
+  `lastNamePaterno` varchar(255) NOT NULL,
+  `lastNameMaterno` varchar(255) NOT NULL,
+  `birthdate` varchar(10) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `type` enum('user','student','maestro','admin') NOT NULL DEFAULT 'user',
+  `street` varchar(255) NOT NULL,
+  `number` varchar(50) NOT NULL,
+  `colony` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
   `pais` int(11) NOT NULL DEFAULT '1',
   `estado` int(11) NOT NULL,
   `ciudad` int(11) NOT NULL,
-  `postalCode` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `sexo` enum('m','f') CHARACTER SET utf8 NOT NULL DEFAULT 'm',
-  `curp` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `cityBorn` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `stateBorn` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `countryBorn` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `postalCode` varchar(255) NOT NULL,
+  `sexo` enum('m','f') NOT NULL DEFAULT 'm',
+  `curp` varchar(255) NOT NULL,
+  `cityBorn` varchar(255) NOT NULL,
+  `stateBorn` varchar(255) NOT NULL,
+  `countryBorn` varchar(255) NOT NULL,
   `mainMajor` int(11) NOT NULL,
   `secondMajor` int(11) NOT NULL,
   `thirdMajor` int(11) NOT NULL,
   `mode` tinyint(4) NOT NULL,
-  `tutorNames` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `tutorLastNamePaterno` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `tutorLastNameMaterno` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `tutorAddress` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `tutorPhone` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `prevSchNames` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `tutorNames` varchar(255) NOT NULL,
+  `tutorLastNamePaterno` varchar(255) NOT NULL,
+  `tutorLastNameMaterno` varchar(255) NOT NULL,
+  `tutorAddress` varchar(255) NOT NULL,
+  `tutorPhone` varchar(50) NOT NULL,
+  `prevSchNames` varchar(255) NOT NULL,
   `prevSchType` tinyint(4) NOT NULL,
-  `prevSchKey` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `prevSchKey` varchar(255) NOT NULL,
   `prevSchMode` tinyint(4) NOT NULL,
-  `prevSchCity` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `prevSchState` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `prevSchCity` varchar(255) NOT NULL,
+  `prevSchState` varchar(255) NOT NULL,
   `prevSchAverage` float NOT NULL,
   `prevSchCertified` tinyint(4) NOT NULL,
   `majorId` int(11) NOT NULL,
   `semesterId` int(11) NOT NULL,
   `groupId` int(11) NOT NULL,
   `periodoId` int(11) NOT NULL,
-  `status` enum('pendiente','autorizada','cancelada','baja','egresado') CHARACTER SET latin1 NOT NULL DEFAULT 'pendiente',
+  `status` enum('pendiente','autorizada','cancelada','baja','egresado') NOT NULL DEFAULT 'pendiente',
   `codeId` int(11) NOT NULL,
   `average` float NOT NULL,
   `cancelPeriodoId` int(10) NOT NULL,
-  `nacionality` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `anioEgreso` varchar(4) CHARACTER SET latin1 NOT NULL,
-  `maritalStatus` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `fax` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `mobile` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `workplace` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `workplaceOcupation` enum('FUNCIONARIO PUBLICO MUNICIPAL','FUNCIONARIO PUBLICO ESTATAL','FUNCIONARIO PUBLICO FEDERAL','OTROS') CHARACTER SET latin1 NOT NULL DEFAULT 'FUNCIONARIO PUBLICO MUNICIPAL',
-  `workplaceAddress` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `workplaceArea` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `workplacePosition` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `workplaceCity` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `nacionality` varchar(255) NOT NULL,
+  `anioEgreso` varchar(4) NOT NULL,
+  `maritalStatus` varchar(255) NOT NULL,
+  `fax` varchar(255) NOT NULL,
+  `mobile` varchar(255) NOT NULL,
+  `workplace` varchar(255) NOT NULL,
+  `workplaceOcupation` enum('FUNCIONARIO PUBLICO MUNICIPAL','FUNCIONARIO PUBLICO ESTATAL','FUNCIONARIO PUBLICO FEDERAL','OTROS') NOT NULL DEFAULT 'FUNCIONARIO PUBLICO MUNICIPAL',
+  `workplaceAddress` varchar(255) NOT NULL,
+  `workplaceArea` varchar(255) NOT NULL,
+  `workplacePosition` varchar(255) NOT NULL,
+  `workplaceCity` varchar(255) NOT NULL,
   `paist` int(11) NOT NULL,
   `estadot` int(11) NOT NULL,
   `ciudadt` int(11) NOT NULL,
-  `workplacePhone` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `workplaceEmail` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `academicDegree` enum('UNIVERSITARIO','LICENCIATURA','MAESTRIA','DOCTORADO','OTROS') CHARACTER SET latin1 NOT NULL DEFAULT 'UNIVERSITARIO',
+  `workplacePhone` varchar(255) NOT NULL,
+  `workplaceEmail` varchar(255) NOT NULL,
+  `academicDegree` enum('UNIVERSITARIO','LICENCIATURA','MAESTRIA','DOCTORADO','OTROS') NOT NULL DEFAULT 'UNIVERSITARIO',
   `profesion` int(2) NOT NULL,
-  `school` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `highSchool` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `school` varchar(255) NOT NULL,
+  `highSchool` varchar(255) NOT NULL,
   `lastActivity` int(11) NOT NULL DEFAULT '0',
-  `avatar` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `masters` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `mastersSchool` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `avatar` varchar(255) NOT NULL,
+  `masters` varchar(255) NOT NULL,
+  `mastersSchool` varchar(255) NOT NULL,
   `activo` int(1) NOT NULL DEFAULT '1',
-  `referenciaBancaria` varchar(255) COLLATE utf8_bin NOT NULL,
-  `porcentajeBeca` varchar(255) COLLATE utf8_bin NOT NULL,
-  `rutaFoto` varchar(255) COLLATE utf8_bin NOT NULL,
-  `perfil` text COLLATE utf8_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `referenciaBancaria` varchar(255) NOT NULL,
+  `porcentajeBeca` varchar(255) NOT NULL,
+  `rutaFoto` varchar(255) NOT NULL,
+  `perfil` text NOT NULL,
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2971 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
@@ -5495,16 +5738,20 @@ INSERT INTO `user` (`userId`, `folioFicha`, `controlNumber`, `names`, `lastNameP
 -- Table structure for table `user_subject`
 --
 
-CREATE TABLE `user_subject` (
-  `registrationId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user_subject`;
+CREATE TABLE IF NOT EXISTS `user_subject` (
+  `registrationId` int(11) NOT NULL AUTO_INCREMENT,
   `alumnoId` int(11) NOT NULL,
   `courseId` int(11) NOT NULL,
   `status` enum('activo','inactivo','finalizado') NOT NULL DEFAULT 'inactivo',
   `mark` int(3) NOT NULL DEFAULT '0',
   `tipo_beca` enum('Ninguno','Particular','Escolar','Prodim') NOT NULL DEFAULT 'Ninguno',
   `por_beca` int(11) NOT NULL DEFAULT '0',
-  `matricula` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `matricula` varchar(255) NOT NULL,
+  PRIMARY KEY (`registrationId`),
+  KEY `alumnoId` (`alumnoId`,`courseId`),
+  KEY `courseId` (`courseId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5512,14 +5759,15 @@ CREATE TABLE `user_subject` (
 -- Table structure for table `wiki_archive`
 --
 
-CREATE TABLE `wiki_archive` (
-  `ar_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `wiki_archive`;
+CREATE TABLE IF NOT EXISTS `wiki_archive` (
+  `ar_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ar_namespace` int(11) NOT NULL DEFAULT '0',
-  `ar_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `ar_title` varchar(255) NOT NULL DEFAULT '',
   `ar_text` mediumblob NOT NULL,
   `ar_comment` varbinary(767) NOT NULL,
   `ar_user` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `ar_user_text` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `ar_user_text` varchar(255) NOT NULL,
   `ar_timestamp` binary(14) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
   `ar_minor_edit` tinyint(4) NOT NULL DEFAULT '0',
   `ar_flags` tinyblob NOT NULL,
@@ -5531,7 +5779,11 @@ CREATE TABLE `wiki_archive` (
   `ar_parent_id` int(10) UNSIGNED DEFAULT NULL,
   `ar_sha1` varbinary(32) NOT NULL DEFAULT '',
   `ar_content_model` varbinary(32) DEFAULT NULL,
-  `ar_content_format` varbinary(64) DEFAULT NULL
+  `ar_content_format` varbinary(64) DEFAULT NULL,
+  PRIMARY KEY (`ar_id`),
+  KEY `name_title_timestamp` (`ar_namespace`,`ar_title`,`ar_timestamp`),
+  KEY `usertext_timestamp` (`ar_user_text`,`ar_timestamp`),
+  KEY `ar_revid` (`ar_rev_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5540,13 +5792,15 @@ CREATE TABLE `wiki_archive` (
 -- Table structure for table `wiki_bot_passwords`
 --
 
-CREATE TABLE `wiki_bot_passwords` (
+DROP TABLE IF EXISTS `wiki_bot_passwords`;
+CREATE TABLE IF NOT EXISTS `wiki_bot_passwords` (
   `bp_user` int(11) NOT NULL,
   `bp_app_id` varbinary(32) NOT NULL,
   `bp_password` tinyblob NOT NULL,
   `bp_token` binary(32) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
   `bp_restrictions` blob NOT NULL,
-  `bp_grants` blob NOT NULL
+  `bp_grants` blob NOT NULL,
+  PRIMARY KEY (`bp_user`,`bp_app_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5555,12 +5809,16 @@ CREATE TABLE `wiki_bot_passwords` (
 -- Table structure for table `wiki_category`
 --
 
-CREATE TABLE `wiki_category` (
-  `cat_id` int(10) UNSIGNED NOT NULL,
-  `cat_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+DROP TABLE IF EXISTS `wiki_category`;
+CREATE TABLE IF NOT EXISTS `wiki_category` (
+  `cat_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `cat_title` varchar(255) NOT NULL,
   `cat_pages` int(11) NOT NULL DEFAULT '0',
   `cat_subcats` int(11) NOT NULL DEFAULT '0',
-  `cat_files` int(11) NOT NULL DEFAULT '0'
+  `cat_files` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cat_id`),
+  UNIQUE KEY `cat_title` (`cat_title`),
+  KEY `cat_pages` (`cat_pages`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5569,14 +5827,19 @@ CREATE TABLE `wiki_category` (
 -- Table structure for table `wiki_categorylinks`
 --
 
-CREATE TABLE `wiki_categorylinks` (
+DROP TABLE IF EXISTS `wiki_categorylinks`;
+CREATE TABLE IF NOT EXISTS `wiki_categorylinks` (
   `cl_from` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `cl_to` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `cl_to` varchar(255) NOT NULL DEFAULT '',
   `cl_sortkey` varbinary(230) NOT NULL DEFAULT '',
-  `cl_sortkey_prefix` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `cl_sortkey_prefix` varchar(255) NOT NULL DEFAULT '',
   `cl_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cl_collation` varbinary(32) NOT NULL DEFAULT '',
-  `cl_type` enum('page','subcat','file') NOT NULL DEFAULT 'page'
+  `cl_type` enum('page','subcat','file') NOT NULL DEFAULT 'page',
+  UNIQUE KEY `cl_from` (`cl_from`,`cl_to`),
+  KEY `cl_sortkey` (`cl_to`,`cl_type`,`cl_sortkey`,`cl_from`),
+  KEY `cl_timestamp` (`cl_to`,`cl_timestamp`),
+  KEY `cl_collation_ext` (`cl_collation`,`cl_to`,`cl_type`,`cl_from`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5585,12 +5848,17 @@ CREATE TABLE `wiki_categorylinks` (
 -- Table structure for table `wiki_change_tag`
 --
 
-CREATE TABLE `wiki_change_tag` (
+DROP TABLE IF EXISTS `wiki_change_tag`;
+CREATE TABLE IF NOT EXISTS `wiki_change_tag` (
   `ct_rc_id` int(11) DEFAULT NULL,
   `ct_log_id` int(11) DEFAULT NULL,
   `ct_rev_id` int(11) DEFAULT NULL,
   `ct_tag` varchar(255) NOT NULL,
-  `ct_params` blob
+  `ct_params` blob,
+  UNIQUE KEY `change_tag_rc_tag` (`ct_rc_id`,`ct_tag`),
+  UNIQUE KEY `change_tag_log_tag` (`ct_log_id`,`ct_tag`),
+  UNIQUE KEY `change_tag_rev_tag` (`ct_rev_id`,`ct_tag`),
+  KEY `change_tag_tag_id` (`ct_tag`,`ct_rc_id`,`ct_rev_id`,`ct_log_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5599,12 +5867,17 @@ CREATE TABLE `wiki_change_tag` (
 -- Table structure for table `wiki_externallinks`
 --
 
-CREATE TABLE `wiki_externallinks` (
-  `el_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `wiki_externallinks`;
+CREATE TABLE IF NOT EXISTS `wiki_externallinks` (
+  `el_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `el_from` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `el_to` blob NOT NULL,
-  `el_index` blob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `el_index` blob NOT NULL,
+  PRIMARY KEY (`el_id`),
+  KEY `el_from` (`el_from`,`el_to`(40)),
+  KEY `el_to` (`el_to`(60),`el_from`),
+  KEY `el_index` (`el_index`(60))
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `wiki_externallinks`
@@ -5623,10 +5896,11 @@ INSERT INTO `wiki_externallinks` (`el_id`, `el_from`, `el_to`, `el_index`) VALUE
 -- Table structure for table `wiki_filearchive`
 --
 
-CREATE TABLE `wiki_filearchive` (
-  `fa_id` int(11) NOT NULL,
-  `fa_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `fa_archive_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT '',
+DROP TABLE IF EXISTS `wiki_filearchive`;
+CREATE TABLE IF NOT EXISTS `wiki_filearchive` (
+  `fa_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fa_name` varchar(255) NOT NULL DEFAULT '',
+  `fa_archive_name` varchar(255) DEFAULT '',
   `fa_storage_group` varbinary(16) DEFAULT NULL,
   `fa_storage_key` varbinary(64) DEFAULT '',
   `fa_deleted_user` int(11) DEFAULT NULL,
@@ -5642,10 +5916,16 @@ CREATE TABLE `wiki_filearchive` (
   `fa_minor_mime` varbinary(100) DEFAULT 'unknown',
   `fa_description` varbinary(767) DEFAULT NULL,
   `fa_user` int(10) UNSIGNED DEFAULT '0',
-  `fa_user_text` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `fa_user_text` varchar(255) DEFAULT NULL,
   `fa_timestamp` binary(14) DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
   `fa_deleted` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  `fa_sha1` varbinary(32) NOT NULL DEFAULT ''
+  `fa_sha1` varbinary(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (`fa_id`),
+  KEY `fa_name` (`fa_name`,`fa_timestamp`),
+  KEY `fa_storage_group` (`fa_storage_group`,`fa_storage_key`),
+  KEY `fa_deleted_timestamp` (`fa_deleted_timestamp`),
+  KEY `fa_user_timestamp` (`fa_user_text`,`fa_timestamp`),
+  KEY `fa_sha1` (`fa_sha1`(10))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5654,8 +5934,9 @@ CREATE TABLE `wiki_filearchive` (
 -- Table structure for table `wiki_image`
 --
 
-CREATE TABLE `wiki_image` (
-  `img_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+DROP TABLE IF EXISTS `wiki_image`;
+CREATE TABLE IF NOT EXISTS `wiki_image` (
+  `img_name` varchar(255) NOT NULL DEFAULT '',
   `img_size` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `img_width` int(11) NOT NULL DEFAULT '0',
   `img_height` int(11) NOT NULL DEFAULT '0',
@@ -5666,9 +5947,15 @@ CREATE TABLE `wiki_image` (
   `img_minor_mime` varbinary(100) NOT NULL DEFAULT 'unknown',
   `img_description` varbinary(767) NOT NULL,
   `img_user` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `img_user_text` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `img_user_text` varchar(255) NOT NULL,
   `img_timestamp` varbinary(14) NOT NULL DEFAULT '',
-  `img_sha1` varbinary(32) NOT NULL DEFAULT ''
+  `img_sha1` varbinary(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (`img_name`),
+  KEY `img_usertext_timestamp` (`img_user_text`,`img_timestamp`),
+  KEY `img_size` (`img_size`),
+  KEY `img_timestamp` (`img_timestamp`),
+  KEY `img_sha1` (`img_sha1`(10)),
+  KEY `img_media_mime` (`img_media_type`,`img_major_mime`,`img_minor_mime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5677,10 +5964,14 @@ CREATE TABLE `wiki_image` (
 -- Table structure for table `wiki_imagelinks`
 --
 
-CREATE TABLE `wiki_imagelinks` (
+DROP TABLE IF EXISTS `wiki_imagelinks`;
+CREATE TABLE IF NOT EXISTS `wiki_imagelinks` (
   `il_from` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `il_from_namespace` int(11) NOT NULL DEFAULT '0',
-  `il_to` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT ''
+  `il_to` varchar(255) NOT NULL DEFAULT '',
+  UNIQUE KEY `il_from` (`il_from`,`il_to`),
+  KEY `il_to` (`il_to`,`il_from`),
+  KEY `il_backlinks_namespace` (`il_from_namespace`,`il_to`,`il_from`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5689,13 +5980,15 @@ CREATE TABLE `wiki_imagelinks` (
 -- Table structure for table `wiki_interwiki`
 --
 
-CREATE TABLE `wiki_interwiki` (
+DROP TABLE IF EXISTS `wiki_interwiki`;
+CREATE TABLE IF NOT EXISTS `wiki_interwiki` (
   `iw_prefix` varchar(32) NOT NULL,
   `iw_url` blob NOT NULL,
   `iw_api` blob NOT NULL,
   `iw_wikiid` varchar(64) NOT NULL,
   `iw_local` tinyint(1) NOT NULL,
-  `iw_trans` tinyint(4) NOT NULL DEFAULT '0'
+  `iw_trans` tinyint(4) NOT NULL DEFAULT '0',
+  UNIQUE KEY `iw_prefix` (`iw_prefix`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5784,12 +6077,13 @@ INSERT INTO `wiki_interwiki` (`iw_prefix`, `iw_url`, `iw_api`, `iw_wikiid`, `iw_
 -- Table structure for table `wiki_ipblocks`
 --
 
-CREATE TABLE `wiki_ipblocks` (
-  `ipb_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `wiki_ipblocks`;
+CREATE TABLE IF NOT EXISTS `wiki_ipblocks` (
+  `ipb_id` int(11) NOT NULL AUTO_INCREMENT,
   `ipb_address` tinyblob NOT NULL,
   `ipb_user` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `ipb_by` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `ipb_by_text` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `ipb_by_text` varchar(255) NOT NULL DEFAULT '',
   `ipb_reason` varbinary(767) NOT NULL,
   `ipb_timestamp` binary(14) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
   `ipb_auto` tinyint(1) NOT NULL DEFAULT '0',
@@ -5802,7 +6096,14 @@ CREATE TABLE `wiki_ipblocks` (
   `ipb_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `ipb_block_email` tinyint(1) NOT NULL DEFAULT '0',
   `ipb_allow_usertalk` tinyint(1) NOT NULL DEFAULT '0',
-  `ipb_parent_block_id` int(11) DEFAULT NULL
+  `ipb_parent_block_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ipb_id`),
+  UNIQUE KEY `ipb_address` (`ipb_address`(255),`ipb_user`,`ipb_auto`,`ipb_anon_only`),
+  KEY `ipb_user` (`ipb_user`),
+  KEY `ipb_range` (`ipb_range_start`(8),`ipb_range_end`(8)),
+  KEY `ipb_timestamp` (`ipb_timestamp`),
+  KEY `ipb_expiry` (`ipb_expiry`),
+  KEY `ipb_parent_block_id` (`ipb_parent_block_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5811,10 +6112,14 @@ CREATE TABLE `wiki_ipblocks` (
 -- Table structure for table `wiki_iwlinks`
 --
 
-CREATE TABLE `wiki_iwlinks` (
+DROP TABLE IF EXISTS `wiki_iwlinks`;
+CREATE TABLE IF NOT EXISTS `wiki_iwlinks` (
   `iwl_from` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `iwl_prefix` varbinary(20) NOT NULL DEFAULT '',
-  `iwl_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT ''
+  `iwl_title` varchar(255) NOT NULL DEFAULT '',
+  UNIQUE KEY `iwl_from` (`iwl_from`,`iwl_prefix`,`iwl_title`),
+  KEY `iwl_prefix_title_from` (`iwl_prefix`,`iwl_title`,`iwl_from`),
+  KEY `iwl_prefix_from_title` (`iwl_prefix`,`iwl_from`,`iwl_title`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5823,18 +6128,25 @@ CREATE TABLE `wiki_iwlinks` (
 -- Table structure for table `wiki_job`
 --
 
-CREATE TABLE `wiki_job` (
-  `job_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `wiki_job`;
+CREATE TABLE IF NOT EXISTS `wiki_job` (
+  `job_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `job_cmd` varbinary(60) NOT NULL DEFAULT '',
   `job_namespace` int(11) NOT NULL,
-  `job_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `job_title` varchar(255) NOT NULL,
   `job_timestamp` varbinary(14) DEFAULT NULL,
   `job_params` blob NOT NULL,
   `job_random` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `job_attempts` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `job_token` varbinary(32) NOT NULL DEFAULT '',
   `job_token_timestamp` varbinary(14) DEFAULT NULL,
-  `job_sha1` varbinary(32) NOT NULL DEFAULT ''
+  `job_sha1` varbinary(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (`job_id`),
+  KEY `job_sha1` (`job_sha1`),
+  KEY `job_cmd_token` (`job_cmd`,`job_token`,`job_random`),
+  KEY `job_cmd_token_id` (`job_cmd`,`job_token`,`job_id`),
+  KEY `job_cmd` (`job_cmd`,`job_namespace`,`job_title`,`job_params`(128)),
+  KEY `job_timestamp` (`job_timestamp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5843,10 +6155,12 @@ CREATE TABLE `wiki_job` (
 -- Table structure for table `wiki_l10n_cache`
 --
 
-CREATE TABLE `wiki_l10n_cache` (
+DROP TABLE IF EXISTS `wiki_l10n_cache`;
+CREATE TABLE IF NOT EXISTS `wiki_l10n_cache` (
   `lc_lang` varbinary(32) NOT NULL,
   `lc_key` varchar(255) NOT NULL,
-  `lc_value` mediumblob NOT NULL
+  `lc_value` mediumblob NOT NULL,
+  KEY `lc_lang_key` (`lc_lang`,`lc_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5855,10 +6169,13 @@ CREATE TABLE `wiki_l10n_cache` (
 -- Table structure for table `wiki_langlinks`
 --
 
-CREATE TABLE `wiki_langlinks` (
+DROP TABLE IF EXISTS `wiki_langlinks`;
+CREATE TABLE IF NOT EXISTS `wiki_langlinks` (
   `ll_from` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `ll_lang` varbinary(20) NOT NULL DEFAULT '',
-  `ll_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT ''
+  `ll_title` varchar(255) NOT NULL DEFAULT '',
+  UNIQUE KEY `ll_from` (`ll_from`,`ll_lang`),
+  KEY `ll_lang` (`ll_lang`,`ll_title`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5867,20 +6184,31 @@ CREATE TABLE `wiki_langlinks` (
 -- Table structure for table `wiki_logging`
 --
 
-CREATE TABLE `wiki_logging` (
-  `log_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `wiki_logging`;
+CREATE TABLE IF NOT EXISTS `wiki_logging` (
+  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `log_type` varbinary(32) NOT NULL DEFAULT '',
   `log_action` varbinary(32) NOT NULL DEFAULT '',
   `log_timestamp` binary(14) NOT NULL DEFAULT '19700101000000',
   `log_user` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `log_user_text` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `log_user_text` varchar(255) NOT NULL DEFAULT '',
   `log_namespace` int(11) NOT NULL DEFAULT '0',
-  `log_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `log_title` varchar(255) NOT NULL DEFAULT '',
   `log_page` int(10) UNSIGNED DEFAULT NULL,
   `log_comment` varbinary(767) NOT NULL DEFAULT '',
   `log_params` blob NOT NULL,
-  `log_deleted` tinyint(3) UNSIGNED NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `log_deleted` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  PRIMARY KEY (`log_id`),
+  KEY `type_time` (`log_type`,`log_timestamp`),
+  KEY `user_time` (`log_user`,`log_timestamp`),
+  KEY `page_time` (`log_namespace`,`log_title`,`log_timestamp`),
+  KEY `times` (`log_timestamp`),
+  KEY `log_user_type_time` (`log_user`,`log_type`,`log_timestamp`),
+  KEY `log_page_id_time` (`log_page`,`log_timestamp`),
+  KEY `type_action` (`log_type`,`log_action`,`log_timestamp`),
+  KEY `log_user_text_type_time` (`log_user_text`,`log_type`,`log_timestamp`),
+  KEY `log_user_text_time` (`log_user_text`,`log_timestamp`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `wiki_logging`
@@ -5899,10 +6227,13 @@ INSERT INTO `wiki_logging` (`log_id`, `log_type`, `log_action`, `log_timestamp`,
 -- Table structure for table `wiki_log_search`
 --
 
-CREATE TABLE `wiki_log_search` (
+DROP TABLE IF EXISTS `wiki_log_search`;
+CREATE TABLE IF NOT EXISTS `wiki_log_search` (
   `ls_field` varbinary(32) NOT NULL,
   `ls_value` varchar(255) NOT NULL,
-  `ls_log_id` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `ls_log_id` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  UNIQUE KEY `ls_field_val` (`ls_field`,`ls_value`,`ls_log_id`),
+  KEY `ls_log_id` (`ls_log_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5911,10 +6242,12 @@ CREATE TABLE `wiki_log_search` (
 -- Table structure for table `wiki_module_deps`
 --
 
-CREATE TABLE `wiki_module_deps` (
+DROP TABLE IF EXISTS `wiki_module_deps`;
+CREATE TABLE IF NOT EXISTS `wiki_module_deps` (
   `md_module` varbinary(255) NOT NULL,
   `md_skin` varbinary(32) NOT NULL,
-  `md_deps` mediumblob NOT NULL
+  `md_deps` mediumblob NOT NULL,
+  UNIQUE KEY `md_module_skin` (`md_module`,`md_skin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5950,10 +6283,13 @@ INSERT INTO `wiki_module_deps` (`md_module`, `md_skin`, `md_deps`) VALUES
 -- Table structure for table `wiki_objectcache`
 --
 
-CREATE TABLE `wiki_objectcache` (
+DROP TABLE IF EXISTS `wiki_objectcache`;
+CREATE TABLE IF NOT EXISTS `wiki_objectcache` (
   `keyname` varbinary(255) NOT NULL DEFAULT '',
   `value` mediumblob,
-  `exptime` datetime DEFAULT NULL
+  `exptime` datetime DEFAULT NULL,
+  PRIMARY KEY (`keyname`),
+  KEY `exptime` (`exptime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6038,23 +6374,28 @@ INSERT INTO `wiki_objectcache` (`keyname`, `value`, `exptime`) VALUES
 -- Table structure for table `wiki_oldimage`
 --
 
-CREATE TABLE `wiki_oldimage` (
-  `oi_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `oi_archive_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+DROP TABLE IF EXISTS `wiki_oldimage`;
+CREATE TABLE IF NOT EXISTS `wiki_oldimage` (
+  `oi_name` varchar(255) NOT NULL DEFAULT '',
+  `oi_archive_name` varchar(255) NOT NULL DEFAULT '',
   `oi_size` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `oi_width` int(11) NOT NULL DEFAULT '0',
   `oi_height` int(11) NOT NULL DEFAULT '0',
   `oi_bits` int(11) NOT NULL DEFAULT '0',
   `oi_description` varbinary(767) NOT NULL,
   `oi_user` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `oi_user_text` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `oi_user_text` varchar(255) NOT NULL,
   `oi_timestamp` binary(14) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
   `oi_metadata` mediumblob NOT NULL,
   `oi_media_type` enum('UNKNOWN','BITMAP','DRAWING','AUDIO','VIDEO','MULTIMEDIA','OFFICE','TEXT','EXECUTABLE','ARCHIVE') DEFAULT NULL,
   `oi_major_mime` enum('unknown','application','audio','image','text','video','message','model','multipart','chemical') NOT NULL DEFAULT 'unknown',
   `oi_minor_mime` varbinary(100) NOT NULL DEFAULT 'unknown',
   `oi_deleted` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  `oi_sha1` varbinary(32) NOT NULL DEFAULT ''
+  `oi_sha1` varbinary(32) NOT NULL DEFAULT '',
+  KEY `oi_usertext_timestamp` (`oi_user_text`,`oi_timestamp`),
+  KEY `oi_name_timestamp` (`oi_name`,`oi_timestamp`),
+  KEY `oi_name_archive_name` (`oi_name`,`oi_archive_name`(14)),
+  KEY `oi_sha1` (`oi_sha1`(10))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6063,10 +6404,11 @@ CREATE TABLE `wiki_oldimage` (
 -- Table structure for table `wiki_page`
 --
 
-CREATE TABLE `wiki_page` (
-  `page_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `wiki_page`;
+CREATE TABLE IF NOT EXISTS `wiki_page` (
+  `page_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `page_namespace` int(11) NOT NULL,
-  `page_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `page_title` varchar(255) NOT NULL,
   `page_restrictions` tinyblob NOT NULL,
   `page_is_redirect` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `page_is_new` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
@@ -6076,8 +6418,13 @@ CREATE TABLE `wiki_page` (
   `page_latest` int(10) UNSIGNED NOT NULL,
   `page_len` int(10) UNSIGNED NOT NULL,
   `page_content_model` varbinary(32) DEFAULT NULL,
-  `page_lang` varbinary(35) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `page_lang` varbinary(35) DEFAULT NULL,
+  PRIMARY KEY (`page_id`),
+  UNIQUE KEY `name_title` (`page_namespace`,`page_title`),
+  KEY `page_random` (`page_random`),
+  KEY `page_len` (`page_len`),
+  KEY `page_redirect_namespace_len` (`page_is_redirect`,`page_namespace`,`page_len`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `wiki_page`
@@ -6093,11 +6440,15 @@ INSERT INTO `wiki_page` (`page_id`, `page_namespace`, `page_title`, `page_restri
 -- Table structure for table `wiki_pagelinks`
 --
 
-CREATE TABLE `wiki_pagelinks` (
+DROP TABLE IF EXISTS `wiki_pagelinks`;
+CREATE TABLE IF NOT EXISTS `wiki_pagelinks` (
   `pl_from` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `pl_from_namespace` int(11) NOT NULL DEFAULT '0',
   `pl_namespace` int(11) NOT NULL DEFAULT '0',
-  `pl_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT ''
+  `pl_title` varchar(255) NOT NULL DEFAULT '',
+  UNIQUE KEY `pl_from` (`pl_from`,`pl_namespace`,`pl_title`),
+  KEY `pl_namespace` (`pl_namespace`,`pl_title`,`pl_from`),
+  KEY `pl_backlinks_namespace` (`pl_from_namespace`,`pl_namespace`,`pl_title`,`pl_from`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6106,11 +6457,15 @@ CREATE TABLE `wiki_pagelinks` (
 -- Table structure for table `wiki_page_props`
 --
 
-CREATE TABLE `wiki_page_props` (
+DROP TABLE IF EXISTS `wiki_page_props`;
+CREATE TABLE IF NOT EXISTS `wiki_page_props` (
   `pp_page` int(11) NOT NULL,
   `pp_propname` varbinary(60) NOT NULL,
   `pp_value` blob NOT NULL,
-  `pp_sortkey` float DEFAULT NULL
+  `pp_sortkey` float DEFAULT NULL,
+  UNIQUE KEY `pp_page_propname` (`pp_page`,`pp_propname`),
+  UNIQUE KEY `pp_propname_page` (`pp_propname`,`pp_page`),
+  UNIQUE KEY `pp_propname_sortkey_page` (`pp_propname`,`pp_sortkey`,`pp_page`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6119,14 +6474,20 @@ CREATE TABLE `wiki_page_props` (
 -- Table structure for table `wiki_page_restrictions`
 --
 
-CREATE TABLE `wiki_page_restrictions` (
-  `pr_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `wiki_page_restrictions`;
+CREATE TABLE IF NOT EXISTS `wiki_page_restrictions` (
+  `pr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `pr_page` int(11) NOT NULL,
   `pr_type` varbinary(60) NOT NULL,
   `pr_level` varbinary(60) NOT NULL,
   `pr_cascade` tinyint(4) NOT NULL,
   `pr_user` int(11) DEFAULT NULL,
-  `pr_expiry` varbinary(14) DEFAULT NULL
+  `pr_expiry` varbinary(14) DEFAULT NULL,
+  PRIMARY KEY (`pr_id`),
+  UNIQUE KEY `pr_pagetype` (`pr_page`,`pr_type`),
+  KEY `pr_typelevel` (`pr_type`,`pr_level`),
+  KEY `pr_level` (`pr_level`),
+  KEY `pr_cascade` (`pr_cascade`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6135,14 +6496,17 @@ CREATE TABLE `wiki_page_restrictions` (
 -- Table structure for table `wiki_protected_titles`
 --
 
-CREATE TABLE `wiki_protected_titles` (
+DROP TABLE IF EXISTS `wiki_protected_titles`;
+CREATE TABLE IF NOT EXISTS `wiki_protected_titles` (
   `pt_namespace` int(11) NOT NULL,
-  `pt_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `pt_title` varchar(255) NOT NULL,
   `pt_user` int(10) UNSIGNED NOT NULL,
   `pt_reason` varbinary(767) DEFAULT NULL,
   `pt_timestamp` binary(14) NOT NULL,
   `pt_expiry` varbinary(14) NOT NULL DEFAULT '',
-  `pt_create_perm` varbinary(60) NOT NULL
+  `pt_create_perm` varbinary(60) NOT NULL,
+  UNIQUE KEY `pt_namespace_title` (`pt_namespace`,`pt_title`),
+  KEY `pt_timestamp` (`pt_timestamp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6151,11 +6515,13 @@ CREATE TABLE `wiki_protected_titles` (
 -- Table structure for table `wiki_querycache`
 --
 
-CREATE TABLE `wiki_querycache` (
+DROP TABLE IF EXISTS `wiki_querycache`;
+CREATE TABLE IF NOT EXISTS `wiki_querycache` (
   `qc_type` varbinary(32) NOT NULL,
   `qc_value` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `qc_namespace` int(11) NOT NULL DEFAULT '0',
-  `qc_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT ''
+  `qc_title` varchar(255) NOT NULL DEFAULT '',
+  KEY `qc_type` (`qc_type`,`qc_value`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6164,13 +6530,17 @@ CREATE TABLE `wiki_querycache` (
 -- Table structure for table `wiki_querycachetwo`
 --
 
-CREATE TABLE `wiki_querycachetwo` (
+DROP TABLE IF EXISTS `wiki_querycachetwo`;
+CREATE TABLE IF NOT EXISTS `wiki_querycachetwo` (
   `qcc_type` varbinary(32) NOT NULL,
   `qcc_value` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `qcc_namespace` int(11) NOT NULL DEFAULT '0',
-  `qcc_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `qcc_title` varchar(255) NOT NULL DEFAULT '',
   `qcc_namespacetwo` int(11) NOT NULL DEFAULT '0',
-  `qcc_titletwo` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT ''
+  `qcc_titletwo` varchar(255) NOT NULL DEFAULT '',
+  KEY `qcc_type` (`qcc_type`,`qcc_value`),
+  KEY `qcc_title` (`qcc_type`,`qcc_namespace`,`qcc_title`),
+  KEY `qcc_titletwo` (`qcc_type`,`qcc_namespacetwo`,`qcc_titletwo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6179,9 +6549,11 @@ CREATE TABLE `wiki_querycachetwo` (
 -- Table structure for table `wiki_querycache_info`
 --
 
-CREATE TABLE `wiki_querycache_info` (
+DROP TABLE IF EXISTS `wiki_querycache_info`;
+CREATE TABLE IF NOT EXISTS `wiki_querycache_info` (
   `qci_type` varbinary(32) NOT NULL DEFAULT '',
-  `qci_timestamp` binary(14) NOT NULL DEFAULT '19700101000000'
+  `qci_timestamp` binary(14) NOT NULL DEFAULT '19700101000000',
+  UNIQUE KEY `qci_type` (`qci_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6197,13 +6569,14 @@ INSERT INTO `wiki_querycache_info` (`qci_type`, `qci_timestamp`) VALUES
 -- Table structure for table `wiki_recentchanges`
 --
 
-CREATE TABLE `wiki_recentchanges` (
-  `rc_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `wiki_recentchanges`;
+CREATE TABLE IF NOT EXISTS `wiki_recentchanges` (
+  `rc_id` int(11) NOT NULL AUTO_INCREMENT,
   `rc_timestamp` varbinary(14) NOT NULL DEFAULT '',
   `rc_user` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `rc_user_text` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `rc_user_text` varchar(255) NOT NULL,
   `rc_namespace` int(11) NOT NULL DEFAULT '0',
-  `rc_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `rc_title` varchar(255) NOT NULL DEFAULT '',
   `rc_comment` varbinary(767) NOT NULL DEFAULT '',
   `rc_minor` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `rc_bot` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
@@ -6212,7 +6585,7 @@ CREATE TABLE `wiki_recentchanges` (
   `rc_this_oldid` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `rc_last_oldid` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `rc_type` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  `rc_source` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `rc_source` varchar(16) NOT NULL DEFAULT '',
   `rc_patrolled` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `rc_ip` varbinary(40) NOT NULL DEFAULT '',
   `rc_old_len` int(11) DEFAULT NULL,
@@ -6221,8 +6594,16 @@ CREATE TABLE `wiki_recentchanges` (
   `rc_logid` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `rc_log_type` varbinary(255) DEFAULT NULL,
   `rc_log_action` varbinary(255) DEFAULT NULL,
-  `rc_params` blob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `rc_params` blob,
+  PRIMARY KEY (`rc_id`),
+  KEY `rc_timestamp` (`rc_timestamp`),
+  KEY `rc_namespace_title` (`rc_namespace`,`rc_title`),
+  KEY `rc_cur_id` (`rc_cur_id`),
+  KEY `new_name_timestamp` (`rc_new`,`rc_namespace`,`rc_timestamp`),
+  KEY `rc_ip` (`rc_ip`),
+  KEY `rc_ns_usertext` (`rc_namespace`,`rc_user_text`),
+  KEY `rc_user_text` (`rc_user_text`,`rc_timestamp`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `wiki_recentchanges`
@@ -6241,12 +6622,15 @@ INSERT INTO `wiki_recentchanges` (`rc_id`, `rc_timestamp`, `rc_user`, `rc_user_t
 -- Table structure for table `wiki_redirect`
 --
 
-CREATE TABLE `wiki_redirect` (
+DROP TABLE IF EXISTS `wiki_redirect`;
+CREATE TABLE IF NOT EXISTS `wiki_redirect` (
   `rd_from` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `rd_namespace` int(11) NOT NULL DEFAULT '0',
-  `rd_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `rd_title` varchar(255) NOT NULL DEFAULT '',
   `rd_interwiki` varchar(32) DEFAULT NULL,
-  `rd_fragment` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL
+  `rd_fragment` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`rd_from`),
+  KEY `rd_ns_title` (`rd_namespace`,`rd_title`,`rd_from`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6255,13 +6639,14 @@ CREATE TABLE `wiki_redirect` (
 -- Table structure for table `wiki_revision`
 --
 
-CREATE TABLE `wiki_revision` (
-  `rev_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `wiki_revision`;
+CREATE TABLE IF NOT EXISTS `wiki_revision` (
+  `rev_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `rev_page` int(10) UNSIGNED NOT NULL,
   `rev_text_id` int(10) UNSIGNED NOT NULL,
   `rev_comment` varbinary(767) NOT NULL,
   `rev_user` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `rev_user_text` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `rev_user_text` varchar(255) NOT NULL DEFAULT '',
   `rev_timestamp` binary(14) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
   `rev_minor_edit` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `rev_deleted` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
@@ -6269,8 +6654,15 @@ CREATE TABLE `wiki_revision` (
   `rev_parent_id` int(10) UNSIGNED DEFAULT NULL,
   `rev_sha1` varbinary(32) NOT NULL DEFAULT '',
   `rev_content_model` varbinary(32) DEFAULT NULL,
-  `rev_content_format` varbinary(64) DEFAULT NULL
-) ENGINE=InnoDB AVG_ROW_LENGTH=1024 DEFAULT CHARSET=utf8 MAX_ROWS=10000000;
+  `rev_content_format` varbinary(64) DEFAULT NULL,
+  PRIMARY KEY (`rev_id`),
+  UNIQUE KEY `rev_page_id` (`rev_page`,`rev_id`),
+  KEY `rev_timestamp` (`rev_timestamp`),
+  KEY `page_timestamp` (`rev_page`,`rev_timestamp`),
+  KEY `user_timestamp` (`rev_user`,`rev_timestamp`),
+  KEY `usertext_timestamp` (`rev_user_text`,`rev_timestamp`),
+  KEY `page_user_timestamp` (`rev_page`,`rev_user`,`rev_timestamp`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 AVG_ROW_LENGTH=1024 DEFAULT CHARSET=utf8 MAX_ROWS=10000000;
 
 --
 -- Dumping data for table `wiki_revision`
@@ -6288,11 +6680,13 @@ INSERT INTO `wiki_revision` (`rev_id`, `rev_page`, `rev_text_id`, `rev_comment`,
 -- Table structure for table `wiki_searchindex`
 --
 
-CREATE TABLE `wiki_searchindex` (
+DROP TABLE IF EXISTS `wiki_searchindex`;
+CREATE TABLE IF NOT EXISTS `wiki_searchindex` (
   `si_page` int(10) UNSIGNED NOT NULL,
   `si_title` varchar(255) NOT NULL DEFAULT '',
-  `si_text` mediumtext NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `si_text` mediumtext NOT NULL,
+  UNIQUE KEY `si_page` (`si_page`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `wiki_searchindex`
@@ -6308,8 +6702,9 @@ INSERT INTO `wiki_searchindex` (`si_page`, `si_title`, `si_text`) VALUES
 -- Table structure for table `wiki_sites`
 --
 
-CREATE TABLE `wiki_sites` (
-  `site_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `wiki_sites`;
+CREATE TABLE IF NOT EXISTS `wiki_sites` (
+  `site_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `site_global_key` varbinary(32) NOT NULL,
   `site_type` varbinary(32) NOT NULL,
   `site_group` varbinary(32) NOT NULL,
@@ -6319,7 +6714,16 @@ CREATE TABLE `wiki_sites` (
   `site_domain` varchar(255) NOT NULL,
   `site_data` blob NOT NULL,
   `site_forward` tinyint(1) NOT NULL,
-  `site_config` blob NOT NULL
+  `site_config` blob NOT NULL,
+  PRIMARY KEY (`site_id`),
+  UNIQUE KEY `sites_global_key` (`site_global_key`),
+  KEY `sites_type` (`site_type`),
+  KEY `sites_group` (`site_group`),
+  KEY `sites_source` (`site_source`),
+  KEY `sites_language` (`site_language`),
+  KEY `sites_protocol` (`site_protocol`),
+  KEY `sites_domain` (`site_domain`),
+  KEY `sites_forward` (`site_forward`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6328,10 +6732,14 @@ CREATE TABLE `wiki_sites` (
 -- Table structure for table `wiki_site_identifiers`
 --
 
-CREATE TABLE `wiki_site_identifiers` (
+DROP TABLE IF EXISTS `wiki_site_identifiers`;
+CREATE TABLE IF NOT EXISTS `wiki_site_identifiers` (
   `si_site` int(10) UNSIGNED NOT NULL,
   `si_type` varbinary(32) NOT NULL,
-  `si_key` varbinary(32) NOT NULL
+  `si_key` varbinary(32) NOT NULL,
+  UNIQUE KEY `site_ids_type` (`si_type`,`si_key`),
+  KEY `site_ids_site` (`si_site`),
+  KEY `site_ids_key` (`si_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6340,14 +6748,16 @@ CREATE TABLE `wiki_site_identifiers` (
 -- Table structure for table `wiki_site_stats`
 --
 
-CREATE TABLE `wiki_site_stats` (
+DROP TABLE IF EXISTS `wiki_site_stats`;
+CREATE TABLE IF NOT EXISTS `wiki_site_stats` (
   `ss_row_id` int(10) UNSIGNED NOT NULL,
   `ss_total_edits` bigint(20) UNSIGNED DEFAULT '0',
   `ss_good_articles` bigint(20) UNSIGNED DEFAULT '0',
   `ss_total_pages` bigint(20) DEFAULT '-1',
   `ss_users` bigint(20) DEFAULT '-1',
   `ss_active_users` bigint(20) DEFAULT '-1',
-  `ss_images` int(11) DEFAULT '0'
+  `ss_images` int(11) DEFAULT '0',
+  UNIQUE KEY `ss_row_id` (`ss_row_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6363,11 +6773,15 @@ INSERT INTO `wiki_site_stats` (`ss_row_id`, `ss_total_edits`, `ss_good_articles`
 -- Table structure for table `wiki_tag_summary`
 --
 
-CREATE TABLE `wiki_tag_summary` (
+DROP TABLE IF EXISTS `wiki_tag_summary`;
+CREATE TABLE IF NOT EXISTS `wiki_tag_summary` (
   `ts_rc_id` int(11) DEFAULT NULL,
   `ts_log_id` int(11) DEFAULT NULL,
   `ts_rev_id` int(11) DEFAULT NULL,
-  `ts_tags` blob NOT NULL
+  `ts_tags` blob NOT NULL,
+  UNIQUE KEY `tag_summary_rc_id` (`ts_rc_id`),
+  UNIQUE KEY `tag_summary_log_id` (`ts_log_id`),
+  UNIQUE KEY `tag_summary_rev_id` (`ts_rev_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6376,11 +6790,15 @@ CREATE TABLE `wiki_tag_summary` (
 -- Table structure for table `wiki_templatelinks`
 --
 
-CREATE TABLE `wiki_templatelinks` (
+DROP TABLE IF EXISTS `wiki_templatelinks`;
+CREATE TABLE IF NOT EXISTS `wiki_templatelinks` (
   `tl_from` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `tl_from_namespace` int(11) NOT NULL DEFAULT '0',
   `tl_namespace` int(11) NOT NULL DEFAULT '0',
-  `tl_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT ''
+  `tl_title` varchar(255) NOT NULL DEFAULT '',
+  UNIQUE KEY `tl_from` (`tl_from`,`tl_namespace`,`tl_title`),
+  KEY `tl_namespace` (`tl_namespace`,`tl_title`,`tl_from`),
+  KEY `tl_backlinks_namespace` (`tl_from_namespace`,`tl_namespace`,`tl_title`,`tl_from`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6389,11 +6807,13 @@ CREATE TABLE `wiki_templatelinks` (
 -- Table structure for table `wiki_text`
 --
 
-CREATE TABLE `wiki_text` (
-  `old_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `wiki_text`;
+CREATE TABLE IF NOT EXISTS `wiki_text` (
+  `old_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `old_text` mediumblob NOT NULL,
-  `old_flags` tinyblob NOT NULL
-) ENGINE=InnoDB AVG_ROW_LENGTH=10240 DEFAULT CHARSET=utf8 MAX_ROWS=10000000;
+  `old_flags` tinyblob NOT NULL,
+  PRIMARY KEY (`old_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 AVG_ROW_LENGTH=10240 DEFAULT CHARSET=utf8 MAX_ROWS=10000000;
 
 --
 -- Dumping data for table `wiki_text`
@@ -6411,10 +6831,12 @@ INSERT INTO `wiki_text` (`old_id`, `old_text`, `old_flags`) VALUES
 -- Table structure for table `wiki_transcache`
 --
 
-CREATE TABLE `wiki_transcache` (
+DROP TABLE IF EXISTS `wiki_transcache`;
+CREATE TABLE IF NOT EXISTS `wiki_transcache` (
   `tc_url` varbinary(255) NOT NULL,
   `tc_contents` text,
-  `tc_time` binary(14) NOT NULL
+  `tc_time` binary(14) NOT NULL,
+  UNIQUE KEY `tc_url_idx` (`tc_url`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6423,9 +6845,11 @@ CREATE TABLE `wiki_transcache` (
 -- Table structure for table `wiki_updatelog`
 --
 
-CREATE TABLE `wiki_updatelog` (
+DROP TABLE IF EXISTS `wiki_updatelog`;
+CREATE TABLE IF NOT EXISTS `wiki_updatelog` (
   `ul_key` varchar(255) NOT NULL,
-  `ul_value` blob
+  `ul_value` blob,
+  PRIMARY KEY (`ul_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6446,8 +6870,9 @@ INSERT INTO `wiki_updatelog` (`ul_key`, `ul_value`) VALUES
 -- Table structure for table `wiki_uploadstash`
 --
 
-CREATE TABLE `wiki_uploadstash` (
-  `us_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `wiki_uploadstash`;
+CREATE TABLE IF NOT EXISTS `wiki_uploadstash` (
+  `us_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `us_user` int(10) UNSIGNED NOT NULL,
   `us_key` varchar(255) NOT NULL,
   `us_orig_path` varchar(255) NOT NULL,
@@ -6463,7 +6888,11 @@ CREATE TABLE `wiki_uploadstash` (
   `us_media_type` enum('UNKNOWN','BITMAP','DRAWING','AUDIO','VIDEO','MULTIMEDIA','OFFICE','TEXT','EXECUTABLE','ARCHIVE') DEFAULT NULL,
   `us_image_width` int(10) UNSIGNED DEFAULT NULL,
   `us_image_height` int(10) UNSIGNED DEFAULT NULL,
-  `us_image_bits` smallint(5) UNSIGNED DEFAULT NULL
+  `us_image_bits` smallint(5) UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (`us_id`),
+  UNIQUE KEY `us_key` (`us_key`),
+  KEY `us_user` (`us_user`),
+  KEY `us_timestamp` (`us_timestamp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6472,10 +6901,11 @@ CREATE TABLE `wiki_uploadstash` (
 -- Table structure for table `wiki_user`
 --
 
-CREATE TABLE `wiki_user` (
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `user_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `user_real_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+DROP TABLE IF EXISTS `wiki_user`;
+CREATE TABLE IF NOT EXISTS `wiki_user` (
+  `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) NOT NULL DEFAULT '',
+  `user_real_name` varchar(255) NOT NULL DEFAULT '',
   `user_password` tinyblob NOT NULL,
   `user_newpassword` tinyblob NOT NULL,
   `user_newpass_time` binary(14) DEFAULT NULL,
@@ -6487,8 +6917,12 @@ CREATE TABLE `wiki_user` (
   `user_email_token_expires` binary(14) DEFAULT NULL,
   `user_registration` binary(14) DEFAULT NULL,
   `user_editcount` int(11) DEFAULT NULL,
-  `user_password_expires` varbinary(14) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `user_password_expires` varbinary(14) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_name` (`user_name`),
+  KEY `user_email_token` (`user_email_token`),
+  KEY `user_email` (`user_email`(50))
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `wiki_user`
@@ -6505,9 +6939,11 @@ INSERT INTO `wiki_user` (`user_id`, `user_name`, `user_real_name`, `user_passwor
 -- Table structure for table `wiki_user_former_groups`
 --
 
-CREATE TABLE `wiki_user_former_groups` (
+DROP TABLE IF EXISTS `wiki_user_former_groups`;
+CREATE TABLE IF NOT EXISTS `wiki_user_former_groups` (
   `ufg_user` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `ufg_group` varbinary(255) NOT NULL DEFAULT ''
+  `ufg_group` varbinary(255) NOT NULL DEFAULT '',
+  UNIQUE KEY `ufg_user_group` (`ufg_user`,`ufg_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6516,9 +6952,12 @@ CREATE TABLE `wiki_user_former_groups` (
 -- Table structure for table `wiki_user_groups`
 --
 
-CREATE TABLE `wiki_user_groups` (
+DROP TABLE IF EXISTS `wiki_user_groups`;
+CREATE TABLE IF NOT EXISTS `wiki_user_groups` (
   `ug_user` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `ug_group` varbinary(255) NOT NULL DEFAULT ''
+  `ug_group` varbinary(255) NOT NULL DEFAULT '',
+  UNIQUE KEY `ug_user_group` (`ug_user`,`ug_group`),
+  KEY `ug_group` (`ug_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6535,10 +6974,13 @@ INSERT INTO `wiki_user_groups` (`ug_user`, `ug_group`) VALUES
 -- Table structure for table `wiki_user_newtalk`
 --
 
-CREATE TABLE `wiki_user_newtalk` (
+DROP TABLE IF EXISTS `wiki_user_newtalk`;
+CREATE TABLE IF NOT EXISTS `wiki_user_newtalk` (
   `user_id` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `user_ip` varbinary(40) NOT NULL DEFAULT '',
-  `user_last_timestamp` varbinary(14) DEFAULT NULL
+  `user_last_timestamp` varbinary(14) DEFAULT NULL,
+  KEY `user_id` (`user_id`),
+  KEY `user_ip` (`user_ip`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6547,10 +6989,13 @@ CREATE TABLE `wiki_user_newtalk` (
 -- Table structure for table `wiki_user_properties`
 --
 
-CREATE TABLE `wiki_user_properties` (
+DROP TABLE IF EXISTS `wiki_user_properties`;
+CREATE TABLE IF NOT EXISTS `wiki_user_properties` (
   `up_user` int(11) NOT NULL,
   `up_property` varbinary(255) NOT NULL,
-  `up_value` blob
+  `up_value` blob,
+  UNIQUE KEY `user_properties_user_property` (`up_user`,`up_property`),
+  KEY `user_properties_property` (`up_property`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6559,8 +7004,10 @@ CREATE TABLE `wiki_user_properties` (
 -- Table structure for table `wiki_valid_tag`
 --
 
-CREATE TABLE `wiki_valid_tag` (
-  `vt_tag` varchar(255) NOT NULL
+DROP TABLE IF EXISTS `wiki_valid_tag`;
+CREATE TABLE IF NOT EXISTS `wiki_valid_tag` (
+  `vt_tag` varchar(255) NOT NULL,
+  PRIMARY KEY (`vt_tag`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6569,13 +7016,18 @@ CREATE TABLE `wiki_valid_tag` (
 -- Table structure for table `wiki_watchlist`
 --
 
-CREATE TABLE `wiki_watchlist` (
-  `wl_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `wiki_watchlist`;
+CREATE TABLE IF NOT EXISTS `wiki_watchlist` (
+  `wl_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `wl_user` int(10) UNSIGNED NOT NULL,
   `wl_namespace` int(11) NOT NULL DEFAULT '0',
-  `wl_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `wl_notificationtimestamp` varbinary(14) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `wl_title` varchar(255) NOT NULL DEFAULT '',
+  `wl_notificationtimestamp` varbinary(14) DEFAULT NULL,
+  PRIMARY KEY (`wl_id`),
+  UNIQUE KEY `wl_user` (`wl_user`,`wl_namespace`,`wl_title`),
+  KEY `namespace_title` (`wl_namespace`,`wl_title`),
+  KEY `wl_user_notificationtimestamp` (`wl_user`,`wl_notificationtimestamp`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `wiki_watchlist`
@@ -6596,1779 +7048,10 @@ INSERT INTO `wiki_watchlist` (`wl_id`, `wl_user`, `wl_namespace`, `wl_title`, `w
 --
 
 --
--- Indexes for table `abreviacion`
---
-ALTER TABLE `abreviacion`
-  ADD PRIMARY KEY (`abreviacionId`);
-
---
--- Indexes for table `activity`
---
-ALTER TABLE `activity`
-  ADD PRIMARY KEY (`activityId`);
-
---
--- Indexes for table `activity_config`
---
-ALTER TABLE `activity_config`
-  ADD PRIMARY KEY (`activityConfigId`);
-
---
--- Indexes for table `activity_score`
---
-ALTER TABLE `activity_score`
-  ADD PRIMARY KEY (`activityScoreId`);
-
---
--- Indexes for table `activity_test`
---
-ALTER TABLE `activity_test`
-  ADD PRIMARY KEY (`testId`);
-
---
--- Indexes for table `alumnoshistorial`
---
-ALTER TABLE `alumnoshistorial`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `announcement`
---
-ALTER TABLE `announcement`
-  ADD PRIMARY KEY (`announcementId`);
-
---
--- Indexes for table `automovilprofesor`
---
-ALTER TABLE `automovilprofesor`
-  ADD PRIMARY KEY (`automovilId`);
-
---
--- Indexes for table `bancoprofesor`
---
-ALTER TABLE `bancoprofesor`
-  ADD PRIMARY KEY (`bancoprofesorId`);
-
---
--- Indexes for table `bank`
---
-ALTER TABLE `bank`
-  ADD PRIMARY KEY (`bankId`);
-
---
--- Indexes for table `bank_account`
---
-ALTER TABLE `bank_account`
-  ADD PRIMARY KEY (`bank_accountId`);
-
---
--- Indexes for table `cancel_code`
---
-ALTER TABLE `cancel_code`
-  ADD PRIMARY KEY (`codeId`);
-
---
--- Indexes for table `catalogodocumento`
---
-ALTER TABLE `catalogodocumento`
-  ADD PRIMARY KEY (`catalogodocumentoId`);
-
---
--- Indexes for table `categoria_pregunta`
---
-ALTER TABLE `categoria_pregunta`
-  ADD PRIMARY KEY (`categoriapreguntaId`);
-
---
--- Indexes for table `chat`
---
-ALTER TABLE `chat`
-  ADD PRIMARY KEY (`chatId`);
-
---
--- Indexes for table `classroom`
---
-ALTER TABLE `classroom`
-  ADD PRIMARY KEY (`classroomId`);
-
---
--- Indexes for table `cometchat`
---
-ALTER TABLE `cometchat`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `to` (`to`),
-  ADD KEY `from` (`from`),
-  ADD KEY `direction` (`direction`),
-  ADD KEY `read` (`read`),
-  ADD KEY `sent` (`sent`);
-
---
--- Indexes for table `cometchat_announcements`
---
-ALTER TABLE `cometchat_announcements`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `to` (`to`),
-  ADD KEY `time` (`time`);
-
---
--- Indexes for table `cometchat_chatroommessages`
---
-ALTER TABLE `cometchat_chatroommessages`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `userid` (`userid`),
-  ADD KEY `chatroomid` (`chatroomid`),
-  ADD KEY `sent` (`sent`);
-
---
--- Indexes for table `cometchat_chatrooms`
---
-ALTER TABLE `cometchat_chatrooms`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `lastactivity` (`lastactivity`),
-  ADD KEY `createdby` (`createdby`),
-  ADD KEY `type` (`type`);
-
---
--- Indexes for table `cometchat_chatrooms_users`
---
-ALTER TABLE `cometchat_chatrooms_users`
-  ADD PRIMARY KEY (`userid`),
-  ADD KEY `chatroomid` (`chatroomid`),
-  ADD KEY `lastactivity` (`lastactivity`);
-
---
--- Indexes for table `cometchat_status`
---
-ALTER TABLE `cometchat_status`
-  ADD PRIMARY KEY (`userid`),
-  ADD KEY `typingto` (`typingto`),
-  ADD KEY `typingtime` (`typingtime`);
-
---
--- Indexes for table `cometchat_videochatsessions`
---
-ALTER TABLE `cometchat_videochatsessions`
-  ADD PRIMARY KEY (`username`),
-  ADD KEY `username` (`username`),
-  ADD KEY `identity` (`identity`),
-  ADD KEY `timestamp` (`timestamp`);
-
---
--- Indexes for table `complementoConcepto`
---
-ALTER TABLE `complementoConcepto`
-  ADD PRIMARY KEY (`complementoConceptoId`);
-
---
--- Indexes for table `complementoConceptoParte`
---
-ALTER TABLE `complementoConceptoParte`
-  ADD PRIMARY KEY (`complementoConceptoParteId`);
-
---
--- Indexes for table `comprobante`
---
-ALTER TABLE `comprobante`
-  ADD PRIMARY KEY (`comprobanteId`);
-
---
--- Indexes for table `concepto`
---
-ALTER TABLE `concepto`
-  ADD PRIMARY KEY (`conceptoId`);
-
---
--- Indexes for table `configuracion`
---
-ALTER TABLE `configuracion`
-  ADD PRIMARY KEY (`configId`);
-
---
--- Indexes for table `confirma_inscripcion`
---
-ALTER TABLE `confirma_inscripcion`
-  ADD PRIMARY KEY (`confirmaInscripcionId`);
-
---
--- Indexes for table `course`
---
-ALTER TABLE `course`
-  ADD PRIMARY KEY (`courseId`);
-
---
--- Indexes for table `course_module`
---
-ALTER TABLE `course_module`
-  ADD PRIMARY KEY (`courseModuleId`);
-
---
--- Indexes for table `course_module_personal`
---
-ALTER TABLE `course_module_personal`
-  ADD PRIMARY KEY (`courseModPId`);
-
---
--- Indexes for table `course_module_score`
---
-ALTER TABLE `course_module_score`
-  ADD PRIMARY KEY (`courseModuleScoreId`);
-
---
--- Indexes for table `cuentaPredialConcepto`
---
-ALTER TABLE `cuentaPredialConcepto`
-  ADD PRIMARY KEY (`cuentaPredialConceptoId`);
-
---
--- Indexes for table `cuentaPredialParte`
---
-ALTER TABLE `cuentaPredialParte`
-  ADD PRIMARY KEY (`cuentaPredialParteId`);
-
---
--- Indexes for table `documentosprofesor`
---
-ALTER TABLE `documentosprofesor`
-  ADD PRIMARY KEY (`documentosprofesorId`);
-
---
--- Indexes for table `estado`
---
-ALTER TABLE `estado`
-  ADD PRIMARY KEY (`estadoId`);
-
---
--- Indexes for table `estudioprofesor`
---
-ALTER TABLE `estudioprofesor`
-  ADD PRIMARY KEY (`estudioprofesorId`);
-
---
--- Indexes for table `eval_alumno_docente`
---
-ALTER TABLE `eval_alumno_docente`
-  ADD PRIMARY KEY (`evalalumnodocenteId`);
-
---
--- Indexes for table `ficha`
---
-ALTER TABLE `ficha`
-  ADD PRIMARY KEY (`idFicha`);
-
---
--- Indexes for table `folio`
---
-ALTER TABLE `folio`
-  ADD PRIMARY KEY (`folioId`);
-
---
--- Indexes for table `gradereport`
---
-ALTER TABLE `gradereport`
-  ADD PRIMARY KEY (`gradereportId`);
-
---
--- Indexes for table `gradereport_inter`
---
-ALTER TABLE `gradereport_inter`
-  ADD PRIMARY KEY (`gradereportInterId`),
-  ADD KEY `alumnoId` (`alumnoId`,`subjectId`,`scheduletestId`,`periodoId`,`semesterId`);
-
---
--- Indexes for table `gradereport_recur`
---
-ALTER TABLE `gradereport_recur`
-  ADD PRIMARY KEY (`gradereportRecurId`),
-  ADD KEY `alumnoId` (`alumnoId`,`subjectId`,`periodoId`,`semesterId`);
-
---
--- Indexes for table `gradereport_user`
---
-ALTER TABLE `gradereport_user`
-  ADD PRIMARY KEY (`gradReportUserId`),
-  ADD KEY `gradereportId` (`gradereportId`,`alumnoId`);
-
---
--- Indexes for table `group`
---
-ALTER TABLE `group`
-  ADD PRIMARY KEY (`groupId`);
-
---
--- Indexes for table `groupDEL`
---
-ALTER TABLE `groupDEL`
-  ADD PRIMARY KEY (`groupId`);
-
---
--- Indexes for table `group_subject`
---
-ALTER TABLE `group_subject`
-  ADD PRIMARY KEY (`gposubId`);
-
---
--- Indexes for table `homework`
---
-ALTER TABLE `homework`
-  ADD PRIMARY KEY (`homeworkId`);
-
---
--- Indexes for table `informacionAduaneraConcepto`
---
-ALTER TABLE `informacionAduaneraConcepto`
-  ADD PRIMARY KEY (`informacionAduaneraConceptoId`);
-
---
--- Indexes for table `informacionAduaneraParte`
---
-ALTER TABLE `informacionAduaneraParte`
-  ADD PRIMARY KEY (`informacionAduaneraParteId`);
-
---
--- Indexes for table `institution`
---
-ALTER TABLE `institution`
-  ADD PRIMARY KEY (`institutionId`);
-
---
--- Indexes for table `invoice`
---
-ALTER TABLE `invoice`
-  ADD PRIMARY KEY (`invoiceId`);
-
---
--- Indexes for table `ipn`
---
-ALTER TABLE `ipn`
-  ADD PRIMARY KEY (`ipnid`);
-
---
--- Indexes for table `kardex_calificacion`
---
-ALTER TABLE `kardex_calificacion`
-  ADD PRIMARY KEY (`karCalId`);
-
---
--- Indexes for table `major`
---
-ALTER TABLE `major`
-  ADD PRIMARY KEY (`majorId`);
-
---
--- Indexes for table `mensaje`
---
-ALTER TABLE `mensaje`
-  ADD PRIMARY KEY (`mensajeId`);
-
---
--- Indexes for table `menu_app`
---
-ALTER TABLE `menu_app`
-  ADD PRIMARY KEY (`menuAppId`);
-
---
--- Indexes for table `module`
---
-ALTER TABLE `module`
-  ADD PRIMARY KEY (`moduleId`);
-
---
--- Indexes for table `municipio`
---
-ALTER TABLE `municipio`
-  ADD PRIMARY KEY (`municipioId`),
-  ADD KEY `estadoId` (`estadoId`);
-
---
--- Indexes for table `notificacion`
---
-ALTER TABLE `notificacion`
-  ADD PRIMARY KEY (`notificacionId`);
-
---
--- Indexes for table `pagos`
---
-ALTER TABLE `pagos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pagosadicio`
---
-ALTER TABLE `pagosadicio`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pais`
---
-ALTER TABLE `pais`
-  ADD PRIMARY KEY (`paisId`);
-
---
--- Indexes for table `parte`
---
-ALTER TABLE `parte`
-  ADD PRIMARY KEY (`parteId`);
-
---
--- Indexes for table `payment`
---
-ALTER TABLE `payment`
-  ADD PRIMARY KEY (`paymentId`);
-
---
--- Indexes for table `periodo`
---
-ALTER TABLE `periodo`
-  ADD PRIMARY KEY (`periodoId`);
-
---
--- Indexes for table `personal`
---
-ALTER TABLE `personal`
-  ADD PRIMARY KEY (`personalId`);
-
---
--- Indexes for table `position`
---
-ALTER TABLE `position`
-  ADD PRIMARY KEY (`positionId`),
-  ADD KEY `clave` (`clave`);
-
---
--- Indexes for table `pregunta`
---
-ALTER TABLE `pregunta`
-  ADD PRIMARY KEY (`preguntaId`);
-
---
--- Indexes for table `profesion`
---
-ALTER TABLE `profesion`
-  ADD PRIMARY KEY (`profesionId`);
-
---
--- Indexes for table `recording`
---
-ALTER TABLE `recording`
-  ADD PRIMARY KEY (`recordingId`);
-
---
--- Indexes for table `registration`
---
-ALTER TABLE `registration`
-  ADD PRIMARY KEY (`registrationId`);
-
---
--- Indexes for table `registration_v1`
---
-ALTER TABLE `registration_v1`
-  ADD PRIMARY KEY (`registrationId`);
-
---
--- Indexes for table `reply`
---
-ALTER TABLE `reply`
-  ADD PRIMARY KEY (`replyId`);
-
---
--- Indexes for table `repositorio`
---
-ALTER TABLE `repositorio`
-  ADD PRIMARY KEY (`repositorioId`);
-
---
--- Indexes for table `resource`
---
-ALTER TABLE `resource`
-  ADD PRIMARY KEY (`resourceId`);
-
---
--- Indexes for table `resource_config`
---
-ALTER TABLE `resource_config`
-  ADD PRIMARY KEY (`resourceConfigId`);
-
---
--- Indexes for table `resultado`
---
-ALTER TABLE `resultado`
-  ADD PRIMARY KEY (`resultadoId`);
-
---
--- Indexes for table `rfc`
---
-ALTER TABLE `rfc`
-  ADD PRIMARY KEY (`rfcId`);
-
---
--- Indexes for table `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`roleId`);
-
---
--- Indexes for table `schedule`
---
-ALTER TABLE `schedule`
-  ADD PRIMARY KEY (`scheduleId`);
-
---
--- Indexes for table `schedule_group`
---
-ALTER TABLE `schedule_group`
-  ADD PRIMARY KEY (`scheduleGroupId`);
-
---
--- Indexes for table `schedule_test`
---
-ALTER TABLE `schedule_test`
-  ADD PRIMARY KEY (`scheduletestId`);
-
---
--- Indexes for table `schedule_time`
---
-ALTER TABLE `schedule_time`
-  ADD PRIMARY KEY (`schtimeId`);
-
---
--- Indexes for table `schgpo_subject`
---
-ALTER TABLE `schgpo_subject`
-  ADD UNIQUE KEY `schGpoSubjectId` (`schGpoSubjectId`);
-
---
--- Indexes for table `school_type`
---
-ALTER TABLE `school_type`
-  ADD PRIMARY KEY (`schtypId`);
-
---
--- Indexes for table `semester`
---
-ALTER TABLE `semester`
-  ADD PRIMARY KEY (`semesterId`);
-
---
--- Indexes for table `serie`
---
-ALTER TABLE `serie`
-  ADD PRIMARY KEY (`serieId`);
-
---
--- Indexes for table `solicitud`
---
-ALTER TABLE `solicitud`
-  ADD PRIMARY KEY (`solicitudId`);
-
---
--- Indexes for table `speciality`
---
-ALTER TABLE `speciality`
-  ADD PRIMARY KEY (`specialityId`);
-
---
--- Indexes for table `state`
---
-ALTER TABLE `state`
-  ADD PRIMARY KEY (`stateId`);
-
---
--- Indexes for table `subject`
---
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`subjectId`);
-
---
--- Indexes for table `subject_group`
---
-ALTER TABLE `subject_group`
-  ADD PRIMARY KEY (`subgpoId`),
-  ADD KEY `periodoId` (`periodoId`);
-
---
--- Indexes for table `subject_module`
---
-ALTER TABLE `subject_module`
-  ADD PRIMARY KEY (`subjectModuleId`);
-
---
--- Indexes for table `sucursal`
---
-ALTER TABLE `sucursal`
-  ADD PRIMARY KEY (`sucursalId`);
-
---
--- Indexes for table `team`
---
-ALTER TABLE `team`
-  ADD PRIMARY KEY (`teamId`);
-
---
--- Indexes for table `test`
---
-ALTER TABLE `test`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tiposComprobante`
---
-ALTER TABLE `tiposComprobante`
-  ADD PRIMARY KEY (`tiposComprobanteId`);
-
---
--- Indexes for table `tiposolicitud`
---
-ALTER TABLE `tiposolicitud`
-  ADD PRIMARY KEY (`tiposolicitudId`);
-
---
--- Indexes for table `topic`
---
-ALTER TABLE `topic`
-  ADD PRIMARY KEY (`topicId`);
-
---
--- Indexes for table `topicsub`
---
-ALTER TABLE `topicsub`
-  ADD PRIMARY KEY (`topicsubId`);
-
---
--- Indexes for table `typetest`
---
-ALTER TABLE `typetest`
-  ADD PRIMARY KEY (`testId`);
-
---
--- Indexes for table `type_calif`
---
-ALTER TABLE `type_calif`
-  ADD PRIMARY KEY (`typeCalifId`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`userId`);
-
---
--- Indexes for table `user_subject`
---
-ALTER TABLE `user_subject`
-  ADD PRIMARY KEY (`registrationId`),
-  ADD KEY `alumnoId` (`alumnoId`,`courseId`),
-  ADD KEY `courseId` (`courseId`);
-
---
--- Indexes for table `wiki_archive`
---
-ALTER TABLE `wiki_archive`
-  ADD PRIMARY KEY (`ar_id`),
-  ADD KEY `name_title_timestamp` (`ar_namespace`,`ar_title`,`ar_timestamp`),
-  ADD KEY `usertext_timestamp` (`ar_user_text`,`ar_timestamp`),
-  ADD KEY `ar_revid` (`ar_rev_id`);
-
---
--- Indexes for table `wiki_bot_passwords`
---
-ALTER TABLE `wiki_bot_passwords`
-  ADD PRIMARY KEY (`bp_user`,`bp_app_id`);
-
---
--- Indexes for table `wiki_category`
---
-ALTER TABLE `wiki_category`
-  ADD PRIMARY KEY (`cat_id`),
-  ADD UNIQUE KEY `cat_title` (`cat_title`),
-  ADD KEY `cat_pages` (`cat_pages`);
-
---
--- Indexes for table `wiki_categorylinks`
---
-ALTER TABLE `wiki_categorylinks`
-  ADD UNIQUE KEY `cl_from` (`cl_from`,`cl_to`),
-  ADD KEY `cl_sortkey` (`cl_to`,`cl_type`,`cl_sortkey`,`cl_from`),
-  ADD KEY `cl_timestamp` (`cl_to`,`cl_timestamp`),
-  ADD KEY `cl_collation_ext` (`cl_collation`,`cl_to`,`cl_type`,`cl_from`);
-
---
--- Indexes for table `wiki_change_tag`
---
-ALTER TABLE `wiki_change_tag`
-  ADD UNIQUE KEY `change_tag_rc_tag` (`ct_rc_id`,`ct_tag`),
-  ADD UNIQUE KEY `change_tag_log_tag` (`ct_log_id`,`ct_tag`),
-  ADD UNIQUE KEY `change_tag_rev_tag` (`ct_rev_id`,`ct_tag`),
-  ADD KEY `change_tag_tag_id` (`ct_tag`,`ct_rc_id`,`ct_rev_id`,`ct_log_id`);
-
---
--- Indexes for table `wiki_externallinks`
---
-ALTER TABLE `wiki_externallinks`
-  ADD PRIMARY KEY (`el_id`),
-  ADD KEY `el_from` (`el_from`,`el_to`(40)),
-  ADD KEY `el_to` (`el_to`(60),`el_from`),
-  ADD KEY `el_index` (`el_index`(60));
-
---
--- Indexes for table `wiki_filearchive`
---
-ALTER TABLE `wiki_filearchive`
-  ADD PRIMARY KEY (`fa_id`),
-  ADD KEY `fa_name` (`fa_name`,`fa_timestamp`),
-  ADD KEY `fa_storage_group` (`fa_storage_group`,`fa_storage_key`),
-  ADD KEY `fa_deleted_timestamp` (`fa_deleted_timestamp`),
-  ADD KEY `fa_user_timestamp` (`fa_user_text`,`fa_timestamp`),
-  ADD KEY `fa_sha1` (`fa_sha1`(10));
-
---
--- Indexes for table `wiki_image`
---
-ALTER TABLE `wiki_image`
-  ADD PRIMARY KEY (`img_name`),
-  ADD KEY `img_usertext_timestamp` (`img_user_text`,`img_timestamp`),
-  ADD KEY `img_size` (`img_size`),
-  ADD KEY `img_timestamp` (`img_timestamp`),
-  ADD KEY `img_sha1` (`img_sha1`(10)),
-  ADD KEY `img_media_mime` (`img_media_type`,`img_major_mime`,`img_minor_mime`);
-
---
--- Indexes for table `wiki_imagelinks`
---
-ALTER TABLE `wiki_imagelinks`
-  ADD UNIQUE KEY `il_from` (`il_from`,`il_to`),
-  ADD KEY `il_to` (`il_to`,`il_from`),
-  ADD KEY `il_backlinks_namespace` (`il_from_namespace`,`il_to`,`il_from`);
-
---
--- Indexes for table `wiki_interwiki`
---
-ALTER TABLE `wiki_interwiki`
-  ADD UNIQUE KEY `iw_prefix` (`iw_prefix`);
-
---
--- Indexes for table `wiki_ipblocks`
---
-ALTER TABLE `wiki_ipblocks`
-  ADD PRIMARY KEY (`ipb_id`),
-  ADD UNIQUE KEY `ipb_address` (`ipb_address`(255),`ipb_user`,`ipb_auto`,`ipb_anon_only`),
-  ADD KEY `ipb_user` (`ipb_user`),
-  ADD KEY `ipb_range` (`ipb_range_start`(8),`ipb_range_end`(8)),
-  ADD KEY `ipb_timestamp` (`ipb_timestamp`),
-  ADD KEY `ipb_expiry` (`ipb_expiry`),
-  ADD KEY `ipb_parent_block_id` (`ipb_parent_block_id`);
-
---
--- Indexes for table `wiki_iwlinks`
---
-ALTER TABLE `wiki_iwlinks`
-  ADD UNIQUE KEY `iwl_from` (`iwl_from`,`iwl_prefix`,`iwl_title`),
-  ADD KEY `iwl_prefix_title_from` (`iwl_prefix`,`iwl_title`,`iwl_from`),
-  ADD KEY `iwl_prefix_from_title` (`iwl_prefix`,`iwl_from`,`iwl_title`);
-
---
--- Indexes for table `wiki_job`
---
-ALTER TABLE `wiki_job`
-  ADD PRIMARY KEY (`job_id`),
-  ADD KEY `job_sha1` (`job_sha1`),
-  ADD KEY `job_cmd_token` (`job_cmd`,`job_token`,`job_random`),
-  ADD KEY `job_cmd_token_id` (`job_cmd`,`job_token`,`job_id`),
-  ADD KEY `job_cmd` (`job_cmd`,`job_namespace`,`job_title`,`job_params`(128)),
-  ADD KEY `job_timestamp` (`job_timestamp`);
-
---
--- Indexes for table `wiki_l10n_cache`
---
-ALTER TABLE `wiki_l10n_cache`
-  ADD KEY `lc_lang_key` (`lc_lang`,`lc_key`);
-
---
--- Indexes for table `wiki_langlinks`
---
-ALTER TABLE `wiki_langlinks`
-  ADD UNIQUE KEY `ll_from` (`ll_from`,`ll_lang`),
-  ADD KEY `ll_lang` (`ll_lang`,`ll_title`);
-
---
--- Indexes for table `wiki_logging`
---
-ALTER TABLE `wiki_logging`
-  ADD PRIMARY KEY (`log_id`),
-  ADD KEY `type_time` (`log_type`,`log_timestamp`),
-  ADD KEY `user_time` (`log_user`,`log_timestamp`),
-  ADD KEY `page_time` (`log_namespace`,`log_title`,`log_timestamp`),
-  ADD KEY `times` (`log_timestamp`),
-  ADD KEY `log_user_type_time` (`log_user`,`log_type`,`log_timestamp`),
-  ADD KEY `log_page_id_time` (`log_page`,`log_timestamp`),
-  ADD KEY `type_action` (`log_type`,`log_action`,`log_timestamp`),
-  ADD KEY `log_user_text_type_time` (`log_user_text`,`log_type`,`log_timestamp`),
-  ADD KEY `log_user_text_time` (`log_user_text`,`log_timestamp`);
-
---
--- Indexes for table `wiki_log_search`
---
-ALTER TABLE `wiki_log_search`
-  ADD UNIQUE KEY `ls_field_val` (`ls_field`,`ls_value`,`ls_log_id`),
-  ADD KEY `ls_log_id` (`ls_log_id`);
-
---
--- Indexes for table `wiki_module_deps`
---
-ALTER TABLE `wiki_module_deps`
-  ADD UNIQUE KEY `md_module_skin` (`md_module`,`md_skin`);
-
---
--- Indexes for table `wiki_objectcache`
---
-ALTER TABLE `wiki_objectcache`
-  ADD PRIMARY KEY (`keyname`),
-  ADD KEY `exptime` (`exptime`);
-
---
--- Indexes for table `wiki_oldimage`
---
-ALTER TABLE `wiki_oldimage`
-  ADD KEY `oi_usertext_timestamp` (`oi_user_text`,`oi_timestamp`),
-  ADD KEY `oi_name_timestamp` (`oi_name`,`oi_timestamp`),
-  ADD KEY `oi_name_archive_name` (`oi_name`,`oi_archive_name`(14)),
-  ADD KEY `oi_sha1` (`oi_sha1`(10));
-
---
--- Indexes for table `wiki_page`
---
-ALTER TABLE `wiki_page`
-  ADD PRIMARY KEY (`page_id`),
-  ADD UNIQUE KEY `name_title` (`page_namespace`,`page_title`),
-  ADD KEY `page_random` (`page_random`),
-  ADD KEY `page_len` (`page_len`),
-  ADD KEY `page_redirect_namespace_len` (`page_is_redirect`,`page_namespace`,`page_len`);
-
---
--- Indexes for table `wiki_pagelinks`
---
-ALTER TABLE `wiki_pagelinks`
-  ADD UNIQUE KEY `pl_from` (`pl_from`,`pl_namespace`,`pl_title`),
-  ADD KEY `pl_namespace` (`pl_namespace`,`pl_title`,`pl_from`),
-  ADD KEY `pl_backlinks_namespace` (`pl_from_namespace`,`pl_namespace`,`pl_title`,`pl_from`);
-
---
--- Indexes for table `wiki_page_props`
---
-ALTER TABLE `wiki_page_props`
-  ADD UNIQUE KEY `pp_page_propname` (`pp_page`,`pp_propname`),
-  ADD UNIQUE KEY `pp_propname_page` (`pp_propname`,`pp_page`),
-  ADD UNIQUE KEY `pp_propname_sortkey_page` (`pp_propname`,`pp_sortkey`,`pp_page`);
-
---
--- Indexes for table `wiki_page_restrictions`
---
-ALTER TABLE `wiki_page_restrictions`
-  ADD PRIMARY KEY (`pr_id`),
-  ADD UNIQUE KEY `pr_pagetype` (`pr_page`,`pr_type`),
-  ADD KEY `pr_typelevel` (`pr_type`,`pr_level`),
-  ADD KEY `pr_level` (`pr_level`),
-  ADD KEY `pr_cascade` (`pr_cascade`);
-
---
--- Indexes for table `wiki_protected_titles`
---
-ALTER TABLE `wiki_protected_titles`
-  ADD UNIQUE KEY `pt_namespace_title` (`pt_namespace`,`pt_title`),
-  ADD KEY `pt_timestamp` (`pt_timestamp`);
-
---
--- Indexes for table `wiki_querycache`
---
-ALTER TABLE `wiki_querycache`
-  ADD KEY `qc_type` (`qc_type`,`qc_value`);
-
---
--- Indexes for table `wiki_querycachetwo`
---
-ALTER TABLE `wiki_querycachetwo`
-  ADD KEY `qcc_type` (`qcc_type`,`qcc_value`),
-  ADD KEY `qcc_title` (`qcc_type`,`qcc_namespace`,`qcc_title`),
-  ADD KEY `qcc_titletwo` (`qcc_type`,`qcc_namespacetwo`,`qcc_titletwo`);
-
---
--- Indexes for table `wiki_querycache_info`
---
-ALTER TABLE `wiki_querycache_info`
-  ADD UNIQUE KEY `qci_type` (`qci_type`);
-
---
--- Indexes for table `wiki_recentchanges`
---
-ALTER TABLE `wiki_recentchanges`
-  ADD PRIMARY KEY (`rc_id`),
-  ADD KEY `rc_timestamp` (`rc_timestamp`),
-  ADD KEY `rc_namespace_title` (`rc_namespace`,`rc_title`),
-  ADD KEY `rc_cur_id` (`rc_cur_id`),
-  ADD KEY `new_name_timestamp` (`rc_new`,`rc_namespace`,`rc_timestamp`),
-  ADD KEY `rc_ip` (`rc_ip`),
-  ADD KEY `rc_ns_usertext` (`rc_namespace`,`rc_user_text`),
-  ADD KEY `rc_user_text` (`rc_user_text`,`rc_timestamp`);
-
---
--- Indexes for table `wiki_redirect`
---
-ALTER TABLE `wiki_redirect`
-  ADD PRIMARY KEY (`rd_from`),
-  ADD KEY `rd_ns_title` (`rd_namespace`,`rd_title`,`rd_from`);
-
---
--- Indexes for table `wiki_revision`
---
-ALTER TABLE `wiki_revision`
-  ADD PRIMARY KEY (`rev_id`),
-  ADD UNIQUE KEY `rev_page_id` (`rev_page`,`rev_id`),
-  ADD KEY `rev_timestamp` (`rev_timestamp`),
-  ADD KEY `page_timestamp` (`rev_page`,`rev_timestamp`),
-  ADD KEY `user_timestamp` (`rev_user`,`rev_timestamp`),
-  ADD KEY `usertext_timestamp` (`rev_user_text`,`rev_timestamp`),
-  ADD KEY `page_user_timestamp` (`rev_page`,`rev_user`,`rev_timestamp`);
-
---
 -- Indexes for table `wiki_searchindex`
 --
-ALTER TABLE `wiki_searchindex`
-  ADD UNIQUE KEY `si_page` (`si_page`);
 ALTER TABLE `wiki_searchindex` ADD FULLTEXT KEY `si_title` (`si_title`);
 ALTER TABLE `wiki_searchindex` ADD FULLTEXT KEY `si_text` (`si_text`);
-
---
--- Indexes for table `wiki_sites`
---
-ALTER TABLE `wiki_sites`
-  ADD PRIMARY KEY (`site_id`),
-  ADD UNIQUE KEY `sites_global_key` (`site_global_key`),
-  ADD KEY `sites_type` (`site_type`),
-  ADD KEY `sites_group` (`site_group`),
-  ADD KEY `sites_source` (`site_source`),
-  ADD KEY `sites_language` (`site_language`),
-  ADD KEY `sites_protocol` (`site_protocol`),
-  ADD KEY `sites_domain` (`site_domain`),
-  ADD KEY `sites_forward` (`site_forward`);
-
---
--- Indexes for table `wiki_site_identifiers`
---
-ALTER TABLE `wiki_site_identifiers`
-  ADD UNIQUE KEY `site_ids_type` (`si_type`,`si_key`),
-  ADD KEY `site_ids_site` (`si_site`),
-  ADD KEY `site_ids_key` (`si_key`);
-
---
--- Indexes for table `wiki_site_stats`
---
-ALTER TABLE `wiki_site_stats`
-  ADD UNIQUE KEY `ss_row_id` (`ss_row_id`);
-
---
--- Indexes for table `wiki_tag_summary`
---
-ALTER TABLE `wiki_tag_summary`
-  ADD UNIQUE KEY `tag_summary_rc_id` (`ts_rc_id`),
-  ADD UNIQUE KEY `tag_summary_log_id` (`ts_log_id`),
-  ADD UNIQUE KEY `tag_summary_rev_id` (`ts_rev_id`);
-
---
--- Indexes for table `wiki_templatelinks`
---
-ALTER TABLE `wiki_templatelinks`
-  ADD UNIQUE KEY `tl_from` (`tl_from`,`tl_namespace`,`tl_title`),
-  ADD KEY `tl_namespace` (`tl_namespace`,`tl_title`,`tl_from`),
-  ADD KEY `tl_backlinks_namespace` (`tl_from_namespace`,`tl_namespace`,`tl_title`,`tl_from`);
-
---
--- Indexes for table `wiki_text`
---
-ALTER TABLE `wiki_text`
-  ADD PRIMARY KEY (`old_id`);
-
---
--- Indexes for table `wiki_transcache`
---
-ALTER TABLE `wiki_transcache`
-  ADD UNIQUE KEY `tc_url_idx` (`tc_url`);
-
---
--- Indexes for table `wiki_updatelog`
---
-ALTER TABLE `wiki_updatelog`
-  ADD PRIMARY KEY (`ul_key`);
-
---
--- Indexes for table `wiki_uploadstash`
---
-ALTER TABLE `wiki_uploadstash`
-  ADD PRIMARY KEY (`us_id`),
-  ADD UNIQUE KEY `us_key` (`us_key`),
-  ADD KEY `us_user` (`us_user`),
-  ADD KEY `us_timestamp` (`us_timestamp`);
-
---
--- Indexes for table `wiki_user`
---
-ALTER TABLE `wiki_user`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `user_name` (`user_name`),
-  ADD KEY `user_email_token` (`user_email_token`),
-  ADD KEY `user_email` (`user_email`(50));
-
---
--- Indexes for table `wiki_user_former_groups`
---
-ALTER TABLE `wiki_user_former_groups`
-  ADD UNIQUE KEY `ufg_user_group` (`ufg_user`,`ufg_group`);
-
---
--- Indexes for table `wiki_user_groups`
---
-ALTER TABLE `wiki_user_groups`
-  ADD UNIQUE KEY `ug_user_group` (`ug_user`,`ug_group`),
-  ADD KEY `ug_group` (`ug_group`);
-
---
--- Indexes for table `wiki_user_newtalk`
---
-ALTER TABLE `wiki_user_newtalk`
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `user_ip` (`user_ip`);
-
---
--- Indexes for table `wiki_user_properties`
---
-ALTER TABLE `wiki_user_properties`
-  ADD UNIQUE KEY `user_properties_user_property` (`up_user`,`up_property`),
-  ADD KEY `user_properties_property` (`up_property`);
-
---
--- Indexes for table `wiki_valid_tag`
---
-ALTER TABLE `wiki_valid_tag`
-  ADD PRIMARY KEY (`vt_tag`);
-
---
--- Indexes for table `wiki_watchlist`
---
-ALTER TABLE `wiki_watchlist`
-  ADD PRIMARY KEY (`wl_id`),
-  ADD UNIQUE KEY `wl_user` (`wl_user`,`wl_namespace`,`wl_title`),
-  ADD KEY `namespace_title` (`wl_namespace`,`wl_title`),
-  ADD KEY `wl_user_notificationtimestamp` (`wl_user`,`wl_notificationtimestamp`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `abreviacion`
---
-ALTER TABLE `abreviacion`
-  MODIFY `abreviacionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `activity`
---
-ALTER TABLE `activity`
-  MODIFY `activityId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `activity_config`
---
-ALTER TABLE `activity_config`
-  MODIFY `activityConfigId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1069;
-
---
--- AUTO_INCREMENT for table `activity_score`
---
-ALTER TABLE `activity_score`
-  MODIFY `activityScoreId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `activity_test`
---
-ALTER TABLE `activity_test`
-  MODIFY `testId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `alumnoshistorial`
---
-ALTER TABLE `alumnoshistorial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `announcement`
---
-ALTER TABLE `announcement`
-  MODIFY `announcementId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `automovilprofesor`
---
-ALTER TABLE `automovilprofesor`
-  MODIFY `automovilId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `bancoprofesor`
---
-ALTER TABLE `bancoprofesor`
-  MODIFY `bancoprofesorId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `bank`
---
-ALTER TABLE `bank`
-  MODIFY `bankId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `bank_account`
---
-ALTER TABLE `bank_account`
-  MODIFY `bank_accountId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `cancel_code`
---
-ALTER TABLE `cancel_code`
-  MODIFY `codeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `catalogodocumento`
---
-ALTER TABLE `catalogodocumento`
-  MODIFY `catalogodocumentoId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT for table `categoria_pregunta`
---
-ALTER TABLE `categoria_pregunta`
-  MODIFY `categoriapreguntaId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `chat`
---
-ALTER TABLE `chat`
-  MODIFY `chatId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `classroom`
---
-ALTER TABLE `classroom`
-  MODIFY `classroomId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `cometchat`
---
-ALTER TABLE `cometchat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `cometchat_announcements`
---
-ALTER TABLE `cometchat_announcements`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `cometchat_chatroommessages`
---
-ALTER TABLE `cometchat_chatroommessages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `cometchat_chatrooms`
---
-ALTER TABLE `cometchat_chatrooms`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `complementoConcepto`
---
-ALTER TABLE `complementoConcepto`
-  MODIFY `complementoConceptoId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `complementoConceptoParte`
---
-ALTER TABLE `complementoConceptoParte`
-  MODIFY `complementoConceptoParteId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `comprobante`
---
-ALTER TABLE `comprobante`
-  MODIFY `comprobanteId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT for table `concepto`
---
-ALTER TABLE `concepto`
-  MODIFY `conceptoId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12912;
-
---
--- AUTO_INCREMENT for table `configuracion`
---
-ALTER TABLE `configuracion`
-  MODIFY `configId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `confirma_inscripcion`
---
-ALTER TABLE `confirma_inscripcion`
-  MODIFY `confirmaInscripcionId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `course`
---
-ALTER TABLE `course`
-  MODIFY `courseId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `course_module`
---
-ALTER TABLE `course_module`
-  MODIFY `courseModuleId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `course_module_personal`
---
-ALTER TABLE `course_module_personal`
-  MODIFY `courseModPId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `course_module_score`
---
-ALTER TABLE `course_module_score`
-  MODIFY `courseModuleScoreId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `cuentaPredialConcepto`
---
-ALTER TABLE `cuentaPredialConcepto`
-  MODIFY `cuentaPredialConceptoId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `cuentaPredialParte`
---
-ALTER TABLE `cuentaPredialParte`
-  MODIFY `cuentaPredialParteId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `documentosprofesor`
---
-ALTER TABLE `documentosprofesor`
-  MODIFY `documentosprofesorId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `estado`
---
-ALTER TABLE `estado`
-  MODIFY `estadoId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT for table `estudioprofesor`
---
-ALTER TABLE `estudioprofesor`
-  MODIFY `estudioprofesorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
-
---
--- AUTO_INCREMENT for table `eval_alumno_docente`
---
-ALTER TABLE `eval_alumno_docente`
-  MODIFY `evalalumnodocenteId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ficha`
---
-ALTER TABLE `ficha`
-  MODIFY `idFicha` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `folio`
---
-ALTER TABLE `folio`
-  MODIFY `folioId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `gradereport`
---
-ALTER TABLE `gradereport`
-  MODIFY `gradereportId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `gradereport_inter`
---
-ALTER TABLE `gradereport_inter`
-  MODIFY `gradereportInterId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `gradereport_recur`
---
-ALTER TABLE `gradereport_recur`
-  MODIFY `gradereportRecurId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del registro', AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `gradereport_user`
---
-ALTER TABLE `gradereport_user`
-  MODIFY `gradReportUserId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `group`
---
-ALTER TABLE `group`
-  MODIFY `groupId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `groupDEL`
---
-ALTER TABLE `groupDEL`
-  MODIFY `groupId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `group_subject`
---
-ALTER TABLE `group_subject`
-  MODIFY `gposubId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `homework`
---
-ALTER TABLE `homework`
-  MODIFY `homeworkId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `informacionAduaneraConcepto`
---
-ALTER TABLE `informacionAduaneraConcepto`
-  MODIFY `informacionAduaneraConceptoId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `informacionAduaneraParte`
---
-ALTER TABLE `informacionAduaneraParte`
-  MODIFY `informacionAduaneraParteId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `institution`
---
-ALTER TABLE `institution`
-  MODIFY `institutionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `invoice`
---
-ALTER TABLE `invoice`
-  MODIFY `invoiceId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ipn`
---
-ALTER TABLE `ipn`
-  MODIFY `ipnid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `kardex_calificacion`
---
-ALTER TABLE `kardex_calificacion`
-  MODIFY `karCalId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `major`
---
-ALTER TABLE `major`
-  MODIFY `majorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT for table `mensaje`
---
-ALTER TABLE `mensaje`
-  MODIFY `mensajeId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `menu_app`
---
-ALTER TABLE `menu_app`
-  MODIFY `menuAppId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
-
---
--- AUTO_INCREMENT for table `module`
---
-ALTER TABLE `module`
-  MODIFY `moduleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
---
--- AUTO_INCREMENT for table `municipio`
---
-ALTER TABLE `municipio`
-  MODIFY `municipioId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2496;
-
---
--- AUTO_INCREMENT for table `notificacion`
---
-ALTER TABLE `notificacion`
-  MODIFY `notificacionId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pagos`
---
-ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pagosadicio`
---
-ALTER TABLE `pagosadicio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `parte`
---
-ALTER TABLE `parte`
-  MODIFY `parteId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payment`
---
-ALTER TABLE `payment`
-  MODIFY `paymentId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
-
---
--- AUTO_INCREMENT for table `periodo`
---
-ALTER TABLE `periodo`
-  MODIFY `periodoId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `personal`
---
-ALTER TABLE `personal`
-  MODIFY `personalId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
-
---
--- AUTO_INCREMENT for table `position`
---
-ALTER TABLE `position`
-  MODIFY `positionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT for table `pregunta`
---
-ALTER TABLE `pregunta`
-  MODIFY `preguntaId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `profesion`
---
-ALTER TABLE `profesion`
-  MODIFY `profesionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
-
---
--- AUTO_INCREMENT for table `recording`
---
-ALTER TABLE `recording`
-  MODIFY `recordingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `registration`
---
-ALTER TABLE `registration`
-  MODIFY `registrationId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `registration_v1`
---
-ALTER TABLE `registration_v1`
-  MODIFY `registrationId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `reply`
---
-ALTER TABLE `reply`
-  MODIFY `replyId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `repositorio`
---
-ALTER TABLE `repositorio`
-  MODIFY `repositorioId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `resource`
---
-ALTER TABLE `resource`
-  MODIFY `resourceId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `resource_config`
---
-ALTER TABLE `resource_config`
-  MODIFY `resourceConfigId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `resultado`
---
-ALTER TABLE `resultado`
-  MODIFY `resultadoId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `rfc`
---
-ALTER TABLE `rfc`
-  MODIFY `rfcId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT for table `role`
---
-ALTER TABLE `role`
-  MODIFY `roleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
---
--- AUTO_INCREMENT for table `schedule`
---
-ALTER TABLE `schedule`
-  MODIFY `scheduleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `schedule_group`
---
-ALTER TABLE `schedule_group`
-  MODIFY `scheduleGroupId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `schedule_test`
---
-ALTER TABLE `schedule_test`
-  MODIFY `scheduletestId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `schedule_time`
---
-ALTER TABLE `schedule_time`
-  MODIFY `schtimeId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `schgpo_subject`
---
-ALTER TABLE `schgpo_subject`
-  MODIFY `schGpoSubjectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT for table `school_type`
---
-ALTER TABLE `school_type`
-  MODIFY `schtypId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `semester`
---
-ALTER TABLE `semester`
-  MODIFY `semesterId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `serie`
---
-ALTER TABLE `serie`
-  MODIFY `serieId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
-
---
--- AUTO_INCREMENT for table `solicitud`
---
-ALTER TABLE `solicitud`
-  MODIFY `solicitudId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `speciality`
---
-ALTER TABLE `speciality`
-  MODIFY `specialityId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- AUTO_INCREMENT for table `state`
---
-ALTER TABLE `state`
-  MODIFY `stateId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT for table `subject`
---
-ALTER TABLE `subject`
-  MODIFY `subjectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
-
---
--- AUTO_INCREMENT for table `subject_group`
---
-ALTER TABLE `subject_group`
-  MODIFY `subgpoId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `subject_module`
---
-ALTER TABLE `subject_module`
-  MODIFY `subjectModuleId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `sucursal`
---
-ALTER TABLE `sucursal`
-  MODIFY `sucursalId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `team`
---
-ALTER TABLE `team`
-  MODIFY `teamId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `test`
---
-ALTER TABLE `test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `tiposComprobante`
---
-ALTER TABLE `tiposComprobante`
-  MODIFY `tiposComprobanteId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `tiposolicitud`
---
-ALTER TABLE `tiposolicitud`
-  MODIFY `tiposolicitudId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `topic`
---
-ALTER TABLE `topic`
-  MODIFY `topicId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `topicsub`
---
-ALTER TABLE `topicsub`
-  MODIFY `topicsubId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `typetest`
---
-ALTER TABLE `typetest`
-  MODIFY `testId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `type_calif`
---
-ALTER TABLE `type_calif`
-  MODIFY `typeCalifId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2971;
-
---
--- AUTO_INCREMENT for table `user_subject`
---
-ALTER TABLE `user_subject`
-  MODIFY `registrationId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `wiki_archive`
---
-ALTER TABLE `wiki_archive`
-  MODIFY `ar_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `wiki_category`
---
-ALTER TABLE `wiki_category`
-  MODIFY `cat_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `wiki_externallinks`
---
-ALTER TABLE `wiki_externallinks`
-  MODIFY `el_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `wiki_filearchive`
---
-ALTER TABLE `wiki_filearchive`
-  MODIFY `fa_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `wiki_ipblocks`
---
-ALTER TABLE `wiki_ipblocks`
-  MODIFY `ipb_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `wiki_job`
---
-ALTER TABLE `wiki_job`
-  MODIFY `job_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `wiki_logging`
---
-ALTER TABLE `wiki_logging`
-  MODIFY `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `wiki_page`
---
-ALTER TABLE `wiki_page`
-  MODIFY `page_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `wiki_page_restrictions`
---
-ALTER TABLE `wiki_page_restrictions`
-  MODIFY `pr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `wiki_recentchanges`
---
-ALTER TABLE `wiki_recentchanges`
-  MODIFY `rc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `wiki_revision`
---
-ALTER TABLE `wiki_revision`
-  MODIFY `rev_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `wiki_sites`
---
-ALTER TABLE `wiki_sites`
-  MODIFY `site_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `wiki_text`
---
-ALTER TABLE `wiki_text`
-  MODIFY `old_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `wiki_uploadstash`
---
-ALTER TABLE `wiki_uploadstash`
-  MODIFY `us_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `wiki_user`
---
-ALTER TABLE `wiki_user`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `wiki_watchlist`
---
-ALTER TABLE `wiki_watchlist`
-  MODIFY `wl_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
