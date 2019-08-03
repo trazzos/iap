@@ -38,7 +38,7 @@
 <div id="msj_1">
 					</div>
 					<center>
-					<button onClick='onSave()' class="btn green" >
+					<button onClick='onSave()' class="btn {$BUTTON_COLOR}" >
 					Guardar
 					</button>
 					<button type="button" class="btn default closeModal" onClick="cancelarSolicitud()">Cancelar</button>

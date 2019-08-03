@@ -4,7 +4,7 @@
             <i class="fa fa-bullhorm"></i>Estatus financiero
         </div>
         <div class="actions">
-			<a class="btn green" href="javascript:void(0)" onClick="verCalendario()">
+			<a class="btn {$BUTTON_COLOR}" href="javascript:void(0)" onClick="verCalendario()">
 				<i class="fa fa-plus"></i>Imprimir
 			</a>
         </div>

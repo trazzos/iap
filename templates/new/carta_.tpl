@@ -104,7 +104,7 @@
 			</table>
 	</form>
 		<center>
-			<button class="btn green" type="button" onClick="onSaveCarta()">Guardar</button>
+			<button class="btn {$BUTTON_COLOR}" type="button" onClick="onSaveCarta()">Guardar</button>
 		</center>
     </div>
 </div>

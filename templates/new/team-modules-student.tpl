@@ -64,7 +64,7 @@
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-offset-3 col-md-9">
-                                <button type="button" class="btn green submitForm" onclick="SubmitForm()">Enviar Correo</button>
+                                <button type="button" class="btn {$BUTTON_COLOR} submitForm" onclick="SubmitForm()">Enviar Correo</button>
 
                             </div>
                         </div>

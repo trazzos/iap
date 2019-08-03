@@ -32,7 +32,7 @@
 		</form>
 		<center>
 		<div id="res_"></div>
-		<button class="btn green" type="button" onClick="onSavePass()">Actualizar</button>
+		<button class="btn {$BUTTON_COLOR}" type="button" onClick="onSavePass()">Actualizar</button>
 		 <button type="button" class="btn default closeModal" onClick="closeModal()">Cancelar</button>
 		</center>
 		<br>

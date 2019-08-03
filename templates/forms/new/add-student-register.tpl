@@ -370,7 +370,7 @@
         <div class="row">
             <div class="col-md-offset-3 col-md-9">
                 <button type="button" class="btn default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn green submitForm" onclick="AddStudentRegister();" id="addStudent" >Guardar</button>
+                <button type="button" class="btn {$BUTTON_COLOR} submitForm" onclick="AddStudentRegister();" id="addStudent" >Guardar</button>
             </div>
         </div>
     </div>

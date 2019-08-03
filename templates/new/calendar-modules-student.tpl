@@ -24,7 +24,7 @@
                         <b>Actividad  {$item.count} - </b> {$item.resumen}
                     </div>
                     <div class="actions">
-                        <a href="{$WEB_ROOT}/graybox.php?page=view-description-activity&id={$item.activityId};" class="btn green" data-target="#ajax" data-toggle="modal" >
+                        <a href="{$WEB_ROOT}/graybox.php?page=view-description-activity&id={$item.activityId};" class="btn {$BUTTON_COLOR}" data-target="#ajax" data-toggle="modal" >
 
                             <i class="fa fa-plus"></i> Ver Descripción </a>
 

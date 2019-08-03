@@ -4,7 +4,7 @@
             <i class="fa fa-bullhorm"></i>Videoconferencias
         </div>
         <div class="actions">
-            <a href="javascript:;" class="btn green" id="btnAddRecording">
+            <a href="javascript:;" class="btn {$BUTTON_COLOR}" id="btnAddRecording">
                 <i class="fa fa-plus"></i> Agregar
             </a>
         </div>

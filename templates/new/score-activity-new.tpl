@@ -4,7 +4,7 @@
             <i class="fa fa-bullhorm"></i>Calificar Actividad
         </div>
         <div class="actions">
-		<a href="{$WEB_ROOT}/edit-modules-course/id/{$cId}" id="btnAddMajor" class="btn green" title="Editar Modulo" >Regresar a Modulo</a>
+		<a href="{$WEB_ROOT}/edit-modules-course/id/{$cId}" id="btnAddMajor" class="btn {$BUTTON_COLOR}" title="Editar Modulo" >Regresar a Modulo</a>
         </div>
     </div>
     <div class="portlet-body">

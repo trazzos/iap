@@ -17,7 +17,7 @@
 		<a href="#" class="alert-link">La Encuesta ha sido enviada correctamente</a>
 		</div>
 		<br>
-		<center><button onClick="afterFiveSeconds()" class="btn green submitForm">Continuar</button></center>
+		<center><button onClick="afterFiveSeconds()" class="btn {$BUTTON_COLOR} submitForm">Continuar</button></center>
 		</div>
     </div>
 </div>

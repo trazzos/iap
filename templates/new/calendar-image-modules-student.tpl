@@ -4,7 +4,7 @@
             <i class="fa fa-bullhorm"></i><b>Calendario de actividades</b> {$myModule.name|truncate:65:"..."} &raquo;
         </div>
         <div class="actions">
-				<a class="btn green" href="javascript:void(0)" onClick="onImprimir({$id})" title='IMPRIMIR'>
+				<a class="btn {$BUTTON_COLOR}" href="javascript:void(0)" onClick="onImprimir({$id})" title='IMPRIMIR'>
 					Imprimir
 		
 			</a>

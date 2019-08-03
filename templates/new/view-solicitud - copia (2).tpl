@@ -17,7 +17,7 @@
 			<option value='{$item.tiposolicitudId}'>{$item.nombre}</option>
 			{/foreach}
 		</select>
-		<button onClick='addSolicitud()' class="btn green submitForm" >Solicitar</button>
+		<button onClick='addSolicitud()' class="btn {$BUTTON_COLOR} submitForm" >Solicitar</button>
 		</div>
 		<br>
 		<br>

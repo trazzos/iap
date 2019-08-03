@@ -59,7 +59,6 @@
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/AJS.js"></script>
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/AJS_fx.js"></script>
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/gb_scripts.js"></script>
-	<script type="text/javascript" src="{$WEB_ROOT}/javascript/inbox.js"></script>
 	<style>
 		.modal-dialog{
 			width: 70%;
@@ -68,7 +67,6 @@
     color: #32c5d2;
 }
 	</style>
-	<script src="{$WEB_ROOT}/assets/jquery.multiple.select.js"></script>
 
 <link href="{$WEB_ROOT}/assets/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
 {if $page == 'reply-inbox' or 
@@ -114,15 +112,6 @@ $page == 'view-inbox' or
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>-->
 {/if}
-<script>
- $(function() {
-        $('#ms').change(function() {
-            console.log($(this).val());
-        }).multipleSelect({
-            width: '100%'
-        });
-    });
-</script>
 </head>
 <!-- END HEAD -->
 
@@ -167,6 +156,19 @@ $page == 'view-inbox' or
 <script src="{$WEB_ROOT}/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
+
+<script src="{$WEB_ROOT}/assets/jquery.multiple.select.js"></script>
+<script type="text/javascript" src="{$WEB_ROOT}/javascript/inbox.js"></script>
+
+<script>
+  $(function() {
+    $('#ms').change(function() {
+      console.log($(this).val());
+    }).multipleSelect({
+      width: '100%'
+    });
+  });
+</script>
 
 
 <script>

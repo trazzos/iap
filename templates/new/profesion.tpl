@@ -4,7 +4,7 @@
             <i class="fa fa-bullhorm"></i>Tipos de Profesiones
         </div>
         <div class="actions">
-            <a href="javascript:;" class="btn green" id="btnAddProfesion">
+            <a href="javascript:;" class="btn {$BUTTON_COLOR}" id="btnAddProfesion">
                 <i class="fa fa-plus"></i> Agregar
             </a>
         </div>

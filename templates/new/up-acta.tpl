@@ -10,7 +10,7 @@
 
         </div>
 		<div class="actions">
-            <!--<a href="javascript:;" class="btn green" id="btnAddMajor">
+            <!--<a href="javascript:;" class="btn {$BUTTON_COLOR}" id="btnAddMajor">
                 <i class="fa fa-plus"></i> Sincronizar School Manager
             </a>-->
         </div>
@@ -33,7 +33,7 @@
 			</form>
 			<progress id="progress_" value="0" min="0" max="100"></progress>
 			<div id="porcentaje_" >0%</div>
-			<center><button  class="btn green" id="addMajor" name="addMajor" onClick="enviarArchivoActa()">Guardar</button></center>
+			<center><button  class="btn {$BUTTON_COLOR}" id="addMajor" name="addMajor" onClick="enviarArchivoActa()">Guardar</button></center>
 
 		</div>
     </div>

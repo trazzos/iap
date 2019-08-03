@@ -41,7 +41,7 @@
 					<textarea name='desc' id='desc'>{$info.perfil}</textarea>
 					<br>
 					</form>
-					<button class="btn green" type="button" onClick="onSavePerfil()">Guardar</button>
+					<button class="btn {$BUTTON_COLOR}" type="button" onClick="onSavePerfil()">Guardar</button>
 					
 				</center>
     </div>

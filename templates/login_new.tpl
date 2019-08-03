@@ -88,7 +88,7 @@ License: You must have a valid license purchased only from themeforest(the above
             </label>
 *}
 
-            <button type="button" onclick="DoLogin()" class="btn green pull-right"> Ingresar </button>
+            <button type="button" onclick="DoLogin()" class="btn {$BUTTON_COLOR} pull-right"> Ingresar </button>
         </div>
 {*
         <div class="login-options">
@@ -138,7 +138,7 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <div class="form-actions">
             <button type="button" id="back-btn" class="btn red btn-outline">Regresar</button>
-            <button type="button" class="btn green pull-right" onclick="Recuperacion();" > recuperar </button>
+            <button type="button" class="btn {$BUTTON_COLOR} pull-right" onclick="Recuperacion();" > recuperar </button>
         </div>
     </form>
     <!-- END FORGOT PASSWORD FORM -->
@@ -443,7 +443,7 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <div class="form-actions">
             <button id="register-back-btn" type="button" class="btn red btn-outline"> Back </button>
-            <button type="submit" id="register-submit-btn" class="btn green pull-right"> Sign Up </button>
+            <button type="submit" id="register-submit-btn" class="btn {$BUTTON_COLOR} pull-right"> Sign Up </button>
         </div>
     </form>
     <!-- END REGISTRATION FORM -->

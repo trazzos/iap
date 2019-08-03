@@ -4,7 +4,7 @@
             <i class="fa fa-bullhorm"></i>Puestos
         </div>
         <div class="actions">
-            <a href="javascript:;" class="btn green" id="btnAddPosition">
+            <a href="javascript:;" class="btn {$BUTTON_COLOR}" id="btnAddPosition">
                 <i class="fa fa-plus"></i> Agregar
             </a>
         </div>

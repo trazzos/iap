@@ -126,7 +126,7 @@
              </form>
 			 <div  class="msjError"  ></div>
 			<center>
-					<button onClick='addSaveSolicitud()' class="btn green submitForm" >Solicitar</button> 
+					<button onClick='addSaveSolicitud()' class="btn {$BUTTON_COLOR} submitForm" >Solicitar</button>
 					 <button type="button" class="btn default closeModal">Cancelar</button>
 			</center>
         </div>

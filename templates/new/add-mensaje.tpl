@@ -52,7 +52,7 @@
 		</form>
 		<br>
 		
-		<button onClick='buscarSolicitud()' class="btn green submitForm">Buscar</button>
+		<button onClick='buscarSolicitud()' class="btn {$BUTTON_COLOR} submitForm">Buscar</button>
 		<div id='loader'>
 		</div>-->
 		<div id='contenido'>

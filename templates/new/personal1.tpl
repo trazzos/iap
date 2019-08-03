@@ -4,7 +4,7 @@
             <i class="fa fa-bullhorm"></i>Personal
         </div>
         <div class="actions">
-            <a href="javascript:;" class="btn green" id="btnAddPersonal">
+            <a href="javascript:;" class="btn {$BUTTON_COLOR}" id="btnAddPersonal">
                 <i class="fa fa-plus"></i> Agregar
             </a>
         </div>

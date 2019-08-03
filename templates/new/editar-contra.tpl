@@ -76,7 +76,7 @@
 <div class="form-actions">
 
 <center>
-	<button  class="btn green submitForm" onClick="saveEditContrato()">Guardar</button>
+	<button  class="btn {$BUTTON_COLOR} submitForm" onClick="saveEditContrato()">Guardar</button>
 	<button type="button" class="btn default closeModal" onClick="closeModal()" >Cancelar</button>
 </center>
 </div>

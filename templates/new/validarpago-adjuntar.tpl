@@ -10,7 +10,7 @@
 
         </div>
 		<div class="actions">
-            <!--<a href="javascript:;" class="btn green" id="btnAddMajor">
+            <!--<a href="javascript:;" class="btn {$BUTTON_COLOR}" id="btnAddMajor">
                 <i class="fa fa-plus"></i> Sincronizar School Manager
             </a>-->
         </div>
@@ -35,7 +35,7 @@
 			<div id="porcentaje_" >0%</div>
 			<br>
 			<font color="red">*Solo se permiten adjuntar archivos con extensión .PDF</font><br>
-			<center><button  class="btn green" id="addMajor" name="addMajor" onClick="validarPagoAdjunto()">Guardar</button></center>
+			<center><button  class="btn {$BUTTON_COLOR}" id="addMajor" name="addMajor" onClick="validarPagoAdjunto()">Guardar</button></center>
 
 		</div>
     </div>

@@ -157,6 +157,7 @@ $smarty->assign('THEME',THEME);
 $smarty->assign('PORTLET_COLOR',PORTLET_COLOR);
 $smarty->assign('SHORT_NAME',SHORT_NAME);
 $smarty->assign('INTRODUCTION',INTRODUCTION);
+$smarty->assign('BUTTON_COLOR',BUTTON_COLOR);
 
 $smarty->assign('property', $property);
 

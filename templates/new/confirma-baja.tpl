@@ -21,7 +21,7 @@
 	<br>
 	<br>
 	
-	<a href="{$WEB_ROOT}/unsubscribe/sId/{$id}"  class="btn green submitForm" >SI</a>
+	<a href="{$WEB_ROOT}/unsubscribe/sId/{$id}"  class="btn {$BUTTON_COLOR} submitForm" >SI</a>
 	<button type="button" class="btn default closeModal" onClick="cancelarSolicitud()">Cancelar Solicitud</button>
 		
     </div>

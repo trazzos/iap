@@ -15,6 +15,7 @@ define("LOGO_SMALL", getenv('LOGO_SMALL'));
 define("THEME", getenv('THEME'));
 define("PORTLET_COLOR", getenv('PORTLET_COLOR'));
 define("INTRODUCTION", getenv('INTRODUCTION'));
+define("BUTTON_COLOR", getenv('BUTTON_COLOR'));
 
 define("ITEMS_PER_PAGE", "20");
 define("MIN_YEAR", 2009);

@@ -90,7 +90,7 @@
         <div class="form-actions">
             <div class="row">
                 <div class="col-md-offset-3 col-md-9">
-                    <button type="submit" class="btn green submitForm">Guardar</button>
+                    <button type="submit" class="btn {$BUTTON_COLOR} submitForm">Guardar</button>
                     <button type="button" class="btn default closeModal">Cancelar</button>
                 </div>
             </div>
@@ -112,7 +112,7 @@
             <i class="fa fa-gift"></i>.:: Actividades ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=add-activity-c&id={$courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal" class="btn green">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-activity-c&id={$courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal" class="btn {$BUTTON_COLOR}">
                 &raquo; Agregar actividad
             </a>
         </div>
@@ -137,7 +137,7 @@
             <i class="fa fa-gift"></i>.:: Recursos de Apoyo ::.
         </div>
         <div class="actions">
-            <a href="{$WEB_ROOT}/graybox.php?page=add-resource-c&id={$courseModuleId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" class="btn green">
+            <a href="{$WEB_ROOT}/graybox.php?page=add-resource-c&id={$courseModuleId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" class="btn {$BUTTON_COLOR}">
                 &raquo; Agregar Recurso de Apoyo
             </a>
         </div>

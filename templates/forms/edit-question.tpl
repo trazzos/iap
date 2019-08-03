@@ -75,5 +75,5 @@
 </div>  
 <center>
 <div id="msj"></div>
- <button type="submit" class="btn green"  id="addMajor" name="addMajor" value="Editar" onClick="EditTest()"> Editar </button>   
+ <button type="submit" class="btn {$BUTTON_COLOR}"  id="addMajor" name="addMajor" value="Editar" onClick="EditTest()"> Editar </button>
 </center>

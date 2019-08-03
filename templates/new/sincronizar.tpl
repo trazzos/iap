@@ -9,7 +9,7 @@
 	
         </div>
 		<div class="actions">
-            <!--<a href="javascript:;" class="btn green" id="btnAddMajor">
+            <!--<a href="javascript:;" class="btn {$BUTTON_COLOR}" id="btnAddMajor">
                 <i class="fa fa-plus"></i> Sincronizar School Manager
             </a>-->
         </div>
@@ -61,7 +61,7 @@
 
 		
 		<center>
-		<a  class="btn green" onClick="sincronizarDB()">
+		<a  class="btn {$BUTTON_COLOR}" onClick="sincronizarDB()">
 			<i class="fa fa-plus"></i> Sincronizar
 		</a>
 		</center>

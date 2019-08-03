@@ -38,7 +38,7 @@
 			</table>
 			</form>
 			<center>
-				<button onClick='savePeriodos()' class="btn green submitForm" >Solicitar</button>
+				<button onClick='savePeriodos()' class="btn {$BUTTON_COLOR} submitForm" >Solicitar</button>
 			</center>
 		</div>
     </div>

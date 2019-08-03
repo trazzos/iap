@@ -25,7 +25,7 @@
 
 			</form>
 			<div id="msjgg"></div>
-			<center><button onClick='addSaveSolicitudOk()' class="btn green submitForm" >Solicitar</button> </center>
+			<center><button onClick='addSaveSolicitudOk()' class="btn {$BUTTON_COLOR} submitForm" >Solicitar</button> </center>
 			
         </div>
     </div>

@@ -5,7 +5,7 @@
         </div>
         <div class="actions">
             {if $docente != 1}
-            <a class=" btn green" href="{$WEB_ROOT}/graybox.php?page=open-subject" data-target="#ajax" data-toggle="modal">
+            <a class=" btn {$BUTTON_COLOR}" href="{$WEB_ROOT}/graybox.php?page=open-subject" data-target="#ajax" data-toggle="modal">
                 <i class="fa fa-plus"></i>Agregar
             </a>
             {/if}
