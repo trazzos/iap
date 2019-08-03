@@ -27,7 +27,7 @@
     <div class="portlet-body">
         <div class="scroller" style="" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
             <p class="left">
-                <b>{$COMPANY_NAME}</b><br />te da la mas cordial bienvenida a nuestro Sistema de Educación en Línea
+                <b>{$institution.name_long}</b><br />te da la mas cordial bienvenida a nuestro Sistema de Educación en Línea
             </p>
             <p class="right">
                 <b>{$INTRODUCTION}</b>
