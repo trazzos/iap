@@ -148,6 +148,15 @@ $smarty = new Smarty;
 
 $smarty->assign('DOC_ROOT',DOC_ROOT);
 $smarty->assign('WEB_ROOT',WEB_ROOT);
+$smarty->assign('LOGIN_PAGE',LOGIN_PAGE);
+$smarty->assign('COMPANY_NAME',COMPANY_NAME);
+$smarty->assign('COPYRIGHT',COPYRIGHT);
+$smarty->assign('LOGO',LOGO);
+$smarty->assign('LOGO_SMALL',LOGO_SMALL);
+$smarty->assign('THEME',THEME);
+$smarty->assign('PORTLET_COLOR',PORTLET_COLOR);
+$smarty->assign('SHORT_NAME',SHORT_NAME);
+$smarty->assign('INTRODUCTION',INTRODUCTION);
 
 $smarty->assign('property', $property);
 

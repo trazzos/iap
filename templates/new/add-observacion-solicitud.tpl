@@ -1,4 +1,4 @@
-<div class="portlet box red" style='margin-top:5% !important; width:70%; margin-left:15% !important'>
+<div class="portlet box {$PORTLET_COLOR}" style='margin-top:5% !important; width:70%; margin-left:15% !important'>
     <div class="portlet-title" >
         <div class="caption">
             <i class="fa fa-bullhorm"></i>

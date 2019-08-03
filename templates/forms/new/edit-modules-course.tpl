@@ -1,5 +1,5 @@
 <div id="msjCourse"></div>
-<div class="portlet box red">
+<div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Datos del M&oacute;dulo ::.
@@ -305,7 +305,7 @@
     </div>
 </div>
 
-<div class="portlet box red">
+<div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Grupo ::.
@@ -334,7 +334,7 @@
     </div>
 </div>
 
-<div class="portlet box red">
+<div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Actividades ::.
@@ -360,7 +360,7 @@
     </div>
 </div>
 
-<div class="portlet box red">
+<div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Recursos de Apoyo ::.
@@ -377,7 +377,7 @@
     </div>
 </div>
 
-<div class="portlet box red">
+<div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Foros ::.
@@ -394,7 +394,7 @@
     </div>
 </div>
 
-<div class="portlet box red">
+<div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Avisos ::.

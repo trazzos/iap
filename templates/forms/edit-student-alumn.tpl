@@ -1,6 +1,6 @@
 
 {if $auxImagen ne 1}
-<!--<div class="portlet box red">
+<!--<div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-bullhorm"></i>Cambiar foto de perfil
@@ -54,7 +54,7 @@
     <input type="hidden" id="courseMxId" name="courseMxId" value="{$courseMId}"/>
     <input type="hidden" id="subjecxtId" name="subjecxtId" value="{$subjectId}"/>
 	 <input type="hidden" id="coursexId" name="coursexId" value="{$courseId}"/>
-    <div class="portlet box red">
+    <div class="portlet box {$PORTLET_COLOR}">
         <div class="portlet-title">
             <div class="caption">
                 <i class="fa fa-bullhorm"></i>Información Personal
@@ -135,7 +135,7 @@
         </div>
     </div>
 
-    <div class="portlet box red">
+    <div class="portlet box {$PORTLET_COLOR}">
         <div class="portlet-title">
             <div class="caption">
                 <i class="fa fa-bullhorm"></i>Domicilio
@@ -228,7 +228,7 @@
         </div>
     </div>
 
-    <div class="portlet box red">
+    <div class="portlet box {$PORTLET_COLOR}">
         <div class="portlet-title">
             <div class="caption">
                 <i class="fa fa-bullhorm"></i>Datos de contacto
@@ -260,7 +260,7 @@
         </div>
     </div>
 
-    <div class="portlet box red">
+    <div class="portlet box {$PORTLET_COLOR}">
         <div class="portlet-title">
             <div class="caption">
                 <i class="fa fa-bullhorm"></i>Datos laborales
@@ -371,7 +371,7 @@
         </div>
     </div>
 
-    <div class="portlet box red">
+    <div class="portlet box {$PORTLET_COLOR}">
         <div class="portlet-title">
             <div class="caption">
                 <i class="fa fa-bullhorm"></i>Estudios
