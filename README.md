@@ -57,4 +57,5 @@
     - Crear carpetas y agregarle un symlink a cada una. Para crear el symlink seria algo como
       - ln -s /mnt/volume_sfo2_01/uploads/alumnos /home/USUARIO/public_html/app/alumnos
   
+ - Si se necesita crear otra carpeta para subir archivos en el servidor la manera correcta es usando symlinks. Favor de no crearlo directo. 
   
