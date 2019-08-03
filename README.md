@@ -58,4 +58,13 @@
       - ln -s /mnt/volume_sfo2_01/uploads/alumnos /home/USUARIO/public_html/app/alumnos
   
  - Si se necesita crear otra carpeta para subir archivos en el servidor la manera correcta es usando symlinks. Favor de no crearlo directo. 
+ 
+ 
+ #Errores
+ - Cuando se trata de guardar algo aparece: Field doesn't have a default value in
+    - Esto es debido a que todo ya esta muy viejo :D 
+    - Hay que cambiar el valor de STRICT_TRANS_TABLES en el mysql. 
+    - Si estas usando wamp ve a C:\wamp\bin\mysql\mysql5.7.21 y busca el archivo my.ini
+    - agrega sql_mode="" al final del archivo
+    - Reinicia los servicios
   
