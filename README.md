@@ -22,7 +22,39 @@
 - Version PHP 7.2
 - Apache, Activar modulo mod_rewrite
 
-TODO folders
+#Folders
+- Hay varios folders que se tienen que crear para el correcto funcionamiento. Estos no estan en git debido a que son symlinks y el target del symlink no es el mismo. (Esto es debido a que estos folders se almacenan en una diferente particion en un servidor linux)
+
+  - Windows (Crear folders directamente)
+    - /alumnos
+    - /calendario
+    - /diplomas
+    - /docentes
+    - /doc_inbox
+    - /docs
+    - /estandares
+    - /extrafiles
+    - /homework
+    - /file_retro
+    - /files
+    - /flash
+    - /forofiles
+    - /homework
+    - /informe
+    - /materia
+    - /m_educacion
+    - /msj
+    - /personal_foto
+    - /reportes
+    - /reports
+    - /resources
+    - /sabanas
+    - /tripticos
     
+ - Linux 
+   - Crear mismos folders PERO en la particion de archivos (Buscarla, empieza con) /mnt/volume
+    - Crear carpeta llamada "uploads"
+    - Crear carpetas y agregarle un symlink a cada una. Para crear el symlink seria algo como
+      - ln -s /mnt/volume_sfo2_01/uploads/alumnos /home/USUARIO/public_html/app/alumnos
   
   
