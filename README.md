@@ -48,6 +48,7 @@
     - /reportes
     - /reports
     - /resources
+    - /resources/config
     - /sabanas
     - /tripticos
     
