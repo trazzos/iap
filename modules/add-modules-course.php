@@ -16,6 +16,7 @@
 		$module->setExtraId($_POST["extraId"]);
 		$module->setActive($_POST["active"]);
 		$module->AddModuleToCourse();
+        $util->LoadPage('history-subject');
 	}
 
 	$course->setCourseId($_GET["id"]);

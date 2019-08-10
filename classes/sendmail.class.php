@@ -37,11 +37,14 @@ class SendMail extends Main
 			$mail->AddAddress($to, $toName);
 			$mail->Subject    = $subject;
 			$mail->MsgHTML($body);
-			
-			foreach($attachment as $key => $attach)
-			{
-				$mail->AddAttachment($attach, $fileName[$key]);
+
+			if(is_array($attachment)) {
+                foreach($attachment as $key => $attach)
+                {
+                    $mail->AddAttachment($attach, $fileName[$key]);
+                }
 			}
+			
 			$mail->Send();
 	}
 

@@ -45,12 +45,15 @@ $x=0;
 	$smarty->assign("inactiveCourses", $inactiveCourses);	
 
 	$finishedCourses = $student->StudentCourses("finalizado");
-	
-	
-	
-	$smarty->assign("finishedCourses", $finishedCourses);	
+	$smarty->assign("finishedCourses", $finishedCourses);
 	
 	$announcements = $announcement->Enumerate(0, 0);
+	if(!empty($activeCourses)) {
+        foreach($activeCourses as $activeCourse) {
+            $announcementsStudent = $announcement->Enumerate($activeCourse['courseId'], $activeCourse['courseModule']);
+            $announcements = array_merge($announcements, $announcementsStudent);
+        }
+    }
 	$smarty->assign('announcements', $announcements);
 	
 	

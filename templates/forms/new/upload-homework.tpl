@@ -5,7 +5,7 @@
 	<div style="text-align:justify">
 	Únicamente se puede subir un solo archivo por actividad, 
 	por lo que si necesita subir varios archivos le recomendamos los comprima 
-	en .rar y los suba por este medio.
+	en .zip y los suba por este medio.
 	<br>
 	Solamente tendrá la opción de volver a subir su actividad en una ocasión
 	</div>
@@ -34,14 +34,14 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Título:</label>
             <div class="col-md-8">
-                <input type="text" name="nombre" id="nombre" value="" maxlength="100" class="form-control"/>
+                <input required type="text" name="nombre" id="nombre" value="" maxlength="100" class="form-control"/>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-3 control-label">Tarea:</label>
             <div class="col-md-8">
-                <input type="file" name="path" id="path" size="34"/>
+                <input required type="file" name="path" id="path" size="34"/>
             </div>
         </div>
     </div>

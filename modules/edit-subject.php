@@ -28,7 +28,8 @@
 		$subject->setFechaRvoeLinea($_POST['fechaRvoeLinea']);
 		
 		$subject->Update();
-	}
+        $util->LoadPage('subject');
+    }
 
 	$subject->setSubjectId($_GET['id']);
 	$smarty->assign('post', $subject->Info());

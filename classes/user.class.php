@@ -162,7 +162,7 @@ class User extends Main
 		$this->average = $value;
 	}
 	
-	public function setBirthdate($day, $month, $year)
+	public function setBirthdate($day, $month = null, $year = null)
 	{
 		if(empty($year)){
 			$this->Util()->setError(10049, "error", "");				

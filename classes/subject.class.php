@@ -262,6 +262,7 @@
 		
 		public function setDescription($value)
 		{
+            $this->Util()->ValidateString($value, 100000, 0, 'Descripcion');
 			$this->description = $value;
 		}
 		

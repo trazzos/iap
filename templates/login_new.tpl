@@ -111,13 +111,11 @@ License: You must have a valid license purchased only from themeforest(the above
 *}
 
         <div class="forget-password">
-            <h4>¿Olvidaste tu contraseña?</h4>
-            <p> No te preocupes. Da click
-                <a href="recuperacion"  style="color:#fff; text-decoration: underline"> aqui </a> para recuperarla. </p>
+            <h4><a href="recuperacion"  style="color:#fff; position:relative; top:-11px; text-decoration: underline">¿Olvidaste tu contraseña?</a></h4>
         </div>
         <div class="create-account">
-            <p> ¿Estás interesado en cursar un programa en línea?&nbsp;
-                <a href="{$WEB_ROOT}/register" style="color:#fff; text-decoration: underline"> Regístrate aquí </a>
+            <p> ¿Estás interesado en nuestros programas académicos?
+                <a href="{$WEB_ROOT}/register" style="color:#fff; text-decoration: underline"> Registra tu información aquí</a>
             </p>
         </div>
 

@@ -236,6 +236,9 @@
 			$result["initialDate"] = $this->Util->FormatDateBack($result["initialDate"]);
 			$result["finalDate"] = $this->Util->FormatDateBack($result["finalDate"]);
 			$result["fechaContrato"] = $this->Util->FormatDateBack($result["fechaContrato"]);
+            $result["inicioContrato"] = $this->Util->FormatDateBack($result["inicioContrato"]);
+            $result["finContrato"] = $this->Util->FormatDateBack($result["finContrato"]);
+            $result["fechaMateria"] = $this->Util->FormatDateBack($result["fechaMateria"]);
 			$result["access"] = explode("|", $result["access"]);
 
 			$result["welcomeTextDecoded"] = html_entity_decode($result["welcomeText"]);

@@ -1,16 +1,8 @@
 {foreach from=$students item=item key=key}
         <tr>
         <td align="center" class="id">{$item.userId}</td>       
-        <td align="center" class="id">{$item.foto}	
-		
-		<!--
-	    	<script src="http://www.iapchiapasenlinea.mx/javascript/util.js" type="text/javascript">
-			</script>      
-			<script>				new FancyZoom('foto-{$item.userId}', {ldelim}width:400, height:300{rdelim});		
-			</script>
-			-->
-
-			</td>       
+        <td align="center" class="id">{$item.foto}
+			</td>
         
 		
 		<td align="center">{$item.lastNamePaterno|upper}</td>

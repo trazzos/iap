@@ -22,7 +22,9 @@
 		$module->setSemesterId($_POST['semesterId']);
 		
 		$module->Save();
-	}
+        $util->LoadPage('subject');
+
+    }
 
 	$smarty->assign('mnuMain','cursos');
 	$smarty->assign('id',$_GET["id"]);

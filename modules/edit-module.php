@@ -23,7 +23,8 @@
 		$module->setSemesterId($_POST['semesterId']);
 		
 		$module->Update();
-	}
+        $util->LoadPage('subject');
+    }
 
 	$module->setSubjectModuleId($_GET['id']);
 	$myModule = $module->Info();

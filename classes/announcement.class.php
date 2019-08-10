@@ -56,7 +56,7 @@
 				WHERE courseId = '".$courseId."' ".$courseModuleId." 
 				ORDER BY date DESC LIMIT 20";
 			}
-			
+
 			
 			// exit;
 			$this->Util()->DB()->setQuery($sql);

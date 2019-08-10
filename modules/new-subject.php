@@ -26,8 +26,9 @@
 		
 		$subject->setRvoeLinea(strtoupper($_POST['rvoeLinea']));
 		$subject->setFechaRvoeLinea($_POST['fechaRvoeLinea']);
-		
+
 		$subject->Save();
+        $util->LoadPage('subject');
 	}
 
 	$smarty->assign('mnuMain','cursos');

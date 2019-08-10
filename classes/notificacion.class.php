@@ -53,7 +53,6 @@ $sql="select * from notificacion WHERE fecha_aplicacion > '".$fecha."' order by 
 $this->Util()->DB()->setQuery($sql);
 $notificaciones=$this->Util()->DB()->GetResult();
 
-
 			foreach($notificaciones as $key=>$result){
 
 				$notificaciones[$key]["actividad"] = str_replace('<label style="color:#ff0000;font-size:200%"><strong>&raquo;</strong></label', "", $notificaciones[$key]["actividad"]);

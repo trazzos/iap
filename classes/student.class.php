@@ -1255,7 +1255,7 @@ class Student extends User
 			
 			if(file_exists(DOC_ROOT."/alumnos/".$res["userId"].".jpg"))
 			{
-				$card["foto"] = '<a href="#open-'.$res["userId"].'" id="foto-'.$res["userId"].'">
+				$card["foto"] = '<a class="student-image" href="'.WEB_ROOT.'/alumnos/'.$res["userId"].'.jpg" id="foto-'.$res["userId"].'">
 					<img src="'.WEB_ROOT.'/alumnos/'.$res["userId"].'.jpg" width="40" height="40" style=" height: auto; 
 				width: auto; 
 				max-width: 80px; 
@@ -1764,17 +1764,20 @@ class Student extends User
 	}
 
 	function StudentCourses($status = NULL, $active = NULL){
-		
-		if($status != NULL)
-		{
+
+        if($status === 'finalizado') {
+            $status = " AND (status = '".$status."' OR course.finalDate <= '".date('Y-m-d')."')";
+        } else if($status != NULL) {
 			$status = " AND status = '".$status."'";
 		}
 
 		if($active != NULL)
 		{
 			$active = " AND course.active = '".$active."'";
+            $fecha = " AND course.finalDate > '".date('Y-m-d')."'";
 		}
-		 $sql = "SELECT
+
+       $sql = "SELECT
 					*, subject.name AS name, major.name AS majorName
 				FROM
 					user_subject
@@ -1785,6 +1788,7 @@ class Student extends User
 					alumnoId = '".$this->getUserId()."'
 					".$status."
 					".$active." 
+					".$fecha." 
 				ORDER BY status ASC";
 		
 		$this->Util()->DB()->setQuery($sql);
@@ -1879,34 +1883,31 @@ class Student extends User
 		$this->Util()->DB()->setQuery($sql);
 		$infoDu = $this->Util()->DB()->GetRow();
 		//admin docente
-		
+
 		// echo "<pre>"; print_r($infoDu);
 		// exit;
 		$msj = "
-		 Instituto de Administración Publica del Estado de Chiapas, A. C.
-		<br>
-		<br>
-		Sus datos de acceso para nuestro Sistema de Educación en Línea son:<br>
+		Sus datos de acceso para nuestro sistema son:<br>
 		Usuario: ".$infoDu["controlNumber"]."<br>
 		Contraseña: ".$infoDu["password"]."<br>
 		<br>
 		<br>
 		Para una correcta navegación en nuestro Sistema, puede consultar el manual del alumno en:<br>
-		http://www.iapchiapasenlinea.mx/manual_alumno.pdf<br>
+		".WEB_ROOT."/manual_alumno.pdf<br>
 		Cualquier duda, favor de contactarnos:<br>
-		Teléfonos: (961) 125-15-08, 125-15-09, 125-15-10 Ext. 106 o 114<br>
-		Correo: enlinea@iapchiapas.org.mx<br>
+		Teléfono: ".COMPANY_PHONE."<br>
+		Correo: ".COMPANY_EMAIL."<br>
 		Saludos.<br>
-		IAP-Chiapas<br>
-		<img src='".WEB_ROOT."/images/logo_correo.jpg'>
+		<img src='".WEB_ROOT."/images/".LOGO."'>
 
 		<br>
 		<br>
 		<br>
 		
 		";
+		echo $msj;
 		
-		$sendmail->PrepareAttachment("IAP Chiapas | Recuperacion de datos de usuario", utf8_decode($msj), "","", $infoDu["email"], $infoDu["names"], $attachment, $fileName);
+		$sendmail->PrepareAttachment("Recuperacion de datos de usuario", utf8_decode($msj), "","", $infoDu["email"], $infoDu["names"], $attachment, $fileName);
 		
 		$this->Util()->setError(10030, "complete","Se ha enviado un correo con tus datos de acceso");
 		$this->Util()->PrintErrors();	

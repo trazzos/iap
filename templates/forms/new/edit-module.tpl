@@ -106,6 +106,7 @@
 <br>
 <br>
 
+{*
 <div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
@@ -130,7 +131,6 @@
         <div id="tblContent-activities">{include file="lists/new/activities.tpl"}</div>
     </div>
 </div>
-
 <div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
@@ -147,6 +147,7 @@
         <div id="tblContentResources">{include file="lists/new/resources.tpl"}</div>
     </div>
 </div>
+*}
 
 <script type="text/javascript">
     tinyMCE.init({

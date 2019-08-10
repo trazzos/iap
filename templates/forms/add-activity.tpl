@@ -18,7 +18,6 @@
       <div class="content-settings-row">
             <label for="f1"><span class="reqField">*</span> Tipo de Actividad</label>
             <select id="activityType" name="activityType">
-            	<option value="Lectura">Lectura</option>
             	<option value="Tarea">Tarea</option>
             	<option value="Examen">Examen</option>
             	<option value="Otro">Otro</option>
@@ -54,18 +53,8 @@
       </div>
       
       <div class="content-settings-row">
-            <label for="f1"><span class="reqField">*</span> Actividad Requerida:</label>
-            <select id="requiredActivity" name="requiredActivity">
-            	<option value="0">Ninguna</option>
-            {foreach from=$actividades item=item}
-            	<option value="{$item.activityId}">{$item.resumen}</option>
-            {/foreach}
-            </select>                      
-      </div>
-
-      <div class="content-settings-row">
             <label for="f1"><span class="reqField">*</span> Ponderacion:</label>
-            <input type="text" name="ponderation" id="ponderation" value="" maxlength="3"/>
+            <input type="number" name="ponderation" id="ponderation" value="" maxlength="3"/>
       </div>
 
       

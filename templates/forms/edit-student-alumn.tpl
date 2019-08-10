@@ -127,9 +127,16 @@
             </div>
 
             <div class="form-group">
+                <label class="col-md-3 control-label"># Control):</label>
+                <div class="col-md-8" style="padding-top: 8px">
+                    {$info.controlNumber}
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="col-md-3 control-label">Contraseña del Sistema (Minimo 6 caracteres):</label>
-                <div class="col-md-8">
-                    <input type="password" name="password" id="password" class="form-control" value="{$info.password}" />
+                <div class="col-md-8" style="padding-top: 8px">
+                    {$info.password}
                 </div>
             </div>
         </div>

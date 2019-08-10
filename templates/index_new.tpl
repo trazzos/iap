@@ -46,13 +46,16 @@
 		<link href="{$WEB_ROOT}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />-->
 	<!-- END THEME LAYOUT STYLES -->
 	<link rel="shortcut icon" href="favicon.ico" />
-
 	<link href="{$WEB_ROOT}/GreyBox/greybox/gb_styles.css" rel="stylesheet" type="text/css" />
 	<link href="{$WEB_ROOT}/css/inbox.css" rel="stylesheet" type="text/css"  />
 	<link href="{$WEB_ROOT}/css/radiobutton.css" rel="stylesheet" type="text/css"  />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" rel="stylesheet" type="text/css"  />
+	<script src="https://kit.fontawesome.com/5411aed620.js"></script>
 {*
 	<link href="{$WEB_ROOT}/css/style_new.css" rel="stylesheet" type="text/css"  />
 *}
+	<script src="{$WEB_ROOT}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+	<script src="{$WEB_ROOT}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
 	<script type="text/javascript">
 		var GB_ROOT_DIR = "{$WEB_ROOT}/GreyBox/greybox/";
@@ -60,6 +63,8 @@
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/AJS.js"></script>
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/AJS_fx.js"></script>
 	<script type="text/javascript" src="{$WEB_ROOT}/GreyBox/greybox/gb_scripts.js"></script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 	<style>
 		.modal-dialog{
 			width: 70%;
@@ -150,8 +155,6 @@ $page == 'view-inbox' or
 <script src="{$WEB_ROOT}/assets/global/plugins/excanvas.min.js"></script>
 <![endif]-->
 <!-- BEGIN CORE PLUGINS -->
-<script src="{$WEB_ROOT}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="{$WEB_ROOT}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="{$WEB_ROOT}/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>

@@ -66,7 +66,7 @@
       
       <div class="content-settings-row">
             <label for="f1">Contraseña del Sistema (Minimo 6 caracteres):</label>
-            <input type="password" name="password" id="password" value="{$info.password}" />                      
+            <input type="text" name="password" id="password" value="{$info.password}" />
       </div>
 
 	  

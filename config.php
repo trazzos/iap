@@ -30,3 +30,11 @@ define("MIN_YEAR", 2009);
 define("MAX_YEAR", 2030);
 define("DAYS_NOTIFICATION", 15);
 
+define("DEBUG_MODE", filter_var(getenv('DEBUG_MODE'), FILTER_VALIDATE_BOOLEAN));
+
+define("COMPANY_PHONE", getenv('COMPANY_PHONE'));
+define("COMPANY_EMAIL", getenv('COMPANY_EMAIL'));
+
+
+
+

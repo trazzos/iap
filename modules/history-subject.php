@@ -1,7 +1,7 @@
 <?php
-		
+
 	/* For Session Control - Don't remove this */
-	$user->allow_access(8);	
+	$user->allow_access(8);
 	/* End Session Control */
 	//check if docente, 2 == docente
 	
@@ -30,7 +30,7 @@
 	$result = $course->EnumerateByPage($viewPage, $rowsPerPage, $pageVar, WEB_ROOT.'/history-subject', $arrPage);
 
 	// $result = $util->orderMultiDimensionalArray($result,'active',true);
-	
+
 	//checar a que curriculas tengo permiso
 	if(in_array(2, $info["roles"]))
 	{

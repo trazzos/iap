@@ -42,7 +42,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="{$WEB_ROOT}/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
     <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="{$WEB_ROOT}/assets/pages/css/login-4.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$WEB_ROOT}/assets/pages/css/{$LOGIN_PAGE}.min.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
     <!-- END THEME LAYOUT STYLES -->
@@ -53,7 +53,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN LOGO -->
 <div class="logo">
     <a href="index.html">
-        <img src="{$WEB_ROOT}/images/logos/Logo_3.png" width="250px" alt="" /> </a>
+        <img src="{$WEB_ROOT}/images/logos/{$LOGO}" width="250px" alt="" /> </a>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
@@ -64,7 +64,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
         <h3 class="form-title">Recuperación de Datos de Acceso</h3>
 
-       <p style="text-align:justify"><font color="white">Ingresa el correo electrónico con el que te diste de alta en nuestro Sistema de Educación en Línea, , por ese medio te enviaremos tus datos de acceso</font></p>
+       <p style="text-align:justify"><font color="white">Ingresa el correo electrónico con el que te diste de alta en nuestro sistema. Recibiras un correo electrónico con tus datos de acceso</font></p>
         <div class="alert alert-danger display-hide">
             <button class="close" data-close="alert"></button>
             <span> Tu usuario o contraseña son incorrectas. Favor de verificarlas. </span>
@@ -439,7 +439,7 @@ License: You must have a valid license purchased only from themeforest(the above
 </div>
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
-<div class="copyright"> 2016 &copy; Instituto de Administraci&oacute;n P&uacute;blica del Estado de Chiapas, A.C.</div>
+<div class="copyright"> {$smarty.now|date_format:"%Y"} &copy; {$COPYRIGHT}</div>
 <!-- END COPYRIGHT -->
 <!--[if lt IE 9]>
 <script src="{$WEB_ROOT}/assets/global/plugins/respond.min.js"></script>

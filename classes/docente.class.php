@@ -334,7 +334,7 @@ class Docente extends Empresa{
 	}
 	
 	public function saveEditContrato(){
-		
+
 		 $sql = "
 				UPDATE
 					course_module 

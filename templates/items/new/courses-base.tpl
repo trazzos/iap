@@ -22,17 +22,13 @@
 			<br>
             {if ($docente == 1 AND $subject.courseModuleActive > 0) || !$docente}
                 <a href="{$WEB_ROOT}/graybox.php?page=view-modules-course&id={$subject.courseId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
-				<img src="{$WEB_ROOT}/images/icons/16/applications-blue.png" style="width:16px" title="Ver Modulos del Curso" />
-
+					<i class="fas fa-eye"></i>
 				</a>
             {/if}
 
             {if !$docente}
-                <a href="{$WEB_ROOT}/graybox.php?page=add-modules-course&id={$subject.courseId}" title="Agregar Modulo a Curso" data-target="#ajax" data-toggle="modal" style="color:#000" >
-				<!--<img src="{$WEB_ROOT}/images/add_small.png " style="width:16px" title="Agregar Modulo a Curso" />-->
-				<i class="fa fa-plus-circle" aria-hidden="true" ></i>
-
-
+                <a href="{$WEB_ROOT}/graybox.php?page=add-modules-course&id={$subject.courseId}" title="Agregar Modulo a Curso" data-target="#ajax" data-toggle="modal">
+					<i class="fas fa-plus-circle" aria-hidden="true" ></i>
 				</a>
             {/if} 
         </td>
@@ -58,7 +54,7 @@
 					<i class="fa fa-list-alt"></i>
 					<i class="fa fa-angle-down"></i>
 					</a>
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu" style="left: -146px">
 					<li>
 						{if $subject.majorName=="ESPECIALIDAD" || $subject.majorName=="MAESTRIA"}<!--
 							<img src="{$WEB_ROOT}/images/engrane.png" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="Generar Matriculas"  style="width:16px" />-->

@@ -84,6 +84,11 @@
 			$this->Util()->ValidateInteger($value,999,1);
 			$this->coursemoduleId = $value;
 		}
+
+        public function getCourseModuleId()
+        {
+            return $this->coursemoduleId;
+        }
 		
 		
 		public function setTeamNumber($value)
@@ -853,7 +858,7 @@
 			$this->Util()->DB()->setQuery("
 				SELECT *, user_subject.status AS status FROM user_subject
 				LEFT JOIN user ON user_subject.alumnoId = user.userId
-				WHERE courseId = '".$this->getCourseId()."'
+				WHERE courseId = '".$this->getCourseId()."' AND user_subject.status = 'activo'
 				ORDER BY lastNamePaterno ASC, lastNameMaterno ASC, names ASC");
 			$result = $this->Util()->DB()->GetResult();
 			

@@ -204,8 +204,10 @@
 		$_POST['fechaFinMateria'] = $util->FormatDateMySql($_POST['fechaFinMateria']);
 		$_POST['fechaContrato'] = $util->FormatDateMySql($_POST['fechaContrato']);
 		$_POST['fechaFinContrato'] = $util->FormatDateMySql($_POST['fechaFinContrato']);
-	 
-		// echo '<pre>'; print_r($_POST);
+        $_POST['fechaMateria'] = $util->FormatDateMySql($_POST['fechaMateria']);
+
+
+         // echo '<pre>'; print_r($_POST);
 		$docente->setId($_POST['id']);
 		$docente->setInicioMateria($_POST['fechaInicioMateria']);
 		$docente->setFinMateria($_POST['fechaFinMateria']);

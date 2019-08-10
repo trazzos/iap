@@ -19,7 +19,7 @@
 					<label class="col-md-3 control-label">Fecha de Contrato:</label>
 					<div class="col-md-8">
 						<input type="text" name="fechaContrato" onClick="loadFecha(4)" id="fecha_4" class="form-control" 
-						{if $myModule.fechaContrato eq '0000-00-00'} value="{$hoy}" {else} value="{$myModule.fechaContrato}" {/if} >
+						{if $myModule.fechaContrato eq '00-00-0000'} value="{$hoy}" {else} value="{$myModule.fechaContrato}" {/if} >
 					</div>
 				</div>
 			
@@ -38,8 +38,8 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label">Fecha de Materia:</label>
 					<div class="col-md-8">
-						<input type="text" id="fechaMateria" name="fechaMateria" class="form-control" value="{$myModule.fechaMateria}">
-
+						<input type="text" name="fechaMateria" onClick="loadFecha(400)" id="fecha_400" class="form-control"
+                                {if $myModule.fechaMateria eq '00-00-0000'} value="{$hoy}" {else} value="{$myModule.fechaMateria}" {/if} >
 					</div>
 				</div>
 			{/if}

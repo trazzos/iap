@@ -14,7 +14,6 @@
             <label class="col-md-3 control-label">Tipo de Actividad:</label>
             <div class="col-md-8">
                 <select id="activityType" name="activityType" class="form-control">
-                    <option value="Lectura" {if $actividad.activityType == "Lectura"} selected="selected"{/if}>Lectura</option>
                     <option value="Tarea" {if $actividad.activityType == "Tarea"} selected="selected"{/if}>Tarea</option>
                     <option value="Examen" {if $actividad.activityType == "Examen"} selected="selected"{/if}>Examen</option>
                     <option value="Foro" {if $actividad.activityType == "Foro"} selected="selected"{/if}>Foro</option>
@@ -99,7 +98,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Ponderacion:</label>
             <div class="col-md-8">
-                <input type="text" name="ponderation" id="ponderation" value="{$actividad.ponderation}" maxlength="3" class="form-control"/>
+                <input type="number" name="ponderation" id="ponderation" value="{$actividad.ponderation}" maxlength="3" class="form-control"/>
             </div>
         </div>
 
@@ -122,6 +121,7 @@
 
 <script type="text/javascript">
     tinyMCE.init({
+        max_chars: 1000, // max. allowed chars
         mode : "textareas",
         theme : "advanced",
         skin : "o2k7"

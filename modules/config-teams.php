@@ -7,7 +7,8 @@
 	{
 		$group->setCourseModuleId($_GET["id"]);
 		$group->DeleteTeam($_GET["delete"]);
-	}
+        $util->LoadPage('edit-modules-course', "/id/".$_GET["id"]);
+    }
 
 	if($_POST)
 	{

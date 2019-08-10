@@ -6,17 +6,16 @@ class MySQL
   {
   	if(!isset($this->conexion))
 	{
-  		$this->conexion = (mysql_connect(SQL_HOST,SQL_USER,SQL_PASSWORD)) or die(mysql_error());
-  		mysql_select_db(SQL_DATABASE,$this->conexion) or die(mysql_error());
+        $this->conexion = mysqli_connect(SQL_HOST, SQL_USER, SQL_PASSWORD, SQL_DATABASE);
   	}
   }
 
  function consulta($consulta)
  {
-	$resultado = mysql_query($consulta,$this->conexion);
+	$resultado = mysqli_query($this->conexion, $consulta);
   	if(!$resultado)
 	{
-  		echo 'MySQL Error: ' . mysql_error();
+  		echo 'MySQL Error: ' . mysqli_error();
 	    exit;
 	}
   	return $resultado; 
@@ -24,21 +23,21 @@ class MySQL
   
  function fetch_array($consulta)
  { 
-  	return mysql_fetch_array($consulta);
+  	return mysqli_fetch_array($consulta);
  }
  
  function num_rows($consulta)
  { 
- 	 return mysql_num_rows($consulta);
+ 	 return mysqli_num_rows($consulta);
  }
  
  function fetch_row($consulta)
  { 
- 	 return mysql_fetch_row($consulta);
+ 	 return mysqli_fetch_row($consulta);
  }
  function fetch_assoc($consulta)
  { 
- 	 return mysql_fetch_assoc($consulta);
+ 	 return mysqli_fetch_assoc($consulta);
  } 
  
 }

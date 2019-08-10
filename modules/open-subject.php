@@ -43,8 +43,7 @@
 
 		$course->Open();
 
-		//TODO add heeder location when we finish the template change
-
+        $util->LoadPage('history-subject');
 	}
 
 	$cursos = $subject->Enumerate();

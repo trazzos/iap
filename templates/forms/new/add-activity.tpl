@@ -13,7 +13,6 @@
             <label class="col-md-3 control-label">Tipo de Actividad:</label>
             <div class="col-md-8">
                 <select id="activityType" name="activityType" class="form-control">
-                    <option value="Lectura">Lectura</option>
                     <option value="Tarea">Tarea</option>
                     <option value="Examen">Examen</option>
                     <option value="Foro">Foro</option>
@@ -50,14 +49,6 @@
                
             </div>
         </div>
-		<!--
-		<div class="form-group">
-            <label class="col-md-3 control-label">Hora Final:</label>
-            <div class="col-md-8">
-                <input type="time" name="hora" id="hora" value="{$actividad.horaFinal}"   style="width:200px" class="form-control "/>
-               
-            </div>
-        </div>-->
 
         <div class="form-group">
             <label class="col-md-3 control-label">Modalidad:</label>
@@ -90,21 +81,9 @@
         </div>
 
         <div class="form-group">
-            <label class="col-md-3 control-label">Actividad Requerida:</label>
-            <div class="col-md-8">
-                <select id="requiredActivity" name="requiredActivity" class="form-control">
-                    <option value="0">Ninguna</option>
-                    {foreach from=$actividades item=item}
-                        <option value="{$item.activityId}">{$item.resumen}</option>
-                    {/foreach}
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
             <label class="col-md-3 control-label">Ponderacion:</label>
             <div class="col-md-8">
-                <input type="text" name="ponderation" id="ponderation" value="" maxlength="3" class="form-control"/>
+                <input type="number" name="ponderation" id="ponderation" value="" maxlength="3" class="form-control"/>
             </div>
         </div>
 

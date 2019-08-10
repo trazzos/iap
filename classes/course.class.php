@@ -398,16 +398,18 @@
 			// exit;
 			
 			//validamos el valor de la pagina...no puede ser menor a 1 ni mayor al total de las paginas
-			if($currentPage < 1)
-				$currentPage = 1;
 			if($currentPage > $totalPages)
 				$currentPage = $totalPages;
+            if($currentPage < 1)
+                $currentPage = 1;
 
 			// ***calculamos y guardamos el numero de registro inicial que se va a rcuperar
 			$arrPages['rowBegin']	= ($currentPage * $rowsPerPage) - $rowsPerPage + 1 ;
+            $arrPages['rowBegin'] = $arrPages['rowBegin'] ?? 0;
 			//calcular el desplazamiento de los registros a recuperar
 			$rowOffset = $arrPages['rowBegin'] - 1;
-			
+
+
 			$sql = '
 				SELECT *, major.name AS majorName, subject.name AS name  FROM course
 				LEFT JOIN subject ON course.subjectId = subject.subjectId 

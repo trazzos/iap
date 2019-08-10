@@ -14,11 +14,9 @@
 <ul id="sort-box" class="sorts">
   <li>              
     <div class="content-in-small">
-      
       <div class="content-settings-row">
             <label for="f1"><span class="reqField">*</span> Tipo de Actividad</label>
             <select id="activityType" name="activityType">
-            	<option value="Lectura" {if $actividad.activityType == "Lectura"} selected="selected"{/if}>Lectura</option>
             	<option value="Tarea" {if $actividad.activityType == "Tarea"} selected="selected"{/if}>Tarea</option>
             	<option value="Examen" {if $actividad.activityType == "Examen"} selected="selected"{/if}>Examen</option>
             	<option value="Otro" {if $actividad.activityType == "Otro"} selected="selected"{/if}>Otro</option>
@@ -65,7 +63,7 @@
 
       <div class="content-settings-row">
             <label for="f1"><span class="reqField">*</span> Ponderacion:</label>
-            <input type="text" name="ponderation" id="ponderation" value="{$actividad.ponderation}" maxlength="3"/>
+            <input type="number" name="ponderation" id="ponderation" value="{$actividad.ponderation}" maxlength="3"/>
       </div>
 
 

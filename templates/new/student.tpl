@@ -1,13 +1,3 @@
-<script type="text/javascript" charset="utf-8">
-    $(document).observe('dom:loaded', function() {ldelim}
-        {foreach from=$students item=item key=key}
-        new FancyZoom('foto-{$item.userId}', {ldelim}width:400, height:300{rdelim});
-        {/foreach}
-        {rdelim});
-</script>
-</head>
-<body>
-
 <div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
@@ -53,3 +43,8 @@
 
         <div id="loader2" > </div>
 </div>
+<script type="text/javascript" charset="utf-8">
+  $( document ).ready(function() {ldelim}
+    $("a.student-image").fancybox();
+  {rdelim});
+</script>

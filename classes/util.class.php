@@ -694,7 +694,11 @@ function HandleMultipages($page,$total,$link,$items_per_page=0,$pagevar="p"){
 	}//hs_ereg_replace
 
 	function handle_mail_patterns($text,$values){
-	
+
+	    if(!is_array($values)) {
+	        return $text;
+        }
+
 		$patterns = array_keys($values);
 		$patterns[] = "site_name";
 		$values["site_name"] = $GLOBALS["settings"]["site_name"];

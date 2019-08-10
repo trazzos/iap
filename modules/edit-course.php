@@ -44,7 +44,8 @@
 		$course->setTipoCuatri($_POST["tipoCuatri"]);
 		$course->setListar($_POST["listar"]);
 		$course->Update();
-	}
+        $util->LoadPage('history-subject');
+    }
 
 	$cursos = $subject->Enumerate();
 	$smarty->assign('cursos', $cursos);
@@ -58,7 +59,9 @@
 
 	$course->setCourseId($_GET['id']);
 	$post = $course->Info();
-	
+	$post['initialDate'] = $util->FormatDateBack($post['initialDate']);
+    $post['finalDate'] = $util->FormatDateBack($post['finalDate']);
+
 	// echo '<pre>'; print_r($post);
 	// exit;
 	$smarty->assign('post', $post);
