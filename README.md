@@ -37,6 +37,7 @@
     - /homework
     - /file_retro
     - /files
+    - /files/solicitudes
     - /flash
     - /forofiles
     - /homework
