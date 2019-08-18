@@ -409,3 +409,63 @@ function savePeriodos(){
         }
     });
 }
+
+function DeleteStudentCurricula(userId,courseId){
+  if(confirm("Estas seguro que deseas eliminar a este alumno?"))
+  {
+    $.ajax({
+      url : WEB_ROOT+'/ajax/new/studentCurricula.php',
+      type: "POST",
+      data: {type: "deleteStudentCurricula", courseId: courseId, userId : userId},
+      success: function(response)
+      {
+        console.log(response);
+        var splitResponse = response.split("[#]");
+
+        if(splitResponse[0] == "fail")
+        {
+          ShowStatusPopUp($(splitResponse[1]));
+        }
+        else
+        {
+          ShowStatus($(splitResponse[1]));
+          $('#tblContent').html(splitResponse[2]);
+          CloseFview();
+        }
+      },
+      error: function () {
+        alert('Algo salio mal, compruebe su conexion a internet');
+      }
+    });
+  }
+}
+
+function InactivateStudentCurricula(userId,courseId){
+  if(confirm("Estas seguro que deseas inactivar a este alumno?"))
+  {
+    $.ajax({
+      url : WEB_ROOT+'/ajax/new/studentCurricula.php',
+      type: "POST",
+      data: {type: "inactivateStudentCurricula", courseId: courseId, userId : userId},
+      success: function(response)
+      {
+        console.log(response);
+        var splitResponse = response.split("[#]");
+
+        if(splitResponse[0] == "fail")
+        {
+          ShowStatusPopUp($(splitResponse[1]));
+        }
+        else
+        {
+          ShowStatus($(splitResponse[1]));
+          $('#tblContent').html(splitResponse[2]);
+          CloseFview();
+        }
+      },
+      error: function () {
+        alert('Algo salio mal, compruebe su conexion a internet');
+      }
+    });
+  }
+}

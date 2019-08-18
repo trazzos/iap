@@ -13,16 +13,7 @@
         <div class="content-header-left">
           <img src="{$WEB_ROOT}/images/new/catalogos.png" alt="" />
             <h2>Alumnos</h2>
-       
-					{*}	<div id="vista_filtro" style="position:relative;top:20%;">
-						<select id="vista" name="vista" onchange="filtro();">
-						<option value="1">Todos </option>
-						<option value="2">Activos </option>
-						<option value="3">Inactivos </option>
-						</select>
-						</div>{*}
-
-	   </div>                  
+	   </div>
     </div>
 	
 

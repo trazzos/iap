@@ -33,18 +33,12 @@
             {/if} 
         </td>
         <td align="center">
-
             {if !$docente}
-                <span style="cursor:pointer" class="spanActive" onclick="VerGrupoAdmin({$subject.courseId});" title="Alumnos" id="{$subject.courseId}">{$subject.alumnActive}</span>             /
-                <span style="cursor:pointer" class="spanInactive" onclick="VerGrupoInactivoAdmin({$subject.courseId});"  id="{$subject.courseId}">{$subject.alumnInactive}</span>
+                <span style="cursor:pointer; text-decoration: underline" class="spanActive" onclick="VerGrupoAdmin({$subject.courseId});" title="Alumnos" id="{$subject.courseId}">{$subject.alumnActive}</span>             /
+                <span style="cursor:pointer; text-decoration: underline" class="spanInactive" onclick="VerGrupoInactivoAdmin({$subject.courseId});"  id="{$subject.courseId}">{$subject.alumnInactive}</span>
             {else}
-                <!--<span style="cursor:pointer" class="spanActive" onclick="VerGrupo({$subject.courseId});" title="Alumnos" id="{$subject.courseId}">-->
 				{$subject.alumnActive}<!--</span>-->             /
-                <!--<span style="cursor:pointer" class="spanInactive" onclick="VerGrupoInactivo({$subject.courseId});"  id="{$subject.courseId}">-->{$subject.alumnInactive}<!--</span>-->
             {/if}
-			
-
-
         </td>
         <td align="center">{$subject.active}</td>
         {if !$docente}
@@ -74,6 +68,7 @@
 							Editar
 						</a>
 					</li>
+{*
 					<li>
 						<a href="{$WEB_ROOT}/graybox.php?page=ver-sabana-course&id={$subject.courseId}" data-target="#ajax" data-toggle="modal" title="Sabana de Calificaciones">
 							<!--<img src="{$WEB_ROOT}/images/cal.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}"  style="width:16px"  />
@@ -115,6 +110,7 @@
 						Periodos
 						</a>  
 					</li>
+*}
 					</ul>
 				</div> 	
 				<div id="divAccion_{$subject.courseId}" >

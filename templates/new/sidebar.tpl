@@ -422,23 +422,6 @@
                     <span class="title">Mi Equipo</span>
                 </a>
             </li>
-
-            <li class="nav-item ">
-                <a href="{$WEB_ROOT}/wiki/index.php/Página_principal" class="nav-link nav-toggle">
-                    <i class="fa fa-wikipedia-w"></i>
-                    <span class="title">Wiki</span>
-                </a>
-            </li>
-			<!-- 
-			 <li class="nav-item {if $page == "inbox"} active {/if} ">
-                <a href="{$WEB_ROOT}/inbox/id/{$id}" class="nav-link nav-toggle">
-                    <i class="fa fa-comments"></i>
-                    <span class="title">Inbox</span>
-                </a>
-            </li>-->
-			
-
-
         {/if}
 
     </ul>

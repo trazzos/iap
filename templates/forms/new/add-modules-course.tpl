@@ -16,21 +16,14 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Fecha Inicial</label>
             <div class="col-md-8">
-                <input type="text" name="initialDate" id="initialDate" size="10" class="form-control date-picker " required/>
+                <input autocomplete="off" type="text" name="initialDate" id="initialDate" size="10" class="form-control date-picker " required/>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-3 control-label">Fecha Final</label>
             <div class="col-md-8">
-                <input type="text" name="finalDate" id="finalDate" size="10" class="form-control date-picker " required/>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-md-3 control-label">Dias para Terminar</label>
-            <div class="col-md-8">
-                <input type="text" name="daysToFinish" id="daysToFinish" size="10" class="form-control" />
+                <input  autocomplete="off" type="text" name="finalDate" id="finalDate" size="10" class="form-control date-picker " required/>
             </div>
         </div>
 

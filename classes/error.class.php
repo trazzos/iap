@@ -83,12 +83,7 @@ class ErrorLms
 	public function PrintErrors()
 	{
 		$errors = $this->getErrors();
-/*		foreach($errors as $error)
-		{
-			echo $error;
-			echo "<br>";
-		}
-*/		
+
 		if($errors["total"])
 		{
 			$GLOBALS["smarty"]->assign('errors', $errors);

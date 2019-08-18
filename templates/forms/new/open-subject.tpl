@@ -25,21 +25,14 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Fecha Inicial:</label>
             <div class="col-md-8">
-                <input type="text" name="initialDate" id="initialDate" size="10" class="form-control date-picker " required/>
+                <input autocomplete="off" type="text" name="initialDate" id="initialDate" size="10" class="form-control date-picker " required/>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-3 control-label"> Fecha Final:</label>
             <div class="col-md-8">
-                <input type="text" name="finalDate" id="finalDate" size="10"  class="form-control date-picker"/>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-md-3 control-label"> Dias para terminar:</label>
-            <div class="col-md-8">
-                <input type="text" name="daysToFinish" id="daysToFinish" class="form-control"/>
+                <input autocomplete="off" type="text" name="finalDate" id="finalDate" size="10"  class="form-control date-picker"/>
             </div>
         </div>
 
@@ -97,20 +90,6 @@
             <label class="col-md-3 control-label"> Folio:</label>
             <div class="col-md-8">
                 <input type="text" name="folio" id="folio" value="{$post.folio}"  class="form-control"/>
-            </div>
-        </div>
-		<b>Información para Constancias</b>
-		<div class="form-group">
-            <label class="col-md-3 control-label"> Dias:</label>
-            <div class="col-md-8">
-                <input type="text" name="dias" id="dias" value="{$post.dias}"  class="form-control"/>
-            </div>
-        </div>
-		
-		<div class="form-group">
-            <label class="col-md-3 control-label"> Horario:</label>
-            <div class="col-md-8">
-                <input type="text" name="horario" id="horario" value="{$post.horario}"  class="form-control"/>
             </div>
         </div>
 		<div class="form-group">

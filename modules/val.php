@@ -16,8 +16,7 @@
 	if ($_GET["id"]){
 		$lstPreguntas = $encuesta->promedioXRubro($info['courseModuleId'],$info['courseId']);   
 	}else{
-		
-		$lstPreguntas = $encuesta->promedioXRubroAdmin($_GET['personalId']);   
+		$lstPreguntas = $encuesta->promedioXRubroAdmin($_GET['personalId']);
 	}
 
 	

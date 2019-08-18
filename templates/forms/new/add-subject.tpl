@@ -23,43 +23,18 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-3 control-label">RVOE Presencial:</label>
+            <label class="col-md-3 control-label">RVOE:</label>
             <div class="col-md-8">
                 <input type="text" name="rvoe" id="rvoe" value="{$post.rvoe}"  class="form-control" />
             </div>
         </div>
 		 <div class="form-group">
-            <label class="col-md-3 control-label">Fecha de RVOE Presencial:</label>
+            <label class="col-md-3 control-label">Fecha de RVOE:</label>
             <div class="col-md-8">
                 <input type="text" name="fechaRvoe" id="fechaRvoe"  value="{$post.fechaRvoe}"  class="form-control  date-picker" />
             </div>
         </div>
 		
-		 <div class="form-group">
-            <label class="col-md-3 control-label">RVOE en Linea:</label>
-            <div class="col-md-8">
-                <input type="text" name="rvoeLinea" id="rvoeLinea"   class="form-control" value="{$post.rvoeLinea}" />
-            </div>
-        </div>
-		 <div class="form-group">
-            <label class="col-md-3 control-label">Fecha de RVOE en Linea:</label>
-            <div class="col-md-8">
-                <input type="text" name="fechaRvoeLinea" id="fechaRvoeLinea"  value="{$post.fechaRvoeLinea}"  class="form-control  date-picker" />
-            </div>
-        </div>
-		
-        <div class="form-group">
-            <label class="col-md-3 control-label">Costo Mensual:</label>
-            <div class="col-md-8">
-                <input type="text" name="cost" id="cost" value=""  class="form-control" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-3 control-label">Numero de Pagos Totales:</label>
-            <div class="col-md-8">
-                <input type="text" name="payments" id="payments" value=""  class="form-control" />
-            </div>
-        </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Texto de Bienvenida:</label>
             <div class="col-md-8">
