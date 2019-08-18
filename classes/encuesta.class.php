@@ -220,9 +220,6 @@ class Encuesta extends Main
 		$this->Util()->DB()->setQuery($sql);
 		$ta = $this->Util()->DB()->GetResult();
 		
-		// echo '<pre>'; print_r($ta);
-		// exit;
-		
 		$modul = '';
 		$coru = '';
 		$con = count($ta);
@@ -246,13 +243,7 @@ class Encuesta extends Main
 				
 			}
 		}
-		// echo $coru;
-		// exit;
-		// echo '<pre>'; print_r($ta);;
-		// exit;
-		
-		
-		
+
 		// falta pasar el coursemodule
 		
 		  $sql = "
@@ -270,7 +261,6 @@ class Encuesta extends Main
 		 $totalAlumnos  = count($ta);
 		
 		
-		// exit;
 		// total de alumnos
 		
 		
@@ -280,7 +270,7 @@ class Encuesta extends Main
 				FROM 
 					user_subject
 				where 
-					courseId in ".$coru."";
+					courseId in ".$coru;
 			
 		$this->Util()->DB()->setQuery($sql);
 		$totalGrupo = $this->Util()->DB()->GetSingle();
@@ -293,7 +283,7 @@ class Encuesta extends Main
 				FROM 
 					eval_alumno_docente
 				where 
-					courseModuleId in ".$modul."";
+					courseModuleId in ".$modul;
 			
 		$this->Util()->DB()->setQuery($sql);
 		$lstComentarios = $this->Util()->DB()->GetResult();
@@ -308,7 +298,7 @@ class Encuesta extends Main
 					resultado as r
 				left join pregunta as p on p.preguntaId = r.preguntaId
 				where 
-					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId in ".$modul."";
+					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId in ".$modul;
 			
 			$this->Util()->DB()->setQuery($sql);
 			$sumR = $this->Util()->DB()->GetSingle();
@@ -320,7 +310,7 @@ class Encuesta extends Main
 					resultado as r
 				left join pregunta as p on p.preguntaId = r.preguntaId
 				where 
-					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId in ".$modul."";
+					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId in ".$modul;
 			
 			$this->Util()->DB()->setQuery($sql);
 			$countR = $this->Util()->DB()->GetSingle();
@@ -332,8 +322,7 @@ class Encuesta extends Main
 					resultado as r
 				left join pregunta as p on p.preguntaId = r.preguntaId
 				where 
-					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId = ".$cModuleId."";
-			// exit;
+					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId = ".$modul;
 			$this->Util()->DB()->setQuery($sql);
 			$lstPreguntas = $this->Util()->DB()->GetResult();
 			
@@ -346,7 +335,7 @@ class Encuesta extends Main
 					resultado as r
 				left join pregunta as p on p.preguntaId = r.preguntaId
 				where 
-					p.preguntaId = ".$auxp['preguntaId']." and 	courseModuleId in  ".$modul."";
+					p.preguntaId = ".$auxp['preguntaId']." and 	courseModuleId in  ".$modul;
 
 				$this->Util()->DB()->setQuery($sql);
 				$totalPp = $this->Util()->DB()->GetSingle();
@@ -358,7 +347,7 @@ class Encuesta extends Main
 					resultado as r
 				left join pregunta as p on p.preguntaId = r.preguntaId
 				where 
-					p.preguntaId = ".$auxp['preguntaId']." and 	courseModuleId in  ".$modul."";
+					p.preguntaId = ".$auxp['preguntaId']." and 	courseModuleId in  ".$modul;
 
 				$this->Util()->DB()->setQuery($sql);
 				$countPj = $this->Util()->DB()->GetSingle();

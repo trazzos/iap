@@ -54,11 +54,13 @@
 					Información Bancaria
 				</a>
 			</li>
+{*
 			<li >
 				<a href="#portlet_tabp_4" data-toggle="tab">
 					Información Automovil
 				</a>
 			</li>
+*}
 		</ul>
 		<div class="tab-content">
 				

@@ -1153,18 +1153,6 @@ class User extends Main
 			exit;
 		}
 
-/*		if($User['type'] == 'student'){
-			
-			if($User['status'] == 'pendiente')
-				$url = WEB_ROOT.'/report-calificacion';
-			else
-				$url = WEB_ROOT.'/schedule-student';
-			
-			header('Location: '.$url);
-			exit;
-		}
-*/
-				
 		if($User['positionId'] != 1 && $moduleId != 0){
 			if(!$this->allow_access_module($User['userId'], $moduleId)){
 				header('Location: '.WEB_ROOT);

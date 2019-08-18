@@ -93,20 +93,7 @@
                             <a href="{$WEB_ROOT}/alumn-services ">
                                 <i class="icon-settings"></i> Actualizar Información</a>
                         </li>
-                        <!--<li>
-                            <a href="{$WEB_ROOT}/tv ">
-                                <i class="fa fa-video-camera"></i> VideoConferencias </a>
-                        </li>
-                        <li>
-                            <a href="{$WEB_ROOT}/recorded ">
-                                <i class="fa fa-camera"></i> Grabaciones </a>
-                        </li>-->
-						<!--
-						<li>
-                            <a href="{$WEB_ROOT}/view-solicitud" >
-                               <i class="fa fa-folder-open" aria-hidden="true"></i>Solicitudes 
-							</a>
-                        </li>-->
+{*
 						<li>
 						<a href="{$WEB_ROOT}/graybox.php?page=referencia-bancaria" data-target="#ajax" data-toggle="modal" data-width="1000px">
 						   <i class="fa fa-university" aria-hidden="true"></i>Referencia Bancaria 
@@ -117,11 +104,8 @@
 						  <i class="fa fa-file-text" aria-hidden="true"></i>Descargar Formatos de Inscripción/Reinscripción
 						</a>
 						</li>
-						<li>
-						<!--<a href="{$WEB_ROOT}/ver-calendario" ><onClick="verCalendario()"
-						   <i class="fa fa-calendar"></i>Calendario de Pagos
-						</a>
-						</li>-->
+*}
+{*
 						<li>
 						<a href="{$WEB_ROOT}/estatus-financiero" ><!--onClick="verCalendario()"-->
 						  <i class="fa fa-file-text" aria-hidden="true"></i>Estatus Financiero
@@ -132,6 +116,7 @@
 						   <i class="fa fa-files-o"></i>Conceptos de Pago
 						</a>
 						</li>
+*}
 						<li>
 						<a href="{$WEB_ROOT}/inbox/or/h" >
 						 <i class="fa fa-comments"></i>Inbox 
@@ -142,11 +127,13 @@
 						   <i class="fa fa-unlock-alt"></i>Cambiar Contraseña
 						</a>
 						</li>
+{*
 						<li>
 						<a href="{$WEB_ROOT}/personal-academico" >
 						   <i class="fa fa-sitemap"></i>Personal Academico
 						</a>
 						</li>
+*}
                     </ul>
                 </div>
                 <!-- END MENU -->
@@ -154,24 +141,6 @@
             <!-- END PORTLET MAIN -->
             <!-- PORTLET MAIN -->
             <div class="portlet light ">
-{*
-                <!-- STAT -->
-                <div class="row list-separated profile-stat">
-                    <div class="col-md-4 col-sm-4 col-xs-6">
-                        <div class="uppercase profile-stat-title"> 37 </div>
-                        <div class="uppercase profile-stat-text"> Projects </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-6">
-                        <div class="uppercase profile-stat-title"> 51 </div>
-                        <div class="uppercase profile-stat-text"> Tasks </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-6">
-                        <div class="uppercase profile-stat-title"> 61 </div>
-                        <div class="uppercase profile-stat-text"> Uploads </div>
-                    </div>
-                </div>
-                <!-- END STAT -->
-*}
                 <div>
                     <h4 class="profile-desc-title">Acerca del IAP Chiapas</h4>
                     <span class="profile-desc-text"> El <b>Instituto de Administración Pública del Estado de Chiapas, A. C.</b><br />te da la mas cordial bienvenida a nuestro Sistema de Educación en Línea.</span>

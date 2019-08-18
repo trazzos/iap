@@ -126,17 +126,33 @@ switch($_POST["type"])
         if(!$student->DeleteStudentCurricula())
         {
             echo "fail[#]";
-            //$util->setError(10028, "error","Ocurrio un error al eliminar a este alumno");
-            //$util->PrintErrors();
             $smarty->display(DOC_ROOT.'/templates/boxes/status_on_popup.tpl');
 
         }else{
             echo "ok[#]";
             $util->setError(10028, "complete","Alumno eliminado con exito de esta curricula");
             $util->PrintErrors();
+            $smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
+        }
+        break;
+
+    case "inactivateStudentCurricula":
+
+        $student->setUserId($_POST['userId']);
+        $student->setCourseId($_POST['courseId']);
+
+        if(!$student->InactivateStudentCurricula())
+        {
+            echo "fail[#]";
             $smarty->display(DOC_ROOT.'/templates/boxes/status_on_popup.tpl');
 
+        }else{
+            echo "ok[#]";
+            $util->setError(10028, "complete","Alumno inactivado con exito de esta curricula");
+            $util->PrintErrors();
+            $smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
         }
+        break;
 
 
 

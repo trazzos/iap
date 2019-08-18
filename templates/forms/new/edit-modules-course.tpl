@@ -4,18 +4,6 @@
         <div class="caption">
             <i class="fa fa-gift"></i>.:: Datos del M&oacute;dulo ::.
         </div>
-          <!-- <a class="btn {$BUTTON_COLOR}" href="{$WEB_ROOT}/graybox.php?page=view-modules-student&id={$myModule.courseModuleId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
--->
-             <!-- <a  class="btn {$BUTTON_COLOR}" href="{$WEB_ROOT}/view-modules-student/id/{$myModule.courseModuleId}/vp/1&vpa=si" target="_blank" onClick="window.open(this.href, this.target, 'fullscreen,scrollbars'); return false;">
-			 Vista previa del M&oacute;dulo
-            </a>
-			  <a href="{$WEB_ROOT}/graybox.php?page=add-calificacion&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn {$BUTTON_COLOR}">
-                Acta de Calificaciones
-            </a>
-			<a href="{$WEB_ROOT}/inbox/id/{$myModule.courseModuleId}" class="btn {$BUTTON_COLOR}">
-                Inbox
-            </a>-->
-
 		<div class="actions" >
 		<div class="btn-toolbar" style="left:188px !important">
 			<div class="btn-group">
@@ -62,8 +50,6 @@
 					</a>
 				</li>
 				<li>
-
-					<!--<a href="{$WEB_ROOT}/docentes/contrato/{$myModule.rutaContrato}"  target="_blank"  >-->
 					<a href="{$WEB_ROOT}/graybox.php?page=down-contrato-doc&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
 						<i class="	fa fa-file-pdf-o"></i>
 							Contrato
@@ -142,11 +128,7 @@
                         {if $docente}
                             {$myModule.initialDate}
                         {else}
-                            <input type="text" name="initialDate" id="initialDate" size="10" class="form-control date-picker " value="{$myModule.initialDate}" required/>
-
-{*
-                            <input type="text" name="initialDate" id="initialDate" value="{$myModule.initialDate}" class="form-control"/><a href="javascript:NewCal('initialDate','ddmmyyyy')"><img src="{$WEB_ROOT}/images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
-*}
+                            <input  autocomplete="off" type="text" name="initialDate" id="initialDate" size="10" class="form-control date-picker " value="{$myModule.initialDate}" required/>
                         {/if}
                     </div>
                 </div>
@@ -157,22 +139,7 @@
                         {if $docente}
                             {$myModule.finalDate}
                         {else}
-                            <input type="text" name="finalDate" id="finalDate" size="10" class="form-control date-picker " value="{$myModule.finalDate}" required/>
-
-{*
-                            <input type="text" name="finalDate" id="finalDate" value="{$myModule.finalDate}"  class="form-control" /><a href="javascript:NewCal('finalDate','ddmmyyyy')"><img src="{$WEB_ROOT}/images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
-*}
-                        {/if}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Dias para Terminar</label>
-                    <div class="col-md-8">
-                        {if $docente}
-                            {$myModule.daysToFinish}
-                        {else}
-                            <input type="text" name="daysToFinish" id="daysToFinish" value="{$myModule.daysToFinish}"  class="form-control"/>
+                            <input  autocomplete="off" type="text" name="finalDate" id="finalDate" size="10" class="form-control date-picker " value="{$myModule.finalDate}" required/>
                         {/if}
                     </div>
                 </div>

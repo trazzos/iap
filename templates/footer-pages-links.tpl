@@ -14,28 +14,28 @@
 {*		endPage			= el enlace a la ultima pagina si la pagina actual es menor a (total de paginas - 1)	*}
 {*		refreshPage		= enlace a la misma pagina, por si se necesite actualizar los datos de la pagina		*}
 <div id="footerPagesLinks">
-    <div style="text-align:left; float:left">
-        Mostrando regs. {$arrPage.rowBegin} al {$arrPage.rowEnd} de {$arrPage.totalTableRows} - <a href="{$arrPage.refreshPage}" title="Refrescar Datos">Refrescar Datos</a>
+    <div style="text-align:left; float:left; color: white">
+        Mostrando regs. {$arrPage.rowBegin} al {$arrPage.rowEnd} de {$arrPage.totalTableRows} - <a style="color: white" href="{$arrPage.refreshPage}" title="Refrescar Datos">Refrescar Datos</a>
     </div>
-    <div style="text-align:right; float:right">
+    <div style="text-align:right; float:right; color: white">
 		{if $arrPage.startPage|count_characters > 0}
-			<a href="{$arrPage.startPage}" title="Pagina inicio">Inicio</a> |
+			<a style="color: white" href="{$arrPage.startPage}" title="Pagina inicio">Inicio</a> |
 		{else}
 			Inicio |
 		{/if}
 		{if $arrPage.previusPage|count_characters > 0}
-			<a href="{$arrPage.previusPage}" titulo="Pagina anterior">Anterior</a> |
+			<a style="color: white" href="{$arrPage.previusPage}" titulo="Pagina anterior">Anterior</a> |
 		{else}
 			Anterior |
 		{/if}
-		pagina {$arrPage.currentPage} de {$arrPage.totalPages} |
+		<span style="font-weight: bold">Pagina {$arrPage.currentPage} de {$arrPage.totalPages}</span> |
 		{if $arrPage.nextPage|count_characters > 0}
-			<a href="{$arrPage.nextPage}" title="Pagina siguiente">Siguiente</a> |
+			<a style="color: white" href="{$arrPage.nextPage}" title="Pagina siguiente">Siguiente</a> |
 		{else}
 			Siguiente |
 		{/if}
 		{if $arrPage.endPage|count_characters > 0}
-			<a href="{$arrPage.endPage}" titulo="Pagina final">Final</a>
+			<a style="color: white" href="{$arrPage.endPage}" titulo="Pagina final">Final</a>
 		{else}
 			Final
 		{/if}

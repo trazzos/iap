@@ -114,7 +114,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <h4><a href="recuperacion"  style="color:#fff; position:relative; top:-11px; text-decoration: underline">¿Olvidaste tu contraseña?</a></h4>
         </div>
         <div class="create-account">
-            <p> ¿Estás interesado en nuestros programas académicos?
+            <p style="color: white"> ¿Estás interesado en nuestros programas académicos?
                 <a href="{$WEB_ROOT}/register" style="color:#fff; text-decoration: underline"> Registra tu información aquí</a>
             </p>
         </div>
