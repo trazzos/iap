@@ -6,7 +6,6 @@
 		<th width="100">Ubicaci&oacute;n</th>
 		<th width="200">Direcci&oacute;n</th>
 		<th width="100">Telefono</th>
-		<th width="100">Fax</th>
 		<th width="">Acciones</th>
 	</tr>
 </thead>
