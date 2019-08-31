@@ -11,5 +11,4 @@
 		Referencia Bancaria
 	{/if}
 	</th>
-    <!--<th width="20">Acciones</th> -->
 </tr>

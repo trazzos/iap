@@ -9,12 +9,8 @@
 	switch($_POST["type"])
 	{
 		case 'genera_maestrias':
-				//print_r($_POST);
-					$group->setCourseId($_POST["courseId"]);
-				    //$group->matricula_maestrias();
-					 //echo "fail[#]";
-					 //$smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
-				
+ 			    $group->setCourseId($_POST["courseId"]);
+
 				if(!$group->matricula_maestrias())
 				{
 					echo "fail[#]";

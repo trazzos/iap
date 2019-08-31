@@ -63,16 +63,7 @@ if($marks)
             $marks[$keyMark]["ccc"]=$student->info_subject($_GET['id']);
             $marks[$keyMark]["info"]["controlNumber"]=$marks[$keyMark]["ccc"]["matricula"];
         }
-
-
-        //$marks[$keyMark]["info"]["matricula"]="0001";
-
-
-        //		$course->setCourseId($_GET["id"]);
-        //		$courseInfo = $course->Info();
-        //		$marks[$keyMark]["course"] = $courseInfo;
     }
-    //echo "<pre>".print_r($marks)."</pre>";exit;
 
     array_push($marks, $marks[57]);
     array_push($marks, $marks[57]);

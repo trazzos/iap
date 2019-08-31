@@ -39,7 +39,7 @@
               	       {if $vistaPrevia==0}<a href="{$WEB_ROOT}/upload-homework/id/{$item.activityId}" onclick="return parent.GB_show('Subir Tarea', this.href,350,700) " style="color:#000000">Subir Tarea al Sistema de Tareas.</a>{else} Subir Tarea al Sistema de Tareas.{/if}
               {/if}
               {if $item.activityType == "Examen"}
-							
+
 							{if $majorModality == "Local"}
 								El Docente lo presentara Localmente
 							{else}

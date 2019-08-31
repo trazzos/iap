@@ -10,7 +10,6 @@ if(tipo=="MAESTRIA"){
 type="genera_maestrias";
 tipo=2;
 }
-//alert(courseId+" y "+tipo);
 
 new Ajax.Request(WEB_ROOT+'/ajax/matricula.php', 
 	{

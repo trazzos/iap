@@ -13,6 +13,8 @@ $( document ).ready(function() {
 
     $(document).on("click",".closeModal",function() {
         bootbox.hideAll();
+        $("#ajax").hide();
+        $("#ajax").modal("hide");
     });
 
     $(document).on("focus", ".date-picker", function () {

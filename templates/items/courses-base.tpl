@@ -31,7 +31,7 @@
         {if !$docente}
         <td align="center">
             <img src="{$WEB_ROOT}/images/icons/16/delete.png" class="spanDelete" id="d-{$subject.courseId}" name="d-{$subject.name}" title="Eliminar" />&nbsp;
-			{if $subject.majorName=="ESPECIALIDAD" || $subject.majorName=="MAESTRIA"}<img src="{$WEB_ROOT}/images/icons/16/matricula.gif" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="Generar Matriculas" width="16px" height="16px" />&nbsp;{/if}
+			{if $subject.majorName=="ESPECIALIDAD" || $subject.majorName=="MAESTRIA"}<img src="{$WEB_ROOT}/images/icons/16/matricula.gif" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="Generar usuarios" width="16px" height="16px" />&nbsp;{/if}
           	<a href="{$WEB_ROOT}/edit-course/id/{$subject.courseId}" onclick="return parent.GB_show('Editar Instancia', this.href,450,700) "><img src="{$WEB_ROOT}/images/icons/16/pencil.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Editar" /></a>
           	<a href="{$WEB_ROOT}/ver-sabana-course/id/{$subject.courseId}" onclick="return parent.GB_show('Sabana de Calificaciones', this.href,450,700) "><img src="{$WEB_ROOT}/images/icons/16/score.gif" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Sabana de Calificaciones" /></a>
             

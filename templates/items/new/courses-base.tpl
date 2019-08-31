@@ -50,12 +50,10 @@
 					</a>
 					<ul class="dropdown-menu" style="left: -146px">
 					<li>
-						{if $subject.majorName=="ESPECIALIDAD" || $subject.majorName=="MAESTRIA"}<!--
-							<img src="{$WEB_ROOT}/images/engrane.png" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="Generar Matriculas"  style="width:16px" />-->
-							<!--<i class="fa fa-cog" aria-hidden="true" onclick="generar({$subject.courseId},'{$subject.majorName}');" title="MATRICULAS"></i>-->
-							<a style="cursor:pointer" class="spanActive" onclick="VerGrupo({$subject.courseId},'matricula');" title="MATRICULAS" id="{$subject.courseId}">
+						{if $subject.majorName=="ESPECIALIDAD" || $subject.majorName=="MAESTRIA"}
+							<a style="cursor:pointer" class="spanActive" onclick="VerGrupo({$subject.courseId},'matricula');" title="Usuarios" id="{$subject.courseId}">
 							<i class="material-icons md-16">settings</i>
-							Matriculas
+							Usuarios
 							</a>  
 							&nbsp;
 						{/if}
@@ -68,49 +66,6 @@
 							Editar
 						</a>
 					</li>
-{*
-					<li>
-						<a href="{$WEB_ROOT}/graybox.php?page=ver-sabana-course&id={$subject.courseId}" data-target="#ajax" data-toggle="modal" title="Sabana de Calificaciones">
-							<!--<img src="{$WEB_ROOT}/images/cal.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}"  style="width:16px"  />
-							--><i class="material-icons md-16">grade</i>
-							Sabana de Calificaciones
-						</a>
-					</li>
-					<li>
-						<a href="{$WEB_ROOT}/diplomas.php?id={$subject.courseId}" target="_blank" >
-							<i class="material-icons md-16">folder_special</i>
-							Diplomas
-							<!--<img src="{$WEB_ROOT}/images/cer.jpg" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Impresion de Diplomas"  style="width:16px" />
-							-->
-						</a>
-					</li>
-					<li>
-						<a href="{$WEB_ROOT}/reporte.php?id={$subject.courseId}" target="_blank" >
-							<i class="material-icons md-16">poll</i>
-							Reportes
-							<!--<img src="{$WEB_ROOT}/images/graf.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Reporte General" style="width:16px"  />
-							-->
-						</a>
-					</li>
-					<li>
-							<a style="cursor:pointer" class="spanActive" onclick="VerGrupo({$subject.courseId});" title="Referencia Bancaria" id="{$subject.courseId}">
-							<i class="material-icons md-16">payment</i>
-							Referencia Bancaria
-							</a> 
-					</li>
-					<li>
-						<a style="cursor:pointer" class="spanActive" onclick="VerSolicitud({$subject.courseId});" title="CONSTANCIAS" id="{$subject.courseId}">
-						<i class="material-icons md-16">description</i>
-							Constancias
-						</a>
-					</li>
-					<li>
-						<a style="cursor:pointer" class="spanActive" onclick="editPeriodos({$subject.courseId});" title="PERIODOS" id="{$subject.courseId}">
-						<i class="material-icons md-16">event</i>
-						Periodos
-						</a>  
-					</li>
-*}
 					</ul>
 				</div> 	
 				<div id="divAccion_{$subject.courseId}" >

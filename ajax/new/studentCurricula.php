@@ -198,8 +198,6 @@ switch($_POST["type"])
 	
 	case 'saveMatricula';
 	
-		// echo '<pre>'; print_r($_POST);
-		// exit;
 		 if ($group->saveMatricula()){
 			 echo 'ok[#]';
 			 echo '<div class="alert alert-info alert-dismissable">

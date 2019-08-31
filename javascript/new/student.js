@@ -76,6 +76,23 @@ function activar(id,activo){
 }//activar
 
 
+function reloadCedulaInscripcion(id, courseId) {
+	console.log(id, courseId);
+  $("#type").val("reloadCedulaInscripcion")
+
+  $.ajax({
+    type: "POST",
+    url: WEB_ROOT+'/ajax/student.php',
+    data: {id: id, courseId: courseId},
+    success: function(response) {
+      window.open(WEB_ROOT+'/files/solicitudes/'+id+'_'+courseId+'.pdf', '_blank');
+    },
+    error:function(){
+      alert(msgError);
+    }
+  });
+}
+
 function saveEditStudentAlumn(){
 	
 	$("#type").val("saveEditStudentAlumn")

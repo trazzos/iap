@@ -81,7 +81,7 @@
 					Nombre: <div class='line'>".$info['names']." ".$info['lastNamePaterno']." ".$info['lastNameMaterno']."</div>
 				</td>
 				<td colspan='2'>
-					Matrícula: <div class='line'>".$info['controlNumber']." </div>
+					Usuario: <div class='line'>".$info['controlNumber']." </div>
 				</td>
 			</tr>
 			<tr>

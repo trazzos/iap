@@ -601,9 +601,6 @@ class Student extends User
 			$this->setUserId($userId);
 			//print_r($userId); exit;
  		    $info = $this->GetInfo();
-			//echo "<pre>".print_r($info)."</pre>";
-			//echo "<pre>".print_r($courseInfo)."</pre>";
-			//exit;
 			if($courseInfo['majorName']=="ESPECIALIDAD" || $courseInfo['majorName']=="MAESTRIA")
 			  $matricula=$this->generaMatricula($info['majorName'],$courseId);
 			else
@@ -806,7 +803,7 @@ class Student extends User
 			//create file to attach
 			$files  = new Files;
 			//print_r($this);        //pdf del correo electronico
-			$file = $files->CedulaInscripcion($id, $curricula, $this, $major, $course);
+			$file = $files->CedulaInscripcion($id, $curricula, $this);
 			//enviar correo
 			$sendmail = new SendMail;
 
@@ -817,8 +814,7 @@ class Student extends User
 				"course" => utf8_decode($course),
 			);
 			$details_subject = array();
-			//$email = "dlopez@trazzos.com";
-			
+
 			$attachment[0] = DOC_ROOT."/files/solicitudes/".$file;
 			$fileName[0] = "Solicitud_de_Inscripcion.pdf";
 
@@ -938,8 +934,6 @@ class Student extends User
 		$this->setUserId($this->getUserId());
 		$info = $this->GetInfo();
 		
-		// echo "<pre>"; print_r($info);
-		// exit;
 		//datos personales
 		$this->setControlNumber();
 		$this->setNames($info['names']);
@@ -1001,7 +995,7 @@ class Student extends User
 
 	$files  = new Files;
 
-	$file = $files->CedulaInscripcion($this->getUserId(), $infoUS["courseId"], $this, $major, $course);
+	$file = $files->CedulaInscripcion($this->getUserId(), $infoUS["courseId"], $this);
 		
 	$this->Util()->setError(10030, "complete");
 	$this->Util()->PrintErrors();

@@ -31,24 +31,19 @@
           	     {else}
 		      <img src="{$WEB_ROOT}/images/cancel.png"  id="{$item.userId}" title="Dar de Alta" onclick="activar({$item.userId},{$item.activo});" />
 				 {/if}
-			 <!--<a href="{$WEB_ROOT}/graybox.php?page=edit-student&id={$item.userId}" title="EDITAR" onclick="return parent.GB_show('Ver Curricula', this.href,650,700) " style="color:#000" >
-			-->
 			<a href="{$WEB_ROOT}/graybox.php?page=edit-student&id={$item.userId}&auxImagen=1" data-target="#ajax" data-toggle="modal" data-width="1000px">
 			<img src="{$WEB_ROOT}/images/icons/16/pencil.png" class="spanEdit" id="{$item.userId}" title="Editar" />
 			</a>
-			<!--
-		   <a href="{$WEB_ROOT}/student-curricula/id/{$item.userId}" title="Ver Curricula de Estudiante" onclick="return parent.GB_show('Ver Curricula', this.href,650,700) " style="color:#000" ><img src="{$WEB_ROOT}/images/icons/16/subject.gif" title="Ver Curricula Estudiante" /></a>            
-			-->
-
 			<a href="{$WEB_ROOT}/graybox.php?page=student-curricula&id={$item.userId}&auxTpl=1" data-target="#ajax" data-toggle="modal" data-width="1000px">
 				<img src="{$WEB_ROOT}/images/icons/16/subject.gif" title="Ver Curricula Estudiante" />
-			</a>   
+			</a>
 
-			<a href="{$WEB_ROOT}/files/solicitudes/{$item.userId}_{$item.courseId}.pdf" target="_blank">
-				<!--<a href="#" onclick="generaSolicitud('{$item.userId}','{$item.courseId}')" >
-			-->		
+			<a href="#" onclick="reloadCedulaInscripcion({$item.userId},{$item.courseId});">
 				<img src="{$WEB_ROOT}/images/icons/16/document--arrow.png" title="Ficha de Registro" />
-			</a>      
+			</a>
+			{*<a href="{$WEB_ROOT}/files/solicitudes/{$item.userId}_{$item.courseId}.pdf" target="_blank">
+				<img src="{$WEB_ROOT}/images/icons/16/document--arrow.png" title="Ficha de Registro" />
+			</a>*}
 
 		{/if}
         </td>       

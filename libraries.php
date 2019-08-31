@@ -141,6 +141,7 @@ $notificacion= new Notificacion;
 $bank= new Bank;
 $solicitud= new Solicitud;
 $encuesta= new Encuesta;
+$files = new Files;
 
 $smarty = new Smarty;
 

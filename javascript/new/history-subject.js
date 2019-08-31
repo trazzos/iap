@@ -195,31 +195,6 @@ function generar(courseId,tipo){
             alert('Algo salio mal, compruebe su conexion a internet');
         }
     });
-
-/*    new Ajax.Request(WEB_ROOT+'/ajax/matricula.php',
-        {
-            method:'post',
-            parameters: {type: type, courseId: courseId, tipo : tipo},
-            onSuccess: function(transport){
-                var response = transport.responseText || "no response text";
-                //alert(response)
-                var splitResponse = response.split("[#]");
-                if(splitResponse[0] == "fail")
-                {
-                    ShowStatus(splitResponse[1])
-                }
-                else
-                {
-                    ShowStatus(splitResponse[1])
-                    //$('tblContent').innerHTML = splitResponse[2];
-                    CloseFview();
-                }
-
-            },
-            onFailure: function(){ alert('Something went wrong...') }
-        });*/
-
-
 }
 
 
@@ -270,7 +245,6 @@ function saveMatricula(id,activo){
 	  	url : WEB_ROOT+'/ajax/new/studentCurricula.php',
 	  	data: $("#frmGral").serialize(true)+'&id='+id+'&activo='+activo+'&type=saveMatricula',
 		beforeSend: function(){			
-			// $('#tblContent').html(LOADER3);
 		},
 	  	success: function(response) {	
 		

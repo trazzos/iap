@@ -516,8 +516,7 @@
 			 }else
 			 $num=$x;
 			   $matricula="5036101".$year.$num;
-			  // print_r($matricula);
-			 
+
 			          $this->Util()->DB()->setQuery("
 								UPDATE user_subject SET
 									matricula = '".$matricula."'
@@ -540,7 +539,6 @@
 				WHERE matricula like '5036%'
 				ORDER BY lastNamePaterno ASC, lastNameMaterno ASC, names ASC");
 			$maestrias = $this->Util()->DB()->GetResult();
-			//print_r($maestrias);
 		     if(count($maestrias)==0){
 			  $this->genera();
 			  $this->Util()->setError(90000, 'complete', "Se ha generado correctamente todas las matriculas");
@@ -573,8 +571,7 @@
 			 }else
 			 $num=$x;
 			   $matricula="5046101".$year.$num;
-			  // print_r($matricula);
-			 
+
 			          $this->Util()->DB()->setQuery("
 								UPDATE user_subject SET
 									matricula = '".$matricula."'
@@ -596,7 +593,6 @@
 				WHERE matricula like '5046%'
 				ORDER BY lastNamePaterno ASC, lastNameMaterno ASC, names ASC");
 			$especialidad = $this->Util()->DB()->GetResult();
-			//print_r($maestrias);
 		     if(count($especialidad)==0){
 			  $this->generaEspecialidad();
 			  $this->Util()->setError(90000, 'complete', "Se ha generado correctamente todas las matriculas");

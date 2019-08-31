@@ -23,7 +23,7 @@
                          <tr>
                             <td>Nombre del Alumno</td>
                             <td>".$infoSol['names']." ".$infoSol['lastNamePaterno']." ".$infoSol['lastNameMaterno']."</td>
-                            <td>Matricula</td>
+                            <td>Usuario</td>
                             <td>".$infoSol['controlNumber']." </td>
                          </tr>
                          <tr>
