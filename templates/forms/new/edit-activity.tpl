@@ -76,7 +76,7 @@
                 {*
                                 TODO check text areas in graybox
                 *}
-                <textarea name="description" id="description" style="width:50%">{$actividad.description}</textarea>
+                <textarea name="description" id="description">{$actividad.description}</textarea>
                 {*
                                 <input type="text" name="description" id="description" value="" maxlength="30" class="form-control"/>
                 *}

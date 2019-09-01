@@ -40,9 +40,10 @@
 
 <script type="text/javascript">
     tinyMCE.init({
-        mode : "textareas",
-        theme : "advanced",
-        skin : "o2k7",
+      mode : "textareas",
+      theme : "silver",
+      skin : "oxide",
+      menubar:false,
         plugins : "paste",
         theme_advanced_buttons3_add : "pastetext,pasteword,selectall",
         paste_auto_cleanup_on_paste : true,

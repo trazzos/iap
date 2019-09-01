@@ -2,9 +2,10 @@
 <script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
 <script type="text/javascript">
 	tinyMCE.init({
-		mode : "textareas",
-		theme : "advanced",
-		skin : "o2k7"		
+      mode : "textareas",
+      theme : "silver",
+      skin : "oxide",
+      menubar:false,
 		
 	});
 </script>
@@ -49,7 +50,7 @@
 
       <div class="content-settings-row">
             <label for="f1" style="width:250px"><span class="reqField">*</span> Descripcion:</label>
-            <textarea name="description" id="description" style="width:150px"></textarea>
+            <textarea name="description" id="description"></textarea>
       </div>
       
       <div class="content-settings-row">

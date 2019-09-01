@@ -70,13 +70,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Descripcion:</label>
             <div class="col-md-8">
-{*
-                TODO check text areas in graybox
-*}
-                <textarea name="description" id="description" style="width:150px"></textarea>
-{*
-                <input type="text" name="description" id="description" value="" maxlength="30" class="form-control"/>
-*}
+                <textarea name="description" id="description"></textarea>
             </div>
         </div>
 
@@ -106,9 +100,9 @@
 
 <script type="text/javascript">
     tinyMCE.init({
-        mode : "textareas",
-        theme : "advanced",
-        skin : "o2k7"
-
+      mode : "textareas",
+      theme : "silver",
+      skin : "oxide",
+      menubar:false,
     });
 </script>

@@ -51,12 +51,12 @@
 	<link href="{$WEB_ROOT}/css/radiobutton.css" rel="stylesheet" type="text/css"  />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" rel="stylesheet" type="text/css"  />
 	<script src="https://kit.fontawesome.com/5411aed620.js"></script>
-{*
-	<link href="{$WEB_ROOT}/css/style_new.css" rel="stylesheet" type="text/css"  />
-*}
 	<script src="{$WEB_ROOT}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 	<script src="{$WEB_ROOT}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="https://cdn.tiny.cloud/1/5neq68yrjxtd6ixawa2xexl7jki3unxypgzrewckloqcj11y/tinymce/5/tinymce.min.js"></script>
+{*
 	<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
+*}
 	<script type="text/javascript">
 		var GB_ROOT_DIR = "{$WEB_ROOT}/GreyBox/greybox/";
 	</script>

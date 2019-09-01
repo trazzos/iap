@@ -93,8 +93,9 @@
 <script type="text/javascript">
     tinyMCE.init({
         mode : "textareas",
-        theme : "advanced",
-        skin : "o2k7"
+        theme : "silver",
+        skin : "oxide",
+        menubar:false,
 
     });
 </script>

@@ -200,10 +200,10 @@
         console.log("here");
         window.tinymce.dom.Event.domLoaded = true;
         tinyMCE.init({
-            mode : "textareas",
-            theme : "advanced",
-            skin : "o2k7"
-
+          mode : "textareas",
+          theme : "silver",
+          skin : "oxide",
+          menubar:false,
         });
         console.log("here");
 

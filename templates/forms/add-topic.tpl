@@ -2,10 +2,10 @@
 <script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
 <script type="text/javascript">
 	tinyMCE.init({
-		mode : "textareas",
-		theme : "advanced",
-		skin : "o2k7"		
-		
+      mode : "textareas",
+      theme : "silver",
+      skin : "oxide",
+      menubar:false,
 	});
 </script>
 <!-- /TinyMCE -->
@@ -23,7 +23,7 @@
 
       <div class="content-settings-row">
             <label for="f1" style="width:250px"><span class="reqField">*</span> Descripcion:</label>
-            <textarea name="reply" id="reply" style="width:150px"></textarea>
+            <textarea name="reply" id="reply"></textarea>
       </div>
       
       <div style="float:left"><span class="reqField">*</span> Campo requerido</div>
