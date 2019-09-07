@@ -29,6 +29,7 @@ LOGO_SMALL=logo.png
 
 #Don't forget the double ticks (")
 INTRODUCTION="Introduccion de la escuela o empresa"
+STUDENT_MANUAL=https://app.ihjaimesabines.edu.mx/manual_alumno.pdf
 
 #Sidebar (Show menu with 1, hide with 0). Not all menus have options, we can add more later
 VIDEO_CONFERENCES_CATALOG=0
@@ -47,6 +48,7 @@ COMPANY_EMAIL=test@test.com
 COMPANY_PRIVACY=https://ihjaimesabines.edu.mx/politicas-de-privacidad/
 COMPANY_URL=https://ihjaimesabines.edu.mx
 COMPANY_FACEBOOK=https://www.facebook.com/Instituto-Hispano-Jaime-Sabines-1561747460810062/
+COMPANY_ADDRESS="Callejón la Salle 800, col, Santa María la Ribera, 29070 TUXTLA, CHIAPAS, MEXICO"
 
 #EMAIL Setup
 EMAIL_HOST=smtp.gmail.com
