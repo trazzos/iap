@@ -55,7 +55,6 @@
     - /m_educacion
     - /msj
     - /personal_foto
-    - /reportes
     - /reports
     - /resources
     - /resources/config
