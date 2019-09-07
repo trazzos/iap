@@ -1,1 +1,0 @@
-ALTER TABLE  `estudioprofesor` ADD  `carrera` VARCHAR( 255 ) NOT NULL AFTER  `escuela` ;

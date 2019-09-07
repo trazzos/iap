@@ -1,6 +1,0 @@
-ALTER TABLE  `course_module` ADD  `fechaContrato` DATE NOT NULL AFTER  `finalDate` ;
-ALTER TABLE  `course_module` ADD  `fechaMateria` VARCHAR( 255 ) NOT NULL AFTER  `finContrato` ;
-ALTER TABLE  `course_module` ADD  `rutaContratoFirmado` VARCHAR( 255 ) NOT NULL AFTER  `rutaContrato` ;
-ALTER TABLE  `course_module` ADD  `rutaCarta` VARCHAR( 255 ) NOT NULL AFTER  `rutaPlan` ;
-ALTER TABLE  `course` ADD  `subtotal` DECIMAL( 15, 2 ) NOT NULL AFTER  `hora` ;
-ALTER TABLE  `solicitud` ADD  `observacion` TEXT NOT NULL AFTER  `horario` ;

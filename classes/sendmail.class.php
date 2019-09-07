@@ -14,6 +14,8 @@ class SendMail extends Main
         $this->email->Port       = 465;
         $this->email->SMTPSecure = 'ssl';
         $this->email->SMTPDebug = EMAIL_DEBUG;
+        $this->email->CharSet = "UTF-8";
+        $this->email->Encoding = 'base64';
 
     }
 
@@ -27,7 +29,7 @@ class SendMail extends Main
         $this->email->SetFrom(EMAIL_USERNAME, $fromName);
 
 		$this->email->AddAddress($to, $toName);
-		$this->email->Subject    = $subject;
+        $this->email->Subject    = utf8_decode($subject);
 		$this->email->MsgHTML($body);
 
 		foreach($attachment as $key => $attach)
@@ -48,7 +50,7 @@ class SendMail extends Main
 		$this->email->SetFrom(EMAIL_USERNAME, $fromName);
 
 		$this->email->AddAddress($to, $toName);
-		$this->email->Subject    = $subject;
+		$this->email->Subject    = utf8_decode($subject);
 		$this->email->MsgHTML($body);
 
 		if(is_array($attachment)) {
@@ -72,7 +74,7 @@ class SendMail extends Main
 		$this->email->SetFrom(EMAIL_USERNAME, $fromName);
 
         $this->email->AddAddress($to, $toName);
-        $this->email->Subject    = $subject;
+        $this->email->Subject    = utf8_decode($subject);
         $this->email->MsgHTML($body);
 
 		if($attachment != "")
@@ -104,7 +106,7 @@ class SendMail extends Main
             $this->email->AddAddress($info["email"], $name." (".$info["controlNumber"].")");
 		}
 
-        $this->email->Subject    = $subject;
+        $this->email->Subject    = utf8_decode($subject);
         $this->email->MsgHTML($body);
 
 		if($attachment != "")

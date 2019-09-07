@@ -1,0 +1,1 @@
+ALTER TABLE `user` ADD `provider` VARCHAR(255) NOT NULL AFTER `perfil`, ADD `tutor_name` VARCHAR(255) NOT NULL AFTER `provider`, ADD `tutor_address` VARCHAR(255) NOT NULL AFTER `tutor_name`, ADD `tutor_work` VARCHAR(255) NOT NULL AFTER `tutor_address`, ADD `tutor_phone` VARCHAR(255) NOT NULL AFTER `tutor_work`;

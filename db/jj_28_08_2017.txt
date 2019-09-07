@@ -1,1 +1,0 @@
-ALTER TABLE  `menu_app` ADD  `contenido` TEXT NOT NULL AFTER  `menuId` ;

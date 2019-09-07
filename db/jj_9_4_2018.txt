@@ -1,1 +1,0 @@
-ALTER TABLE  `course_module` ADD  `subtotal` DECIMAL( 15, 2 ) NOT NULL AFTER  `periodo` ;

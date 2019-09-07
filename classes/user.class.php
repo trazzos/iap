@@ -80,8 +80,13 @@ class User extends Main
 	public $permiso;
 	protected $activo;
 	protected $courseId;
-	
-				
+
+	public $tutor_name;
+    public $tutor_address;
+    public $tutor_work;
+    public $tutor_phone;
+    public $provider;
+
   public function setCourseId($value){
   
     $this->courseId=$value;

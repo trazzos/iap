@@ -1,2 +1,0 @@
-ALTER TABLE  `solicitud` ADD  `tipobaja` ENUM(  'temporal',  'definitiva' ) NOT NULL AFTER  `rutaAdjunto` ;
-

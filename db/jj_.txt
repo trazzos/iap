@@ -1,1 +1,0 @@
-ALTER TABLE  `tiposolicitud` ADD  `idfire` INT( 11 ) NOT NULL AFTER  `precio` ;

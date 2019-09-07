@@ -1,4 +1,0 @@
-ALTER TABLE  `personal` ADD  `estatus` ENUM(  'activo',  'eliminado' ) NOT NULL AFTER  `rutaFirma` ;
-ALTER TABLE  `catalogodocumento` ADD  `descripcion` TEXT NOT NULL AFTER  `nombre` ;
-ALTER TABLE  `catalogodocumento` ADD  `estatus` ENUM(  'activo',  'eliminado' ) NOT NULL AFTER  `descripcion` ;
-ALTER TABLE  `personal` CHANGE  `ciudad`  `ciudad` INT( 11 ) NOT NULL ;

@@ -1,1 +1,0 @@
-ALTER TABLE  `tiposolicitud` ADD  `orden` VARCHAR( 255 ) NOT NULL AFTER  `idfire` ;

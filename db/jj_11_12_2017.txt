@@ -1,3 +1,0 @@
-ALTER TABLE  `solicitud` ADD  `horario` VARCHAR( 255 ) NOT NULL AFTER  `precio` ;
-ALTER TABLE  `course` ADD  `horario` VARCHAR( 255 ) NOT NULL AFTER  `fechaDiploma` ;
-ALTER TABLE  `course` ADD  `dias` VARCHAR( 255 ) NOT NULL AFTER  `horario` ;

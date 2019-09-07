@@ -1,7 +1,0 @@
-ALTER TABLE  `personal` ADD  `INE` VARCHAR( 255 ) NOT NULL AFTER  `profesion` ;
-ALTER TABLE  `personal` ADD  `calle` VARCHAR( 255 ) NOT NULL AFTER  `INE` ;
-ALTER TABLE  `personal` ADD  `nInterior` VARCHAR( 255 ) NOT NULL AFTER  `calle` ;
-ALTER TABLE  `personal` ADD  `nExterior` VARCHAR( 255 ) NOT NULL AFTER  `nInterior` ;
-ALTER TABLE  `personal` ADD  `colonia` VARCHAR( 255 ) NOT NULL AFTER  `nExterior` ;
-ALTER TABLE  `personal` ADD  `estado` VARCHAR( 255 ) NOT NULL AFTER  `colonia` ;
-ALTER TABLE  `personal` ADD  `ciudad` VARCHAR( 255 ) NOT NULL AFTER  `estado` ;

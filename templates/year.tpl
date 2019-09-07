@@ -1,4 +1,4 @@
-<select name="{$name}" id="{$name}">
+<select name="{$name}" id="{$name}" style="display: inline">
 	<option value="1950" {if $selected == 2011} selected="selected" {/if}>1950</option>
 	<option value="1951" {if $selected == 2011} selected="selected" {/if}>1951</option>
 	<option value="1952" {if $selected == 2011} selected="selected" {/if}>1952</option>

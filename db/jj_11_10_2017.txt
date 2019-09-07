@@ -1,4 +1,0 @@
-ALTER TABLE  `solicitud` ADD  `subjectId` INT( 11 ) NOT NULL AFTER  `tipobaja` ;
-ALTER TABLE  `solicitud` ADD  `courseId` INT( 11 ) NOT NULL AFTER  `tipobaja` ;
-ALTER TABLE  `solicitud` ADD  `fehaEntrega` DATE NOT NULL AFTER  `subjectId` ;
-ALTER TABLE  `solicitud` CHANGE  `fehaEntrega`  `fechaEntrega` DATE NOT NULL ;

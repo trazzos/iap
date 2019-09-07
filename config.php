@@ -24,6 +24,7 @@ define("COST_TABLE_INSTRUCTOR", getenv('COST_TABLE_INSTRUCTOR'));
 define("VEHICLES_REPORT", getenv('VEHICLES_REPORT'));
 define("SUBJECTS_REPORT", getenv('SUBJECTS_REPORT'));
 define("INSTRUCTORS_REPORT", getenv('INSTRUCTORS_REPORT'));
+define("STUDENT_MANUAL", getenv('STUDENT_MANUAL'));
 
 define("ITEMS_PER_PAGE", "20");
 define("MIN_YEAR", 2009);
@@ -37,6 +38,7 @@ define("COMPANY_EMAIL", getenv('COMPANY_EMAIL'));
 define("COMPANY_PRIVACY", getenv('COMPANY_PRIVACY'));
 define("COMPANY_URL", getenv('COMPANY_URL'));
 define("COMPANY_FACEBOOK", getenv('COMPANY_FACEBOOK'));
+define("COMPANY_ADDRESS", getenv('COMPANY_ADDRESS'));
 
 define("EMAIL_HOST", getenv('EMAIL_HOST'));
 define("EMAIL_USERNAME", getenv('EMAIL_USERNAME'));

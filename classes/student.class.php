@@ -376,12 +376,10 @@ class Student extends User
 	}
 	
 	public function Save($option=""){
-		
-		if($this->Util()->PrintErrors()){ 
+
+		if($this->Util()->PrintErrors()){
 			return false; 
 		}
-		
-		
 		
 		//Verificando que no se duplique el correo electronico
 		$this->Util()->DB()->setQuery("
@@ -403,7 +401,8 @@ class Student extends User
 			$this->Util()->PrintErrors();
 			return false;
 		}
-                   //Validando contraseña de minimo 6 caracteres
+
+		//Validando contraseña de minimo 6 caracteres
 		if(strlen($this->getPassword()) < 6)
 		{
 			$this->Util()->setError(10028, "error", "El password debe de contener al menos 6 caracteres.");
@@ -450,7 +449,12 @@ class Student extends User
 							school,
 							masters,
 							mastersSchool,
-							highSchool
+							highSchool,
+							provider,
+							tutor_name,
+							tutor_work,
+							tutor_address,
+							tutor_phone
 						)
 							VALUES
 						(
@@ -490,7 +494,12 @@ class Student extends User
 							'".$this->getSchool()."', 
 							'".$this->getMasters()."', 
 							'".$this->getMastersSchool()."', 
-							'".$this->getHighSchool()."' 
+							'".$this->getHighSchool()."', 
+							'".$this->provider."', 
+							'".$this->tutor_name."', 
+							'".$this->tutor_work."', 
+							'".$this->tutor_address."', 
+							'".$this->tutor_phone."' 
 							
 						)";
 
@@ -540,14 +549,16 @@ class Student extends User
               if($this->tipo_beca=="Ninguno")
 			    $this->por_beca=0;
 				
-			$this->AddUserToCurricula($id, $_POST["curricula"], $this->getNames(), $this->getEmail(), $this->getPassword(), $courseInfo["majorName"], $courseInfo["name"],$this->tipo_beca,$this->por_beca);
-			
+			$this->AddUserToCurricula($id, $_POST["curricula"], $this->getNames(), $this->getEmail(), $this->getPassword(),
+                $courseInfo["majorName"], $courseInfo["name"],$this->tipo_beca,$this->por_beca, $this->getControlNumber());
+
 			if($this->getRegister()==0){
+                $this->Util()->cleanErrors();
 			$complete1 = "Te has registrado exitosamente. Te hemos enviado un correo electronico con los datos de ingreso al sistema";
 			$this->Util()->setError(10028, "complete", $complete1);
 			$complete2 = "En caso de no estar en tu bandeja de entrada, verifica en correos no deseados";
 			$this->Util()->setError(10028, "complete", $complete2);
-			$complete4 = "Cualquier problema que llegaras a tener, escribenos a enlinea@iapchiapas.org.mx";
+			$complete4 = "Cualquier problema que llegaras a tener, escribenos a ".COMPANY_EMAIL;
 			$this->Util()->setError(10028, "complete", $complete4);
 			
 			$complete3 = "Bienvenido";
@@ -818,8 +829,8 @@ class Student extends User
 			$attachment[0] = DOC_ROOT."/files/solicitudes/".$file;
 			$fileName[0] = "Solicitud_de_Inscripcion.pdf";
 
-			$attachment[1] = DOC_ROOT."/manual_alumno.pdf";
-			$fileName[1] = "Manual_Alumno.pdf";
+			/*$attachment[1] = DOC_ROOT."/manual_alumno.pdf";
+			$fileName[1] = "Manual_Alumno.pdf";*/
 						
 			$sendmail->PrepareAttachment($message[1]["subject"], $message[1]["body"], $details_body, $details_subject, $email, $nombre, $attachment, $fileName);
 			

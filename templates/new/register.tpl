@@ -6,6 +6,6 @@
 
     </div>
     <div class="portlet-body">
-        <div id="tblContent">{include file="forms/new/add-student-register.tpl"}</div>
+        <div id="tblContent">{include file="forms/new/add-student-register-basic.tpl"}</div>
     </div>
 </div>

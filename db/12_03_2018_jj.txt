@@ -1,5 +1,0 @@
-ALTER TABLE  `course_module_personal` ADD  `courseModPId` INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY AFTER  `personalId` ;
-ALTER TABLE  `course` ADD  `apareceTabla` ENUM(  'no',  'si' ) NOT NULL AFTER  `dias` ;
-ALTER TABLE  `course` ADD  `tarifa` VARCHAR( 255 ) NOT NULL AFTER  `apareceTabla` ;
-ALTER TABLE  `course` ADD  `hora` VARCHAR( 255 ) NOT NULL AFTER  `tarifa` ;
-ALTER TABLE  `course_module` ADD  `rutaPlan` VARCHAR( 255 ) NOT NULL AFTER  `rutaContrato` ;

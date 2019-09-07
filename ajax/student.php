@@ -288,8 +288,60 @@
 
 
 				
-				break;		
-		case "saveEditStudent":	
+				break;
+        case "saveAddStudentRegisterBasic":
+            $status = $_POST['status'];
+
+            //datos personales
+            $student->setPermiso($_POST['permiso']);
+            $student->setControlNumber();
+            $student->setNames($_POST['names']);
+            $student->setLastNamePaterno($_POST['lastNamePaterno']);
+            $student->setLastNameMaterno($_POST['lastNameMaterno']);
+            $student->setSexo($_POST['sexo']);
+            $student->setBirthdate($_POST['day'],$_POST['month'],$_POST['year']);
+            $student->setMaritalStatus($_POST['maritalStatus']);
+
+            //domicilio
+            $student->setStreet($_POST['street']);
+            $student->setNumber($_POST['number']);
+            $student->setColony($_POST['colony']);
+            $student->setCity($_POST['ciudad']);
+            $student->setState($_POST['estado']);
+            $student->setCountry($_POST['pais']);
+            $student->setPostalCode($_POST['postalCode']);
+
+            //datos de contacto
+            $student->setEmail($_POST['email']);
+            $student->setPhone($_POST['phone']);
+            $student->setPassword(trim($_POST['password']));
+
+            //Estudios
+            $student->setSchool($_POST['school']);
+
+            $student->provider = $_POST['provider'];
+            $student->tutor_name = $_POST['tutor_name'];
+            $student->tutor_work = $_POST['tutor_work'];
+            $student->tutor_address = $_POST['tutor_address'];
+            $student->tutor_phone = $_POST['tutor_phone'];
+
+            if(!$student->Save("createCurricula"))
+            {
+                echo "fail[#]";
+
+                $smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
+            }
+            else
+            {
+                echo "ok[#]";
+                $smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
+            }
+
+
+
+            break;
+
+        case "saveEditStudent":
 						
 //print_r($_POST);						
 				$status = $_POST['status'];

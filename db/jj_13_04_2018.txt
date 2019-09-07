@@ -1,3 +1,0 @@
-ALTER TABLE  `course_module` ADD  `rutaEncuadre` VARCHAR( 255 ) NOT NULL AFTER  `subtotal` ;
-ALTER TABLE  `course_module` ADD  `rutaRubrica` VARCHAR( 255 ) NOT NULL AFTER  `rutaEncuadre` ;
-

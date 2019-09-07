@@ -1,6 +1,0 @@
-ALTER TABLE  `course_module` ADD  `creditos` VARCHAR( 255 ) NOT NULL AFTER  `evalDocenteCompleta` ;
-		ALTER TABLE  `solicitud` ADD  `courseModuleId` INT( 11 ) NOT NULL COMMENT  'coursemoduleId en el que se encuentra inscrito el alumno' AFTER `courseId` ;
-		ALTER TABLE  `solicitud` ADD  `nivelInscrito` INT( 11 ) NOT NULL COMMENT  'nivel inscrito ya sea cuatri o semestre' AFTER  `courseModuleId` ;
-		ALTER TABLE  `personal` ADD  `rutaFirma` VARCHAR( 255 ) NOT NULL AFTER  `ciudad` ;
-		ALTER TABLE  `course_module` ADD  `habilitarCalificar` ENUM(  'si',  'no' ) NOT NULL AFTER  `creditos` ;
-		ALTER TABLE  `course_module` ADD  `rutaActa` VARCHAR( 255 ) NOT NULL AFTER  `habilitarCalificar` ;
