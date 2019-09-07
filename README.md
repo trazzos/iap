@@ -30,6 +30,15 @@
     - /calendario
     - /diplomas
     - /docentes
+    - /docentes/calificaciones
+    - /docentes/carta
+    - /docentes/cedula
+    - /docentes/contrato
+    - /docentes/documentos
+    - /docentes/encuadre
+    - /docentes/informe
+    - /docentes/repositorio
+    - /docentes/rubrica
     - /doc_inbox
     - /docs
     - /estandares
