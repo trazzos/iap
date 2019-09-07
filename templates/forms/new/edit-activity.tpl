@@ -120,11 +120,11 @@
 </form>
 
 <script type="text/javascript">
-    tinyMCE.init({
-        max_chars: 1000, // max. allowed chars
-        mode : "textareas",
-        theme : "advanced",
-        skin : "o2k7"
-
-    });
+  tinyMCE.init({
+    max_chars: 1000, // max. allowed chars
+    mode : "textareas",
+    theme : "silver",
+    skin : "oxide",
+    menubar:false,
+  });
 </script>

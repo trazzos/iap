@@ -141,18 +141,7 @@
             <!-- END PORTLET MAIN -->
             <!-- PORTLET MAIN -->
             <div class="portlet light ">
-                <div>
-                    <h4 class="profile-desc-title">Acerca del IAP Chiapas</h4>
-                    <span class="profile-desc-text"> El <b>Instituto de Administración Pública del Estado de Chiapas, A. C.</b><br />te da la mas cordial bienvenida a nuestro Sistema de Educación en Línea.</span>
-                    <div class="margin-top-20 profile-desc-link">
-                        <i class="fa fa-globe"></i>
-                        <a href="http://www.iapchiapas.org.mx">www.iapchiapas.org.mx</a>
-                    </div>
-                    <div class="margin-top-20 profile-desc-link">
-                        <i class="fa fa-facebook"></i>
-                        <a href="https://www.facebook.com/IAPChiapas">iapchiapas</a>
-                    </div>
-                </div>
+                {include file="{$DOC_ROOT}/templates/new/about.tpl"}
             </div>
             <!-- END PORTLET MAIN -->
         </div>

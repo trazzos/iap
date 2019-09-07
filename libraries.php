@@ -169,6 +169,10 @@ $smarty->assign('VEHICLES_REPORT',VEHICLES_REPORT);
 $smarty->assign('SUBJECTS_REPORT',SUBJECTS_REPORT);
 $smarty->assign('INSTRUCTORS_REPORT',INSTRUCTORS_REPORT);
 
+$smarty->assign('COMPANY_PRIVACY',COMPANY_PRIVACY);
+$smarty->assign('COMPANY_URL',COMPANY_URL);
+$smarty->assign('COMPANY_FACEBOOK',COMPANY_FACEBOOK);
+
 $smarty->assign('property', $property);
 
 $lang = $util->ReturnLang();

@@ -44,6 +44,9 @@ INSTRUCTORS_REPORT=0
 #Company info
 COMPANY_PHONE=123123
 COMPANY_EMAIL=test@test.com
+COMPANY_PRIVACY=https://ihjaimesabines.edu.mx/politicas-de-privacidad/
+COMPANY_URL=https://ihjaimesabines.edu.mx
+COMPANY_FACEBOOK=https://www.facebook.com/Instituto-Hispano-Jaime-Sabines-1561747460810062/
 
 #EMAIL Setup
 EMAIL_HOST=smtp.gmail.com

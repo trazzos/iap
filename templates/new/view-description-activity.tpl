@@ -6,7 +6,7 @@
     </div>
     <div class="portlet-body">
         <div id="tblContent">
-            {$actividad.description}
+            {$actividad.description|html_parse}
         </div>
     </div>
 </div>

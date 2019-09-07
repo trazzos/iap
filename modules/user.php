@@ -34,4 +34,3 @@ $smarty->assign("info", $info);
 	{
 		$smarty->assign('docente', 1);
 	}
-?>

@@ -11,8 +11,6 @@ switch($_POST["type"])
 {
 	case "saveCalificacion": 
 		
-		// echo $_FILES["name"];
-		// exit;
 		$activity->setActivityId($_POST["id"]);
 		$actividad = $activity->Info();
 		$group->setCourseModuleId($actividad["courseModuleId"]);

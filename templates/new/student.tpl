@@ -4,22 +4,21 @@
             <i class="fa fa-bullhorm"></i>Alumnos
         </div>
 
-
-        
             {include file="boxes/status_no_ajax.tpl"}
-           <div class="accions">
+           <div class="actions">
             <table>
                 <tr>
-                    <td><!--
-                        <a href="javascript:;" class="btn {$BUTTON_COLOR}" id="btnAddPersonal">-->
+                    <td>
 						<a class="btn {$BUTTON_COLOR}" href="{$WEB_ROOT}/graybox.php?page=add-alumno-admin&id={$item.userId}" data-target="#ajax" data-toggle="modal" data-width="1000px">
                             <i class="fa fa-plus"></i> Agregar
                         </a>
                     </td>
-                    <td>
+                    <td style="padding: 0 10px">
                         <form method="post" name="frmReport" id="frmReport" action="">
                             <input type="hidden" name="accion" value="export" />
-                            <input type="image" src="images/excel.gif"  title="Exportar alumnos a Excel" alt="Exportar alumnos a Excel">
+                            <button type="submit" class="btn btn-info">
+                                <i class="fa fa-lg fa-file-excel" title="Exportar alumnos a Excel" alt="Exportar alumnos a Excel"></i>
+                            </button>
                         </form>
                     </td>
                 </tr>

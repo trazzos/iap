@@ -1,5 +1,4 @@
 <div  >
- {print_r($User)}
 <form id="frmModal" method="post" action="{$WEB_ROOT}/score-activity/id/{$id}" enctype= "multipart/form-data">
 <input type="hidden" name="type" id="type" value="" />
 <input type="hidden" name="id" id="id" value="{$id}" />

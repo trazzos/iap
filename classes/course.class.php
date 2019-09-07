@@ -803,7 +803,6 @@
 				LEFT JOIN major ON major.majorId = subject.tipo
 				WHERE course.active = 'si' AND listar = 'si'
 				ORDER BY subject.tipo, subject.name, course.group");
-				//echo $this->Util()->DB()->query;
 			$result = $this->Util()->DB()->GetResult();
 			
 			foreach($result as $key => $res)

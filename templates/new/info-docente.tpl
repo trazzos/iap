@@ -4,15 +4,6 @@
             <i class="fa fa-bullhorm"></i><b>Información Personal</b> 
         </div>
 		
-         <div class="actions">
-		 {if $docente}
-			<a class="btn {$BUTTON_COLOR}" href="{$WEB_ROOT}/graybox.php?page=aviso" data-target="#ajax" data-toggle="modal" data-width="1000px" title='AVISO DE PRIVACIDAD'>
-					Aviso de Privacidad
-		
-			</a>
-			{/if}
-
-        </div>
 		<div class="actions">
             <!--<a href="javascript:;" class="btn {$BUTTON_COLOR}" id="btnAddMajor">
                 <i class="fa fa-plus"></i> Sincronizar School Manager

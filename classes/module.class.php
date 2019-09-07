@@ -224,8 +224,6 @@
 			$result = $this->Util()->DB()->GetRow();
 
 			$explodedInitialDate = explode("-", $result["initialDate"]);
-			//$date = mktime(0, 0, 0, $explodedInitialDate[1], $explodedInitialDate[2], $explodedInitialDate[0]); 
-		     //$date = @mktime(0, 0, 0, $explodedInitialDate[1], $explodedInitialDate[2], $explodedInitialDate[0]);
              $date = mktime(0, 0, 0, $explodedInitialDate[1], $explodedInitialDate[2], intval($explodedInitialDate[0]));
            
 		   $result["name"]= $this->Util()->acento($result["name"]);
@@ -251,10 +249,7 @@
 			$result["politicsDecoded"] = html_entity_decode($result["politics"]);
 			$result["evaluationDecoded"] = html_entity_decode($result["evaluation"]);
 			$result["bibliographyDecoded"] = html_entity_decode($result["bibliography"]);
-			// $result["claveMateria"] = html_entity_decode($result["claveMateria"]);
-
-			//print_r($result);
-			return $result;	
+			return $result;
 		}
 
 		public function Update($id = null)

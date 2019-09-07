@@ -1,7 +1,7 @@
 <div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-bullhorm"></i>Tipos de Postgrado
+            <i class="fa fa-bullhorm"></i>Programas académicos
         </div>
         <div class="actions">
             <a href="javascript:;" class="btn {$BUTTON_COLOR}" id="btnAddMajor">

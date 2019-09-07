@@ -279,7 +279,7 @@ switch($_POST["type"])
 				</div>';
 				echo '[#]';
 				$personal->setPersonalId($_POST["Id"]);
-				$personal->setTipo('Maestro');
+				$personal->setTipo('Docente');
 				$personals = $personal->EnumerateNew();
 				$smarty->assign("cId", $_POST['cId']);
 				$smarty->assign("personalId", $_POST['personalId']);

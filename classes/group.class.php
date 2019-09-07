@@ -100,18 +100,6 @@
 		function EditScore($modality, $id, $scores, $retros)
 		{
 			 $notificacion= new Notificacion;
-			// echo '<pre>'; print_r($scores);
-			// exit;
-			// foreach($scores as $key => $score){
-				// $this->setTeamNumber($key);
-				// $members = $this->Team();
-				// foreach($members as $member){
-					// echo $retros[$key];
-				// }
-			// }
-			
-			// exit;
-			
 			foreach($scores as $key => $score)
 			{
 				$k = $key;
@@ -131,10 +119,9 @@
 							FROM activity_score
 							WHERE activityId = '".$id."' AND userId = '".$key."'");
 						$activityAnt = $this->Util()->DB()->GetRow();
-					//	print_r($activityAnt); exit;
+
 						
-						
-						  //obteniendo la informacion de la actividad
+  			  //obteniendo la informacion de la actividad
 				   $activity=new Activity();
 				   $activity->setActivityId($id);
 				   $infoActivity=$activity->Info();
@@ -148,9 +135,6 @@
 															
 					//fin informacion Student
 						
-						
-						
-						//print_r($calificacion); exit;
 						if($count == 0)
 						{
 							$this->Util()->DB()->setQuery("
@@ -170,7 +154,6 @@
 							   $vista="1p,".$hecho.",".$key."u";
 							   $tablas="activity_score";
 							   $enlace="/score-activity/id/".$id;
-							   // $actividad="Se ha calificado la Actividad ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(De ".$activityAnt['ponderation']." a ".number_format($score,2,'.','').")   Retroalimentación(De ".$activityAnt['retro']." a ".$retros[$key].")";;
 							   $actividad="Se ha calificado la Actividad ".$infoActivity['resumen']." para ".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno']." Calificación(".number_format($score,2,'.','').")   Retroalimentación(".$retros[$key].")";;
 									
 
@@ -204,9 +187,7 @@
 							WHERE activityId = '".$id."' AND userId = '".$key."'");
 							$result = $this->Util()->DB()->GetSingle();
 
-							// echo $result;
-							// exit;
-							$hecho=$_SESSION['User']['userId']."p";				       
+							$hecho=$_SESSION['User']['userId']."p";
 							$vista="1p,".$hecho.",".$key."u";
 							$tablas="activity_score";
 							$enlace="/score-activity/id/".$id;
@@ -261,16 +242,8 @@
 						
 						//crear notificacion de actualizacion de calificaciones
 						
-		
-					
-							
-						
-						
-						
-						
-						
-						
-					break;   //}
+
+					break;
 					default:
 					
 					

@@ -663,9 +663,7 @@
 			if($result)
 				$result = $this->Util->EncodeRow($result);
 
-			// echo "<pre>"; print_r($result);
-			// exit;
-			return $result;	
+			return $result;
 		}
 
 		public function TotalPonderation()

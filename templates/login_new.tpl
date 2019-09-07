@@ -131,7 +131,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 
-<div class="copyright"> {$smarty.now|date_format:"%Y"} &copy; {$COPYRIGHT} | <a  href="{$WEB_ROOT}/graybox.php?page=aviso" data-target="#ajax" data-toggle="modal" data-width="1000px"> Aviso de privacidad</a></div>
+<div class="copyright"> {$smarty.now|date_format:"%Y"} &copy; {$COPYRIGHT} | <a target="_black" href="{$COMPANY_PRIVACY}">Aviso de privacidad</a></div>
 
 <div class="modal fade" id="ajax" role="basic" aria-hidden="true" {*onClick="limipiarAjax()"*}>
     <div class="modal-dialog">

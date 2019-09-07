@@ -1,6 +1,6 @@
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> {$smarty.now|date_format:"%Y"} &copy; {$COPYRIGHT} | <a  href="{$WEB_ROOT}/graybox.php?page=aviso"> Aviso de privacidad</a>
+    <div class="page-footer-inner"> {$smarty.now|date_format:"%Y"} &copy; {$COPYRIGHT} | <a style="color: #fff" target="_blank" href="{$COMPANY_PRIVACY}"> Aviso de privacidad</a>
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>

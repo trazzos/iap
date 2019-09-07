@@ -27,24 +27,20 @@
         {else} 
 <div id="loader_{$item.userId}"> </div>
 		         {if $item.activo ==1}
-              <img src="{$WEB_ROOT}/images/icons/ok.png"  id="{$item.userId}" onclick="desactivar({$item.userId},{$item.activo});" title="Dar de Baja" />&nbsp;
+					 <i class="fa fa-toggle-on" aria-hidden="true"  onclick="desactivar({$item.userId},{$item.activo});" title="Dar de baja"></i>
           	     {else}
-		      <img src="{$WEB_ROOT}/images/cancel.png"  id="{$item.userId}" title="Dar de Alta" onclick="activar({$item.userId},{$item.activo});" />
+					 <i class="fa fa-toggle-off icon-blue" aria-hidden="true"  onclick="activar({$item.userId},{$item.activo});" title="Dar de alta"></i>
 				 {/if}
 			<a href="{$WEB_ROOT}/graybox.php?page=edit-student&id={$item.userId}&auxImagen=1" data-target="#ajax" data-toggle="modal" data-width="1000px">
-			<img src="{$WEB_ROOT}/images/icons/16/pencil.png" class="spanEdit" id="{$item.userId}" title="Editar" />
+				<i class="fa fa-pencil spanEdit" aria-hidden="true"  id="{$item.userId}" title="Editar"></i>
 			</a>
 			<a href="{$WEB_ROOT}/graybox.php?page=student-curricula&id={$item.userId}&auxTpl=1" data-target="#ajax" data-toggle="modal" data-width="1000px">
-				<img src="{$WEB_ROOT}/images/icons/16/subject.gif" title="Ver Curricula Estudiante" />
+				<i class="fa fa-book spanEdit" aria-hidden="true"  id="{$item.userId}" title="Ver Curricula Estudiante"></i>
 			</a>
 
 			<a href="#" onclick="reloadCedulaInscripcion({$item.userId},{$item.courseId});">
-				<img src="{$WEB_ROOT}/images/icons/16/document--arrow.png" title="Ficha de Registro" />
+				<i class="fa fa-file-alt spanEdit" aria-hidden="true"  id="{$item.userId}" title="Ficha de Registro"></i>
 			</a>
-			{*<a href="{$WEB_ROOT}/files/solicitudes/{$item.userId}_{$item.courseId}.pdf" target="_blank">
-				<img src="{$WEB_ROOT}/images/icons/16/document--arrow.png" title="Ficha de Registro" />
-			</a>*}
-
 		{/if}
         </td>       
     </tr>

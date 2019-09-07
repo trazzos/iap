@@ -5,6 +5,6 @@
     <th width="100">Apellido Materno</th>
     <th width="100">Nombre</th>
     <th width="80">No. Control</th>
-    <th width="180">Cambiar Foto</th>
-    <th width="50">Acciones</th>
+    <th width="130">Cambiar Foto</th>
+    <th width="100">Acciones</th>
 </tr>

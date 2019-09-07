@@ -8,9 +8,6 @@
 			</div>
 		{/if}
 	{/if}
-<!--
-   <a href="{$WEB_ROOT}/graybox.php?page=upload-homework&id={$item.activityId}" title="Subir Tarea" data-target="#ajax" data-toggle="modal" style="color:#000" class="btn btn-xs green-jungle"> Subir Actividad al Sistema de Tareas <i class="fa fa-upload "></i></a>
--->
 	{if $timestamp > $item.initialDateTimestamp && $timestamp < $item.finalDateTimestamp}
         <span style="color:#0C0">Esta actividad se encuentra disponible</span>
     {/if}
@@ -22,6 +19,8 @@
     {/if}
     <br />
 
+    <br>
+    <b>Titulo:</b> {$item.resumen}
     <br />
     <b>Fecha Inicial:</b> {$item.initialDate|date_format:"%d-%m-%Y"} {$item.horaInicial}
     <br />

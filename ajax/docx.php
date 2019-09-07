@@ -1,9 +1,11 @@
 <?php
 // echo "<pre>"; print_r($_GET); 
 // exit;
+
 	include_once('../initPdf.php');
 	include_once('../config.php');
 	include_once(DOC_ROOT.'/libraries.php');
+    use Dompdf\Dompdf;
 
 	session_start();
 
@@ -60,7 +62,7 @@
 		<table align='center' width='100%' border='0' class='txtTicket'>
 			<tr>
 				<td colspan='2' align='right'>
-					<img src='".DOC_ROOT."/images/logo_correo.jpg'>
+					<img height='100px' src='".DOC_ROOT."/images/logos/logo.png'>
 				</td>
 			</tr>
 		</table>

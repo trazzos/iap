@@ -34,6 +34,9 @@ define("DEBUG_MODE", filter_var(getenv('DEBUG_MODE'), FILTER_VALIDATE_BOOLEAN));
 
 define("COMPANY_PHONE", getenv('COMPANY_PHONE'));
 define("COMPANY_EMAIL", getenv('COMPANY_EMAIL'));
+define("COMPANY_PRIVACY", getenv('COMPANY_PRIVACY'));
+define("COMPANY_URL", getenv('COMPANY_URL'));
+define("COMPANY_FACEBOOK", getenv('COMPANY_FACEBOOK'));
 
 define("EMAIL_HOST", getenv('EMAIL_HOST'));
 define("EMAIL_USERNAME", getenv('EMAIL_USERNAME'));
