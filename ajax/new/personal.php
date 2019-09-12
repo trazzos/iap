@@ -392,7 +392,7 @@ switch($_POST["type"])
 				echo '[#]';
 					
 					$smarty->assign("registros", $registros);
-					$smarty->display(DOC_ROOT.'/templates/lists/new/add-cat-doc-docente.tpl');
+					$smarty->display(DOC_ROOT.'/templates/lists/new/doc-docente.tpl');
 				
 			}else{
 				echo "fail[#]";

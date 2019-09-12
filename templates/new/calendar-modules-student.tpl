@@ -17,9 +17,9 @@
             {if $timestamp < $item.initialDateTimestamp}
                         <div class="portlet box {$PORTLET_COLOR}-mint">
             {/if}
-                <div class="portlet-title">
+                <div class="portlet-title text-danger">
                     <!-- TODO Poner al centro el título-->
-                    <div class="caption" >
+                    <div class="caption text-info" >
                         <!-- TODO Ver Descripción ponerlo en blanco y subrayado-->
                         <b>Actividad  {$item.count} - </b> {$item.resumen}
                     </div>

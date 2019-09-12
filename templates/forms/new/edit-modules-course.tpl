@@ -243,6 +243,7 @@
                         </div>
                     </div>
 
+{*
                     <div class="form-group">
                         <label class="col-md-3 control-label">Calendario (.jpg):</label>
                         <div class="col-md-8">
@@ -250,6 +251,7 @@
                             {if $existecal==1}&nbsp; &nbsp;  <a target="_blank" href="{$WEB_ROOT}/calendario/{$nombreCal}">{$nombreCal} </a> &nbsp; &nbsp;  <a href="{$WEB_ROOT}/edit-modules-course/id/{$moduleCourseId}/e/1" >Eliminar</a> {/if}
                         </div>
                     </div>
+*}
 
                 {/if}
             </div>

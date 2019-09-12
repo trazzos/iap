@@ -84,7 +84,6 @@ class DB
 
     public function DatabaseConnect(){
         $this->conn_id = mysqli_connect($this->sqlHost, $this->sqlUser, $this->sqlPassword, $this->sqlDatabase);
-        //mysqli_select_db($this->conn_id) or die("<br/>".mysqli_error()."<br/>");
     }
 
     public function ExecuteQuery()

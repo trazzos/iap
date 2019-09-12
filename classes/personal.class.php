@@ -1300,8 +1300,8 @@ class Personal extends Main
 					documentoId = ".$this->documentoId." and personalId = ".$this->personalId."";
 		$this->Util()->DB()->setQuery($sql);
 		$count = $this->Util()->DB()->GetSingle();
-		
-		if($count['documentosprofesorId'] == null){
+
+		if($count == null){
 			
 			$sql = "INSERT INTO 
 					documentosprofesor 
@@ -1318,7 +1318,7 @@ class Personal extends Main
 			$this->Util()->DB()->setQuery($sql);
 			$lastId = $this->Util()->DB()->InsertData();
 		}else{
-			$lastId = $count['documentosprofesorId'];
+			$lastId = $count ?? null;
 		}
 		
 		// echo '<pre>'; print_r($_FILES);

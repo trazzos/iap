@@ -61,7 +61,7 @@
 		 {if $cId eq 'admin'}
 		 <tr>
 			<td colspan='4' id='tr_{$subject.catalogodocumentoId}' style='display:none'>
-			
+
 					<form class="form-horizontal" id="frmDoc_{$subject.catalogodocumentoId}" method="post"  >
 					<input type="hidden" id="cId" name="cId" value="admin"/>
 					<input type="hidden" id="type" name="type" value="adjuntarDocDocente"/>
