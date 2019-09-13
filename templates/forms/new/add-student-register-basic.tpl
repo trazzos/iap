@@ -272,7 +272,7 @@
 <div class="form-actions">
     <div class="row">
         <div class="col-md-offset-3 col-md-9">
-            <button type="button" class="btn default" data-dismiss="modal">Cerrar</button>
+            <a href="{$WEB_ROOT}" class="btn default" data-dismiss="modal">Cerrar</a>
             <button type="button" class="btn {$BUTTON_COLOR} submitForm" onclick="AddStudentRegister();" id="addStudent" >Guardar</button>
         </div>
     </div>

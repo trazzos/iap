@@ -36,6 +36,7 @@ function showModal(title, data)
 
 function growl(message, type)
 {
+    console.log(type);
     $.bootstrapGrowl(message,
         {
             type: type,
@@ -47,17 +48,14 @@ function growl(message, type)
 
 function ShowStatusPopUp(html)
 {
-//    var $div = $(html);
-    //var $error = $div.find(".errorStatusBox").html();
     var $error = html;
     growl($error, "danger");
 }
 
 function ShowStatus(html)
 {
-//    var $div = $(html);
-//    var $error = $div.find(".successStatusBox").html();
     var $error = html;
+    console.log($error);
     growl($error, "success");
 }
 

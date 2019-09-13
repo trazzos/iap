@@ -116,37 +116,18 @@ function AddStudentRegister()
 		},
         success: function(data)
         {
-			$("#loader").html('');
-			 var splitResponse = data.split("[#]");
-			if($.trim(splitResponse[0]) == "ok"){
-				ShowStatus($(splitResponse[1]));
-				CloseFview();
+            $("#loader").html('');
+			      var splitResponse = data.split("[#]");
+			      if($.trim(splitResponse[0]) == "ok"){
+				        ShowStatus($(splitResponse[1]));
+				        CloseFview();
                 $('#tblContent').html(splitResponse[2]);
-				setTimeout("recargarPage()",5000);
-			}else{
-				$("#addStudent").show();
-				ShowStatusPopUp($(splitResponse[1]));
-			}	
-			// $("#loader").html('');
-            // var splitResponse = data.split("[#]");
-            // if(splitResponse[0] == "fail")
-            // {
-                // ShowStatusPopUp($(splitResponse[1]));
-            // }
-            // else
-            // {
-                // ShowStatus($(splitResponse[1]));
-				// CloseFview();
-                // $('#tblContent').html(splitResponse[2]);
-				// setTimeout("recargarPage()",5000);
-
-				
-            // }
+        				setTimeout("recargarPage()",5000);
+			      }else{
+				        $("#addStudent").show();
+				        ShowStatusPopUp($(splitResponse[1]));
+			      }
         },
-        // error: function ()
-        // {
-            // alert('En breve recibirás un correo con la confirmación de tu registro, favor de verificar en tu bandeja de correo no deseado');
-        // }
     });
 
 

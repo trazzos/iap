@@ -12,7 +12,8 @@ class MySQL
 
  function consulta($consulta)
  {
-	$resultado = mysqli_query($this->conexion, $consulta);
+    mysqli_query($this->conexion, "SET NAMES 'utf8'");
+    $resultado = mysqli_query($this->conexion, $consulta);
   	if(!$resultado)
 	{
   		echo 'MySQL Error: ' . mysqli_error();
