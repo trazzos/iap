@@ -11,15 +11,16 @@
     <div class="portlet-body">
 	
 		{foreach from=$lstGrupo item=item key=key}
-			<div  class="col-md-4">
+			<div  class="col-md-3 text-center padding-tb-10">
 
 				<a href="{$WEB_ROOT}/graybox.php?page=view-perfil&id={$item.userId}" data-target="#ajax" data-toggle="modal" data-width="1000px">
 				{if $item.rutaFoto eq ''}
-				       <img src="{$WEB_ROOT}/images/no_foto.jpg" class="img-responsive" alt="" style="border-radius: 60%;  width: 60%;height: 60%;">
+				       <img src="{$WEB_ROOT}/images/no_foto.jpg" class="" alt="" style="border-radius: 60%;  width: 25%;height: 25%; ">
 
 				{else}
-				       <img src="{$WEB_ROOT}/alumnos/{$item.rutaFoto}?{$rand}" class="img-responsive" alt="" style="border-radius: 60%;  width: 60%;height: 60%;"> 
+				       <img src="{$WEB_ROOT}/alumnos/{$item.rutaFoto}?{$rand}" class="" alt="" style="border-radius: 60%;  width: 25%;height: 25%;">
 				{/if}
+					<br>
 				<font style="font-size:11px; color:#73b760 ">Ver Perfil</font>
 				</a>
 				<br>

@@ -51,7 +51,7 @@ use Dompdf\Exception;
 	</head>
 	<body>
 	<br>	
-<img src='".DOC_ROOT."/images/logo_correo.jpg'>	
+<img width='200px' src='".DOC_ROOT."/images/logos/".LOGO_SMALL."'>
 	<center>
 	Calendario de actividades<br>
 	".utf8_encode(utf8_decode($info['name']))."<br>

@@ -28,7 +28,7 @@
 			<li class="active">	
 				<a href="#portlet_tabp_1" data-toggle="tab">Perfil</a>
 			</li>
-			{if $userPerfil eq 'Administrador' || $userPerfil eq 'Docente'}
+			{if $userPerfil eq 'Administrador'}
 			<li >	
 				<a href="#portlet_tabp_5" data-toggle="tab">Información</a>
 			</li>

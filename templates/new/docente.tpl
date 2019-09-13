@@ -65,18 +65,7 @@
             <!-- END PORTLET MAIN -->
             <!-- PORTLET MAIN -->
             <div class="portlet light ">
-                <div>
-                    <h4 class="profile-desc-title">IAP-Chiapas</h4>
-                    <span class="profile-desc-text">Compromiso, innovación y resultados</span>
-                    <div class="margin-top-20 profile-desc-link">
-                        <i class="fa fa-globe"></i>
-                        <a href="http://www.iapchiapas.org.mx">www.iapchiapas.org.mx</a>
-                    </div>
-                    <div class="margin-top-20 profile-desc-link">
-                        <i class="fa fa-facebook"></i>
-                        <a href="https://www.facebook.com/IAPChiapas">iapchiapas</a>
-                    </div>
-                </div>
+                {include file="{$DOC_ROOT}/templates/new/about.tpl"}
             </div>
             <!-- END PORTLET MAIN -->
         </div>

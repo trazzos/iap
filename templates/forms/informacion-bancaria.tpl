@@ -1,5 +1,5 @@
 <!--<button onClick='pdfCarta({$info.personalId})' class="btn red" >Carta de Pago</button>-->
-<a href="{$WEB_ROOT}/ajax/carta-pago.php?Id={$info.personalId}" target="_blank" class="btn red" >Carta de Pago</a>
+{*<a href="{$WEB_ROOT}/ajax/carta-pago.php?Id={$info.personalId}" target="_blank" class="btn red" >Carta de Pago</a>*}
 <br>
 <br>
 <form  id='frmGral_3'>

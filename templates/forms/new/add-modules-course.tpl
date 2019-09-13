@@ -85,12 +85,14 @@
             </div>
         </div>
 		
+{*
 		 <div class="form-group">
             <label class="col-md-3 control-label">Copiar Curricula:</label>
             <div class="col-md-8">
                 <input type='checkbox' name="copia" class="form-control">
             </div>
         </div>
+*}
 
 {*
                 <div style="float:left"><span class="reqField">*</span> Campo requerido</div>

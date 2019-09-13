@@ -685,11 +685,11 @@ function HandleMultipages($page,$total,$link,$items_per_page=0,$pagevar="p"){
 
 
 	function hs_ereg_replace($var1,$var2,$var3){
-		
-		if(function_exists("mb_ereg_replace"))
-			return mb_ereg_replace($var1,$var2,$var3);
-		else
-			return ereg_replace($var1,$var2,$var3);
+        return preg_replace('/'.$var1.'/', $var2, $var3);
+        /*if(function_exists("mb_ereg_replace"))
+            return mb_ereg_replace($var1,$var2,$var3);
+        else
+            return ereg_replace($var1,$var2,$var3);*/
 		
 	}//hs_ereg_replace
 

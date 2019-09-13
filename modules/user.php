@@ -25,6 +25,13 @@ if($_SESSION["User"]["type"] == "Docente"){
 		$fotoPj = WEB_ROOT."/images/no_foto.jpg";
 	}
 	$smarty->assign('fotoPj', $fotoPj);
+} else if($_SESSION["User"]["type"] == "student"){
+    if(file_exists(DOC_ROOT."/alumnos/".$infoStudent['rutaFoto'])){
+        $fotoPj = $infoStudent['imagen'].'?'.rand();
+    }else{
+        $fotoPj = WEB_ROOT."/images/no_foto.jpg";
+    }
+    $smarty->assign('fotoPj', $fotoPj);
 }
 
 $info = $user->Info();

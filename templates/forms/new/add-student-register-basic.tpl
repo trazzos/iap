@@ -207,32 +207,6 @@
     <div class="portlet box {$PORTLET_COLOR}">
         <div class="portlet-title">
             <div class="caption">
-                <i class="fa fa-bullhorm"></i>Estudios
-            </div>
-        </div>
-        <div class="portlet-body">
-            <div class="form-group">
-                <label class="col-md-3 control-label">Escuela de procedencia:</label>
-                <div class="col-md-8">
-                    <input type="text" name="school" id="school" value=""  class="form-control" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Selecciona el programa académico al que te quieres registrar:</label>
-                <div class="col-md-8">
-                    <select name='curricula' id="curricula" style="width:400px" class="form-control">
-                        {foreach from=$activeCourses item=course}
-                            <option value="{$course.courseId}">{$course.majorName} - {$course.name} - {$course.group}</option>
-                        {/foreach}
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="portlet box {$PORTLET_COLOR}">
-        <div class="portlet-title">
-            <div class="caption">
                 <i class="fa fa-bullhorm"></i>Datos del tutor
             </div>
         </div>
@@ -263,7 +237,34 @@
             </div>
         </div>
     </div>
+
+    <div class="portlet box {$PORTLET_COLOR}">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-bullhorm"></i>Estudios
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="form-group">
+                <label class="col-md-3 control-label">Escuela de procedencia:</label>
+                <div class="col-md-8">
+                    <input type="text" name="school" id="school" value=""  class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Selecciona el programa académico al que te quieres registrar:</label>
+                <div class="col-md-8">
+                    <select name='curricula' id="curricula" style="width:400px" class="form-control">
+                        {foreach from=$activeCourses item=course}
+                            <option value="{$course.courseId}">{$course.majorName} - {$course.name} - {$course.group}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 
 
 </form>

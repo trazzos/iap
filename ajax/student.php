@@ -960,7 +960,7 @@
 				echo "fail[#]";
 
 				}
-
+s
 			break;
 			
 		
@@ -985,7 +985,7 @@
 			$student->setAnterior($_POST["anterior"]);
 			$student->setNuevo($_POST["nuevo"]);
 			$student->setRepite($_POST["repite"]);
-				if($url = $student->onSavePass()){
+				if($url = $student->onSavePass($_SESSION['User']['userId'])){
 				$_SESSION['msjCc'] = 'si';
 				echo "ok[#]";
 			}else{

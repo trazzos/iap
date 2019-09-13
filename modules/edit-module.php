@@ -23,7 +23,7 @@
 		$module->setSemesterId($_POST['semesterId']);
 		
 		$module->Update();
-        $util->LoadPage('subject');
+        $util->LoadPage('index_new.php?page=edit-modules-course&id='.$_POST['subjectModuleId']);
     }
 
 	$module->setSubjectModuleId($_GET['id']);
