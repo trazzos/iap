@@ -11,7 +11,6 @@ if (!isset($_SESSION))
 }
 
 
-echo $maxlifetime = ini_get("session.gc_maxlifetime");
 if(time() > $_SESSION["lastClick"] + 90000 && $_GET["page"] != "login"  && $_GET["page"] != "register" && $_GET["page"] != "recuperacion"  && $_GET["page"] != "tv"  && $_GET["page"] != "make-test")
 {
 	unset($_SESSION['User']);
