@@ -4,10 +4,10 @@
 <br>
 <br>
 <b>Usuario</b>
-<input type="text" style="width:555px" name="user" class='form-control'    {if $cId eq 'si' or $Usertype  eq 'Docente'} disabled {/if} value='{$info.username}'><br>
+<input type="text" style="width:555px" name="user" class='form-control'    {if $cId eq 'si' or $Usertype  eq 'Docente'} readonly {/if} value='{$info.username}'><br>
 <b>Contraseña</b>
 <input type="test" style="width:555px" name="pass" id="pass1" class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.passwd}'>
-<input type="text" style="width:555px; display:none" name="pass" id="pass2"  class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.passwd}'>
+{*<input type="text" style="width:555px; display:none" name="pass" id="pass2"  class='form-control' {if $cId eq 'si'} disabled {/if} value='{$info.passwd}'>*}
 <br>
 <br>
 </form>

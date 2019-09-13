@@ -4,6 +4,11 @@
 	include_once(DOC_ROOT.'/libraries.php');
 
 	session_start();
+
+use Dompdf\Adapter\CPDF;
+use Dompdf\Dompdf;
+use Dompdf\Exception;
+
 	
 	// echo '<pre>';print_r($_GET);
 	// exit;
@@ -52,7 +57,7 @@
 		<table align='center' width='100%'  border='0' class='txtTicket'>
 			<tr>
 				<td  align='left' '>
-					<img src='".DOC_ROOT."/images/logo_correo.jpg' >
+					<img width='200px' src='".DOC_ROOT."/images/logos/".LOGO_SMALL."'>
 				</td>
 			</tr>
 		</table>

@@ -223,25 +223,30 @@ class Encuesta extends Main
 		$modul = '';
 		$coru = '';
 		$con = count($ta);
-			
+
 		if($con == 1){
 			$modul = '('.$ta[0]['courseModuleId'].')';
 			$coru = '('.$ta[0]['courseId'].')';
 		}else{
-			foreach($ta as $key=>$aux){
-				if($key==0){
-					$modul .= '('.$aux['courseModuleId'];
-					$coru .= '('.$aux['courseId'];
-				}else if(($key+1) >= $con){
-					$modul .= $aux['courseModuleId'].')';
-					$coru .= $aux['courseId'].')';
-				}
-				else{
-					$modul .= ','.$aux['courseModuleId'].',';
-					$coru .= ','.$aux['courseId'].',';
-				}
-				
-			}
+		    if(count($ta) === 0) {
+                $modul = '(0)';
+                $coru = '(0)';
+            } else {
+                foreach($ta as $key=>$aux){
+                    if($key==0){
+                        $modul .= '('.$aux['courseModuleId'];
+                        $coru .= '('.$aux['courseId'];
+                    }else if(($key+1) >= $con){
+                        $modul .= $aux['courseModuleId'].')';
+                        $coru .= $aux['courseId'].')';
+                    }
+                    else{
+                        $modul .= ','.$aux['courseModuleId'].',';
+                        $coru .= ','.$aux['courseId'].',';
+                    }
+
+                }
+            }
 		}
 
 		// falta pasar el coursemodule

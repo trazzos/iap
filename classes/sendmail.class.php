@@ -4,6 +4,7 @@ class SendMail extends Main
 {
 	private $email;
 	public function __construct() {
+		//this needs to be true to accept exceptions
         $this->email = new PHPMailer();
 
         $this->email->IsSMTP();
@@ -60,6 +61,7 @@ class SendMail extends Main
 			}
 		}
 
+		//TODO add try catch to this :/
 		$this->email->Send();
 	}
 

@@ -8,18 +8,19 @@
 
 	if ($_GET["id"]){
 		$smarty->assign('id', $_GET["id"]);
-		
+
 		$module->setCourseModuleId($_GET["id"]);
 		$info = $module->InfoCourseModule();
 	}
-	
+
+
 	if ($_GET["id"]){
-		$lstPreguntas = $encuesta->promedioXRubro($info['courseModuleId'],$info['courseId']);   
+		$lstPreguntas = $encuesta->promedioXRubro($info['courseModuleId'],$info['courseId']);
 	}else{
 		$lstPreguntas = $encuesta->promedioXRubroAdmin($_GET['personalId']);
 	}
 
-	
+
 	// echo '<pre>'; print_r($lstPreguntas);
 	// exit;
 	$smarty->assign('mId', $_GET["id"]);

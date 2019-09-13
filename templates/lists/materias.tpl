@@ -4,19 +4,12 @@
 			
 			<th width="">Materia </th>
 			<th width="">Estatus </th>
-			<th width="">Posgrado </th>
+			<th width="">Programa académico </th>
 			<th width="">Grupo</th>
 			<th width="">Modalidad </th>
 			<th width="">Fecha Materia </th>
 			<th width="">Fecha Contrato </th>
-			<th width="233px">Desglose </th>
-			<!--<th width="">Importe</th>
-			<th width="">IVA</th>
-			<th width="">Subtotal</th>
-			<th width="">ISR</th>
-			<th width="">RET. IVA </th>
-			<th width="">Total a Pagar </th>-->
-			<th width="">No. de Contrato </th>	 
+			<th width="">No. de Contrato </th>
 			<th width=""></th>	 
 		</tr>
     </thead>
@@ -62,12 +55,6 @@
 			{/if}
 			
 			</td>
-			<!--<td align="center">{$subject.importe}</td>
-			<td align="center">{$subject.iva}</td>
-			<td align="center">{$subject.subtotal}</td>
-			<td align="center">{$subject.isr}</td>
-			<td align="center">{$subject.retIva}</td>
-			<td align="center">{$subject.totalPagar}</td>-->
 			<td align="center">{$subject.noContrato}</td>
 			<td align="center">
 				<a href="{$WEB_ROOT}/graybox.php?page=val&id={$subject.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='VALORACION'>
@@ -79,8 +66,8 @@
 				<a href="{$WEB_ROOT}/graybox.php?page=editar-contra&id={$subject.courseModuleId}&personalId={$pId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='EDITAR INFORMACION'>
 						<i class="material-icons md-16">create</i>
 				</a>
-				<a href="{$WEB_ROOT}/graybox.php?page=cedula-contra&id={$subject.courseModuleId}&personalId={$pId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CEDULA CONTRATO'>
-						<i class="material-icons md-16">featured_play_list</i>
+				{*<a href="{$WEB_ROOT}/graybox.php?page=cedula-contra&id={$subject.courseModuleId}&personalId={$pId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CEDULA CONTRATO'>
+						<i class="material-icons md-16">featured_play_list</i>*}
 				</a>
 				<a href="{$WEB_ROOT}/graybox.php?page=down-contrato&id={$subject.courseModuleId}&personalId={$pId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='CONTRATOS'>
 						<i class="material-icons md-16">featured_video</i>

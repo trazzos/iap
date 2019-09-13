@@ -9,7 +9,7 @@
                 <i class="fa fa-plus"></i> Sincronizar School Manager
             </a>-->
 			{if !$docente}
-			<button onClick='pdfDatos({$info.personalId})' class="btn red" >Imprimir</button>
+			{*<button onClick='pdfDatos({$info.personalId})' class="btn red" >Imprimir</button>*}
 			{/if}
         </div>
     </div>

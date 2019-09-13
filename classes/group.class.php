@@ -1202,10 +1202,8 @@
 			
 			$resposeHtml .= '<br><br><br><br>';
 			$resposeHtml .= $actividads;
-			$sendmail->PrepareAttachment("Actualizacion en Acta de Calificaciones",$resposeHtml, "","", "dacademica@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
-			$sendmail->PrepareAttachment("Actualizacion en Acta de Calificaciones",$resposeHtml, "", "", "enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
-			
-			
+			$sendmail->PrepareAttachment("Actualizacion en Acta de Calificaciones",$resposeHtml, "", "", COMPANY_EMAIL, "Administrador", $attachment, $fileName);
+
 
 			return true;
 		}
