@@ -960,7 +960,6 @@
 				echo "fail[#]";
 
 				}
-s
 			break;
 			
 		
