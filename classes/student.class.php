@@ -934,7 +934,11 @@ class Student extends User
 							school = '".$this->getSchool()."', 
 							masters = '".$this->getMasters()."', 
 							mastersSchool = '".$this->getMastersSchool()."', 
-							highSchool = '".$this->getHighSchool()."'						
+							highSchool = '".$this->getHighSchool()."',
+							tutor_name = '".$this->tutor_name."',
+							tutor_work = '".$this->tutor_work."',
+							tutor_address = '".$this->tutor_address."',
+							tutor_phone = '".$this->tutor_phone."'
 						WHERE 
 							userId = ".$this->getUserId();		
 		

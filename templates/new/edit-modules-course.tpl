@@ -1,7 +1,7 @@
 {*<div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i>Configuraci&oacute;n del Programa Acad&eacutemico</div>
+            <i class="fa fa-graduation-cap"></i>Configuraci&oacute;n del Programa Acad&eacutemico</div>
     </div>
 
     <div class="portlet-body">

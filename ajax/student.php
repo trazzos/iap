@@ -656,30 +656,36 @@
 				$student->setEmail($_POST['email']);
 				$student->setPhone($_POST['phone']);
 				// $student->setFax($_POST['fax']);
-				$student->setMobile($_POST['mobile']);
+				//$student->setMobile($_POST['mobile']);
 
 				//datos laborales
-				$student->setWorkplace($_POST['workplace']);
-				$student->setWorkplaceAddress($_POST['workplaceAddress']);
-				$student->setWorkplaceArea($_POST['workplaceArea']); 
-				$student->setWorkplaceOcupation($_POST['workplaceOcupation']);
+				//$student->setWorkplace($_POST['workplace']);
+				//$student->setWorkplaceAddress($_POST['workplaceAddress']);
+				//$student->setWorkplaceArea($_POST['workplaceArea']);
+				//$student->setWorkplaceOcupation($_POST['workplaceOcupation']);
 				// $student->setWorkplacePosition($_POST['workplacePosition']); 
-			    $student->setPaisT($_POST['paist']);
-				$student->setEstadoT($_POST['estadot']);
-				$student->setCiudadT($_POST['ciudadt']);
+			    //$student->setPaisT($_POST['paist']);
+				//$student->setEstadoT($_POST['estadot']);
+				//$student->setCiudadT($_POST['ciudadt']);
 				//$student->setWorkplaceCity($_POST['workplaceCity']);
-				$student->setWorkplacePhone($_POST['workplacePhone']);
-				$student->setWorkplaceEmail($_POST['workplaceEmail']);
+				//$student->setWorkplacePhone($_POST['workplacePhone']);
+				//$student->setWorkplaceEmail($_POST['workplaceEmail']);
 				
 				//Estudios
-				$student->setAcademicDegree($_POST['academicDegree']);
-				$student->setProfesion($_POST['profesion']);
+				//$student->setAcademicDegree($_POST['academicDegree']);
+				//$student->setProfesion($_POST['profesion']);
 				$student->setSchool($_POST['school']);
 				$student->setHighSchool($_POST['highSchool']);
 				$student->setMasters($_POST['masters']); 
 				$student->setMastersSchool($_POST['mastersSchool']);
-								
-				if(!$student->UpdateAlumn())
+
+				$student->tutor_name = $_POST['tutor_name'];
+				$student->tutor_work = $_POST['tutor_work'];
+				$student->tutor_address = $_POST['tutor_address'];
+				$student->tutor_phone = $_POST['tutor_phone'];
+
+
+			if(!$student->UpdateAlumn())
 				{
 					echo "fail[#]";
 					

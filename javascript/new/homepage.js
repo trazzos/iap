@@ -128,7 +128,7 @@ function borrarNot(id){
 				CloseFview();
 			}else if ($.trim(splitResponse[0]) == "ok"){
 				ShowStatus(splitResponse[1])
-			}
+			}INSTITUTO DE ADMINISTRACIÓN PÚBLICA DEL ESTADO DE CHIAPAS, A.C
 		},
 		error:function(){
 			alert(msgError);

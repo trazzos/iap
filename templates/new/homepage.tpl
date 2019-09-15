@@ -20,7 +20,7 @@
             {if $User.type == "student"}
                 <img alt="" width="32px" class="img-circle" src="{$infoStudent.imagen}">
             {else}
-                <i class="fa fa-gift"></i>
+                <i class="fa fa-graduation-cap"></i>
             {/if}
             Bienvenido(a) {$User.username}</div>
     </div>

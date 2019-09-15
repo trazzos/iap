@@ -38,7 +38,7 @@
                     <ul class="nav">
                         <li class="">
                             <a href="{$WEB_ROOT}/info-docente">
-                                <i class="icon-settings"></i> Información Personal </a>
+                                <i class="fa fa-user"></i> Información Personal </a>
                         </li>
 
 						<li>
@@ -53,7 +53,7 @@
 						</li>
 						<li>
 						<a href="{$WEB_ROOT}/repositorio" >
-						   <i class="fa fa-files-o"></i>Repositorio
+						   <i class="fa fa-book"></i>Repositorio
 						</a>
 						</li>
 						<li>

@@ -1,10 +1,16 @@
 /* here you can put your own css to customize and override the theme */
 
-i.fa {
+i.fa, i.fab {
     font-size: 18px !important;
     cursor: pointer;
+    color: #2D5F8B;
+
 }
 
-a:not(.btn) .fa {
-    color: #000;
+.btn i.fa {
+    color: #fff;
+}
+
+a:not(.btn) i.fa {
+    color: #2D5F8B;
 }

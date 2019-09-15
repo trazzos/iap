@@ -27,8 +27,12 @@ use Dompdf\Exception;
 	
 	$course->setCourseId($info["courseId"]);
 	$infoCo = $course->Info();
-	
-	// echo '<pre>'; print_r($info);
+
+	$institution->setInstitutionId(1);
+	$myInstitution = $institution->Info();
+
+
+// echo '<pre>'; print_r($info);
 	// exit;
 	
 	
@@ -83,9 +87,9 @@ use Dompdf\Exception;
 	}
 	</head>
 	<body>
-	<img src='".DOC_ROOT."/images/logo_correo.jpg'>
+	<img width='200px' src='".DOC_ROOT."/images/logos/".LOGO_SMALL."'>
 	<center>	
-	<b>INSTITUTO DE ADMINISTRACIÓN PÚBLICA DEL ESTADO DE CHIAPAS, A.C.</b>
+	<b>".$myInstitution["name_long"]."</b>
 	<br>
 	<b>".$info['majorName'].": ".$info['subjectName']."</b><br>
 	<b>ACTA DE CALIFICACIÓN FINAL</b><br>

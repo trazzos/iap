@@ -2,7 +2,7 @@
 <div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i>.:: Datos del M&oacute;dulo ::.
+            <i class="fa fa-graduation-cap"></i>.:: Datos del M&oacute;dulo ::.
         </div>
 		<div class="actions" >
 		<div class="btn-toolbar" style="left:188px !important">
@@ -277,7 +277,7 @@
 <div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i>.:: Grupo ::.
+            <i class="fa fa-graduation-cap"></i>.:: Grupo ::.
         </div>
         <div class="actions">
 
@@ -306,7 +306,7 @@
 <div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i>.:: Actividades ::.
+            <i class="fa fa-graduation-cap"></i>.:: Actividades ::.
         </div>
            <div class="actions">
             <a href="{$WEB_ROOT}/graybox.php?page=add-activity&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal" class="btn btn-circle blue">
@@ -332,7 +332,7 @@
 <div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i>.:: Recursos de Apoyo ::.
+            <i class="fa fa-graduation-cap"></i>.:: Recursos de Apoyo ::.
         </div>
         <div class="actions">
             <a href="{$WEB_ROOT}/graybox.php?page=add-resource&id={$myModule.courseModuleId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" class="btn btn-circle blue">
@@ -349,7 +349,7 @@
 <div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i>.:: Foros ::.
+            <i class="fa fa-graduation-cap"></i>.:: Foros ::.
         </div>
     </div>
     <div class="portlet-body">
@@ -366,7 +366,7 @@
 <div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i>.:: Avisos ::.
+            <i class="fa fa-graduation-cap"></i>.:: Avisos ::.
         </div>
         <div class="actions">
             <a href="{$WEB_ROOT}/graybox.php?page=add-noticia&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  class="btn btn-circle blue">

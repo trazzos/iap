@@ -110,7 +110,7 @@
 <div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i>.:: Actividades ::.
+            <i class="fa fa-graduation-cap"></i>.:: Actividades ::.
         </div>
         <div class="actions">
             <a href="{$WEB_ROOT}/graybox.php?page=add-activity-c&id={$courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal" class="btn {$BUTTON_COLOR}">
@@ -134,7 +134,7 @@
 <div class="portlet box {$PORTLET_COLOR}">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i>.:: Recursos de Apoyo ::.
+            <i class="fa fa-graduation-cap"></i>.:: Recursos de Apoyo ::.
         </div>
         <div class="actions">
             <a href="{$WEB_ROOT}/graybox.php?page=add-resource-c&id={$courseModuleId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" class="btn {$BUTTON_COLOR}">
