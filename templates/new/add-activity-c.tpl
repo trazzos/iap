@@ -9,9 +9,6 @@
     <div class="portlet-body">
         <div id="tblContent">
            <!-- TinyMCE -->
-{*
-<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
-*}
 <!-- /TinyMCE -->
 
 <form  id="frmGral" name="frmGral" >

@@ -278,9 +278,7 @@
 				WHERE topicId = ".$this->topicsubId." AND son = 0
 				ORDER BY replyDate ASC");
 			$result = $this->Util()->DB()->GetResult();
-			
-			// echo "<pre>"; print_r($result);
-			// exit;
+			print_r($result);
 			
 			foreach($result as $key => $res)
 			{

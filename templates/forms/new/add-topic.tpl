@@ -1,7 +1,3 @@
-<!-- TinyMCE
-<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
-<!-- /TinyMCE -->
-
 <form class="form-horizontal" id="addMajorForm" name="addMajorForm" method="post" action="{$WEB_ROOT}/add-topic/id/{$topicId}/cId/{$cId}">
     <input type="hidden" id="topicId" name="topicId" value="{$topicId}"/>
     <input type="hidden" id="userId" name="userId" value="{$userId}"/>

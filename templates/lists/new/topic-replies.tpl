@@ -39,7 +39,7 @@
 					<td></td>
 					</tr>
 				{foreach from=$replies item=item key=key}
-				
+
 					{if $key%2==0}
 						<tr style="background:rgba(239, 239, 239, 0.37)"  >
 					{else}

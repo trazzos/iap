@@ -4,9 +4,11 @@
         <td align="center">{$item.clave}</td>       
         <td align="center">{$item.name}</td>        
         <td id="etitl1">&nbsp;{$item.wrappedDescription}</td>        
-        <td align="center">                        
+        <td align="center">
+            {if $item.roleId != 2}
             <img src="images/icons/16/delete.png" class="spanDelete" id="{$item.roleId}" title="Eliminar" />&nbsp;
           	<img src="images/icons/16/pencil.png" class="spanEdit" id="{$item.roleId}" title="Editar" />
+            {/if}
         </td>
     </tr>
 {foreachelse}

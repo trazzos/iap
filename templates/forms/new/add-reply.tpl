@@ -1,7 +1,4 @@
 <!-- TinyMCE -->
-<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
-
-
 <form class="form-horizontal" id="addNoticia" name="addNoticia" method="post" action="{$WEB_ROOT}/add-reply/id/{$moduleId}/topicsubId/{$topicsubId}" enctype="multipart/form-data">
     <input type="hidden" id="type" name="type" value="saveAddMajor"/>
     <input type="hidden" id="topicsubId" name="topicsubId" value="{$topicsubId}"/>

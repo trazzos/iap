@@ -1,7 +1,3 @@
-<!-- TinyMCE
-<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
-<!-- /TinyMCE -->
-
 <form class="form-horizontal" id="addNoticia" name="addNoticia" method="post" action="{$WEB_ROOT}/add-noticia/id/{$id}">
     <input type="hidden" id="type" name="type" value="addNoticia"/>
     <input type="hidden" id="type" name="type" value="saveAddMajor"/>

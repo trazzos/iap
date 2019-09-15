@@ -1,9 +1,3 @@
-<!-- TinyMCE
-<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
-<!-- /TinyMCE -->
-
-
-    
     <div class="form-body">
 	<form class="form-horizontal" id="addMajorForm" name="addMajorForm" method="post"  enctype="multipart/form-data">
 	<input type="hidden" id="type" name="type" value="enviarArchivo"/>

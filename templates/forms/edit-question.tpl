@@ -10,7 +10,6 @@
         <div id="tblContent">
 
 <!-- TinyMCE -->
-<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
 <script type="text/javascript">
 	tinyMCE.init({
       mode : "textareas",

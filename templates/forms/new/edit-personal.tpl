@@ -191,7 +191,6 @@
 
 </form>
 
-<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
 
 <script>
     $( document ).ready(function() {

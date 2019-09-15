@@ -48,11 +48,6 @@ switch($_POST["type"])
             {
                 $roles[$key]["selected"] = true;
             }
-
-/*            if(!$personal->IsRoleSelected())
-            {
-                $roles2[$key] = $val;
-            }*/
         }
 
 		// echo '<pre>'; print_r($info);

@@ -1,7 +1,3 @@
-<!-- TinyMCE
-<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
-<!-- /TinyMCE -->
-
 <form class="form-horizontal" id="addMajorForm" name="addMajorForm" method="post" action="{$WEB_ROOT}/unsubscribe">
 
     <input type="hidden" id="type" name="type" value="saveMotivo"/>

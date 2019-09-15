@@ -1,9 +1,3 @@
-<!-- TinyMCE -->
-{*
-<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
-*}
-<!-- /TinyMCE -->
-
 <form class="form-horizontal" id="addMajorForm" name="addMajorForm" method="post" action="{$WEB_ROOT}/edit-activity/id/{$id}">
   <input type="hidden" id="auxTpl" name="auxTpl" value="{$auxTpl}"/>
     <input type="hidden" id="cId" name="cId" value="{$cId}"/>

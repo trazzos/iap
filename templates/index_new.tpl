@@ -51,9 +51,6 @@
 	<script src="{$WEB_ROOT}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 	<script src="{$WEB_ROOT}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="https://cdn.tiny.cloud/1/5neq68yrjxtd6ixawa2xexl7jki3unxypgzrewckloqcj11y/tinymce/5/tinymce.min.js"></script>
-{*
-	<script type="text/javascript" src="{$WEB_ROOT}/tinymce/tiny_mce.js"></script>
-*}
 	<script type="text/javascript">
 		var GB_ROOT_DIR = "{$WEB_ROOT}/GreyBox/greybox/";
 	</script>
