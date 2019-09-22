@@ -1,8 +1,4 @@
 <?php
-// echo 'lled';
-// echo '<pre>'; print_r($_GET);
-// echo '<pre>'; print_r($_POST);
-// exit;
 include_once('../../init.php');
 include_once('../../config.php');
 include_once(DOC_ROOT.'/libraries.php');
@@ -54,13 +50,11 @@ switch($_POST["type"])
         $module->setCourseModuleId($_POST['id']);
         $infoModule=$module->InfoCourseModule();
         $courseId=$infoModule['courseId'];
-        //	print_r($infoModule);
         $activity->setCourseModuleId($_POST['id']);
         $activityInfoTask=$activity->Enumerate("Tarea");
         $userId=$_SESSION['User']['userId'];
 
         $activity->setUserId($userId);
-        //$ponderation=$activity->Score();
 
         foreach($activityInfoTask as $key => $fila){
             $activity->setCourseModuleId($_POST['id']);
@@ -69,14 +63,6 @@ switch($_POST["type"])
             $activityInfoTask[$key]['retroTotal']=$activity->Retro();
 
         }
-        //print_r($activityInfoTask);exit;
-
-        //print_r($fila['activityId']);
-
-        //print_r($infoModule);
-        //$students=$group->DefaultGroup();
-        //print_r($_POST);
-        //$smarty->assign("DOC_ROOT", DOC_ROOT);
         $tipo=1;
         $smarty->assign("tipo", $tipo);
         $smarty->assign("tareas", $activityInfoTask);
@@ -89,13 +75,11 @@ switch($_POST["type"])
         $module->setCourseModuleId($_POST['id']);
         $infoModule=$module->InfoCourseModule();
         $courseId=$infoModule['courseId'];
-        //	print_r($infoModule);
         $activity->setCourseModuleId($_POST['id']);
         $activityInfoTask=$activity->Enumerate("Examen");
         $userId=$_SESSION['User']['userId'];
 
         $activity->setUserId($userId);
-        //$ponderation=$activity->Score();
 
         foreach($activityInfoTask as $key => $fila){
             $activity->setCourseModuleId($_POST['id']);
@@ -104,14 +88,6 @@ switch($_POST["type"])
             $activityInfoTask[$key]['retroTotal']=$activity->Retro();
 
         }
-        //print_r($activityInfoTask);exit;
-
-        //print_r($fila['activityId']);
-
-        //print_r($infoModule);
-        //$students=$group->DefaultGroup();
-        //print_r($_POST);
-        //$smarty->assign("DOC_ROOT", DOC_ROOT);
         $smarty->assign("tipo", $tipo);
         $smarty->assign("tareas", $activityInfoTask);
         $smarty->display(DOC_ROOT.'/templates/boxes/view-ponderation-student.tpl');
@@ -171,7 +147,8 @@ switch($_POST["type"])
 
         $group->setCourseId($_POST['id']);
         $students=$group->DefaultGroupInactivo();
-		 $smarty->assign("tip",$_POST['tip']);
+		$smarty->assign("courseId",$_POST['id']);
+  		$smarty->assign("tip",$_POST['tip']);
         $smarty->assign("DOC_ROOT", DOC_ROOT);
         $smarty->assign("students", $students);
         $smarty->display(DOC_ROOT.'/templates/boxes/view-studentadmin.tpl');
@@ -179,9 +156,6 @@ switch($_POST["type"])
       break;
 
 	case 'saveNumReferencia';
-	
-		// echo '<pre>'; print_r($_POST);
-		// exit;
 		 if ($group->saveNumReferencia()){
 			 echo 'ok[#]';
 			 echo '<div class="alert alert-info alert-dismissable">
@@ -218,11 +192,6 @@ switch($_POST["type"])
 		$infoStudent = $student->InfoEstudiate($_POST["Id"]);
 		$infoTypeSol = $solicitud->infoSolicitud($_POST["tipodocId"]);
 		
-		
-		// echo '<pre>'; print_r($infoTypeSol);
-		// exit;
-		
-
 		$student->setUserId($_POST["Id"]);
 		$activeCourses = $student->StudentCourses("activo", "si");
 		$finishedCourses = $student->StudentCourses("finalizado");
@@ -244,7 +213,6 @@ switch($_POST["type"])
 	
 	case 'onBuscar':
 	
-		// echo '<pre>'; print_r($_POST);
 		$arrPage = array();		// ---- arreglo donde guarda los resultados de la paginacion...para usarse en footer-pages-links.tpl
 		$viewPage = 1;			// ---- por default se toma la primera pagina, por si aun no esta definidala en la variable GET
 		$rowsPerPage = 500;		//<<--- se podria tomar este valor de una variable o constante global, o especificarla para un caso particular
@@ -267,7 +235,6 @@ switch($_POST["type"])
 	case 'addSaveSolicitud':
 
 		
-		// echo '<pre>'; print_r($_POST);
 				$activa = 0;
 				$inactiva = 0;
 				foreach($_POST as $key=>$aux){
@@ -303,10 +270,6 @@ switch($_POST["type"])
 					exit;
 				}
 				
-				// echo $valoractiva.'___'; 
-				// echo $valorinactiva; 
-				// echo '<pre>'; print_r($_POST);
-				// exit;
 				if($valoractiva<>''){
 					$cursoId = $valoractiva;
 				}
@@ -315,27 +278,13 @@ switch($_POST["type"])
 					$cursoId = $valorinactiva;
 				}
 				
-				// echo $cursoId;
-				// exit;
-				
 				$solicitud->setTipo($_POST['solicitudId']);
 				$solicitud->setCursoId($cursoId);
-				// $solicitud->setPrecio($precio);
 				if ($Id = $solicitud->SaveSolicitudAdmin($_POST['userId'])){
 					echo 'ok[#]';
 					echo $Id;
 					echo '[#]';
 					echo $_POST['userId'];
-					// echo '<div class="alert alert-info alert-dismissable">
-					  // <button type="button" class="close" data-dismiss="alert">&times;</button>
-					  // La solicitud se genero correctamente
-					// </div>';
-					// echo '[#]';
-					// $lstSol = $solicitud->arraySolicitudes();
-						// $registros = $solicitud->enumarateSolicitudesStden();
-						// $smarty->assign('registros', $registros);
-					// $smarty->assign("lstSol", $lstSol);
-					// $smarty->display(DOC_ROOT.'/templates/lists/view-solicitud.tpl');
 				}else{
 					echo 'fail[#]';
 				}
@@ -350,9 +299,6 @@ switch($_POST["type"])
 	$date = date("d-m-Y");
 	$addedModules = $course->AddedCourseModules();
 	
-	
-	// echo '<pre>'; print_r($addedModules);
-	// exit;
 	
 	//checar a que curriculas tengo permiso
 	if(in_array(2, $info["roles"]))
@@ -380,10 +326,7 @@ switch($_POST["type"])
 	
 	case 'savePeriodos':
 	
-		// echo '<pre>'; print_r($_POST);
-		 if($course->savePeriodos()){
-            // echo "ok[#]";
-            // $smarty->display(DOC_ROOT.'/templates/boxes/status_on_popup.tpl');
+	 	if($course->savePeriodos()){
         }
         else
         {

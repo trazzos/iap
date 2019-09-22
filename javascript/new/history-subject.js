@@ -415,7 +415,7 @@ function DeleteStudentCurricula(userId,courseId){
 }
 
 function InactivateStudentCurricula(userId,courseId){
-  if(confirm("Estas seguro que deseas inactivar a este alumno?"))
+  if(confirm("Estas seguro que deseas poner inactivo a este alumno?"))
   {
     $.ajax({
       url : WEB_ROOT+'/ajax/new/studentCurricula.php',

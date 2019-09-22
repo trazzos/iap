@@ -27,6 +27,8 @@ LOGO=logo.png
 #120x45
 LOGO_SMALL=logo.png
 
+FAVICON=https://ihjaimesabines.edu.mx/wp-content/uploads/2018/04/favicon.ico
+
 #Don't forget the double ticks (")
 INTRODUCTION="Introduccion de la escuela o empresa"
 STUDENT_MANUAL=https://app.ihjaimesabines.edu.mx/manual_alumno.pdf

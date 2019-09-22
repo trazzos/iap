@@ -10,6 +10,7 @@ define("LOGIN_PAGE", getenv('LOGIN_PAGE'));
 define("COPYRIGHT", getenv('COPYRIGHT'));
 define("LOGO", getenv('LOGO'));
 define("LOGO_SMALL", getenv('LOGO_SMALL'));
+define("FAVICON", getenv('FAVICON'));
 define("THEME", getenv('THEME'));
 define("PORTLET_COLOR", getenv('PORTLET_COLOR'));
 define("INTRODUCTION", getenv('INTRODUCTION'));

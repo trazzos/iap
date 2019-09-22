@@ -906,10 +906,48 @@ class Personal extends Main
 		if($this->Util()->PrintErrors()){ 
 			return false; 
 		}
-		
-		
-		
-		$sql = "INSERT INTO 
+
+        //Verificando que no se duplique el username
+        $this->Util()->DB()->setQuery("
+							SELECT 
+								COUNT(*) 
+							FROM 
+								personal 
+							WHERE 
+								username = '".$this->username."'
+							"
+        );
+        $total = $this->Util()->DB()->GetSingle();
+
+        if($total > 0)
+        {
+            $this->Util()->setError(10028, "error", "Este usuario ya ha sido registrado previamente");
+            $this->Util()->PrintErrors();
+            return false;
+        }
+
+
+        //Verificando que no se duplique el username
+        $this->Util()->DB()->setQuery("
+							SELECT 
+								COUNT(*) 
+							FROM 
+								personal 
+							WHERE 
+								correo = '".$this->correo."'
+							"
+        );
+        $total = $this->Util()->DB()->GetSingle();
+
+        if($total > 0)
+        {
+            $this->Util()->setError(10028, "error", "Este correo ya ha sido registrado previamente");
+            $this->Util()->PrintErrors();
+            return false;
+        }
+
+
+        $sql = "INSERT INTO 
 					personal 
 					(						
 						name, 

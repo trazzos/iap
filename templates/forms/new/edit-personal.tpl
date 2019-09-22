@@ -196,7 +196,6 @@
     $( document ).ready(function() {
         $('#role_from').multiSelect();
 
-        console.log("here");
         window.tinymce.dom.Event.domLoaded = true;
         tinyMCE.init({
           mode : "textareas",
@@ -204,7 +203,6 @@
           skin : "oxide",
           menubar:false,
         });
-        console.log("here");
 
     });
 </script>
