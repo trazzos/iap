@@ -278,15 +278,10 @@
 				WHERE topicId = ".$this->topicsubId." AND son = 0
 				ORDER BY replyDate ASC");
 			$result = $this->Util()->DB()->GetResult();
-			print_r($result);
+			//print_r($result);
 			
 			foreach($result as $key => $res)
 			{
-				
-				
-				
-				
-				
 				$result[$key]["content"] = $this->Util()->DecodeTiny($result[$key]["content"]);
 				if(file_exists(DOC_ROOT."/forofiles/".$res["path"])){
 					$result[$key]["existeArchivo"] = "si";
@@ -296,24 +291,25 @@
 					}
 				}else{
 					$result[$key] ["existeArchivo"] = "no";
-				} 
-				
-				if(file_exists(DOC_ROOT."/alumnos/".$res["userId"])){
-					$result[$key]["foto"] = '
-						<img src="'.WEB_ROOT.'/alumnos/'.$res["userId"].'.jpg" width="40" height="40" style=" height: auto; 
-					width: auto; 
-					max-width: 80px; 
-					max-height: 80px;"/>
-					</a>';
-				}else{
-					$result[$key]["foto"] ='
-						<img src="'.WEB_ROOT.'/images/new/user.png" width="40" height="40" style=" height: auto; 
-					width: auto; 
-					max-width: 80px; 
-					max-height: 80px;"/>
-					</a>';
-				} 
-				
+				}
+
+				if($res['positionId'] == IS_TEACHER) {
+                    if(file_exists(DOC_ROOT."/".$res['foto'])){
+                        $foto = WEB_ROOT."/".$res['foto'].'?'.rand();
+                    }else{
+                        $foto = WEB_ROOT."/images/no_foto.jpg";
+                    }
+
+                } else  {
+                    if(file_exists(DOC_ROOT."/alumnos/".$res["userId"].'.jpg')){
+                        $foto = WEB_ROOT.'/alumnos/'.$res["userId"].'.jpg';
+                    }else{
+                        $foto = WEB_ROOT."/images/no_foto.jpg";
+                    }
+                }
+
+                $result[$key]["foto"] ='<img src="'.$foto.'" width="40" height="40" style=" height: auto; width: auto; max-width: 80px; max-height: 80px;"/> </a>';
+
 				 $sql = "
 				SELECT count(*) FROM reply
 				LEFT JOIN user ON user.userId = reply.userId
@@ -323,12 +319,7 @@
 				$this->Util()->DB()->setQuery($sql);
 				$countComen = $this->Util()->DB()->GetSingle();
 				$result[$key]["numComentarios"] = $countComen;
-// echo "<br>";
-// echo "<br>";
-// echo "<br>";
-// echo "<br>";
-			
-				
+
 				$this->Util()->DB()->setQuery("
 				SELECT * FROM reply
 				LEFT JOIN user ON user.userId = reply.userId

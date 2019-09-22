@@ -4,24 +4,18 @@
 	$user->allow_access(37);
 
 
-
 	if($_POST)
 	{
 			
 		if($_POST['announcementId']<>null){
+
 		
-		
-// echo '<pre>'; print_r($_POST);
-// exit;	
-		// echo 'llega';
-			// exit;
 			$announcement->setCourseModuleId($_POST["courseModuleId"]);
 			$announcement->setTitle($_POST["title"]);
 			$announcement->setDescription($_POST["description"]);
 			$announcement->Edit($_POST['announcementId']);
 			header("Location:".WEB_ROOT."/edit-modules-course/id/".$_POST["courseModuleId2"]."");
-			exit;
-		}			
+		}
 		
 		$announcement->setCourseModuleId($_POST["courseModuleId"]);
 		$announcement->setTitle($_POST["title"]);
@@ -30,11 +24,9 @@
 		
 		if($_POST["auxTpl"]=="admin"){
 			header("Location:".WEB_ROOT."/edit-modules-course/id/".$_POST["courseModuleId"]."");
-			exit;
 		}
-		
-		
-		
+
+        header("Location:".WEB_ROOT);
 	}
 	
 	

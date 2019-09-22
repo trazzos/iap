@@ -17,7 +17,7 @@
 	<br>
 	<br>
 	Unicamente podra asignar en una sola ocasión estas calificaciones, si desea hacer modificaciones le pedimos de favor enviar un correo
-	a tutor@iapchiapas.org.mx para habilitarle la edición. 
+	a {$COMPANY_EMAIL} para habilitarle la edición.
 	<br>
 	<br>
 	Le pedimos de favor descargar este formato, firmalo y subirlo escaneado en esta misma sección.

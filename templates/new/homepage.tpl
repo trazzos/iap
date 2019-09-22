@@ -60,7 +60,10 @@
         <div class="caption">
             <i class="fa fa-bullhorm"></i>Noticias
             {if $User.positionId == "1"}
-                | &raquo; <a style="color:#000000" href="{$WEB_ROOT}/add-noticia/id/0" onclick="return parent.GB_show('Agregar Noticia', this.href,650,700) ">Agregar Noticia</a>
+                | &raquo;
+                <a style="color: #fff" href="{$WEB_ROOT}/graybox.php?page=add-noticia&id=0" data-target="#ajax" data-toggle="modal">
+                    Agregar noticia
+                </a>
             {/if}
         </div>
         <div class="tools">

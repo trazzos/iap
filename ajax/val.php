@@ -55,8 +55,8 @@ use Dompdf\Exception;
 		
 		<table align='center' width='100%'  border='0' class='txtTicket'>
 			<tr>
-				<td  align='left' '>
-					<img src='".DOC_ROOT."/images/logo_correo.jpg' >
+				<td  align='left' style='padding: 10px'>
+					<img width='100px' src='".DOC_ROOT."/images/logos/".LOGO."'>
 				</td>
 			</tr>
 		</table>

@@ -38,8 +38,7 @@ class Encuesta extends Main
 			$sql = "SELECT * FROM pregunta where categoriapreguntaId = ".$aux['categoriapreguntaId']."";
 			$this->Util()->DB()->setQuery($sql);
 			$resultPreguntas = $this->Util()->DB()->GetResult();
-			foreach($resultPreguntas as $keyp=>$auxp){
-				
+			foreach($resultPreguntas as $keyp => $auxp){
 				if($auxp["tiporespuesta"]=="opcional"){
 					unset($opciones);
 					$op = explode("_",$auxp["opcional"]);
@@ -59,8 +58,6 @@ class Encuesta extends Main
 		}
 
 		
-		// echo '<pre>'; print_r($result);
-		// exit;
 		return $result;
 	}
 	

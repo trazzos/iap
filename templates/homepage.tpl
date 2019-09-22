@@ -89,8 +89,12 @@
 <li>
     <div class="content-header">
         <div class="content-header-left">
-          <img src="{$WEB_ROOT}/images/icons/22/kontact_news.png" alt="" />
-            <h2>Noticias {if $User.positionId == "1"} | &raquo; <a style="color:#000000" href="{$WEB_ROOT}/add-noticia/id/0" onclick="return parent.GB_show('Agregar Noticia', this.href,650,700) ">Agregar Noticia</a> {/if}</h2>
+            <img src="{$WEB_ROOT}/images/icons/22/kontact_news.png" alt="" />
+            <h2>Noticias {if $User.positionId == "1"} | &raquo;
+                    <a href="{$WEB_ROOT}/graybox.php?page=add-noticia&id=0" data-target="#ajax" data-toggle="modal">
+                        Agregar noticia
+                    </a>
+                    {*<a style="color:#000000" href="{$WEB_ROOT}/add-noticia/id/0" onclick="return parent.GB_show('Agregar Noticia', this.href,650,700) ">Agregar Noticia</a> {/if}</h2>*}
         </div>
 
     </div>

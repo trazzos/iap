@@ -45,3 +45,6 @@ define("EMAIL_USERNAME", getenv('EMAIL_USERNAME'));
 define("EMAIL_PASSWORD", getenv('EMAIL_PASSWORD'));
 define("EMAIL_DEBUG", getenv('EMAIL_DEBUG'));
 
+define("IS_TEACHER", 4);
+
+

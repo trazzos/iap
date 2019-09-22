@@ -11,14 +11,7 @@
         <td align="center">{if $subject.finalDate != "0000-00-00"}  {$subject.finalDate|date_format:"%d-%m-%Y"}  {else} S/F  {/if}   </td>
         <!--<td align="center">{$subject.daysToFinish}</td>-->
         <td align="center">
-            {if $docente == 1}
-                {if !$docente} {$subject.courseModuleActive} {/if}
-            {else}
-               {if !$docente}  {$subject.courseModule} {/if}
-            {/if}
-             {if !$docente}  /{$subject.modules} {/if}
-
-            {*} Flecha verde {*}
+			{$subject.courseModuleActive}/{$subject.modules}
 			<br>
             {if ($docente == 1 AND $subject.courseModuleActive > 0) || !$docente}
                 <a href="{$WEB_ROOT}/graybox.php?page=view-modules-course&id={$subject.courseId}" title="Ver Modulos de Curso" data-target="#ajax" data-toggle="modal" >
@@ -37,7 +30,7 @@
                 <span style="cursor:pointer; text-decoration: underline" class="spanActive" onclick="VerGrupoAdmin({$subject.courseId});" title="Alumnos" id="{$subject.courseId}">{$subject.alumnActive}</span>             /
                 <span style="cursor:pointer; text-decoration: underline" class="spanInactive" onclick="VerGrupoInactivoAdmin({$subject.courseId});"  id="{$subject.courseId}">{$subject.alumnInactive}</span>
             {else}
-				{$subject.alumnActive}<!--</span>-->             /
+				{$subject.alumnActive} / {$subject.alumnInactive}
             {/if}
         </td>
         <td align="center">{$subject.active}</td>
@@ -68,13 +61,6 @@
 					</li>
 					</ul>
 				</div> 	
-				<div id="divAccion_{$subject.courseId}" >
-					{*TODO este boton no funciona de cualquier manera asi que lo quite por lo pronto
-					<img src="{$WEB_ROOT}/images/icons/16/delete.png" class="spanDelete" data-id="{$subject.courseId}" id="d-{$subject.courseId}" name="d-{$subject.name}" title="Eliminar" />&nbsp;
-					*}
-					{*TODO creo que seria mejor abrir un modal ancho*}
-					{*TODO falta la parte de generar certificado*}
-				</div>	
             </td>
         {/if}
     </tr>

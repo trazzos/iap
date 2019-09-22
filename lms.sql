@@ -4644,101 +4644,6 @@ CREATE TABLE IF NOT EXISTS `personal_role` (
 -- Dumping data for table `personal_role`
 --
 
-INSERT INTO `personal_role` (`personalId`, `roleId`) VALUES
-(104, 2),
-(119, 2),
-(127, 2),
-(102, 2),
-(105, 2),
-(115, 2),
-(146, 2),
-(141, 2),
-(98, 2),
-(140, 2),
-(139, 2),
-(100, 2),
-(106, 2),
-(136, 30),
-(137, 2),
-(109, 2),
-(110, 2),
-(138, 2),
-(128, 2),
-(118, 2),
-(117, 2),
-(181, 2),
-(145, 2),
-(144, 2),
-(143, 2),
-(162, 2),
-(120, 2),
-(136, 3),
-(107, 2),
-(135, 2),
-(134, 2),
-(131, 2),
-(130, 2),
-(129, 2),
-(122, 2),
-(123, 2),
-(124, 2),
-(125, 2),
-(126, 2),
-(147, 2),
-(148, 2),
-(150, 2),
-(151, 2),
-(152, 2),
-(153, 2),
-(154, 2),
-(155, 2),
-(156, 2),
-(157, 2),
-(158, 2),
-(159, 2),
-(161, 2),
-(160, 2),
-(163, 2),
-(164, 2),
-(165, 2),
-(166, 2),
-(167, 2),
-(168, 2),
-(169, 2),
-(170, 2),
-(171, 2),
-(172, 2),
-(173, 2),
-(174, 2),
-(175, 2),
-(176, 2),
-(177, 39),
-(182, 2),
-(177, 29),
-(179, 2),
-(149, 38),
-(114, 38),
-(183, 2),
-(184, 2),
-(185, 2),
-(186, 2),
-(187, 2),
-(188, 2),
-(189, 2),
-(180, 29),
-(180, 39),
-(190, 2),
-(191, 2),
-(192, 2),
-(193, 2),
-(194, 2),
-(195, 2),
-(196, 2),
-(197, 2),
-(198, 2),
-(199, 2),
-(200, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -4761,12 +4666,7 @@ CREATE TABLE IF NOT EXISTS `position` (
 
 INSERT INTO `position` (`positionId`, `clave`, `name`, `description`) VALUES
 (1, 'ADMIN', 'ADMINISTRADOR GENERAL', 'ADMINISTRADOR GENERAL'),
-(2, 'CE', 'CONTROL ESCOLAR', 'CONTROL ESCOLAR'),
-(3, 'CE', 'JEFE CONTROL ESCOLAR', 'JEFE DE CONTROL ESCOLAR'),
-(4, 'DOC', 'DOCENTE', 'DOCENTE'),
-(5, 'JDEPTO', 'JEFE DEPARTAMENTO', ''),
-(23, 'CA', 'COORDINADOR ADMINISTRATIVO', ''),
-(24, 'AEE', 'ADMINISTRADOR EDUCACIóN EN LíNEA', '');
+(4, 'DOC', 'DOCENTE', 'DOCENTE');
 
 -- --------------------------------------------------------
 
@@ -4786,6 +4686,43 @@ CREATE TABLE IF NOT EXISTS `pregunta` (
   `numCaracter` varchar(255) NOT NULL,
   PRIMARY KEY (`preguntaId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Dumping data for table `pregunta`
+--
+
+INSERT INTO `pregunta` (`preguntaId`, `pregunta`, `tiporespuesta`, `encuestaId`, `categoriapreguntaId`, `rango`, `opcional`, `numCaracter`) VALUES
+(32, 'Muestra una preparación y organización sólida de cada clase', 'opcional', 1, 1, '', '6_7_8_9_10', ''),
+(33, 'Comunica claramente el programa de la materia (Propósito y objetivos del curso, contenidos, organización, criterios de evaluación y bibliográficas)', 'opcional', 1, 1, '', '6_7_8_9_10', ''),
+(34, 'Da a conocer clara y oportunamente los criterios de evaluación de curso', 'opcional', 1, 1, '', '6_7_8_9_10', ''),
+(35, 'Promueve el aprendizaje reflexivo', 'opcional', 1, 2, '', '6_7_8_9_10', ''),
+(36, 'Promueve el análisis, la creatividad, la valoración crítica, entre otras habilidades del pensamiento', 'opcional', 1, 2, '', '6_7_8_9_10', ''),
+(37, 'Expone y explica claramente. Utiliza ejemplos que ayuda a comprender los diversos contenidos', 'opcional', 1, 2, '', '6_7_8_9_10', ''),
+(38, 'Promueve que el estudiante desarrolle su capacidad de identificar y plantear problemas desde diversos enfoques teórico - metodológicos', 'opcional', 1, 2, '', '6_7_8_9_10', ''),
+(40, 'Enriquece el aprendizaje de los estudiantes a través de la retroalimentación de sus actividades y trabajos', 'opcional', 1, 2, '', '6_7_8_9_10', ''),
+(41, 'Atiende adecuadamente a los comentarios y cuestionamientos de los estudiantes', 'opcional', 1, 2, '', '6_7_8_9_10', ''),
+(42, 'Organiza diversas actividades para generar ambientes de aprendizaje variados', 'opcional', 1, 2, '', '6_7_8_9_10', ''),
+(43, 'Motiva al estudiante para que éste aprenda', 'opcional', 1, 2, '', '6_7_8_9_10', ''),
+(44, 'Escucha los puntos de vista de los estudiantes', 'opcional', 1, 3, '', '6_7_8_9_10', ''),
+(45, 'Favorece un clima agradable de participación y confianza en la clase para que los estudiantes se sientan seguros al exponer sus conocimientos y argumentar sus ideas', 'opcional', 1, 3, '', '6_7_8_9_10', ''),
+(46, 'Responde a las preguntas y dudas del estudiante con precisión', 'opcional', 1, 3, '', '6_7_8_9_10', ''),
+(47, 'Diseña estrategias de evaluación adecuadas a las caracteristicas del grupo', 'opcional', 1, 4, '', '6_7_8_9_10', ''),
+(48, 'Comunica con oportunidad los resultados de las evaluaciones', 'opcional', 1, 4, '', '6_7_8_9_10', ''),
+(49, 'Es congruente al evaluar el aprendizaje, conforme los objetivos del programa', 'opcional', 1, 4, '', '6_7_8_9_10', ''),
+(50, 'Es respetuoso en su trato con los estudiantes', 'opcional', 1, 5, '', '6_7_8_9_10', ''),
+(51, 'Realiza la actividad docente con sentido de responsabilidad y compromiso', 'opcional', 1, 5, '', '6_7_8_9_10', ''),
+(52, 'Fortalece los valores de honestidad y ética profesional en el grupo a tráves de su propio comportamiento en clase', 'opcional', 1, 5, '', '6_7_8_9_10', ''),
+(53, 'Los materiales de estudio (texto, apuntes, etcétera) han sido adecuados', 'opcional', 1, 6, '', '6_7_8_9_10', ''),
+(54, 'Se utilizaron tecnologías de información como internet, videoconferencias, etcétera', 'opcional', 1, 6, '', '6_7_8_9_10', ''),
+(56, 'Me motivo a buscar información por mi cuenta', 'opcional', 1, 6, '', '6_7_8_9_10', ''),
+(57, 'Fomenta el uso de recursos (bibliográficos o de otro tipo) adicionales a los utilizados en clase', 'opcional', 1, 6, '', '6_7_8_9_10', ''),
+(58, 'Realiza suficientes seminarios (Lecturas, charlas, debates) relacionados con la asignatura', 'opcional', 1, 6, '', '6_7_8_9_10', ''),
+(59, 'Me siento satisfecho asistiendo a clases ', 'opcional', 1, 7, '', '6_7_8_9_10', ''),
+(60, 'Considero que he adquirido conocimiento solido en esta materia', 'opcional', 1, 7, '', '6_7_8_9_10', ''),
+(61, 'He dedicado comparativamente más esfuerzo a esta materia que a cualquier otra de este ciclo escolar', 'opcional', 1, 7, '', '6_7_8_9_10', ''),
+(62, 'El nivel de esfuerzo y dedicación requerido por esta materia ha sido elevado', 'opcional', 1, 7, '', '6_7_8_9_10', ''),
+(63, 'Recomendaría a este(a) profesor (a) a otros(as) compañeros(as)', 'opcional', 1, 7, '', '6_7_8_9_10', '');
 
 -- --------------------------------------------------------
 
@@ -5046,20 +4983,8 @@ CREATE TABLE IF NOT EXISTS `role` (
 --
 
 INSERT INTO `role` (`roleId`, `clave`, `name`, `description`) VALUES
-(1, 'Admin', 'Administrador General', 'Administrador General del Sistema'),
-(2, 'RDOC', 'DOCENTE', ''),
-(3, 'Dir', 'DIRECTIVO', ''),
-(23, 'JDEPTO', 'JEFE DE DEPARTAMENTO', ''),
-(28, 'CE', 'CONTROL ESCOLAR', ''),
-(29, 'ALAT', 'ALTA DE ALUMNOS', 'PERFIL PARA AGREGAR ?NICAMENTE ALUMNOS'),
-(30, 'CA', 'COORDINADOR ADMINISTRATIVO', ''),
-(32, 'AEE', 'Administrador Educación en Línea', 'Persona encargada de la Admnistración del Sistema de Educación en Línea'),
-(33, 'DM', 'prueba de role', 'esta es una prueba de un rol'),
-(34, 'OPR', 'Otra prueba de rol', 'Esta es otra prueba de rol\r\nAlumnos\r\nCursos\r\nPagos'),
-(36, 'OPR2', 'Otra prueba rol', 'Prueba rol 3'),
-(37, 'CE2', 'Control Escolar (2)', ''),
-(38, 'JCE', 'Jefe Control Escolar', 'Jefe de Control Escolar'),
-(39, 'CEA', 'Control Escolar Aux', 'Mismos permisos que el Jefe de Control Escolar sin acceso a currícula');
+(1, 'ADMIN', 'Administrador General', 'Administrador General del Sistema'),
+(2, 'DOC', 'DOCENTE', '');
 
 -- --------------------------------------------------------
 
