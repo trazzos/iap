@@ -111,7 +111,7 @@ $page == 'view-inbox' or
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>-->
-{/if}
+{/if}docu
 </head>
 <!-- END HEAD -->
 

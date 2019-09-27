@@ -17,11 +17,10 @@
 
 			<td align="center">
 			
-			
 						<a  href="{$WEB_ROOT}/graybox.php?page=add-docdocente&id={$subject.catalogodocumentoId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='ENVIAR COMPROBANTE DE PAGO'>
 							<i class="material-icons md-16">create</i>
 						</a>
-		
+
 						<a  href="#"  onClick="loadTR('{$subject.catalogodocumentoId}')" title='SUBIR DOCUMENTO'>
 							<i class="material-icons md-16">delete_forever</i>
 						</a>

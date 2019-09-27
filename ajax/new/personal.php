@@ -371,8 +371,6 @@ switch($_POST["type"])
 	break;
 	
 	case 'onDeleteDocumento':
-	// echo '<pre>'; print_r($_POST);	
-	// exit;
 		$docente->setId($_POST["Id"]);
 		if($docente->onDeleteDocumento()){
 				echo "ok[#]";
@@ -385,7 +383,7 @@ switch($_POST["type"])
 				echo '[#]';
 					
 					$smarty->assign("registros", $registros);
-					$smarty->display(DOC_ROOT.'/templates/lists/new/doc-docente.tpl');
+					$smarty->display(DOC_ROOT.'/templates/lists/new/add-cat-doc-docente.tpl');
 				
 			}else{
 				echo "fail[#]";
