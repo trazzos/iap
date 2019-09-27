@@ -167,100 +167,86 @@ class Student extends User
 	
 	public function desactivar(){
 		
-	$sql="update user set activo='0' where userId='".$this->getUserId()."' ";
-	$this->Util()->DB()->setQuery($sql);
+	    $sql="update user set activo='0' where userId='".$this->getUserId()."' ";
+	    $this->Util()->DB()->setQuery($sql);
 	
-	     if(!$this->Util()->DB()->ExecuteQuery()){
+	    if(!$this->Util()->DB()->ExecuteQuery()){
 		      
-            // $sql="delete from user_subjet where alumnoId ='".$this->getUserId()."' "; //Agregado por JRosales 29/09/2014
-	        // $this->Util()->DB()->setQuery($sql);                                      //Agregado por JRosales 29/09/2014 
-	        // $this->Util()->DB()->DeleteData();                                        //Agregado por JRosales 29/09/2014
-              
-		 	// $this->Util()->setError(10030, "complete","El Alumno fue dado de Baja Correctamente");
-            // $this->Util()->PrintErrors();
-		
-		  		
-		  $infoStudent=$this->GetInfo();
-		//print_r($infoStudent); exit;
-					$fecha_aplicacion=date("Y-m-d H:i:s"); 
-					$hecho=$_SESSION['User']['userId']."p";
-				    $actividad="Se ha dado de Baja un Alumno(".$infoStudent['controlNumber']."-".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno'].") desde el panel de Administración ";
-					$visto="1p,".$_SESSION['User']['userId']."p";
-					$enlace="/student";
-					
+		    $infoStudent=$this->GetInfo();
+            $fecha_aplicacion=date("Y-m-d H:i:s");
+            $hecho=$_SESSION['User']['userId']."p";
+            $actividad="Se ha dado de Baja un Alumno(".$infoStudent['controlNumber']."-".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno'].") desde el panel de Administración ";
+            $visto="1p,".$_SESSION['User']['userId']."p";
+            $enlace="/student";
 
-					$sqlNot="insert into notificacion(notificacionId,actividad,vista,hecho,fecha_aplicacion,tablas,enlace)
-			   values(
-			              '',
-			            '".$actividad."', 
-			            '".$visto."',
-			            '".$hecho."',
-			            '".$fecha_aplicacion."',
-			            'reply',
-						'".$enlace."'
-			     
-			         )";
-					 
-			$this->Util()->DB()->setQuery($sqlNot);
-			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
-			$this->Util()->DB()->InsertData();  
-		 
-		 
+            $sql="UPDATE user_subject SET status = 'inactivo' WHERE alumnoId = '".$this->getUserId()."'";
+            $this->Util()->DB()->setQuery($sql);
+            $this->Util()->DB()->UpdateData();
 
-		 
-		 return true;
-		 }else{
-		 $this->Util()->setError(10030, "complete","No ne pudo desactivar al Alumno intente mas tarde");
-		$this->Util()->PrintErrors();
-		 return false;
-		 }}
-		 
-		 	public function Activar(){
-	 $sql="update user set activo='1' where userId='".$this->getUserId()."' ";
-	$this->Util()->DB()->setQuery($sql);
-	
-	     if(!$this->Util()->DB()->ExecuteQuery()){
-		 
-		 	$this->Util()->setError(10030, "complete","El Alumno fue dado de Alta Correctamente");
-		$this->Util()->PrintErrors();
-		
-		
-		  $infoStudent=$this->GetInfo();
-		//print_r($infoStudent); exit;
-					$fecha_aplicacion=date("Y-m-d H:i:s"); 
-					$hecho=$_SESSION['User']['userId']."p";
-				    $actividad="Se ha dado de Alta un Alumno(".$infoStudent['controlNumber']."-".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno'].") desde el panel de Administración ";
-					$visto="1p,".$_SESSION['User']['userId']."p";
-					$enlace="/student";
-					
+            $sqlNot="insert into notificacion(notificacionId,actividad,vista,hecho,fecha_aplicacion,tablas,enlace) values (
+                      '',
+                    '".$actividad."', 
+                    '".$visto."',
+                    '".$hecho."',
+                    '".$fecha_aplicacion."',
+                    'reply',
+                    '".$enlace."'
+             
+                 )";
 
-					$sqlNot="insert into notificacion(notificacionId,actividad,vista,hecho,fecha_aplicacion,tablas,enlace)
-			   values(
-			              '',
-			            '".$actividad."', 
-			            '".$visto."',
-			            '".$hecho."',
-			            '".$fecha_aplicacion."',
-			            'reply',
-						'".$enlace."'
-			     
-			         )";
-					 
-			$this->Util()->DB()->setQuery($sqlNot);
-			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
-			$this->Util()->DB()->InsertData();
-		
-		
-		
-		
-		
-		
-		return true;
-		 }else{
-		 $this->Util()->setError(10030, "complete","No ne pudo Activar al Alumno intente mas tarde");
-		$this->Util()->PrintErrors();
-		 return false;
-		 }}
+            $this->Util()->DB()->setQuery($sqlNot);
+            $this->Util()->DB()->InsertData();
+		 
+    		 return true;
+		 } else {
+		    $this->Util()->setError(10030, "complete","No ne pudo desactivar al Alumno intente mas tarde");
+		    $this->Util()->PrintErrors();
+		    return false;
+		 }
+	}
+
+     public function Activar(){
+        $sql="update user set activo='1' where userId='".$this->getUserId()."' ";
+        $this->Util()->DB()->setQuery($sql);
+
+        if(!$this->Util()->DB()->ExecuteQuery()) {
+            $this->Util()->setError(10030, "complete","El Alumno fue dado de Alta Correctamente");
+            $this->Util()->PrintErrors();
+
+            $infoStudent=$this->GetInfo();
+            $fecha_aplicacion=date("Y-m-d H:i:s");
+            $hecho=$_SESSION['User']['userId']."p";
+            $actividad="Se ha dado de Alta un Alumno(".$infoStudent['controlNumber']."-".$infoStudent['names']." ".$infoStudent['lastNamePaterno']." ".$infoStudent['lastNameMaterno'].") desde el panel de Administración ";
+            $visto="1p,".$_SESSION['User']['userId']."p";
+            $enlace="/student";
+
+            $sql="UPDATE user_subject SET status = 'activo' WHERE alumnoId = '".$this->getUserId()."'";
+            $this->Util()->DB()->setQuery($sql);
+            $this->Util()->DB()->UpdateData();
+
+
+            $sqlNot="insert into notificacion(notificacionId,actividad,vista,hecho,fecha_aplicacion,tablas,enlace) values(
+                      '',
+                    '".$actividad."', 
+                    '".$visto."',
+                    '".$hecho."',
+                    '".$fecha_aplicacion."',
+                    'reply',
+                    '".$enlace."'
+             
+                 )";
+
+            $this->Util()->DB()->setQuery($sqlNot);
+            //ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
+            $this->Util()->DB()->InsertData();
+
+            return true;
+        }else{
+            $this->Util()->setError(10030, "complete","No ne pudo Activar al Alumno intente mas tarde");
+            $this->Util()->PrintErrors();
+            return false;
+        }
+    }
 	
 	
 	public function GetInfo()

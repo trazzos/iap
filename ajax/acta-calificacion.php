@@ -32,10 +32,6 @@ use Dompdf\Exception;
 	$myInstitution = $institution->Info();
 
 
-// echo '<pre>'; print_r($info);
-	// exit;
-	
-	
 	$group->setCourseModuleId($_GET["Id"]);
 	$group->setCourseId($info["courseId"]);
 	$group->setTipoMajor($info["majorName"]);
@@ -44,23 +40,26 @@ use Dompdf\Exception;
 
 	$infoFirma = $personal->extraeFirmaActa();
 	
-	// echo '<pre>'; print_r($info);
-	// $profe  =  explode('|',$info['access']); 
-	
-	// echo $profe;
-	// exit;
 	$personal->setPersonalId($info['access'][1]);
 	$infoPersonal = $personal->Info();
 	
 	
-	
-	// Info
-	// echo "<pre>"; print_r($info);
-	// exit;
-	
-	// echo "<pre>"; print_r($info); 
-	// exit;
-	$html .= "
+$dompdf = new Dompdf();
+$smarty->assign('info', $info);
+$smarty->assign('myInstitution', $myInstitution);
+$smarty->assign('infoPersonal', $infoPersonal);
+$smarty->assign('infoCourse', $infoCo);
+$smarty->assign('noTeam', $noTeam);
+//$smarty->display(DOC_ROOT.'/templates/pdf/acta-calificacion.tpl');exit;
+
+$dompdf->loadHtml($smarty->fetch(DOC_ROOT.'/templates/pdf/acta-calificacion.tpl'));
+$dompdf->setPaper('A4', 'portrait');
+$dompdf->render();
+$dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
+
+exit;
+
+$html .= "
 	<html>
 	<head>
 	<title>Acta de Calificaciones</title>
@@ -126,7 +125,6 @@ use Dompdf\Exception;
 	<br>
 
 	";
-
 	$html .= "<table  width='100%' class='txtTicket'>";
 	$html .= "<tr>";
 	$html .= "<td style='width:11px'><center>Num.</center></td>";
@@ -139,7 +137,7 @@ use Dompdf\Exception;
 		$html .= "<td>".($key+1)."</td>";
 		$html .= "<td>".$aux['lastNamePaterno']." ".$aux['lastNameMaterno']." ".$aux['names']."</td>";
 		$h =  $util->num2letras($aux['score']);
-		
+
 		if($aux['score'] < 7  and $info['majorName'] == 'MAESTRIA'){
 			$html .= "<td><center><font color='red'>".$aux['score']."</font></center></td>";
 			$html .= "<td><center><font color='red'>".$h."</font></center></td>";
@@ -153,9 +151,9 @@ use Dompdf\Exception;
 			$html .= "<td><center>".$h."</center></td>";
 		}
 		$html .= "</tr>";
-	}  
+	}
 	$html .= "</table>";
-	
+
 	$html .= "
 		
 	<br>

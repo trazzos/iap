@@ -153,6 +153,7 @@ $smarty->assign('LOGIN_PAGE',LOGIN_PAGE);
 $smarty->assign('COPYRIGHT',COPYRIGHT);
 $smarty->assign('LOGO',LOGO);
 $smarty->assign('LOGO_SMALL',LOGO_SMALL);
+$smarty->assign('LOGO_PDF',LOGO_PDF);
 $smarty->assign('FAVICON',FAVICON);
 $smarty->assign('THEME',THEME);
 $smarty->assign('PORTLET_COLOR',PORTLET_COLOR);
@@ -174,6 +175,8 @@ $smarty->assign('COMPANY_PRIVACY',COMPANY_PRIVACY);
 $smarty->assign('COMPANY_EMAIL',COMPANY_EMAIL);
 $smarty->assign('COMPANY_URL',COMPANY_URL);
 $smarty->assign('COMPANY_FACEBOOK',COMPANY_FACEBOOK);
+$smarty->assign('COMPANY_FACEBOOK',COMPANY_FACEBOOK);
+$smarty->assign('COMPANY_ACTA_TEXT',COMPANY_ACTA_TEXT);
 
 $smarty->assign('property', $property);
 

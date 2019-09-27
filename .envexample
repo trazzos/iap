@@ -26,6 +26,7 @@ LOGO=logo.png
 
 #120x45
 LOGO_SMALL=logo.png
+LOGO_PDF=logo_pdf.png
 
 FAVICON=https://ihjaimesabines.edu.mx/wp-content/uploads/2018/04/favicon.ico
 
@@ -51,6 +52,7 @@ COMPANY_PRIVACY=https://ihjaimesabines.edu.mx/politicas-de-privacidad/
 COMPANY_URL=https://ihjaimesabines.edu.mx
 COMPANY_FACEBOOK=https://www.facebook.com/Instituto-Hispano-Jaime-Sabines-1561747460810062/
 COMPANY_ADDRESS="Callejón la Salle 800, col, Santa María la Ribera, 29070 TUXTLA, CHIAPAS, MEXICO"
+COMPANY_ACTA_TEXT="Incorporado al sistema educativo estatal"
 
 #EMAIL Setup
 EMAIL_HOST=smtp.gmail.com

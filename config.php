@@ -10,6 +10,7 @@ define("LOGIN_PAGE", getenv('LOGIN_PAGE'));
 define("COPYRIGHT", getenv('COPYRIGHT'));
 define("LOGO", getenv('LOGO'));
 define("LOGO_SMALL", getenv('LOGO_SMALL'));
+define("LOGO_PDF", getenv('LOGO_PDF'));
 define("FAVICON", getenv('FAVICON'));
 define("THEME", getenv('THEME'));
 define("PORTLET_COLOR", getenv('PORTLET_COLOR'));
@@ -40,6 +41,7 @@ define("COMPANY_PRIVACY", getenv('COMPANY_PRIVACY'));
 define("COMPANY_URL", getenv('COMPANY_URL'));
 define("COMPANY_FACEBOOK", getenv('COMPANY_FACEBOOK'));
 define("COMPANY_ADDRESS", getenv('COMPANY_ADDRESS'));
+define("COMPANY_ACTA_TEXT", getenv('COMPANY_ACTA_TEXT'));
 
 define("EMAIL_HOST", getenv('EMAIL_HOST'));
 define("EMAIL_USERNAME", getenv('EMAIL_USERNAME'));

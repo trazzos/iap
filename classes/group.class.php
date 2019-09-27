@@ -954,7 +954,7 @@
 				else{
 					$result[$key]["score"] = $infoCc["calificacion"];
 				}
-				
+                $result[$key]["letra"] = $this->util()->num2letras($result[$key]["score"]);
 
 				
 			}

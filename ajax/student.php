@@ -709,9 +709,7 @@
         break;
 			case 'desactivar':
 			
-		//	print_r($_POST);
-			
-				$student->setUserId($_POST['id']);	
+				$student->setUserId($_POST['id']);
 						
 				if(!$student->desactivar())
 				{
@@ -727,9 +725,7 @@
 				
 					case 'activar':
 			
-		//	print_r($_POST);
-			
-				$student->setUserId($_POST['id']);	
+				$student->setUserId($_POST['id']);
 						
 				if(!$student->Activar())
 				{
