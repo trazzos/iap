@@ -116,9 +116,12 @@
 <script type="text/javascript">
   tinyMCE.init({
     max_chars: 1000, // max. allowed chars
+    plugins: "paste image media",
     mode : "textareas",
     theme : "silver",
     skin : "oxide",
     menubar:false,
+    toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
+    paste_data_images: true,
   });
 </script>
