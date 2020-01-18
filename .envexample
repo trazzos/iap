@@ -53,6 +53,7 @@ COMPANY_URL=https://ihjaimesabines.edu.mx
 COMPANY_FACEBOOK=https://www.facebook.com/Instituto-Hispano-Jaime-Sabines-1561747460810062/
 COMPANY_ADDRESS="Callejón la Salle 800, col, Santa María la Ribera, 29070 TUXTLA, CHIAPAS, MEXICO"
 COMPANY_ACTA_TEXT="Incorporado al sistema educativo estatal"
+COMPANY_NAME="Instituto Hispano Jaime Sabines"
 
 #EMAIL Setup
 EMAIL_HOST=smtp.gmail.com

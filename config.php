@@ -42,6 +42,7 @@ define("COMPANY_URL", getenv('COMPANY_URL'));
 define("COMPANY_FACEBOOK", getenv('COMPANY_FACEBOOK'));
 define("COMPANY_ADDRESS", getenv('COMPANY_ADDRESS'));
 define("COMPANY_ACTA_TEXT", getenv('COMPANY_ACTA_TEXT'));
+define("COMPANY_NAME", getenv('COMPANY_NAME'));
 
 define("EMAIL_HOST", getenv('EMAIL_HOST'));
 define("EMAIL_USERNAME", getenv('EMAIL_USERNAME'));

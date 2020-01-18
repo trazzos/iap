@@ -177,6 +177,7 @@ $smarty->assign('COMPANY_URL',COMPANY_URL);
 $smarty->assign('COMPANY_FACEBOOK',COMPANY_FACEBOOK);
 $smarty->assign('COMPANY_FACEBOOK',COMPANY_FACEBOOK);
 $smarty->assign('COMPANY_ACTA_TEXT',COMPANY_ACTA_TEXT);
+$smarty->assign('COMPANY_NAME',COMPANY_NAME);
 
 $smarty->assign('property', $property);
 
