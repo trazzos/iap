@@ -64,8 +64,13 @@ function initTinyMCE() {
 			mode : "textareas",
 			theme : "silver",
 			skin : "oxide",
-			menubar:false,
-			toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
+/*
+			menu: {
+				insert: { title: 'Insert', items: 'image link media' },
+			},
+*/
+			menubar: false,
+			toolbar: "undo redo | image media | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
 			paste_data_images: true,
 		});
 	}, 1000);

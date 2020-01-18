@@ -519,3 +519,7 @@ ul.wysihtml5-toolbar a.btn.wysihtml5-command-active {
   }
 
 }
+
+.tox-tinymce-aux  {
+  z-index: 20000 !important;
+}
