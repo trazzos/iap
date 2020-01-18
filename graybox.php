@@ -247,6 +247,7 @@ if($_GET['section'])
 {
     $includedTpl =  $_GET['page']."_".$_GET['section'];
 }
+
 $smarty->assign('includedTpl', $includedTpl);
 
 // echo $includedTpl;

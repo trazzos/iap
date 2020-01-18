@@ -53,4 +53,24 @@ function notificando(){
 
 
 
+function initTinyMCE() {
+
+	setTimeout(function(){
+		console.log('adada');
+		tinyMCE.remove();
+		tinyMCE.init({
+			max_chars: 1000, // max. allowed chars
+			plugins: "paste image media",
+			mode : "textareas",
+			theme : "silver",
+			skin : "oxide",
+			menubar:false,
+			toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
+			paste_data_images: true,
+		});
+	}, 1000);
+}
+
+
+
 //setInterval('notificando()',10000);
