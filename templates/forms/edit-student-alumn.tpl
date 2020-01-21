@@ -100,7 +100,7 @@
             <div class="form-group">
                 <label class="col-md-3 control-label">Contraseña del Sistema (Minimo 6 caracteres):</label>
                 <div class="col-md-8" style="padding-top: 8px">
-                    <input type="password" name="street" id="street" class="form-control" value="{$info.password}" />
+                    <input type="password" name="password" id="password" class="form-control" value="{$info.password}" />
                 </div>
             </div>
         </div>
