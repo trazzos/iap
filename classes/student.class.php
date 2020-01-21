@@ -885,8 +885,6 @@ class Student extends User
 			return false; 
 		}
 
-		print_r($this);exit;
-		
 		$sqlQuery = "UPDATE user				
 						SET  
 							names = '".$this->getNames()."', 
