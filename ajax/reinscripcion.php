@@ -27,7 +27,7 @@
 				$student->setSexo($_POST['sexo']);
 				$student->setBirthdate($_POST['day'],$_POST['month'],$_POST['year']);
 				$student->setMaritalStatus($_POST['maritalStatus']);
-				$student->setPassword(trim($_POST['password']));
+				//$student->setPassword(trim($_POST['password']));
 
 				//domicilio
 				$student->setStreet($_POST['street']);
