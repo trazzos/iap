@@ -884,6 +884,8 @@ class Student extends User
 		if($this->Util()->PrintErrors()){ 
 			return false; 
 		}
+
+		print_r($this);exit;
 		
 		$sqlQuery = "UPDATE user				
 						SET  
