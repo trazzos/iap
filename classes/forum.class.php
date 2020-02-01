@@ -929,6 +929,27 @@ public function DeleteNotificacion(){
 		return true;
 				
 	}
+
+    public function deleteTopic(){
+
+        if($this->Util()->PrintErrors()){
+            return false;
+        }
+
+        $sql = "DELETE FROM 
+                topic
+            WHERE 
+                topicId = ".$this->topicId;
+
+        $this->Util()->DB()->setQuery($sql);
+        $this->Util()->DB()->ExecuteQuery();
+
+        $this->Util()->setError(10045, "complete","Se ha eliminado el foro con Exito");
+        $this->Util()->PrintErrors();
+
+        return true;
+
+    }
 		
 			
 }	

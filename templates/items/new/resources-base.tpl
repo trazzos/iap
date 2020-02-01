@@ -24,8 +24,6 @@
 					<a href="javascript:void(0)" onClick="DeleteResource({$subject.resourceId})" title="ELIMINAR">
 					<img src="{$WEB_ROOT}/images/icons/16/delete.png" class="spanDeleteResource" id="d-{$subject.resourceId}" name="d-{$subject.name}" title="Eliminar" />
 					</a>	
-					&nbsp;<!--
-					<a style="color:#000000" href="{$WEB_ROOT}/edit-resource/id/{$subject.resourceId}" onclick="return parent.GB_show('Editar Recurso de Apoyo', this.href,650,700) ">-->
 					<a href="{$WEB_ROOT}/graybox.php?page=edit-resource&id={$subject.resourceId}&auxTpl=admin&cId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal">
 					<img src="{$WEB_ROOT}/images/icons/16/pencil.png" class="spanEdit" id="d-{$subject.subjectId}" name="d-{$subject.name}" title="Editar" /></a>
 				{/if}

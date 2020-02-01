@@ -91,6 +91,37 @@ function DeleteResource(id)
     });
 }
 
+function deleteTopic(id)
+{
+
+	// alert(id)
+	var $message = "¿Está seguro de eliminar este foro?";
+	bootbox.confirm($message, function(result) {
+		if(result == false)
+		{
+			return;
+		}
+
+		$.ajax({
+			url : WEB_ROOT+'/ajax/new/topic.php',
+			type: "POST",
+			data : {type: "deleteTopic", topicId: id},
+			success: function(data, textStatus, jqXHR)
+			{
+				console.log(data)
+				var splitResponse = data.split("[#]");
+				ShowStatus(splitResponse[1]);
+				$('#tblContentResources').html(splitResponse[2]);
+			},
+			error: function (jqXHR, textStatus, errorThrown)
+			{
+				alert('Algo salio mal, compruebe su conexión a internet');
+			}
+		});
+
+	});
+}
+
 
 
 /*

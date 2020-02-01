@@ -101,6 +101,7 @@
                 <label class="col-md-3 control-label">Contraseña del Sistema (Minimo 6 caracteres):</label>
                 <div class="col-md-8" style="padding-top: 8px">
                     <input type="password" name="password" id="password" class="form-control" value="{$info.password}" />
+                    <input type="checkbox" onclick="showPassword()">Mostrar contraseña
                 </div>
             </div>
         </div>
@@ -292,3 +293,14 @@
             </div>
         </div>
     </div>
+
+<script>
+  function showPassword() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+</script>

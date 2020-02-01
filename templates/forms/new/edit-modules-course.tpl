@@ -353,13 +353,8 @@
         </div>
     </div>
     <div class="portlet-body">
-        <!-- <a href="{$WEB_ROOT}/add-topic/id/{$myModule.courseId}"  onclick="return parent.GB_show('Agregar Topico', this.href,450,700) "><div class="btnAdd" id="btnAddSubject"></div></a>-->
         <div id="tblContent">{include file="lists/topics-admin.tpl"}</div>
-        <br />{*}	{if $coursesCount}
-	  <div id="pagination" class="lnkPages">
-	  {include file="footer-pages-links.tpl"}
-      </div>        {/if}
-	  {*}
+        <br />
     </div>
 </div>
 

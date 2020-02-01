@@ -45,11 +45,11 @@
             </div>
         </div>
     </div>
-	{if $homework.countUpdate eq 1}
+	{*{if $homework.countUpdate eq 1}
 		
 		<center><font color="red">Solo se permiten dos intentos de subir el archivo</font></center>
 	
-	{else}
+	{else}*}
     <div class="form-actions">
         <div class="row">
             <div class="col-md-offset-3 col-md-9">
@@ -57,6 +57,6 @@
                 </div>
         </div>
     </div>
-	{/if}
+	{*{/if}*}
 
 </form>
