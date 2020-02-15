@@ -11,6 +11,11 @@
 			 <i class="fa fa-sign-in fa-2x" aria-hidden="true" style='color:black'></i>
 			<!--<img src="{$WEB_ROOT}/images/arrow.png" class="spanEdit" id="e-{$position.positionId}" name="e-{$position.name}" title="Ver respuestas" />
 			--></a>
+            {if !$docente && !$infoStudent.userId}
+                <a href="javascript:void(0)"  onClick="deleteTopicSub('{$topicsub.topicsubId}')">
+                    <img src="{$WEB_ROOT}/images/icons/16/delete.png"  title="Eliminar" />&nbsp;
+                </a>
+            {/if}
         </td>
     </tr>
 {foreachelse}

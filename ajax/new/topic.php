@@ -29,6 +29,28 @@ switch($_POST["type"])
 
         break;
 
+    case 'deleteSubtopic':
+        $forum->setTopicsubId($_POST['subtopicId']);
+        $info = $forum->TopicsubInfo();
+
+        $forum->deleteTopicSub();
+        echo "ok[#]";
+        $smarty->display(DOC_ROOT.'/templates/boxes/status.tpl');
+        echo "[#]";
+
+        $forum->setTopicId($info['topicId']);
+        $smarty->assign('topicId',$topicId);
+
+        $dato=$forum->TopicInfo();
+        $forum = $forum->Enumeratesub();
+
+        //$smarty->assign('positionId', $User["positionId"]);
+        $smarty->assign('forum', $forum);
+        $smarty->assign("DOC_ROOT", DOC_ROOT);
+        $smarty->display(DOC_ROOT.'/templates/lists/topicsub.tpl');
+
+        break;
+
 
 }
 

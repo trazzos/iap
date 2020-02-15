@@ -950,6 +950,27 @@ public function DeleteNotificacion(){
         return true;
 
     }
+
+    public function deleteTopicSub(){
+
+        if($this->Util()->PrintErrors()){
+            return false;
+        }
+
+        $sql = "DELETE FROM 
+            topicsub
+        WHERE 
+            topicsubId = ".$this->topicsubId;
+
+        $this->Util()->DB()->setQuery($sql);
+        $this->Util()->DB()->ExecuteQuery();
+
+        $this->Util()->setError(10045, "complete","Se ha eliminado el topico con Exito");
+        $this->Util()->PrintErrors();
+
+        return true;
+
+    }
 		
 			
 }	
