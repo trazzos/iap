@@ -34,7 +34,7 @@
 
 	<link href="{$WEB_ROOT}/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"  />
 	{/if}
-	
+
 	<!-- BEGIN THEME LAYOUT STYLES -->
 	<link href="{$WEB_ROOT}/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
 	<link href="{$WEB_ROOT}/assets/layouts/layout/css/themes/{$THEME}.css" rel="stylesheet" type="text/css" id="style_color" />
@@ -69,14 +69,14 @@
 	</style>
 
 <link href="{$WEB_ROOT}/assets/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
-{if $page == 'reply-inbox' or 
+{if $page == 'reply-inbox' or
 $page == 'view-inbox' or
  $page == 'edit-modules-course' or
- $page == 'info-docente' or 
- $page == 'lst-docentes' or 
- $page == 'prog-materia' or 
- $page == 'report-docentes' or 
- $page == 'perfil' or 
+ $page == 'info-docente' or
+ $page == 'lst-docentes' or
+ $page == 'prog-materia' or
+ $page == 'report-docentes' or
+ $page == 'perfil' or
  $page == 'materias'}
 <style type="text/css">
 
@@ -106,8 +106,8 @@ $page == 'view-inbox' or
 {/if}
 {if $page == 'reply-inbox'}<!--
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>-->
@@ -129,11 +129,11 @@ $page == 'view-inbox' or
 				{include file="new/sidebar.tpl"}
 			{/if}
 		{/if}
-			
+
 		</div>
 		<!-- END SIDEBAR -->
 		<!-- BEGIN CONTENT -->
-		
+
 		<div class="page-content-wrapper">
 			{include file="new/container.tpl"}
 		</div>

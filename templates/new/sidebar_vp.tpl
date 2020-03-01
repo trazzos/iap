@@ -26,21 +26,21 @@
 
         </li>
 
-        
-		
+
+
 
         {if $mnuMain == "modulo1" || $mnuMain == "modulo"}
-		
+
 		<li class="nav-item {if $page == "view-modules-student"} active {/if} ">
                 <a href="{$WEB_ROOT}/view-modules-student/id/{$id}/vp/1" class="nav-link nav-toggle">
                     <i class="fa fa-bullhorn"></i>
                     <span class="title">Anuncios</span>
                 </a>
             </li>
-		
-		
-			
-            
+
+
+
+
             <li class="nav-item {if $page == "information-modules-student"} active {/if} ">
                 <a href="{$WEB_ROOT}/information-modules-student/id/{$id}/vp/1" class="nav-link nav-toggle">
                     <i class="fa fa-info"></i>
@@ -95,7 +95,7 @@
                     <span class="title">Recursos de Apoyo</span>
                 </a>
             </li>
-			
+
 			<li class="nav-item {if $page == "forum-modules-student"} active {/if} ">
                 <a href="{$WEB_ROOT}/reply-inbox/id/{$id}/cId/0&vp=1" class="nav-link nav-toggle">
                     <i class="fa fa-envelope-o"></i>
@@ -123,14 +123,14 @@
                     <span class="title">Wiki</span>
                 </a>
             </li>
-			<!-- 
+			<!--
 			 <li class="nav-item {if $page == "inbox"} active {/if} ">
                 <a href="{$WEB_ROOT}/inbox/id/{$id}" class="nav-link nav-toggle">
                     <i class="fa fa-comments"></i>
                     <span class="title">Inbox</span>
                 </a>
             </li>-->
-			
+
 
 
         {/if}
