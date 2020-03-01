@@ -5,10 +5,6 @@ var DOC_ROOT_SECTION = "../../";
 
 var LOADER3 = "<div align='center'><img src='"+WEB_ROOT+"/images/cargando.gif'><br>Cargando...</div>";
 
-// var WEB_ROOT ="http://"+document.location.hostname+"/iap";
-
-// var WEB_ROOT = "http://www.iapchiapasenlinea.mx";
-
 $( document ).ready(function() {
 
     $(document).on("click",".closeModal",function() {

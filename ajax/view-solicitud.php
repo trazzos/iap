@@ -7,9 +7,9 @@ session_start();
 
 switch($_POST["type"])
 {
-	
+
 		case 'addSaveSolicitudOk':
-		
+
 			$solicitud->setTipo($_POST['solicitudId']);
 			$solicitud->setCursoId($_POST['courseId']);
 			$solicitud->setObservacion($_POST['observacions']);
@@ -30,29 +30,29 @@ switch($_POST["type"])
 				echo '[#]';
 				echo $Id;
 			}
-		
+
 		break;
-	
+
 		case 'addSolicitud':
-		
+
 		$student->setUserId($_SESSION["User"]["userId"]);
 		$activeCourses = $student->StudentCourses("activo", "si");
 		$finishedCourses = $student->StudentCourses("finalizado");
-		
+
 		// echo '<pre>'; print_r($activeCourses);
 		// exit;
 		// $finishedCourses = array();
-		
+
 		if(count($activeCourses) == 1 and count($finishedCourses) == 0){
-			
-			if($_POST['solicitudId'] == 1  or 
-			$_POST['solicitudId'] == 2 or 
-			$_POST['solicitudId'] == 6 or 
-			$_POST['solicitudId'] == 7 or 
+
+			if($_POST['solicitudId'] == 1  or
+			$_POST['solicitudId'] == 2 or
+			$_POST['solicitudId'] == 6 or
+			$_POST['solicitudId'] == 7 or
 			$_POST['solicitudId'] == 8){
-				
+
 				echo 'ok[#]';
-				
+
 				$smarty->assign('solicitudId', $_POST['solicitudId']);
 				$smarty->assign('courseId', $activeCourses[0]['courseId']);
 				$smarty->display(DOC_ROOT.'/templates/new/add-observacion-solicitud.tpl');
@@ -83,11 +83,11 @@ switch($_POST["type"])
 			// echo 'llega';
 			exit;
 		}
-			
-			
-		
-		$smarty->assign("finishedCourses", $finishedCourses);	
-		$smarty->assign("solicitudId", $_POST['solicitudId']);	
+
+
+
+		$smarty->assign("finishedCourses", $finishedCourses);
+		$smarty->assign("solicitudId", $_POST['solicitudId']);
 
 		echo 'ok[#]';
 		$smarty->assign("activeCourses", $activeCourses);
@@ -99,11 +99,11 @@ switch($_POST["type"])
 			exit;
 		}
 
-					
+
 	break;
-	
-	
-			
+
+
+
 	case 'addSaveSolicitud':
 
 				// echo '<pre>'; print_r($_POST);
@@ -133,7 +133,7 @@ switch($_POST["type"])
 						</div>';
 					exit;
 				}
-				
+
 				if(($activa+ $inactiva) > 1){
 						echo 'fail[#]';
 						echo '<div class="alert alert-danger alert-dismissable">
@@ -142,25 +142,25 @@ switch($_POST["type"])
 						</div>';
 					exit;
 				}
-				
-				// echo $valoractiva.'___'; 
-				// echo $valorinactiva; 
+
+				// echo $valoractiva.'___';
+				// echo $valorinactiva;
 				// echo '<pre>'; print_r($_POST);
 				// exit;
 				if($valoractiva<>''){
 					$cursoId = $valoractiva;
 				}
-				
+
 				if($valorinactiva<>''){
 					$cursoId = $valorinactiva;
 				}
-				
-				
+
+
 				if($_POST['solicitudjjId'] == 4){
-					
+
 					$solicitud->updateSemestre($_POST['soljId'],$cursoId);
 					// $solicitud->updateBoleta($_POST["soljId"],$cursoId);
-					
+
 					echo 'okBol[#]';
 					echo $_POST["soljId"];
 					echo '[#]';
@@ -175,10 +175,10 @@ switch($_POST["type"])
 					// header("Location:".WEB_ROOT."/ajax/formato-constancia.php?q=".$_POST["soljId"]."");
 					exit;
 				}
-				
+
 				// echo $cursoId;
 				// exit;
-				
+
 				$solicitud->setTipo($_POST['solicitudId']);
 				$solicitud->setCursoId($cursoId);
 				$solicitud->setObservacion($_POST['observacions']);
@@ -200,10 +200,10 @@ switch($_POST["type"])
 				}else{
 					echo 'fail[#]';
 				}
-				
-			break;			
+
+			break;
 			case 'enviarArchivo';
-			
+
 				// echo '<pre>'; print_r($_POST);
 				// echo '<pre>'; print_r($_FILES);
 				// exit;
@@ -223,12 +223,12 @@ switch($_POST["type"])
 				}else{
 					echo 'fail[#]';
 				}
-			
+
 			break;
-			
+
 			case 'solicitarReferencia':
-			
-				
+
+
 				// echo '<pre>'; print_r($_POST);
 				// exit;
 				$solicitud->setTipo(5);
@@ -239,24 +239,24 @@ switch($_POST["type"])
 					  <button type="button" class="close" data-dismiss="alert">&times;</button>
 					  La solicitud se envio correctamente en breve nos pondremos en contacto contigo
 					</div>';
-					
+
 					$sendmail = new SendMail;
 					$student->setUserId($_SESSION["User"]["userId"]);
 					$info = $student->GetInfo();
 					$html .= 'Solicitud de Referencia Bancaria<br><br><br>';
 					$html .= '<b>Alumno:</b> '.$info['names'].' '.$info['lastNamePaterno'].' '.$info['lastNameMaterno'].'<br>';
 					$html .= '<b>Numero de Control:</b> '.$info['controlNumber'];
-					$sendmail->PrepareAttachment("Solicitud de Referencia Bancaria", $html, "","", 'facturasfinanzas@iapchiapas.org.mx', "Finanzas", $attachment, $fileName);
-					$sendmail->PrepareAttachment("Solicitud de Referencia Bancaria",$html, "", "", "enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+					$sendmail->PrepareAttachment("Solicitud de Referencia Bancaria", $html, "","", EMAIL_USERNAME, "Finanzas", $attachment, $fileName);
+					$sendmail->PrepareAttachment("Solicitud de Referencia Bancaria",$html, "", "", EMAIL_USERNAME, "Administrador", $attachment, $fileName);
 				}else{
 					echo 'fail[#]';
 				}
-			
+
 			break;
-			
+
 			case 'cancelar':
 
-			
+
 				// echo '<pre>'; print_r($_POST);
 				$solicitud->setSolicitudId($_POST['solicitudId']);
 				if ($solicitud->cancelarSolicitud()){
@@ -274,18 +274,18 @@ switch($_POST["type"])
 				}else{
 					echo 'fail[#]';
 				}
-				
+
 			break;
-			
-			
+
+
 			case 'LoadPage':
-			
+
 					$solicitud->setPages($_POST['page']);
 					$registros = $solicitud->enumarateSolicitudesStden();
 					$smarty->assign('registros', $registros);
 					$smarty->assign("lstSol", $lstSol);
 					$smarty->display(DOC_ROOT.'/templates/lists/view-solicitud.tpl');
-			
+
 			break;
 	}
 

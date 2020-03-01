@@ -39,7 +39,7 @@ class SendMail extends Main
 		}
 		$this->email->Send();
 	}
-	
+
 	public function PrepareAttachment($subject, $body, $details_body, $details_subject, $to, $toName, $attachment = array(), $fileName = array(), $from = null, $fromName = "Administrador del Sistema")
 	{
 		$body = nl2br($this->Util()->handle_mail_patterns($body,$details_body));
@@ -65,9 +65,13 @@ class SendMail extends Main
 		$this->email->Send();
 	}
 
-		
-	public function Prepare($subject, $body, $details_body, $details_subject, $to, $toName, $attachment = "", $fileName = "", $from = "enlinea@iapchiapas.edu.mx", $fromName = "Administrador del Sistema") 
+
+	public function Prepare($subject, $body, $details_body, $details_subject, $to, $toName, $attachment = "", $fileName = "", $from = null, $fromName = "Administrador del Sistema")
 	{
+		if(!isset($from)) {
+			$from = EMAIL_USERNAME;
+		}
+
 		$body = nl2br($this->Util()->handle_mail_patterns($body,$details_body));
 		$subject = $this->Util()->handle_mail_patterns($subject,$details_subject);
 
@@ -94,7 +98,7 @@ class SendMail extends Main
         $replyTo = $from ?? EMAIL_USERNAME;
         $this->email->AddReplyTo($replyTo, $fromName);
         $this->email->SetFrom(EMAIL_USERNAME, $fromName);
-			
+
 		$ids = explode(",", $to);
 		$student = new User;
 		foreach($ids as $id)
@@ -117,7 +121,7 @@ class SendMail extends Main
 		}
         $this->email->Send();
 	}
-	
+
 }
 
 

@@ -12,7 +12,7 @@
 		{
 			return $this->testId;
 		}
-		
+
 		private $question;
 
 		public function setQuestion($value)
@@ -25,7 +25,7 @@
 		{
 			return $this->question;
 		}
-		
+
 		private $opcionA;
 
 		public function setOpcionA($value)
@@ -51,7 +51,7 @@
 		{
 			return $this->opcionB;
 		}
-		
+
 		private $opcionC;
 
 		public function setOpcionC($value)
@@ -103,18 +103,18 @@
 		{
 			return $this->answer;
 		}
-		
+
 		public function Enumerate($tipo = null)
 		{
-			
+
 			 $sql = "
 				SELECT * FROM activity_test
 				WHERE activityId = '".$this->getActivityId()."'
 				ORDER BY testId ASC";
-			
+
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
-			
+
 			foreach($result as $key => $res)
 			{
 				$result[$key]["opcionAShort"] = substr($res["opcionA"], 0, 20);
@@ -127,11 +127,11 @@
 			//print_r($result);
 			return $result;
 		}
-		
+
 		function Randomize($questions, $max)
 		{
 			$keys = array_rand($questions, $max);
-			
+
 			foreach($keys as $key)
 			{
 				$returnArray[] = $questions[$key];
@@ -141,7 +141,7 @@
 
 		public function Access($maxTries)
 		{
-			
+
 			 $sql = "
 				SELECT try FROM activity_score
 				WHERE activityId = '".$this->getActivityId()."'
@@ -153,7 +153,7 @@
 			{
 				return 1;
 			}
-			
+
 			return 0;
 		}
 
@@ -166,7 +166,7 @@
 			$score = $this->Util()->DB()->GetSingle();
 			return $score;
 		}
-		
+
 		public function Info($id = null)
 		{
 			//creamos la cadena de seleccion
@@ -184,7 +184,7 @@
 			if($result)
 				$result = $this->Util->EncodeRow($result);
 
-			return $result;	
+			return $result;
 		}
 
 		public function PonderationPerQuestion()
@@ -200,14 +200,14 @@
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y obtenemos el resultado
 			$result = $this->Util()->DB()->GetSingle();
-			
+
 			if($result == 0)
 			{
 				$result = 1;
 			}
-			
+
 			$ponderation = 100/$result;
-			return $ponderation;	
+			return $ponderation;
 		}
 
 		public function Edit()
@@ -232,16 +232,16 @@
 
 			$this->Util()->setError(90010, 'complete', "Se ha actualizado la pregunta.");
 			$this->Util()->PrintErrors();
-			return $result;			
+			return $result;
 		}
-		
+
 		function SendTest($answers)
 		{
 			//print_r($this);
 			$questionScore = $this->PonderationPerQuestion();
-			
+
 			$score = 0;
-			
+
 			if(is_array($answers))
 			{
 				foreach($answers as $key => $option)
@@ -252,25 +252,25 @@
 									testId='" .$key. "'";
 					$this->Util()->DB()->setQuery($sql);
 					$result = $this->Util()->DB()->GetSingle();
-					
+
 					if(!$result)
 					{
 						$result = "opcionA";
 					}
-					
+
 					if($option == $result)
 					{
 						$score += $questionScore;
 					}
 				}
 			}
-			
+
 			$this->Util()->DB()->setQuery("
 				SELECT COUNT(*)
 				FROM activity_score
 				WHERE activityId = '".$this->getActivityId()."' AND userId = '".$this->getUserId()."'");
 			$count = $this->Util()->DB()->GetSingle();
-						
+
 			if($count == 0)
 			{
 				$this->Util()->DB()->setQuery("
@@ -285,7 +285,7 @@
 						'".$this->getActivityId()."',  
 						'1',  
 						'".$score."');");
-				$result = $this->Util()->DB()->InsertData();					
+				$result = $this->Util()->DB()->InsertData();
 			}
 			else
 			{
@@ -295,39 +295,39 @@
 						try = try + 1
 					WHERE
 						`userId` = '".$this->getUserId()."' AND activityId = '".$this->getActivityId()."' LIMIT 1");
-				$result = $this->Util()->DB()->UpdateData();					
+				$result = $this->Util()->DB()->UpdateData();
 			}
 
 			unset($_SESSION["timeLimit"]);
-			
+
 			$student=new Student;
 			$student->setUserId($this->getUserId);
 			$infoStudent=$student->GetInfo();
-			
+
 			$mail = new PHPMailer(); // defaults to using php "mail()"
 			//contenido del correo
 			$body = "Has hecho realizado examen correctament <br/> Calificacion obtenida:  ".$score;
 			//asunto o tema
 			$subject ="Examen finalizado Correctamente";
 			//("quienloenvia@hotmail.com", "nombre de quien lo envia");
-			$mail->SetFrom("admin@iapchiapasonline.com", "Administrador del Sistema");
+			$mail->SetFrom(EMAIL_USERNAME, "Administrador del Sistema");
 			//correo y nombre del destinatario
 			$mail->AddAddress($infoStudent['email'], $infoStudent['names']);
-			
+
 			$mail->Subject    = $subject;
 			$mail->MsgHTML($body);
-			
+
 			$mail->Send();
-			
-			
-			
-			
+
+
+
+
 			$this->Util()->setError(90000, 'complete', "Has respondido el examen Satisfactoriamente. Tu resultado esta abajo.");
 			$this->Util()->PrintErrors();
 
 		}
-		
+
 	}
-	
-		
+
+
 ?>

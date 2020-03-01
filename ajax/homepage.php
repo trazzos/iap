@@ -3,13 +3,13 @@
 	include_once('../init.php');
 	include_once('../config.php');
 	include_once(DOC_ROOT.'/libraries.php');
-	
+
 	session_start();
-	
+
 	switch($_POST["type"])
 	{
 		case 'solicitarReferencia':
-		
+
 
 			$solicitud->setTipo(5);
 			if ($solicitud->SaveSolicitud()){
@@ -26,12 +26,12 @@
 				$html .= '<b>Alumno:</b> '.$info['names'].' '.$info['lastNamePaterno'].' '.$info['lastNameMaterno'].'<br>';
 				$html .= '<b>Numero de Control:</b> '.$info['controlNumber'];
 				// echo $html;
-				$sendmail->PrepareAttachment("Solicitud de Referencia Bancaria", $html, "","", 'facturasfinanzas@iapchiapas.org.mx', "Finanzas", $attachment, $fileName);
-				$sendmail->PrepareAttachment("Solicitud de Referencia Bancaria",$html, "", "", "enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
+				$sendmail->PrepareAttachment("Solicitud de Referencia Bancaria", $html, "","", EMAIL_USERNAME, "Finanzas", $attachment, $fileName);
+				$sendmail->PrepareAttachment("Solicitud de Referencia Bancaria",$html, "", "", EMAIL_USERNAME, "Administrador", $attachment, $fileName);
 			}else{
 				echo 'fail[#]';
 			}
-					
+
 		break;
 
 		case 'abrirReins':
@@ -43,7 +43,7 @@
 			$smarty->assign("semesterId", $_POST['semesterId']);
 			$smarty->display(DOC_ROOT.'/templates/new/confirma-reinscripcion.tpl');
 		break;
-	
+
 	}
 
 ?>

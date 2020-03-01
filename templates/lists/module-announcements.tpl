@@ -6,7 +6,7 @@
             </div>
             <div class="actions">
                 {if $User.positionId == "1"}
-                    <a class="btn btn-primary" href="{$WEB_ROOT}/homepage/id/{$item.announcementId}" onclick="return confirm('&iquest;Desea eliminar la noticia?')"> Eliminar Noticia </a>
+                    <a class="btn {$BUTTON_COLOR}" href="{$WEB_ROOT}/homepage/id/{$item.announcementId}" onclick="return confirm('&iquest;Desea eliminar la noticia?')"> Eliminar Noticia </a>
                 {/if}
             </div>
         </div>

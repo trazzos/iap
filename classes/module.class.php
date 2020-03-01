@@ -12,52 +12,52 @@
 		private $mensaje;
 		private $enviaId;
 		private $titulo;
-		
+
 		public function setTitulo($value)
 		{
 			$this->titulo = $value;
 		}
-		
+
 		public function setEnviaId($value)
 		{
 			$this->enviaId = $value;
 		}
-		
+
 		public function setMensaje($value)
 		{
 			$this->mensaje = $value;
 		}
-		
+
 		public function setStatusIn($value)
 		{
 			$this->statusIn = $value;
 		}
-		
+
 		public function setTipoReporte($value)
 		{
 			$this->tipoReporte = $value;
 		}
-		
+
 		public function setCMId($value)
 		{
 			$this->cmId = $value;
 		}
-		
+
 		public function setRecibeId($value)
 		{
 			$this->recibeId = $value;
 		}
-		
+
 		public function setYoId($value)
 		{
 			$this->yoId = $value;
 		}
-		
+
 		public function setQuienEnviaId($value)
 		{
 			$this->quienEnviaId = $value;
 		}
-		
+
 		public function setSubjectModuleId($value)
 		{
 			$this->subjectModuleId = $value;
@@ -78,7 +78,7 @@
 		{
 			return $this->courseModuleId;
 		}
-		
+
 		public function EnumerateById($id = null)
 		{
 			$this->Util()->DB()->setQuery("
@@ -86,17 +86,17 @@
 				WHERE subjectId = '".$id."'
 				ORDER BY subject_module.semesterId ASC, subject_module.name ASC");
 			$result = $this->Util()->DB()->GetResult();
-			
+
 			foreach($result as $key => $res)
 			{
 /*				$this->Util()->DB()->setQuery("
 					SELECT COUNT(*) FROM subjectModule WHERE subjectId ='".$res["subjectId"]."'");
-			
+
 				$result[$key]["modules"] = $this->Util()->DB()->GetSingle();*/
 			}
 			return $result;
 		}
-		
+
 		public function Save()
 		{
 			if($this->Util()->PrintErrors())
@@ -161,7 +161,7 @@
 			$this->Util()->PrintErrors();
 			return $result;
 		}
-		
+
 		public function Info($id = null)
 		{
 			//creamos la cadena de seleccion
@@ -178,7 +178,7 @@
 			if($result)
 				$result = $this->Util->EncodeRow($result);
 
-			return $result;	
+			return $result;
 		}
 
 		public function InfoCourseModule()
@@ -225,12 +225,12 @@
 
 			$explodedInitialDate = explode("-", $result["initialDate"]);
              $date = mktime(0, 0, 0, $explodedInitialDate[1], $explodedInitialDate[2], intval($explodedInitialDate[0]));
-           
+
 		   $result["name"]= $this->Util()->acento($result["name"]);
 
 
-		   $result["week"] = date('W', $date); 
-			
+		   $result["week"] = date('W', $date);
+
 			$result["initialDate"] = $this->Util->FormatDateBack($result["initialDate"]);
 			$result["finalDate"] = $this->Util->FormatDateBack($result["finalDate"]);
 			$result["fechaContrato"] = $this->Util->FormatDateBack($result["fechaContrato"]);
@@ -332,7 +332,7 @@
 			$this->Util()->PrintErrors();
 			return $result;
 		}
-			
+
 		public function AddModuleToCourse()
 		{
 			if($this->Util()->PrintErrors())
@@ -368,7 +368,7 @@
 			$Id = $result;
 			if($result > 0)
 			{
-				// asignar a nueva tabla 
+				// asignar a nueva tabla
 				 $sql = "INSERT INTO
 						course_module_personal
 						( 
@@ -392,8 +392,8 @@
 				$result = false;
 				$this->Util()->setError(90010, 'error');
 			}
-			
-			
+
+
 			 $sql = "INSERT INTO
 						topic
 						( 
@@ -414,9 +414,9 @@
 							)";
 			$this->Util()->DB()->setQuery($sql);
 			$this->Util()->DB()->InsertData();
-			
-			
-			
+
+
+
 			$sql = "INSERT INTO
 						topic
 						( 
@@ -437,8 +437,8 @@
 							)";
 			$this->Util()->DB()->setQuery($sql);
 			$this->Util()->DB()->InsertData();
-			
-			
+
+
 			$sql = "INSERT INTO
 						topic
 						( 
@@ -459,7 +459,7 @@
 							)";
 			$this->Util()->DB()->setQuery($sql);
 			$this->Util()->DB()->InsertData();
-			
+
 			$sql = "INSERT INTO
 						topic
 						( 
@@ -481,13 +481,13 @@
 			$this->Util()->DB()->setQuery($sql);
 			$this->Util()->DB()->InsertData();
 			// exit;
-			
+
 			if($_POST['copia']=="on"){
-				
-			
-			
+
+
+
 				// copiamos curricula
-				 
+
 				$sql = "
 	
 				SELECT 
@@ -496,34 +496,34 @@
 							activity_config
 						WHERE
 							subject_moduleId ='".$this->getSubjectModuleId()."' ";
-				
-				
+
+
 				$this->Util()->DB()->setQuery($sql);
 				$result = $this->Util()->DB()->GetResult();
-				
+
 					// '" . $this->getInitialDate() . "',
 				// '" . $this->getFinalDate($result) . "',
-				
-			
+
+
 			// echo '<pre>'; print_r  ($result);
-			
+
 			// echo  'initialDay '.$this->getInitialDate();
 			// echo  'finalDay '.$this->getInitialDate();
-				
+
 				foreach($result as $key=>$aux){
-					
+
 					$aux['diaInicial']  = $aux['diaInicial'] - 1;
-					
+
 					$initialDate = strtotime ( '+'.$aux['diaInicial'].' day' , strtotime ( $this->getInitialDate() ) ) ;
 					$initialDate = date ( 'Y-m-d' , $initialDate );
-					
+
 					$finalDate = strtotime ( '+'.$aux['diaFinal'].' day' , strtotime ( $this->getInitialDate() ) ) ;
 					$finalDate = date ( 'Y-m-d' , $finalDate );
-					
+
 					// echo 'dentro';
 					// echo '<br>';
 					// echo $initialDate;
-					
+
 					// echo $aux['diaInicial'];
 					// echo '';
 					// echo $this->getInitialDate();
@@ -565,7 +565,7 @@
 						$this->Util()->DB()->setQuery($sql);
 						$this->Util()->DB()->InsertData();
 				}
-				
+
 				$sql = "
 	
 				SELECT 
@@ -582,7 +582,7 @@
 				$result5 = $this->Util()->DB()->GetResult();
 			// exit;
 				foreach($result5 as $key=>$aux){
-					
+
 					 $sql = "INSERT INTO
 						resource
 						( 
@@ -604,10 +604,10 @@
 				}
 			}
 			$this->Util()->PrintErrors();
-			
+
 			return $result;
-		}				
-		
+		}
+
 		public function DeleteModuleFromCourse()
 		{
 			if($this->Util()->PrintErrors())
@@ -626,8 +626,8 @@
 			$this->Util()->setError(90000, 'complete', "Has borrado el modulo satisfactoriamente");
 			$this->Util()->PrintErrors();
 			return $result;
-		}				
-	
+		}
+
 		public function EditModuleToCourse()
 		{
 			if($this->Util()->PrintErrors())
@@ -638,7 +638,7 @@
 			//si no hay errores
 			//creamos la cadena de insercion
 			$final=$this->getFinalDate();
-			
+
 		 $sql = "UPDATE course_module
 			SET
 				initialDate = '" . $this->getInitialDate() . "',
@@ -651,7 +651,7 @@
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
 			$result = $this->Util()->DB()->UpdateData();
-			
+
 			//eliminar todos los docentes relacionados
 			$sql = "DELETE FROM course_module_personal
 		 	WHERE courseModuleId = '".$this->courseModuleId."'";
@@ -659,9 +659,9 @@
 			$this->Util()->DB()->setQuery($sql);
 			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
 			$result = $this->Util()->DB()->DeleteData();
-			
-			
-			// asignar a nueva tabla 
+
+
+			// asignar a nueva tabla
 				 $sql = "INSERT INTO
 						course_module_personal
 						( 
@@ -675,15 +675,15 @@
 			//configuramos la consulta con la cadena de insercion
 			$this->Util()->DB()->setQuery($sql);
 			$this->Util()->DB()->InsertData();
-			
+
 			if($_FILES['presentacion'])
 			{
 				$id = $this->getCourseModuleId();
 				$target_path = DOC_ROOT."/flash/";
-				$ext = end(explode('.', basename($_FILES['presentacion']['name'])));			
-				$target_path = $target_path . "flash_".$id. ".".$ext; 
-				$relative_path = "flash_".$id. ".".$ext; 
-				
+				$ext = end(explode('.', basename($_FILES['presentacion']['name'])));
+				$target_path = $target_path . "flash_".$id. ".".$ext;
+				$relative_path = "flash_".$id. ".".$ext;
+
 				move_uploaded_file($_FILES['presentacion']['tmp_name'], $target_path);
 			}
 
@@ -691,19 +691,19 @@
 			{
 				$id = $this->getCourseModuleId();
 				$target_path = DOC_ROOT."/calendario/";
-				$ext = end(explode('.', basename($_FILES['calendario']['name'])));			
+				$ext = end(explode('.', basename($_FILES['calendario']['name'])));
 				//echo $ext;
-				$target_path = $target_path . "calendario_".$id. ".".$ext; 
-				$relative_path = "flash_".$id. ".".$ext; 
-				
+				$target_path = $target_path . "calendario_".$id. ".".$ext;
+				$relative_path = "flash_".$id. ".".$ext;
+
 				move_uploaded_file($_FILES['calendario']['tmp_name'], $target_path);
 			}
-			
+
 			$this->Util()->setError(90000, 'complete', "Has actualizado el modulo satisfactoriamente");
 			$this->Util()->PrintErrors();
 			return $result;
-		}				
-		
+		}
+
 		public function compruebaInscripcion($semestreId,$courseId,$subjectId)
 		{
 			 $sql = "SELECT 
@@ -715,31 +715,31 @@
 			// exit;
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetSingle();
-			
+
 			return $result;
 		}
-		
-		
+
+
 		public function EnumerateInboxAdmin()
 		{
-			
+
 
 			$filtro = "";
-			
+
 			if($this->statusIn){
 				$filtro .= " and estatus = '".$this->statusIn."'";
 			}
-			
+
 			if($this->cmId){
 				$filtro .= " and c.courseModuleId = ".$this->cmId."";
 			}
-			
+
 			if($this->quienEnviaId){
 				$filtro .= " and c.quienEnvia = '".$this->quienEnviaId."'";
 			}
-			
-			
-			
+
+
+
 			 $sql = "SELECT 
 						c.*,
 						sm.name as nombreMateria
@@ -752,12 +752,12 @@
 			// exit;
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
-			
-			
-			
+
+
+
 			foreach($result as $key=>$aux){
 				if($aux['quienEnvia']=='alumno'){
-					
+
 					$sql = "SELECT 
 								*
 							FROM
@@ -769,8 +769,8 @@
 					$result[$key]['nombre'] = $infoU['names'];
 					$result[$key]['paterno'] = $infoU['lastNamePaterno'];
 					$result[$key]['materno'] = $infoU['lastNameMaterno'];
-					
-					
+
+
 				}else{
 					$sql = "SELECT 
 								*
@@ -784,40 +784,40 @@
 					$result[$key]['paterno'] = $infoU['lastname_paterno'];
 					$result[$key]['materno'] = $infoU['lastname_materno'];
 				}
-				
+
 			}
-			
+
 			// echo '<pre>'; print_r($result);
 			// exit;
 			return $result;
 		}
-		
+
 		public function EnumerateInbox()
 		{
-			
+
 
 			$filtro = "";
-			
+
 			if($this->statusIn){
 				$filtro .= " and c.estatus = '".$this->statusIn."'";
 			}
-			
+
 			if($this->yoId){
 				$filtro .= " and yoId = ".$this->yoId."";
 			}
-			
-			
-			
+
+
+
 			if($this->recibeId){
 				$filtro .= " and c.usuarioId = '".$this->recibeId."'";
 			}
-			
+
 			if($this->cmId){
 				$filtro .= " and c.courseModuleId = ".$this->cmId."";
 			}
-			
+
 			if($this->tipoReporte=='entrada'){
-				
+
 				if($this->quienEnviaId){
 					$filtro .= " and quienEnvia = '".$this->quienEnviaId."'";
 					if($this->quienEnviaId=='personal'){
@@ -828,9 +828,9 @@
 						$campos .= "p.names as nombre, p.lastNamePaterno as paterno, p.lastNameMaterno as materno";
 						$left .= " left join user as p on p.userId = c.yoId";
 						// $leftEnviado .= " left join user as p on p.userId = c.usuarioId";
-					}	
+					}
 				}
-				
+
 				  $sql = "SELECT 
 						p.*,
 						c.*,
@@ -844,7 +844,7 @@
 					WHERE
 						1 ".$filtro." order by chatId DESC";
 			}else if($this->tipoReporte=='enviados' or $this->tipoReporte=='borrador' or $this->tipoReporte=='eliminados'){
-				
+
 				if($this->quienEnviaId){
 					$filtro .= " and quienEnvia = '".$this->quienEnviaId."'";
 					if($this->quienEnviaId=='personal'){
@@ -856,9 +856,9 @@
 						$campos .= "p.name as nombre, p.lastname_paterno as paterno, p.lastname_materno as materno";
 						// $left .= " left join personal as p on p.personalId = c.usuarioId";
 						$leftEnviado .= " left join personal as p on p.personalId = c.usuarioId";
-					}	
+					}
 				}
-				
+
 				     $sql = "SELECT 
 						p.*,
 						c.*,
@@ -872,15 +872,15 @@
 					WHERE
 						1 ".$filtro." order by chatId DESC";
 			}
-						 	
+
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
-			
+
 			// echo '<pre>'; print_r($result);
 			// exit;
 			return $result;
 		}
-		
+
 		public function infoChat($chatId)
 		{
 			 $sql = "SELECT 
@@ -894,7 +894,7 @@
 			// exit;
 			$student = New Student;
 			$personal = New Personal;
-			
+
 			if($result['quienEnvia']=='alumno'){
 				$infouu = $student->InfoEstudiate($result['yoId']);
 				$personal->setPersonalId($result['usuarioId']);
@@ -908,12 +908,12 @@
 				$result['envio'] = $infouu['name'].' '.$infouu['lastname_paterno'].' '.$infouu['lastname_materno'];
 				$result['recibe'] = $inforr['names'].' '.$inforr['lastNamePaterno'].' '.$inforr['lastNameMaterno'];
 			}
-		
+
 			return $result;
 		}
-		
-		
-		
+
+
+
 		public function deleteInbox($chatId)
 		{
 			 $sql = "UPDATE 
@@ -923,11 +923,11 @@
 						WHERE 	chatId = '" . $chatId."'";
 			$this->Util()->DB()->setQuery($sql);
 			$this->Util()->DB()->UpdateData();
-			
+
 			return true;
 		}
-		
-		
+
+
 		public function addFavorito($chatId)
 		{
 			 $sql = "UPDATE 
@@ -937,15 +937,15 @@
 						WHERE 	chatId = '" . $chatId."'";
 			$this->Util()->DB()->setQuery($sql);
 			$this->Util()->DB()->UpdateData();
-			
+
 			return true;
 		}
-		
-		
-		
+
+
+
 		public function materiaActivas($chatId)
 		{
-			// $sql = "SELECT 
+			// $sql = "SELECT
 						// *
 					// FROM
 						// course_module
@@ -953,13 +953,13 @@
 						// chatId = ".$chatId."";
 			// $this->Util()->DB()->setQuery($sql);
 			// $result = $this->Util()->DB()->GetRow();
-			
+
 			// return ;
 		}
-		
+
 		public function actualizaALeido($chatId)
 		{
-		
+
 			$sql = "UPDATE 
 						chat
 					SET
@@ -967,14 +967,14 @@
 						WHERE 	chatId = '" . $chatId."'";
 			$this->Util()->DB()->setQuery($sql);
 			$this->Util()->DB()->UpdateData();
-			
+
 			return true;
 		}
-		
-		
+
+
 		public function infoCourseMol($cMId)
 		{
-		
+
 				$sql = "SELECT 
 						*
 					FROM
@@ -983,13 +983,13 @@
 						courseId = ".$cMId."";
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetRow();
-			
+
 			return $result;
 		}
-		
-		
+
+
 		public function materiasProfesores($Id){
-			
+
 			 $sql = "SELECT 
 						sm.name as name,
 						s.name as nameCar,
@@ -1008,34 +1008,34 @@
 						c.personalId = ".$Id." order by cm.active asc";
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
-			
-			
-			
+
+
+
 			foreach($result as $key=>$aux){
-		
+
 				$result[$key]['importe'] = number_format(($aux['subtotal']/(1.16)),2);
 				$result[$key]['iva'] = number_format((($aux['subtotal']/(1.16))*(.16)),2);
 				$result[$key]['isr'] = number_format((($aux['subtotal']/(1.16))*(.1)),2);
 				$result[$key]['retIva'] = number_format(((($aux['subtotal']/(1.16))*(.16)))*(2/3),2);
 				$result[$key]['totalPagar'] = number_format($aux['subtotal']-(($aux['subtotal']/(1.16))*(.1))-(((($aux['subtotal']/(1.16))*(.16)))*(2/3)),2);
-			
+
 				if($aux['finalDate'] < date('Y-m-d')){
-					
+
 					$result[$key]['estatusFin'] = "finalizada";
-					
+
 				}else{
 					$result[$key]['estatusFin'] = "activa";
 				}
 			}
-			
+
 			return $result;
-			
+
 		}
-		
-		
-	
+
+
+
 	public function getEvaluacion($Id){
-		
+
 		 $sql = "SELECT 
 						*
 					FROM
@@ -1045,7 +1045,7 @@
 						// exit;
 			$this->Util()->DB()->setQuery($sql);
 		$info = $this->Util()->DB()->GetRow();
-		
+
 			$sql = "SELECT 
 				*
 			FROM
@@ -1055,10 +1055,10 @@
 				us.courseId = ".$info['courseId']." order by lastNamePaterno";
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
-			
+
 			foreach($result as $key=>$aux){
-				
-				
+
+
 				$sql = "SELECT 
 					count(*)
 				FROM
@@ -1068,14 +1068,14 @@
 				$this->Util()->DB()->setQuery($sql);
 				$d = $this->Util()->DB()->GetSingle();
 				$result[$key]['eval'] = $d ;
-				
+
 			}
-			
+
 			return $result;
 	}
-	
+
 	public function onEnviaMsj(){
-		
+
 
 			$sql = "INSERT INTO
 						mensaje
@@ -1091,7 +1091,7 @@
 							)";
 		$this->Util()->DB()->setQuery($sql);
 		$id = $this->Util()->DB()->InsertData();
-			
+
 		foreach($_POST['profesores'] as $key=>$aux){
 
 			$sql = "INSERT INTO
@@ -1107,7 +1107,7 @@
 				$this->Util()->DB()->setQuery($sql);
 				$result = $this->Util()->DB()->InsertData();
 		}
-		
+
 		$vas = 0;
 		foreach($_FILES as $key=>$var)
 		{
@@ -1118,10 +1118,10 @@
 					$aux = explode(".",$var["name"]);
 					$extencion=end($aux);
 					$temporal = $var['tmp_name'];
-					$url = DOC_ROOT;				
-					$foto_name="doc_".$id.".".$extencion;		
+					$url = DOC_ROOT;
+					$foto_name="doc_".$id.".".$extencion;
 					if(move_uploaded_file($temporal,$url."/docentes/msj/".$foto_name)){
-						
+
 						$sql = "UPDATE
 							mensaje
 							SET
@@ -1134,39 +1134,39 @@
 				}
 		   }
 		}
-			
-			
+
+
 		if ($vas == 1){
-			
+
 		sleep(7);
-			
-		$sendmail = new SendMail;	
-		
+
+		$sendmail = new SendMail;
+
 		 $attachment[0] = $url."/docentes/msj/".$foto_name;
 		 $fileName[0] = $foto_name;
-		
+
 		// echo '<pre>'; print_r($attachment);
 		// exit;
-		
+
 		$personal = New Personal;
 		$lstPeso = $personal->enumerateDocentesMsj($id);
-		
+
 		foreach($lstPeso as $key=>$aux){
-			
+
 				if($aux['correo']<>''){
 					$sendmail->PrepareAttachment("Mensaje Para el Docente", utf8_decode($this->mensaje),"","", $aux['correo'], 'Docente', $attachment, $fileName);
 				}
 		}
-		
-		
-		 // $sendmail->PrepareAttachment("Mensaje Para el Docente", utf8_decode($this->mensaje), "","", 'juanjosepm@live.com', 'Docente', $attachment, $fileName);
-		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " enlinea@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
-		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " tutor@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
-		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", " dacademica@iapchiapas.org.mx", "Administrador", $attachment, $fileName);
 
-		}	
+
+		 // $sendmail->PrepareAttachment("Mensaje Para el Docente", utf8_decode($this->mensaje), "","", 'juanjosepm@live.com', 'Docente', $attachment, $fileName);
+		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", EMAIL_USERNAME, "Administrador", $attachment, $fileName);
+		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", EMAIL_USERNAME, "Administrador", $attachment, $fileName);
+		$sendmail->PrepareAttachment("Mensaje Para el Docente",utf8_decode($this->mensaje), "", "", EMAIL_USERNAME, "Administrador", $attachment, $fileName);
+
+		}
 		return true;
 	}
-	
-}	
+
+}
 ?>

@@ -6,20 +6,20 @@
 		private $description;
 		private $announcementId;
 		private $limit;
-		
+
 		public function setLimit($value)
 		{
 			$this->Util()->ValidateInteger($value);
 			$this->limit = $value;
 		}
-		
-		
+
+
 		public function setAnnouncementId($value)
 		{
 			$this->Util()->ValidateInteger($value);
 			$this->announcementId = $value;
 		}
-		
+
 		public function setTitle($value)
 		{
 			$this->Util()->ValidateString($value, 50000, 0, 'title');
@@ -31,20 +31,20 @@
 			$this->Util()->ValidateString($value, 50000, 0, 'description');
 			$this->description = $value;
 		}
-		
+
 		public function setStudentLimit($value)
 		{
 			$this->Util()->ValidateInteger($value, 100, 1);
-			$this->student_limit = $value;
+			$this->setStudentLimit($value);
 		}
-		
+
 		public function Enumerate($courseId = 0, $courseModuleId = 0)
 		{
 			//if($courseModuleId)
 			//{
 				$courseModuleId = "AND courseModuleId = '".$courseModuleId."'";
 			//}
-			
+
 			if($this->limit){
 				 $sql = "
 				SELECT * FROM announcement
@@ -57,18 +57,18 @@
 				ORDER BY date DESC LIMIT 20";
 			}
 
-			
+
 			// exit;
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->GetResult();
-			
+
 			foreach($result as $key => $res)
 			{
 				$result[$key]["description"] = $this->Util()->DecodeTiny($result[$key]["description"]);
 			}
 			return $result;
 		}
-		
+
 		public function Save()
 		{
 			$module = new Module;
@@ -87,27 +87,26 @@
 				//echo $modulo;
 				$message[3]["subject"] = "Nuevo anuncio disponible en el modulo ".$modulo." | ".$titulo;
 				$message[3]["body"] = $this->Util()->DecodeTiny($this->description);
-				
+
 				$details_body = array();
 				$details_subject = array();
 				$sendmail = new Sendmail;
-				 foreach($theGroup as $key => $value)
+				foreach($theGroup as $key => $value)
 				{
-                $nombremail=$this->Util()->acento($value["names"]);
-				 $sendmail->Prepare($message[3]["subject"], $message[3]["body"], $details_body, $details_subject, $value["email"], $nombremail); 		
-					
+                	$nombremail=$this->Util()->acento($value["names"]);
+				 	$sendmail->Prepare($message[3]["subject"], $message[3]["body"], $details_body, $details_subject, $value["email"], $nombremail, "", "", EMAIL_USERNAME);
 				}
-						
+
 			}
 			else
 			{
-				$courseId = 0;		
-				$courseModuleId = 0;		
+				$courseId = 0;
+				$courseModuleId = 0;
 			}
 
-			
-			
-			
+
+
+
 
 			$this->Util()->DB()->setQuery("
 			INSERT INTO  `announcement` (
@@ -127,13 +126,13 @@
 				'".$this->description."'
 				)");
 			$result = $this->Util()->DB()->InsertData();
-			
+
 			$this->Util()->setError(90000, 'complete', "Has agregado un aviso");
 			$this->Util()->PrintErrors();
 
 		}
-		
-		
+
+
 	public function Edit($Id)
 		{
 			$module = new Module;
@@ -152,74 +151,73 @@
 				//echo $modulo;
 				$message[3]["subject"] = "Nuevo anuncio disponible en el modulo ".$modulo." | ".$titulo;
 				$message[3]["body"] = $this->Util()->DecodeTiny($this->description);
-				
+
 				$details_body = array();
 				$details_subject = array();
 				$sendmail = new Sendmail;
 				 foreach($theGroup as $key => $value)
 				{
-                $nombremail=$this->Util()->acento($value["names"]);
-				 $sendmail->Prepare($message[3]["subject"], $message[3]["body"], $details_body, $details_subject, $value["email"], $nombremail); 		
-					
+                	$nombremail=$this->Util()->acento($value["names"]);
+					$sendmail->Prepare($message[3]["subject"], $message[3]["body"], $details_body, $details_subject, $value["email"], $nombremail, "", "", EMAIL_USERNAME);
 				}
-						
+
 			}
 			else
 			{
-				$courseId = 0;		
-				$courseModuleId = 0;		
+				$courseId = 0;
+				$courseModuleId = 0;
 			}
 
-			
+
 			 $sql = "UPDATE
 						announcement
 						SET
 							title = '".$this->title."',
 							description = '".$this->description."'
 						WHERE announcementId = '".$Id."'";
-						
+
 				// exit;
 			$this->Util()->DB()->setQuery($sql);
 			$result = $this->Util()->DB()->UpdateData();
-			
+
 			return true;
 
 		}
 
-		
+
 	public function Delete($id = null){
-		
+
 		 $sql = "DELETE FROM 
 					announcement
 				WHERE 
 					announcementId = ".$this->announcementId;
-							
+
 		$this->Util()->DB()->setQuery($sql);
 		$this->Util()->DB()->DeleteData();
-	
+
 		$this->Util()->setError(10032, "complete");
 		$this->Util()->PrintErrors();
-		
+
 		return true;
-				
+
 	}
-	
+
 	public function Info($Id = null){
-		
-		
+
+
 		$sql = "
 			SELECT * FROM announcement
 			WHERE announcementId = '".$Id."'";
 // exit;
 		$this->Util()->DB()->setQuery($sql);
 		$result = $this->Util()->DB()->GetRoW();
-		
+
 		return $result;
 
 	}
-	
-	
-		
+
+
+
 }
-		
+
 ?>
