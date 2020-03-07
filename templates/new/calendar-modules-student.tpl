@@ -12,10 +12,10 @@
                 <div class="portlet box {$PORTLET_COLOR}">
             {/if}
             {if $timestamp > $item.finalDateTimestamp}
-                    <div class="portlet box {$PORTLET_COLOR}-mint">
+                    <div class="portlet box {$PORTLET_COLOR}">
             {/if}
             {if $timestamp < $item.initialDateTimestamp}
-                        <div class="portlet box {$PORTLET_COLOR}-mint">
+                        <div class="portlet box {$PORTLET_COLOR}">
             {/if}
                 <div class="portlet-title text-danger">
                     <!-- TODO Poner al centro el título-->
