@@ -1,8 +1,8 @@
 <?php
 
-		
+
 	/* For Session Control - Don't remove this */
-	//$user->allow_access(8);	
+	//$user->allow_access(8);
 
 	if($_POST)
 	{
@@ -11,6 +11,8 @@
 		$homework->setNombre($_POST["nombre"]);
 		$homework->setUserId($_SESSION["User"]["userId"]);
 		$homework->Upload($_FILES["path"]);
+		echo "here";
+		exit;
 
 		//aqui lo que tenemos que hacer es un header location a la pagina que teniamos originalmente
 		//http://www.iapchiapasenlinea.mx/calendar-modules-student/id/158
@@ -23,8 +25,8 @@
 		header("Location:".WEB_ROOT."/calendar-modules-student/id/".$_POST["courseId"]);
 		exit;
 	}
-	
-	
+
+
 
 	$activity->setActivityId($_GET["id"]);
 	$actividad = $activity->Info();
@@ -33,9 +35,9 @@
 	$homework->setActivityId($_GET["id"]);
 	$homework->setUserId($_SESSION["User"]["userId"]);
 	$homework = $homework->Uploaded();
-	
+
 	// echo '<pre>'; print_r($homework);
 	// exit;
 	$smarty->assign('homework', $homework);
-	
+
 ?>
