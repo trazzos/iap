@@ -75,7 +75,7 @@
         {/if}
 
     {/if}
-    {print_r($item.homework.path)}
+    {print_r($item.homework.path, true)}
 
     {if $item.homework.path ne ''}
         <br />
