@@ -341,9 +341,6 @@
 			$activity = new Activity;
 			$activity->setActivityId($this->getActivityId());
 			$actividad = $activity->Info();
-			print_r($actividad);
-				 // echo '<pre>'; print_r($result);
-			// exit;
 			if($actividad["modality"] == "Individual")
 			{
 				//creamos la cadena de seleccion
@@ -363,7 +360,7 @@
 			//checamos si alguien de su equipo ya lo entrego.
 			else
 			{
-				echo $sql = "SELECT 
+				$sql = "SELECT 
 							teamNumber
 						FROM
 							team
