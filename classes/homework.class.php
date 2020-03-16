@@ -40,8 +40,6 @@
 		function UploadApp($file)
 		{
 			//check if homework
-			// echo '<pre>'; print_r($_POST);
-			// echo 'Id'.$this->userId;
 
 			$sql ="
 				SELECT COUNT(*) FROM homework
@@ -104,7 +102,6 @@
 			$relative_path = $userId. "_".$id."_".$mod.".".$ext;
 
 			                    $year=date('Y');
-								//print_r($year);
 								$year = substr($year, -2);
 								$userId=$this->userId;
 
@@ -144,7 +141,6 @@
 			$user->setUserId($this->userId);
 			$datos=$user->GetInfo();
 
-		//echo "<pre>".print_r($datos)."</pre>";exit;
 
 			$mail = new PHPMailer(); // defaults to using php "mail()"
 		// $mail->IsSMTP();
@@ -253,7 +249,6 @@
 			$relative_path = $userId. "_".$id."_".$mod.".".$ext;
 
 			                    $year=date('Y');
-								//print_r($year);
 								$year = substr($year, -2);
 								$userId=$this->getUserId();
 
@@ -295,7 +290,6 @@
 			$user->setUserId($_SESSION['User']['userId']);
 			$datos=$user->GetInfo();
 
-		//echo "<pre>".print_r($datos)."</pre>";exit;
 
 			$mail = new PHPMailer(); // defaults to using php "mail()"
 		// $mail->IsSMTP();
@@ -411,8 +405,6 @@
 			$activity = new Activity;
 			$activity->setActivityId($this->getActivityId());
 			$actividad = $activity->Info();
-				 // echo '<pre>'; print_r($result);
-			// exit;
 			if($actividad["modality"] == "Individual")
 			{
 				//creamos la cadena de seleccion

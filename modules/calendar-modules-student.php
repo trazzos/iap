@@ -17,7 +17,6 @@
 	$activity->setCourseModuleId($_GET["id"]);
 	//$smarty->assign('id_act',$_GET["id"] );
 	$actividades = $activity->Enumerate("Tarea");
-	print_r($actividades);
 	$smarty->assign('actividades', $actividades);
 
 	// echo "<pre>"; print_r($actividades);
