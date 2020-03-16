@@ -76,7 +76,6 @@
 
     {/if}
     {$item.homework|print_r}
-
     {if $item.homework.path ne ''}
         <br />
         <b>Tarea entregada</b>
