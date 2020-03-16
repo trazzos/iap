@@ -11,8 +11,6 @@
 		$homework->setNombre($_POST["nombre"]);
 		$homework->setUserId($_SESSION["User"]["userId"]);
 		$homework->Upload($_FILES["path"]);
-		echo "here";
-		exit;
 
 		//aqui lo que tenemos que hacer es un header location a la pagina que teniamos originalmente
 		//http://www.iapchiapasenlinea.mx/calendar-modules-student/id/158
