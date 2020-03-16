@@ -1,7 +1,7 @@
 <div class="portlet-body">
 	{if $item.activityId eq $tareaId}
 		{if $exito eq "si"}
-			
+
 			<div class="alert alert-warning alert-dismissable">
 			  <button type="button" class="close" data-dismiss="alert">&times;</button>
 			  <strong></strong> La actividad se subió correctamente al sistema de tareas
@@ -46,9 +46,9 @@
             Ninguno.
         {/if}
         {if $item.activityType == "Tarea"}
-		
+
             {if $vistaPrevia==0}
-				
+
 				{if $item.homework.path eq ''}
 					<a href="{$WEB_ROOT}/graybox.php?page=upload-homework&id={$item.activityId}" title="Subir Tarea" data-target="#ajax" data-toggle="modal" style="color:#000" class="btn btn-xs green-jungle"> Subir Actividad al Sistema de Tareas <i class="fa fa-upload "></i></a>
 				 {/if}
@@ -60,7 +60,7 @@
                 {if $vistaPrevia==0}
                     <a id="presentarExamen" style="display: none" class=" btn yellow btn-outline sbold" href="{$WEB_ROOT}/graybox.php?page=make-test&id={$item.activityId}" data-target="#ajax" data-toggle="modal"> Presentar examen </a>
                     <a class="btn blue" style="cursor:pointer; color:#000" onclick="DoTest({$item.activityId})">Presentar Ex&aacute;men.</a>
-                {else} 
+                {else}
 				    Presentar Ex&aacute;men.
                 {/if}
 
@@ -75,14 +75,15 @@
         {/if}
 
     {/if}
+    {print_r($item.homework.path)}
 
     {if $item.homework.path ne ''}
         <br />
         <b>Tarea entregada</b>
 		{if $item.homework.path ne ''}
 		<button class="btn blue" onclick="window.location.href='{$WEB_ROOT}/download.php?file=homework/{$item.homework.path}&mime={$item.homework.mime}'" class="bb" style="width:90px">VER TAREA</button>
-		
-			{if $timestamp < $item.finalDateTimestamp}  
+
+			{if $timestamp < $item.finalDateTimestamp}
 				{*{if $item.homework.countUpdate ne 1}*}
 					{if $item.modality eq 'Individual'}
 					<button class="btn red" onclick="deleteActividad('{$item.activityId}')" class="bb" style="width:90px">Eliminar</button>
@@ -100,7 +101,7 @@
 
     {if $item.retro}
         <br />
-        <b>Retroalimentación:</b> 
+        <b>Retroalimentación:</b>
 		<a href="javascript:void(0)" onClick='verRetro("{$item.activityId}")'>
 		<div style=" float:left; left:-80px; font-size:24px;   position:relative; height: 24px; width: 24px;">
 		<i class="material-icons md-16">ic_visibility</i>
@@ -109,7 +110,7 @@
 		<div style="display:none" id="divRetro_{$item.activityId}">
 			{$item.retro}
 		</div>
-		
+
 
     {/if}
 	 {if $item.retroFile ne ""}
