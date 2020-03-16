@@ -187,6 +187,7 @@
 
 		function Upload($file)
 		{
+			print_r($file);
 			//check if homework
 			 $this->getUserId();
 
@@ -201,6 +202,8 @@
 			if($nombre == null){
 				$nombre = "Actividad";
 			}
+
+			print_r($count);
 
 			if($count['homeworkId'] == null)
 			{
