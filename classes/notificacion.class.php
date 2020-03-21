@@ -48,7 +48,7 @@ $visto=$_SESSION['User']['userId'].'p';
 }
 
 $fecha = date("Y-m-d", strtotime(date("Y-m-d")." - ".DAYS_NOTIFICATION." DAY"));
-$sql="select * from notificacion WHERE fecha_aplicacion > '".$fecha."' order by fecha_aplicacion DESC LIMIT 1000";
+$sql="select * from notificacion WHERE fecha_aplicacion > '".$fecha."' order by fecha_aplicacion DESC LIMIT 50";
 
 $this->Util()->DB()->setQuery($sql);
 $notificaciones=$this->Util()->DB()->GetResult();
@@ -56,17 +56,17 @@ $notificaciones=$this->Util()->DB()->GetResult();
 			foreach($notificaciones as $key=>$result){
 
 				$notificaciones[$key]["actividad"] = str_replace('<label style="color:#ff0000;font-size:200%"><strong>&raquo;</strong></label', "", $notificaciones[$key]["actividad"]);
-			
+
 //***************************OBTENIENDO PERMISOS DE IMPRESION EN AREA DE NOTIFICACIONES****************************///
 			$vista = explode(",", $result["vista"]);
-  
+
 		  	     if(in_array($visto, $vista))
 			     {
 				     $notificaciones[$key]['vistaPermiso'] =1;
-				     
+
 			     }else
 				     $notificaciones[$key]['vistaPermiso'] =0;
-//********************************** fin de permisos de impresion en area de noficaciones******************************************************************* 
+//********************************** fin de permisos de impresion en area de noficaciones*******************************************************************
 		          $userId=substr($notificaciones[$key]['hecho'], 0, -1);
 			      $tipoUser = substr($notificaciones[$key]['hecho'], -1);
   //print_r($tipoUser);exit;
@@ -84,9 +84,9 @@ $notificaciones=$this->Util()->DB()->GetResult();
 						  $notificaciones[$key]["nombre"]=$infoUser['names']." ".$infoUser['lastNamePaterno']." ".$infoUser['lastNameMaterno'];
 						  //print_r($infoUser); exit;
 					   }
-		
-		
-		
+
+
+
 		 }
 
 
@@ -107,7 +107,7 @@ public function saveNotificacion(){
 						'".$this->enlace."'
 			     
 			         )";
-					 
+
 			$this->Util()->DB()->setQuery($sqlNot);
 			//ejecutamos la consulta y guardamos el resultado, que sera el ultimo positionId generado
 			$this->Util()->DB()->InsertData();
