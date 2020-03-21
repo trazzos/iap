@@ -90,7 +90,7 @@ class SendMail extends Main
         $this->email->Send();
 	}
 
-	public function PrepareMulti($subject, $body, $details_body, $details_subject, $to, $toName, $attachment = "", $fileName = "", $from = null, $fromName = "Administrador del Sistema")
+	public function PrepareMulti($subject, $body, $details_body, $details_subject, $to, $toName = null, $attachment = "", $fileName = "", $from = null, $fromName = "Administrador del Sistema")
 	{
 		$body = nl2br($this->Util()->handle_mail_patterns($body,$details_body));
 		$subject = utf8_decode($this->Util()->handle_mail_patterns($subject,$details_subject));
@@ -109,7 +109,7 @@ class SendMail extends Main
 			$info["lastNamePaterno"] = $info["lastNamePaterno"];
 			$info["lastNameMaterno"] = $info["lastNameMaterno"];
 			$name = utf8_decode($info["names"]." ".$info["lastNamePaterno"]." ".$info["lastNameMaterno"]);
-            $this->email->AddAddress($info["email"], $name." (".$info["controlNumber"].")");
+            $this->email->AddBCC($info["email"], $name." (".$info["controlNumber"].")");
 		}
 
         $this->email->Subject    = utf8_decode($subject);

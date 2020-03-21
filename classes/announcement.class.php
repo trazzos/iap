@@ -91,12 +91,15 @@
 				$details_body = array();
 				$details_subject = array();
 				$sendmail = new Sendmail;
+
+				$ids = [];
 				foreach($theGroup as $key => $value)
 				{
-                	$nombremail=$this->Util()->acento($value["names"]);
-				 	$sendmail->Prepare($message[3]["subject"], $message[3]["body"], $details_body, $details_subject, $value["email"], $nombremail, "", "", EMAIL_USERNAME);
+					$ids[] = $value['alumnoId'];
 				}
+				$ids = implode(',', $ids);
 
+				$sendmail->PrepareMulti($message[3]["subject"], $message[3]["body"], $details_body, $details_subject, $ids);
 			}
 			else
 			{
