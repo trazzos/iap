@@ -298,7 +298,8 @@
 				$result = $this->Util()->DB()->UpdateData();
 			}
 
-			unset($_SESSION["timeLimit"]);
+			$timeLimitName = 'timeLimit'.$this->getActivityId();
+			unset($_SESSION[$timeLimitName]);
 
 			$student=new Student;
 			$student->setUserId($this->getUserId);
