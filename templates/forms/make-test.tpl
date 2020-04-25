@@ -13,18 +13,18 @@
 <input type="hidden" name="modality" id="modality" value="{$actividad.modality}"
 <input type="hidden" id="type" name="type" value="saveAddMajor"/>
 <ul id="sort-box" class="sorts">
-  <li>              
+  <li>
     <div class="content-in-small">
-    
+
       <div class="content-settings-row">
       	Tiempo Restante: <span id="countdownJobs" style="font-weight:bold">{$timeLeft}</span>
-      </div>    
+      </div>
       <div class="content-settings-row">
       	No cerrar esta pagina, de lo contrario tendras que volver a empezar.
       </div>
-          
+
 			{foreach from=$myTest item=subject}
-      
+
       <div class="content-settings-row">
             <div style=""><b>{$subject.question} &raquo;Valor: {$subject.ponderation}%</b></div>
             <div style="text-align:left">
@@ -48,19 +48,19 @@
               <input style="width:50px" type="radio" name="anwer[{$subject.testId}]" id="anwer[{$subject.testId}]" value="opcionE" />{$subject.opcionE}<br />
               {/if}
             </div>
-            
+
       </div>
 			{/foreach}
-      
+
       <div style="float:left"><span class="reqField">*</span> Campo requerido</div>
       <div style="padding-right:60px">
 
         <input type="submit" class="btn {$BUTTON_COLOR} submitForm" id="addMajor" name="addMajor" value="Enviar" onClick="return confirmSubmit()" />
       </div>
-      
+
     </div>
-   </li>                              
- </ul>    
+   </li>
+ </ul>
 </form>
 {else}
 	Has agotado tus oportunidades para hacer este examen. Tu calificacion fue de: <b>{$score}%</b>
@@ -73,9 +73,9 @@ function countdown(remain, count, not, messages) {
 	var timer = setInterval( function () {
   countdown.innerHTML = Math.floor(remain/60) + ":" + (remain%60 < 10 ? "0": "") + remain %60;
   if (messages[remain]) { notifier.innerHTML = messages[remain]; }
-  if (--remain < 0 ) { 
-			clearInterval(timer); 
-			$('addMajorForm').submit();
+  if (--remain <= 0 ) {
+			clearInterval(timer);
+			$('#addMajorForm').submit();
 		}
   },1000);
 }
@@ -90,7 +90,7 @@ function confirmSubmit()
 }
 
 countdown({$timeLeft}, "countdownJobs", "countdownJobs",
-{ 
+{
 	60: "Available in one minute",
   30: "30 seconds left",
   0: "Is now Available"
