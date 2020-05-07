@@ -246,9 +246,16 @@ class Encuesta extends Main
             }
 		}
 
-		// falta pasar el coursemodule
+		// falta pasar el coursemodulei
+		$modul = preg_replace("/,+/", ",", $modul);
+		$modul = trim($modul, ',');
+
+
+		$coru = preg_replace("/,+/", ",", $coru);
+                $coru = trim($coru, ',');
+
 		
-		  $sql = "
+		 $sql = "
 				SELECT 
 					count(*)
 				FROM 
@@ -305,7 +312,7 @@ class Encuesta extends Main
 			$this->Util()->DB()->setQuery($sql);
 			$sumR = $this->Util()->DB()->GetSingle();
 			
-			 $sql = "
+			$sql = "
 				SELECT 
 					count(respuesta)
 				FROM 
@@ -324,7 +331,7 @@ class Encuesta extends Main
 					resultado as r
 				left join pregunta as p on p.preguntaId = r.preguntaId
 				where 
-					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId = ".$modul;
+					p.categoriapreguntaId = ".$aux['categoriapreguntaId']." and courseModuleId IN ".$modul;
 			$this->Util()->DB()->setQuery($sql);
 			$lstPreguntas = $this->Util()->DB()->GetResult();
 			
