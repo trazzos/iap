@@ -363,14 +363,14 @@
                 <span class="title">Asesor</span>
             </a>
         </li>
-            {*{if $mnuMain == "modulo"}
+            {if $mnuMain == "modulo"}
             <li class="nav-item {if $page == "calendar-image-modules-student"} active {/if} ">
                 <a href="{$WEB_ROOT}/calendar-image-modules-student/id/{$id}" class="nav-link nav-toggle">
                     <i class="fa fa-calendar"></i>
                     <span class="title">Calendario</span>
                 </a>
             </li>
-            {/if}*}
+            {/if}
 
             <li class="nav-item {if $page == "calendar-modules-student"} active {/if} ">
                 <a href="{$WEB_ROOT}/calendar-modules-student/id/{$id}" class="nav-link nav-toggle">
