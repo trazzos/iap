@@ -11,16 +11,18 @@ use Dompdf\Exception;
 // echo "<pre>"; print_r($lstPreguntas);
     // exit;
 
-	
-	$module->setCourseModuleId($_GET['Id']);
-	$infoM  = $module->InfoCourseModule();
-	$infoC  = $module->infoCourseMol($infoM['courseId']);
-	$personal->setPersonalId($infoM['access'][1]);
+
+	//$module->setCourseModuleId($_GET['Id']);
+	//$infoM  = $module->InfoCourseModule();
+//exit;
+	//$infoC  = $module->infoCourseMol($infoM['courseId']);
+	$personal->setPersonalId($_GET['Id']);
 	$infoP = $personal->Info();
 
-	
-	$lstPreguntas = $encuesta->promedioXRubro($_GET['Id'],$infoM['courseId']);     
-	
+
+	$lstPreguntas = $encuesta->promedioXRubroAdmin($_GET['Id']);
+	//$lstPreguntas = $encuesta->promedioXRubro($_GET['Id'],$infoM['courseId']);
+
 	$html .= "
 	<html>
 	<head>
@@ -90,69 +92,69 @@ use Dompdf\Exception;
 		$html .= "<br>";
 		$html .= "<br><font class='txtTicket'><b>Resultados</b>  </font>";
 		$html .= "<br>";
-	
-		
+
+
 		foreach($lstPreguntas['result'] as $key=>$aux){
 			$html .= "<table align='center' width='700px' border='1' class='txtTicket'>";
 			$html .= "<tr><td >Rubro</td><td width='44px'>Prom.</td></tr>";
 			$html .= "<tr><td><b>".$aux['nombre']."</b></td><td width='44px'>".$aux['promedio']."</td></tr>";
-			$html .= ""; 
-			
+			$html .= "";
+
 			$html .= "
 				<tr>
 					<td>Pregunta</td>
 					<td width='94px'></td>
-				</tr>"; 		
+				</tr>";
 			foreach($aux['lstPreguntas'] as $keyp=>$auxp){
-				$html .= "<tr><td>".$auxp['pregunta']."</td><td width='94px'>".$auxp['totalPp']."</td></tr>"; 	
+				$html .= "<tr><td>".$auxp['pregunta']."</td><td width='94px'>".$auxp['totalPp']."</td></tr>";
 			}
 
 			$html .= "</table>
 			<br>
 			<br>
 			";
-			
+
 		}
-		
-		
+
+
 		$html .= "<br><div style='page-break-after:always;'></div>";
 		$html .= "<br><font class='txtTicket'><b>Comentarios</b> </font>";
-		
+
 		$html .= "<br>";
 		$html .= "<table align='center' width='77%' border='1' class='txtTicket'>";
 
-		
+
 		foreach($lstPreguntas['lstComentarios'] as $key=>$aux){
 			$html .= "<tr><td>".$aux['comentario']."</td></tr>";
 		}
 		$html .= "</table>";
-		
+
 
 	$html .= "	
 	</body>
 	</html>
 
 	";
-	
+
 	// <div style='page-break-after:always;'>
 	// echo $html;
 	// exit;
 	# Instanciamos un objeto de la clase DOMPDF.
 	$mipdf = new DOMPDF();
-	 
+
 	# Definimos el tamaño y orientación del papel que queremos.
 	# O por defecto cogerá el que está en el fichero de configuración.
 	$mipdf ->set_paper("A4", "portrait");
-	 
+
 	# Cargamos el contenido HTML.
 	$mipdf ->load_html($html);
-	 
+
 	# Renderizamos el documento PDF.
 	$mipdf ->render();
-	 
+
 	# Enviamos el fichero PDF al navegador.
 	$mipdf ->stream('certificadodeValidez.pdf',array('Attachment' => 0));
-			
+
 
 
 ?>

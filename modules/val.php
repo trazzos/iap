@@ -1,6 +1,6 @@
 <?php
 	/* For Session Control - Don't remove this */
-	$user->allow_access(37);	
+	$user->allow_access(37);
 
 
 	$user->setUserId($_SESSION['User']['userId']);// exit;
@@ -23,7 +23,7 @@
 
 	// echo '<pre>'; print_r($lstPreguntas);
 	// exit;
-	$smarty->assign('mId', $_GET["id"]);
+	$smarty->assign('mId', $_GET["personalId"]);
 	$smarty->assign('lstPreguntas', $lstPreguntas);
 
 

@@ -8,9 +8,9 @@ function ToogleStatusDiv()
 if($('redireccion')!= undefined){
 	if($('redireccion').value == 1)
 window.location=WEB_ROOT;}
-	
+
 	$('centeredDiv').toggle();
-	grayOut(false);	
+	grayOut(false);
 }
 
 function ToogleStatusDivOnPopup()
@@ -20,16 +20,16 @@ function ToogleStatusDivOnPopup()
 
 function CancelFview(){
 	grayOut(false);
-	$('fview').hide();	
+	$('fview').hide();
 }
 
 function CloseFview(){
-	$('fview').hide();	
+	$('fview').hide();
 }
 
 function notificando(){
 
-	new Ajax.Request(WEB_ROOT+'/ajax/notificar.php', 
+	new Ajax.Request(WEB_ROOT+'/ajax/notificar.php',
 	{
 		method:'post',
 		parameters: {type: "notificar2"},
@@ -41,7 +41,7 @@ function notificando(){
 			{
 				ShowStatus(splitResponse[1])
 			}
-			
+
 
 		},
 	onFailure: function(){ alert('Something went wrong...') }
@@ -56,7 +56,6 @@ function notificando(){
 function initTinyMCE() {
 
 	setTimeout(function(){
-		console.log('adada');
 		tinyMCE.remove();
 		tinyMCE.init({
 			max_chars: 1000, // max. allowed chars

@@ -1,16 +1,16 @@
 function guardarInformacion(Id){
-	
+
 
 
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/info-docente.php',
 	  	data: $("#frmGral_"+Id).serialize(true)+'&Id='+Id+'&type='+Id,
-		beforeSend: function(){			
-			
+		beforeSend: function(){
+
 		},
-	  	success: function(response) {	
-		
+	  	success: function(response) {
+
 			console.log(response)
 			var splitResp = response.split("[#]");
 
@@ -22,22 +22,22 @@ function guardarInformacion(Id){
 			}
 		}
     });
-	
+
 }//guardarInformacion
 
 
 function loadFecha(Id){
-	
-	
-		
+
+
+
 	 // $.datepicker.setDefaults( $.datepicker.regional['es'] );
 		$('#fecha'+Id).datepicker({
 		 dateFormat: 'yy-mm-dd',
 		 changeMonth: true,
 		changeYear: true,
-		  
+
 		}).focus();
-		
+
 }
 
 
@@ -67,17 +67,17 @@ function enviarArchivo(Id){
 					console.log(Progress)
 					$('#progress_'+Id).val(Math.round(Progress));
 					$('#porcentaje_'+Id).html(Math.round(Progress)+'%');
-					
-					
+
+
 				},false);
 			return XHR;
 		},
-		beforeSend: function(){		
+		beforeSend: function(){
 			// $("#loader").html(LOADER);
 			// $("#erro_"+reqId).hide(0);
 		},
 		success: function(response){
-			
+
 			console.log(response);
 			var splitResp = response.split("[#]");
 			$("#loader").html("");
@@ -87,7 +87,7 @@ function enviarArchivo(Id){
 				// closeModal()
 			}else if($.trim(splitResp[0]) == "fail"){
 				$("#txtErrMsg").show();
-	
+
 			}else{
 				alert(msgFail);
 			}
@@ -104,21 +104,21 @@ function descargarAutoPdf(Id){
 }
 
 function onDelete(Id){
-	
+
 	var resp = confirm("Esta seguro de eliminar al Docente?");
-	
+
 	if(!resp)
 		return;
-	
+
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/new/personal.php',
 	  	data: $("#frmGral").serialize(true)+'&Id='+Id+'&type=onDelete',
-		beforeSend: function(){			
+		beforeSend: function(){
 			// $('#tblContent').html(LOADER3);
 		},
-	  	success: function(response) {	
-		
+	  	success: function(response) {
+
 			console.log(response)
 			var splitResp = response.split("[#]");
 
@@ -131,28 +131,28 @@ function onDelete(Id){
 			}
 		}
     });
-	
+
 }
 
 
 // onDeleteDoc
 
 function onDeleteDoc(Id,personaId){
-	
+
 	var resp = confirm("Esta seguro de eliminar el Documento?");
-	
+
 	if(!resp)
 		return;
-	
+
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/info-docente.php',
 	  	data: $("#frmGral").serialize(true)+'&Id='+Id+'&type=onDelete&personalId='+personaId+'&cId=admin',
-		beforeSend: function(){			
+		beforeSend: function(){
 			// $('#tblContent').html(LOADER3);
 		},
-	  	success: function(response) {	
-		
+	  	success: function(response) {
+
 			console.log(response)
 			var splitResp = response.split("[#]");
 
@@ -165,7 +165,7 @@ function onDeleteDoc(Id,personaId){
 			}
 		}
     });
-	
+
 }
 
 
@@ -173,44 +173,44 @@ function onDeleteDoc(Id,personaId){
 
 
 function onBuscar(Id){
-	
-	
-	
+
+
+
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/new/personal.php',
 	  	data: $("#frmFlt").serialize(true)+'&Id='+Id+'&type=onBuscar',
-		beforeSend: function(){			
+		beforeSend: function(){
 			// $('#tblContent').html(LOADER3);
 		},
-	  	success: function(response) {	
-		
+	  	success: function(response) {
+
 			console.log(response)
 			// var splitResp = response.split("[#]");
 
-			
+
 				$("#container").html(response);
 				// $("#container").html(splitResp[2]);
-			
+
 		}
     });
-	
+
 }
 
 
 
 function onSave(){
-	
-	
-	
+
+
+
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/new/personal.php',
 	  	data: $("#frmGral").serialize(true)+'&type=onSave',
-		beforeSend: function(){			
+		beforeSend: function(){
 			$('#msj_1').html(LOADER3);
 		},
-	  	success: function(response) {	
+	  	success: function(response) {
 
 			console.log(response)
 			var splitResp = response.split("[#]");
@@ -222,24 +222,24 @@ function onSave(){
 				}
 			else if($.trim(splitResp[0]) == "fail"){
 				ShowStatusPopUp(splitResp[1]);
-				
+
 			}
 		}
     });
-	
+
 }
 
 
 function closeModal(){
-	
+
 	$("#ajax").hide();
 	$("#ajax").modal("hide");
-	
+
 }
 
 function activaEdicion(){
-	
-	
+
+
 	$('.yellow').hide()
 	$('#frmGral_1').find('input, textarea, button, select').removeAttr('disabled');
 	$('#frmGral_2').find('input, textarea, button, select').removeAttr('disabled');
@@ -288,17 +288,17 @@ function onChangePicture(Id){
 					console.log(Progress)
 					$('#progress_'+Id).val(Math.round(Progress));
 					$('#porcentaje_'+Id).html(Math.round(Progress)+'%');
-					
-					
+
+
 				},false);
 			return XHR;
 		},
-		beforeSend: function(){		
+		beforeSend: function(){
 			// $("#loader").html(LOADER);
 			// $("#erro_"+reqId).hide(0);
 		},
 		success: function(response){
-			
+
 			console.log(response);
 			var splitResp = response.split("[#]");
 			$("#loader").html("");
@@ -309,7 +309,7 @@ function onChangePicture(Id){
 				location.reload();
 			}else if($.trim(splitResp[0]) == "fail"){
 				$("#txtErrMsg").show();
-	
+
 			}else{
 				alert(msgFail);
 			}
@@ -319,8 +319,13 @@ function onChangePicture(Id){
 
 
 function onVerPass(){
-	
+
 	$("#pass1").toggle();
 	$("#pass2").toggle();
-	
+
+}
+
+function onImprimirVal(Id,tipo){
+	url=WEB_ROOT+"/ajax/val.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id+'&tipo='+tipo;
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
 }
