@@ -18,7 +18,7 @@ use Dompdf\Exception;
 	} else {
 		$personal->setPersonalId($_GET['Id']);
 		$infoP = $personal->Info();
-		$lstPreguntas = $encuesta->promedioXRubroAdmin($_GET['personalId']);
+		$lstPreguntas = $encuesta->promedioXRubroAdmin($_GET['Id']);
 	}
 
 	$html .= "
