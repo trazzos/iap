@@ -1,8 +1,8 @@
 function closeModal(){
-	
+
 	$("#ajax").hide();
 	$("#ajax").modal("hide");
-	
+
 }
 
 
@@ -10,7 +10,7 @@ function loadFecha(Id){
 	 // $.datepicker.setDefaults( $.datepicker.regional['es'] );
 		$('#fecha_'+Id).datepicker({
 		changeYear: true,
-		
+
 		}).focus();
 }
 
@@ -18,18 +18,18 @@ function loadFecha(Id){
 
 
 function saveEditContrato(){
-	
+
 
 
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/info-docente.php',
 	  	data: $("#frmGral").serialize(true)+'&type=saveEditContrato',
-		beforeSend: function(){			
+		beforeSend: function(){
 			// $('#tblContent').html(LOADER3);
 		},
-	  	success: function(response) {	
-		
+	  	success: function(response) {
+
 			console.log(response)
 			var splitResp = response.split("[#]");
 
@@ -43,7 +43,7 @@ function saveEditContrato(){
 			}
 		}
     });
-	
+
 }//saveEditContrato
 
 
@@ -78,17 +78,17 @@ function onSendDoc(){
 					console.log(Progress)
 					$('#progress_'+reqId).val(Math.round(Progress));
 					$('#porcentaje_'+reqId).html(Math.round(Progress)+'%');
-					
-					
+
+
 				},false);
 			return XHR;
 		},*/
-		beforeSend: function(){		
+		beforeSend: function(){
 			// $("#loader").html(LOADER);
 			// $("#erro_"+reqId).hide(0);
 		},
 		success: function(response){
-			
+
 			console.log(response)
 			var splitResp = response.split("[#]");
 
@@ -102,7 +102,7 @@ function onSendDoc(){
 			}
 		},
 	})
-	
+
 }
 
 
@@ -127,17 +127,17 @@ function onSendContrato(){
 					console.log(Progress)
 					$('#progress_').val(Math.round(Progress));
 					$('#porcentaje_').html(Math.round(Progress)+'%');
-					
-					
+
+
 				},false);
 			return XHR;
 		},
-		beforeSend: function(){		
+		beforeSend: function(){
 			// $("#loader").html(LOADER);
 			// $("#erro_"+reqId).hide(0);
 		},
 		success: function(response){
-			
+
 			console.log(response)
 			var splitResp = response.split("[#]");
 
@@ -151,7 +151,7 @@ function onSendContrato(){
 			}
 		},
 	})
-	
+
 }
 
 
@@ -162,10 +162,10 @@ function onImprimirVal(Id,tipo){
 
 
 function closeModal(){
-	
+
 	$("#ajax").hide();
 	$("#ajax").modal("hide");
-	
+
 }
 
 
@@ -173,18 +173,18 @@ function closeModal(){
 
 
 function onDeleteContra(Id,personalId){
-	
+
 
 
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/info-docente.php',
 	  	data: $("#frmGral").serialize(true)+'&type=onDeleteContra&conId='+Id+'&personalId='+personalId,
-		beforeSend: function(){			
+		beforeSend: function(){
 			// $('#tblContent').html(LOADER3);
 		},
-	  	success: function(response) {	
-		
+	  	success: function(response) {
+
 			console.log(response)
 			var splitResp = response.split("[#]");
 
@@ -198,23 +198,23 @@ function onDeleteContra(Id,personalId){
 			}
 		}
     });
-	
+
 }//onDeleteContra
 
 
 function onDeleteContraF(Id,personalId){
-	
+
 
 
 	$.ajax({
 	  	type: "POST",
 	  	url: WEB_ROOT+'/ajax/info-docente.php',
 	  	data: $("#frmGral_").serialize(true)+'&type=onDeleteContraF&conId='+Id+'&personalId='+personalId,
-		beforeSend: function(){			
+		beforeSend: function(){
 			// $('#tblContent').html(LOADER3);
 		},
-	  	success: function(response) {	
-		
+	  	success: function(response) {
+
 			console.log(response)
 			var splitResp = response.split("[#]");
 
@@ -228,7 +228,7 @@ function onDeleteContraF(Id,personalId){
 			}
 		}
     });
-	
+
 }//onDeleteContraF
 
 
@@ -252,17 +252,17 @@ function onSendContratoFirmado(){
 					console.log(Progress)
 					$('#progress_1').val(Math.round(Progress));
 					$('#porcentaje_1').html(Math.round(Progress)+'%');
-					
-					
+
+
 				},false);
 			return XHR;
 		},
-		beforeSend: function(){		
+		beforeSend: function(){
 			// $("#loader").html(LOADER);
 			// $("#erro_"+reqId).hide(0);
 		},
 		success: function(response){
-			
+
 			console.log(response)
 			var splitResp = response.split("[#]");
 
@@ -276,13 +276,18 @@ function onSendContratoFirmado(){
 			}
 		},
 	})
-	
+
 }
 
 
 
 function verTr(Id){
-	
-	
+
+
 	$('#tr_'+Id).toggle();
+}
+
+function onImprimirVal(Id,tipo){
+	url=WEB_ROOT+"/ajax/val.php?"+$('#frmfiltro').serialize(true)+'&Id='+Id+'&tipo='+tipo;
+	open(url,"voucher","toolbal=0,width=800,resizable=1");
 }

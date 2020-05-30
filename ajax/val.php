@@ -8,20 +8,18 @@ use Dompdf\Dompdf;
 use Dompdf\Exception;
 
 	session_start();
-// echo "<pre>"; print_r($lstPreguntas);
-    // exit;
 
-
-	//$module->setCourseModuleId($_GET['Id']);
-	//$infoM  = $module->InfoCourseModule();
-//exit;
-	//$infoC  = $module->infoCourseMol($infoM['courseId']);
-	$personal->setPersonalId($_GET['Id']);
-	$infoP = $personal->Info();
-
-
-	$lstPreguntas = $encuesta->promedioXRubroAdmin($_GET['Id']);
-	//$lstPreguntas = $encuesta->promedioXRubro($_GET['Id'],$infoM['courseId']);
+	if($_GET['tipo'] === 'module') {
+		$module->setCourseModuleId($_GET['Id']);
+		$infoM  = $module->InfoCourseModule();
+		$infoC  = $module->infoCourseMol($infoM['courseId']);
+		$personal->setPersonalId($infoM['access'][1]);
+		$lstPreguntas = $encuesta->promedioXRubro($infoM['courseModuleId'],$infoM['courseId']);
+	} else {
+		$personal->setPersonalId($_GET['Id']);
+		$infoP = $personal->Info();
+		$lstPreguntas = $encuesta->promedioXRubroAdmin($_GET['personalId']);
+	}
 
 	$html .= "
 	<html>

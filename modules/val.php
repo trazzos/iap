@@ -11,20 +11,14 @@
 
 		$module->setCourseModuleId($_GET["id"]);
 		$info = $module->InfoCourseModule();
-	}
-
-
-	if ($_GET["id"]){
 		$lstPreguntas = $encuesta->promedioXRubro($info['courseModuleId'],$info['courseId']);
-	}else{
+		$smarty->assign('type', 'module');
+		$smarty->assign('mId', $_GET["id"]);
+	} else {
 		$lstPreguntas = $encuesta->promedioXRubroAdmin($_GET['personalId']);
+		$smarty->assign('type', 'admin');
+		$smarty->assign('mId', $_GET["personalId"]);
 	}
 
-
-	// echo '<pre>'; print_r($lstPreguntas);
-	// exit;
-	$smarty->assign('mId', $_GET["personalId"]);
 	$smarty->assign('lstPreguntas', $lstPreguntas);
-
-
 ?>

@@ -4,7 +4,7 @@
             <i class="fa fa-bullhorm"></i>Valoración
         </div>
         <div class="actions">
-			<a class="btn red" href="#" title="IMPRIMIR" onClick="onImprimirVal('{$mId}','admin')">
+			<a class="btn red" href="#" title="IMPRIMIR" onClick="onImprimirVal('{$mId}','{$type}')">
 			Imprimir
 			</a>
         </div>
