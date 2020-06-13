@@ -282,8 +282,6 @@ function onSendContratoFirmado(){
 
 
 function verTr(Id){
-
-
 	$('#tr_'+Id).toggle();
 }
 

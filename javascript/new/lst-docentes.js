@@ -46,6 +46,9 @@ function loadTR(Id){
 	$('#tr_'+Id).toggle();
 }
 
+function verTr(Id){
+	$('#tr_'+Id).toggle();
+}
 
 function enviarArchivo(Id){
 
