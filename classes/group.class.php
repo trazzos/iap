@@ -366,29 +366,23 @@
 					foreach($result as $key => $res)
 					{
 						$this->Util()->DB()->setQuery("
-							SELECT ponderation
+							SELECT *
 							FROM activity_score
 							WHERE activityId = '".$id."' AND userId = '".$res["alumnoId"]."'");
-						$result[$key]["ponderation"] = $this->Util()->DB()->GetSingle();
 
-						$this->Util()->DB()->setQuery("
-							SELECT retro
-							FROM activity_score
-							WHERE activityId = '".$id."' AND userId = '".$res["alumnoId"]."'");
-						$result[$key]["retro"] = $this->Util()->DB()->GetSingle();
-
-						$this->Util()->DB()->setQuery("
-							SELECT rutaArchivoRetro
-							FROM activity_score
-							WHERE activityId = '".$id."' AND userId = '".$res["alumnoId"]."'");
-						$result[$key]["fileRetro"] = $this->Util()->DB()->GetSingle();
+						$activityScore = $this->Util()->DB()->GetRow();
+						$result[$key]["ponderation"] = $activityScore['ponderation'];
+						$result[$key]["retro"] = $activityScore['retro'];
+						$result[$key]["rutaArchivoRetro"] = $activityScore['rutaArchivoRetro'];
+						$result[$key]["fileRetro"] = $activityScore['fileRetro'];
+						$result[$key]["try"] = $activityScore['try'];
+						$result[$key]["activityScoreId"] = $activityScore['activityScoreId'];
 
 						$this->Util()->DB()->setQuery("
 							SELECT *
 							FROM homework
 							WHERE activityId = '".$id."' AND userId = '".$res["alumnoId"]."'");
 						$result[$key]["homework"] = $this->Util()->DB()->GetRow();
-
 					}
 				break;
 				default:

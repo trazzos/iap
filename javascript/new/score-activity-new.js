@@ -1,5 +1,5 @@
 function saveCalificacion(){
-	
+
 	$("#type").val("saveCalificacion")
 
 	var fd = new FormData(document.getElementById("frmModal"));
@@ -9,13 +9,13 @@ function saveCalificacion(){
 				processData: false,
 				contentType: false,
 				type: 'POST',
-				beforeSend: function(){		
+				beforeSend: function(){
 					$("#loader").html(LOADER3);
 					$("#btnEnviar").hide();
 					// $("#erro_"+reqId).hide(0);
 				},
 				success: function(response){
-					
+
 					console.log(response);
 					var splitResp = response.split("[#]");
 
@@ -25,11 +25,27 @@ function saveCalificacion(){
 
 						$("#msjdiv").html(splitResp[1]);
 					}else if($.trim(splitResp[0]) == "fail"){
-						$("#msjdiv").html(splitResp[1]);				
+						$("#msjdiv").html(splitResp[1]);
 					}else{
 						alert('Ocurrio un error');
 					}
 				},
 			})
-	
+
 }//saveCalificacion
+
+function reactivateTest(id){
+
+	$.ajax({
+		url: WEB_ROOT+'/ajax/score-activity-new.php',
+		data: {
+			id: id,
+			type: "reactivateTest",
+		},
+		type: 'POST',
+		success: function(response){
+			$("#reactivar-"+id).html(response);
+		},
+	})
+
+}//reactivateTest

@@ -9,8 +9,8 @@ session_start();
 
 switch($_POST["type"])
 {
-	case "saveCalificacion": 
-		
+	case "saveCalificacion":
+
 		$activity->setActivityId($_POST["id"]);
 		$actividad = $activity->Info();
 		$group->setCourseModuleId($actividad["courseModuleId"]);
@@ -23,12 +23,15 @@ switch($_POST["type"])
 		}else{
 			echo 'fail[#]';
 		}
-		
-		
-		
+
+
+
 	break;
-	
-	
+	case "reactivateTest": {
+		$activity->reactivateTest($_POST["id"]);
+		echo 'Examen Reactivado';
+	}
+
 }
 
 ?>

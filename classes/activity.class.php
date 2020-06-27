@@ -15,6 +15,16 @@
 		private $horaInicial;
 		private $verponderation;
 
+		public function reactivateTest($id) {
+			$sql = "UPDATE
+						activity_score
+						SET
+							try = 0
+						WHERE activityScoreId = ".$id;
+			$this->Util()->DB()->setQuery($sql);
+			$result = $this->Util()->DB()->UpdateData();
+		}
+
 		public function setVerponderation($value)
 		{
 			// $this->Util()->ValidateInteger($value);

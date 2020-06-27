@@ -3,14 +3,22 @@
         <td align="center">{$item.controlNumber}</td>
         <td align="left">{$item.lastNamePaterno} {$item.lastNameMaterno} {$item.names}</td>
         <td align="center" style="width:20px !important">
+
         {if $item.homework.path ne ''}
 		{assign var="entrega" value="1"}
         	<a href="{$WEB_ROOT}/download.php?file=homework/{$item.homework.path}">
           {if $item.homework.nombre}{$item.homework.nombre}{else}Tarea{/if}</a>
-        
-		{else}
+
+		{elseif $actividad.activityType !== "Examen"}
 		      {assign var="entrega" value="0"}
         	Sin Entregar
+        {else}
+            N/A (Examen)
+            {if $item.try > 0}
+            <div id="reactivar-{$item.activityScoreId}">
+                <button type="button" onclick="reactivateTest({$item.activityScoreId})">Reactivar</button>
+            </div>
+            {/if}
         {/if}
         </td>
         <td align="center">
@@ -28,7 +36,7 @@
 				{/if}
 				<input type="file" name="fileRetro_{$item.alumnoId}" id="fileRetro_{$item.alumnoId}" onChange="upFile({$item.alumnoId})">
 			</div>
-			
+
 		</td>
     </tr>
 {foreachelse}
@@ -37,6 +45,6 @@
 
         <tr>
         <td colspan="4" align="center">
-           
+
         </td>
     </tr>
