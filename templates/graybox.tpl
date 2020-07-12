@@ -3,7 +3,7 @@
 {include file="{$DOC_ROOT}/templates/new/{$includedTpl}.tpl"}
 
 <script type="text/javascript">
-  //initTinyMCE();
+  initTinyMCE();
 
   function verTr(Id){
     $('#tr_'+Id).toggle();
