@@ -52,7 +52,7 @@
 					{if  $timestamp < $subject.initialDateStamp}
 						No Disponible
 					{else}
-						{if $subject.finalDateStamp > 0 AND $timestamp > ($subject.finalDateStamp - (3600 * 24 * 15))}
+						{if $subject.finalDateStamp > 0 AND $timestamp > ($subject.finalDateStamp - (3600 * 24 * 30))}
 							<a href="{$WEB_ROOT}/test-docente/id/{$subject.courseModuleId}">Disponible</a>
 						{elseif $subject.active == "no"}
 							<a href="{$WEB_ROOT}/test-docente/id/{$subject.courseModuleId}">Disponible</a>
