@@ -33,6 +33,11 @@
 /ajax/app/one/platforms
 /ajax/app/one/node_modules/
 
+#symlink
+materia
+informe
+msj
+
 .env
 /templates_c/*
 !/templates_c/.gitkeep
