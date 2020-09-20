@@ -734,3 +734,52 @@ function verTr(Id){
 
 	$('#tr_'+Id).toggle();
 }
+
+
+function enviarArchivo(Id){
+
+	var fd = new FormData(document.getElementById("frmDoc_"));
+
+	// +'&cId=admin',
+	$.ajax({
+		url : WEB_ROOT+'/ajax/new/personal.php',
+		data: fd,
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		xhr: function(){
+			var XHR = $.ajaxSettings.xhr();
+			XHR.upload.addEventListener('progress',function(e){
+				console.log(e)
+				var Progress = ((e.loaded / e.total)*100);
+				Progress = (Progress);
+				console.log(Progress)
+				$('#progress_').val(Math.round(Progress));
+				$('#porcentaje_').html(Math.round(Progress)+'%');
+
+
+			},false);
+			return XHR;
+		},
+		beforeSend: function(){
+			// $("#loader").html(LOADER);
+			// $("#erro_"+reqId).hide(0);
+		},
+		success: function(response){
+
+			console.log(response);
+			var splitResp = response.split("[#]");
+			$("#loader").html("");
+			if($.trim(splitResp[0]) == "ok"){
+				$("#msj").html(splitResp[1]);
+				$("#tblContent").html(splitResp[2]);
+				closeModal()
+			}else if($.trim(splitResp[0]) == "fail"){
+				$("#txtErrMsg").show();
+
+			}else{
+				alert(msgFail);
+			}
+		},
+	})
+}

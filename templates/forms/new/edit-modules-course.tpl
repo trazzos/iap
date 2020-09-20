@@ -46,9 +46,15 @@
 				<li>
 					<a href="{$WEB_ROOT}/graybox.php?page=down-plan&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
 						<i class="fa fa-book"></i>
-							Programa de la Asignatura
+							Ver Programa de la Asignatura
 					</a>
 				</li>
+                <li>
+                    <a href="{$WEB_ROOT}/graybox.php?page=up-plan&id={$myModule.courseId}&cmId={$myModule.courseModuleId}" data-target="#ajax" data-toggle="modal" data-width="1000px" title='SUBIR'>
+                        <i class="fa fa-upload"></i>
+                        Subir Programa de la Asignatura
+                    </a>
+                </li>
 				<li>
 					<a href="{$WEB_ROOT}/graybox.php?page=down-contrato-doc&id={$myModule.courseModuleId}&auxTpl=admin" data-target="#ajax" data-toggle="modal"  >
 						<i class="	fa fa-file-pdf-o"></i>
