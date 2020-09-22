@@ -772,7 +772,7 @@ function enviarArchivo(Id){
 			$("#loader").html("");
 			if($.trim(splitResp[0]) == "ok"){
 				$("#msj").html(splitResp[1]);
-				$("#tblContent").html(splitResp[2]);
+				//$("#tblContent").html(splitResp[2]);
 				closeModal()
 			}else if($.trim(splitResp[0]) == "fail"){
 				$("#txtErrMsg").show();
