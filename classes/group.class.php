@@ -81,7 +81,7 @@
 
 		public function setCourseModuleId($value)
 		{
-			$this->Util()->ValidateInteger($value,999,1);
+			$this->Util()->ValidateInteger($value,9999999999,1);
 			$this->coursemoduleId = $value;
 		}
 
@@ -93,7 +93,7 @@
 
 		public function setTeamNumber($value)
 		{
-			$this->Util()->ValidateInteger($value,999,1);
+			$this->Util()->ValidateInteger($value,9999999999,1);
 			$this->teamNumber = $value;
 		}
 
