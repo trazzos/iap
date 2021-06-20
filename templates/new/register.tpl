@@ -6,6 +6,9 @@
 
     </div>
     <div class="portlet-body">
-        <div id="tblContent">{include file="forms/new/add-student-register-basic.tpl"}</div>
+        <div id="tblContent">
+            <h4 style="text-align: center"><a target="_blank" href="https://ihjaimesabines.edu.mx/politicas-privacidad">Aviso de privacidad</a> </h4>
+            {include file="forms/new/add-student-register-basic.tpl"}
+        </div>
     </div>
 </div>
