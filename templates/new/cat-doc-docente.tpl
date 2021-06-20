@@ -27,6 +27,7 @@
 		<div id='loader'></div>
 		<div id='msj'></div>
 		<div id='contenido'>
+            <div style="text-align: center"><a target="_blank" href="https://ihjaimesabines.edu.mx/politicas-privacidad">Aviso de privacidad</a> </div>
 			  {include file="{$DOC_ROOT}/templates/lists/new/add-cat-doc-docente.tpl"}
 		</div>
     </div>
